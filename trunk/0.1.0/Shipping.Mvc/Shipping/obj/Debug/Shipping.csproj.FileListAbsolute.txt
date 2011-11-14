@@ -1,0 +1,12 @@
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Shipping.Mvc\Shipping\bin\Debug\Shipping.dll
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Shipping.Mvc\Shipping\bin\Debug\Shipping.pdb
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Shipping.Mvc\Shipping\bin\Debug\AutoMapper.dll
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Shipping.Mvc\Shipping\bin\Debug\log4net.dll
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Shipping.Mvc\Shipping\bin\Debug\StructureMap.dll
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Shipping.Mvc\Shipping\bin\Debug\AutoMapper.xml
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Shipping.Mvc\Shipping\bin\Debug\log4net.xml
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Shipping.Mvc\Shipping\bin\Debug\StructureMap.pdb
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Shipping.Mvc\Shipping\bin\Debug\StructureMap.xml
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Shipping.Mvc\Shipping\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Shipping.Mvc\Shipping\obj\Debug\Shipping.dll
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Shipping.Mvc\Shipping\obj\Debug\Shipping.pdb

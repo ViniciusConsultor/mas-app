@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{54A0E93A-0E08-49EC-B925-2845F4122CE1}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Shipping.Mvc</RootNamespace>
+    <AssemblyName>Shipping.Mvc</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.0.0\lib\net40-client\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Controllers\Controller.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogInController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Header\MenuModel.cs" />
+    <Compile Include="Models\Home\HomeIndexModel.cs" />
+    <Compile Include="Models\LogIn\IndexModel.cs" />
+    <Compile Include="Models\OnBoarding\IndexModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Images\bkgnd.png" />
+    <Content Include="Content\Images\logo.gif" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Script\jquery-1.4.4-vsdoc.js" />
+    <Content Include="Content\Script\jquery-1.4.4.min.js" />
+    <Content Include="Content\Script\jquery-ui-1.8.5.custom.min.js" />
+    <Content Include="Content\Script\jquery.query-2.1.7.js" />
+    <Content Include="Content\Script\jquery.tools.tooltip.min.js" />
+    <Content Include="Content\Script\redirect.js" />
+    <Content Include="Content\Script\UI\jquery-ui-1.8.5.tabs.min.js" />
+    <Content Include="Content\Script\UI\jquery-ui-1.8.9.min.js" />
+    <Content Include="Content\StyleSheets\960.css" />
+    <Content Include="Content\Script\CurvyCorners\jquery.curvycorners.min.js" />
+    <Content Include="Content\Script\CurvyCorners\jquery.curvycorners.packed.js" />
+    <Content Include="Content\Script\CurvyCorners\jquery.curvycorners.source.js" />
+    <Content Include="Content\Script\fancybox\blank.gif" />
+    <Content Include="Content\Script\fancybox\fancybox-x.png" />
+    <Content Include="Content\Script\fancybox\fancybox-y.png" />
+    <Content Include="Content\Script\fancybox\fancybox.png" />
+    <Content Include="Content\Script\fancybox\fancy_close.png" />
+    <Content Include="Content\Script\fancybox\fancy_loading.png" />
+    <Content Include="Content\Script\fancybox\fancy_nav_left.png" />
+    <Content Include="Content\Script\fancybox\fancy_nav_right.png" />
+    <Content Include="Content\Script\fancybox\fancy_shadow_e.png" />
+    <Content Include="Content\Script\fancybox\fancy_shadow_n.png" />
+    <Content Include="Content\Script\fancybox\fancy_shadow_ne.png" />
+    <Content Include="Content\Script\fancybox\fancy_shadow_nw.png" />
+    <Content Include="Content\Script\fancybox\fancy_shadow_s.png" />
+    <Content Include="Content\Script\fancybox\fancy_shadow_se.png" />
+    <Content Include="Content\Script\fancybox\fancy_shadow_sw.png" />
+    <Content Include="Content\Script\fancybox\fancy_shadow_w.png" />
+    <Content Include="Content\Script\fancybox\fancy_title_left.png" />
+    <Content Include="Content\Script\fancybox\fancy_title_main.png" />
+    <Content Include="Content\Script\fancybox\fancy_title_over.png" />
+    <Content Include="Content\Script\fancybox\fancy_title_right.png" />
+    <Content Include="Content\Script\fancybox\jquery.easing-1.3.pack.js" />
+    <Content Include="Content\Script\fancybox\jquery.fancybox-1.3.1.css" />
+    <Content Include="Content\Script\fancybox\jquery.fancybox-1.3.1.js" />
+    <Content Include="Content\Script\fancybox\jquery.fancybox-1.3.1.pack.js" />
+    <Content Include="Content\Script\fancybox\jquery.mousewheel-3.0.2.pack.js" />
+    <Content Include="Content\Images\chrome-large.gif" />
+    <Content Include="Content\Images\firefox-large.gif" />
+    <Content Include="Content\Images\internet-explorer-large.gif" />
+    <Content Include="Content\Images\safari-large.gif" />
+    <Content Include="Content\StyleSheets\reset.css" />
+    <Content Include="Content\StyleSheets\site.min.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Shared\Menu.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shipping.Business.Entities\Shipping.Business.Entities.csproj">
+      <Project>{CDED79DD-884C-409C-8B5C-8570E84BEA45}</Project>
+      <Name>Shipping.Business.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shipping.Business.Services\Shipping.Business.Services.csproj">
+      <Project>{17C28371-24BB-4788-9ED1-9BCF634BD347}</Project>
+      <Name>Shipping.Business.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shipping.Data.Sql\Shipping.Data.Sql.csproj">
+      <Project>{BC908A2D-60D2-4197-BDA2-59CFC7BD448E}</Project>
+      <Name>Shipping.Data.Sql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shipping.Data\Shipping.Data.csproj">
+      <Project>{769BBEDE-8A09-4696-A24A-CA77A26EFCFE}</Project>
+      <Name>Shipping.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shipping.Web\Shipping.Web.csproj">
+      <Project>{0AC845F3-2370-41A0-8088-5A8AACCE13B8}</Project>
+      <Name>Shipping.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shipping\Shipping.csproj">
+      <Project>{10756CFA-01C2-44AD-948A-5D164C0354EA}</Project>
+      <Name>Shipping</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\LogIn\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Site.Master" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\Shared\OneColumn.Master" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50000</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/Shipping.Mvc</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
