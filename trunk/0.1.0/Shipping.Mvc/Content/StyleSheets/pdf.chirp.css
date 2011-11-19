@@ -1,0 +1,59 @@
+﻿body 
+{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+
+/* Table */
+table
+{
+    width:100%;
+    page-break-inside:auto;
+}
+
+table thead 
+{ 
+    border:1px solid #7faf41;
+    display:table-header-group;
+}
+
+table thead tr
+{
+	font-weight:normal;
+	color:#FFF;
+	text-align:left;
+	background-color:#7faf41;
+	height:16px;
+	padding:10px 10px 9px 10px;
+	white-space:nowrap;
+}
+
+table tbody tr
+{
+    color:#000;
+	background-color:#F9F9F9;
+	border-bottom:1px solid #DDD;
+	page-break-inside:avoid;
+    page-break-after:auto;
+}
+
+table tbody tr.even
+{
+    color:#000;
+	background-color:#F0F0F0;
+}
+
+table td
+{
+	text-align:left;
+	padding:10px;
+	line-height:1.3em;
+}
+
+/* Procedure Codes: Breakdown w/Fees */
+.grand_total
+{
+    border-top: 10px;
+    font-weight: bold;
+    text-align: right;
+}
