@@ -48,6 +48,29 @@ namespace Shipping.Data.Sql
             return builder.ToString();
         }
 
+        public static void ExecuteStoredProcedure(string connectionString, ILogger logger, string procedureName, SqlParameter[] parameters = null)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                logger.DebugFormat(typeof(SqlUtility), "Opening connection to server '{0}', database '{1}'.", connection.DataSource, connection.Database);
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(STORED_PROCEDURE_PREFIX + procedureName, connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    if (parameters != null && parameters.Length > 0)
+                    {
+                        command.Parameters.AddRange(CleanParameters(parameters));
+                    }
+
+                    logger.DebugFormat(typeof(SqlUtility), "Executing stored procedure {0} {1} on server '{2}', database '{3}'.", command.CommandText, GetParameterString(parameters), connection.DataSource, connection.Database);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         public static T ExecuteXmlStoredProcedure<T>(string connectionString, ILogger logger, string procedureName, SqlParameter[] parameters = null, int sqlCommandTimeout = -1) where T : class
         {
             T returnValue;

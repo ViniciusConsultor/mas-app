@@ -87,6 +87,8 @@
     <Compile Include="Models\LogIn\IndexModel.cs" />
     <Compile Include="Models\LogOut\AutoLogOutModel.cs" />
     <Compile Include="Models\OnBoarding\IndexModel.cs" />
+    <Compile Include="Models\Supplier\SupplierIndexModel.cs" />
+    <Compile Include="Models\Supplier\SupplierModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +148,7 @@
     <Content Include="Content\StyleSheets\site.chirp.css" />
     <Content Include="Content\StyleSheets\site.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Administration\Edit.aspx" />
     <Content Include="Views\Administration\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\LogOut\AutoLogOut.ascx" />

@@ -16,6 +16,7 @@ using Shipping.Configuration;
 using Shipping.Web.Security;
 using Shipping.Data;
 using Shipping.Data.Sql;
+using Shipping.Mvc.Models.Supplier;
 
 namespace Shipping.Mvc
 {
@@ -45,6 +46,13 @@ namespace Shipping.Mvc
             Mapper.CreateMap<User, OnBoarding.IndexModel>()
                 .ForMember(dest => dest.Password, opt => opt.Ignore())
                 .ForMember(dest =>dest.ConfirmPassword, opt => opt.Ignore());
+
+            Mapper.CreateMap<Category, SelectListItem>()
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Text, opt => opt.MapFrom(src => src.CategoryName))
+                .ForMember(dest => dest.Selected, opt => opt.Ignore());
+
+            Mapper.CreateMap<Supplier, SupplierModel>();
         }
         public class StructureMapRegistry : Registry
         {
@@ -63,6 +71,7 @@ namespace Shipping.Mvc
                 For<ILogger>().Singleton().Use<Web.Logging.Log4NetLogger>();
                 
                 For<IUserService>().Singleton().Use<UserService>();
+                For<ISupplierService>().Singleton().Use<SupplierService>();
 
                 For<ICacheProvider>().Use<CacheProvider>()
                 .Ctor<bool>("enabled").Is(bool.Parse(System.Configuration.ConfigurationManager.AppSettings["shipping.Caching.CacheProvider.Enabled"]));
@@ -72,6 +81,10 @@ namespace Shipping.Mvc
                 For<IConfigurationManager>().Singleton().Use<ConfigurationManager>();
 
                 For<IUserRepository>().Singleton().Use<SqlUserRepository>()
+                    .Ctor<string>("mainConnectionString").Is(mainConnectionString)
+                    .Ctor<Dictionary<string, string>>("satelliteConnectionStrings").Is(satelliteConnectionStrings);
+
+                For<ISupplierRepository>().Singleton().Use<SqlSupplierRepository>()
                     .Ctor<string>("mainConnectionString").Is(mainConnectionString)
                     .Ctor<Dictionary<string, string>>("satelliteConnectionStrings").Is(satelliteConnectionStrings);
             }

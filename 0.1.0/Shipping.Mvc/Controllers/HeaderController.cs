@@ -220,7 +220,7 @@ namespace Shipping.Mvc.Controllers
             #region Administration
             if (model.IsAdmin)
             {
-                MenuItem sysAdminMenu = new MenuItem()
+                MenuItem adminMenu = new MenuItem()
                 {
                     ImageUrl = Url.Content("~/Content/Images/VJP/menu-administration.gif"),
                     Url = String.Format(model.Portal50Url, "administration/default.aspx"),
@@ -231,22 +231,25 @@ namespace Shipping.Mvc.Controllers
                 {
                     Section = "General Administration"
                 };
-                sysAdminMenu.Items.Add(mi6);
+                adminMenu.Items.Add(mi6);
 
                 MenuItem mi2 = new MenuItem()
                 {
                     Url = String.Format(model.Portal50Url, "administration"),
-                    Text = "Add User"
+                    Text = "Add Supplier"
                 };
-                sysAdminMenu.Items.Add(mi2);
+                adminMenu.Items.Add(mi2);
 
+                /*
                 MenuItem mi24 = new MenuItem()
                 {
                     Section = "Reporting"
                 };
-                sysAdminMenu.Items.Add(mi24);
+                adminMenu.Items.Add(mi24);
+                */
 
-                menu.Items.Add(sysAdminMenu);
+                menu.Items.Add(adminMenu);
+                
             }
             #endregion
 
