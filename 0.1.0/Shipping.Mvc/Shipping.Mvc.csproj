@@ -37,6 +37,590 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.2.0.0\lib\net40-client\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.BonusSkins.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.BonusSkins.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Build.XamlResourceProcessing.v11.1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Build.XamlResourceProcessing.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v11.1.Core, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Charts.v11.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.CodeParser.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.CodeParser.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Data.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v11.1.Compact, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Data.v11.1.Compact.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v11.1.Linq, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Data.v11.1.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DemoData.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.DemoData.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DemoReports.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.DemoReports.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Design.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Design.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.OfficeSkins.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.OfficeSkins.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v11.1.Adomd, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.PivotGrid.v11.1.Adomd.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v11.1.Core, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.PivotGrid.v11.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v11.1.Core, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Printing.v11.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Projects.v11.1.Installers, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Projects.v11.1.Installers.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Reports.v11.1.Designer, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Reports.v11.1.Designer.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v11.1.Core, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.RichEdit.v11.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.SharePoint.2010.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.SharePoint.2010.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.SharePoint.MOSS.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.SharePoint.MOSS.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.SharePoint.WSS.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.SharePoint.WSS.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.SpellChecker.v11.1.Core, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.SpellChecker.v11.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Tutorials.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Tutorials.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Utils.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxEditors.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Web.ASPxEditors.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxGauges.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Web.ASPxGauges.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxGridView.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Web.ASPxGridView.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxGridView.v11.1.Export, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Web.ASPxGridView.v11.1.Export.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxHtmlEditor.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Web.ASPxHtmlEditor.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxPivotGrid.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Web.ASPxPivotGrid.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxPivotGrid.v11.1.Export, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Web.ASPxPivotGrid.v11.1.Export.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxScheduler.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Web.ASPxScheduler.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxScheduler.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Web.ASPxScheduler.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxSpellChecker.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Web.ASPxSpellChecker.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxThemes.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Web.ASPxThemes.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxTreeList.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Web.ASPxTreeList.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxTreeList.v11.1.Export, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Web.ASPxTreeList.v11.1.Export.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.Mvc.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Web.Mvc.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Web.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.v11.1.Linq, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Web.v11.1.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Win.Projects.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Win.Projects.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Carousel.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Carousel.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Carousel.v11.1.Customization, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Carousel.v11.1.Customization.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Carousel.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Carousel.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Charts.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Charts.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Charts.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Charts.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Charts.v11.1.VisualStudio.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Charts.v11.1.VisualStudio.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Controls.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Controls.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Controls.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Controls.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Core.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Core.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.DemoBase.DemoData.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.DemoBase.DemoData.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.DemoBase.DemoData.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.DemoBase.DemoData.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.DemoBase.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.DemoBase.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.DemoBase.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.DemoBase.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.DemoBase.v11.1.TestUtils, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.DemoBase.v11.1.TestUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.DemoBase.Web.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.DemoBase.Web.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Docking.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Docking.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Docking.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Docking.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Gauges.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Gauges.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Gauges.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Gauges.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Grid.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v11.1.Core, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Grid.v11.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Grid.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Layout.v11.1.Core, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Layout.v11.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.LayoutControl.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v11.1.Design, Version=11.1.0.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.LayoutControl.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.NavBar.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.NavBar.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.NavBar.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.NavBar.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.PivotGrid.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.PivotGrid.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.PivotGrid.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.PivotGrid.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Printing.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Printing.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Printing.v11.1.Core, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Printing.v11.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Printing.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Printing.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Printing.v11.1.Service, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Printing.v11.1.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Printing.v11.1.Service.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Printing.v11.1.Service.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Projects.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Projects.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.PropertyGrid.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.PropertyGrid.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Ribbon.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Ribbon.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Ribbon.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Ribbon.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.RichEdit.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.RichEdit.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.RichEdit.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.RichEdit.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Scheduler.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Scheduler.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Scheduler.v11.1.Design, Version=11.1.0.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Scheduler.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.SpellChecker.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.SpellChecker.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.LightGray.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Themes.LightGray.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2007Black.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Themes.Office2007Black.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2007Blue.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Themes.Office2007Blue.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.Office2007Silver.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpf.Themes.Office2007Silver.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpo.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v11.1.Compact, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpo.v11.1.Compact.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v11.1.Data.Services, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpo.v11.1.Data.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpo.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v11.1.Linq, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpo.v11.1.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v11.1.Providers, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpo.v11.1.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v11.1.Providers.Compact, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpo.v11.1.Providers.Compact.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v11.1.Web, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.Xpo.v11.1.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraBars.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraBars.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraCharts.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraCharts.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v11.1.Extensions, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraCharts.v11.1.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v11.1.UI, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraCharts.v11.1.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v11.1.Web, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraCharts.v11.1.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v11.1.Web.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraCharts.v11.1.Web.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraEditors.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraEditors.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v11.1.Core, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraGauges.v11.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v11.1.Design.Win, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraGauges.v11.1.Design.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v11.1.Presets, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraGauges.v11.1.Presets.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v11.1.Win, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraGauges.v11.1.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraGrid.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraGrid.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraLayout.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraLayout.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraNavBar.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraNavBar.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraPivotGrid.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraPivotGrid.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraPrinting.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraPrinting.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraReports.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraReports.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v11.1.Extensions, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraReports.v11.1.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v11.1.Service, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraReports.v11.1.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v11.1.Web, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraReports.v11.1.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraRichEdit.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraRichEdit.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v11.1.Extensions, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraRichEdit.v11.1.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v11.1.Printing, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraRichEdit.v11.1.Printing.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraScheduler.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v11.1.Core, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraScheduler.v11.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraScheduler.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v11.1.Extensions, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraScheduler.v11.1.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v11.1.iCalendarExchange, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraScheduler.v11.1.iCalendarExchange.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v11.1.OutlookExchange, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraScheduler.v11.1.OutlookExchange.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v11.1.Reporting, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraScheduler.v11.1.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v11.1.Reporting.Extensions, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraScheduler.v11.1.Reporting.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v11.1.VCalendarExchange, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraScheduler.v11.1.VCalendarExchange.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraSpellChecker.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraSpellChecker.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraSpellChecker.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraSpellChecker.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraTreeList.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraTreeList.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraVerticalGrid.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraVerticalGrid.v11.1.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraWizard.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraWizard.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraWizard.v11.1.Design, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\DevExpress 2011.1\Components\Sources\DevExpress.DLL\DevExpress.XtraWizard.v11.1.Design.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
@@ -74,6 +658,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\Controller.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HeaderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogInController.cs" />
@@ -81,6 +666,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Customer\CustomerModel.cs" />
     <Compile Include="Models\Header\MenuModel.cs" />
     <Compile Include="Models\Header\UserStripModel.cs" />
     <Compile Include="Models\Home\HomeIndexModel.cs" />
@@ -152,6 +738,7 @@
     <Content Include="Views\Administration\Delete.aspx" />
     <Content Include="Views\Administration\Edit.aspx" />
     <Content Include="Views\Administration\Index.aspx" />
+    <Content Include="Views\Customer\AddCustomer.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\LogOut\AutoLogOut.ascx" />
     <Content Include="Views\Shared\Menu.ascx" />
@@ -204,15 +791,15 @@
     <Content Include="Views\LogIn\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Site.Master" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Shared\TwoColumn.Master" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\OneColumn.Master" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\Shared\Site.Master" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
