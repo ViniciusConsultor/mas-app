@@ -121,9 +121,10 @@ namespace Shipping.Mvc
                 var logger = Bootstrapper.GetStructureMapContainer().GetInstance<ILogger>();
                 logger.Error(this, "An unhandled exception occured: " + logger.GetFormattedExceptionMessage(ex), ex);
             }
-            catch { }
-
-            throw ex;
+            catch
+            {
+                throw ex;
+            }
         }
 
         protected void Application_EndRequest(object sender, EventArgs e)

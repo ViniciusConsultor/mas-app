@@ -18,6 +18,7 @@ namespace Shipping.Mvc.Controllers
         private readonly IConfigurationManager _configurationManager;
         private readonly IFormsAuthenticationService _formsAuthenticationService;
 
+        public Controller() { }
 
         public Controller(ILogger logger, IUserService userService, IFormsAuthenticationService formsAuthenticationService, IConfigurationManager configurationManager)
         {

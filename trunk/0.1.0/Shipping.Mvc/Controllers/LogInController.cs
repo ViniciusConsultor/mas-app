@@ -54,7 +54,13 @@ namespace Shipping.Mvc.Controllers
                 {
                     var user = _userService.GetUserByUsername(model.Username);
                     _formsAuthenticationService.SignIn(model.Username, _persistentCookie);
-                    return RedirectUser(returnUrl, model.Username);
+
+
+
+
+
+                    return RedirectToAction("AddCustomer", "Customer", null);
+                    //return RedirectUser(returnUrl, model.Username);
                 }
                 else
                 {
