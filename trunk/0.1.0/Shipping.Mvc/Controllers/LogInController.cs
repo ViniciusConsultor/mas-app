@@ -59,8 +59,8 @@ namespace Shipping.Mvc.Controllers
 
 
 
-                    return RedirectToAction("AddCustomer", "Customer", null);
-                    //return RedirectUser(returnUrl, model.Username);
+                    //return RedirectToAction("AddCustomer", "Customer", null);
+                    return RedirectUser(returnUrl, model.Username);
                 }
                 else
                 {
