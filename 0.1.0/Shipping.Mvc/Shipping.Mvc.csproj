@@ -148,6 +148,8 @@
     <Content Include="Content\StyleSheets\site.chirp.css" />
     <Content Include="Content\StyleSheets\site.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Administration\Create.aspx" />
+    <Content Include="Views\Administration\Delete.aspx" />
     <Content Include="Views\Administration\Edit.aspx" />
     <Content Include="Views\Administration\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />

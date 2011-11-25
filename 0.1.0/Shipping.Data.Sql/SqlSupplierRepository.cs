@@ -5,6 +5,8 @@ using System.Text;
 using Shipping.Logging;
 using System.Data.SqlClient;
 
+using Shipping.Business.Entities.Collections;
+
 namespace Shipping.Data.Sql
 {
     public class SqlSupplierRepository : ISupplierRepository
@@ -18,6 +20,14 @@ namespace Shipping.Data.Sql
             _mainConnectionString = mainConnectionString;
             _satelliteConnectionStrings = satelliteConnectionStrings;
             _logger = logger;
+        }
+
+        public SupplierCollection GetAllSuppliers()
+        {
+            _logger.Debug(this, "Getting list of all Supplier");
+
+
+            return SqlUtility.ExecuteXmlStoredProcedure<SupplierCollection>(_mainConnectionString, _logger, "Administration_GetAllSuppliers");
         }
 
         public void AddSupplier(Business.Entities.Supplier supplier)

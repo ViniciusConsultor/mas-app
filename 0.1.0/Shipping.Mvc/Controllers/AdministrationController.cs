@@ -8,6 +8,7 @@ using Shipping.Web.Mvc;
 using Shipping.Mvc.Models.Supplier;
 using Shipping.Business.Services;
 using Shipping.Business.Entities;
+using Shipping.Business.Entities.Collections;
 
 namespace Shipping.Mvc.Controllers
 {
@@ -22,7 +23,10 @@ namespace Shipping.Mvc.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var supplierIndexModel = new SupplierIndexModel();
+            SupplierCollection supplierCollection = _supplierService.GetAllSuppliers();
+            supplierIndexModel.Suppliers = supplierCollection;
+            return View(supplierIndexModel);
         }
 
         [HttpPost]
