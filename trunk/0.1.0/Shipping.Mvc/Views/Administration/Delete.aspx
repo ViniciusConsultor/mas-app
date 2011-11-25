@@ -6,6 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
 
+<h2>Delete Supplier</h2>
 
 </asp:Content>
 
