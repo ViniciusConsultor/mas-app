@@ -23,8 +23,9 @@
         <%: @Html.DevExpress().TextBox(
             settings =>
             {
-                settings.Name = "textBox1";
-                settings.Text = "34343";
+                settings.Name = "tbCustomerName";
+                settings.Width = 170;
+                settings.Properties.NullText = "Enter your customer name";
             }
             ).GetHtml()
         %>
@@ -34,24 +35,48 @@
             <%: Html.LabelFor(model => model.Office) %>
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.Office) %>
-            <%: Html.ValidationMessageFor(model => model.Office) %>
+            <%: 
+                @Html.DevExpress().TextBox(
+                    settings => {
+                        settings.Name="tbOffice";
+                        settings.Width=170;
+                        settings.Properties.NullText="Enter your office";
+                    }
+                ).GetHtml() 
+                
+            %>
         </div>
 
         <div class="editor-label">
             <%: Html.LabelFor(model => model.Address) %>
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.Address) %>
-            <%: Html.ValidationMessageFor(model => model.Address) %>
+            <%:
+                @Html.DevExpress().TextBox(
+                    settings => {
+                        settings.Name = "tbAddress";
+                        settings.Width=170;
+                        settings.Properties.MaskSettings.Mask = "Jl. ";
+                        settings.Properties.MaskSettings.IncludeLiterals = MaskIncludeLiteralsMode.None;
+                    }
+                ).GetHtml()
+            %>
         </div>
 
         <div class="editor-label">
             <%: Html.LabelFor(model => model.Phone) %>
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.Phone) %>
-            <%: Html.ValidationMessageFor(model => model.Phone) %>
+            <%: 
+                @Html.DevExpress().TextBox(
+                    settings => {
+                        settings.Width = 170;
+                        settings.Name = "tbPhone";
+                        settings.Properties.MaskSettings.Mask = "+62-000-0000-0000";
+                        settings.Properties.MaskSettings.IncludeLiterals = MaskIncludeLiteralsMode.None;
+                    }
+                ).GetHtml()
+            %>
         </div>
 
         <div class="editor-label">
