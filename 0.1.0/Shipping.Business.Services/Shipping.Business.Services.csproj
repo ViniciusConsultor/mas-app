@@ -49,8 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administration\ISupplierService.cs" />
-    <Compile Include="Administration\SupplierService.cs" />
+    <Compile Include="CategoryService\CategoryService.cs" />
+    <Compile Include="CategoryService\ICategoryService.cs" />
+    <Compile Include="SupplierService\ISupplierService.cs" />
+    <Compile Include="SupplierService\SupplierService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserService\IUserService.cs" />
     <Compile Include="UserService\UserService.cs" />

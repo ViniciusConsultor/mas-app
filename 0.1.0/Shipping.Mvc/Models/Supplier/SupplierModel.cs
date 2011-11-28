@@ -10,9 +10,9 @@ namespace Shipping.Mvc.Models.Supplier
     public class SupplierModel
     {
         public virtual Guid Id { get; set; }
-        public List<SelectListItem> Categories { get; set; }
-        [DisplayName("Category")]
+        [DisplayName("Category Type")]
         public Guid? SelectedCategoryId { get; set; }
+        public List<SelectListItem> Categories { get; set; }
         [DisplayName("Supplier Name")]
         public string SupplierName { get; set; }
         [DisplayName("Address")]

@@ -48,9 +48,9 @@ namespace Shipping.Mvc
                 .ForMember(dest =>dest.ConfirmPassword, opt => opt.Ignore());
 
             Mapper.CreateMap<Category, SelectListItem>()
-                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.Text, opt => opt.MapFrom(src => src.CategoryName))
-                .ForMember(dest => dest.Selected, opt => opt.Ignore());
+               .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Id))
+               .ForMember(dest => dest.Text, opt => opt.MapFrom(src => src.CategoryName))
+               .ForMember(dest => dest.Selected, opt => opt.Ignore());
 
             Mapper.CreateMap<Supplier, SupplierModel>();
         }
@@ -72,6 +72,7 @@ namespace Shipping.Mvc
                 
                 For<IUserService>().Singleton().Use<UserService>();
                 For<ISupplierService>().Singleton().Use<SupplierService>();
+                For<ICategoryService>().Singleton().Use<CategoryService>();
 
                 For<ICacheProvider>().Use<CacheProvider>()
                 .Ctor<bool>("enabled").Is(bool.Parse(System.Configuration.ConfigurationManager.AppSettings["shipping.Caching.CacheProvider.Enabled"]));
@@ -87,6 +88,10 @@ namespace Shipping.Mvc
                 For<ISupplierRepository>().Singleton().Use<SqlSupplierRepository>()
                     .Ctor<string>("mainConnectionString").Is(mainConnectionString)
                     .Ctor<Dictionary<string, string>>("satelliteConnectionStrings").Is(satelliteConnectionStrings);
+
+                For<ICategoryRepository>().Singleton().Use<SqlCategoryRepository>()
+                        .Ctor<string>("mainConnectionString").Is(mainConnectionString)
+                        .Ctor<Dictionary<string, string>>("satelliteConnectionStrings").Is(satelliteConnectionStrings);
             }
         }
     }

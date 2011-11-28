@@ -6,9 +6,9 @@ using System.Text;
 using Shipping.Business.Entities;
 using Shipping.Business.Entities.Collections;
 
-namespace Shipping.Data
+namespace Shipping.Business.Services
 {
-    public interface ISupplierRepository
+    public interface ISupplierService
     {
         void AddSupplier(Supplier supplier);
         SupplierCollection GetAllSuppliers();
