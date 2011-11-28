@@ -5,6 +5,7 @@ using System.Text;
 using Shipping.Logging;
 using System.Data.SqlClient;
 
+using Shipping.Business.Entities;
 using Shipping.Business.Entities.Collections;
 
 namespace Shipping.Data.Sql
@@ -22,19 +23,31 @@ namespace Shipping.Data.Sql
             _logger = logger;
         }
 
+        public Supplier GetSupplier(Guid id)
+        {
+            _logger.DebugFormat(this, "Get Supplier By Id {0}", id);
+
+
+            return SqlUtility.ExecuteXmlStoredProcedure<Supplier>(_mainConnectionString, _logger, "Supplier_GetSupplierById", new[]
+                        {
+                            new SqlParameter("@Id", id)                 
+
+                        });
+        }
+
         public SupplierCollection GetAllSuppliers()
         {
             _logger.Debug(this, "Getting list of all Supplier");
 
 
-            return SqlUtility.ExecuteXmlStoredProcedure<SupplierCollection>(_mainConnectionString, _logger, "Administration_GetAllSuppliers");
+            return SqlUtility.ExecuteXmlStoredProcedure<SupplierCollection>(_mainConnectionString, _logger, "Supplier_GetAllSuppliers");
         }
 
         public void AddSupplier(Business.Entities.Supplier supplier)
         {
             _logger.DebugFormat(this, "Adding Supplier for Suppiler Id {0}", supplier.Id);
 
-            SqlUtility.ExecuteStoredProcedure(_mainConnectionString, _logger, "Administration_AddSupplier", new[]
+            SqlUtility.ExecuteStoredProcedure(_mainConnectionString, _logger, "Supplier_AddSupplier", new[]
                         {
                             new SqlParameter("@Id", supplier.Id), 
                             new SqlParameter("@CategoryId", supplier.CategoryId), 

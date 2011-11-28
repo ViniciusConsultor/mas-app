@@ -235,7 +235,7 @@ namespace Shipping.Mvc.Controllers
 
                 MenuItem mi2 = new MenuItem()
                 {
-                    Url = String.Format(model.Portal50Url, "administration"),
+                    Url = String.Format(model.Portal50Url, "supplier"),
                     Text = "Add Supplier"
                 };
                 adminMenu.Items.Add(mi2);

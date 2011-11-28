@@ -62,6 +62,7 @@
     <Compile Include="Business Object\TypeCont.cs" />
     <Compile Include="Business Object\Vessel.cs" />
     <Compile Include="Business Object\WareHouse.cs" />
+    <Compile Include="Collections\CategoryCollection.cs" />
     <Compile Include="Collections\RoleCollection.cs" />
     <Compile Include="Collections\SupplierCollection.cs" />
     <Compile Include="Collections\UserCollection.cs" />

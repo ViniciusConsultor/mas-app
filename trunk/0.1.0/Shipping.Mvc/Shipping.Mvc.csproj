@@ -656,7 +656,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Controllers\AdministrationController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\Controller.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HeaderController.cs" />
@@ -734,10 +734,10 @@
     <Content Include="Content\StyleSheets\site.chirp.css" />
     <Content Include="Content\StyleSheets\site.min.css" />
     <Content Include="Global.asax" />
-    <Content Include="Views\Administration\Create.aspx" />
-    <Content Include="Views\Administration\Delete.aspx" />
-    <Content Include="Views\Administration\Edit.aspx" />
-    <Content Include="Views\Administration\Index.aspx" />
+    <Content Include="Views\Supplier\Create.aspx" />
+    <Content Include="Views\Supplier\Delete.aspx" />
+    <Content Include="Views\Supplier\Edit.aspx" />
+    <Content Include="Views\Supplier\Index.aspx" />
     <Content Include="Views\Customer\AddCustomer.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\LogOut\AutoLogOut.ascx" />
@@ -752,7 +752,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -796,7 +798,9 @@
   <ItemGroup>
     <Content Include="Views\Shared\OneColumn.Master" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Site.Master" />
   </ItemGroup>
