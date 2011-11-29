@@ -59,7 +59,7 @@ namespace Shipping.Mvc.Controllers
 
 
 
-                    return RedirectToAction("AddCustomer", "Customer", null);
+                    return RedirectToAction("Index", "Customer", null);
                     //return RedirectUser(returnUrl, model.Username);
                 }
                 else

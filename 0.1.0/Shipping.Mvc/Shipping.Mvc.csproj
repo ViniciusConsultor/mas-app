@@ -738,7 +738,9 @@
     <Content Include="Views\Supplier\Delete.aspx" />
     <Content Include="Views\Supplier\Edit.aspx" />
     <Content Include="Views\Supplier\Index.aspx" />
-    <Content Include="Views\Customer\AddCustomer.aspx" />
+    <Content Include="Views\Customer\EditCustomer.aspx" />
+    <Content Include="Views\Customer\FilterRecordPartial.ascx" />
+    <Content Include="Views\Customer\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\LogOut\AutoLogOut.ascx" />
     <Content Include="Views\Shared\Menu.ascx" />

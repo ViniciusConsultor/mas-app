@@ -6,52 +6,66 @@ using System.Web.Mvc;
 using Shipping.Mvc.Models.Customer;
 using DevExpress.Web.ASPxEditors;
 using DevExpress.Web.Mvc;
+using Shipping.Business.Services;
+using Shipping.Business.Entities;
+using Shipping.Web.Utility;
+using Shipping.Configuration; 
 
 namespace Shipping.Mvc.Controllers
 {
     public class CustomerController : Controller
-    { 
-        
+    {
+        private ICustomerService _customerService;
+
+        public CustomerController(ICustomerService customerService) {
+            _customerService = customerService;
+        }
+  
+
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<Customer> temp = _customerService.GetListCustomer();
+            IEnumerable<CustomerModel> listCustomer = AutoMapper.Mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerModel>>(temp);
+            
+
+            return View(listCustomer);
         }
 
         [HttpGet]
-        public ActionResult AddCustomer() { 
+        public ActionResult AddCustomer() {
+
             return View();
         }
 
 
-        public class EditorsDemosHelper {
-            static ValidationSettings contactPersonValidationSettings;
-                public static ValidationSettings contactPersosnValidationSettings{
-                    get {
-                        if(contactPersonValidationSettings == null){
-                            contactPersonValidationSettings = ValidationSettings.CreateValidationSettings();
-                            custNameValidationSettings.Display = Display.Dynamic;
-                            custNameValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
-                            custNameValidationSettings.ErrorText = "contact person erorr";
-                        }
+        [HttpPost]
+        public ActionResult AddCustomer(CustomerModel custModel) {
+            if (ModelState.IsValid) {
+                Customer customer = AutoMapper.Mapper.Map<CustomerModel, Customer>(custModel);
+                customer.ID = Utility.NewUUID();
+                bool isSuccess = _customerService.CreateCustomer(customer);
 
-                        return contactPersonValidationSettings;
-                    }
-                }
-
-            static ValidationSettings custNameValidationSettings;
-            public static ValidationSettings customerNameValidationSettings {
-                get {
-                    if (custNameValidationSettings == null) {
-                        custNameValidationSettings = ValidationSettings.CreateValidationSettings();
-                        custNameValidationSettings.Display = Display.Dynamic;
-                        custNameValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
-                        custNameValidationSettings.ErrorText = "Name is required";
-                    }
-
-                    return custNameValidationSettings;
-                }
+                if (isSuccess)
+                    return null;
+                else
+                    return View(custModel);
             }
+
+            return View(custModel);
         }
+
+        [HttpGet]
+        public ActionResult EditCustomer(Guid ID) {
+            return View();
+        }
+
+        public ActionResult FilterRecordPartial() {
+            IEnumerable<Customer> temp = _customerService.GetListCustomer();
+            IEnumerable<CustomerModel> listCustomer = AutoMapper.Mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerModel>>(temp);
+            
+            return PartialView("FilterRecordPartial", listCustomer);    
+        }
+
     }
 }
