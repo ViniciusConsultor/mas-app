@@ -17,7 +17,8 @@ using Shipping.Web.Security;
 using Shipping.Data;
 using Shipping.Data.Sql;
 using Shipping.Mvc.Models.Supplier;
-using Shipping.Business.Services.CustomerService;
+using Shipping.Business.Services;
+using Shipping.Mvc.Models.Customer;
 
 namespace Shipping.Mvc
 {
@@ -54,6 +55,7 @@ namespace Shipping.Mvc
                .ForMember(dest => dest.Selected, opt => opt.Ignore());
 
             Mapper.CreateMap<Supplier, SupplierModel>();
+            Mapper.CreateMap<Customer, CustomerModel>();
 
         }
         public class StructureMapRegistry : Registry
