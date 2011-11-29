@@ -36,10 +36,12 @@ namespace Shipping.Data.Sql
             DataContext dc = new DataContext(_mainConnectionString);
             IEnumerable<Customer> listCustomer = null;
 
-            try {
-                listCustomer = dc.GetTable<Customer>().ToList() ;
+            try
+            {
+                listCustomer = dc.GetTable<Customer>().ToList();
             }
-            catch(Exception e){
+            catch (Exception e)
+            {
                 Console.WriteLine("SqlCustomerRepository.cs - GetListCustomer() " + e.InnerException);
             }
 

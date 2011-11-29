@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SqlCategoryRepository.cs" />
+    <Compile Include="SqlCustomerRepository.cs" />
     <Compile Include="SqlSupplierRepository.cs" />
     <Compile Include="SqlUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +65,10 @@
     <ProjectReference Include="..\Shipping.Data\Shipping.Data.csproj">
       <Project>{769BBEDE-8A09-4696-A24A-CA77A26EFCFE}</Project>
       <Name>Shipping.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shipping.Web\Shipping.Web.csproj">
+      <Project>{0AC845F3-2370-41A0-8088-5A8AACCE13B8}</Project>
+      <Name>Shipping.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\Shipping\Shipping.csproj">
       <Project>{10756CFA-01C2-44AD-948A-5D164C0354EA}</Project>
