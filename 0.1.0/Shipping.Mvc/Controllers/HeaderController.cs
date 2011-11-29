@@ -240,6 +240,13 @@ namespace Shipping.Mvc.Controllers
                 };
                 adminMenu.Items.Add(mi2);
 
+                MenuItem miUserAdm = new MenuItem()
+                {
+                    Url = String.Format(model.Portal50Url, "useradm"),
+                    Text = "User Administration"
+                };
+                adminMenu.Items.Add(miUserAdm);
+
                 /*
                 MenuItem mi24 = new MenuItem()
                 {
