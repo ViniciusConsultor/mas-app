@@ -5,7 +5,7 @@ using System.Text;
 using Shipping.Data;
 using Shipping.Business.Entities;
 
-namespace Shipping.Business.Services.CustomerService
+namespace Shipping.Business.Services
 {
     public class CustomerService : ICustomerService
     {
