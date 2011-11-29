@@ -32,5 +32,15 @@ namespace Shipping.Business.Services
         {
             return _supplierRepository.GetSupplier(id);
         }
+
+        public void UpdateSupplier(Supplier supplier)
+        {
+            _supplierRepository.UpdateSupplier(supplier);
+        }
+
+        public void DeleteSupplier(Guid Id)
+        {
+            _supplierRepository.DeleteSupplier(Id);
+        }
     }
 }
