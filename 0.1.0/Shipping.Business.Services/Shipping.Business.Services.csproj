@@ -53,6 +53,8 @@
     <Compile Include="CategoryService\ICategoryService.cs" />
     <Compile Include="SupplierService\ISupplierService.cs" />
     <Compile Include="SupplierService\SupplierService.cs" />
+    <Compile Include="CustomerService\CustomerService.cs" />
+    <Compile Include="CustomerService\ICustomerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserService\IUserService.cs" />
     <Compile Include="UserService\UserService.cs" />
