@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Shipping.Business.Entities;
+using Shipping.Business.Entities.Collections;
 
 namespace Shipping.Business.Services
 {
@@ -23,16 +24,20 @@ namespace Shipping.Business.Services
         /// Gets the password hint.
         /// </summary>
         /// <param name="username">The username.</param>
-        /// <returns></returns>
+        /// <returns>Password hint</returns>
         string GetPasswordHint(string username);
 
         /// <summary>
         /// Gets the roles by user id.
         /// </summary>
         /// <param name="userId">The user id.</param>
-        /// <returns></returns>
+        /// <returns>List of roles by defined user</returns>
         List<Role> GetRolesByUserId(Guid userId);
 
-
+        /// <summary>
+        /// Get the user list
+        /// </summary>
+        /// <returns>List if Users</returns>
+        UserCollection GetUsers();
     }
 }

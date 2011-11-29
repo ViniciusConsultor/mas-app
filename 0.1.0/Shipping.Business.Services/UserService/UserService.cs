@@ -7,6 +7,7 @@ using Shipping.Caching;
 using Shipping.Logging;
 using Shipping.Data;
 using Shipping.Business.Entities;
+using Shipping.Business.Entities.Collections;
 using Shipping.Security.Cryptography;
 
 namespace Shipping.Business.Services
@@ -108,6 +109,20 @@ namespace Shipping.Business.Services
             }
 
             return roles;
+        }
+
+        public UserCollection GetUsers()
+        {
+            _logger.DebugFormat(this, "Loading user list from the repository.");
+
+            var users = _userRepository.GetUsers();
+
+            if (users == null || users.Count() == 0)
+            {
+                return null;
+            }
+
+            return users;
         }
     }
 }
