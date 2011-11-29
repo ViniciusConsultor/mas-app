@@ -7,6 +7,8 @@ using System.Xml;
 using System.Xml.Serialization;
 
 using Shipping.Logging;
+using System.Data;
+using System.Reflection;
 
 namespace Shipping.Data.Sql
 {
@@ -17,7 +19,7 @@ namespace Shipping.Data.Sql
         private static string GetParameterString(SqlParameter[] parameters = null)
         {
             if (parameters == null || parameters.Length == 0)
-            {
+            { 
                 return null;
             }
 
@@ -145,5 +147,80 @@ namespace Shipping.Data.Sql
             }
             return parameters;
         }
+
+        public static bool CreateNewRecord(string connectionString, string sql, SqlParameter[] sqlParam) {
+            int recordAffected = 0;
+            SqlTransaction sqlTransaction = null;
+            
+            using (SqlConnection con = new SqlConnection(connectionString)) {
+                con.Open();
+                sqlTransaction = con.BeginTransaction();
+
+                try
+                {
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.CommandType = CommandType.Text;
+                        command.CommandText = sql;
+                        command.Connection = con;
+                        command.Transaction = sqlTransaction;
+
+                        foreach (SqlParameter param in sqlParam)
+                            command.Parameters.Add(param);
+                        
+                        recordAffected = command.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("SqlUtility.cs - CreateNewData()");
+                }
+                finally {
+                    if (recordAffected > 0)
+                        sqlTransaction.Commit();
+                    else
+                        sqlTransaction.Rollback();
+                }
+
+                sqlTransaction = null;
+                return recordAffected > 0;
+            }
+        }
+
+
+        public static SqlParameter[] SetSqlParamter(object par1)
+        {
+            PropertyInfo[] fields = par1.GetType().GetProperties();
+            SqlParameter[] sqlParam = new SqlParameter[fields.Length];
+            int n = 0;
+
+            foreach (var field in fields)
+            {
+                string name = field.Name;
+                object temp = field.GetValue(par1, null);
+
+                if (temp is int)
+                {
+                    int value = (int)temp;
+                    sqlParam[n++] = new SqlParameter(name, value);
+                }
+                else if (temp is string)
+                {
+                    string value = (string)temp;
+
+                    sqlParam[n++] = new SqlParameter(name, value);
+                }
+                else if (temp is Guid)
+                {
+                    Guid value = (Guid)temp;
+                    sqlParam[n++] = new SqlParameter(name, value);
+                }
+                else
+                    sqlParam[n++] = new SqlParameter(name, DBNull.Value);
+            }
+
+            return sqlParam;
+        }
+
     }
 }
