@@ -13,5 +13,7 @@ namespace Shipping.Data
         void AddSupplier(Supplier supplier);
         SupplierCollection GetAllSuppliers();
         Supplier GetSupplier(Guid Id);
+        void UpdateSupplier(Supplier supplier);
+        void DeleteSupplier(Guid Id);
     }
 }

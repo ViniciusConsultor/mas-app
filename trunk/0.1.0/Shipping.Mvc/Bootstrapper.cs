@@ -54,6 +54,7 @@ namespace Shipping.Mvc
                .ForMember(dest => dest.Selected, opt => opt.Ignore());
 
             Mapper.CreateMap<Supplier, SupplierModel>();
+
         }
         public class StructureMapRegistry : Registry
         {

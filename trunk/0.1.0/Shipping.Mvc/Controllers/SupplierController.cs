@@ -24,12 +24,28 @@ namespace Shipping.Mvc.Controllers
             _categoryService = categoryService;
         }
 
+        public ActionResult SupplierPartial()
+        {
+            var supplierIndexModel = new SupplierIndexModel();
+            SupplierCollection supplierCollection = _supplierService.GetAllSuppliers();
+            supplierIndexModel.Suppliers = supplierCollection;
+            IEnumerable<Supplier> temp = supplierIndexModel.Suppliers.AsEnumerable();
+            IEnumerable<SupplierModel> listSupplier = AutoMapper.Mapper.Map<IEnumerable<Supplier>, IEnumerable<SupplierModel>>(temp);
+            return PartialView("SupplierPartial", listSupplier);
+        }
+
         public ActionResult Index()
         {
             var supplierIndexModel = new SupplierIndexModel();
             SupplierCollection supplierCollection = _supplierService.GetAllSuppliers();
             supplierIndexModel.Suppliers = supplierCollection;
-            return View(supplierIndexModel);
+            IEnumerable<Supplier> temp = supplierIndexModel.Suppliers.AsEnumerable();
+            IEnumerable<SupplierModel> listSupplier = AutoMapper.Mapper.Map<IEnumerable<Supplier>, IEnumerable<SupplierModel>>(temp);
+            return View(listSupplier);
+            //var supplierIndexModel = new SupplierIndexModel();
+            //SupplierCollection supplierCollection = _supplierService.GetAllSuppliers();
+            //supplierIndexModel.Suppliers = supplierCollection;
+            //return View(supplierIndexModel);
         }
 
         [HttpGet]
@@ -38,7 +54,8 @@ namespace Shipping.Mvc.Controllers
             var categories = _categoryService.GetCategories();
             var categoriesList = (from o in categories select new SelectListItem { Text = o.CategoryName, Value = o.Id.ToString() }).ToList();
             categoriesList.Insert(0, new SelectListItem { Selected = true, Text = "-- Select Category  --", Value = "" });
-            SupplierModel viewModel = new SupplierModel { Categories = categoriesList.ToList() };
+            var viewModel = new SupplierModel();
+            viewModel.Categories = categoriesList.ToList();
             return View(viewModel);
         }
 
@@ -47,9 +64,14 @@ namespace Shipping.Mvc.Controllers
         public ActionResult Create(SupplierModel model)
         {
             var categories = _categoryService.GetCategories();
-            var categoriesList = (from o in categories select new SelectListItem { Text = o.CategoryName, Value = o.Id.ToString() }).ToList();
-            categoriesList.Insert(0, new SelectListItem { Selected = true, Text = "-- Select Category  --", Value = "" });
+            var categoriesList = (from o in categories 
+                                  select new SelectListItem {
+                                      Text = o.CategoryName, 
+                                      Value = o.Id.ToString() 
+                                  }).ToList();
+            categoriesList.Insert(0, new SelectListItem { Text = "-- Select Category  --", Value = "" });
             model.Categories = categoriesList.ToList();
+
             if (!model.SelectedCategoryId.HasValue || model.SelectedCategoryId.Value == Guid.Empty)
             {
                 ModelState.AddModelError("SelectedCategoryId", "Category type is required");
@@ -73,6 +95,11 @@ namespace Shipping.Mvc.Controllers
             if (string.IsNullOrWhiteSpace(model.Fax))
             {
                 ModelState.AddModelError("Fax", "Fax is required");
+            }
+
+            if (string.IsNullOrWhiteSpace(model.Email))
+            {
+                ModelState.AddModelError("Email", "Email is required");
             }
 
             if (ModelState.IsValid)
@@ -99,6 +126,9 @@ namespace Shipping.Mvc.Controllers
         {
             var viewModel = new SupplierModel();
             var model = _supplierService.GetSupplier(id);
+            var categories = _categoryService.GetCategories();
+            var categoriesList = (from o in categories select new SelectListItem { Text = o.CategoryName, Value = o.Id.ToString() }).ToList();
+            categoriesList.Insert(0, new SelectListItem { Selected = true, Text = "-- Select Category  --", Value = "" });
 
             viewModel.Id = model.Id;
             viewModel.SelectedCategoryId = model.CategoryId;
@@ -107,13 +137,69 @@ namespace Shipping.Mvc.Controllers
             viewModel.Fax = model.Fax;
             viewModel.Address = model.Address;
             viewModel.Email = model.Email;
-            //viewModel.Categories = 
-            //model.c = organizationId.HasValue ? builder.GetFacilities(organizationId.Value) : new List<SelectListItem>();
+            viewModel.Categories = categoriesList.ToList();
 
-            //if (facilityId != null) model.SelectedFacilityId = facilityId.Value;
-            
             return View(viewModel);
         }
 
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Edit(SupplierModel model)
+        {
+            if (!model.SelectedCategoryId.HasValue || model.SelectedCategoryId.Value == Guid.Empty)
+            {
+                ModelState.AddModelError("SelectedCategoryId", "Category type is required");
+            }
+
+            if (string.IsNullOrWhiteSpace(model.SupplierName))
+            {
+                ModelState.AddModelError("Name", "Name is requred");
+            }
+
+            if (string.IsNullOrWhiteSpace(model.Address))
+            {
+                ModelState.AddModelError("Address", "Address is required");
+            }
+
+            if (string.IsNullOrWhiteSpace(model.Phone))
+            {
+                ModelState.AddModelError("Phone", "Phone is required");
+            }
+
+            if (string.IsNullOrWhiteSpace(model.Fax))
+            {
+                ModelState.AddModelError("Fax", "Fax is required");
+            }
+
+            if (string.IsNullOrWhiteSpace(model.Email))
+            {
+                ModelState.AddModelError("Email", "Email is required");
+            }
+
+            if (ModelState.IsValid)
+            {
+                _supplierService.UpdateSupplier(new Supplier
+                {
+                    Id = model.Id,
+                    CategoryId = (Guid)model.SelectedCategoryId,
+                    SupplierName = model.SupplierName,
+                    Address = model.Address,
+                    Phone = model.Phone,
+                    Fax = model.Fax,
+                    Email = model.Email
+                });
+                return RedirectToAction("Index");
+            }
+
+            return View(model);
+
+        }
+
+        public ActionResult Delete(Guid id)
+        {
+            _supplierService.DeleteSupplier(id);
+
+            return RedirectToAction("Index");
+        }
     }
 }

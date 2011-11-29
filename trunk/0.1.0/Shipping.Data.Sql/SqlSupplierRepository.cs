@@ -55,9 +55,39 @@ namespace Shipping.Data.Sql
                             new SqlParameter("@Address", supplier.Address), 
                             new SqlParameter("@Phone",supplier.Phone), 
                             new SqlParameter("@Fax", supplier.Fax),
-                            new SqlParameter("@Email", supplier.Fax)
+                            new SqlParameter("@Email", supplier.Email)
 
                         });
+
+        }
+
+        public void UpdateSupplier(Supplier supplier)
+        {
+            _logger.DebugFormat(this, "Updating Supplier for Supplier Id {0}", supplier.Id);
+
+
+            SqlUtility.ExecuteStoredProcedure(_mainConnectionString, _logger, "Supplier_UpdateSupplier", new[]
+                        {
+                           new SqlParameter("@Id", supplier.Id), 
+                            new SqlParameter("@CategoryId", supplier.CategoryId), 
+                            new SqlParameter("@SupplierName", supplier.SupplierName), 
+                            new SqlParameter("@Address", supplier.Address), 
+                            new SqlParameter("@Phone",supplier.Phone), 
+                            new SqlParameter("@Fax", supplier.Fax),
+                            new SqlParameter("@Email", supplier.Email)
+                  });
+        }
+
+        public void DeleteSupplier(Guid Id)
+        {
+            _logger.DebugFormat(this, "Deleting Supplier By Id {0}", Id);
+
+
+            SqlUtility.ExecuteStoredProcedure(_mainConnectionString, _logger, "Supplier_DeleteSupplierById", new[]
+            {
+                new SqlParameter("@Id", Id)                 
+
+            });
 
         }
     }
