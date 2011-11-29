@@ -734,6 +734,7 @@
     <Content Include="Content\StyleSheets\site.chirp.css" />
     <Content Include="Content\StyleSheets\site.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Customer\AddCustomer.aspx" />
     <Content Include="Views\Supplier\Create.aspx" />
     <Content Include="Views\Supplier\Delete.aspx" />
     <Content Include="Views\Supplier\Edit.aspx" />
