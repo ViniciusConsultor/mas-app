@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace Shipping.Mvc.Models.Supplier
 {
@@ -21,6 +22,8 @@ namespace Shipping.Mvc.Models.Supplier
         public string Phone { get; set; }
         [DisplayName("Fax")]    
         public string Fax { get; set; }
+        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Please enter valid email address")]
+        [DataType(DataType.EmailAddress)]
         [DisplayName("Email")]
         public string Email { get; set; }
     }
