@@ -38,6 +38,13 @@ namespace Shipping.Data.Sql
                 );
         }
 
+        public UserCollection GetUsers()
+        {
+            _logger.DebugFormat(this, "Getting user list from database.");
+
+            return SqlUtility.ExecuteXmlStoredProcedure<UserCollection>(_mainConnectionString, _logger, "Users_GetUsersXml");
+        }
+
         public List<Role> GetRolesByUserId(Guid userId)
         {
             if (userId == Guid.Empty)
