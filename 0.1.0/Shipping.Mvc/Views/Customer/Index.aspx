@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
 <h2>Index</h2>
-   <%: @Html.Partial("FilterRecordPartial", Model)  %>
+    <%: @Html.Partial("FilterRecordPartial", Model)  %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Header" runat="server">

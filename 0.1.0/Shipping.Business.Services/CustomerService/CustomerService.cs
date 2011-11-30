@@ -25,5 +25,23 @@ namespace Shipping.Business.Services
         {
             return _customerRepository.GetListCustomer();
         }
+
+
+        public Customer GetCustomerByID(Guid ID)
+        {
+            return _customerRepository.GetCustomerByID(ID);
+        }
+
+
+        public bool EditCustomer(Customer customer)
+        {
+            return _customerRepository.EditCustomer(customer);
+        }
+
+
+        public bool DeleteCustomer(Guid ID)
+        {
+            return _customerRepository.DeleteCustomer(ID);
+        }
     }
 }

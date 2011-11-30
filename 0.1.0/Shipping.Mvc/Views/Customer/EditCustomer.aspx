@@ -13,8 +13,6 @@
 
 <% using (Html.BeginForm()) { %>
     <%: Html.ValidationSummary(true) %>
-    <fieldset>
-        <legend>CustomerModel</legend>
 
         <div class="editor-label">
             <%: Html.LabelFor(model => model.CustomerName) %>
@@ -75,7 +73,6 @@
         <p>
             <input type="submit" value="Save" />
         </p>
-    </fieldset>
 <% } %>
 
 <div>

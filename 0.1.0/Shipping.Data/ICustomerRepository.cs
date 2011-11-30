@@ -9,6 +9,9 @@ namespace Shipping.Data
     public interface ICustomerRepository
     {
         bool CreateCustomer(Customer customer);
+        bool EditCustomer(Customer customer);
+        bool DeleteCustomer(Guid ID);
         IEnumerable<Customer> GetListCustomer();
+        Customer GetCustomerByID(Guid ID);
     }
 }
