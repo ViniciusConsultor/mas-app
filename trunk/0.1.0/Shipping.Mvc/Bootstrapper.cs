@@ -17,7 +17,6 @@ using Shipping.Web.Security;
 using Shipping.Data;
 using Shipping.Data.Sql;
 using Shipping.Mvc.Models.Supplier;
-using Shipping.Business.Services;
 using Shipping.Mvc.Models.Customer;
 
 namespace Shipping.Mvc
