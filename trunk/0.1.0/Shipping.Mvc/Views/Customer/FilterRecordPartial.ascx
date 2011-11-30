@@ -29,7 +29,7 @@
                         column.SetHeaderTemplateContent(c =>
                         {
                             ViewContext.Writer.Write(
-                                Html.ActionLink("New", "AddCustomer", new { ID = -1 }).ToHtmlString()
+                                Html.ActionLink("New", "AddCustomer", new { ID = Guid.Empty }).ToHtmlString()
                                 );
                         });
                     });

@@ -18,6 +18,7 @@ using Shipping.Data;
 using Shipping.Data.Sql;
 using Shipping.Mvc.Models.Supplier;
 using Shipping.Mvc.Models.Customer;
+using Shipping.Business.Services.CustomerService;
 
 namespace Shipping.Mvc
 {
@@ -46,7 +47,7 @@ namespace Shipping.Mvc
         {
             Mapper.CreateMap<User, OnBoarding.IndexModel>()
                 .ForMember(dest => dest.Password, opt => opt.Ignore())
-                .ForMember(dest =>dest.ConfirmPassword, opt => opt.Ignore());
+                .ForMember(dest => dest.ConfirmPassword, opt => opt.Ignore());
 
             Mapper.CreateMap<Category, SelectListItem>()
                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Id))
@@ -55,6 +56,7 @@ namespace Shipping.Mvc
 
             Mapper.CreateMap<Supplier, SupplierModel>();
             Mapper.CreateMap<Customer, CustomerModel>();
+            Mapper.CreateMap<CustomerModel, Customer>();
 
         }
         public class StructureMapRegistry : Registry
@@ -72,7 +74,7 @@ namespace Shipping.Mvc
                 }
 
                 For<ILogger>().Singleton().Use<Web.Logging.Log4NetLogger>();
-                
+
                 For<IUserService>().Singleton().Use<UserService>();
                 For<ISupplierService>().Singleton().Use<SupplierService>();
                 For<ICategoryService>().Singleton().Use<CategoryService>();
@@ -99,8 +101,11 @@ namespace Shipping.Mvc
                         .Ctor<Dictionary<string, string>>("satelliteConnectionStrings").Is(satelliteConnectionStrings);
 
                 For<ICustomerRepository>().Singleton().Use<SqlCustomerRepository>()
+                    .Ctor<string>("mainConnectionString").Is(mainConnectionString);
+
+                For<ICustomerRepository>().Singleton().Use<SqlCustomerRepository>()
                         .Ctor<string>("mainConnectionString").Is(mainConnectionString);
-                        //.Ctor<Dictionary<string, string>>("satelliteConnectionStrings").Is(satelliteConnectionStrings);
+
             }
         }
     }

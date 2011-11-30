@@ -47,9 +47,12 @@ namespace Shipping.Mvc.Controllers
                 bool isSuccess = _customerService.CreateCustomer(customer);
 
                 if (isSuccess)
-                    return null;
+                    return RedirectToAction("Index");
                 else
+                {
+                    ModelState.AddModelError(string.Empty, "Please check your customer data and try again");
                     return View(custModel);
+                }
             }
 
             return View(custModel);
@@ -57,7 +60,43 @@ namespace Shipping.Mvc.Controllers
 
         [HttpGet]
         public ActionResult EditCustomer(Guid ID) {
-            return View();
+            Customer customer = _customerService.GetCustomerByID(ID);
+            CustomerModel custModel = AutoMapper.Mapper.Map<Customer, CustomerModel>(customer);
+
+            return View(custModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditCustomer(CustomerModel custModel) {
+            if (ModelState.IsValid)
+            {
+                Customer customer = AutoMapper.Mapper.Map<CustomerModel, Customer>(custModel);
+                bool isSuccess = _customerService.EditCustomer(customer);
+
+                if (isSuccess)
+                    return RedirectToAction("Index");
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Please check your customer data and try again");
+                    return View(custModel);
+                }
+            }
+            else
+                return View(custModel);
+        }
+
+
+        [HttpGet]
+        public ActionResult DeleteCustomer(Guid ID)
+        {
+            bool isSuccess = _customerService.DeleteCustomer(ID);
+            if (isSuccess)
+                return RedirectToAction("Index");
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Cannot delete customer");
+                return RedirectToAction("Index");
+            }
         }
 
         public ActionResult FilterRecordPartial() {

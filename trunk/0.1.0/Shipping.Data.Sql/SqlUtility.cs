@@ -148,7 +148,7 @@ namespace Shipping.Data.Sql
             return parameters;
         }
 
-        public static bool CreateNewRecord(string connectionString, string sql, SqlParameter[] sqlParam) {
+        public static bool ExecuteNonQuery(string connectionString, string sql, SqlParameter[] sqlParam) {
             int recordAffected = 0;
             SqlTransaction sqlTransaction = null;
             
@@ -173,7 +173,7 @@ namespace Shipping.Data.Sql
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("SqlUtility.cs - CreateNewData()");
+                    Console.WriteLine("SqlUtility.cs - CreateNewData() " + e.InnerException);
                 }
                 finally {
                     if (recordAffected > 0)

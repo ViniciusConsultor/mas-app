@@ -9,6 +9,9 @@ namespace Shipping.Business.Services
     public interface ICustomerService
     {
         bool CreateCustomer(Customer customer);
+        bool EditCustomer(Customer customer);
+        bool DeleteCustomer(Guid ID);
         IEnumerable<Customer> GetListCustomer();
+        Customer GetCustomerByID(Guid ID);
     }
 }
