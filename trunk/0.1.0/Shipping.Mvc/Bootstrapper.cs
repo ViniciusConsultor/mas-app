@@ -18,7 +18,11 @@ using Shipping.Data;
 using Shipping.Data.Sql;
 using Shipping.Mvc.Models.Supplier;
 using Shipping.Mvc.Models.Customer;
-using Shipping.Business.Services.CustomerService;
+using Shipping.Business.Services.CityService;
+using Shipping.Business.Services.ConditionService;
+using Shipping.Mvc.Models.City;
+using Shipping.Mvc.Models.Condition;
+using Shipping.Mvc.Models.Category;
 
 namespace Shipping.Mvc
 {
@@ -50,14 +54,20 @@ namespace Shipping.Mvc
                 .ForMember(dest => dest.ConfirmPassword, opt => opt.Ignore());
 
             Mapper.CreateMap<Category, SelectListItem>()
-               .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Id))
+               .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.CategoryCode))
                .ForMember(dest => dest.Text, opt => opt.MapFrom(src => src.CategoryName))
                .ForMember(dest => dest.Selected, opt => opt.Ignore());
 
             Mapper.CreateMap<Supplier, SupplierModel>();
             Mapper.CreateMap<Customer, CustomerModel>();
-            Mapper.CreateMap<CustomerModel, Customer>();
+            Mapper.CreateMap<Condition, ConditionModel>();
+            Mapper.CreateMap<Category, CategoryModel>();
+            Mapper.CreateMap<City, CityModel>();
 
+            Mapper.CreateMap<CustomerModel, Customer>();
+            Mapper.CreateMap<CategoryModel, Category>();
+            Mapper.CreateMap<ConditionModel, Condition>();
+            Mapper.CreateMap<CityModel, City>();
         }
         public class StructureMapRegistry : Registry
         {
@@ -79,6 +89,8 @@ namespace Shipping.Mvc
                 For<ISupplierService>().Singleton().Use<SupplierService>();
                 For<ICategoryService>().Singleton().Use<CategoryService>();
                 For<ICustomerService>().Singleton().Use<CustomerService>();
+                For<ICityService>().Singleton().Use<CityService>();
+                For<IConditionService>().Singleton().Use<ConditionService>();
 
 
                 For<ICacheProvider>().Use<CacheProvider>()
@@ -103,8 +115,11 @@ namespace Shipping.Mvc
                 For<ICustomerRepository>().Singleton().Use<SqlCustomerRepository>()
                     .Ctor<string>("mainConnectionString").Is(mainConnectionString);
 
-                For<ICustomerRepository>().Singleton().Use<SqlCustomerRepository>()
+                For<ICityRepository>().Singleton().Use<SqlCityRepository>()
                         .Ctor<string>("mainConnectionString").Is(mainConnectionString);
+
+                For<IConditionRepository>().Singleton().Use<SqlConditionRepository>()
+                    .Ctor<string>("mainConnectionString").Is(mainConnectionString);
 
             }
         }

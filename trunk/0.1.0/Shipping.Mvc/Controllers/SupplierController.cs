@@ -52,7 +52,7 @@ namespace Shipping.Mvc.Controllers
         public ActionResult Create() 
         {
             var categories = _categoryService.GetCategories();
-            var categoriesList = (from o in categories select new SelectListItem { Text = o.CategoryName, Value = o.Id.ToString() }).ToList();
+            var categoriesList = (from o in categories select new SelectListItem { Text = o.CategoryName, Value = o.CategoryCode.ToString() }).ToList();
             categoriesList.Insert(0, new SelectListItem { Selected = true, Text = "-- Select Category  --", Value = "" });
             var viewModel = new SupplierModel();
             viewModel.Categories = categoriesList.ToList();
@@ -67,7 +67,7 @@ namespace Shipping.Mvc.Controllers
             var categoriesList = (from o in categories 
                                   select new SelectListItem {
                                       Text = o.CategoryName, 
-                                      Value = o.Id.ToString() 
+                                      Value = o.CategoryCode.ToString() 
                                   }).ToList();
             categoriesList.Insert(0, new SelectListItem { Text = "-- Select Category  --", Value = "" });
             model.Categories = categoriesList.ToList();
@@ -127,7 +127,7 @@ namespace Shipping.Mvc.Controllers
             var viewModel = new SupplierModel();
             var model = _supplierService.GetSupplier(id);
             var categories = _categoryService.GetCategories();
-            var categoriesList = (from o in categories select new SelectListItem { Text = o.CategoryName, Value = o.Id.ToString() }).ToList();
+            var categoriesList = (from o in categories select new SelectListItem { Text = o.CategoryName, Value = o.CategoryCode.ToString() }).ToList();
             categoriesList.Insert(0, new SelectListItem { Selected = true, Text = "-- Select Category  --", Value = "" });
 
             viewModel.Id = model.Id;
