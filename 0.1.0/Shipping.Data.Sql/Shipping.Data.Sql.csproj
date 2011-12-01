@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SqlCategoryRepository.cs" />
+    <Compile Include="SqlCityRepository.cs" />
+    <Compile Include="SqlConditionRepository.cs" />
     <Compile Include="SqlCustomerRepository.cs" />
     <Compile Include="SqlSupplierRepository.cs" />
     <Compile Include="SqlUserRepository.cs" />

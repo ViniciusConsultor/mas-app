@@ -21,7 +21,7 @@ namespace Shipping.Data.Sql
         public bool CreateCustomer(Customer customer)
         {
             String sql = "Insert into Customer values(" + Utility.GetStringParameter(customer) + ")";
-            SqlParameter[] sqlParam = SqlUtility.SetSqlParamter(customer);
+            SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(customer);
             bool isSuccess = SqlUtility.ExecuteNonQuery(_mainConnectionString, sql, sqlParam);
 
             if (isSuccess)
@@ -95,7 +95,7 @@ namespace Shipping.Data.Sql
                             ", fax =" + strParameters[5] + ", email =" + strParameters[6] + 
                             ", contact_person =" + strParameters[7] +  
                             " where customer_id =" + strParameters[0];
-            SqlParameter[] sqlParam = Utility.SwapSqlParameterByCriteria(SqlUtility.SetSqlParamter(customer), "ID");
+            SqlParameter[] sqlParam = Utility.SwapSqlParameterByCriteria(SqlUtility.SetSqlParameter(customer), "ID");
             bool isSuccess = SqlUtility.ExecuteNonQuery(_mainConnectionString, sql, sqlParam);
 
             strParameters = null;
