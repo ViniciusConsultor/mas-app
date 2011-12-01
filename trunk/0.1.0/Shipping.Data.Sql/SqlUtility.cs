@@ -188,7 +188,7 @@ namespace Shipping.Data.Sql
         }
 
 
-        public static SqlParameter[] SetSqlParamter(object par1)
+        public static SqlParameter[] SetSqlParameter(object par1)
         {
             PropertyInfo[] fields = par1.GetType().GetProperties();
             SqlParameter[] sqlParam = new SqlParameter[fields.Length];
