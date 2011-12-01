@@ -10,6 +10,11 @@ namespace Shipping.Business.Services
 {
     public interface ICategoryService
     {
+        bool CreateCategory(Category category);
+        bool EditCategory(Category category);
+        bool DeleteCategory(string categoryCode);
+        IEnumerable<Category> GetCategory();
+        Category GetCategoryByID(string categoryCode);
         List<Category> GetCategories();
     }
 }
