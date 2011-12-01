@@ -656,6 +656,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CityController.cs" />
+    <Compile Include="Controllers\ConditionController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\Controller.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -667,6 +670,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Category\CategoryModel.cs" />
+    <Compile Include="Models\City\CityModel.cs" />
+    <Compile Include="Models\Condition\ConditionModel.cs" />
     <Compile Include="Models\Customer\CustomerModel.cs" />
     <Compile Include="Models\Header\MenuModel.cs" />
     <Compile Include="Models\Header\UserStripModel.cs" />
@@ -736,6 +742,18 @@
     <Content Include="Content\StyleSheets\site.chirp.css" />
     <Content Include="Content\StyleSheets\site.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Category\AddCategory.aspx" />
+    <Content Include="Views\Category\EditCategory.aspx" />
+    <Content Include="Views\Category\FilterRecordCategoryPartial.ascx" />
+    <Content Include="Views\Category\Index.aspx" />
+    <Content Include="Views\City\AddCity.aspx" />
+    <Content Include="Views\City\EditCity.aspx" />
+    <Content Include="Views\City\FilterRecordCityPartial.ascx" />
+    <Content Include="Views\City\Index.aspx" />
+    <Content Include="Views\Condition\AddCondition.aspx" />
+    <Content Include="Views\Condition\EditCondition.aspx" />
+    <Content Include="Views\Condition\FilterRecordConditionPartial.ascx" />
+    <Content Include="Views\Condition\Index.aspx" />
     <Content Include="Views\Customer\AddCustomer.aspx" />
     <Content Include="Views\Supplier\Create.aspx" />
     <Content Include="Views\Supplier\Delete.aspx" />
