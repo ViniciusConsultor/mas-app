@@ -51,6 +51,10 @@
   <ItemGroup>
     <Compile Include="CategoryService\CategoryService.cs" />
     <Compile Include="CategoryService\ICategoryService.cs" />
+    <Compile Include="CityService\CityService.cs" />
+    <Compile Include="CityService\ICityService.cs" />
+    <Compile Include="ConditionService\ConditionService.cs" />
+    <Compile Include="ConditionService\IConditionService.cs" />
     <Compile Include="SupplierService\ISupplierService.cs" />
     <Compile Include="SupplierService\SupplierService.cs" />
     <Compile Include="CustomerService\CustomerService.cs" />
