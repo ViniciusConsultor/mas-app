@@ -18,19 +18,20 @@ using Shipping.Data;
 using Shipping.Data.Sql;
 using Shipping.Mvc.Models.Supplier;
 using Shipping.Mvc.Models.Customer;
-using Shipping.Business.Services.CityService;
-using Shipping.Business.Services.ConditionService;
 using Shipping.Mvc.Models.City;
 using Shipping.Mvc.Models.Condition;
 using Shipping.Mvc.Models.Category;
+using Shipping.Mvc.Models.UserAdm;
+using Shipping.Mvc.Models.LeadTime;
+using Shipping.Mvc.Models.TypeCont;
+using Shipping.Mvc.Models.Role;
+using Shipping.Business.Services.CityService;
+using Shipping.Business.Services.ConditionService;
 using Shipping.Business.Services.LeadTimeService;
 using Shipping.Business.Services.LeadTime;
 using Shipping.Business.Services.RoleService;
 using Shipping.Business.Services.TypeContService;
 using Shipping.Business.Services.Role;
-using Shipping.Mvc.Models.LeadTime;
-using Shipping.Mvc.Models.TypeCont;
-using Shipping.Mvc.Models.Role;
 
 namespace Shipping.Mvc
 {
@@ -74,6 +75,7 @@ namespace Shipping.Mvc
             Mapper.CreateMap<TypeCont, TypeContModel>();
             Mapper.CreateMap<Role, RoleModel>();
             Mapper.CreateMap<City, CityModel>();
+            Mapper.CreateMap<User, UserAdmModel>();
 
             Mapper.CreateMap<CustomerModel, Customer>();
             Mapper.CreateMap<CategoryModel, Category>();

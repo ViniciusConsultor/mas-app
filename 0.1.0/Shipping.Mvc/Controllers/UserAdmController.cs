@@ -27,7 +27,16 @@ namespace Shipping.Mvc.Controllers
             var userAdmIndexModel = new UserAdmIndexModel();
             UserCollection userCollection = _userService.GetUsers();
             userAdmIndexModel.Users = userCollection;
-            return View(userAdmIndexModel);
+            IEnumerable<User> temp = userAdmIndexModel.Users.AsEnumerable();
+            IEnumerable<UserAdmModel> listUser = AutoMapper.Mapper.Map<IEnumerable<User>, IEnumerable<UserAdmModel>>(temp);
+            return View(listUser);
+
+            /*var supplierIndexModel = new SupplierIndexModel();
+            SupplierCollection supplierCollection = _supplierService.GetAllSuppliers();
+            supplierIndexModel.Suppliers = supplierCollection;
+            IEnumerable<Supplier> temp = supplierIndexModel.Suppliers.AsEnumerable();
+            IEnumerable<SupplierModel> listSupplier = AutoMapper.Mapper.Map<IEnumerable<Supplier>, IEnumerable<SupplierModel>>(temp);
+            return View(listSupplier);*/
         }
 
     }
