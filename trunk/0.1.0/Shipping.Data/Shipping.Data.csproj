@@ -53,7 +53,10 @@
     <Compile Include="ICityRepository.cs" />
     <Compile Include="IConditionRepository.cs" />
     <Compile Include="ICustomerRepository.cs" />
+    <Compile Include="ILeadTimeRepository.cs" />
+    <Compile Include="IRoleRepository.cs" />
     <Compile Include="ISupplierRepository.cs" />
+    <Compile Include="ITypeContRepository.cs" />
     <Compile Include="IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

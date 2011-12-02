@@ -92,7 +92,8 @@ namespace Shipping.Business.Services
             throw new NotImplementedException();
         }
 
-        public List<Role> GetRolesByUserId(Guid userId)
+        
+        public List<Business.Entities.Role> GetRolesByUserId(Guid userId)
         {
             if (userId == Guid.Empty)
             {

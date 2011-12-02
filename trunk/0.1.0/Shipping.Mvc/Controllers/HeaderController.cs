@@ -33,13 +33,13 @@ namespace Shipping.Mvc.Controllers
                 Portal50Url = _configurationManager.GetString("Shipping.Portal.Mvc.Template.PortalUrl")
             };
 
-            List<Role> userRoles = _userService.GetRolesByUserId(Context.User.Id);
-            if (userRoles != null && userRoles.Count > 0)
-            {
-                Role isInAdmin = userRoles.Find(a => a.Name == "Admin");
-                if (isInAdmin != null)
+            //List<Role> userRoles = _userService.GetRolesByUserId(Context.User.Id);
+            //if (userRoles != null && userRoles.Count > 0)
+            //{
+                //Role isInAdmin = userRoles.Find(a => a.Name == "Admin");
+                //if (isInAdmin != null)
                     model.IsAdmin = true;
-            }
+            //}
 
             return View(model);
         }
@@ -53,7 +53,7 @@ namespace Shipping.Mvc.Controllers
             };
 
             //Get the roles
-            List<Role> userRoles = _userService.GetRolesByUserId(Context.User.Id);
+            /*List<Role> userRoles = _userService.GetRolesByUserId(Context.User.Id);
             if (userRoles != null && userRoles.Count > 0)
             {
                 Role isInAdmin = userRoles.Find(a => a.Name == "Admin");
@@ -63,7 +63,7 @@ namespace Shipping.Mvc.Controllers
                 Role isInUser = userRoles.Find(a => a.Name == "User");
                 if (isInUser != null)
                     model.IsUser = true;
-            }
+            }*/
             //Master Menu
             Menu menu = new Menu();
 

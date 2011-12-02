@@ -23,6 +23,14 @@ using Shipping.Business.Services.ConditionService;
 using Shipping.Mvc.Models.City;
 using Shipping.Mvc.Models.Condition;
 using Shipping.Mvc.Models.Category;
+using Shipping.Business.Services.LeadTimeService;
+using Shipping.Business.Services.LeadTime;
+using Shipping.Business.Services.RoleService;
+using Shipping.Business.Services.TypeContService;
+using Shipping.Business.Services.Role;
+using Shipping.Mvc.Models.LeadTime;
+using Shipping.Mvc.Models.TypeCont;
+using Shipping.Mvc.Models.Role;
 
 namespace Shipping.Mvc
 {
@@ -62,11 +70,17 @@ namespace Shipping.Mvc
             Mapper.CreateMap<Customer, CustomerModel>();
             Mapper.CreateMap<Condition, ConditionModel>();
             Mapper.CreateMap<Category, CategoryModel>();
+            Mapper.CreateMap<LeadTime, LeadTimeModel>();
+            Mapper.CreateMap<TypeCont, TypeContModel>();
+            Mapper.CreateMap<Role, RoleModel>();
             Mapper.CreateMap<City, CityModel>();
 
             Mapper.CreateMap<CustomerModel, Customer>();
             Mapper.CreateMap<CategoryModel, Category>();
             Mapper.CreateMap<ConditionModel, Condition>();
+            Mapper.CreateMap<LeadTimeModel, LeadTime>();
+            Mapper.CreateMap<TypeContModel, TypeCont>();
+            Mapper.CreateMap<RoleModel, Role>();
             Mapper.CreateMap<CityModel, City>();
         }
         public class StructureMapRegistry : Registry
@@ -91,6 +105,10 @@ namespace Shipping.Mvc
                 For<ICustomerService>().Singleton().Use<CustomerService>();
                 For<ICityService>().Singleton().Use<CityService>();
                 For<IConditionService>().Singleton().Use<ConditionService>();
+                For<ILeadTimeService>().Singleton().Use<LeadTimeService>();
+                For<IRoleService>().Singleton().Use<RoleService>();
+                For<ITypeContService>().Singleton().Use<TypeContService>();
+
 
 
                 For<ICacheProvider>().Use<CacheProvider>()
@@ -120,6 +138,15 @@ namespace Shipping.Mvc
 
                 For<IConditionRepository>().Singleton().Use<SqlConditionRepository>()
                     .Ctor<string>("mainConnectionString").Is(mainConnectionString);
+
+                For<IRoleRepository>().Singleton().Use<SqlRoleRepository>()
+                                    .Ctor<string>("mainConnectionString").Is(mainConnectionString);
+
+                For<ITypeContRepository>().Singleton().Use<SqlTypeContRepository>()
+                                    .Ctor<string>("mainConnectionString").Is(mainConnectionString);
+
+                For<ILeadTimeRepository>().Singleton().Use<SqlLeadTimeRepository>()
+                                    .Ctor<string>("mainConnectionString").Is(mainConnectionString);
 
             }
         }
