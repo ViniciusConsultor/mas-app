@@ -659,6 +659,8 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\ConditionController.cs" />
+    <Compile Include="Controllers\LeadTimeController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\Controller.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -666,10 +668,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogInController.cs" />
     <Compile Include="Controllers\LogOutController.cs" />
+    <Compile Include="Controllers\TypeContController.cs" />
     <Compile Include="Controllers\UserAdmController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LeadTimeSErvice.cs" />
     <Compile Include="Models\Category\CategoryModel.cs" />
     <Compile Include="Models\City\CityModel.cs" />
     <Compile Include="Models\Condition\ConditionModel.cs" />
@@ -677,11 +681,14 @@
     <Compile Include="Models\Header\MenuModel.cs" />
     <Compile Include="Models\Header\UserStripModel.cs" />
     <Compile Include="Models\Home\HomeIndexModel.cs" />
+    <Compile Include="Models\LeadTime\LeadTimeModel.cs" />
     <Compile Include="Models\LogIn\IndexModel.cs" />
     <Compile Include="Models\LogOut\AutoLogOutModel.cs" />
     <Compile Include="Models\OnBoarding\IndexModel.cs" />
+    <Compile Include="Models\Role\RoleModel.cs" />
     <Compile Include="Models\Supplier\SupplierIndexModel.cs" />
     <Compile Include="Models\Supplier\SupplierModel.cs" />
+    <Compile Include="Models\TypeCont\TypeContModel.cs" />
     <Compile Include="Models\UserAdm\UserAdmIndexModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -755,6 +762,14 @@
     <Content Include="Views\Condition\FilterRecordConditionPartial.ascx" />
     <Content Include="Views\Condition\Index.aspx" />
     <Content Include="Views\Customer\AddCustomer.aspx" />
+    <Content Include="Views\LeadTime\AddLeadTime.aspx" />
+    <Content Include="Views\LeadTime\EditLeadTime.aspx" />
+    <Content Include="Views\LeadTime\FilterRecordLeadTimePartial.ascx" />
+    <Content Include="Views\LeadTime\Index.aspx" />
+    <Content Include="Views\Role\AddRole.aspx" />
+    <Content Include="Views\Role\EditRole.aspx" />
+    <Content Include="Views\Role\FilterRecordRolePartial.ascx" />
+    <Content Include="Views\Role\Index.aspx" />
     <Content Include="Views\Supplier\Create.aspx" />
     <Content Include="Views\Supplier\Delete.aspx" />
     <Content Include="Views\Supplier\Edit.aspx" />

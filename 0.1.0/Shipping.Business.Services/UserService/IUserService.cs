@@ -32,7 +32,7 @@ namespace Shipping.Business.Services
         /// </summary>
         /// <param name="userId">The user id.</param>
         /// <returns>List of roles by defined user</returns>
-        List<Role> GetRolesByUserId(Guid userId);
+        List<Business.Entities.Role> GetRolesByUserId(Guid userId);
 
         /// <summary>
         /// Get the user list

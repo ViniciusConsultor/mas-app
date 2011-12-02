@@ -54,7 +54,10 @@
     <Compile Include="SqlCityRepository.cs" />
     <Compile Include="SqlConditionRepository.cs" />
     <Compile Include="SqlCustomerRepository.cs" />
+    <Compile Include="SqlLeadTimeRepository.cs" />
+    <Compile Include="SqlRoleRepository.cs" />
     <Compile Include="SqlSupplierRepository.cs" />
+    <Compile Include="SqlTypeContRepository.cs" />
     <Compile Include="SqlUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlUtility.cs" />
