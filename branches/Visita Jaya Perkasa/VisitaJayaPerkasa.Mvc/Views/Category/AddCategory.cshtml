@@ -1,0 +1,35 @@
+﻿@model VisitaJayaPerkasa.Mvc.Models.CategoryModel
+
+@{
+    ViewBag.Title = "Create Category";
+}
+
+<h2>Create Category</h2>
+
+<p>
+    @Html.ActionLink("Back to List", "Index",
+    ViewBag.RouteDicForList as RouteValueDictionary)
+</p>
+
+<script src="@Url.Content("~/Scripts/jquery.vaalidate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@Html.ValidationSummary(true, "Create Category was unsuccessful. Please correct the errors and try again.")
+
+@using (Html.BeginForm())
+{
+    <table>
+    <tr>
+        <td class="header">@Html.LabelFor(m => m.CategoryCode)</td>
+        <td class="content">@Html.TextBoxFor(m => m.CategoryCode)@Html.ValidationMessageFor(m => m.CategoryCode)</td>
+    </tr>
+    <tr>
+        <td class="header">@Html.LabelFor(m => m.CategoryName)</td>
+        <td class="content">@Html.TextBoxFor(m => m.CategoryName)@Html.ValidationMessageFor(m => m.CategoryName)</td>
+    </tr>
+    <tr>
+        <td class="header"></td>
+        <td class="content"><button name="submit">Create Customer</button></td>
+    </tr>
+</table>
+}

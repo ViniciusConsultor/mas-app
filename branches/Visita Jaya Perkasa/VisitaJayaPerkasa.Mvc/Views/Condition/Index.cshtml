@@ -1,0 +1,22 @@
+﻿@using VisitaJayaPerkasa.Web.Mvc
+@using VisitaJayaPerkasa.Mvc.Models
+@using MvcContrib.UI.Grid;
+@model PagedViewModel<ConditionModel>
+
+@{
+    ViewBag.Title = "Condition List";
+}
+
+<h2>Condition List</h2>
+
+<p>
+    @Html.ActionLink("Create Condition", "AddCondition", "Condition")
+</p>
+
+@{Html.RenderPartial("SearchBox");}
+@{Html.RenderPartial("Pager", Model.PagedList);}
+@Html.Grid(Model.PagedList).Columns(column =>{
+    column.For(x => x.ConditionCode);
+    column.For(x => Html.ActionQueryLink(x.ConditionName, "EditCondition", new { id = x.ConditionCode })).Named("CategoryName").InsertAt(1);
+    column.For(x => Html.ActionQueryLink("delete", "DeleteCategory", new { id = x.ConditionCode })).Named("Action").InsertAt(2);
+}).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")

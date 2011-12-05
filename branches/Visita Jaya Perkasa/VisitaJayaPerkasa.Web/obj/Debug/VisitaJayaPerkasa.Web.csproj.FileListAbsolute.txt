@@ -1,0 +1,15 @@
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Web\bin\Debug\VisitaJayaPerkasa.Web.dll
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Web\bin\Debug\VisitaJayaPerkasa.Web.pdb
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Web\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Web\obj\Debug\VisitaJayaPerkasa.Web.dll
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Web\obj\Debug\VisitaJayaPerkasa.Web.pdb
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Web\bin\Debug\StructureMap.dll
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Web\bin\Debug\VisitaJayaPerkasa.Business.Entities.dll
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Web\bin\Debug\VisitaJayaPerkasa.Business.Services.dll
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Web\bin\Debug\VisitaJayaPerkasa.Business.Entities.pdb
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Web\bin\Debug\VisitaJayaPerkasa.Business.Services.pdb
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Web\bin\Debug\StructureMap.xml
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Web\bin\Debug\VisitaJayaPerkasa.dll
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Web\bin\Debug\VisitaJayaPerkasa.pdb
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Web\bin\Debug\VisitaJayaPerkasa.Data.dll
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Web\bin\Debug\VisitaJayaPerkasa.Data.pdb

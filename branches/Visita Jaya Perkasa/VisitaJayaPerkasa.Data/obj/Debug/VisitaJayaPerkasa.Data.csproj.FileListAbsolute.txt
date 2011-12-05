@@ -1,0 +1,9 @@
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Data\bin\Debug\VisitaJayaPerkasa.Data.dll
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Data\bin\Debug\VisitaJayaPerkasa.Data.pdb
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Data\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Data\obj\Debug\VisitaJayaPerkasa.Data.dll
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Data\obj\Debug\VisitaJayaPerkasa.Data.pdb
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Data\bin\Debug\VisitaJayaPerkasa.Business.Entities.dll
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Data\bin\Debug\VisitaJayaPerkasa.dll
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Data\bin\Debug\VisitaJayaPerkasa.Business.Entities.pdb
+C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa.Data\bin\Debug\VisitaJayaPerkasa.pdb

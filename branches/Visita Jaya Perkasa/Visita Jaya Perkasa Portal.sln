@@ -1,0 +1,81 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business Layer", "Business Layer", "{37FF3A30-F9EA-4B93-902F-F5E366EA4625}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cross Cutting", "Cross Cutting", "{3F858106-F8C7-4FF0-94C2-3AFD06B82B8F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Layer", "Data Layer", "{7F021661-16C8-4302-8370-094189A231B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation Layer", "Presentation Layer", "{DB0276EA-8C1C-4E18-92C0-8DEECE833685}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{31A460EC-7FB1-42AC-97EB-BC8374991435}"
+	ProjectSection(SolutionItems) = preProject
+		Shared\AutoMapper.dll = Shared\AutoMapper.dll
+		Shared\MvcContrib.dll = Shared\MvcContrib.dll
+		Shared\StructureMap.dll = Shared\StructureMap.dll
+		Shared\StructureMap.XML = Shared\StructureMap.XML
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitaJayaPerkasa.Business.Entities", "VisitaJayaPerkasa.Business.Entities\VisitaJayaPerkasa.Business.Entities.csproj", "{77AB6450-1488-4B72-8997-77C10EF11868}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitaJayaPerkasa.Business.Services", "VisitaJayaPerkasa.Business.Services\VisitaJayaPerkasa.Business.Services.csproj", "{0E4C3309-B579-4A53-81B2-80D3FF33E0F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitaJayaPerkasa", "VisitaJayaPerkasa\VisitaJayaPerkasa.csproj", "{7959EB2A-4078-4467-A6F8-819EEB3C6704}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitaJayaPerkasa.Data", "VisitaJayaPerkasa.Data\VisitaJayaPerkasa.Data.csproj", "{CE47A234-351B-4DCD-BC43-06BBB0DF2C93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitaJayaPerkasa.Data.Sql", "VisitaJayaPerkasa.Data.Sql\VisitaJayaPerkasa.Data.Sql.csproj", "{F50E5615-975F-4911-819B-40006F1140A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitaJayaPerkasa.Web", "VisitaJayaPerkasa.Web\VisitaJayaPerkasa.Web.csproj", "{7F5D1866-FD52-4352-A542-9C577B95C1E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitaJayaPerkasa.Mvc", "VisitaJayaPerkasa.Mvc\VisitaJayaPerkasa.Mvc.csproj", "{00E2A3A5-64FB-40C1-98E3-E4543E9548DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77AB6450-1488-4B72-8997-77C10EF11868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77AB6450-1488-4B72-8997-77C10EF11868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77AB6450-1488-4B72-8997-77C10EF11868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77AB6450-1488-4B72-8997-77C10EF11868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E4C3309-B579-4A53-81B2-80D3FF33E0F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E4C3309-B579-4A53-81B2-80D3FF33E0F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E4C3309-B579-4A53-81B2-80D3FF33E0F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E4C3309-B579-4A53-81B2-80D3FF33E0F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7959EB2A-4078-4467-A6F8-819EEB3C6704}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7959EB2A-4078-4467-A6F8-819EEB3C6704}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7959EB2A-4078-4467-A6F8-819EEB3C6704}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7959EB2A-4078-4467-A6F8-819EEB3C6704}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE47A234-351B-4DCD-BC43-06BBB0DF2C93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE47A234-351B-4DCD-BC43-06BBB0DF2C93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE47A234-351B-4DCD-BC43-06BBB0DF2C93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE47A234-351B-4DCD-BC43-06BBB0DF2C93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F50E5615-975F-4911-819B-40006F1140A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F50E5615-975F-4911-819B-40006F1140A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F50E5615-975F-4911-819B-40006F1140A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F50E5615-975F-4911-819B-40006F1140A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F5D1866-FD52-4352-A542-9C577B95C1E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F5D1866-FD52-4352-A542-9C577B95C1E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F5D1866-FD52-4352-A542-9C577B95C1E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F5D1866-FD52-4352-A542-9C577B95C1E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00E2A3A5-64FB-40C1-98E3-E4543E9548DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00E2A3A5-64FB-40C1-98E3-E4543E9548DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00E2A3A5-64FB-40C1-98E3-E4543E9548DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00E2A3A5-64FB-40C1-98E3-E4543E9548DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{77AB6450-1488-4B72-8997-77C10EF11868} = {37FF3A30-F9EA-4B93-902F-F5E366EA4625}
+		{0E4C3309-B579-4A53-81B2-80D3FF33E0F0} = {37FF3A30-F9EA-4B93-902F-F5E366EA4625}
+		{7959EB2A-4078-4467-A6F8-819EEB3C6704} = {3F858106-F8C7-4FF0-94C2-3AFD06B82B8F}
+		{CE47A234-351B-4DCD-BC43-06BBB0DF2C93} = {7F021661-16C8-4302-8370-094189A231B7}
+		{F50E5615-975F-4911-819B-40006F1140A4} = {7F021661-16C8-4302-8370-094189A231B7}
+		{7F5D1866-FD52-4352-A542-9C577B95C1E4} = {DB0276EA-8C1C-4E18-92C0-8DEECE833685}
+		{00E2A3A5-64FB-40C1-98E3-E4543E9548DC} = {DB0276EA-8C1C-4E18-92C0-8DEECE833685}
+	EndGlobalSection
+EndGlobal

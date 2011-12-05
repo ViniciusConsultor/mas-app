@@ -1,0 +1,24 @@
+﻿@using VisitaJayaPerkasa.Web.Mvc
+@using VisitaJayaPerkasa.Mvc.Models
+@using MvcContrib.UI.Grid;
+@model PagedViewModel<SupplierModel>
+
+@{
+    ViewBag.Title = "Supplier List";
+}
+
+<h2>Supplier List</h2>
+
+<p>
+    @Html.ActionLink("Create Supplier", "Create", "Supplier")
+</p>
+
+@{Html.RenderPartial("SearchBox");}
+@{Html.RenderPartial("Pager", Model.PagedList);}
+@Html.Grid(Model.PagedList).Columns(column =>{
+    column.For(x => Html.ActionQueryLink(x.SupplierName, "Edit", new { id = x.Id })).Named("SupplierName").InsertAt(0);
+    column.For(x => x.Address);
+    column.For(x => x.Phone);
+    column.For(x => x.Email);
+    column.For(x => Html.ActionQueryLink("delete", "Delete", new { id = x.Id })).Named("Action").InsertAt(4);
+}).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")

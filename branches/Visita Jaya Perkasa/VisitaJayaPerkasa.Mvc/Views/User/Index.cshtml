@@ -1,0 +1,25 @@
+﻿@using VisitaJayaPerkasa.Web.Mvc
+@using VisitaJayaPerkasa.Mvc.Models
+@using MvcContrib.UI.Grid;
+@model PagedViewModel<UserModel>
+
+@{
+    ViewBag.Title = "User List";
+}
+
+<h2>User List</h2>
+
+<p>
+    @Html.ActionLink("Create User", "Create", "User")
+</p>
+@*
+@{Html.RenderPartial("SearchBox");}*@
+@{Html.RenderPartial("Pager", Model.PagedList);}
+@Html.Grid(Model.PagedList).Columns(column =>{
+    column.For(x => Html.ActionQueryLink(x.Name, "Details", new { id = x.Id })).Named("Name").InsertAt(0);
+    column.For(x => x.Username);
+    column.For(x => x.Nik);
+    column.For(x => x.Email);
+    column.For(x => x.address);
+    column.For(x => x.Gender);
+}).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")

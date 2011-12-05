@@ -1,0 +1,22 @@
+﻿@using VisitaJayaPerkasa.Web.Mvc
+@using VisitaJayaPerkasa.Mvc.Models
+@using MvcContrib.UI.Grid;
+@model PagedViewModel<TypeContModel>
+
+@{
+    ViewBag.Title = "TypeCont List";
+}
+
+<h2>TypeCont List</h2>
+
+<p>
+    @Html.ActionLink("Create TypeCont", "AddTypeCont", "TypeCont")
+</p>
+
+@{Html.RenderPartial("SearchBox");}
+@{Html.RenderPartial("Pager", Model.PagedList);}
+@Html.Grid(Model.PagedList).Columns(column =>{
+    column.For(x => Html.ActionQueryLink(x.TypeCode, "EditTypeCont", new { id = x.TypeCode })).Named("TypeCode").InsertAt(0);
+    column.For(x => x.TypeName);
+    column.For(x => Html.ActionQueryLink("delete", "DeleteTypeCont", new { id = x.TypeCode })).Named("Action").InsertAt(2);
+}).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")

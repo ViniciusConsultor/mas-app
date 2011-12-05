@@ -1,0 +1,13 @@
+﻿@using (Html.BeginForm("Index", "User", FormMethod.Get, new { id = "userSearch" }))
+{
+    
+<label>
+Search&nbsp;&nbsp; @Html.TextBox("searchWord")
+&nbsp;&nbsp;Genre @Html.DropDownList("genreId", "-- Select All --")
+</label>
+<label>
+Artist @Html.DropDownList("artistId", "-- Select All --")
+&nbsp;&nbsp;<input class="button" value="Search" type="submit" />
+</label>
+ 
+}

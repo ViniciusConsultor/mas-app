@@ -1,0 +1,56 @@
+﻿@model VisitaJayaPerkasa.Mvc.Models.CustomerModel
+
+@{
+    ViewBag.Title = "Edit Customer";
+}
+
+<h2>Edit Customer</h2>
+
+<p>
+    @Html.ActionLink("Back to List", "Index",
+    ViewBag.RouteDicForList as RouteValueDictionary)
+</p>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@Html.ValidationSummary(true, "Edit Customer was unsuccessful. Please correct the errors and try again.")
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.ID)
+    <table>
+    <tr>
+        <td class="header">@Html.LabelFor(m => m.CustomerName)</td>
+        <td class="content">@Html.TextBoxFor(m => m.CustomerName)@Html.ValidationMessageFor(m => m.CustomerName)</td>
+    </tr>
+    <tr>
+        <td class="header">@Html.LabelFor(m => m.Office)</td>
+        <td class="content">@Html.TextBoxFor(m => m.Office)@Html.ValidationMessageFor(m => m.Office)</td>
+    </tr>
+    <tr>
+        <td class="header">@Html.LabelFor(m => m.Address)</td>
+        <td class="content">@Html.TextBoxFor(m => m.Address) @Html.ValidationMessageFor(m => m.Address)</td>
+    </tr>
+    <tr>
+        <td class="header">@Html.LabelFor(m => m.Phone)</td>
+        <td class="content">@Html.TextBoxFor(m => m.Phone) @Html.ValidationMessageFor(m => m.Phone)</td>
+    </tr>
+    <tr>
+        <td class="header">@Html.LabelFor(m => m.Fax)</td>
+        <td class="content">@Html.TextBoxFor(m => m.Fax) @Html.ValidationMessageFor(m => m.Fax)</td>
+    </tr>
+    <tr>
+        <td class="header">@Html.LabelFor(m => m.Email)</td>
+        <td class="content">@Html.TextBoxFor(m => m.Email) @Html.ValidationMessageFor(m => m.Email)</td>
+    </tr>
+     <tr>
+        <td class="header">@Html.LabelFor(m => m.ContactPerson)</td>
+        <td class="content">@Html.TextBoxFor(m => m.ContactPerson) @Html.ValidationMessageFor(m => m.ContactPerson)</td>
+    </tr>
+    <tr>
+        <td class="header"></td>
+        <td class="content"><button name="submit">Edit Customer</button></td>
+    </tr>
+</table>
+}

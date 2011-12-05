@@ -1,0 +1,22 @@
+﻿@using VisitaJayaPerkasa.Web.Mvc
+@using VisitaJayaPerkasa.Mvc.Models
+@using MvcContrib.UI.Grid;
+@model PagedViewModel<LeadTimeModel>
+
+@{
+    ViewBag.Title = "LeadTime List";
+}
+
+<h2>LeadTime List</h2>
+
+<p>
+    @Html.ActionLink("Create LeadTime", "AddLeadTime", "LeadTime")
+</p>
+
+@{Html.RenderPartial("SearchBox");}
+@{Html.RenderPartial("Pager", Model.PagedList);}
+@Html.Grid(Model.PagedList).Columns(column =>{
+    column.For(x => Html.ActionQueryLink(x.CityCode, "EditLeadTime", new { id = x.CityCode })).Named("CityCode").InsertAt(0);
+    column.For(x => x.Days);
+    column.For(x => Html.ActionQueryLink("delete", "DeleteLeadTime", new { id = x.CityCode })).Named("Action").InsertAt(2);
+}).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")

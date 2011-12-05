@@ -1,0 +1,22 @@
+﻿@using VisitaJayaPerkasa.Web.Mvc
+@using VisitaJayaPerkasa.Mvc.Models
+@using MvcContrib.UI.Grid;
+@model PagedViewModel<CityModel>
+
+@{
+    ViewBag.Title = "City List";
+}
+
+<h2>City List</h2>
+
+<p>
+    @Html.ActionLink("Create City", "AddCity", "City")
+</p>
+
+@{Html.RenderPartial("SearchBox");}
+@{Html.RenderPartial("Pager", Model.PagedList);}
+@Html.Grid(Model.PagedList).Columns(column =>{
+    column.For(x => x.CityCode);
+    column.For(x => Html.ActionQueryLink(x.CityName, "EditCity", new { id = x.CityName })).Named("CityName").InsertAt(1);
+    column.For(x => Html.ActionQueryLink("delete", "DeleteCity", new { id = x.CityCode })).Named("Action").InsertAt(2);
+}).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")
