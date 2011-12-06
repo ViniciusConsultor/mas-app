@@ -21,7 +21,7 @@ namespace VisitaJayaPerkasa.Data.Sql
 
             using (var scope = repo.GetTransaction())
             {
-                if (GetRoleByID(role.Id) == null)
+                if (GetRoleByID(role.Name) == null)
                 {
                     //Create new
                     repo.Insert(role);
@@ -30,7 +30,7 @@ namespace VisitaJayaPerkasa.Data.Sql
                 {
                     //Update it
 
-                    repo.Update("ROLE", "role_id", role);
+                    repo.Update("ROLE", "role_name", role);
                 }
 
                 scope.Complete();
@@ -39,11 +39,11 @@ namespace VisitaJayaPerkasa.Data.Sql
             repo.CloseSharedConnection(); 
         }
 
-        public void DeleteRole(Guid ID)
+        public void DeleteRole(string name)
         {
             var repo = new PetaPoco.Database(_mainConnectionString);
             repo.OpenSharedConnection();
-            Role role = GetRoleByID(ID);
+            Role role = GetRoleByID(name);
             repo.Delete("ROLE", "role_id", role);
             repo.CloseSharedConnection();  
         }
@@ -61,17 +61,18 @@ namespace VisitaJayaPerkasa.Data.Sql
             return roles;
         }
 
-        public Role GetRoleByID(Guid ID)
+        public Role GetRoleByID(string ID)
         {
             var repo = new PetaPoco.Database(_mainConnectionString);
 
             repo.OpenSharedConnection();
 
-            Role role = repo.SingleOrDefault<Role>("SELECT * FROM Role WHERE role_id=@0", ID);
+            Role role = repo.SingleOrDefault<Role>("SELECT * FROM Role WHERE role_name=@0", ID);
 
             repo.CloseSharedConnection();
 
             return role;
         }
+
     }
 }

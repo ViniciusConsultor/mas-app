@@ -67,7 +67,7 @@ namespace Shipping.Mvc.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult EditRole(Guid ID)
+        public ActionResult EditRole(string ID)
         {
             Role role = _roleService.GetRoleByID(ID);
             RoleModel roleModel = AutoMapper.Mapper.Map<Role, RoleModel>(role);
@@ -95,7 +95,7 @@ namespace Shipping.Mvc.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult DeleteRole(Guid ID)
+        public ActionResult DeleteRole(string ID)
         {
             _roleService.DeleteRole(ID);
 

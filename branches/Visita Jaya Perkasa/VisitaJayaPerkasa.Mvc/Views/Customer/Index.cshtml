@@ -16,7 +16,7 @@
 @{Html.RenderPartial("SearchBox");}
 @{Html.RenderPartial("Pager", Model.PagedList);}
 @Html.Grid(Model.PagedList).Columns(column =>{
-    column.For(x => Html.ActionQueryLink(x.CustomerName, "EditCustomer", new { id = x.ID })).Named("CustomerName").InsertAt(0);
+    column.For(x => Html.ActionQueryLink(x.CustomerName, "EditCustomer", new { id = x.ID })).Named("Customer Name").InsertAt(0);
     column.For(x => x.Address);
     column.For(x => x.Phone);
     column.For(x => x.Email);

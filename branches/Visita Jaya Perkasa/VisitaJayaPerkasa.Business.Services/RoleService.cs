@@ -19,7 +19,7 @@ namespace VisitaJayaPerkasa.Business.Services
         {
            _RoleRepository.SaveRole(role);
         }
-        public void DeleteRole(Guid ID)
+        public void DeleteRole(string ID)
         {
             _RoleRepository.DeleteRole(ID);
         }
@@ -29,7 +29,7 @@ namespace VisitaJayaPerkasa.Business.Services
             return _RoleRepository.GetListRole();
         }
 
-        public Role GetRoleByID(Guid ID)
+        public Role GetRoleByID(string ID)
         {
             return _RoleRepository.GetRoleByID(ID);
         }

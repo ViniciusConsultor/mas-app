@@ -41,12 +41,13 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
             return View(pagedViewModel);
         }
 
+        /*
         [Authorize]
         [HttpGet]
         public ActionResult AddUser()
         {
             return View();
-        }
+        }*/
 
         [Authorize]
         [HttpPost]
@@ -65,6 +66,7 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
             return View(userModel);
         }
 
+        /*
         [Authorize]
         [HttpGet]
         public ActionResult AddUser(UserModel user)
@@ -75,6 +77,6 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
             var viewModel = new UserModel();
             viewModel.Roles = roleList.ToList();
             return View(viewModel);
-        }
+        }*/
     }
 }

@@ -9,8 +9,8 @@ namespace VisitaJayaPerkasa.Business.Services
     public interface IRoleService
     {
         void SaveRole(Role role);
-        void DeleteRole(Guid ID);
+        void DeleteRole(string ID);
         IEnumerable<Role> GetListRole();
-        Role GetRoleByID(Guid ID);
+        Role GetRoleByID(string ID);
     }
 }
