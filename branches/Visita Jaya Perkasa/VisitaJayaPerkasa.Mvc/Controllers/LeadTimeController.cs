@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using VisitaJayaPerkasa.Business.Entities;
 using VisitaJayaPerkasa.Mvc.Models;
 using VisitaJayaPerkasa.Business.Services;
-using VisitaJayaPerkasa.Mvc.Models;
 using MvcContrib.UI.Grid;
 
 namespace Shipping.Mvc.Controllers

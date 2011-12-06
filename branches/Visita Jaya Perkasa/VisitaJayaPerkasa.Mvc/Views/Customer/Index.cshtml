@@ -5,6 +5,7 @@
 
 @{
     ViewBag.Title = "Customer List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Customer List</h2>
@@ -17,8 +18,11 @@
 @{Html.RenderPartial("Pager", Model.PagedList);}
 @Html.Grid(Model.PagedList).Columns(column =>{
     column.For(x => Html.ActionQueryLink(x.CustomerName, "EditCustomer", new { id = x.ID })).Named("Customer Name").InsertAt(0);
+    column.For(x => x.Office);
     column.For(x => x.Address);
     column.For(x => x.Phone);
+    column.For(x => x.Fax);
     column.For(x => x.Email);
-    column.For(x => Html.ActionQueryLink("delete", "DeleteCustomer", new { id = x.ID })).Named("Action").InsertAt(4);
+    column.For(x => x.ContactPerson);
+    column.For(x => Html.ActionQueryLink("delete", "DeleteCustomer", new { id = x.ID })).Named("Action").InsertAt(7);
 }).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")
