@@ -208,23 +208,41 @@ input.button {
    LAYOUT
 ********************************************/ 
 #wrap {
-	width: 820px;
-	background: #CCC url(images/content.jpg) repeat-y center top;
+	width: 1000px;
+    background: #39f; /* for non-css3 browsers */
+    background: -webkit-gradient(linear, left top, right top, from(#6cf), to(#39f)); /* for webkit browsers */
+    background: -moz-linear-gradient(left,  #6cf,  #39f); /* for firefox 3.6+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#66ccff', endColorstr='#3399ff', GradientType=1); /* for IE */
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
 	margin: 0 auto;
+	margin-top: 10px;
 	text-align: left;
 }
 #content-wrap {
-	clear: both;
-	width: 760px;
+    float:left;
+	width: 1000px;
 	padding: 0; 
-	margin: 10px auto;
+	padding: 10px auto;
+    background: #39f; /* for non-css3 browsers */
+    background: -webkit-gradient(linear, left top, right top, from(#6cf), to(#39f)); /* for webkit browsers */
+    background: -moz-linear-gradient(left,  #6cf,  #39f); /* for firefox 3.6+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#66ccff', endColorstr='#3399ff', GradientType=1); /* for IE */
+    border-top:1px solid #adf;
+    border-bottom:1px solid #39c;
+}
+#content-wrap-border 
+{
+    margin: 5px 0px 5px 0px;
+    overflow: hidden;
 }
 #header {
-	width: 820px;
+	width: 1000px;
 	position: relative;
 	height: 103px;
-	background: #CCC url(images/header.jpg) no-repeat center top;
-	padding: 0;	
+    border-bottom:1px solid #39c;
+    padding: 0;	
 	color: #FFF;	
 }
 #header h1#logo-text a {
@@ -273,17 +291,20 @@ input.button {
 #menu {
 	clear: both;	
 	margin: 0 auto; padding: 0;
-	background: url(images/menu.jpg) repeat-x 0 0;	
+    border-top:1px solid #adf;
+    border-bottom:1px solid #39c;
 	font: bold 12px/37px Verdana, Arial, Tahoma, Sans-serif;
 	height: 37px;
-	width: 780px;	
+	width: 1000px;	
 }
 
 /* Main Column */
 #main {
 	float: left;
-	width: 70%;
-	padding: 0; margin: 5px 0 0 5px;
+	width: 745px;
+	background-color:#fff;
+	padding: 0;
+	margin: 0px 0px 0px 5px;
 	display: inline;
 }
 #main h2 {
@@ -327,9 +348,13 @@ input.button {
 /* Sidebar */	
 #sidebar {
 	float: right;
-	width: 26.5%;
-	padding: 0; margin: 0;	
-	color: #68774A;	
+	width: 245px;
+	padding: 0px;
+	padding-bottom: 9000px;
+	margin: 0px 5px -9000px 0px;	
+	color: #68774A;
+	background-color: #edfecd;
+	height:100%;
 }	
 #sidebar h3 {
 	margin-top: 10px;
@@ -369,9 +394,9 @@ input.button {
 /* Footer */	
 #footer {
 	color: #C6DDEE;
-	background: #CCC url(images/footer.jpg) no-repeat center top;
+    border-top:1px solid #adf;
 	clear: both;
-	width: 820px;
+	width: 1000px;
 	height: 65px;
 	text-align: center;	
 	font-size: 92%;	
