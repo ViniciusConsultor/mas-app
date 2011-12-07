@@ -18,6 +18,7 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
             _categoryService = categoryService;
         }
 
+
         [Authorize]
         [HttpGet]
         public ActionResult Index(string searchWord, GridSortOptions gridSortOptions, int? page)
