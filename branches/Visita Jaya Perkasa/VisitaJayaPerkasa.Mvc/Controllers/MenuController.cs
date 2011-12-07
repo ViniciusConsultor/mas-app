@@ -199,6 +199,13 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
                 };
                 adminMenu.Items.Add(user);
 
+                MenuItem vessel = new MenuItem()
+                {
+                    Url = String.Format(model.Portal50Url, "vessel"),
+                    Text = "Vessel"
+                };
+                adminMenu.Items.Add(vessel);
+
                 menu.Items.Add(adminMenu);
                 
             }

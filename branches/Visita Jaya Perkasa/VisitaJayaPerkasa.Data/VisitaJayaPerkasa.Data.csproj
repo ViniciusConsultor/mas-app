@@ -49,6 +49,7 @@
     <Compile Include="ISupplierRepository.cs" />
     <Compile Include="ITypeContRepository.cs" />
     <Compile Include="IUserRepository.cs" />
+    <Compile Include="IVesselRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

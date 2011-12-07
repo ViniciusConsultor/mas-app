@@ -54,6 +54,8 @@ namespace VisitaJayaPerkasa.Mvc
             .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Name))
             .ForMember(dest => dest.Text, opt => opt.MapFrom(src => src.Name))
             .ForMember(dest => dest.Selected, opt => opt.Ignore());
+
+            Mapper.CreateMap<Vessel, VesselModel>();
         }
         public class StructureMapRegistry : Registry
         {
@@ -69,6 +71,9 @@ namespace VisitaJayaPerkasa.Mvc
                 For<ILeadTimeService>().Singleton().Use<LeadTimeService>();
                 For<IRoleService>().Singleton().Use<RoleService>();
                 For<ITypeContService>().Singleton().Use<TypeContService>();
+
+                For<IVesselService>().Singleton().Use<VesselService>();
+
 
                 For<ICacheProvider>().Use<CacheProvider>()
                 .Ctor<bool>("enabled").Is(bool.Parse(System.Configuration.ConfigurationManager.AppSettings["VisitaJayaPerkasa.Caching.CacheProvider.Enabled"]));
@@ -102,6 +107,9 @@ namespace VisitaJayaPerkasa.Mvc
                     .Ctor<string>("mainConnectionString").Is("ShippingMain");
 
                 For<ITypeContRepository>().Singleton().Use<TypeContRepository>()
+                    .Ctor<string>("mainConnectionString").Is("ShippingMain");
+
+                For<IVesselRepository>().Singleton().Use<VesselRepository>()
                     .Ctor<string>("mainConnectionString").Is("ShippingMain");
             }
         }
