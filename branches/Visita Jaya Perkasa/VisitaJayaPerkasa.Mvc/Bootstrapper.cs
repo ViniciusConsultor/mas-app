@@ -35,8 +35,7 @@ namespace VisitaJayaPerkasa.Mvc
 
         public static void InitializeAutoMapper()
         {
-            Mapper.CreateMap<User, UserModel>()
-               .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ToString()));
+            Mapper.CreateMap<User, UserModel>().ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ToString()));
             Mapper.CreateMap<Supplier, SupplierModel>();
             Mapper.CreateMap<Category, SelectListItem>()
             .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.CategoryCode))
@@ -52,7 +51,7 @@ namespace VisitaJayaPerkasa.Mvc
             Mapper.CreateMap<TypeCont, TypeContModel>();
 
             Mapper.CreateMap<Role, SelectListItem>()
-            .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Name))
             .ForMember(dest => dest.Text, opt => opt.MapFrom(src => src.Name))
             .ForMember(dest => dest.Selected, opt => opt.Ignore());
         }

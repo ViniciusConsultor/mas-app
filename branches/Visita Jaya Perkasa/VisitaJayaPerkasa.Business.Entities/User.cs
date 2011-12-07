@@ -43,18 +43,21 @@ namespace VisitaJayaPerkasa.Business.Entities
 
         [Column("nik")]
         public string Nik { get; set; }
-        
+
         [Column("address")]
         public string address { get; set; }
-        
+
         [Column("date_Of_birth")]
         public string DateOfBirth { get; set; }
-        
+
         [Column("martial_status")]
         public string MartialStatus { get; set; }
-        
+
         [Column("gender")]
         public string Gender { get; set; }
+
+        [Column("deleted")]
+        public int Deleted { get; set; }
 
         public override string ToString()
         {

@@ -8,9 +8,13 @@ namespace VisitaJayaPerkasa.Mvc.Models
 {
     public class RoleModel
     {
-        public Guid Id { get; set; }
-        [Required(ErrorMessage="Name must be fill")]
+        [Required(ErrorMessage = "Name must be fill")]
         public string Name { get; set; }
-        public string Description { get; set;}
+
+        [Required(ErrorMessage = "Description must be fill")]
+        public string Description { get; set; }
+
+        [ScaffoldColumn(false)]
+        public int deleted { get; set; }
     }
 }

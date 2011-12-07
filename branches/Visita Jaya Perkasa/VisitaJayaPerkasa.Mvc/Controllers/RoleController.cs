@@ -30,7 +30,7 @@ namespace Shipping.Mvc.Controllers
                 ViewData = ViewData,
                 Query = listrole,
                 GridSortOptions = gridSortOptions,
-                DefaultSortColumn = "Id",
+                DefaultSortColumn = "Name",
                 Page = page,
                 PageSize = 10,
             }
@@ -55,7 +55,6 @@ namespace Shipping.Mvc.Controllers
             {
                 _roleService.SaveRole(new Role
                 {
-                    Id = roleModel.Id,
                     Name = roleModel.Name,
                     Description = roleModel.Description
                 });
@@ -83,7 +82,6 @@ namespace Shipping.Mvc.Controllers
             {
                 _roleService.SaveRole(new Role
                 {
-                    Id = roleModel.Id,
                     Name = roleModel.Name,
                     Description = roleModel.Description
                 });

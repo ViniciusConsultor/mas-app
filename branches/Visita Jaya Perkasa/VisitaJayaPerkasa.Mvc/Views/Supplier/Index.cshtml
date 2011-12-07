@@ -19,6 +19,8 @@
     column.For(x => Html.ActionQueryLink(x.SupplierName, "Edit", new { id = x.Id })).Named("SupplierName").InsertAt(0);
     column.For(x => x.Address);
     column.For(x => x.Phone);
+    column.For(x => x.Fax);
     column.For(x => x.Email);
-    column.For(x => Html.ActionQueryLink("delete", "Delete", new { id = x.Id })).Named("Action").InsertAt(4);
+    column.For(x => x.ContactPerson);
+    column.For(x => Html.ActionQueryLink("delete", "Delete", new { id = x.Id })).Named("Action").InsertAt(6);
 }).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")

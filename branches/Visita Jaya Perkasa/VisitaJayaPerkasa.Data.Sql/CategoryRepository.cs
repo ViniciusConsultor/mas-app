@@ -71,7 +71,7 @@ namespace VisitaJayaPerkasa.Data.Sql
 
             repo.OpenSharedConnection();
 
-            Category category = repo.SingleOrDefault<Category>("SELECT * FROM CATEGORY WHERE category_code=@0 WHERE (deleted is null OR deleted = '0')", categoryCode);
+            Category category = repo.SingleOrDefault<Category>("SELECT * FROM CATEGORY WHERE category_code=@0 AND (deleted is null OR deleted = '0')", categoryCode);
 
             repo.CloseSharedConnection();
 

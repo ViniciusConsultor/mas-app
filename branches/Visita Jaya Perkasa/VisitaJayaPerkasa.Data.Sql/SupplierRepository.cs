@@ -42,7 +42,7 @@ namespace VisitaJayaPerkasa.Data.Sql
             repo.CloseSharedConnection();
 
             return suppliers;
-     }
+        }
 
         public void SaveSupplier(Supplier supplier)
         {
@@ -50,7 +50,7 @@ namespace VisitaJayaPerkasa.Data.Sql
 
             repo.OpenSharedConnection();
 
-               using (var scope = repo.GetTransaction())
+            using (var scope = repo.GetTransaction())
             {
                 if (GetSupplier(supplier.Id) == null)
                 {
@@ -60,7 +60,7 @@ namespace VisitaJayaPerkasa.Data.Sql
                 else
                 {
                     //Update it
-                   
+
                     repo.Update("SUPPLIER", "supplier_id", supplier);
                 }
 
@@ -76,7 +76,7 @@ namespace VisitaJayaPerkasa.Data.Sql
             repo.OpenSharedConnection();
             Supplier supplier = GetSupplier(Id);
             repo.Delete("SUPPLIER", "supplier_id", supplier);
-            repo.CloseSharedConnection();   
+            repo.CloseSharedConnection();
         }
     }
 }

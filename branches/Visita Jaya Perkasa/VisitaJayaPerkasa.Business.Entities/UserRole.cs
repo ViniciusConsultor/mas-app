@@ -16,7 +16,10 @@ namespace VisitaJayaPerkasa.Business.Entities
         [Column("user_id")]
         public Guid UserId { get; set; }
 
-        [Column("role_id")]
-        public Guid RoleId { get; set; }
+        [Column("role_name")]
+        public string RoleName { get; set; }
+
+        [Column("deleted")]
+        public int Deleted { get; set; }
     }
 }

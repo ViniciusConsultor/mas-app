@@ -8,25 +8,16 @@ using PetaPoco;
 namespace VisitaJayaPerkasa.Business.Entities
 {
     [TableName("ROLE")]
-    [PrimaryKey("role_id", autoIncrement = false)]
+    [PrimaryKey("role_name", autoIncrement = false)]
     public class Role
     {
-        /// <summary>
-        /// Gets or sets the id.
-        /// </summary>
-        /// <value>
-        /// The id.
-        /// </value>
-        [Column("role_id")]
-        public Guid Id { get; set; }
-
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
         /// <value>
         /// The name.
         /// </value>
-        [Column("name")]
+        [Column("role_name")]
         public string Name { get; set; }
 
         /// <summary>
@@ -37,5 +28,8 @@ namespace VisitaJayaPerkasa.Business.Entities
         /// </value>
         [Column("description")]
         public string Description { get; set; }
+
+        [Column("deleted")]
+        public int Deleted { get; set; }
     }
 }

@@ -52,7 +52,7 @@ namespace VisitaJayaPerkasa.Data.Sql
 
             repo.OpenSharedConnection();
 
-            List<Role> roles = repo.Fetch<Role>(@"SELECT DISTINCT r.role_name, r.[description] FROM [ROLE] r INNER JOIN USER_ROLE ura ON r.role_name = ura.role_name WHERE ura.[user_id] = @0 AND r.deleted is null AND ura.deleted is null ORDER BY	r.role_name, r.[description]", userId).ToList<Role>();
+            List<Role> roles = repo.Fetch<Role>(@"SELECT DISTINCT r.role_name, r.[description] FROM [ROLE] r INNER JOIN USER_ROLE ura ON r.role_name = ura.role_name WHERE ura.[user_id] = @0 AND (r.deleted is null OR r.deleted = '0') AND (ura.deleted is null OR ura.deleted = '0') ORDER BY	r.role_name, r.[description]", userId).ToList<Role>();
 
             repo.CloseSharedConnection();
 

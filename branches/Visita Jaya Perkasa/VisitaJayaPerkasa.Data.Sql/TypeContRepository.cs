@@ -10,7 +10,8 @@ namespace VisitaJayaPerkasa.Data.Sql
     public class TypeContRepository : ITypeContRepository
     {
         private readonly string _mainConnectionString;
-        public TypeContRepository(string mainConnectionString) {
+        public TypeContRepository(string mainConnectionString)
+        {
             _mainConnectionString = mainConnectionString;
         }
 
@@ -46,7 +47,7 @@ namespace VisitaJayaPerkasa.Data.Sql
             repo.OpenSharedConnection();
             TypeCont typeCont = GetTypeContByID(ID);
             repo.Delete("TYPE_CONT", "type_code", typeCont);
-            repo.CloseSharedConnection();  
+            repo.CloseSharedConnection();
         }
 
         public IEnumerable<TypeCont> GetListTypeCont()

@@ -9,7 +9,8 @@ namespace VisitaJayaPerkasa.Data.Sql
     public class RoleRepository : IRoleRepository
     {
         private readonly string _mainConnectionString;
-        public RoleRepository(string mainConnectionString) {
+        public RoleRepository(string mainConnectionString)
+        {
             _mainConnectionString = mainConnectionString;
         }
 
@@ -36,7 +37,7 @@ namespace VisitaJayaPerkasa.Data.Sql
                 scope.Complete();
             }
 
-            repo.CloseSharedConnection(); 
+            repo.CloseSharedConnection();
         }
 
         public void DeleteRole(string name)
@@ -45,7 +46,7 @@ namespace VisitaJayaPerkasa.Data.Sql
             repo.OpenSharedConnection();
             Role role = GetRoleByID(name);
             repo.Delete("ROLE", "role_id", role);
-            repo.CloseSharedConnection();  
+            repo.CloseSharedConnection();
         }
 
         public IEnumerable<Role> GetListRole()
