@@ -13,5 +13,6 @@ namespace VisitaJayaPerkasa.Business.Services
         void DeleteCategory(string categoryCode);
         IEnumerable<Category> GetCategories();
         Category GetCategoryByID(string categoryCode);
+        IEnumerable<Category> GetCategoryBySearch(string searchWord);
     }
 }

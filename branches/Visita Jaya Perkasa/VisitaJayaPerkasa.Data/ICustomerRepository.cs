@@ -12,5 +12,6 @@ namespace VisitaJayaPerkasa.Data
         void DeleteCustomer(Guid ID);
         IEnumerable<Customer> GetListCustomer();
         Customer GetCustomerByID(Guid ID);
+        IEnumerable<Customer> GetCustomerBySearch(string searchWord);
     }
 }

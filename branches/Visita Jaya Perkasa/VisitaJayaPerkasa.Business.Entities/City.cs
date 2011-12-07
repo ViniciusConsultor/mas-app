@@ -16,5 +16,8 @@ namespace VisitaJayaPerkasa.Business.Entities
        
         [Column("city_name")]
         public string CityName { get; set; }
+
+        [Column("deleted")]
+        public int Deleted { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
         [HttpGet]
         public ActionResult Index(string searchWord, GridSortOptions gridSortOptions, int? page)
         {
-            IEnumerable<Condition> temp = _conditionService.GetListCondition();
+            IEnumerable<Condition> temp = _conditionService.GetConditionBySearch(searchWord);
             IEnumerable<ConditionModel> listCondition = AutoMapper.Mapper.Map<IEnumerable<Condition>, IEnumerable<ConditionModel>>(temp);
 
             var pagedViewModel = new PagedViewModel<ConditionModel>
@@ -34,7 +34,6 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
                 Page = page,
                 PageSize = 10,
             }
-         .AddFilter("searchWord", searchWord, a => a.ConditionName.Contains(searchWord))
          .Setup();
 
             return View(pagedViewModel);
@@ -94,7 +93,9 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
         [HttpGet]
         public ActionResult DeleteCondition(string ID)
         {
-            _conditionService.DeleteCondition(ID);
+            Condition condition = _conditionService.GetConditionByID(ID);
+            condition.Deleted = 1;
+            _conditionService.SaveCondition(condition);
 
             return RedirectToAction("Index");
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Collections;
 
 namespace VisitaJayaPerkasa.Mvc.Models
 {
@@ -32,5 +33,9 @@ namespace VisitaJayaPerkasa.Mvc.Models
 
         [DisplayName("Contact Person")]
         public string ContactPerson { get; set; }
+
+        [ScaffoldColumn(false)]
+        public int deleted { get; set; }
+
     }
 }

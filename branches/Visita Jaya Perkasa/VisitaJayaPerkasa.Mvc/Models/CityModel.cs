@@ -11,5 +11,8 @@ namespace VisitaJayaPerkasa.Mvc.Models
         [Required(ErrorMessage="Please fill city code")]
         public string CityCode { get; set; }
         public string CityName { get; set; }
+
+        [ScaffoldColumn(false)]
+        public int Deleted { get; set; }
     }
 }

@@ -17,6 +17,6 @@
 @{Html.RenderPartial("Pager", Model.PagedList);}
 @Html.Grid(Model.PagedList).Columns(column =>{
     column.For(x => x.CategoryCode);
-    column.For(x => Html.ActionQueryLink(x.CategoryName, "EditCategory", new { id = x.CategoryCode })).Named("CategoryName").InsertAt(1);
+    column.For(x => Html.ActionQueryLink(x.CategoryName, "EditCategory", new { id = x.CategoryCode })).Named("Category Name").InsertAt(1);
     column.For(x => Html.ActionQueryLink("delete", "DeleteCategory", new { id = x.CategoryCode })).Named("Action").InsertAt(2);
 }).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")

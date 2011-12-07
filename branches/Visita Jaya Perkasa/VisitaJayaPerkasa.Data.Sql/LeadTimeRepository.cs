@@ -57,7 +57,7 @@ namespace VisitaJayaPerkasa.Data.Sql
 
             repo.OpenSharedConnection();
 
-            List<LeadTime> leadtime = repo.Fetch<LeadTime>("SELECT * FROM [Lead_Time]").ToList<LeadTime>();
+            List<LeadTime> leadtime = repo.Fetch<LeadTime>("SELECT * FROM [Lead_Time] WHERE (delete is null OR deleted = '0')").ToList<LeadTime>();
 
             repo.CloseSharedConnection();
 
@@ -70,11 +70,26 @@ namespace VisitaJayaPerkasa.Data.Sql
 
             repo.OpenSharedConnection();
 
-            LeadTime leadtime = repo.SingleOrDefault<LeadTime>("SELECT * FROM lead_time WHERE city_code=@0", ID);
+            LeadTime leadtime = repo.SingleOrDefault<LeadTime>("SELECT * FROM lead_time WHERE city_code=@0 AND (deleted is null OR deleted = '0')", ID);
 
             repo.CloseSharedConnection();
 
             return leadtime;
+        }
+
+
+        public IEnumerable<LeadTime> GetLeadTimeBySearch(string searchWord)
+        {
+            var repo = new PetaPoco.Database(_mainConnectionString);
+            repo.OpenSharedConnection();
+
+            IEnumerable<LeadTime> listLeadTime = repo.Fetch<LeadTime>(
+                "SELECT * FROM Lead_Time WHERE (deleted is null OR deleted = '0') AND " + 
+                "(city_code like '%" + searchWord + "%' OR days like '%" + searchWord + "%')"
+                ).ToList();
+
+            repo.CloseSharedConnection();
+            return listLeadTime;
         }
     }
 }

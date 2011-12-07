@@ -16,7 +16,7 @@
 @{Html.RenderPartial("SearchBox");}
 @{Html.RenderPartial("Pager", Model.PagedList);}
 @Html.Grid(Model.PagedList).Columns(column =>{
-    column.For(x => x.ConditionCode);
-    column.For(x => Html.ActionQueryLink(x.ConditionName, "EditCondition", new { id = x.ConditionCode })).Named("CategoryName").InsertAt(1);
-    column.For(x => Html.ActionQueryLink("delete", "DeleteCategory", new { id = x.ConditionCode })).Named("Action").InsertAt(2);
+    column.For(x => Html.ActionQueryLink(x.ConditionCode, "EditCondition", new { id = x.ConditionCode})).Named("Condition Code").InsertAt(0);
+    column.For(x => x.ConditionName);
+    column.For(x => Html.ActionQueryLink("delete", "DeleteCondition", new { id = x.ConditionCode })).Named("Action").InsertAt(2);
 }).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")

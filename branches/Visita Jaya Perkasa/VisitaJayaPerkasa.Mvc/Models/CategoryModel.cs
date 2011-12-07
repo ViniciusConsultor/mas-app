@@ -12,5 +12,8 @@ namespace VisitaJayaPerkasa.Mvc.Models
         public string CategoryCode { set; get; }
 
         public string CategoryName { set; get; }
+
+        [ScaffoldColumn(false)]
+        public int Deleted { get; set; }
     }
 }

@@ -36,5 +36,11 @@ namespace VisitaJayaPerkasa.Business.Services
         {
             _customerRepository.DeleteCustomer(ID);
         }
+
+
+        public IEnumerable<Customer> GetCustomerBySearch(string searchWord)
+        {
+            return _customerRepository.GetCustomerBySearch(searchWord);
+        }
     }
 }

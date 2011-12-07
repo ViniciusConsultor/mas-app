@@ -12,5 +12,6 @@ namespace VisitaJayaPerkasa.Data
         void DeleteCondition(string conditionCode);
         IEnumerable<Condition> GetListCondition();
         Condition GetConditionByID(string conditionCode);
+        IEnumerable<Condition> GetConditionBySearch(string searchWord);
     }
 }

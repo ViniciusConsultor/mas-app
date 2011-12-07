@@ -11,5 +11,8 @@ namespace VisitaJayaPerkasa.Mvc.Models
         [Required(ErrorMessage="Please fill condition code")]
         public string ConditionCode { get; set; }
         public string ConditionName { get; set; }
+
+        [ScaffoldColumn(false)]
+        public int Deleted { get; set; }
     }
 }

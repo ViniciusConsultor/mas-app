@@ -12,5 +12,6 @@ namespace VisitaJayaPerkasa.Data
         void DeleteCity(string cityCode);
         IEnumerable<City> GetListCity();
         City GetCityByID(string cityCode);
+        IEnumerable<City> GetCityBySearch(string searchWord);
     }
 }

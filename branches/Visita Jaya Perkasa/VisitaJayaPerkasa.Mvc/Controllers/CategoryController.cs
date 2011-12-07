@@ -22,7 +22,7 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
         [HttpGet]
         public ActionResult Index(string searchWord, GridSortOptions gridSortOptions, int? page)
         {
-            IEnumerable<Category> temp = _categoryService.GetCategories();
+            IEnumerable<Category> temp = _categoryService.GetCategoryBySearch(searchWord);
             IEnumerable<CategoryModel> listCategory = AutoMapper.Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryModel>>(temp);
 
             var pagedViewModel = new PagedViewModel<CategoryModel>
@@ -34,7 +34,6 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
                 Page = page,
                 PageSize = 10,
             }
-         .AddFilter("searchWord", searchWord, a => a.CategoryName.Contains(searchWord))
          .Setup();
 
             return View(pagedViewModel);
@@ -94,7 +93,10 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
         [HttpGet]
         public ActionResult DeleteCategory(string ID)
         {
-            _categoryService.DeleteCategory(ID);
+            Category category = _categoryService.GetCategoryByID(ID);
+            category.Deleted = 1;
+
+            _categoryService.SaveCategory(category);
 
             return RedirectToAction("Index");
         }

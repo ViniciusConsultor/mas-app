@@ -33,5 +33,8 @@ namespace VisitaJayaPerkasa.Business.Entities
 
         [Column("contact_person")]
         public string ContactPerson { get; set; }
+
+        [Column("deleted")]
+        public int Deleted { get; set; }
     }
 }

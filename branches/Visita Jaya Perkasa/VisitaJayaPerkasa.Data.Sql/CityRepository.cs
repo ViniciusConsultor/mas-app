@@ -56,7 +56,7 @@ namespace VisitaJayaPerkasa.Data.Sql
 
             repo.OpenSharedConnection();
 
-            List<City> cities = repo.Fetch<City>("SELECT * FROM [CITY]").ToList<City>();
+            List<City> cities = repo.Fetch<City>("SELECT * FROM [CITY] WHERE (deleted is null OR deleted = '0')").ToList<City>();
 
             repo.CloseSharedConnection();
 
@@ -69,11 +69,25 @@ namespace VisitaJayaPerkasa.Data.Sql
 
             repo.OpenSharedConnection();
 
-            City cities = repo.SingleOrDefault<City>("SELECT * FROM CITY WHERE city_code=@0", cityCode);
+            City cities = repo.SingleOrDefault<City>("SELECT * FROM CITY WHERE city_code=@0 AND (deleted is null OR deleted = '0')", cityCode);
 
             repo.CloseSharedConnection();
 
             return cities;
+        }
+
+
+        public IEnumerable<City> GetCityBySearch(string searchWord)
+        {
+            var repo = new PetaPoco.Database(_mainConnectionString);
+            repo.OpenSharedConnection();
+
+            IEnumerable<City> listCity = repo.Fetch<City>(
+                "SELECT * FROM CITY WHERE (deleted is null OR deleted = '0')  AND (city_code like '%" + searchWord + "%' OR city_name like '%" + searchWord + "%')"
+                ).ToList();
+
+            repo.CloseSharedConnection();
+            return listCity;
         }
     }
 }

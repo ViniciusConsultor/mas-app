@@ -34,5 +34,11 @@ namespace VisitaJayaPerkasa.Business.Services
         {
             return _conditionRepository.GetConditionByID(conditionCode);
         }
+
+
+        public IEnumerable<Condition> GetConditionBySearch(string searchWord)
+        {
+            return _conditionRepository.GetConditionBySearch(searchWord);
+        }
     }
 }

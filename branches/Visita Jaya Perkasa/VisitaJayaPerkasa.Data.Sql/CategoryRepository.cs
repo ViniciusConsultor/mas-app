@@ -58,7 +58,7 @@ namespace VisitaJayaPerkasa.Data.Sql
 
             repo.OpenSharedConnection();
 
-            List<Category> categories = repo.Fetch<Category>("SELECT * FROM [Category]").ToList<Category>();
+            List<Category> categories = repo.Fetch<Category>("SELECT * FROM [Category] WHERE (deleted is null OR deleted = '0')").ToList<Category>();
 
             repo.CloseSharedConnection();
 
@@ -71,11 +71,25 @@ namespace VisitaJayaPerkasa.Data.Sql
 
             repo.OpenSharedConnection();
 
-            Category category = repo.SingleOrDefault<Category>("SELECT * FROM CATEGORY WHERE category_code=@0", categoryCode);
+            Category category = repo.SingleOrDefault<Category>("SELECT * FROM CATEGORY WHERE category_code=@0 WHERE (deleted is null OR deleted = '0')", categoryCode);
 
             repo.CloseSharedConnection();
 
             return category;
+        }
+
+
+        public IEnumerable<Category> GetCategoryBySearch(string searchWord)
+        {
+            var repo = new PetaPoco.Database(_mainConnectionString);
+            repo.OpenSharedConnection();
+
+            IEnumerable<Category> listCategory = repo.Fetch<Category>(
+                "SELECT * FROM CATEGORY WHERE (deleted is null OR deleted = '0') AND (category_name like '%" + searchWord + "%' OR category_code like '%" + searchWord + "%')"
+            ).ToList<Category>();
+
+            repo.CloseSharedConnection();
+            return listCategory;
         }
     }
 }

@@ -22,7 +22,7 @@
     <table>
     <tr>
         <td class="header">@Html.LabelFor(m => m.CityCode)</td>
-        <td class="content">@Html.TextBoxFor(m => m.CityCode)@Html.ValidationMessageFor(m => m.CityCode)</td>
+        <td class="content">@Html.DropDownListFor(m => m.CityCode, Model.ListItems)</td>
     </tr>
     <tr>
         <td class="header">@Html.LabelFor(m => m.Days)</td>

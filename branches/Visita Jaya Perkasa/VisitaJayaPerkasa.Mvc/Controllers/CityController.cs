@@ -22,7 +22,7 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
         [HttpGet]
         public ActionResult Index(string searchWord, GridSortOptions gridSortOptions, int? page)
         {
-            IEnumerable<City> temp = _cityService.GetListCity();
+            IEnumerable<City> temp = _cityService.GetCityBySearch(searchWord);
             IEnumerable<CityModel> listCity = AutoMapper.Mapper.Map<IEnumerable<City>, IEnumerable<CityModel>>(temp);
       
             var pagedViewModel = new PagedViewModel<CityModel>
@@ -34,12 +34,9 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
                 Page = page,
                 PageSize = 10,
             }
-         .AddFilter("searchWord", searchWord, a => a.CityName.Contains(searchWord))
          .Setup();
 
             return View(pagedViewModel);
-
-            return View(listCity);
         }
 
         [Authorize]
@@ -97,7 +94,9 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
         [HttpGet]
         public ActionResult DeleteCity(string ID)
         {
-            _cityService.DeleteCity(ID);
+            City city = _cityService.GetCityByID(ID);
+            city.Deleted = 1;
+            _cityService.SaveCity(city);
 
             return RedirectToAction("Index");
         }

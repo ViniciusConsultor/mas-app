@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc; 
 
 namespace VisitaJayaPerkasa.Mvc.Models
 {
@@ -13,5 +14,10 @@ namespace VisitaJayaPerkasa.Mvc.Models
 
         [RegularExpression(@"^[0-9]+$", ErrorMessage="Must be fill in numeric")]
         public int Days { get; set; }
+
+        [ScaffoldColumn(false)]
+        public int Deleted { get; set; }
+
+        public List<SelectListItem> ListItems { get; set; }
     }
 }

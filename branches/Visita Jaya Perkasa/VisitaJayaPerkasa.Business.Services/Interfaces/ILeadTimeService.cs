@@ -12,5 +12,6 @@ namespace VisitaJayaPerkasa.Business.Services
         void DeleteLeadTime(string ID);
         IEnumerable<LeadTime> GetListLeadTime();
         LeadTime GetLeadTimeByID(string ID);
+        IEnumerable<LeadTime> GetLeadTimeBySearch(string searchWord);
     }
 }

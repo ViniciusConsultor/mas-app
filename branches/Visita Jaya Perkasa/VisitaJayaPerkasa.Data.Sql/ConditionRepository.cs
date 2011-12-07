@@ -55,7 +55,7 @@ namespace VisitaJayaPerkasa.Data.Sql
 
             repo.OpenSharedConnection();
 
-            List<Condition> conditions = repo.Fetch<Condition>("SELECT * FROM [Condition]").ToList<Condition>();
+            List<Condition> conditions = repo.Fetch<Condition>("SELECT * FROM [Condition] WHERE (deleted is null OR deleted = '0')").ToList<Condition>();
 
             repo.CloseSharedConnection();
 
@@ -68,11 +68,26 @@ namespace VisitaJayaPerkasa.Data.Sql
 
             repo.OpenSharedConnection();
 
-            Condition conditions = repo.SingleOrDefault<Condition>("SELECT * FROM Condition WHERE condition_code=@0", conditionCode);
+            Condition conditions = repo.SingleOrDefault<Condition>("SELECT * FROM Condition WHERE condition_code=@0 AND (deleted is null OR deleted = '0')", conditionCode);
 
             repo.CloseSharedConnection();
 
             return conditions;
+        }
+
+
+        public IEnumerable<Condition> GetConditionBySearch(string searchWord)
+        {
+            var repo = new PetaPoco.Database(_mainConnectionString);
+            repo.OpenSharedConnection();
+
+            IEnumerable<Condition> listCondition = repo.Fetch<Condition>(
+                "SELECT * FROM condition WHERE (deleted is null OR deleted = '0') AND " + 
+                "(condition_code like '%" + searchWord + "%' OR condition_name like '%" + searchWord + "%')"
+                ).ToList();
+
+            repo.CloseSharedConnection();
+            return listCondition;
         }
     }
 }

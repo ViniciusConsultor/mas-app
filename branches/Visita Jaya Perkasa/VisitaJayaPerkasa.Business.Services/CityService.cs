@@ -34,5 +34,11 @@ namespace VisitaJayaPerkasa.Business.Services
         {
             return _cityRepository.GetCityByID(cityCode);
         }
+
+
+        public IEnumerable<City> GetCityBySearch(string searchWord)
+        {
+            return _cityRepository.GetCityBySearch(searchWord);
+        }
     }
 }

@@ -34,5 +34,11 @@ namespace VisitaJayaPerkasa.Business.Services
         {
             return _LeadTimeRepository.GetLeadTimeByID(ID);
         }
+
+
+        public IEnumerable<LeadTime> GetLeadTimeBySearch(string searchWord)
+        {
+            return _LeadTimeRepository.GetLeadTimeBySearch(searchWord);
+        }
     }
 }

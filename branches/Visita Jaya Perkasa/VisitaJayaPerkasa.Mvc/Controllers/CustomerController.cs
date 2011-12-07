@@ -22,14 +22,8 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
         [HttpGet]
         public ActionResult Index(string searchWord, GridSortOptions gridSortOptions, int? page)
         {
-            IEnumerable<Customer> temp = _customerService.GetListCustomer();
+            IEnumerable<Customer> temp = _customerService.GetCustomerBySearch(searchWord);
             IEnumerable<CustomerModel> list = AutoMapper.Mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerModel>>(temp);
-
-            if (!string.IsNullOrWhiteSpace(searchWord)) {
-                if (searchWord.Length > 1) {
-                    searchWord = searchWord.ToUpper();
-                }
-            }
 
             var pagedViewModel = new PagedViewModel<CustomerModel>
             {
@@ -40,13 +34,6 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
                 Page = page,
                 PageSize = 10,
             }
-            .AddFilter("searchWord", searchWord, a => a.CustomerName.ToUpper().Contains(searchWord) 
-                || (a.Office != null)? a.Office.ToUpper().Contains(searchWord) : false 
-                || (a.Fax != null)? a.Fax.Contains(searchWord) : false
-                || (a.Address != null) ? a.Address.ToUpper().Contains(searchWord) : false
-                || (a.Phone != null) ? a.Phone.Contains(searchWord) : false 
-                || (a.Email != null) ? a.Email.ToUpper().Contains(searchWord) : false 
-                || (a.ContactPerson != null) ? a.ContactPerson.Contains(searchWord) : false)
             .Setup();
 
             return View(pagedViewModel);
@@ -120,8 +107,10 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
         [HttpGet]
         public ActionResult DeleteCustomer(Guid ID)
         {
-            _customerService.DeleteCustomer(ID);
+            Customer customer = _customerService.GetCustomerByID(ID);
+            customer.Deleted = 1;
 
+            _customerService.SaveCustomer(customer);
             return RedirectToAction("Index");
         }
     }

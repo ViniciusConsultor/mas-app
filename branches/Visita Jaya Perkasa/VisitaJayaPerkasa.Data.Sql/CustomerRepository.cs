@@ -49,7 +49,7 @@ namespace VisitaJayaPerkasa.Data.Sql
 
             repo.OpenSharedConnection();
 
-            List<Customer> customers = repo.Fetch<Customer>("SELECT * FROM [CUSTOMER]").ToList<Customer>();
+            List<Customer> customers = repo.Fetch<Customer>("SELECT * FROM [CUSTOMER] WHERE (deleted is null OR deleted = '0')").ToList<Customer>();
 
             repo.CloseSharedConnection();
 
@@ -62,7 +62,7 @@ namespace VisitaJayaPerkasa.Data.Sql
 
             repo.OpenSharedConnection();
 
-            Customer customers = repo.SingleOrDefault<Customer>("SELECT * FROM CUSTOMER WHERE customer_id=@0", ID);
+            Customer customers = repo.SingleOrDefault<Customer>("SELECT * FROM CUSTOMER WHERE customer_id=@0 and (deleted is null OR deleted = '0')", ID);
 
             repo.CloseSharedConnection();
 
@@ -74,9 +74,22 @@ namespace VisitaJayaPerkasa.Data.Sql
             var repo = new PetaPoco.Database(_mainConnectionString);
             repo.OpenSharedConnection();
             Customer customers = GetCustomerByID(ID);
-            repo.Delete("CUSTOMER", "customer_id", customers);
+            repo.Update("CUSTOMER", "customer_id", customers);
             repo.CloseSharedConnection(); 
         }
 
+
+        public IEnumerable<Customer> GetCustomerBySearch(string searchWord) {
+            var repo = new PetaPoco.Database(_mainConnectionString);
+            repo.OpenSharedConnection();
+
+            IEnumerable<Customer> customers = repo.Fetch<Customer>("SELECT * FROM [CUSTOMER] " +
+             "WHERE (deleted is null OR deleted = '0') AND (office like '%" + searchWord + "%' OR customer_name like '%" + searchWord + "%' OR " + 
+             "Fax like '%" + searchWord + "%' OR address like '%" + searchWord + "%' OR phone like '%" + searchWord + "%' " + 
+             "OR email like '%" + searchWord + "%' OR contact_person like '%" + searchWord + "%')").ToList<Customer>();
+
+            repo.CloseSharedConnection();
+            return customers;
+        }
     }
 }

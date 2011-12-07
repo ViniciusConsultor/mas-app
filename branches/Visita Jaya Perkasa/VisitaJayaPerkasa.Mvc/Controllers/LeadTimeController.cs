@@ -12,15 +12,18 @@ namespace Shipping.Mvc.Controllers
 {
     public class LeadTimeController : Controller
     {
-        private ILeadTimeService _leadTimeService;
-        public LeadTimeController(ILeadTimeService leadTimeService) {
+        private readonly ILeadTimeService _leadTimeService;
+        private readonly ICityService _cityService;
+
+        public LeadTimeController(ILeadTimeService leadTimeService, ICityService cityService) {
             _leadTimeService = leadTimeService;
+            _cityService = cityService;
         }
 
         [HttpGet]
         public ActionResult Index(string searchWord, GridSortOptions gridSortOptions, int? page)
         {
-            IEnumerable<LeadTime> temp = _leadTimeService.GetListLeadTime();
+            IEnumerable<LeadTime> temp = _leadTimeService.GetLeadTimeBySearch(searchWord);
             IEnumerable<LeadTimeModel> listLeadTime = AutoMapper.Mapper.Map<IEnumerable<LeadTime>, IEnumerable<LeadTimeModel>>(temp);
 
             var pagedViewModel = new PagedViewModel<LeadTimeModel>
@@ -32,7 +35,6 @@ namespace Shipping.Mvc.Controllers
                 Page = page,
                 PageSize = 10,
             }
-            .AddFilter("searchWord", searchWord, a => a.CityCode.Contains(searchWord))
             .Setup();
 
             return View(pagedViewModel);
@@ -42,7 +44,22 @@ namespace Shipping.Mvc.Controllers
         [HttpGet]
         public ActionResult AddLeadTime()
         {
-            return View();
+            LeadTimeModel leadTime = new LeadTimeModel();
+            IEnumerable<City> listCity = _cityService.GetListCity();
+
+            if(listCity.Count() > 0){
+                leadTime.ListItems = new List<SelectListItem>();
+
+                foreach (City city in listCity) {
+                    leadTime.ListItems.Add(new SelectListItem
+                    {
+                        Text = city.CityCode,
+                        Value = city.CityCode,
+                    });
+                }
+             }
+
+            return View(leadTime);
         }
 
         [Authorize]
@@ -69,6 +86,23 @@ namespace Shipping.Mvc.Controllers
             LeadTime leadTime = _leadTimeService.GetLeadTimeByID(ID);
             LeadTimeModel leadTimeModel = AutoMapper.Mapper.Map<LeadTime, LeadTimeModel>(leadTime);
 
+            IEnumerable<City> listCity = _cityService.GetListCity();
+
+            if (listCity.Count() > 0)
+            {
+                leadTimeModel.ListItems = new List<SelectListItem>();
+
+                foreach (City city in listCity)
+                {
+                    leadTimeModel.ListItems.Add(new SelectListItem
+                    {
+                        Text = city.CityCode,
+                        Value = city.CityCode,
+                        Selected = (city.CityCode.Equals(ID)) ? true : false
+                    });
+                }
+            }
+
             return View(leadTimeModel);
         }
 
@@ -92,7 +126,10 @@ namespace Shipping.Mvc.Controllers
         [HttpGet]
         public ActionResult DeleteLeadTime(string ID)
         {
-            _leadTimeService.DeleteLeadTime(ID);
+            LeadTime leadTime = _leadTimeService.GetLeadTimeByID(ID);
+            leadTime.Deleted = 1;
+
+            _leadTimeService.SaveLeadTime(leadTime);
 
             return RedirectToAction("Index");
         }
