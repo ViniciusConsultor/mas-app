@@ -1,5 +1,0 @@
-C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa\bin\Debug\VisitaJayaPerkasa.dll
-C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa\bin\Debug\VisitaJayaPerkasa.pdb
-C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa\obj\Debug\VisitaJayaPerkasa.dll
-C:\Users\MMJ-WIN-AJAMALUDDIN\Documents\Visual Studio 2010\Projects\Visita Jaya Perkasa Portal\VisitaJayaPerkasa\obj\Debug\VisitaJayaPerkasa.pdb
