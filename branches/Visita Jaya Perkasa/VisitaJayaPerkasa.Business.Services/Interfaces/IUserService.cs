@@ -18,5 +18,7 @@ namespace VisitaJayaPerkasa.Business.Services
         IEnumerable<User> GetAllUsers();
 
         void SaveUser(User user);
+
+        void DeleteUser(Guid Id);
     }
 }

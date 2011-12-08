@@ -20,6 +20,20 @@ namespace VisitaJayaPerkasa.Data.Sql
 
         #region IUserRepository Members
 
+        public User GetUser(Guid id)
+        {
+
+            var repo = new PetaPoco.Database(_mainConnectionString);
+
+            repo.OpenSharedConnection();
+
+            User user = repo.SingleOrDefault<User>("SELECT * FROM USER WHERE person_id=@0", id);
+
+            repo.CloseSharedConnection();
+
+            return user;
+        }
+
         public User GetUserByUsername(string username)
         {
             var repo = new PetaPoco.Database(_mainConnectionString);
@@ -88,6 +102,15 @@ namespace VisitaJayaPerkasa.Data.Sql
                 scope.Complete();
             }
 
+            repo.CloseSharedConnection();
+        }
+
+        public void DeleteUser(Guid Id)
+        {
+            var repo = new PetaPoco.Database(_mainConnectionString);
+            repo.OpenSharedConnection();
+            User user = GetUser(Id);
+            repo.Delete("USER", "person_id", user);
             repo.CloseSharedConnection();
         }
 

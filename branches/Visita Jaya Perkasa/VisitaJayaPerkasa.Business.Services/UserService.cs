@@ -107,5 +107,10 @@ namespace VisitaJayaPerkasa.Business.Services
         {
             _userRepository.SaveUser(user);
         }
+
+        public void DeleteUser(Guid Id)
+        {
+            _userRepository.DeleteUser(Id);
+        }
     }
 }

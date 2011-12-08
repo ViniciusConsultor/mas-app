@@ -12,14 +12,17 @@
 <p>
     @Html.ActionLink("Create User", "Create", "User")
 </p>
-@*
-@{Html.RenderPartial("SearchBox");}*@
+
+@{Html.RenderPartial("SearchBox");}
 @{Html.RenderPartial("Pager", Model.PagedList);}
+<div class="grid-wrapper">
 @Html.Grid(Model.PagedList).Columns(column =>{
-    column.For(x => Html.ActionQueryLink(x.Name, "Details", new { id = x.Id })).Named("Name").InsertAt(0);
+    column.For(x => Html.ActionQueryLink(x.Name, "Edit", new { id = x.Id })).Named("Name").InsertAt(0);
     column.For(x => x.Username);
     column.For(x => x.Nik);
     column.For(x => x.Email);
     column.For(x => x.address);
     column.For(x => x.Gender);
+    column.For(x => Html.ActionQueryLink("delete", "Delete", new { id = x.Id })).Named("Action").InsertAt(6);
 }).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")
+</div>

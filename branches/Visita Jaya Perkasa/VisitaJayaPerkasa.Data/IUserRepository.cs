@@ -11,10 +11,14 @@ namespace VisitaJayaPerkasa.Data
     {
         void SaveUser(User user);
 
+        User GetUser(Guid id);
+
         User GetUserByUsername(string username);
 
         IEnumerable<User> GetAllUsers();
 
         List<Role> GetRolesByUserId(Guid userId);
+
+        void DeleteUser(Guid Id);
     }
 }

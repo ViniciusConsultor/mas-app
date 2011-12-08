@@ -11,6 +11,9 @@ namespace VisitaJayaPerkasa.Mvc.Models
 {
     public class PagedViewModel<T>
     {
+        //this must be saved to session
+        private string OldSortOption;
+
         public ViewDataDictionary ViewData { get; set; }
         public IEnumerable<T> Query { get; set; }
         public GridSortOptions GridSortOptions { get; set; }
@@ -43,7 +46,7 @@ namespace VisitaJayaPerkasa.Mvc.Models
 
         public PagedViewModel<T> Setup()
         {
-            if (string.IsNullOrWhiteSpace(GridSortOptions.Column))
+            if (string.IsNullOrWhiteSpace(GridSortOptions.Column) || GridSortOptions.Column == "Action")
             {
                 GridSortOptions.Column = DefaultSortColumn;
             }

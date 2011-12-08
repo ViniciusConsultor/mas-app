@@ -78,5 +78,13 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
             viewModel.Roles = roleList.ToList();
             return View(viewModel);
         }*/
+
+        [Authorize]
+        public ActionResult Delete(Guid id)
+        {
+            _userService.DeleteUser(id);
+
+            return RedirectToAction("Index");
+        }
     }
 }

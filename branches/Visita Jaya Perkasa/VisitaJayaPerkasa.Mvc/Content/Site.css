@@ -171,7 +171,7 @@ textarea {
 	display:block;
 	color:#777;
 }
-input.button { 
+/*input.button { 
 	font: bold 12px Arial, Sans-serif; 
 	height: 24px;
 	margin: 0;
@@ -179,6 +179,24 @@ input.button {
 	color: #FFF;
 	background: #8EB50C url(images/button-bg.jpg) repeat-x 0 0;
 	border: none;
+}*/
+input[type="button"], input[type="submit"], button {
+    height: 24px;
+	margin: 0;
+	padding: 2px 3px;
+	color: #222;
+	background-color: #cdfe9d;
+	border: 1px solid #333;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+	font-size: 12px;
+	opacity:0.7;
+}
+
+input[type="button"]:hover, input[type="submit"]:hover, button:hover {
+	background-color: #edfecd;
+	border: 1px solid #666;
 }
 
 /* search form */
@@ -293,9 +311,10 @@ input.button {
 	margin: 0 auto; padding: 0;
     border-top:1px solid #adf;
     border-bottom:1px solid #39c;
+    background: url(pro_dropdown_3/three_0.gif) repeat-x left top;
 	font: bold 12px/37px Verdana, Arial, Tahoma, Sans-serif;
-	height: 37px;
-	width: 1000px;	
+	height: 35px;
+	width: 1000px;
 }
 
 /* Main Column */
@@ -366,15 +385,18 @@ input.button {
 	list-style: none;
 	text-align: left;
 	margin: 7px 4px 8px 0; padding: 0;
-	text-decoration: none;		
-	background: url(images/dots.jpg) repeat-x left top;
+	text-decoration: none;
+	border-top: 1px dotted #0a0;
 }
 #sidebar ul.sidemenu li {
 	list-style: none;
-	background: url(images/dots.jpg) repeat-x left bottom;
+	border-bottom: 1px dotted #0a0;
 	padding: 4px 0 4px 5px;
 	margin: 0 2px;	
 	color: #68774A;	
+}
+#sidebar ul.sidemenu li:hover {
+	background-color: #fff;
 }
 * html body #sidebar ul.sidemenu li {
 	height: 1%;
@@ -382,10 +404,11 @@ input.button {
 #sidebar ul.sidemenu li a {
 	text-decoration: none;	
 	background-image: none;	
-	color: #666666;			
+	color: #666666;
+	display: block;
 }
 #sidebar ul.sidemenu li a:hover {	
-	color: #1773BC;	
+	color: #1773BC;
 }
 #sidebar ul.sidemenu ul { margin: 0 0 0 5px; padding: 0; }
 #sidebar ul.sidemenu ul li { background: none; }
@@ -419,6 +442,16 @@ input.button {
    MvcContrib Grid Style
 ********************************************/ 
 
+.grid-wrapper
+{
+    margin: 0px 10px 10px 10px;
+    padding: 0px;
+    overflow:auto;
+}
+.grid-style
+{
+    margin: 0px 0px 0px 0px;
+}
 .grid-style th
 {
     border-bottom: 5px solid #8EB50C;
