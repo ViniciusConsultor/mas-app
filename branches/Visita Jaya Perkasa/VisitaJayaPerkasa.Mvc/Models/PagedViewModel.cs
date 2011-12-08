@@ -24,13 +24,15 @@ namespace VisitaJayaPerkasa.Mvc.Models
 
         public PagedViewModel<T> AddFilter(Func<T, bool> predicate)
         {
-            Query = Query.Where(predicate);
+            if(predicate != null)
+                Query = Query.Where(predicate);
             return this;
         }
 
         public PagedViewModel<T> AddFilter<TValue>(string key, TValue value, Func<T, bool> predicate)
         {
-            ProcessQuery(value, predicate);
+            if (predicate != null)
+                ProcessQuery(value, predicate);
             ViewData[key] = value;
             return this;
         }
@@ -38,9 +40,11 @@ namespace VisitaJayaPerkasa.Mvc.Models
         public PagedViewModel<T> AddFilter<TValue>(string keyField, object value, Func<T, bool> predicate,
             IEnumerable<TValue> query, string textField)
         {
-            ProcessQuery(value, predicate);
+            if (predicate != null)
+                ProcessQuery(value, predicate);
             var selectList = query.ToSelectList(keyField, textField, value);
             ViewData[keyField] = selectList;
+            
             return this;
         }
 

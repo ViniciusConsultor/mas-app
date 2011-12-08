@@ -27,8 +27,24 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
         [HttpGet]
         public ActionResult Index(string searchWord, string categoryCode, GridSortOptions gridSortOptions, int? page)
         {
-            IEnumerable<Supplier> temp = _supplierService.GetAllSuppliers();
+            IEnumerable<Supplier> temp = _supplierService.GetCategoryBySearch(searchWord, categoryCode);
             IEnumerable<SupplierModel> list = AutoMapper.Mapper.Map<IEnumerable<Supplier>, IEnumerable<SupplierModel>>(temp);
+            
+            IEnumerable<Category> listCategory = _categoryService.GetCategories();
+            IEnumerable<string> listCategoryCode = _supplierService.GetCategorySupplier();
+            List<Category> listTempCategory = new List<Category>();
+
+            if (listCategoryCode.Count() > 0)
+            {
+                foreach (var strCategoryCode in listCategoryCode)
+                {
+                    Category tempObj = listCategory.Where(x => x.CategoryCode == strCategoryCode && (x.Deleted == 0 || x.Deleted == null)).SingleOrDefault();
+
+                    if (tempObj != null)
+                        listTempCategory.Add(tempObj);
+                }
+            }
+            
             var pagedViewModel = new PagedViewModel<SupplierModel>
             {
                 ViewData = ViewData,
@@ -38,8 +54,7 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
                 Page = page,
                 PageSize = 10,
             }
-            .AddFilter("searchWord", searchWord, a => a.SupplierName.Contains(searchWord))
-            .AddFilter("categoryCode", categoryCode, a => a.SelectedCategoryCode == categoryCode, _categoryService.GetCategories(), "CategoryName")
+            .AddFilter("categoryCode", categoryCode, null, listTempCategory, "CategoryName")
             .Setup();
 
             return View(pagedViewModel);
@@ -71,7 +86,10 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
             categoriesList.Insert(0, new SelectListItem { Text = "-- Select Category  --", Value = "" });
             model.Categories = categoriesList.ToList();
 
-           
+
+            if (model.SelectedCategoryCode == null) {
+                ModelState.AddModelError("SelectedCategoryCode", "Select Category Code");
+            }
 
             if (string.IsNullOrWhiteSpace(model.SupplierName))
             {
@@ -88,20 +106,11 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
                 ModelState.AddModelError("Phone", "Phone is required");
             }
 
-            if (string.IsNullOrWhiteSpace(model.Fax))
-            {
-                ModelState.AddModelError("Fax", "Fax is required");
-            }
-
             if (string.IsNullOrWhiteSpace(model.Email))
             {
                 ModelState.AddModelError("Email", "Email is required");
             }
 
-            if (string.IsNullOrWhiteSpace(model.ContactPerson))
-            {
-                ModelState.AddModelError("Contact Person", "Contact person is required");
-            }
 
             if (ModelState.IsValid)
             {
@@ -151,6 +160,14 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
         //[ValidateInput(false)]
         public ActionResult Edit(SupplierModel model)
         {
+            var categories = _categoryService.GetCategories();
+            var categoriesList = (from o in categories select new SelectListItem { Text = o.CategoryName, Value = o.CategoryCode.ToString() }).ToList();
+            categoriesList.Insert(0, new SelectListItem { Selected = true, Text = "-- Select Category  --", Value = "" });
+
+            if (model.Categories == null) {
+                model.Categories = categoriesList.ToList();
+            }
+
             if (string.IsNullOrWhiteSpace(model.SupplierName))
             {
                 ModelState.AddModelError("Name", "Name is requred");
@@ -166,20 +183,12 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
                 ModelState.AddModelError("Phone", "Phone is required");
             }
 
-            if (string.IsNullOrWhiteSpace(model.Fax))
-            {
-                ModelState.AddModelError("Fax", "Fax is required");
-            }
 
             if (string.IsNullOrWhiteSpace(model.Email))
             {
                 ModelState.AddModelError("Email", "Email is required");
             }
 
-            if (string.IsNullOrWhiteSpace(model.ContactPerson))
-            {
-                ModelState.AddModelError("ContactPerson", "Contact person is required");
-            }
 
             if (ModelState.IsValid)
             {
@@ -204,7 +213,9 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
         [Authorize]
         public ActionResult Delete(Guid id)
         {
-            _supplierService.DeleteSupplier(id);
+            Supplier supplier = _supplierService.GetSupplier(id);
+            supplier.Deleted = 1;
+            _supplierService.SaveSupplier(supplier);
 
             return RedirectToAction("Index");
         }

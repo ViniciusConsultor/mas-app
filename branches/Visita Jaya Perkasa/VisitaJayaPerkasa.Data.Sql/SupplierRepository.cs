@@ -78,5 +78,36 @@ namespace VisitaJayaPerkasa.Data.Sql
             repo.Delete("SUPPLIER", "supplier_id", supplier);
             repo.CloseSharedConnection();
         }
+
+
+        public IEnumerable<string> GetCategorySupplier()
+        {
+            var repo = new PetaPoco.Database(_mainConnectionString);
+            repo.OpenSharedConnection();
+
+            IEnumerable<string> supplierCategory = repo.Fetch<string>(
+                "SELECT DISTINCT category_code FROM SUPPLIER WHERE deleted is null OR deleted = '0'"
+                ).ToList();
+
+            repo.CloseSharedConnection();
+            return supplierCategory;
+        }
+
+
+        public IEnumerable<Supplier> GetCategoryBySearch(string searchWord, string categorySearch)
+        {
+            var repo = new PetaPoco.Database(_mainConnectionString);
+            repo.OpenSharedConnection();
+
+            IEnumerable<Supplier> listSuppliers = repo.Fetch<Supplier>(
+                "SELECT * FROM SUPPLIER WHERE (deleted is null or deleted = '0') AND " + 
+                "(category_code like '%" + categorySearch + "%' OR supplier_name like '%" + categorySearch + "%')" +
+                " AND (address like '%" + searchWord + "%' OR phone like '%" + searchWord + "%'" + 
+                " OR fax like '%" + searchWord + "%' OR email like '%" + searchWord + "%' OR contact_person like '%" + searchWord + "%')"
+                ).ToList();
+
+            repo.CloseSharedConnection();
+            return listSuppliers;
+        }
     }
 }

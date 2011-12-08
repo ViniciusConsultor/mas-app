@@ -13,5 +13,7 @@ namespace VisitaJayaPerkasa.Business.Services
         IEnumerable<Supplier> GetAllSuppliers();
         Supplier GetSupplier(Guid Id);
         void DeleteSupplier(Guid Id);
+        IEnumerable<string> GetCategorySupplier();
+        IEnumerable<Supplier> GetCategoryBySearch(string searchWord, string categorySearch);
     }
 }

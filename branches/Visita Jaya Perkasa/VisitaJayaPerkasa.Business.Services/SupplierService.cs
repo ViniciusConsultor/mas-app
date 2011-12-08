@@ -36,5 +36,17 @@ namespace VisitaJayaPerkasa.Business.Services
         {
             _supplierRepository.DeleteSupplier(Id);
         }
+
+
+        public IEnumerable<string> GetCategorySupplier()
+        {
+            return _supplierRepository.GetCategorySupplier();
+        }
+
+
+        public IEnumerable<Supplier> GetCategoryBySearch(string searchWord, string categorySearch)
+        {
+            return _supplierRepository.GetCategoryBySearch(searchWord, categorySearch);
+        }
     }
 }

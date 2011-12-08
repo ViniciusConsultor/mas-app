@@ -39,4 +39,5 @@ namespace VisitaJayaPerkasa.Mvc.Models
         [ScaffoldColumn(false)]
         public int deleted { get; set; }
     }
-}
+
+ }
