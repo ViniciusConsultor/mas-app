@@ -75,5 +75,19 @@ namespace VisitaJayaPerkasa.Data.Sql
             return role;
         }
 
+
+
+        public IEnumerable<Role> GetListRoleBySearch(string searchWord)
+        {
+            var repo = new PetaPoco.Database(_mainConnectionString);
+            repo.OpenSharedConnection();
+
+            IEnumerable<Role> listRole = repo.Fetch<Role>(
+                "SELECT * FROM ROLE WHERE (role_name like '%" + searchWord + "%' OR description like '%" + searchWord + "%') AND (deleted is null OR deleted = '0')"
+                ).ToList();
+
+            repo.CloseSharedConnection();
+            return listRole;
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace Shipping.Mvc.Controllers
         [HttpGet]
         public ActionResult Index(string searchWord, GridSortOptions gridSortOptions, int? page)
         {
-            IEnumerable<Role> temp = _roleService.GetListRole();
+            IEnumerable<Role> temp = _roleService.GetListRoleBySearch(searchWord);
             IEnumerable<RoleModel> listrole = AutoMapper.Mapper.Map<IEnumerable<Role>, IEnumerable<RoleModel>>(temp);
 
             var pagedViewModel = new PagedViewModel<RoleModel>
@@ -34,7 +34,6 @@ namespace Shipping.Mvc.Controllers
                 Page = page,
                 PageSize = 10,
             }
-         .AddFilter("searchWord", searchWord, a => a.Name.Contains(searchWord))
          .Setup();
 
             return View(pagedViewModel);
@@ -95,7 +94,10 @@ namespace Shipping.Mvc.Controllers
         [HttpGet]
         public ActionResult DeleteRole(string ID)
         {
-            _roleService.DeleteRole(ID);
+            Role role = _roleService.GetRoleByID(ID);
+            role.Deleted = 1;
+
+            _roleService.SaveRole(role);
 
             return RedirectToAction("Index");
         }

@@ -12,5 +12,6 @@ namespace VisitaJayaPerkasa.Data
         void DeleteRole(string ID);
         IEnumerable<Role> GetListRole();
         Role GetRoleByID(string ID);
+        IEnumerable<Role> GetListRoleBySearch(string searchWord);
     }
 }

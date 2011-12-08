@@ -33,5 +33,11 @@ namespace VisitaJayaPerkasa.Business.Services
         {
             return _RoleRepository.GetRoleByID(ID);
         }
+
+
+        public IEnumerable<Role> GetListRoleBySearch(string searchWord)
+        {
+            return _RoleRepository.GetListRoleBySearch(searchWord);
+        }
     }
 }
