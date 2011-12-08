@@ -41,43 +41,68 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
             return View(pagedViewModel);
         }
 
-        /*
-        [Authorize]
-        [HttpGet]
-        public ActionResult AddUser()
-        {
-            return View();
-        }*/
-
         [Authorize]
         [HttpPost]
         public ActionResult AddUser(UserModel userModel)
         {
             if (ModelState.IsValid)
             {
+                userModel.Id = Guid.NewGuid();
+
                 _userService.SaveUser(new User
                 {
                     Id = userModel.Id,
-                    Username = userModel.Username
-                });
+                    Username = userModel.Username,
+                    Password = "12345",
+                    Salt = "saltnyaboongan:(",
+                    LastName = userModel.LastName,
+                    FirstName = userModel.FirstName,
+                    MiddleInitial = userModel.MiddleInitial,
+                    Email = userModel.Email,
+                    PhoneNumber = userModel.PhoneNumber,
+                    MobilePhoneNumber = userModel.MobilePhoneNumber,
+                    Nik = userModel.Nik,
+                    Address = userModel.Address,
+                    DateOfBirth = userModel.DateOfBirth,
+                    MaritalStatus = userModel.MaritalStatus,
+                    Gender = userModel.Gender,
+                    Deleted = 0,
+                    StartingDate = userModel.StartingDate,
+                    SalaryPerMonth = userModel.SalaryPerMonth,
+                    UmkPerDay = userModel.UmkPerDay
+                }, new UserRole 
+                {
+                    UserRoleId = Guid.NewGuid(),
+                    UserId = userModel.Id,
+                    RoleName = userModel.SelectedRoleName,
+                    Deleted = 0
+                }
+                );
+
                 return RedirectToAction("Index");
             }
 
             return View(userModel);
         }
 
-        /*
         [Authorize]
         [HttpGet]
-        public ActionResult AddUser(UserModel user)
+        public ActionResult AddUser()
         {
             var roles = _roleService.GetListRole();
-            var roleList = (from o in roles select new SelectListItem { Text = o.Name, Value = o.Id.ToString() }).ToList();
+            var roleList = (from o in roles select new SelectListItem { Text = o.Name, Value = o.Name }).ToList();
             roleList.Insert(0, new SelectListItem { Selected = true, Text = "-- Select Role  --", Value = "" });
             var viewModel = new UserModel();
             viewModel.Roles = roleList.ToList();
+            viewModel.MaritalStatuses = new List<SelectListItem>();
+            viewModel.MaritalStatuses.Add(new SelectListItem { Selected = true, Text = "Unmarried", Value = "Unmarried" });
+            viewModel.MaritalStatuses.Add(new SelectListItem { Selected = false, Text = "Married", Value = "Married" });
+            viewModel.Genders = new List<SelectListItem>();
+            viewModel.Genders.Add(new SelectListItem { Selected = true, Text = "Male", Value = "Male" });
+            viewModel.Genders.Add(new SelectListItem { Selected = false, Text = "Female", Value = "Female" });
+
             return View(viewModel);
-        }*/
+        }
 
         [Authorize]
         public ActionResult Delete(Guid id)

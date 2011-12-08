@@ -10,7 +10,7 @@
 <h2>User List</h2>
 
 <p>
-    @Html.ActionLink("Create User", "Create", "User")
+    @Html.ActionLink("Create User", "AddUser", "User")
 </p>
 
 @{Html.RenderPartial("SearchBox");}
@@ -21,7 +21,7 @@
     column.For(x => x.Username);
     column.For(x => x.Nik);
     column.For(x => x.Email);
-    column.For(x => x.address);
+    column.For(x => x.Address);
     column.For(x => x.Gender);
     column.For(x => Html.ActionQueryLink("delete", "Delete", new { id = x.Id })).Named("Action").Sortable(false).InsertAt(6);
 }).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")

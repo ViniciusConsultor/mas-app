@@ -129,6 +129,9 @@ td.header{
 td.content{
 	background: #EDFDCE;
 }
+td.spacer{
+	background: transparent;
+}
 td.first,th.first {
 	border-left: 0px;
 }
@@ -155,7 +158,7 @@ input {
 	padding:2px;
 	border:1px solid #eee;
 	font: normal 1em Verdana, sans-serif;
-	color:#777;
+	color:#333;
 }
 select 
 {
@@ -163,13 +166,13 @@ select
 	font: normal 1em Verdana, sans-serif;    
 }
 textarea {
-	width:400px;
+	width:200px;
 	padding:2px;
 	font: normal 1em Verdana, sans-serif;
 	border:1px solid #eee;
-	height:100px;
+	height:80px;
 	display:block;
-	color:#777;
+	color:#333;
 }
 /*input.button { 
 	font: bold 12px Arial, Sans-serif; 
