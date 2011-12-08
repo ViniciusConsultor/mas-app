@@ -9,7 +9,7 @@ namespace VisitaJayaPerkasa.Data
 {
     public interface IUserRepository
     {
-        void SaveUser(User user);
+        void SaveUser(User user, UserRole userRole);
 
         User GetUser(Guid id);
 

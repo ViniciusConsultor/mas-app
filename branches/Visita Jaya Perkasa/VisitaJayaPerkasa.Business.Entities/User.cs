@@ -29,13 +29,13 @@ namespace VisitaJayaPerkasa.Business.Entities
         [Column("first_name")]
         public string FirstName { get; set; }
 
-        [Column("user_id")]
-        public string middle_initial { get; set; }
+        [Column("middle_initial")]
+        public string MiddleInitial { get; set; }
 
         [Column("email")]
         public string Email { get; set; }
 
-        [Column("phone")]
+        [Column("phone_number")]
         public string PhoneNumber { get; set; }
 
         [Column("mobile_phone_number")]
@@ -45,19 +45,28 @@ namespace VisitaJayaPerkasa.Business.Entities
         public string Nik { get; set; }
 
         [Column("address")]
-        public string address { get; set; }
+        public string Address { get; set; }
 
         [Column("date_Of_birth")]
         public string DateOfBirth { get; set; }
 
-        [Column("martial_status")]
-        public string MartialStatus { get; set; }
+        [Column("marital_status")]
+        public string MaritalStatus { get; set; }
 
         [Column("gender")]
         public string Gender { get; set; }
 
         [Column("deleted")]
         public int Deleted { get; set; }
+
+        [Column("starting_date")]
+        public string StartingDate { get; set; }
+
+        [Column("salary_per_month")]
+        public double? SalaryPerMonth { get; set; }
+
+        [Column("umk_per_day")]
+        public double? UmkPerDay { get; set; }
 
         public override string ToString()
         {

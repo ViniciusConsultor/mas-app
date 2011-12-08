@@ -77,7 +77,7 @@ namespace VisitaJayaPerkasa.Data.Sql
 
         #region IUserRepository Members
 
-        public void SaveUser(User user)
+        public void SaveUser(User user, UserRole userRole)
         {
             var repo = new PetaPoco.Database(_mainConnectionString);
 
@@ -89,14 +89,14 @@ namespace VisitaJayaPerkasa.Data.Sql
                 {
                     //Create new
                     repo.Insert(user);
-                    //repo.Insert(userRole);
+                    repo.Insert(userRole);
                 }
                 else
                 {
                     //Update it
 
                     repo.Update("User", "person_id", user);
-                    //repo.Update("USER_ROLE", "user_role_id", userRole);
+                    repo.Update("USER_ROLE", "user_role_id", userRole);
                 }
 
                 scope.Complete();
