@@ -15,8 +15,10 @@
 
 @{Html.RenderPartial("SearchBox");}
 @{Html.RenderPartial("Pager", Model.PagedList);}
+<div class="grid-wrapper">
 @Html.Grid(Model.PagedList).Columns(column =>{
     column.For(x => Html.ActionQueryLink(x.VesselCode, "EditVessel", new { id = x.VesselCode })).Named("VesselCode").InsertAt(0);
     column.For(x => x.VesselName);
     column.For(x => Html.ActionQueryLink("delete", "DeleteVessel", new { id = x.VesselCode })).Named("Action").InsertAt(2);
 }).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")
+</div>
