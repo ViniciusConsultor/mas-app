@@ -260,8 +260,9 @@ input[type="button"]:hover, input[type="submit"]:hover, button:hover {
 	position: relative;
 	height: 103px;
     border-bottom:1px solid #39c;
-    padding: 0;	
-	color: #FFF;	
+    padding: 0;
+	color: #FFF;
+	background: url(images/header-bg.png) no-repeat bottom right;
 }
 #header h1#logo-text a {
 	position: absolute;
@@ -456,6 +457,11 @@ input[type="button"]:hover, input[type="submit"]:hover, button:hover {
 {
     border-bottom: 5px solid #8EB50C;
     background-color: #EDFDCE;
+    color: #2180BC;
+}
+.grid-style th a, .grid-style th a:visited
+{
+    color: #2180BC;
 }
 
 .grid-style .sort_asc

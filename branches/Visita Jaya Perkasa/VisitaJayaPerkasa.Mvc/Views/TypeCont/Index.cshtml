@@ -19,6 +19,6 @@
 @Html.Grid(Model.PagedList).Columns(column =>{
     column.For(x => Html.ActionQueryLink(x.TypeCode, "EditTypeCont", new { id = x.TypeCode })).Named("TypeCode").InsertAt(0);
     column.For(x => x.TypeName);
-    column.For(x => Html.ActionQueryLink("delete", "DeleteTypeCont", new { id = x.TypeCode })).Named("Action").InsertAt(2);
+    column.For(x => Html.ActionQueryLink("delete", "DeleteTypeCont", new { id = x.TypeCode })).Named("Action").Sortable(false).InsertAt(2);
 }).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")
 </div>

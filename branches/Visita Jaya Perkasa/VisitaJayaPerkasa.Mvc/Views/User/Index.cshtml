@@ -23,6 +23,6 @@
     column.For(x => x.Email);
     column.For(x => x.address);
     column.For(x => x.Gender);
-    column.For(x => Html.ActionQueryLink("delete", "Delete", new { id = x.Id })).Named("Action").InsertAt(6);
+    column.For(x => Html.ActionQueryLink("delete", "Delete", new { id = x.Id })).Named("Action").Sortable(false).InsertAt(6);
 }).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")
 </div>

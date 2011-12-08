@@ -18,13 +18,13 @@
 @{Html.RenderPartial("Pager", Model.PagedList);}
 <div class="grid-wrapper">
 @Html.Grid(Model.PagedList).Columns(column =>{
-    column.For(x => Html.ActionQueryLink(x.CustomerName, "EditCustomer", new { id = x.ID })).Named("Customer Name").InsertAt(0);
+    column.For(x => Html.ActionQueryLink(x.CustomerName, "EditCustomer", new { id = x.ID })).Named("Customer Name").SortColumnName("CustomerName").InsertAt(0);
     column.For(x => x.Office);
     column.For(x => x.Address);
     column.For(x => x.Phone);
     column.For(x => x.Fax);
     column.For(x => x.Email);
     column.For(x => x.ContactPerson);
-    column.For(x => Html.ActionQueryLink("delete", "DeleteCustomer", new { id = x.ID })).Named("Action").InsertAt(7);
+    column.For(x => Html.ActionQueryLink("delete", "DeleteCustomer", new { id = x.ID })).Named("Action").Sortable(false).InsertAt(7);
 }).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")
 </div>

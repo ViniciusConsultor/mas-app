@@ -19,6 +19,6 @@
 @Html.Grid(Model.PagedList).Columns(column =>{
     column.For(x => Html.ActionQueryLink(x.ConditionCode, "EditCondition", new { id = x.ConditionCode})).Named("Condition Code").InsertAt(0);
     column.For(x => x.ConditionName);
-    column.For(x => Html.ActionQueryLink("delete", "DeleteCondition", new { id = x.ConditionCode })).Named("Action").InsertAt(2);
+    column.For(x => Html.ActionQueryLink("delete", "DeleteCondition", new { id = x.ConditionCode })).Named("Action").Sortable(false).InsertAt(2);
 }).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")
 </div>
