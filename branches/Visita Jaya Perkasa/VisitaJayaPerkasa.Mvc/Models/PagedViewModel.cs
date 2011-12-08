@@ -50,7 +50,7 @@ namespace VisitaJayaPerkasa.Mvc.Models
 
         public PagedViewModel<T> Setup()
         {
-            if (string.IsNullOrWhiteSpace(GridSortOptions.Column) || GridSortOptions.Column == "Action")
+            if (string.IsNullOrWhiteSpace(GridSortOptions.Column))
             {
                 GridSortOptions.Column = DefaultSortColumn;
             }
