@@ -52,11 +52,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mvc\AjaxViewResult.cs" />
     <Compile Include="Mvc\AllowAnonymousAttribute.cs" />
     <Compile Include="Mvc\AuthorizeAttribute.cs" />
     <Compile Include="Mvc\Context.cs" />
     <Compile Include="Mvc\Controller.cs" />
     <Compile Include="Mvc\HtmlExtensions.cs" />
+    <Compile Include="Mvc\HtmlPrefixScopeExtensions.cs" />
     <Compile Include="Mvc\PopulateControllerContextAttribute.cs" />
     <Compile Include="Mvc\QueryExtention.cs" />
     <Compile Include="Mvc\StructureMapDependencyResolver.cs" />
