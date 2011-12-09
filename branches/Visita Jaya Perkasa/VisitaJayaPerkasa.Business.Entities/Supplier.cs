@@ -37,5 +37,7 @@ namespace VisitaJayaPerkasa.Business.Entities
 
         [Column("deleted")]
         public int Deleted { get; set; }
+
+        public List<SupplierDetail> SupplierDetails { get; set; }
     }
 }
