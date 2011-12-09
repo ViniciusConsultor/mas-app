@@ -9,9 +9,11 @@
 
 <h2>Supplier List</h2>
 
-<p>
-    @Html.ActionLink("Create Supplier", "Create", "Supplier")
-</p>
+<div id="toolbar">
+    <ul>
+        <li>@Html.ActionLink("Create Supplier", "Create", "Supplier")</li>
+    </ul>
+</div>
 
 @{Html.RenderPartial("SearchBox");}
 @{Html.RenderPartial("Pager", Model.PagedList);}

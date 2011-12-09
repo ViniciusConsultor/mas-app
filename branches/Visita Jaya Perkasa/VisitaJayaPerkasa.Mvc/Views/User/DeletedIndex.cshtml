@@ -4,7 +4,7 @@
 @model PagedViewModel<UserModel>
 
 @{
-    ViewBag.Title = "User List";
+    ViewBag.Title = "Deleted User List";
 }
 
 <h2>User List</h2>
@@ -12,21 +12,20 @@
 <div id="toolbar">
     <ul>
         <li>@Html.ActionLink("Create User", "AddUser", "User")</li>
-        <li>@Html.ActionLink("Deleted User List", "DeletedIndex", "User")</li>
+        <li>@Html.ActionLink("User List", "Index", "User")</li>
     </ul>
 </div>
 
 @{Html.RenderPartial("SearchBox");}
 @{Html.RenderPartial("Pager", Model.PagedList);}
 <div class="grid-wrapper">
-@Html.Grid(Model.PagedList).Columns(column =>
-{
+@Html.Grid(Model.PagedList).Columns(column =>{
     column.For(x => Html.ActionQueryLink(x.Name, "EditUser", new { id = x.Id })).Named("Name").InsertAt(0);
     column.For(x => x.Username);
     column.For(x => x.Nik);
     column.For(x => x.Email);
     column.For(x => x.Address);
     column.For(x => x.Gender);
-    column.For(x => Html.ActionQueryLink("delete", "Delete", new { id = x.Id })).Named("Action").Sortable(false).InsertAt(6);
+    column.For(x => Html.ActionQueryLink("undelete", "Undelete", new { id = x.Id })).Named("Action").Sortable(false).InsertAt(6);
 }).Sort(Model.GridSortOptions).Attributes(@class => "grid-style")
 </div>

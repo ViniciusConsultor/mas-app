@@ -9,9 +9,11 @@
 
 <h2>LeadTime List</h2>
 
-<p>
-    @Html.ActionLink("Create LeadTime", "AddLeadTime", "LeadTime")
-</p>
+<div id="toolbar">
+    <ul>
+        <li>@Html.ActionLink("Create LeadTime", "AddLeadTime", "LeadTime")</li>
+    </ul>
+</div>
 
 @{Html.RenderPartial("SearchBox");}
 @{Html.RenderPartial("Pager", Model.PagedList);}

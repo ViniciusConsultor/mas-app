@@ -9,9 +9,11 @@
 
 <h2>Condition List</h2>
 
-<p>
-    @Html.ActionLink("Create Condition", "AddCondition", "Condition")
-</p>
+<div id="toolbar">
+    <ul>
+        <li>@Html.ActionLink("Create Condition", "AddCondition", "Condition")</li>
+    </ul>
+</div>
 
 @{Html.RenderPartial("SearchBox");}
 @{Html.RenderPartial("Pager", Model.PagedList);}

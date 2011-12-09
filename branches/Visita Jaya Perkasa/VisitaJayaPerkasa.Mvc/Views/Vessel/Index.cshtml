@@ -9,9 +9,11 @@
 
 <h2>Vessel List</h2>
 
-<p>
-    @Html.ActionLink("Create Vessel", "AddVessel", "Vessel")
-</p>
+<div id="toolbar">
+    <ul>
+        <li>@Html.ActionLink("Create Vessel", "AddVessel", "Vessel")</li>
+    </ul>
+</div>
 
 @{Html.RenderPartial("SearchBox");}
 @{Html.RenderPartial("Pager", Model.PagedList);}

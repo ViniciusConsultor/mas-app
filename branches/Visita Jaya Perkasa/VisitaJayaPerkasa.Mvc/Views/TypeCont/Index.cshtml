@@ -9,9 +9,11 @@
 
 <h2>TypeCont List</h2>
 
-<p>
-    @Html.ActionLink("Create TypeCont", "AddTypeCont", "TypeCont")
-</p>
+<div id="toolbar">
+    <ul>
+        <li>@Html.ActionLink("Create Container Type", "AddTypeCont", "TypeCont")</li>
+    </ul>
+</div>
 
 @{Html.RenderPartial("SearchBox");}
 @{Html.RenderPartial("Pager", Model.PagedList);}

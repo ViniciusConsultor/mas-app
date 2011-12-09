@@ -13,18 +13,16 @@ namespace VisitaJayaPerkasa.Mvc.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
 
-        [MinLength(1, ErrorMessage = "Role must be selected")]
         [DisplayName("Role")]
         public string SelectedRoleName { get; set; }
         public List<SelectListItem> Roles { get; set; }
 
-        [Required(ErrorMessage = "Username must be filled")]
         [MaxLength(30, ErrorMessage = "Max Length 30")]
         [DisplayName("Username")]
         public string Username { get; set; }
 
-        [Required(ErrorMessage = "Password must be filled")]
         [MaxLength(256, ErrorMessage = "Max Length 256")]
+        [MinLength(4, ErrorMessage = "Min Length 4")]
         [DisplayName("Password")]
         public string Password { get; set; }
 
@@ -81,7 +79,7 @@ namespace VisitaJayaPerkasa.Mvc.Models
         public List<SelectListItem> Genders { get; set; }
 
         [ScaffoldColumn(false)]
-        public int deleted { get; set; }
+        public int Deleted { get; set; }
 
         [MaxLength(50, ErrorMessage = "Max Length 50")]
         [DisplayName("Starting Date")]

@@ -9,9 +9,11 @@
 
 <h2>Role List</h2>
 
-<p>
-    @Html.ActionLink("Create Role", "AddRole", "Role")
-</p>
+<div id="toolbar">
+    <ul>
+        <li>@Html.ActionLink("Create Role", "AddRole", "Role")</li>
+    </ul>
+</div>
 
 @{Html.RenderPartial("SearchBox");}
 @{Html.RenderPartial("Pager", Model.PagedList);}

@@ -1,10 +1,10 @@
 /********************************************
-   AUTHOR:  			Erwin Aligam 
-   WEBSITE:   			http://www.styleshout.com/
-	TEMPLATE NAME:		Envision
-   TEMPLATE CODE: 	S-0013
+   AUTHOR:  			Firstiar Noorwinanto 
+   WEBSITE:   			http://www.kurotsuki.web.id/
+	TEMPLATE NAME:		Aquatic
+   TEMPLATE CODE: 	AQ-001
    VERSION:          1.1
-	LAST MODIFIED     Nov-14-2007 	
+	LAST MODIFIED     Dec-14-2011 	
  *******************************************/
  
 /********************************************
@@ -146,8 +146,8 @@ tr.row-b {
 /* form elements */
 form {
 	margin:10px; padding: 0 5px;
-	border: 1px solid #f2f2f2; 
-	background-color: #FAFAFA; 	
+	border: 1px solid #e2e2e2; 
+	background-color: #fafafa; 	
 }
 label {
 	display:block;
@@ -186,19 +186,16 @@ textarea {
 input[type="button"], input[type="submit"], button {
     height: 24px;
 	margin: 0;
-	padding: 2px 3px;
+	padding-left: 10px;
+	padding-right: 10px;
 	color: #222;
-	background-color: #cdfe9d;
-	border: 1px solid #333;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-	font-size: 12px;
-	opacity:0.7;
+	background-color: #fafafa;
+	border: 1px solid #666;
+	font-size: 11px;
 }
 
 input[type="button"]:hover, input[type="submit"]:hover, button:hover {
-	background-color: #edfecd;
+	background-color: #e2e2e2;
 	border: 1px solid #666;
 }
 
@@ -366,6 +363,51 @@ input[type="button"]:hover, input[type="submit"]:hover, button:hover {
 .post-footer .readmore {
 	background: url(images/page.gif) no-repeat left center;
 	padding-left: 20px; margin: 0 10px 0 5px;
+}
+
+/* Toolbar */
+#toolbar {
+	height: 30px;
+	line-height: 30px;
+	margin: 10px;
+	padding: 0px;
+	text-align: left;
+}
+
+#toolbar ul {
+	float: left;
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	overflow: visible;
+}
+
+#toolbar ul li {
+	float: left;
+	list-style-image: none;
+	width: auto;
+	height: 30px;
+	text-align: center;
+	margin-right: 5px;
+	border: 1px solid #e2e2e2; 
+    background-color: #fafafa;
+}
+
+#toolbar ul li:hover {
+	background-color: #e2e2e2;
+}
+
+#toolbar ul li a {
+    display: block;
+   	height: 30px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#toolbar ul li a:hover 
+{
+	color: #2180BC;
+    text-decoration: none;
 }
 
 /* Sidebar */	

@@ -10,9 +10,11 @@
 
 <h2>Customer List</h2>
 
-<p>
-    @Html.ActionLink("Create Customer", "AddCustomer", "Customer")
-</p>
+<div id="toolbar">
+    <ul>
+        <li>@Html.ActionLink("Create Customer", "AddCustomer", "Customer")</li>
+    </ul>
+</div>
 
 @{Html.RenderPartial("SearchBox");}
 @{Html.RenderPartial("Pager", Model.PagedList);}
