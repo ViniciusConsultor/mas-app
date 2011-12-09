@@ -11,14 +11,20 @@ namespace VisitaJayaPerkasa.Business.Services
     {
         bool ValidateUser(string username, string password);
 
+        User GetUser(Guid Id);
+
         User GetUserByUsername(string username);
 
         List<Role> GetRolesByUserId(Guid userId);
 
         IEnumerable<User> GetAllUsers();
 
-        void SaveUser(User user, UserRole userRole);
+        IEnumerable<User> GetAllDeletedUsers();
+
+        void SaveUser(User user, List<UserRole> userRoles);
 
         void DeleteUser(Guid Id);
+
+        void UndeleteUser(Guid Id);
     }
 }

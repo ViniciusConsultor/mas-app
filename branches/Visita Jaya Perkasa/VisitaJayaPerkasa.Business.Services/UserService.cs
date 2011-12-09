@@ -52,6 +52,11 @@ namespace VisitaJayaPerkasa.Business.Services
             return true;
         }
 
+        public User GetUser(Guid Id)
+        {
+            return _userRepository.GetUser(Id);
+        }
+
         public User GetUserByUsername(string username)
         {
             if (string.IsNullOrWhiteSpace(username))
@@ -103,14 +108,31 @@ namespace VisitaJayaPerkasa.Business.Services
             return users;
         }
 
-        public void SaveUser(User user, UserRole userRole)
+        public IEnumerable<User> GetAllDeletedUsers()
         {
-            _userRepository.SaveUser(user, userRole);
+            var users = _userRepository.GetAllDeletedUsers();
+
+            if (users == null || users.Count() == 0)
+            {
+                return null;
+            }
+
+            return users;
+        }
+
+        public void SaveUser(User user, List<UserRole> userRoles)
+        {
+            _userRepository.SaveUser(user, userRoles);
         }
 
         public void DeleteUser(Guid Id)
         {
             _userRepository.DeleteUser(Id);
+        }
+
+        public void UndeleteUser(Guid Id)
+        {
+            _userRepository.UndeleteUser(Id);
         }
     }
 }

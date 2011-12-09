@@ -63,10 +63,10 @@ namespace VisitaJayaPerkasa.Business.Entities
         public string StartingDate { get; set; }
 
         [Column("salary_per_month")]
-        public double? SalaryPerMonth { get; set; }
+        public double SalaryPerMonth { get; set; }
 
         [Column("umk_per_day")]
-        public double? UmkPerDay { get; set; }
+        public double UmkPerDay { get; set; }
 
         public override string ToString()
         {
