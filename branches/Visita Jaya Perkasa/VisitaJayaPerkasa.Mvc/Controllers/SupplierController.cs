@@ -9,10 +9,11 @@ using VisitaJayaPerkasa.Business.Services;
 using VisitaJayaPerkasa.Business.Entities;
 using AutoMapper;
 using MvcContrib.UI.Grid;
+using VisitaJayaPerkasa.Web.Mvc;
 
 namespace VisitaJayaPerkasa.Mvc.Controllers
 {
-    public class SupplierController : VisitaJayaPerkasa.Web.Mvc.Controller
+    public class SupplierController : Controller
     {
         private ISupplierService _supplierService;
         private ICategoryService _categoryService;
@@ -23,7 +24,7 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
             _categoryService = categoryService;
         }
        
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public ActionResult Index(string searchWord, string categoryCode, GridSortOptions gridSortOptions, int? page)
         {
@@ -60,7 +61,7 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
             return View(pagedViewModel);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public ActionResult Create() 
         {
@@ -69,10 +70,16 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
             categoriesList.Insert(0, new SelectListItem { Selected = true, Text = "-- Select Category  --", Value = "" });
             var viewModel = new SupplierModel();
             viewModel.Categories = categoriesList.ToList();
+            viewModel.SupplierDetails = new List<SupplierDetailModel>
+                                  {
+                                     new SupplierDetailModel { FirstName = "Tall Hat", LastName = "Cumi", Address= ""},
+                                     new SupplierDetailModel { FirstName = "Long Cloak", LastName = "Dodol", Address= ""},
+                                  };
+
             return View(viewModel);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost]
        // [ValidateInput(false)]
         public ActionResult Create(SupplierModel model)
@@ -133,7 +140,7 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
             return View(model);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public ActionResult Edit(Guid id)
         {
@@ -155,7 +162,7 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
             return View(viewModel);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         //[ValidateInput(false)]
         public ActionResult Edit(SupplierModel model)
@@ -210,7 +217,7 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
 
         }
 
-        [Authorize]
+        //[Authorize]
         public ActionResult Delete(Guid id)
         {
             Supplier supplier = _supplierService.GetSupplier(id);
@@ -218,6 +225,11 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
             _supplierService.SaveSupplier(supplier);
 
             return RedirectToAction("Index");
+        }
+
+        public ViewResult BlankEditorRow(string formId)
+        {
+            return new AjaxViewResult("SupplierEditorRow", new SupplierDetailModel()) { UpdateValidationForFormId = formId };
         }
     }
 }

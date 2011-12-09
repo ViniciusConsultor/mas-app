@@ -47,7 +47,7 @@ namespace VisitaJayaPerkasa.Mvc.Controllers
                     var user = _userService.GetUserByUsername(model.Username);
                     _formsAuthenticationService.SignIn(model.Username, _persistentCookie);
 
-                    return RedirectToAction("Index", "Condition");
+                    return RedirectToAction("Index", "Supplier");
                     //return RedirectUser(returnUrl, model.Username);
                 }
                 else

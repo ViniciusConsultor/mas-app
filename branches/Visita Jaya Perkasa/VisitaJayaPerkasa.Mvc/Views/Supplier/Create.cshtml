@@ -1,4 +1,5 @@
-﻿@model VisitaJayaPerkasa.Mvc.Models.SupplierModel
+﻿@using VisitaJayaPerkasa.Web.Mvc
+@model VisitaJayaPerkasa.Mvc.Models.SupplierModel
 
 @{
     ViewBag.Title = "Create Supplier";
@@ -15,6 +16,7 @@
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
+@{Html.EnableClientValidation();}
 @Html.ValidationSummary(true, "Create Supplier was unsuccessful. Please correct the errors and try again.")
 
 @using (Html.BeginForm())
@@ -48,11 +50,23 @@
         <td class="header">@Html.LabelFor(m => m.ContactPerson)</td>
         <td class="content">@Html.TextBoxFor(m => m.ContactPerson) @Html.ValidationMessageFor(m => m.ContactPerson)</td>
     </tr>
-    <tr>
+   @* <tr>
         <td class="header"></td>
         <td class="content"><button name="submit">Create Supplier</button></td>
-    </tr>
+    </tr>*@
 </table>
+ 
+        <div id="editorRows">
+             @foreach (var item in Model.SupplierDetails) 
+             {
+                 Html.RenderPartial("SupplierEditorRow", item);
+             }
+        </div>
+        @Html.ActionLink("Add another...", "BlankEditorRow", new { ViewContext.FormContext.FormId }, new { id = "addItem" })
+        
+        <input type="submit" value="Finished" />
+    
+    
 }
 
 
