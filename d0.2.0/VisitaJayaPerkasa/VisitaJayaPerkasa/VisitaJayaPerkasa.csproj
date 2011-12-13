@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{24740882-0996-45DF-A86C-90FFB0F987DC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VisitaJayaPerkasa</RootNamespace>
+    <AssemblyName>VisitaJayaPerkasa</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2010.1.10.409, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Docking, Version=2010.1.10.409, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.GridView, Version=2010.1.10.409, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.RadChart, Version=2010.1.10.409, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.RadDock, Version=2010.1.10.409, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.RadMarkupEditor, Version=2010.1.10.409, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Scheduler, Version=2010.1.10.409, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.UI, Version=2010.1.10.409, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="TelerikCommon, Version=2010.1.10.409, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="TelerikData, Version=2010.1.10.409, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constant\VisitaJayaPerkasaApplication.cs" />
+    <Compile Include="Control\Category\CategoryEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Category\CategoryEdit.Designer.cs">
+      <DependentUpon>CategoryEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Category\CategoryList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Category\CategoryList.Designer.cs">
+      <DependentUpon>CategoryList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Category\CategoryView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Category\CategoryView.Designer.cs">
+      <DependentUpon>CategoryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\City\CityEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\City\CityEdit.Designer.cs">
+      <DependentUpon>CityEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\City\CityList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\City\CityList.Designer.cs">
+      <DependentUpon>CityList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\City\CityView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\City\CityView.Designer.cs">
+      <DependentUpon>CityView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Condition\ConditionEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Condition\ConditionEdit.Designer.cs">
+      <DependentUpon>ConditionEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Condition\ConditionList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Condition\ConditionList.Designer.cs">
+      <DependentUpon>ConditionList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Condition\ConditionView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Condition\ConditionView.Designer.cs">
+      <DependentUpon>ConditionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Customer\CustomerEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Customer\CustomerEdit.Designer.cs">
+      <DependentUpon>CustomerEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Customer\CustomerList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Customer\CustomerList.Designer.cs">
+      <DependentUpon>CustomerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Customer\CustomerView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Customer\CustomerView.Designer.cs">
+      <DependentUpon>CustomerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\LeadTime\LeadTimeEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\LeadTime\LeadTimeEdit.Designer.cs">
+      <DependentUpon>LeadTimeEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\LeadTime\LeadTimeList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\LeadTime\LeadTimeList.Designer.cs">
+      <DependentUpon>LeadTimeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\LeadTime\LeadTimeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\LeadTime\LeadTimeView.Designer.cs">
+      <DependentUpon>LeadTimeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Pelayaran\PelayaranEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Pelayaran\PelayaranEdit.Designer.cs">
+      <DependentUpon>PelayaranEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Pelayaran\PelayaranList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Pelayaran\PelayaranList.Designer.cs">
+      <DependentUpon>PelayaranList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Pelayaran\PelayaranView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Pelayaran\PelayaranView.Designer.cs">
+      <DependentUpon>PelayaranView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Supplier\SupplierEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Supplier\SupplierEdit.Designer.cs">
+      <DependentUpon>SupplierEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Supplier\SupplierList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Supplier\SupplierList.Designer.cs">
+      <DependentUpon>SupplierList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Supplier\SupplierView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Supplier\SupplierView.Designer.cs">
+      <DependentUpon>SupplierView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TypeCont\TypeContEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\TypeCont\TypeContEdit.Designer.cs">
+      <DependentUpon>TypeContEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TypeCont\TypeContList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\TypeCont\TypeContList.Designer.cs">
+      <DependentUpon>TypeContList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TypeCont\TypeContView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\TypeCont\TypeContView.Designer.cs">
+      <DependentUpon>TypeContView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\UserControls\UserEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\UserControls\UserEdit.Designer.cs">
+      <DependentUpon>UserEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\UserControls\UserList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\UserControls\UserList.Designer.cs">
+      <DependentUpon>UserList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\UserControls\UserView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\UserControls\UserView.Designer.cs">
+      <DependentUpon>UserView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\VesselControls\VesselEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\VesselControls\VesselEdit.Designer.cs">
+      <DependentUpon>VesselEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\VesselControls\VesselList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\VesselControls\VesselList.Designer.cs">
+      <DependentUpon>VesselList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\VesselControls\VesselView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\VesselControls\VesselView.Designer.cs">
+      <DependentUpon>VesselView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Warehouse\WareHouseEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Warehouse\WareHouseEdit.Designer.cs">
+      <DependentUpon>WareHouseEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Warehouse\WareHouseList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Warehouse\WareHouseList.Designer.cs">
+      <DependentUpon>WareHouseList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Warehouse\WareHouseView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Warehouse\WareHouseView.Designer.cs">
+      <DependentUpon>WareHouseView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserProfile.cs" />
+    <Compile Include="Entities\UserRole.cs" />
+    <Compile Include="Form\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShippingMainDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShippingMainDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SqlRepository\ILists.cs" />
+    <Compile Include="SqlRepository\SqlRoleRepository.cs" />
+    <Compile Include="SqlRepository\SqlUserRepository.cs" />
+    <Compile Include="SqlRepository\SqlUtility.cs" />
+    <Compile Include="Utility\Log\Logging.cs" />
+    <Compile Include="Utility\Utility.cs" />
+    <EmbeddedResource Include="Control\UserControls\UserEdit.resx">
+      <DependentUpon>UserEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\UserControls\UserList.resx">
+      <DependentUpon>UserList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\UserControls\UserView.resx">
+      <DependentUpon>UserView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="ShippingMainDataSet.xsc">
+      <DependentUpon>ShippingMainDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ShippingMainDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ShippingMainDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ShippingMainDataSet.xss">
+      <DependentUpon>ShippingMainDataSet.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_transaction.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_masterdata.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_reporting.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\next-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prev-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh-16.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
