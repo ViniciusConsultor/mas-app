@@ -1,0 +1,15 @@
+C:\Documents and Settings\GigaByte\Desktop\VisitaJayaPerkasa\VisitaJayaPerkasa\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\GigaByte\Desktop\VisitaJayaPerkasa\VisitaJayaPerkasa\obj\x86\Debug\VisitaJayaPerkasa.Form.MainForm.resources
+C:\Documents and Settings\GigaByte\Desktop\VisitaJayaPerkasa\VisitaJayaPerkasa\obj\x86\Debug\VisitaJayaPerkasa.Properties.Resources.resources
+C:\Documents and Settings\GigaByte\Desktop\VisitaJayaPerkasa\VisitaJayaPerkasa\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\GigaByte\Desktop\VisitaJayaPerkasa\VisitaJayaPerkasa\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\GigaByte\Desktop\VisitaJayaPerkasa\VisitaJayaPerkasa\bin\Debug\VisitaJayaPerkasa.exe
+C:\Documents and Settings\GigaByte\Desktop\VisitaJayaPerkasa\VisitaJayaPerkasa\bin\Debug\VisitaJayaPerkasa.pdb
+C:\Documents and Settings\GigaByte\Desktop\VisitaJayaPerkasa\VisitaJayaPerkasa\bin\Debug\TelerikData.dll
+C:\Documents and Settings\GigaByte\Desktop\VisitaJayaPerkasa\VisitaJayaPerkasa\obj\x86\Debug\VisitaJayaPerkasa.exe
+C:\Documents and Settings\GigaByte\Desktop\VisitaJayaPerkasa\VisitaJayaPerkasa\obj\x86\Debug\VisitaJayaPerkasa.pdb
+C:\Documents and Settings\GigaByte\Desktop\VisitaJayaPerkasa\VisitaJayaPerkasa\obj\x86\Debug\VisitaJayaPerkasa.Form.LoginForm.resources
+C:\Documents and Settings\GigaByte\Desktop\VisitaJayaPerkasa\VisitaJayaPerkasa\bin\Debug\VisitaJayaPerkasa.exe.config
+C:\Documents and Settings\GigaByte\Desktop\VisitaJayaPerkasa\VisitaJayaPerkasa\obj\x86\Debug\VisitaJayaPerkasa.Control.UserControls.UserEdit.resources
+C:\Documents and Settings\GigaByte\Desktop\VisitaJayaPerkasa\VisitaJayaPerkasa\obj\x86\Debug\VisitaJayaPerkasa.Control.UserControls.UserList.resources
+C:\Documents and Settings\GigaByte\Desktop\VisitaJayaPerkasa\VisitaJayaPerkasa\obj\x86\Debug\VisitaJayaPerkasa.Control.UserControls.UserView.resources
