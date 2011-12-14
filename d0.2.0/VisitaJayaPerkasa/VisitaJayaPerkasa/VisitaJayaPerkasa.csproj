@@ -255,7 +255,13 @@
     <Compile Include="Control\Warehouse\WareHouseView.Designer.cs">
       <DependentUpon>WareHouseView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\CustomerDetail.cs" />
+    <Compile Include="Entities\LeadTime.cs" />
+    <Compile Include="Entities\Pelayaran.cs" />
     <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\Supplier.cs" />
+    <Compile Include="Entities\TypeCont.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserProfile.cs" />
     <Compile Include="Entities\UserRole.cs" />
@@ -279,11 +285,31 @@
       <DependentUpon>ShippingMainDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="SqlRepository\ILists.cs" />
+    <Compile Include="SqlRepository\SqlCustomerRepository.cs" />
+    <Compile Include="SqlRepository\SqlLeadTimeRepository.cs" />
+    <Compile Include="SqlRepository\SqlPelayaranRepository.cs" />
     <Compile Include="SqlRepository\SqlRoleRepository.cs" />
+    <Compile Include="SqlRepository\SqlSupplierRepository.cs" />
+    <Compile Include="SqlRepository\SqlTypeContRepository.cs" />
     <Compile Include="SqlRepository\SqlUserRepository.cs" />
     <Compile Include="SqlRepository\SqlUtility.cs" />
     <Compile Include="Utility\Log\Logging.cs" />
     <Compile Include="Utility\Utility.cs" />
+    <EmbeddedResource Include="Control\Customer\CustomerList.resx">
+      <DependentUpon>CustomerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\LeadTime\LeadTimeList.resx">
+      <DependentUpon>LeadTimeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Pelayaran\PelayaranList.resx">
+      <DependentUpon>PelayaranList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Supplier\SupplierList.resx">
+      <DependentUpon>SupplierList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\TypeCont\TypeContList.resx">
+      <DependentUpon>TypeContList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\UserControls\UserEdit.resx">
       <DependentUpon>UserEdit.cs</DependentUpon>
     </EmbeddedResource>

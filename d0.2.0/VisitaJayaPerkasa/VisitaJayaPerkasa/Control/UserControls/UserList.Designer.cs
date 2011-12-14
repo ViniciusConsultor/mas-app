@@ -77,7 +77,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(700, 76);
+            this.radToolStrip1.Size = new System.Drawing.Size(700, 54);
             this.radToolStrip1.TabIndex = 0;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
@@ -255,7 +255,7 @@
             this.UserGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.UserGridView.ForeColor = System.Drawing.SystemColors.ControlText;
             this.UserGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.UserGridView.Location = new System.Drawing.Point(0, 76);
+            this.UserGridView.Location = new System.Drawing.Point(0, 54);
             // 
             // 
             // 
@@ -305,7 +305,7 @@
             this.UserGridView.Name = "UserGridView";
             this.UserGridView.ReadOnly = true;
             this.UserGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.UserGridView.Size = new System.Drawing.Size(700, 624);
+            this.UserGridView.Size = new System.Drawing.Size(700, 646);
             this.UserGridView.TabIndex = 1;
             this.UserGridView.ThemeName = "ControlDefault";
             this.UserGridView.DoubleClick += new System.EventHandler(this.UserGridView_DoubleClick);

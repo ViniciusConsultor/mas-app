@@ -16,6 +16,7 @@ namespace VisitaJayaPerkasa.Utility
                 return text.ToString();
         }
 
+
         public static bool IsDBNull(object obj) {
             if (obj == DBNull.Value)
                 return true;
