@@ -11,6 +11,15 @@ using Telerik.WinControls.UI;
 using Telerik.WinControls;
 using VisitaJayaPerkasa.Control.UserControls;
 using VisitaJayaPerkasa.Control.VesselControls;
+using VisitaJayaPerkasa.Control.Customer;
+using VisitaJayaPerkasa.Control.Category;
+using VisitaJayaPerkasa.Control.City;
+using VisitaJayaPerkasa.Control.Condition;
+using VisitaJayaPerkasa.Control.LeadTime;
+using VisitaJayaPerkasa.Control.Pelayaran;
+using VisitaJayaPerkasa.Control.Supplier;
+using VisitaJayaPerkasa.Control.TypeCont;
+using VisitaJayaPerkasa.Control.Warehouse;
 
 namespace VisitaJayaPerkasa.Form
 {
@@ -85,10 +94,55 @@ namespace VisitaJayaPerkasa.Form
             this.Close();
             VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.loginForm.Show();
         }
-
-        private void radRibbonBar1_Click(object sender, EventArgs e)
+        
+        private void radImageButtonElementCustomer_Click(object sender, EventArgs e)
         {
+            ShowUserControl(new CustomerList());
+        }
 
+        private void radImageButtonElementCategory_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new CategoryList());
+        }
+
+        private void radImageButtonElementVessel_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new VesselList());
+        }
+
+        private void radImageButtonElementCity_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new CityList());
+        }
+
+        private void radImageButtonElementCondition_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new ConditionList());
+        }
+
+        private void radImageButtonElementLeadTime_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new LeadTimeList());
+        }
+
+        private void radImageButtonElementPelayaran_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new PelayaranList());
+        }
+
+        private void radImageButtonElementSupplier_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new SupplierList());
+        }
+
+        private void radImageButtonElementTypeCont_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new TypeContList());
+        }
+
+        private void radImageButtonElementWareHouse_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new WareHouseList());
         }
 
 
