@@ -11,7 +11,7 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
 {
     public partial class PelayaranEdit : UserControl
     {
-        public PelayaranEdit()
+        public PelayaranEdit(VisitaJayaPerkasa.Entities.Pelayaran pelayaran)
         {
             InitializeComponent();
         }
