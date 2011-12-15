@@ -12,12 +12,10 @@ namespace VisitaJayaPerkasa.Control.UserControls
 {
     public partial class UserView : UserControl
     {
-        private User user;
 
         public UserView(User user)
         {
             InitializeComponent();
-            this.user = user;
 
             radLabelAddress.Text = Utility.Utility.DisplayNullValues(user.Address);
             radLabelUserName.Text = Utility.Utility.DisplayNullValues(user.UserName);

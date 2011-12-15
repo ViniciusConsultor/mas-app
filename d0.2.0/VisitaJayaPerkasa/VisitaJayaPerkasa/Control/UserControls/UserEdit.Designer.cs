@@ -111,7 +111,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(650, 27);
+            this.radToolStrip1.Size = new System.Drawing.Size(650, 49);
             this.radToolStrip1.TabIndex = 0;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
