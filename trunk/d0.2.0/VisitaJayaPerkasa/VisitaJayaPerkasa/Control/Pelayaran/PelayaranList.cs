@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using VisitaJayaPerkasa.SqlRepository;
 using System.Data.SqlClient;
+using Telerik.WinControls.UI;
 
 namespace VisitaJayaPerkasa.Control.Pelayaran
 {
@@ -41,32 +42,27 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
             string searchValue = radTextBoxElementSearchWord.Text;
             string searchKey = radComboBoxElement.Text;
 
-           // pelayaran = SqlPelayaranRepository.GetUsers();
-            if (pelayaran != null)
-            {/*
-                if (!string.IsNullOrEmpty(searchValue) && !string.IsNullOrEmpty(searchKey))
-                {
-                    SqlParameter[] sqlParam;
-
-                    switch (searchKey)
-                    {
-                        case "First Name":
-                            sqlParam = SqlUtility.SetSqlParameter(new string[] { "first_name" }, new object[] { searchValue });
-                            Users = Users.Where(c => c.FirstName.Contains(searchValue)).ToList<User>();
-                            break;
-                        case "Last Name":
-                            sqlParam = SqlUtility.SetSqlParameter(new string[] { "last_name" }, new object[] { searchValue });
-                            Users = Users.Where(c => c.LastName.Contains(searchValue)).ToList<User>();
-                            break;
-                    }
-
-                    sqlParam = null;
-                }*/
-            }
-
+            pelayaran = sqlPelataranRepository.GetPelayaran();
             if (pelayaran != null)
             {
-                //totalPage = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(Users.Count() / Convert.ToDecimal(pageSize))));
+                if (!string.IsNullOrEmpty(searchValue) && !string.IsNullOrEmpty(searchKey))
+                {
+                    switch (searchKey)
+                    {
+                        case "Name":
+                            showPelayaran = pelayaran.Where(c => c.Name.Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.Pelayaran>();
+                            break;
+                    }
+                }
+                else
+                    showPelayaran = pelayaran;
+            }
+            else
+                showPelayaran = null;
+
+            if (showPelayaran != null)
+            {
+                totalPage = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(showPelayaran.Count() / Convert.ToDecimal(pageSize))));
                 currentPage = 1;
             }
             else
@@ -79,7 +75,7 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
         public void RefreshGrid()
         {
             if (totalPage != 0)
-                showPelayaran = pelayaran.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList<VisitaJayaPerkasa.Entities.Pelayaran>();
+                showPelayaran = showPelayaran.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList<VisitaJayaPerkasa.Entities.Pelayaran>();
             else
                 showPelayaran = null;
 
@@ -116,76 +112,62 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
         }
 
         private void PelayaranGridView_DoubleClick(object sender, EventArgs e)
-        {/*
-            if (Users != null)
+        {
+            if (showPelayaran != null)
             {
-                GridViewRowInfo gridInfo = UserGridView.SelectedRows.First();
+                GridViewRowInfo gridInfo = PelayaranGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();
-                User user = Users.Where(c => c.PersonID.ToString().Equals(id)).FirstOrDefault();
+                VisitaJayaPerkasa.Entities.Pelayaran pelayaran = showPelayaran.Where(c => c.ID.ToString().Equals(id)).FirstOrDefault();
 
 
-                UserControl controllers = new UserView(user);
+                UserControl controllers = new PelayaranView(pelayaran);
                 Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
-            }*/
+            }
         }
 
         private void radButtonElementRemove_Click(object sender, EventArgs e)
         {
-            /*
-            if (Users != null)
+            if (showPelayaran != null)
             {
-                sqlUserRepository = new SqlUserRepository();
+                sqlPelataranRepository = new SqlPelayaranRepository();
                 DialogResult dResult = MessageBox.Show(this, "Are you sure want delete this data ? ", "Confirmation", MessageBoxButtons.YesNo);
                 if (dResult == DialogResult.Yes)
                 {
-                    GridViewRowInfo gridInfo = UserGridView.SelectedRows.First();
+                    GridViewRowInfo gridInfo = PelayaranGridView.SelectedRows.First();
                     string id = gridInfo.Cells[0].Value.ToString();
-                    User user = ShowUser.Where(c => c.PersonID.ToString() == id).SingleOrDefault();
+                    SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "pelayaran_id" }, new object[] { id });
 
-
-                    Guid roleID = sqlUserRepository.GetUserRole(user.PersonID);
-                    if (roleID != Guid.Empty)
+                    if (sqlPelataranRepository.DeletePelayaran(sqlParam))
                     {
-                        user.RoleObj = new Role();
-                        user.RoleObj.ID = roleID;
+                        MessageBox.Show("Data Deleted !");
+                        LoadData();
                     }
+                    else
+                        MessageBox.Show("Cannot Delete Data !");
 
-                    sqlUserRepository = null;
-                    UserControl controllers = new UserEdit(user);
-                    Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
+                    sqlParam = null;
                 }
-            }*/
+            }
         }
 
         private void radButtonElementCreate_Click(object sender, EventArgs e)
-        {/*
-            User user = null;
-            UserControl controllers = new UserEdit(user);
-            Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);*/
+        {
+            VisitaJayaPerkasa.Entities.Pelayaran pelayaran = null;
+            UserControl controllers = new PelayaranEdit(pelayaran);
+            Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
         }
 
         private void radButtonElementEdit_Click(object sender, EventArgs e)
-        {/*
-            if (ShowUser != null)
+        {
+            if (showPelayaran != null)
             {
-                GridViewRowInfo gridInfo = UserGridView.SelectedRows.First();
+                GridViewRowInfo gridInfo = PelayaranGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();
-                SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "person_id" }, new object[] { id });
+                VisitaJayaPerkasa.Entities.Pelayaran pelayaran = showPelayaran.Where(c => c.ID.ToString() == id).SingleOrDefault();
 
-                if (sqlUserRepository.DeleteUser(sqlParam))
-                {
-                    MessageBox.Show("Data Deleted !");
-                    LoadData();
-                }
-                else
-                    MessageBox.Show("Cannot Delete Data !");
-
-                sqlParam = null;
-
-                User user = null;
-                UserControl controllers = new UserEdit(user);
+                UserControl controllers = new PelayaranEdit(pelayaran);
                 Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
-            }*/
+            }
         }
     }
 }

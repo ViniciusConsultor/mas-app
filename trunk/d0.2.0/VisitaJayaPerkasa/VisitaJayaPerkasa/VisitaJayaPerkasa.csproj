@@ -314,6 +314,9 @@
     <EmbeddedResource Include="Control\Pelayaran\PelayaranList.resx">
       <DependentUpon>PelayaranList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Control\Pelayaran\PelayaranView.resx">
+      <DependentUpon>PelayaranView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\Supplier\SupplierList.resx">
       <DependentUpon>SupplierList.cs</DependentUpon>
     </EmbeddedResource>
