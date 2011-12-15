@@ -48,27 +48,26 @@ namespace VisitaJayaPerkasa.Control.UserControls
                 {
                     if (!string.IsNullOrEmpty(searchValue) && !string.IsNullOrEmpty(searchKey))
                     {
-                        SqlParameter[] sqlParam;
-
                         switch (searchKey)
                         {
                             case "First Name":
-                                sqlParam = SqlUtility.SetSqlParameter(new string[] { "first_name" }, new object[] { searchValue });
-                                Users = Users.Where(c => c.FirstName.Contains(searchValue)).ToList<User>();
+                                ShowUser = Users.Where(c => c.FirstName.Contains(searchValue)).ToList<User>();
                                 break;
                             case "Last Name":
-                                sqlParam = SqlUtility.SetSqlParameter(new string[] { "last_name" }, new object[] { searchValue });
-                                Users = Users.Where(c => c.LastName.Contains(searchValue)).ToList<User>();
+                                ShowUser = Users.Where(c => c.LastName.Contains(searchValue)).ToList<User>();
                                 break;
                         }
 
-                        sqlParam = null;
                     }
+                    else
+                        ShowUser = Users;
                 }
+                else
+                    ShowUser = null;
 
-                if (Users != null)
+                if (ShowUser != null)
                 {
-                    totalPage = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(Users.Count() / Convert.ToDecimal(pageSize))));
+                    totalPage = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(ShowUser.Count() / Convert.ToDecimal(pageSize))));
                     currentPage = 1;
                 }
                 else
@@ -81,7 +80,7 @@ namespace VisitaJayaPerkasa.Control.UserControls
         public void  RefreshGrid()
         {
             if (totalPage != 0)
-                ShowUser = Users.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList<User>();
+                ShowUser = ShowUser.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList<User>();
             else
                 ShowUser = null;
 
@@ -117,7 +116,7 @@ namespace VisitaJayaPerkasa.Control.UserControls
 
         private void UserGridView_DoubleClick(object sender, EventArgs e)
         {
-            if (Users != null)
+            if (ShowUser != null)
             {
                 GridViewRowInfo gridInfo = UserGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();

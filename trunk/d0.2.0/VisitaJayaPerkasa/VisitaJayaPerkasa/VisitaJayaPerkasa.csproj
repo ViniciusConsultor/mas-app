@@ -255,6 +255,7 @@
     <Compile Include="Control\Warehouse\WareHouseView.Designer.cs">
       <DependentUpon>WareHouseView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\CustomerDetail.cs" />
     <Compile Include="Entities\LeadTime.cs" />
@@ -265,6 +266,7 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserProfile.cs" />
     <Compile Include="Entities\UserRole.cs" />
+    <Compile Include="Entities\Vessel.cs" />
     <Compile Include="Form\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,6 +287,7 @@
       <DependentUpon>ShippingMainDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="SqlRepository\ILists.cs" />
+    <Compile Include="SqlRepository\SqlCityRepository.cs" />
     <Compile Include="SqlRepository\SqlCustomerRepository.cs" />
     <Compile Include="SqlRepository\SqlLeadTimeRepository.cs" />
     <Compile Include="SqlRepository\SqlPelayaranRepository.cs" />
@@ -293,13 +296,20 @@
     <Compile Include="SqlRepository\SqlTypeContRepository.cs" />
     <Compile Include="SqlRepository\SqlUserRepository.cs" />
     <Compile Include="SqlRepository\SqlUtility.cs" />
+    <Compile Include="SqlRepository\SqlVesselRepository.cs" />
     <Compile Include="Utility\Log\Logging.cs" />
     <Compile Include="Utility\Utility.cs" />
     <EmbeddedResource Include="Control\Customer\CustomerList.resx">
       <DependentUpon>CustomerList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Control\LeadTime\LeadTimeEdit.resx">
+      <DependentUpon>LeadTimeEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\LeadTime\LeadTimeList.resx">
       <DependentUpon>LeadTimeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\LeadTime\LeadTimeView.resx">
+      <DependentUpon>LeadTimeView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\Pelayaran\PelayaranList.resx">
       <DependentUpon>PelayaranList.cs</DependentUpon>
@@ -318,6 +328,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Control\UserControls\UserView.resx">
       <DependentUpon>UserView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\VesselControls\VesselEdit.resx">
+      <DependentUpon>VesselEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\VesselControls\VesselList.resx">
+      <DependentUpon>VesselList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\VesselControls\VesselView.resx">
+      <DependentUpon>VesselView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

@@ -6,6 +6,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using VisitaJayaPerkasa.SqlRepository;
+using Telerik.WinControls.UI;
+using System.Data.SqlClient;
 
 namespace VisitaJayaPerkasa.Control.LeadTime
 {
@@ -13,6 +16,7 @@ namespace VisitaJayaPerkasa.Control.LeadTime
     {
         private List<VisitaJayaPerkasa.Entities.LeadTime> leadTimes;
         private List<VisitaJayaPerkasa.Entities.LeadTime> showLeadTimes;
+        private SqlLeadTimeRepository sqlLeadTimeRepository;
 
         private int currentPage;
         private int pageSize;
@@ -26,56 +30,51 @@ namespace VisitaJayaPerkasa.Control.LeadTime
         }
 
         public void LoadData()
-        {/*
-            sqlUserRepository = new SqlUserRepository();
-            Users = null;
+        {
+            sqlLeadTimeRepository = new SqlLeadTimeRepository();
+            leadTimes = null;
 
             string searchValue = radTextBoxElementSearchWord.Text;
             string searchKey = radComboBoxElement.Text;
 
-            Users = sqlUserRepository.GetUsers();
-            if (Users != null)
+            leadTimes = sqlLeadTimeRepository.GetLeadTime();
+            if (leadTimes != null)
             {
                 if (!string.IsNullOrEmpty(searchValue) && !string.IsNullOrEmpty(searchKey))
                 {
-                    SqlParameter[] sqlParam;
-
                     switch (searchKey)
                     {
-                        case "First Name":
-                            sqlParam = SqlUtility.SetSqlParameter(new string[] { "first_name" }, new object[] { searchValue });
-                            Users = Users.Where(c => c.FirstName.Contains(searchValue)).ToList<User>();
-                            break;
-                        case "Last Name":
-                            sqlParam = SqlUtility.SetSqlParameter(new string[] { "last_name" }, new object[] { searchValue });
-                            Users = Users.Where(c => c.LastName.Contains(searchValue)).ToList<User>();
+                        case "City Name":
+                            showLeadTimes = leadTimes.Where(c => c.CityName.Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.LeadTime>();
                             break;
                     }
-
-                    sqlParam = null;
                 }
+                else
+                    showLeadTimes = leadTimes;
             }
+            else
+                showLeadTimes = null;
 
-            if (Users != null)
+            if (showLeadTimes != null)
             {
-                totalPage = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(Users.Count() / Convert.ToDecimal(pageSize))));
+                totalPage = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(showLeadTimes.Count() / Convert.ToDecimal(pageSize))));
                 currentPage = 1;
             }
             else
                 totalPage = 0;
 
-            RefreshGrid();*/
+            RefreshGrid();
         }
 
         public void RefreshGrid()
-        {/*
+        {
             if (totalPage != 0)
-                ShowUser = Users.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList<User>();
+                showLeadTimes = showLeadTimes.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList<VisitaJayaPerkasa.Entities.LeadTime>();
             else
-                ShowUser = null;
+                showLeadTimes = null;
 
             radToolStripLabelIndexing.Text = currentPage + " / " + totalPage;
-            UserGridView.DataSource = ShowUser;*/
+            LeadTimeGridView.DataSource = showLeadTimes;
         }
 
         private void radButtonElementPrev_Click(object sender, EventArgs e)
@@ -98,75 +97,61 @@ namespace VisitaJayaPerkasa.Control.LeadTime
         }
 
         private void PelayaranGridView_DoubleClick(object sender, EventArgs e)
-        {/*
-            if (Users != null)
+        {
+            if (showLeadTimes != null)
             {
-                GridViewRowInfo gridInfo = UserGridView.SelectedRows.First();
+                GridViewRowInfo gridInfo = LeadTimeGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();
-                User user = Users.Where(c => c.PersonID.ToString().Equals(id)).FirstOrDefault();
+                VisitaJayaPerkasa.Entities.LeadTime leadTime = leadTimes.Where(c => c.ID.ToString().Equals(id)).FirstOrDefault();
 
-
-                UserControl controllers = new UserView(user);
+                UserControl controllers = new LeadTimeView(leadTime);
                 Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
-            }*/
+            }
         }
 
         private void radButtonElementRemove_Click(object sender, EventArgs e)
-        {/*
-            if (Users != null)
+        {
+            if (showLeadTimes != null)
             {
-                sqlUserRepository = new SqlUserRepository();
+                sqlLeadTimeRepository = new SqlLeadTimeRepository();
                 DialogResult dResult = MessageBox.Show(this, "Are you sure want delete this data ? ", "Confirmation", MessageBoxButtons.YesNo);
                 if (dResult == DialogResult.Yes)
                 {
-                    GridViewRowInfo gridInfo = UserGridView.SelectedRows.First();
+                    GridViewRowInfo gridInfo = LeadTimeGridView.SelectedRows.First();
                     string id = gridInfo.Cells[0].Value.ToString();
-                    User user = ShowUser.Where(c => c.PersonID.ToString() == id).SingleOrDefault();
+                    SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "lead_time_id" }, new object[] { id });
 
-
-                    Guid roleID = sqlUserRepository.GetUserRole(user.PersonID);
-                    if (roleID != Guid.Empty)
+                    if (sqlLeadTimeRepository.DeleteLeadTime(sqlParam))
                     {
-                        user.RoleObj = new Role();
-                        user.RoleObj.ID = roleID;
+                        MessageBox.Show("Data Deleted !");
+                        LoadData();
                     }
+                    else
+                        MessageBox.Show("Cannot Delete Data !");
 
-                    sqlUserRepository = null;
-                    UserControl controllers = new UserEdit(user);
-                    Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
+                    sqlParam = null;
                 }
-            }*/
+            }
         }
 
         private void radButtonElementCreate_Click(object sender, EventArgs e)
-        {/*
+        {
             VisitaJayaPerkasa.Entities.LeadTime leadTime = null;
             UserControl controllers = new LeadTimeEdit(leadTime);
             Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
-        */}
+        }
 
         private void radButtonElementEdit_Click(object sender, EventArgs e)
-        {/*
-            if (ShowUser != null)
+        {
+            if (showLeadTimes != null)
             {
-                GridViewRowInfo gridInfo = UserGridView.SelectedRows.First();
+                GridViewRowInfo gridInfo = LeadTimeGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();
-                SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "person_id" }, new object[] { id });
+                VisitaJayaPerkasa.Entities.LeadTime leadTime = showLeadTimes.Where(c => c.ID.ToString() == id).SingleOrDefault();
 
-                if (sqlUserRepository.DeleteUser(sqlParam))
-                {
-                    MessageBox.Show("Data Deleted !");
-                    LoadData();
-                }
-                else
-                    MessageBox.Show("Cannot Delete Data !");
-
-                sqlParam = null;
-
-                User user = null;
-                UserControl controllers = new UserEdit(user);
+                UserControl controllers = new LeadTimeEdit(leadTime);
                 Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
-            }*/
+            }
         }
     }
 }
