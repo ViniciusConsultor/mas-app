@@ -43,6 +43,7 @@ namespace VisitaJayaPerkasa.Form
             string temp = ((! Utility.Utility.IsStringNullorEmpty(UserProfile.user.FirstName)) && (! Utility.Utility.IsStringNullorEmpty(UserProfile.user.LastName))) ? (UserProfile.user.FirstName + ", " + UserProfile.user.LastName) : (UserProfile.user.FirstName + UserProfile.user.LastName);
             radLabelElementWelcome.Text = "Welcome: " + temp;
             temp = null;
+            this.Closed += new System.EventHandler(this.mainForm_Closed);
         }
 
         public void ShowUserControl(object uc) {
@@ -85,7 +86,7 @@ namespace VisitaJayaPerkasa.Form
         private void radMenuItemExit_Click(object sender, EventArgs e)
         {
             this.Close();
-            VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.loginForm.Close();
+            //VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.loginForm.Close();
         }
 
         private void radMenuItemLogOut_Click(object sender, EventArgs e)
@@ -94,7 +95,12 @@ namespace VisitaJayaPerkasa.Form
             this.Close();
             VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.loginForm.Show();
         }
-        
+
+        private void mainForm_Closed(object sender, EventArgs e)
+        {
+            VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.loginForm.Close();
+        }
+
         private void radImageButtonElementCustomer_Click(object sender, EventArgs e)
         {
             ShowUserControl(new CustomerList());
@@ -144,7 +150,5 @@ namespace VisitaJayaPerkasa.Form
         {
             ShowUserControl(new WareHouseList());
         }
-
-
     }
 }
