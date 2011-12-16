@@ -311,6 +311,9 @@
     <EmbeddedResource Include="Control\LeadTime\LeadTimeView.resx">
       <DependentUpon>LeadTimeView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Control\Pelayaran\PelayaranEdit.resx">
+      <DependentUpon>PelayaranEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\Pelayaran\PelayaranList.resx">
       <DependentUpon>PelayaranList.cs</DependentUpon>
     </EmbeddedResource>
