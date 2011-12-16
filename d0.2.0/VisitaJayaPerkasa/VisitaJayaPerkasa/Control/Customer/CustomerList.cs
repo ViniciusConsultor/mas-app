@@ -42,23 +42,22 @@ namespace VisitaJayaPerkasa.Control.Customer
             {
                 if (!string.IsNullOrEmpty(searchValue) && !string.IsNullOrEmpty(searchKey))
                 {
-                    /*SqlParameter[] sqlParam;
-
                     switch (searchKey)
                     {
-                        case "First Name":
-                            sqlParam = SqlUtility.SetSqlParameter(new string[] { "first_name" }, new object[] { searchValue });
-                            showListCustomer = listCustomer.Where(c => c.FirstName.Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.Customer>();
+                        case "Office":
+                            showListCustomer = listCustomer.Where(c => c.Office.Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.Customer>();
                             break;
-                        case "Last Name":
-                            sqlParam = SqlUtility.SetSqlParameter(new string[] { "last_name" }, new object[] { searchValue });
-                            showListCustomer = listCustomer.Where(c => c.LastName.Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.Customer>();
+                        case "Customer Name":
+                            showListCustomer = listCustomer.Where(c => c.CustomerName.Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.Customer>();
                             break;
                     }
 
-                    sqlParam = null;*/
                 }
+                else
+                    showListCustomer = listCustomer;
             }
+            else
+                showListCustomer = null;
 
             if (showListCustomer != null)
             {
@@ -74,7 +73,7 @@ namespace VisitaJayaPerkasa.Control.Customer
         public void RefreshGrid()
         {
             if (totalPage != 0)
-                showListCustomer = listCustomer.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList<VisitaJayaPerkasa.Entities.Customer>();
+                showListCustomer = showListCustomer.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList<VisitaJayaPerkasa.Entities.Customer>();
             else
                 showListCustomer = null;
 
@@ -84,9 +83,9 @@ namespace VisitaJayaPerkasa.Control.Customer
 
         private void radButtonElementCreate_Click(object sender, EventArgs e)
         {
-            /*VisitaJayaPerkasa.Entities.Customer customer = null;
+            VisitaJayaPerkasa.Entities.Customer customer = null;
             UserControl controllers = new CustomerEdit(customer);
-            Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);*/
+            Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
         }
 
         private void radButtonElementBtnSearch_Click(object sender, EventArgs e)
@@ -123,22 +122,22 @@ namespace VisitaJayaPerkasa.Control.Customer
         }
 
         private void CustomerGridView_DoubleClick(object sender, EventArgs e)
-        {/*
-            if (listCustomer != null)
+        {
+            if (showListCustomer != null)
             {
                 GridViewRowInfo gridInfo = CustomerGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();
-                VisitaJayaPerkasa.Entities.Customer customer = listCustomer.Where(c => c.PersonID.ToString().Equals(id)).FirstOrDefault();
+                VisitaJayaPerkasa.Entities.Customer customer = showListCustomer.Where(c => c.ID.ToString().Equals(id)).FirstOrDefault();
 
 
                 UserControl controllers = new CustomerView(customer);
                 Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
-            }*/
+            }
         }
 
         private void radButtonElementEdit_Click(object sender, EventArgs e)
-        {
-           /* if (showListCustomer != null)
+        {/*
+            if (showListCustomer != null)
             {
                 GridViewRowInfo gridInfo = CustomerGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();
@@ -158,6 +157,31 @@ namespace VisitaJayaPerkasa.Control.Customer
                 UserControl controllers = new CustomerEdit(customer);
                 Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
             }*/
+        }
+
+        private void radButtonElementRemove_Click(object sender, EventArgs e)
+        {
+            if (showListCustomer != null)
+            {
+                sqlCustomerRepository = new SqlCustomerRepository();
+                DialogResult dResult = MessageBox.Show(this, "Are you sure want delete master and detail this customer ? ", "Confirmation", MessageBoxButtons.YesNo);
+                if (dResult == DialogResult.Yes)
+                {
+                    GridViewRowInfo gridInfo = CustomerGridView.SelectedRows.First();
+                    string id = gridInfo.Cells[0].Value.ToString();
+                    SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "customer_id" }, new object[] { id });
+
+                    if (sqlCustomerRepository.DeleteCustomer(sqlParam))
+                    {
+                        MessageBox.Show("Data Deleted !");
+                        LoadData();
+                    }
+                    else
+                        MessageBox.Show("Cannot Delete Data !");
+
+                    sqlParam = null;
+                }
+            }
         }
 
     }
