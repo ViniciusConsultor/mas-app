@@ -115,6 +115,7 @@ namespace VisitaJayaPerkasa.Form
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
             this.ThemeName = "ControlDefault";
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
