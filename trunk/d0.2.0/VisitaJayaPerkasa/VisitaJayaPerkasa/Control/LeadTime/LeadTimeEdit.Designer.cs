@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbCity = new Telerik.WinControls.UI.RadComboBox();
             this.etLeadTimeDays = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radToolStripItem1 = new Telerik.WinControls.UI.RadToolStripItem();
-            this.radToolStripElement1 = new Telerik.WinControls.UI.RadToolStripElement();
-            this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.radButtonElement1 = new Telerik.WinControls.UI.RadButtonElement();
             this.radButtonElement2 = new Telerik.WinControls.UI.RadButtonElement();
-            this.cbCity = new Telerik.WinControls.UI.RadComboBox();
+            this.radToolStripElement1 = new Telerik.WinControls.UI.RadToolStripElement();
+            this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etLeadTimeDays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbCity)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -58,6 +58,20 @@
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Lead Time";
+            // 
+            // cbCity
+            // 
+            this.cbCity.Location = new System.Drawing.Point(93, 19);
+            this.cbCity.Name = "cbCity";
+            // 
+            // 
+            // 
+            this.cbCity.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
+            this.cbCity.Size = new System.Drawing.Size(210, 20);
+            this.cbCity.TabIndex = 13;
+            this.cbCity.TabStop = false;
+            this.cbCity.Text = "-- Choose --";
+            this.cbCity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.radComboBox1_KeyPress);
             // 
             // etLeadTimeDays
             // 
@@ -92,6 +106,26 @@
             this.radToolStripItem1.Name = "radToolStripItem1";
             this.radToolStripItem1.Text = "radToolStripItem1";
             // 
+            // radButtonElement1
+            // 
+            this.radButtonElement1.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.radButtonElement1.Image = global::VisitaJayaPerkasa.Properties.Resources.save_16;
+            this.radButtonElement1.Name = "radButtonElement1";
+            this.radButtonElement1.ShowBorder = false;
+            this.radButtonElement1.Text = "Save";
+            this.radButtonElement1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.radButtonElement1.Click += new System.EventHandler(this.radButtonElement1_Click);
+            // 
+            // radButtonElement2
+            // 
+            this.radButtonElement2.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.radButtonElement2.Image = global::VisitaJayaPerkasa.Properties.Resources.close_16;
+            this.radButtonElement2.Name = "radButtonElement2";
+            this.radButtonElement2.ShowBorder = false;
+            this.radButtonElement2.Text = "Close";
+            this.radButtonElement2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.radButtonElement2.Click += new System.EventHandler(this.radButtonElement2_Click);
+            // 
             // radToolStripElement1
             // 
             this.radToolStripElement1.Items.AddRange(new Telerik.WinControls.RadItem[] {
@@ -115,43 +149,9 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(646, 26);
+            this.radToolStrip1.Size = new System.Drawing.Size(646, 49);
             this.radToolStrip1.TabIndex = 24;
             this.radToolStrip1.Text = "radToolStrip1";
-            // 
-            // radButtonElement1
-            // 
-            this.radButtonElement1.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.radButtonElement1.Image = global::VisitaJayaPerkasa.Properties.Resources.save_16;
-            this.radButtonElement1.Name = "radButtonElement1";
-            this.radButtonElement1.ShowBorder = false;
-            this.radButtonElement1.Text = "Save";
-            this.radButtonElement1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.radButtonElement1.Click += new System.EventHandler(this.radButtonElement1_Click);
-            // 
-            // radButtonElement2
-            // 
-            this.radButtonElement2.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.radButtonElement2.Image = global::VisitaJayaPerkasa.Properties.Resources.close_16;
-            this.radButtonElement2.Name = "radButtonElement2";
-            this.radButtonElement2.ShowBorder = false;
-            this.radButtonElement2.Text = "Close";
-            this.radButtonElement2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.radButtonElement2.Click += new System.EventHandler(this.radButtonElement2_Click);
-            // 
-            // cbCity
-            // 
-            this.cbCity.Location = new System.Drawing.Point(93, 19);
-            this.cbCity.Name = "cbCity";
-            // 
-            // 
-            // 
-            this.cbCity.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
-            this.cbCity.Size = new System.Drawing.Size(210, 20);
-            this.cbCity.TabIndex = 13;
-            this.cbCity.TabStop = false;
-            this.cbCity.Text = "-- Choose --";
-            this.cbCity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.radComboBox1_KeyPress);
             // 
             // LeadTimeEdit
             // 
@@ -163,11 +163,11 @@
             this.Size = new System.Drawing.Size(646, 429);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbCity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etLeadTimeDays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbCity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

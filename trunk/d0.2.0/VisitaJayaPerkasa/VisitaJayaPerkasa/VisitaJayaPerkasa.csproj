@@ -299,8 +299,14 @@
     <Compile Include="SqlRepository\SqlVesselRepository.cs" />
     <Compile Include="Utility\Log\Logging.cs" />
     <Compile Include="Utility\Utility.cs" />
+    <EmbeddedResource Include="Control\Customer\CustomerEdit.resx">
+      <DependentUpon>CustomerEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\Customer\CustomerList.resx">
       <DependentUpon>CustomerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Customer\CustomerView.resx">
+      <DependentUpon>CustomerView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\LeadTime\LeadTimeEdit.resx">
       <DependentUpon>LeadTimeEdit.cs</DependentUpon>
