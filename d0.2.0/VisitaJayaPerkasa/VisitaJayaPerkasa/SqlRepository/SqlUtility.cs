@@ -23,5 +23,12 @@ namespace VisitaJayaPerkasa.SqlRepository
             }
             return sqlParam;
         }
+
+        public static object isDBNULL(string text) {
+            if (text.Trim().Length == 0)
+                return DBNull.Value;
+            else
+                return text;
+        }
     }
 }

@@ -53,7 +53,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radComboBoxElement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LeadTimeGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LeadTimeGridView.MasterGridViewTemplate)).BeginInit();
             this.SuspendLayout();
             // 
             // radToolStripItem4
@@ -247,7 +246,7 @@
             this.LeadTimeGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.LeadTimeGridView.Location = new System.Drawing.Point(0, 54);
             // 
-            // gridViewTemplate1
+            // 
             // 
             this.LeadTimeGridView.MasterGridViewTemplate.AllowAddNewRow = false;
             gridViewTextBoxColumn1.FieldAlias = "ID";
@@ -291,7 +290,6 @@
             this.Size = new System.Drawing.Size(640, 353);
             ((System.ComponentModel.ISupportInitialize)(this.radComboBoxElement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LeadTimeGridView.MasterGridViewTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LeadTimeGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

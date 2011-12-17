@@ -136,27 +136,16 @@ namespace VisitaJayaPerkasa.Control.Customer
         }
 
         private void radButtonElementEdit_Click(object sender, EventArgs e)
-        {/*
+        {
             if (showListCustomer != null)
             {
                 GridViewRowInfo gridInfo = CustomerGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();
-                SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "person_id" }, new object[] { id });
+                VisitaJayaPerkasa.Entities.Customer customer = showListCustomer.Where(c => c.ID.ToString() == id).SingleOrDefault();
 
-                if (sqlCustomerRepository.DeleteUser(sqlParam))
-                {
-                    MessageBox.Show("Data Deleted !");
-                    LoadData();
-                }
-                else
-                    MessageBox.Show("Cannot Delete Data !");
-
-                sqlParam = null;
-
-                VisitaJayaPerkasa.Entities.Customer customer = null;
                 UserControl controllers = new CustomerEdit(customer);
                 Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
-            }*/
+            }
         }
 
         private void radButtonElementRemove_Click(object sender, EventArgs e)

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using VisitaJayaPerkasa.SqlRepository;
+using System.Data.SqlClient;
+using Telerik.WinControls.UI;
 
 namespace VisitaJayaPerkasa.Control.TypeCont
 {
@@ -33,57 +35,55 @@ namespace VisitaJayaPerkasa.Control.TypeCont
         }
 
         public void LoadData()
-        {/*
-            sqlUserRepository = new SqlUserRepository();
-            Users = null;
+        {
+            sqlTypeContRepository = new SqlTypeContRepository();
+            TypeCont = null;
 
             string searchValue = radTextBoxElementSearchWord.Text;
             string searchKey = radComboBoxElement.Text;
 
-            Users = sqlUserRepository.GetUsers();
-            if (Users != null)
+            TypeCont = sqlTypeContRepository.GetTypeCont();
+            if (TypeCont != null)
             {
                 if (!string.IsNullOrEmpty(searchValue) && !string.IsNullOrEmpty(searchKey))
                 {
-                    SqlParameter[] sqlParam;
-
                     switch (searchKey)
                     {
-                        case "First Name":
-                            sqlParam = SqlUtility.SetSqlParameter(new string[] { "first_name" }, new object[] { searchValue });
-                            Users = Users.Where(c => c.FirstName.Contains(searchValue)).ToList<User>();
+                        case "Code":
+                            ShowTypeCont = TypeCont.Where(c => c.TypeCode.Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.TypeCont>();
                             break;
-                        case "Last Name":
-                            sqlParam = SqlUtility.SetSqlParameter(new string[] { "last_name" }, new object[] { searchValue });
-                            Users = Users.Where(c => c.LastName.Contains(searchValue)).ToList<User>();
+                        case "Name":
+                            ShowTypeCont = TypeCont.Where(c => c.TypeName.Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.TypeCont>();
                             break;
                     }
-
-                    sqlParam = null;
                 }
+                else
+                    ShowTypeCont = TypeCont;
             }
+            else
+                ShowTypeCont = null;
 
-            if (Users != null)
+            if (ShowTypeCont != null)
             {
-                totalPage = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(Users.Count() / Convert.ToDecimal(pageSize))));
+                totalPage = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(ShowTypeCont.Count() / Convert.ToDecimal(pageSize))));
                 currentPage = 1;
             }
             else
                 totalPage = 0;
 
-            RefreshGrid();*/
+            RefreshGrid();
         }
 
 
         public void RefreshGrid()
-        {/*
+        {
             if (totalPage != 0)
-                ShowUser = Users.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList<User>();
+                ShowTypeCont = ShowTypeCont.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList<VisitaJayaPerkasa.Entities.TypeCont>();
             else
-                ShowUser = null;
+                ShowTypeCont = null;
 
             radToolStripLabelIndexing.Text = currentPage + " / " + totalPage;
-            UserGridView.DataSource = ShowUser;*/
+            TypeContGridView.DataSource = ShowTypeCont;
         }
 
         private void radButtonElementNext_Click(object sender, EventArgs e)
@@ -115,76 +115,62 @@ namespace VisitaJayaPerkasa.Control.TypeCont
         }
 
         private void PelayaranGridView_DoubleClick(object sender, EventArgs e)
-        {/*
-            if (Users != null)
+        {
+            if (ShowTypeCont != null)
             {
-                GridViewRowInfo gridInfo = UserGridView.SelectedRows.First();
+                GridViewRowInfo gridInfo = TypeContGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();
-                User user = Users.Where(c => c.PersonID.ToString().Equals(id)).FirstOrDefault();
+                VisitaJayaPerkasa.Entities.TypeCont tempTypeCont = ShowTypeCont.Where(c => c.ID.ToString().Equals(id)).FirstOrDefault();
 
 
-                UserControl controllers = new UserView(user);
+                UserControl controllers = new TypeContView(tempTypeCont);
                 Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
-            }*/
+            }
         }
 
         private void radButtonElementRemove_Click(object sender, EventArgs e)
         {
-            /*
-            if (Users != null)
+            if (ShowTypeCont != null)
             {
-                sqlUserRepository = new SqlUserRepository();
+                sqlTypeContRepository = new SqlTypeContRepository();
                 DialogResult dResult = MessageBox.Show(this, "Are you sure want delete this data ? ", "Confirmation", MessageBoxButtons.YesNo);
                 if (dResult == DialogResult.Yes)
                 {
-                    GridViewRowInfo gridInfo = UserGridView.SelectedRows.First();
+                    GridViewRowInfo gridInfo = TypeContGridView.SelectedRows.First();
                     string id = gridInfo.Cells[0].Value.ToString();
-                    User user = ShowUser.Where(c => c.PersonID.ToString() == id).SingleOrDefault();
+                    SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "type_id" }, new object[] { id });
 
-
-                    Guid roleID = sqlUserRepository.GetUserRole(user.PersonID);
-                    if (roleID != Guid.Empty)
+                    if (sqlTypeContRepository.DeleteTypeCont(sqlParam))
                     {
-                        user.RoleObj = new Role();
-                        user.RoleObj.ID = roleID;
+                        MessageBox.Show("Data Deleted !");
+                        LoadData();
                     }
+                    else
+                        MessageBox.Show("Cannot Delete Data !");
 
-                    sqlUserRepository = null;
-                    UserControl controllers = new UserEdit(user);
-                    Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
+                    sqlParam = null;
                 }
-            }*/
+            }
         }
 
         private void radButtonElementCreate_Click(object sender, EventArgs e)
-        {/*
-            User user = null;
-            UserControl controllers = new UserEdit(user);
-            Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);*/
+        {
+            VisitaJayaPerkasa.Entities.TypeCont tempTypeCont = null;
+            UserControl controllers = new TypeContEdit(tempTypeCont);
+            Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
         }
 
         private void radButtonElementEdit_Click(object sender, EventArgs e)
-        {/*
-            if (ShowUser != null)
+        {
+            if (ShowTypeCont != null)
             {
-                GridViewRowInfo gridInfo = UserGridView.SelectedRows.First();
+                GridViewRowInfo gridInfo = TypeContGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();
-                SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "person_id" }, new object[] { id });
+                VisitaJayaPerkasa.Entities.TypeCont tempTypeCont = ShowTypeCont.Where(c => c.ID.ToString() == id).SingleOrDefault();
 
-                if (sqlUserRepository.DeleteUser(sqlParam))
-                {
-                    MessageBox.Show("Data Deleted !");
-                    LoadData();
-                }
-                else
-                    MessageBox.Show("Cannot Delete Data !");
-
-                sqlParam = null;
-
-                User user = null;
-                UserControl controllers = new UserEdit(user);
+                UserControl controllers = new TypeContEdit(tempTypeCont);
                 Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
-            }*/
+            }
         }
 
     }

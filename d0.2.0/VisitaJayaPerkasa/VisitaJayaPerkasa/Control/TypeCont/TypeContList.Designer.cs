@@ -31,18 +31,13 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.radToolStripElement2 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radToolStripItem4 = new Telerik.WinControls.UI.RadToolStripItem();
             this.radComboBoxElement = new Telerik.WinControls.UI.RadComboBoxElement();
             this.radComboBoxItem1 = new Telerik.WinControls.UI.RadComboBoxItem();
-            this.radComboBoxItem2 = new Telerik.WinControls.UI.RadComboBoxItem();
             this.radTextBoxElementSearchWord = new Telerik.WinControls.UI.RadTextBoxElement();
             this.radButtonElementBtnSearch = new Telerik.WinControls.UI.RadButtonElement();
-            this.PelayaranGridView = new Telerik.WinControls.UI.RadGridView();
+            this.TypeContGridView = new Telerik.WinControls.UI.RadGridView();
             this.radButtonElementNext = new Telerik.WinControls.UI.RadButtonElement();
             this.radToolStripLabelIndexing = new Telerik.WinControls.UI.RadToolStripLabelElement();
             this.radToolStripItem2 = new Telerik.WinControls.UI.RadToolStripItem();
@@ -54,8 +49,10 @@
             this.radButtonElementCreate = new Telerik.WinControls.UI.RadButtonElement();
             this.radButtonElementEdit = new Telerik.WinControls.UI.RadButtonElement();
             this.radButtonElementRemove = new Telerik.WinControls.UI.RadButtonElement();
+            this.radComboBoxItem3 = new Telerik.WinControls.UI.RadComboBoxItem();
             ((System.ComponentModel.ISupportInitialize)(this.radComboBoxElement)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PelayaranGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TypeContGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TypeContGridView.MasterGridViewTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,7 +84,7 @@
             this.radComboBoxElement.Focusable = true;
             this.radComboBoxElement.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radComboBoxItem1,
-            this.radComboBoxItem2});
+            this.radComboBoxItem3});
             this.radComboBoxElement.MaxSize = new System.Drawing.Size(118, 20);
             this.radComboBoxElement.MaxValue = null;
             this.radComboBoxElement.MinSize = new System.Drawing.Size(118, 17);
@@ -105,12 +102,7 @@
             // radComboBoxItem1
             // 
             this.radComboBoxItem1.Name = "radComboBoxItem1";
-            this.radComboBoxItem1.Text = "First Name";
-            // 
-            // radComboBoxItem2
-            // 
-            this.radComboBoxItem2.Name = "radComboBoxItem2";
-            this.radComboBoxItem2.Text = "Last Name";
+            this.radComboBoxItem1.Text = "Code";
             // 
             // radTextBoxElementSearchWord
             // 
@@ -131,68 +123,44 @@
             this.radButtonElementBtnSearch.ShowBorder = false;
             this.radButtonElementBtnSearch.Text = "";
             // 
-            // PelayaranGridView
+            // TypeContGridView
             // 
-            this.PelayaranGridView.BackColor = System.Drawing.SystemColors.Control;
-            this.PelayaranGridView.Cursor = System.Windows.Forms.Cursors.Default;
-            this.PelayaranGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PelayaranGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.PelayaranGridView.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.PelayaranGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.PelayaranGridView.Location = new System.Drawing.Point(0, 76);
+            this.TypeContGridView.BackColor = System.Drawing.SystemColors.Control;
+            this.TypeContGridView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.TypeContGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TypeContGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.TypeContGridView.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.TypeContGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.TypeContGridView.Location = new System.Drawing.Point(0, 54);
             // 
+            // gridViewTemplate1
             // 
-            // 
-            this.PelayaranGridView.MasterGridViewTemplate.AllowAddNewRow = false;
+            this.TypeContGridView.MasterGridViewTemplate.AllowAddNewRow = false;
             gridViewTextBoxColumn1.FieldAlias = "ID";
-            gridViewTextBoxColumn1.FieldName = "PersonID";
+            gridViewTextBoxColumn1.FieldName = "ID";
             gridViewTextBoxColumn1.HeaderText = "ID";
             gridViewTextBoxColumn1.IsVisible = false;
-            gridViewTextBoxColumn1.UniqueName = "PersonID";
-            gridViewTextBoxColumn2.FieldAlias = "UserName";
-            gridViewTextBoxColumn2.FieldName = "UserName";
-            gridViewTextBoxColumn2.HeaderText = "User Name";
-            gridViewTextBoxColumn2.UniqueName = "UserName";
-            gridViewTextBoxColumn2.Width = 80;
-            gridViewTextBoxColumn3.FieldAlias = "FirstName";
-            gridViewTextBoxColumn3.FieldName = "FirstName";
-            gridViewTextBoxColumn3.HeaderText = "First Name";
-            gridViewTextBoxColumn3.UniqueName = "FirstName";
-            gridViewTextBoxColumn3.Width = 100;
-            gridViewTextBoxColumn4.FieldAlias = "LastName";
-            gridViewTextBoxColumn4.FieldName = "LastName";
-            gridViewTextBoxColumn4.HeaderText = "Last Name";
-            gridViewTextBoxColumn4.UniqueName = "LastName";
-            gridViewTextBoxColumn4.Width = 100;
-            gridViewTextBoxColumn5.FieldAlias = "Email";
-            gridViewTextBoxColumn5.FieldName = "Email";
-            gridViewTextBoxColumn5.HeaderText = "Email";
-            gridViewTextBoxColumn5.UniqueName = "Email";
-            gridViewTextBoxColumn5.Width = 120;
-            gridViewTextBoxColumn6.FieldAlias = "Address";
-            gridViewTextBoxColumn6.FieldName = "Address";
-            gridViewTextBoxColumn6.HeaderText = "Address";
-            gridViewTextBoxColumn6.UniqueName = "Address";
-            gridViewTextBoxColumn6.Width = 150;
-            gridViewTextBoxColumn7.FieldAlias = "MobilePhoneNumber";
-            gridViewTextBoxColumn7.FieldName = "MobilePhoneNumber";
-            gridViewTextBoxColumn7.HeaderText = "Phone Number";
-            gridViewTextBoxColumn7.UniqueName = "MobilePhoneNumber";
-            gridViewTextBoxColumn7.Width = 120;
-            this.PelayaranGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
-            this.PelayaranGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
-            this.PelayaranGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);
-            this.PelayaranGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn4);
-            this.PelayaranGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn5);
-            this.PelayaranGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn6);
-            this.PelayaranGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn7);
-            this.PelayaranGridView.Name = "PelayaranGridView";
-            this.PelayaranGridView.ReadOnly = true;
-            this.PelayaranGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.PelayaranGridView.Size = new System.Drawing.Size(627, 242);
-            this.PelayaranGridView.TabIndex = 9;
-            this.PelayaranGridView.ThemeName = "ControlDefault";
-            this.PelayaranGridView.DoubleClick += new System.EventHandler(this.PelayaranGridView_DoubleClick);
+            gridViewTextBoxColumn1.UniqueName = "ID";
+            gridViewTextBoxColumn2.FieldAlias = "column1";
+            gridViewTextBoxColumn2.FieldName = "TypeCode";
+            gridViewTextBoxColumn2.HeaderText = "Code";
+            gridViewTextBoxColumn2.UniqueName = "TypeCode";
+            gridViewTextBoxColumn2.Width = 103;
+            gridViewTextBoxColumn3.FieldAlias = "TypeName";
+            gridViewTextBoxColumn3.FieldName = "TypeName";
+            gridViewTextBoxColumn3.HeaderText = "Name";
+            gridViewTextBoxColumn3.UniqueName = "TypeName";
+            gridViewTextBoxColumn3.Width = 180;
+            this.TypeContGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
+            this.TypeContGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
+            this.TypeContGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);
+            this.TypeContGridView.Name = "TypeContGridView";
+            this.TypeContGridView.ReadOnly = true;
+            this.TypeContGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TypeContGridView.Size = new System.Drawing.Size(627, 264);
+            this.TypeContGridView.TabIndex = 9;
+            this.TypeContGridView.ThemeName = "ControlDefault";
+            this.TypeContGridView.DoubleClick += new System.EventHandler(this.PelayaranGridView_DoubleClick);
             // 
             // radButtonElementNext
             // 
@@ -256,7 +224,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(627, 76);
+            this.radToolStrip1.Size = new System.Drawing.Size(627, 54);
             this.radToolStrip1.TabIndex = 8;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
@@ -309,16 +277,22 @@
             this.radButtonElementRemove.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.radButtonElementRemove.Click += new System.EventHandler(this.radButtonElementRemove_Click);
             // 
+            // radComboBoxItem3
+            // 
+            this.radComboBoxItem3.Name = "radComboBoxItem3";
+            this.radComboBoxItem3.Text = "Name";
+            // 
             // TypeContList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.PelayaranGridView);
+            this.Controls.Add(this.TypeContGridView);
             this.Controls.Add(this.radToolStrip1);
             this.Name = "TypeContList";
             this.Size = new System.Drawing.Size(627, 318);
             ((System.ComponentModel.ISupportInitialize)(this.radComboBoxElement)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PelayaranGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TypeContGridView.MasterGridViewTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TypeContGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -331,10 +305,9 @@
         private Telerik.WinControls.UI.RadToolStripItem radToolStripItem4;
         private Telerik.WinControls.UI.RadComboBoxElement radComboBoxElement;
         private Telerik.WinControls.UI.RadComboBoxItem radComboBoxItem1;
-        private Telerik.WinControls.UI.RadComboBoxItem radComboBoxItem2;
         private Telerik.WinControls.UI.RadTextBoxElement radTextBoxElementSearchWord;
         private Telerik.WinControls.UI.RadButtonElement radButtonElementBtnSearch;
-        private Telerik.WinControls.UI.RadGridView PelayaranGridView;
+        private Telerik.WinControls.UI.RadGridView TypeContGridView;
         private Telerik.WinControls.UI.RadButtonElement radButtonElementNext;
         private Telerik.WinControls.UI.RadToolStripLabelElement radToolStripLabelIndexing;
         private Telerik.WinControls.UI.RadToolStripItem radToolStripItem2;
@@ -346,6 +319,7 @@
         private Telerik.WinControls.UI.RadButtonElement radButtonElementCreate;
         private Telerik.WinControls.UI.RadButtonElement radButtonElementEdit;
         private Telerik.WinControls.UI.RadButtonElement radButtonElementRemove;
+        private Telerik.WinControls.UI.RadComboBoxItem radComboBoxItem3;
 
     }
 }

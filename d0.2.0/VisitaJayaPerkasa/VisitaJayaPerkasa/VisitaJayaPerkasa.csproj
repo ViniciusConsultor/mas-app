@@ -329,8 +329,14 @@
     <EmbeddedResource Include="Control\Supplier\SupplierList.resx">
       <DependentUpon>SupplierList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Control\TypeCont\TypeContEdit.resx">
+      <DependentUpon>TypeContEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\TypeCont\TypeContList.resx">
       <DependentUpon>TypeContList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\TypeCont\TypeContView.resx">
+      <DependentUpon>TypeContView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\UserControls\UserEdit.resx">
       <DependentUpon>UserEdit.cs</DependentUpon>
