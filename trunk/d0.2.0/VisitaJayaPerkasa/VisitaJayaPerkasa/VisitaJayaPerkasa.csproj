@@ -171,6 +171,12 @@
     <Compile Include="Control\PriceList\PriceList.Designer.cs">
       <DependentUpon>PriceList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Control\Schedule\ScheduleList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Schedule\ScheduleList.Designer.cs">
+      <DependentUpon>ScheduleList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Control\Supplier\SupplierEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -268,6 +274,7 @@
     <Compile Include="Entities\LeadTime.cs" />
     <Compile Include="Entities\Pelayaran.cs" />
     <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\Schedule.cs" />
     <Compile Include="Entities\Supplier.cs" />
     <Compile Include="Entities\TypeCont.cs" />
     <Compile Include="Entities\User.cs" />
@@ -300,6 +307,7 @@
     <Compile Include="SqlRepository\SqlPelayaranRepository.cs" />
     <Compile Include="SqlRepository\SqlPriceListRepository.cs" />
     <Compile Include="SqlRepository\SqlRoleRepository.cs" />
+    <Compile Include="SqlRepository\SqlScheduleRepository.cs" />
     <Compile Include="SqlRepository\SqlSupplierRepository.cs" />
     <Compile Include="SqlRepository\SqlTypeContRepository.cs" />
     <Compile Include="SqlRepository\SqlUserRepository.cs" />
@@ -336,6 +344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Control\PriceList\PriceList.resx">
       <DependentUpon>PriceList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Schedule\ScheduleList.resx">
+      <DependentUpon>ScheduleList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\Supplier\SupplierList.resx">
       <DependentUpon>SupplierList.cs</DependentUpon>
@@ -444,7 +455,9 @@
   <ItemGroup>
     <None Include="Resources\refresh-16.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\calendar.jpeg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
