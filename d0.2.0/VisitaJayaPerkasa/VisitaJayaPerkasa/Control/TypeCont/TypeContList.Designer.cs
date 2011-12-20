@@ -35,6 +35,7 @@
             this.radToolStripItem4 = new Telerik.WinControls.UI.RadToolStripItem();
             this.radComboBoxElement = new Telerik.WinControls.UI.RadComboBoxElement();
             this.radComboBoxItem1 = new Telerik.WinControls.UI.RadComboBoxItem();
+            this.radComboBoxItem3 = new Telerik.WinControls.UI.RadComboBoxItem();
             this.radTextBoxElementSearchWord = new Telerik.WinControls.UI.RadTextBoxElement();
             this.radButtonElementBtnSearch = new Telerik.WinControls.UI.RadButtonElement();
             this.TypeContGridView = new Telerik.WinControls.UI.RadGridView();
@@ -49,10 +50,8 @@
             this.radButtonElementCreate = new Telerik.WinControls.UI.RadButtonElement();
             this.radButtonElementEdit = new Telerik.WinControls.UI.RadButtonElement();
             this.radButtonElementRemove = new Telerik.WinControls.UI.RadButtonElement();
-            this.radComboBoxItem3 = new Telerik.WinControls.UI.RadComboBoxItem();
             ((System.ComponentModel.ISupportInitialize)(this.radComboBoxElement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TypeContGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TypeContGridView.MasterGridViewTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,6 +103,11 @@
             this.radComboBoxItem1.Name = "radComboBoxItem1";
             this.radComboBoxItem1.Text = "Code";
             // 
+            // radComboBoxItem3
+            // 
+            this.radComboBoxItem3.Name = "radComboBoxItem3";
+            this.radComboBoxItem3.Text = "Name";
+            // 
             // radTextBoxElementSearchWord
             // 
             this.radTextBoxElementSearchWord.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -133,7 +137,7 @@
             this.TypeContGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.TypeContGridView.Location = new System.Drawing.Point(0, 54);
             // 
-            // gridViewTemplate1
+            // 
             // 
             this.TypeContGridView.MasterGridViewTemplate.AllowAddNewRow = false;
             gridViewTextBoxColumn1.FieldAlias = "ID";
@@ -277,11 +281,6 @@
             this.radButtonElementRemove.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.radButtonElementRemove.Click += new System.EventHandler(this.radButtonElementRemove_Click);
             // 
-            // radComboBoxItem3
-            // 
-            this.radComboBoxItem3.Name = "radComboBoxItem3";
-            this.radComboBoxItem3.Text = "Name";
-            // 
             // TypeContList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -291,7 +290,6 @@
             this.Name = "TypeContList";
             this.Size = new System.Drawing.Size(627, 318);
             ((System.ComponentModel.ISupportInitialize)(this.radComboBoxElement)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TypeContGridView.MasterGridViewTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TypeContGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
             this.ResumeLayout(false);
