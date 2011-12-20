@@ -267,6 +267,7 @@
     <Compile Include="Control\Warehouse\WareHouseView.Designer.cs">
       <DependentUpon>WareHouseView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\CustomerDetail.cs" />
