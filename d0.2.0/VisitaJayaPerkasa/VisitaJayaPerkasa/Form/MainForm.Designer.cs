@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            Telerik.WinControls.UI.GridSortField gridSortField3 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.radMenuItem7 = new Telerik.WinControls.UI.RadMenuItem();
             this.radRibbonBar1 = new Telerik.WinControls.UI.RadRibbonBar();
@@ -103,41 +103,6 @@
             this.imageList1.Images.SetKeyName(11, "price.jpeg");
             this.imageList1.Images.SetKeyName(12, "schedule.jpeg");
             // 
-<<<<<<< .mine
-=======
-            // radStatusStrip
-            // 
-            this.radStatusStrip.AutoSize = true;
-            this.radStatusStrip.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radLabelElementWelcome});
-            this.radStatusStrip.LayoutStyle = Telerik.WinControls.UI.RadStatusBarLayoutStyle.Stack;
-            this.radStatusStrip.Location = new System.Drawing.Point(0, 401);
-            this.radStatusStrip.Name = "radStatusStrip";
-            this.radStatusStrip.Size = new System.Drawing.Size(971, 24);
-            this.radStatusStrip.SizingGrip = false;
-            this.radStatusStrip.TabIndex = 1;
-            this.radStatusStrip.Text = "radStatusStrip1";
-            // 
-            // radLabelElementWelcome
-            // 
-            this.radLabelElementWelcome.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.radLabelElementWelcome.Margin = new System.Windows.Forms.Padding(1);
-            this.radLabelElementWelcome.Name = "radLabelElementWelcome";
-            this.radStatusStrip.SetSpring(this.radLabelElementWelcome, false);
-            this.radLabelElementWelcome.Text = "";
-            this.radLabelElementWelcome.TextWrap = true;
-            // 
-            // MainPanel
-            // 
-            this.MainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MainPanel.Location = new System.Drawing.Point(0, 153);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(971, 248);
-            this.MainPanel.TabIndex = 2;
-            // 
->>>>>>> .r81
             // radMenuItem7
             // 
             this.radMenuItem7.Name = "radMenuItem7";
@@ -423,6 +388,7 @@
             // 
             this.radImageButtonElement1.Image = ((System.Drawing.Image)(resources.GetObject("radImageButtonElement1.Image")));
             this.radImageButtonElement1.ImageIndex = 11;
+            this.radImageButtonElement1.ImageKey = "price.jpeg";
             this.radImageButtonElement1.Name = "radImageButtonElement1";
             this.radImageButtonElement1.Text = "";
             this.radImageButtonElement1.Click += new System.EventHandler(this.radImageButtonElement1_Click);
@@ -438,6 +404,7 @@
             // 
             this.radImageButtonElement2.Image = ((System.Drawing.Image)(resources.GetObject("radImageButtonElement2.Image")));
             this.radImageButtonElement2.ImageIndex = 12;
+            this.radImageButtonElement2.ImageKey = "schedule.jpeg";
             this.radImageButtonElement2.Name = "radImageButtonElement2";
             this.radImageButtonElement2.Text = "";
             // 
@@ -547,10 +514,10 @@
             // gridViewTemplate1
             // 
             this.gridViewTemplate1.AllowAddNewRow = false;
-            gridSortField3.FieldAlias = "Tanggal";
-            gridSortField3.FieldName = "Tanggal";
-            gridSortField3.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            this.gridViewTemplate1.SortExpressions.Add(gridSortField3);
+            gridSortField1.FieldAlias = "Tanggal";
+            gridSortField1.FieldName = "Tanggal";
+            gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            this.gridViewTemplate1.SortExpressions.Add(gridSortField1);
             // 
             // radLabelElementWelcome
             // 
@@ -565,6 +532,7 @@
             // 
             this.radStatusStrip.AutoSize = true;
             this.radStatusStrip.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radLabelElementWelcome,
             this.radLabelElementWelcome});
             this.radStatusStrip.LayoutStyle = Telerik.WinControls.UI.RadStatusBarLayoutStyle.Stack;
             this.radStatusStrip.Location = new System.Drawing.Point(0, 401);
