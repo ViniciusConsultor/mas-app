@@ -70,7 +70,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         while (reader.Read())
                         {
                             Supplier supplier = new Supplier();
-                            supplier.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                            supplier.Id = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
                             supplier.SupplierName = reader.GetString(1); 
 
                             if (listSupplier == null)

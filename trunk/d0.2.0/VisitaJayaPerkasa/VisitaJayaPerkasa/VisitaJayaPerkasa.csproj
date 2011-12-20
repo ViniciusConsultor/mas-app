@@ -267,7 +267,6 @@
     <Compile Include="Control\Warehouse\WareHouseView.Designer.cs">
       <DependentUpon>WareHouseView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\CustomerDetail.cs" />
@@ -276,6 +275,7 @@
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Schedule.cs" />
     <Compile Include="Entities\Supplier.cs" />
+    <Compile Include="Entities\SupplierDetail.cs" />
     <Compile Include="Entities\TypeCont.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserProfile.cs" />
@@ -301,6 +301,7 @@
       <DependentUpon>ShippingMainDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="SqlRepository\ILists.cs" />
+    <Compile Include="SqlRepository\SqlCategoryRepository.cs" />
     <Compile Include="SqlRepository\SqlCityRepository.cs" />
     <Compile Include="SqlRepository\SqlCustomerRepository.cs" />
     <Compile Include="SqlRepository\SqlLeadTimeRepository.cs" />
@@ -342,6 +343,9 @@
     <EmbeddedResource Include="Control\Pelayaran\PelayaranView.resx">
       <DependentUpon>PelayaranView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Control\Supplier\SupplierEdit.resx">
+      <DependentUpon>SupplierEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\PriceList\PriceList.resx">
       <DependentUpon>PriceList.cs</DependentUpon>
     </EmbeddedResource>
@@ -350,6 +354,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Control\Supplier\SupplierList.resx">
       <DependentUpon>SupplierList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Supplier\SupplierView.resx">
+      <DependentUpon>SupplierView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\TypeCont\TypeContEdit.resx">
       <DependentUpon>TypeContEdit.cs</DependentUpon>
