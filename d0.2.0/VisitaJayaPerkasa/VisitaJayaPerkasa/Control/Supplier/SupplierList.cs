@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using VisitaJayaPerkasa.SqlRepository;
+using System.Data.SqlClient;
+using VisitaJayaPerkasa.Entities;
+using Telerik.WinControls.UI;
 
 namespace VisitaJayaPerkasa.Control.Supplier
 {
@@ -33,15 +36,15 @@ namespace VisitaJayaPerkasa.Control.Supplier
         }
 
         public void LoadData()
-        {/*
-            sqlUserRepository = new SqlUserRepository();
-            Users = null;
+        {
+            sqlSupplierRepository = new SqlSupplierRepository();
+            Supliers = null;
 
             string searchValue = radTextBoxElementSearchWord.Text;
             string searchKey = radComboBoxElement.Text;
 
-            Users = sqlUserRepository.GetUsers();
-            if (Users != null)
+            Supliers = sqlSupplierRepository.ListSuppliers();
+            if (Supliers != null)
             {
                 if (!string.IsNullOrEmpty(searchValue) && !string.IsNullOrEmpty(searchKey))
                 {
@@ -49,13 +52,9 @@ namespace VisitaJayaPerkasa.Control.Supplier
 
                     switch (searchKey)
                     {
-                        case "First Name":
+                        case "Supplier Name":
                             sqlParam = SqlUtility.SetSqlParameter(new string[] { "first_name" }, new object[] { searchValue });
-                            Users = Users.Where(c => c.FirstName.Contains(searchValue)).ToList<User>();
-                            break;
-                        case "Last Name":
-                            sqlParam = SqlUtility.SetSqlParameter(new string[] { "last_name" }, new object[] { searchValue });
-                            Users = Users.Where(c => c.LastName.Contains(searchValue)).ToList<User>();
+                            Supliers = Supliers.Where(c => c.SupplierName.Contains(searchValue)).ToList<Entities.Supplier>();
                             break;
                     }
 
@@ -63,27 +62,27 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 }
             }
 
-            if (Users != null)
+            if (Supliers != null)
             {
-                totalPage = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(Users.Count() / Convert.ToDecimal(pageSize))));
+                totalPage = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(Supliers.Count() / Convert.ToDecimal(pageSize))));
                 currentPage = 1;
             }
             else
                 totalPage = 0;
 
-            RefreshGrid();*/
+            RefreshGrid();
         }
 
 
         public void RefreshGrid()
-        {/*
+        {
             if (totalPage != 0)
-                ShowUser = Users.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList<User>();
+                Showsuppliers = Supliers.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList<Entities.Supplier>();
             else
-                ShowUser = null;
+                Showsuppliers = null;
 
             radToolStripLabelIndexing.Text = currentPage + " / " + totalPage;
-            UserGridView.DataSource = ShowUser;*/
+            SupplierGridView.DataSource = Showsuppliers;
         }
 
         private void radButtonElementNext_Click(object sender, EventArgs e)
@@ -114,77 +113,63 @@ namespace VisitaJayaPerkasa.Control.Supplier
             LoadData();
         }
 
-        private void PelayaranGridView_DoubleClick(object sender, EventArgs e)
-        {/*
-            if (Users != null)
-            {
-                GridViewRowInfo gridInfo = UserGridView.SelectedRows.First();
-                string id = gridInfo.Cells[0].Value.ToString();
-                User user = Users.Where(c => c.PersonID.ToString().Equals(id)).FirstOrDefault();
-
-
-                UserControl controllers = new UserView(user);
-                Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
-            }*/
-        }
-
         private void radButtonElementRemove_Click(object sender, EventArgs e)
         {
-            /*
-            if (Users != null)
+            if (Showsuppliers != null)
             {
-                sqlUserRepository = new SqlUserRepository();
-                DialogResult dResult = MessageBox.Show(this, "Are you sure want delete this data ? ", "Confirmation", MessageBoxButtons.YesNo);
+                sqlSupplierRepository = new SqlSupplierRepository();
+                DialogResult dResult = MessageBox.Show(this, "Are you sure want delete master and detail this supplier ? ", "Confirmation", MessageBoxButtons.YesNo);
                 if (dResult == DialogResult.Yes)
                 {
-                    GridViewRowInfo gridInfo = UserGridView.SelectedRows.First();
+                    GridViewRowInfo gridInfo = SupplierGridView.SelectedRows.First();
                     string id = gridInfo.Cells[0].Value.ToString();
-                    User user = ShowUser.Where(c => c.PersonID.ToString() == id).SingleOrDefault();
+                    SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "supplier_id" }, new object[] { id });
 
-
-                    Guid roleID = sqlUserRepository.GetUserRole(user.PersonID);
-                    if (roleID != Guid.Empty)
+                    if (sqlSupplierRepository.DeleteSupplier(sqlParam))
                     {
-                        user.RoleObj = new Role();
-                        user.RoleObj.ID = roleID;
+                        MessageBox.Show("Data Deleted !");
+                        LoadData();
                     }
+                    else
+                        MessageBox.Show("Cannot Delete Data !");
 
-                    sqlUserRepository = null;
-                    UserControl controllers = new UserEdit(user);
-                    Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
+                    sqlParam = null;
                 }
-            }*/
+            }
         }
 
         private void radButtonElementCreate_Click(object sender, EventArgs e)
-        {/*
-            User user = null;
-            UserControl controllers = new UserEdit(user);
-            Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);*/
+        {
+            VisitaJayaPerkasa.Entities.Supplier supplier = null;
+            UserControl controllers = new SupplierEdit(supplier);
+            Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
         }
 
         private void radButtonElementEdit_Click(object sender, EventArgs e)
-        {/*
-            if (ShowUser != null)
+        {
+            if (Showsuppliers != null)
             {
-                GridViewRowInfo gridInfo = UserGridView.SelectedRows.First();
+                GridViewRowInfo gridInfo = SupplierGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();
-                SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "person_id" }, new object[] { id });
+                VisitaJayaPerkasa.Entities.Supplier supplier = Showsuppliers.Where(c => c.Id.ToString() == id).SingleOrDefault();
 
-                if (sqlUserRepository.DeleteUser(sqlParam))
-                {
-                    MessageBox.Show("Data Deleted !");
-                    LoadData();
-                }
-                else
-                    MessageBox.Show("Cannot Delete Data !");
-
-                sqlParam = null;
-
-                User user = null;
-                UserControl controllers = new UserEdit(user);
+                UserControl controllers = new SupplierEdit(supplier);
                 Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
-            }*/
+            }
+        }
+
+        private void SupplierGridView_DoubleClick(object sender, EventArgs e)
+        {
+            if (Showsuppliers != null)
+            {
+                GridViewRowInfo gridInfo = SupplierGridView.SelectedRows.First();
+                string id = gridInfo.Cells[0].Value.ToString();
+                VisitaJayaPerkasa.Entities.Supplier supplier = Showsuppliers.Where(c => c.Id.ToString().Equals(id)).FirstOrDefault();
+
+
+                UserControl controllers = new SupplierView(supplier);
+                Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
+            }
         }
     }
 }

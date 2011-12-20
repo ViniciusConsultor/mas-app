@@ -7,7 +7,14 @@ namespace VisitaJayaPerkasa.Entities
 {
     public class Supplier
     {
-        public Guid ID { get; set; }
-        public String SupplierName { get; set; }
+        public Guid Id { get; set; }
+        public Guid CategoryId { get; set; }
+        public string SupplierName { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
+        public string Fax { get; set; }
+        public string Email { get; set; }
+        public string ContactPerson { get; set; }
+        public int Deleted { get; set; }
     }
 }
