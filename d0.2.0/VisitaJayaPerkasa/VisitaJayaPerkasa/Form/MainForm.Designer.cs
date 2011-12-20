@@ -407,6 +407,7 @@
             this.radImageButtonElement2.ImageKey = "schedule.jpeg";
             this.radImageButtonElement2.Name = "radImageButtonElement2";
             this.radImageButtonElement2.Text = "";
+            this.radImageButtonElement2.Click += new System.EventHandler(this.radImageButtonElement2_Click);
             // 
             // ribbonTab2
             // 

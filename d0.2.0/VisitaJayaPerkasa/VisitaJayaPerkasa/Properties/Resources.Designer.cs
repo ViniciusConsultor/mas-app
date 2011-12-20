@@ -67,6 +67,27 @@ namespace VisitaJayaPerkasa.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap calendar {
+            get {
+                object obj = ResourceManager.GetObject("calendar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap calendar1 {
+            get {
+                object obj = ResourceManager.GetObject("calendar1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap calendar2 {
+            get {
+                object obj = ResourceManager.GetObject("calendar2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap close_16 {
             get {
                 object obj = ResourceManager.GetObject("close-16", resourceCulture);
