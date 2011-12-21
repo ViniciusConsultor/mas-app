@@ -74,7 +74,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
             ((GridViewComboBoxColumn)this.PriceListGridView.Columns[3]).DisplayMember = "TypeName";
             ((GridViewComboBoxColumn)this.PriceListGridView.Columns[3]).ValueMember = "ID";
 
-            listCondition = sqlConditionRepository.GetCondition();
+            listCondition = sqlConditionRepository.GetConditions();
             ((GridViewComboBoxColumn)this.PriceListGridView.Columns[4]).DataSource = listCondition;
             ((GridViewComboBoxColumn)this.PriceListGridView.Columns[4]).DisplayMember = "ConditionName";
             ((GridViewComboBoxColumn)this.PriceListGridView.Columns[4]).ValueMember = "ID";
