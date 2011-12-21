@@ -275,6 +275,7 @@
     </Compile>
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\City.cs" />
+    <Compile Include="Entities\Condition.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\CustomerDetail.cs" />
     <Compile Include="Entities\LeadTime.cs" />
@@ -311,6 +312,7 @@
     <Compile Include="SqlRepository\ILists.cs" />
     <Compile Include="SqlRepository\SqlCategoryRepository.cs" />
     <Compile Include="SqlRepository\SqlCityRepository.cs" />
+    <Compile Include="SqlRepository\SqlConditionRepository.cs" />
     <Compile Include="SqlRepository\SqlCustomerRepository.cs" />
     <Compile Include="SqlRepository\SqlLeadTimeRepository.cs" />
     <Compile Include="SqlRepository\SqlPelayaranRepository.cs" />
