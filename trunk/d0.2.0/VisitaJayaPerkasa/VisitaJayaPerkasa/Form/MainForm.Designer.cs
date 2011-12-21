@@ -548,7 +548,7 @@
             this.radLabelElementWelcome,
             this.radLabelElementWelcome});
             this.radStatusStrip.LayoutStyle = Telerik.WinControls.UI.RadStatusBarLayoutStyle.Stack;
-            this.radStatusStrip.Location = new System.Drawing.Point(0, 401);
+            this.radStatusStrip.Location = new System.Drawing.Point(0, 571);
             this.radStatusStrip.Name = "radStatusStrip";
             this.radStatusStrip.Size = new System.Drawing.Size(971, 24);
             this.radStatusStrip.SizingGrip = false;
@@ -557,19 +557,19 @@
             // 
             // MainPanel
             // 
-            this.MainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.MainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MainPanel.Location = new System.Drawing.Point(0, 153);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(971, 248);
+            this.MainPanel.Size = new System.Drawing.Size(971, 418);
             this.MainPanel.TabIndex = 2;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(971, 425);
+            this.ClientSize = new System.Drawing.Size(971, 595);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.radStatusStrip);
             this.Controls.Add(this.radRibbonBar1);

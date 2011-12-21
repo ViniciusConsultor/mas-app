@@ -9,7 +9,7 @@ namespace VisitaJayaPerkasa.Entities
     {
         public Guid ID { get; set; }
         public string ConditionCode { get; set; }
-        public string conditionName { get; set; }
+        public string ConditionName { get; set; }
         public int Deleted { get; set; }
     }
 }
