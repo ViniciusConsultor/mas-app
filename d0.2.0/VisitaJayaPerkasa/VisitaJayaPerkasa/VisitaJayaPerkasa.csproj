@@ -288,6 +288,7 @@
     <Compile Include="Entities\UserProfile.cs" />
     <Compile Include="Entities\UserRole.cs" />
     <Compile Include="Entities\Vessel.cs" />
+    <Compile Include="Entities\WareHouse.cs" />
     <Compile Include="Form\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -321,6 +322,7 @@
     <Compile Include="SqlRepository\SqlUserRepository.cs" />
     <Compile Include="SqlRepository\SqlUtility.cs" />
     <Compile Include="SqlRepository\SqlVesselRepository.cs" />
+    <Compile Include="SqlRepository\SqlWareHouseRepository.cs" />
     <Compile Include="Utility\Log\Logging.cs" />
     <Compile Include="Utility\Utility.cs" />
     <EmbeddedResource Include="Control\Customer\CustomerEdit.resx">
@@ -394,6 +396,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Control\VesselControls\VesselView.resx">
       <DependentUpon>VesselView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Warehouse\WareHouseEdit.resx">
+      <DependentUpon>WareHouseEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Warehouse\WareHouseList.resx">
+      <DependentUpon>WareHouseList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Warehouse\WareHouseView.resx">
+      <DependentUpon>WareHouseView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
