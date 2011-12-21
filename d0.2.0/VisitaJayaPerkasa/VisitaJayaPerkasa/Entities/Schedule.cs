@@ -8,15 +8,15 @@ namespace VisitaJayaPerkasa.Entities
     public class Schedule
     {
         public Guid ID { get; set; }
-        public string berangkat { get; set; }
-        public string tujuan { get; set; }
+        public Guid berangkat { get; set; }
+        public Guid tujuan { get; set; }
         public Guid pelayaranID { get; set; }
         public Guid vesselID { get; set; }
-        public string voy { get; set; }
         public DateTime etd { get; set; }
+        public DateTime tglclosing { get; set; }
+        public string voy { get; set; }
         public string keterangan { get; set; }
         public string ro { get; set; }
-        public DateTime tglclosing { get; set; }
 
 
         //model for view
@@ -24,9 +24,6 @@ namespace VisitaJayaPerkasa.Entities
         public string namaPelayaran { get; set; }
         public string namaKapal { get; set; }
 
-        public string GetBerangkatTujuan() {
-            return berangkat + " - " + tujuan;
-        }
     }
 
 }
