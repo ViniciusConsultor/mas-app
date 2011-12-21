@@ -327,6 +327,33 @@
     <Compile Include="SqlRepository\SqlWareHouseRepository.cs" />
     <Compile Include="Utility\Log\Logging.cs" />
     <Compile Include="Utility\Utility.cs" />
+    <EmbeddedResource Include="Control\Category\CategoryEdit.resx">
+      <DependentUpon>CategoryEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Category\CategoryList.resx">
+      <DependentUpon>CategoryList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Category\CategoryView.resx">
+      <DependentUpon>CategoryView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\City\CityEdit.resx">
+      <DependentUpon>CityEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\City\CityList.resx">
+      <DependentUpon>CityList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\City\CityView.resx">
+      <DependentUpon>CityView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Condition\ConditionEdit.resx">
+      <DependentUpon>ConditionEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Condition\ConditionList.resx">
+      <DependentUpon>ConditionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Condition\ConditionView.resx">
+      <DependentUpon>ConditionView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\Customer\CustomerEdit.resx">
       <DependentUpon>CustomerEdit.cs</DependentUpon>
     </EmbeddedResource>
