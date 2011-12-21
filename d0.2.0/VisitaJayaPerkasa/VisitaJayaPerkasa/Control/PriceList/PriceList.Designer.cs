@@ -28,10 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridSortField gridSortField3 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn1 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn1 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn2 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn3 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn4 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.radButton2 = new Telerik.WinControls.UI.RadButton();
             this.cboStuffingPlace = new Telerik.WinControls.UI.RadComboBox();
             this.cboRecipient = new Telerik.WinControls.UI.RadComboBox();
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
@@ -50,14 +57,14 @@
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
-            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-            this.radButton2 = new Telerik.WinControls.UI.RadButton();
+            this.PriceListGridView = new Telerik.WinControls.UI.RadGridView();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
             this.splitPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboStuffingPlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboRecipient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
@@ -77,8 +84,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // radSplitContainer1
@@ -140,9 +146,18 @@
             this.radPanel1.Size = new System.Drawing.Size(640, 268);
             this.radPanel1.TabIndex = 0;
             // 
+            // radButton2
+            // 
+            this.radButton2.Location = new System.Drawing.Point(378, 236);
+            this.radButton2.Name = "radButton2";
+            this.radButton2.Size = new System.Drawing.Size(141, 22);
+            this.radButton2.TabIndex = 31;
+            this.radButton2.Text = "Display Data";
+            this.radButton2.Click += new System.EventHandler(this.radButton2_Click);
+            // 
             // cboStuffingPlace
             // 
-            this.cboStuffingPlace.Location = new System.Drawing.Point(404, 97);
+            this.cboStuffingPlace.Location = new System.Drawing.Point(434, 101);
             this.cboStuffingPlace.Name = "cboStuffingPlace";
             // 
             // 
@@ -153,6 +168,7 @@
             this.cboStuffingPlace.TabIndex = 30;
             this.cboStuffingPlace.TabStop = false;
             this.cboStuffingPlace.Text = "-- Choose --";
+            this.cboStuffingPlace.Visible = false;
             this.cboStuffingPlace.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboStuffingPlace_KeyPress);
             // 
             // cboRecipient
@@ -168,6 +184,7 @@
             this.cboRecipient.TabIndex = 29;
             this.cboRecipient.TabStop = false;
             this.cboRecipient.Text = "-- Choose --";
+            this.cboRecipient.Visible = false;
             this.cboRecipient.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboRecipient_KeyPress);
             // 
             // radButton1
@@ -179,6 +196,7 @@
             this.radButton1.TabIndex = 28;
             this.radButton1.Text = "Search";
             this.radButton1.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            this.radButton1.Visible = false;
             // 
             // txtCustomer
             // 
@@ -188,10 +206,11 @@
             this.txtCustomer.Size = new System.Drawing.Size(149, 20);
             this.txtCustomer.TabIndex = 27;
             this.txtCustomer.TabStop = false;
+            this.txtCustomer.Visible = false;
             // 
             // cbDestination
             // 
-            this.cbDestination.Location = new System.Drawing.Point(403, 129);
+            this.cbDestination.Location = new System.Drawing.Point(128, 101);
             this.cbDestination.Name = "cbDestination";
             // 
             // 
@@ -247,7 +266,7 @@
             // 
             this.pickerTo.AutoSize = true;
             this.pickerTo.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.pickerTo.Location = new System.Drawing.Point(308, 183);
+            this.pickerTo.Location = new System.Drawing.Point(308, 137);
             this.pickerTo.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.pickerTo.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.pickerTo.Name = "pickerTo";
@@ -268,7 +287,7 @@
             // 
             // radLabel8
             // 
-            this.radLabel8.Location = new System.Drawing.Point(286, 189);
+            this.radLabel8.Location = new System.Drawing.Point(286, 143);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(16, 16);
             this.radLabel8.TabIndex = 22;
@@ -276,7 +295,7 @@
             // 
             // radLabel3
             // 
-            this.radLabel3.Location = new System.Drawing.Point(21, 183);
+            this.radLabel3.Location = new System.Drawing.Point(21, 137);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(45, 16);
             this.radLabel3.TabIndex = 16;
@@ -286,7 +305,7 @@
             // 
             this.pickerFrom.AutoSize = true;
             this.pickerFrom.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.pickerFrom.Location = new System.Drawing.Point(97, 183);
+            this.pickerFrom.Location = new System.Drawing.Point(97, 137);
             this.pickerFrom.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.pickerFrom.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.pickerFrom.Name = "pickerFrom";
@@ -304,10 +323,11 @@
             this.radLabel4.Size = new System.Drawing.Size(54, 16);
             this.radLabel4.TabIndex = 15;
             this.radLabel4.Text = "Recipient";
+            this.radLabel4.Visible = false;
             // 
             // radLabel7
             // 
-            this.radLabel7.Location = new System.Drawing.Point(326, 129);
+            this.radLabel7.Location = new System.Drawing.Point(21, 101);
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(63, 16);
             this.radLabel7.TabIndex = 20;
@@ -320,18 +340,20 @@
             this.radLabel5.Size = new System.Drawing.Size(55, 16);
             this.radLabel5.TabIndex = 17;
             this.radLabel5.Text = "Customer";
+            this.radLabel5.Visible = false;
             // 
             // radLabel6
             // 
-            this.radLabel6.Location = new System.Drawing.Point(326, 97);
+            this.radLabel6.Location = new System.Drawing.Point(326, 101);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(76, 16);
             this.radLabel6.TabIndex = 19;
             this.radLabel6.Text = "Stuffing Place";
+            this.radLabel6.Visible = false;
             // 
             // splitPanel2
             // 
-            this.splitPanel2.Controls.Add(this.radGridView1);
+            this.splitPanel2.Controls.Add(this.PriceListGridView);
             this.splitPanel2.Location = new System.Drawing.Point(0, 271);
             this.splitPanel2.Name = "splitPanel2";
             // 
@@ -345,36 +367,70 @@
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
             // 
-            // radGridView1
+            // PriceListGridView
             // 
-            this.radGridView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
-            this.radGridView1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.radGridView1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.radGridView1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.radGridView1.Location = new System.Drawing.Point(0, 0);
+            this.PriceListGridView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
+            this.PriceListGridView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.PriceListGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PriceListGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.PriceListGridView.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.PriceListGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.PriceListGridView.Location = new System.Drawing.Point(0, 0);
             // 
             // 
             // 
-            this.radGridView1.MasterGridViewTemplate.AllowAddNewRow = false;
-            gridSortField3.FieldAlias = "Tanggal";
-            gridSortField3.FieldName = "Tanggal";
-            gridSortField3.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            this.radGridView1.MasterGridViewTemplate.SortExpressions.Add(gridSortField3);
-            this.radGridView1.Name = "radGridView1";
-            this.radGridView1.ReadOnly = true;
-            this.radGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radGridView1.Size = new System.Drawing.Size(640, 159);
-            this.radGridView1.TabIndex = 1;
-            // 
-            // radButton2
-            // 
-            this.radButton2.Location = new System.Drawing.Point(378, 236);
-            this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(141, 22);
-            this.radButton2.TabIndex = 31;
-            this.radButton2.Text = "Display Data";
+            gridViewDateTimeColumn1.DataType = typeof(System.DateTime);
+            gridViewDateTimeColumn1.FieldAlias = "Date";
+            gridViewDateTimeColumn1.FieldName = "Date";
+            gridViewDateTimeColumn1.HeaderText = "Date";
+            gridViewDateTimeColumn1.UniqueName = "Date";
+            gridViewDateTimeColumn1.Width = 117;
+            gridViewComboBoxColumn1.DisplayMember = null;
+            gridViewComboBoxColumn1.FieldAlias = "column1";
+            gridViewComboBoxColumn1.HeaderText = "Supplier Name";
+            gridViewComboBoxColumn1.UniqueName = "column1";
+            gridViewComboBoxColumn1.ValueMember = null;
+            gridViewComboBoxColumn1.Width = 120;
+            gridViewComboBoxColumn2.DisplayMember = null;
+            gridViewComboBoxColumn2.FieldAlias = "column2";
+            gridViewComboBoxColumn2.HeaderText = "Tujuan";
+            gridViewComboBoxColumn2.UniqueName = "column2";
+            gridViewComboBoxColumn2.ValueMember = null;
+            gridViewComboBoxColumn2.Width = 100;
+            gridViewComboBoxColumn3.DisplayMember = null;
+            gridViewComboBoxColumn3.FieldAlias = "column3";
+            gridViewComboBoxColumn3.HeaderText = "Type";
+            gridViewComboBoxColumn3.UniqueName = "column3";
+            gridViewComboBoxColumn3.ValueMember = null;
+            gridViewComboBoxColumn3.Width = 100;
+            gridViewComboBoxColumn4.DisplayMember = null;
+            gridViewComboBoxColumn4.FieldAlias = "column4";
+            gridViewComboBoxColumn4.HeaderText = "Condition";
+            gridViewComboBoxColumn4.UniqueName = "column4";
+            gridViewComboBoxColumn4.ValueMember = null;
+            gridViewComboBoxColumn4.Width = 100;
+            gridViewDecimalColumn1.DataType = typeof(decimal);
+            gridViewDecimalColumn1.DecimalPlaces = 0;
+            gridViewDecimalColumn1.FieldAlias = "column5";
+            gridViewDecimalColumn1.FormatInfo = new System.Globalization.CultureInfo("ii-CN");
+            gridViewDecimalColumn1.HeaderText = "Harga";
+            gridViewDecimalColumn1.ThousandsSeparator = true;
+            gridViewDecimalColumn1.UniqueName = "column5";
+            gridViewDecimalColumn1.Width = 120;
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDateTimeColumn1);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn1);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn2);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn3);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn4);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDecimalColumn1);
+            gridSortField1.FieldAlias = "Tanggal";
+            gridSortField1.FieldName = "Tanggal";
+            gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            this.PriceListGridView.MasterGridViewTemplate.SortExpressions.Add(gridSortField1);
+            this.PriceListGridView.Name = "PriceListGridView";
+            this.PriceListGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.PriceListGridView.Size = new System.Drawing.Size(640, 159);
+            this.PriceListGridView.TabIndex = 1;
             // 
             // PriceList
             // 
@@ -390,6 +446,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             this.radPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboStuffingPlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboRecipient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
@@ -409,8 +466,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -420,7 +476,7 @@
         private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
         private Telerik.WinControls.UI.SplitPanel splitPanel1;
         private Telerik.WinControls.UI.SplitPanel splitPanel2;
-        private Telerik.WinControls.UI.RadGridView radGridView1;
+        private Telerik.WinControls.UI.RadGridView PriceListGridView;
         private Telerik.WinControls.UI.RadPanel radPanel1;
         private Telerik.WinControls.UI.RadComboBox cboStuffingPlace;
         private Telerik.WinControls.UI.RadComboBox cboRecipient;

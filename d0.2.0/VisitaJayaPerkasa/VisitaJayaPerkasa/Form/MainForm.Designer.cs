@@ -64,6 +64,7 @@
             this.radImageButtonElement2 = new Telerik.WinControls.UI.RadImageButtonElement();
             this.ribbonTab2 = new Telerik.WinControls.UI.RibbonTab();
             this.ribbonTab3 = new Telerik.WinControls.UI.RibbonTab();
+            this.radButtonElement1 = new Telerik.WinControls.UI.RadButtonElement();
             this.radMenuItemMasterData = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemUser = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemRole = new Telerik.WinControls.UI.RadMenuItem();
@@ -141,6 +142,8 @@
             this.radRibbonBar1.OptionsButton.ButtonElement.Class = "RadMenuButtonElement";
             this.radRibbonBar1.OptionsButton.ButtonElement.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.radRibbonBar1.OptionsButton.Text = "Options";
+            this.radRibbonBar1.QuickAccessToolBarItems.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radButtonElement1});
             // 
             // 
             // 
@@ -157,7 +160,7 @@
             this.radMenuItemExit});
             this.radRibbonBar1.StartMenuWidth = 250;
             this.radRibbonBar1.TabIndex = 0;
-            this.radRibbonBar1.Text = "MainForm";
+            this.radRibbonBar1.Text = "Visita Jaya Perkasa";
             // 
             // ribbonTab1
             // 
@@ -443,6 +446,15 @@
             this.ribbonTab3.StretchHorizontally = false;
             this.ribbonTab3.Text = "Reporting";
             // 
+            // radButtonElement1
+            // 
+            this.radButtonElement1.Class = "RibbonBarButtonElement";
+            this.radButtonElement1.MaxSize = new System.Drawing.Size(0, 18);
+            this.radButtonElement1.Name = "radButtonElement1";
+            this.radButtonElement1.Padding = new System.Windows.Forms.Padding(2, 1, 2, 2);
+            this.radButtonElement1.Text = "VJP";
+            this.radButtonElement1.ZIndex = 1;
+            // 
             // radMenuItemMasterData
             // 
             this.radMenuItemMasterData.Image = global::VisitaJayaPerkasa.Properties.Resources.ic_masterdata;
@@ -568,7 +580,7 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MainForm";
+            this.Text = "Visita Jaya Perkasa";
             ((System.ComponentModel.ISupportInitialize)(this.radRibbonBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewTemplate1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip)).EndInit();
@@ -628,5 +640,6 @@
         private Telerik.WinControls.UI.RadLabelElement radLabelElementWelcome;
         private Telerik.WinControls.UI.RadStatusStrip radStatusStrip;
         private System.Windows.Forms.Panel MainPanel;
+        private Telerik.WinControls.UI.RadButtonElement radButtonElement1;
     }
 }
