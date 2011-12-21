@@ -99,7 +99,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(630, 80);
+            this.radToolStrip1.Size = new System.Drawing.Size(630, 102);
             this.radToolStrip1.TabIndex = 6;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
@@ -264,7 +264,7 @@
             this.SupplierGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.SupplierGridView.ForeColor = System.Drawing.SystemColors.ControlText;
             this.SupplierGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.SupplierGridView.Location = new System.Drawing.Point(0, 80);
+            this.SupplierGridView.Location = new System.Drawing.Point(0, 102);
             // 
             // 
             // 
@@ -276,7 +276,7 @@
             gridViewTextBoxColumn1.UniqueName = "ID";
             gridViewTextBoxColumn2.FieldAlias = "SupplierName";
             gridViewTextBoxColumn2.FieldName = "SupplierName";
-            gridViewTextBoxColumn2.HeaderText = "Customer Name";
+            gridViewTextBoxColumn2.HeaderText = "Supplier Name";
             gridViewTextBoxColumn2.UniqueName = "SupplierName";
             gridViewTextBoxColumn2.Width = 128;
             gridViewTextBoxColumn3.FieldAlias = "CategoryId";
@@ -320,7 +320,7 @@
             this.SupplierGridView.Name = "SupplierGridView";
             this.SupplierGridView.ReadOnly = true;
             this.SupplierGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.SupplierGridView.Size = new System.Drawing.Size(630, 248);
+            this.SupplierGridView.Size = new System.Drawing.Size(630, 226);
             this.SupplierGridView.TabIndex = 7;
             this.SupplierGridView.ThemeName = "ControlDefault";
             this.SupplierGridView.DoubleClick += new System.EventHandler(this.SupplierGridView_DoubleClick);

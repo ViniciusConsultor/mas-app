@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using VisitaJayaPerkasa.SqlRepository;
 using Telerik.WinControls.UI;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace VisitaJayaPerkasa.Control.Supplier
 {
@@ -66,6 +67,10 @@ namespace VisitaJayaPerkasa.Control.Supplier
         {
             if (etFirstName.Text.Trim().Length == 0)
                 MessageBox.Show(this, "Please fill first name", "Information");
+            else if (!Regex.Match(etDetailPhone.Text.Trim(), @"(^\d{5}$)|(^\d{5}-\d{4}$)").Success)
+                MessageBox.Show(this, "Invalid phone number", "Information");
+            else if (!Regex.Match(etDetailMobile.Text.Trim(), @"(^\d{5}$)|(^\d{5}-\d{4}$)").Success)
+                MessageBox.Show(this, "Invalid mobile number", "Information");
             else
             {
                 VisitaJayaPerkasa.Entities.SupplierDetail supplierDetail = new Entities.SupplierDetail();
@@ -145,13 +150,22 @@ namespace VisitaJayaPerkasa.Control.Supplier
         {
             if (etSupplierName.Text.Trim().Length == 0)
             {
-                MessageBox.Show(this, "Please fill customer name", "Information");
+                MessageBox.Show(this, "Please fill supplier name", "Information");
             }
+            else if (!Regex.Match(etEmail.Text.Trim(), @"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
+            + @"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\."
+            + @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+            + @"([a-zA-Z]+[\w-]+\.)+[a-zA-Z]{2,4})$").Success)
+                MessageBox.Show(this, "Invalid email", "Information");
+            else if (!Regex.Match(etPhone.Text.Trim(), @"(^\d{5}$)|(^\d{5}-\d{4}$)").Success)
+                MessageBox.Show(this, "Invalid phone number", "Information");
+            else if (!Regex.Match(etFax.Text.Trim(), @"(^\d{5}$)|(^\d{5}-\d{4}$)").Success)
+                MessageBox.Show(this, "Invalid fax number", "Information");
             else
             {
                 if (supplierDetailGridView.RowCount == 0)
                 {
-                    DialogResult dResult = MessageBox.Show(this, "Are you sure want save this data without customer detail ? ", "Confirmation", MessageBoxButtons.YesNo);
+                    DialogResult dResult = MessageBox.Show(this, "Are you sure want save this data without supplier detail ? ", "Confirmation", MessageBoxButtons.YesNo);
                     if (dResult == DialogResult.Yes)
                     {
                         SaveData();
@@ -177,12 +191,12 @@ namespace VisitaJayaPerkasa.Control.Supplier
 
                 if (sqlSupplierRepository.CreateSupplier(sqlParam))
                 {
-                    MessageBox.Show(this, "Success insert customer data", "Information");
+                    MessageBox.Show(this, "Success insert supplier data", "Information");
                     radButtonElement2.PerformClick();
                 }
                 else
                 {
-                    MessageBox.Show(this, "Cannot insert customer data", "Information");
+                    MessageBox.Show(this, "Cannot insert supplier data", "Information");
                 }
                 sqlSupplierRepository = null;
                 strSqlParam = null;
@@ -198,12 +212,12 @@ namespace VisitaJayaPerkasa.Control.Supplier
 
                 if (sqlSupplierRepository.EditSupplier(sqlParam))
                 {
-                    MessageBox.Show(this, "Success edit customer data", "Information");
+                    MessageBox.Show(this, "Success edit supplier data", "Information");
                     radButtonElement2.PerformClick();
                 }
                 else
                 {
-                    MessageBox.Show(this, "Cannot edit customer data", "Information");
+                    MessageBox.Show(this, "Cannot edit supplier data", "Information");
                 }
 
                 sqlSupplierRepository = null;
