@@ -19,7 +19,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
         {
             InitializeComponent();
             sqlCustomerTransRepository = new SqlCustomerTransRepository();
-            //listCustomerTransDetail = sqlCustomerTransRepository.ListCustomerDetail(customerTrans.CustomerTransID);
+            listCustomerTransDetail = sqlCustomerTransRepository.ListCustomerTransDetail(customerTrans.CustomerTransID);
 
             if (listCustomerTransDetail != null)
                 CustomerTransDetailGridView.DataSource = listCustomerTransDetail;
