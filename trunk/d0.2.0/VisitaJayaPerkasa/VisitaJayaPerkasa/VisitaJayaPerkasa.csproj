@@ -201,6 +201,24 @@
     <Compile Include="Control\Supplier\SupplierView.Designer.cs">
       <DependentUpon>SupplierView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Control\Transaction\CustomerTransEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Transaction\CustomerTransEdit.Designer.cs">
+      <DependentUpon>CustomerTransEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Transaction\CustomerTransList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Transaction\CustomerTransList.Designer.cs">
+      <DependentUpon>CustomerTransList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Transaction\CustomerTransView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Transaction\CustomerTransView.Designer.cs">
+      <DependentUpon>CustomerTransView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Control\TypeCont\TypeContEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -278,6 +296,8 @@
     <Compile Include="Entities\Condition.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\CustomerDetail.cs" />
+    <Compile Include="Entities\CustomerTrans.cs" />
+    <Compile Include="Entities\CustomerTransDetail.cs" />
     <Compile Include="Entities\LeadTime.cs" />
     <Compile Include="Entities\Pelayaran.cs" />
     <Compile Include="Entities\PriceList.cs" />
@@ -315,6 +335,7 @@
     <Compile Include="SqlRepository\SqlCityRepository.cs" />
     <Compile Include="SqlRepository\SqlConditionRepository.cs" />
     <Compile Include="SqlRepository\SqlCustomerRepository.cs" />
+    <Compile Include="SqlRepository\SqlCustomerTransRepository.cs" />
     <Compile Include="SqlRepository\SqlLeadTimeRepository.cs" />
     <Compile Include="SqlRepository\SqlPelayaranRepository.cs" />
     <Compile Include="SqlRepository\SqlPriceListRepository.cs" />
@@ -399,6 +420,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Control\Supplier\SupplierView.resx">
       <DependentUpon>SupplierView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Transaction\CustomerTransEdit.resx">
+      <DependentUpon>CustomerTransEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Transaction\CustomerTransList.resx">
+      <DependentUpon>CustomerTransList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Transaction\CustomerTransView.resx">
+      <DependentUpon>CustomerTransView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\TypeCont\TypeContEdit.resx">
       <DependentUpon>TypeContEdit.cs</DependentUpon>
@@ -516,6 +546,7 @@
   <ItemGroup>
     <None Include="Resources\calendar.jpeg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
