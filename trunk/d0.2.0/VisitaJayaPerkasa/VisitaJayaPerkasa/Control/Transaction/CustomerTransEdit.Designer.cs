@@ -33,6 +33,9 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pickerFrom = new Telerik.WinControls.UI.RadDateTimePicker();
@@ -140,6 +143,7 @@
             this.cboCustomer.TabIndex = 32;
             this.cboCustomer.TabStop = false;
             this.cboCustomer.Text = "-- Choose --";
+            this.cboCustomer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboCustomer_KeyPress);
             // 
             // radLabel1
             // 
@@ -180,6 +184,7 @@
             this.radButtonElement1.ShowBorder = false;
             this.radButtonElement1.Text = "Save";
             this.radButtonElement1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.radButtonElement1.Click += new System.EventHandler(this.radButtonElement1_Click);
             // 
             // radButtonElement2
             // 
@@ -189,6 +194,7 @@
             this.radButtonElement2.ShowBorder = false;
             this.radButtonElement2.Text = "Close";
             this.radButtonElement2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.radButtonElement2.Click += new System.EventHandler(this.radButtonElement2_Click);
             // 
             // radToolStrip1
             // 
@@ -207,7 +213,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(829, 49);
+            this.radToolStrip1.Size = new System.Drawing.Size(829, 27);
             this.radToolStrip1.TabIndex = 26;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
@@ -279,6 +285,7 @@
             this.cboCondition.TabIndex = 37;
             this.cboCondition.TabStop = false;
             this.cboCondition.Text = "-- Choose --";
+            this.cboCondition.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboCondition_KeyPress);
             // 
             // cboDestination
             // 
@@ -293,6 +300,7 @@
             this.cboDestination.TabIndex = 36;
             this.cboDestination.TabStop = false;
             this.cboDestination.Text = "-- Choose --";
+            this.cboDestination.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboDestination_KeyPress);
             // 
             // cboOrigin
             // 
@@ -307,6 +315,7 @@
             this.cboOrigin.TabIndex = 35;
             this.cboOrigin.TabStop = false;
             this.cboOrigin.Text = "-- Choose --";
+            this.cboOrigin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboOrigin_KeyPress);
             // 
             // cboPelayaran
             // 
@@ -321,6 +330,7 @@
             this.cboPelayaran.TabIndex = 34;
             this.cboPelayaran.TabStop = false;
             this.cboPelayaran.Text = "-- Choose --";
+            this.cboPelayaran.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboPelayaran_KeyPress);
             // 
             // cboType
             // 
@@ -335,6 +345,7 @@
             this.cboType.TabIndex = 33;
             this.cboType.TabStop = false;
             this.cboType.Text = "-- Choose --";
+            this.cboType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboType_KeyPress);
             // 
             // radLabel12
             // 
@@ -389,43 +400,61 @@
             // 
             // 
             this.CustomerTransDetailGridView.MasterGridViewTemplate.AllowAddNewRow = false;
-            gridViewTextBoxColumn1.FieldAlias = "FirstName";
-            gridViewTextBoxColumn1.FieldName = "FirstName";
-            gridViewTextBoxColumn1.HeaderText = "First Name";
-            gridViewTextBoxColumn1.UniqueName = "FirstName";
-            gridViewTextBoxColumn1.Width = 130;
-            gridViewTextBoxColumn2.FieldAlias = "LastName";
-            gridViewTextBoxColumn2.FieldName = "LastName";
-            gridViewTextBoxColumn2.HeaderText = "Last Name";
-            gridViewTextBoxColumn2.UniqueName = "LastName";
-            gridViewTextBoxColumn2.Width = 130;
-            gridViewTextBoxColumn3.FieldAlias = "CustomerDetailAddress";
-            gridViewTextBoxColumn3.FieldName = "CustomerDetailAddress";
-            gridViewTextBoxColumn3.HeaderText = "Address";
-            gridViewTextBoxColumn3.UniqueName = "CustomerDetailAddress";
-            gridViewTextBoxColumn3.Width = 200;
-            gridViewTextBoxColumn4.FieldAlias = "CustomerDetailPhone";
-            gridViewTextBoxColumn4.FieldName = "CustomerDetailPhone";
-            gridViewTextBoxColumn4.HeaderText = "Phone";
-            gridViewTextBoxColumn4.UniqueName = "CustomerDetailPhone";
-            gridViewTextBoxColumn4.Width = 110;
-            gridViewTextBoxColumn5.FieldAlias = "CustomerDetailMobilePhone";
-            gridViewTextBoxColumn5.FieldName = "CustomerDetailMobilePhone";
-            gridViewTextBoxColumn5.HeaderText = "Mobile";
-            gridViewTextBoxColumn5.UniqueName = "CustomerDetailMobilePhone";
+            gridViewTextBoxColumn1.FieldAlias = "CustomerTransID";
+            gridViewTextBoxColumn1.FieldName = "CustomerTransID";
+            gridViewTextBoxColumn1.HeaderText = "CustomerTransID";
+            gridViewTextBoxColumn1.IsVisible = false;
+            gridViewTextBoxColumn1.UniqueName = "CustomerTransID";
+            gridViewTextBoxColumn2.FieldAlias = "column1";
+            gridViewTextBoxColumn2.FieldName = "TypeName";
+            gridViewTextBoxColumn2.HeaderText = "Type";
+            gridViewTextBoxColumn2.UniqueName = "TypeName";
+            gridViewTextBoxColumn2.Width = 100;
+            gridViewTextBoxColumn3.FieldAlias = "PelayaranName";
+            gridViewTextBoxColumn3.FieldName = "PelayaranName";
+            gridViewTextBoxColumn3.HeaderText = "Pelayaran";
+            gridViewTextBoxColumn3.UniqueName = "PelayaranName";
+            gridViewTextBoxColumn3.Width = 120;
+            gridViewTextBoxColumn4.FieldAlias = "OriginName";
+            gridViewTextBoxColumn4.FieldName = "OriginName";
+            gridViewTextBoxColumn4.HeaderText = "Origin";
+            gridViewTextBoxColumn4.UniqueName = "OriginName";
+            gridViewTextBoxColumn4.Width = 100;
+            gridViewTextBoxColumn5.FieldAlias = "DestinationName";
+            gridViewTextBoxColumn5.FieldName = "DestinationName";
+            gridViewTextBoxColumn5.HeaderText = "Destination";
+            gridViewTextBoxColumn5.UniqueName = "DestinationName";
             gridViewTextBoxColumn5.Width = 110;
+            gridViewTextBoxColumn6.FieldAlias = "ConditionName";
+            gridViewTextBoxColumn6.FieldName = "ConditionName";
+            gridViewTextBoxColumn6.HeaderText = "Condition";
+            gridViewTextBoxColumn6.UniqueName = "ConditionName";
+            gridViewTextBoxColumn6.Width = 100;
+            gridViewTextBoxColumn7.FieldAlias = "NoSeal";
+            gridViewTextBoxColumn7.FieldName = "NoSeal";
+            gridViewTextBoxColumn7.HeaderText = "No Seal";
+            gridViewTextBoxColumn7.UniqueName = "NoSeal";
+            gridViewTextBoxColumn7.Width = 100;
+            gridViewTextBoxColumn8.FieldAlias = "Price";
+            gridViewTextBoxColumn8.FieldName = "Price";
+            gridViewTextBoxColumn8.HeaderText = "Price";
+            gridViewTextBoxColumn8.UniqueName = "Price";
+            gridViewTextBoxColumn8.Width = 70;
             this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
             this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
             this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);
             this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn4);
             this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn5);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn6);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn7);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn8);
             gridSortField1.FieldAlias = "LastName";
             gridSortField1.FieldName = "LastName";
             this.CustomerTransDetailGridView.MasterGridViewTemplate.SortExpressions.Add(gridSortField1);
             this.CustomerTransDetailGridView.Name = "CustomerTransDetailGridView";
             this.CustomerTransDetailGridView.ReadOnly = true;
             this.CustomerTransDetailGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.CustomerTransDetailGridView.Size = new System.Drawing.Size(829, 124);
+            this.CustomerTransDetailGridView.Size = new System.Drawing.Size(829, 132);
             this.CustomerTransDetailGridView.TabIndex = 37;
             // 
             // btnAdd
@@ -435,6 +464,7 @@
             this.btnAdd.Size = new System.Drawing.Size(111, 21);
             this.btnAdd.TabIndex = 13;
             this.btnAdd.Text = "Add To Grid";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnClearGrid
             // 
@@ -443,6 +473,7 @@
             this.btnClearGrid.Size = new System.Drawing.Size(81, 21);
             this.btnClearGrid.TabIndex = 38;
             this.btnClearGrid.Text = "Clear Grid";
+            this.btnClearGrid.Click += new System.EventHandler(this.btnClearGrid_Click);
             // 
             // btnRemoveGrid
             // 
@@ -451,20 +482,21 @@
             this.btnRemoveGrid.Size = new System.Drawing.Size(111, 21);
             this.btnRemoveGrid.TabIndex = 39;
             this.btnRemoveGrid.Text = "Remove Data";
+            this.btnRemoveGrid.Click += new System.EventHandler(this.btnRemoveGrid_Click);
             // 
             // radSplitContainer1
             // 
             this.radSplitContainer1.Controls.Add(this.splitPanel1);
             this.radSplitContainer1.Controls.Add(this.splitPanel2);
             this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radSplitContainer1.Location = new System.Drawing.Point(0, 49);
+            this.radSplitContainer1.Location = new System.Drawing.Point(0, 27);
             this.radSplitContainer1.Name = "radSplitContainer1";
             this.radSplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // 
             // 
             this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer1.Size = new System.Drawing.Size(829, 362);
+            this.radSplitContainer1.Size = new System.Drawing.Size(829, 384);
             this.radSplitContainer1.TabIndex = 40;
             this.radSplitContainer1.TabStop = false;
             this.radSplitContainer1.Text = "radSplitContainer1";
@@ -482,7 +514,7 @@
             // 
             // 
             this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(829, 235);
+            this.splitPanel1.Size = new System.Drawing.Size(829, 249);
             this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.1535433F);
             this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 60);
             this.splitPanel1.TabIndex = 0;
@@ -492,13 +524,13 @@
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.CustomerTransDetailGridView);
-            this.splitPanel2.Location = new System.Drawing.Point(0, 238);
+            this.splitPanel2.Location = new System.Drawing.Point(0, 252);
             this.splitPanel2.Name = "splitPanel2";
             // 
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(829, 124);
+            this.splitPanel2.Size = new System.Drawing.Size(829, 132);
             this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.1535433F);
             this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -60);
             this.splitPanel2.TabIndex = 1;
