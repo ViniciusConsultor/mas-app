@@ -67,10 +67,10 @@ namespace VisitaJayaPerkasa.Control.Supplier
         {
             if (etFirstName.Text.Trim().Length == 0)
                 MessageBox.Show(this, "Please fill first name", "Information");
-            else if (!Regex.Match(etDetailPhone.Text.Trim(), @"(^\d{5}$)|(^\d{5}-\d{4}$)").Success)
-                MessageBox.Show(this, "Invalid phone number", "Information");
-            else if (!Regex.Match(etDetailMobile.Text.Trim(), @"(^\d{5}$)|(^\d{5}-\d{4}$)").Success)
-                MessageBox.Show(this, "Invalid mobile number", "Information");
+            //else if (!Regex.Match(etDetailPhone.Text.Trim(), @"(^\d{5}$)|(^\d{5}-\d{4}$)").Success)
+            //    MessageBox.Show(this, "Invalid phone number", "Information");
+            //else if (!Regex.Match(etDetailMobile.Text.Trim(), @"(^\d{5}$)|(^\d{5}-\d{4}$)").Success)
+            //    MessageBox.Show(this, "Invalid mobile number", "Information");
             else
             {
                 VisitaJayaPerkasa.Entities.SupplierDetail supplierDetail = new Entities.SupplierDetail();
@@ -157,10 +157,10 @@ namespace VisitaJayaPerkasa.Control.Supplier
             + @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
             + @"([a-zA-Z]+[\w-]+\.)+[a-zA-Z]{2,4})$").Success)
                 MessageBox.Show(this, "Invalid email", "Information");
-            else if (!Regex.Match(etPhone.Text.Trim(), @"(^\d{5}$)|(^\d{5}-\d{4}$)").Success)
-                MessageBox.Show(this, "Invalid phone number", "Information");
-            else if (!Regex.Match(etFax.Text.Trim(), @"(^\d{5}$)|(^\d{5}-\d{4}$)").Success)
-                MessageBox.Show(this, "Invalid fax number", "Information");
+            //else if (!Regex.Match(etPhone.Text.Trim(), @"(^\d{5}$)|(^\d{5}-\d{4}$)").Success)
+            //    MessageBox.Show(this, "Invalid phone number", "Information");
+            //else if (!Regex.Match(etFax.Text.Trim(), @"(^\d{5}$)|(^\d{5}-\d{4}$)").Success)
+            //    MessageBox.Show(this, "Invalid fax number", "Information");
             else
             {
                 if (supplierDetailGridView.RowCount == 0)
