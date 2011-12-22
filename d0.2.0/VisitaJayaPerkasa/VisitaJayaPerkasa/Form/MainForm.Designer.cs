@@ -80,6 +80,8 @@
             this.radLabelElementWelcome = new Telerik.WinControls.UI.RadLabelElement();
             this.radStatusStrip = new Telerik.WinControls.UI.RadStatusStrip();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.radRibbonBarGroup11 = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.radImageButtonElement3 = new Telerik.WinControls.UI.RadImageButtonElement();
             ((System.ComponentModel.ISupportInitialize)(this.radRibbonBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewTemplate1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip)).BeginInit();
@@ -103,6 +105,7 @@
             this.imageList1.Images.SetKeyName(10, "typecont.jpeg");
             this.imageList1.Images.SetKeyName(11, "price.jpeg");
             this.imageList1.Images.SetKeyName(12, "schedule.jpeg");
+            this.imageList1.Images.SetKeyName(13, "transaction.jpeg");
             // 
             // radMenuItem7
             // 
@@ -371,7 +374,6 @@
             this.ribbonTab4.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ribbonTab4.ContentPanel.Location = new System.Drawing.Point(0, 0);
             this.ribbonTab4.ContentPanel.Size = new System.Drawing.Size(200, 100);
-            this.ribbonTab4.IsSelected = true;
             this.ribbonTab4.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup9,
             this.radRibbonBarGroup10});
@@ -424,6 +426,9 @@
             this.ribbonTab2.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ribbonTab2.ContentPanel.Location = new System.Drawing.Point(0, 0);
             this.ribbonTab2.ContentPanel.Size = new System.Drawing.Size(200, 100);
+            this.ribbonTab2.IsSelected = true;
+            this.ribbonTab2.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radRibbonBarGroup11});
             this.ribbonTab2.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.ribbonTab2.Name = "ribbonTab2";
             this.ribbonTab2.StretchHorizontally = false;
@@ -557,13 +562,28 @@
             // 
             // MainPanel
             // 
-            this.MainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.MainPanel.Location = new System.Drawing.Point(0, 153);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(971, 418);
             this.MainPanel.TabIndex = 2;
+            // 
+            // radRibbonBarGroup11
+            // 
+            this.radRibbonBarGroup11.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radImageButtonElement3});
+            this.radRibbonBarGroup11.Name = "radRibbonBarGroup11";
+            this.radRibbonBarGroup11.Text = "TTC";
+            // 
+            // radImageButtonElement3
+            // 
+            this.radImageButtonElement3.Image = ((System.Drawing.Image)(resources.GetObject("radImageButtonElement3.Image")));
+            this.radImageButtonElement3.ImageIndex = 13;
+            this.radImageButtonElement3.Name = "radImageButtonElement3";
+            this.radImageButtonElement3.Text = "radImageButtonElement3";
+            this.radImageButtonElement3.Click += new System.EventHandler(this.radImageButtonElement3_Click);
             // 
             // MainForm
             // 
@@ -641,5 +661,7 @@
         private Telerik.WinControls.UI.RadStatusStrip radStatusStrip;
         private System.Windows.Forms.Panel MainPanel;
         private Telerik.WinControls.UI.RadButtonElement radButtonElement1;
+        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup11;
+        private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElement3;
     }
 }
