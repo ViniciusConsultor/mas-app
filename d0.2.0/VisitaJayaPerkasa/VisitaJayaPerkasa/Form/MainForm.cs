@@ -155,7 +155,7 @@ namespace VisitaJayaPerkasa.Form
 
         private void radImageButtonElement1_Click(object sender, EventArgs e)
         {
-            ShowUserControl(new PriceList());
+            ShowUserControl(new VisitaJayaPerkasa.Control.PriceList.PriceList());
         }
 
         private void radImageButtonElement2_Click(object sender, EventArgs e)
