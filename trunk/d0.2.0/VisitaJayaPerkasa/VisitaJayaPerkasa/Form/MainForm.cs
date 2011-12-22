@@ -22,6 +22,7 @@ using VisitaJayaPerkasa.Control.TypeCont;
 using VisitaJayaPerkasa.Control.Warehouse;
 using VisitaJayaPerkasa.Control.PriceList;
 using VisitaJayaPerkasa.Control.Schedule;
+using VisitaJayaPerkasa.Control.Transaction;
 
 namespace VisitaJayaPerkasa.Form
 {
@@ -161,6 +162,11 @@ namespace VisitaJayaPerkasa.Form
         private void radImageButtonElement2_Click(object sender, EventArgs e)
         {
             ShowUserControl(new ScheduleList());
+        }
+
+        private void radImageButtonElement3_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new CustomerTransList());
         }
     }
 }
