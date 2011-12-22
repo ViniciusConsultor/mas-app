@@ -43,6 +43,7 @@
             this.lblSupplierName = new Telerik.WinControls.UI.RadLabel();
             this.radToolStripElement1 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radToolStripItem1 = new Telerik.WinControls.UI.RadToolStripItem();
+            this.radButtonElement1 = new Telerik.WinControls.UI.RadButtonElement();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
@@ -53,7 +54,6 @@
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SupplierDetailGridView = new Telerik.WinControls.UI.RadGridView();
-            this.radButtonElement1 = new Telerik.WinControls.UI.RadButtonElement();
             ((System.ComponentModel.ISupportInitialize)(this.lblContactPerson)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEmail)).BeginInit();
@@ -142,6 +142,16 @@
             this.radToolStripItem1.Key = "0";
             this.radToolStripItem1.Name = "radToolStripItem1";
             this.radToolStripItem1.Text = "radToolStripItem1";
+            // 
+            // radButtonElement1
+            // 
+            this.radButtonElement1.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.radButtonElement1.Image = global::VisitaJayaPerkasa.Properties.Resources.close_16;
+            this.radButtonElement1.Name = "radButtonElement1";
+            this.radButtonElement1.ShowBorder = false;
+            this.radButtonElement1.Text = "Close";
+            this.radButtonElement1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.radButtonElement1.Click += new System.EventHandler(this.radButtonElement1_Click);
             // 
             // radLabel8
             // 
@@ -251,7 +261,7 @@
             this.SupplierDetailGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.SupplierDetailGridView.ForeColor = System.Drawing.SystemColors.ControlText;
             this.SupplierDetailGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.SupplierDetailGridView.Location = new System.Drawing.Point(0, 355);
+            this.SupplierDetailGridView.Location = new System.Drawing.Point(0, 383);
             // 
             // 
             // 
@@ -267,20 +277,17 @@
             gridViewTextBoxColumn2.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
             gridViewTextBoxColumn2.UniqueName = "LastName";
             gridViewTextBoxColumn2.Width = 130;
-            gridViewTextBoxColumn3.FieldAlias = "CustomerDetailPhone";
-            gridViewTextBoxColumn3.FieldName = "CustomerDetailPhone";
-            gridViewTextBoxColumn3.HeaderText = "Phone";
-            gridViewTextBoxColumn3.UniqueName = "CustomerDetailPhone";
+            gridViewTextBoxColumn3.FieldName = "SupplierDetailPhone";
+            gridViewTextBoxColumn3.HeaderText = "Phone ";
+            gridViewTextBoxColumn3.UniqueName = "SupplierDetailPhone";
             gridViewTextBoxColumn3.Width = 110;
-            gridViewTextBoxColumn4.FieldAlias = "CustomerDetailMobilePhone";
-            gridViewTextBoxColumn4.FieldName = "CustomerDetailMobilePhone";
-            gridViewTextBoxColumn4.HeaderText = "Mobile";
-            gridViewTextBoxColumn4.UniqueName = "CustomerDetailMobilePhone";
+            gridViewTextBoxColumn4.FieldName = "SupplierDetailMobilePhone";
+            gridViewTextBoxColumn4.HeaderText = "Mobile Phone ";
+            gridViewTextBoxColumn4.UniqueName = "SupplierDetailMobilePhone";
             gridViewTextBoxColumn4.Width = 110;
-            gridViewTextBoxColumn5.FieldAlias = "CustomerDetailAddress";
-            gridViewTextBoxColumn5.FieldName = "CustomerDetailAddress";
+            gridViewTextBoxColumn5.FieldName = "SupplierDetailAddress";
             gridViewTextBoxColumn5.HeaderText = "Address";
-            gridViewTextBoxColumn5.UniqueName = "CustomerDetailAddress";
+            gridViewTextBoxColumn5.UniqueName = "SupplierDetailAddress";
             gridViewTextBoxColumn5.Width = 200;
             this.SupplierDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
             this.SupplierDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
@@ -294,18 +301,8 @@
             this.SupplierDetailGridView.Name = "SupplierDetailGridView";
             this.SupplierDetailGridView.ReadOnly = true;
             this.SupplierDetailGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.SupplierDetailGridView.Size = new System.Drawing.Size(695, 284);
+            this.SupplierDetailGridView.Size = new System.Drawing.Size(695, 256);
             this.SupplierDetailGridView.TabIndex = 36;
-            // 
-            // radButtonElement1
-            // 
-            this.radButtonElement1.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.radButtonElement1.Image = global::VisitaJayaPerkasa.Properties.Resources.close_16;
-            this.radButtonElement1.Name = "radButtonElement1";
-            this.radButtonElement1.ShowBorder = false;
-            this.radButtonElement1.Text = "Close";
-            this.radButtonElement1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.radButtonElement1.Click += new System.EventHandler(this.radButtonElement1_Click);
             // 
             // SupplierView
             // 
