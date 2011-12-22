@@ -147,5 +147,185 @@ namespace VisitaJayaPerkasa.SqlRepository
 
             return listCustomerTransDetail;
         }
+
+        public bool CreateCustomerTrans(SqlParameter[] sqlParam)
+        {
+            int n = 0;
+            SqlConnection con;
+            SqlTransaction sqlTransaction = null;
+
+            try
+            {
+                using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+                    sqlTransaction = con.BeginTransaction();
+                    using (SqlCommand command = new SqlCommand(
+                        "Insert into [Customer_Trans] values (" +
+                        sqlParam[0].ParameterName + ", " +
+                        sqlParam[1].ParameterName + ", " +
+                        sqlParam[2].ParameterName + ", " +
+                        sqlParam[3].ParameterName +
+                        ")", con))
+                    {
+                        command.Transaction = sqlTransaction;
+
+                        for (int i = 0; i < 9; i++)
+                            command.Parameters.Add(sqlParam[i]);
+                        n = command.ExecuteNonQuery();
+                        command.Parameters.Clear();
+
+                        int z = 9;
+                        int subz = 9;
+                        if ((n > 0) && sqlParam.Length > 9)
+                        {
+                            //-9 is total sqlparameter minus number of customer master
+                            // / 8 is remain of total sqlparameter minus 9 is customer detail who have 8 number of field
+                            for (int k = 0; k < ((sqlParam.Length - 9) / 8); k++)
+                            {
+                                using (SqlCommand subCommand = new SqlCommand(
+                                    "Insert into [Customer_Trans_Detail] values(" +
+                                    sqlParam[z++].ParameterName + ", " +
+                                    sqlParam[z++].ParameterName + ", " +
+                                    sqlParam[z++].ParameterName + ", " +
+                                    sqlParam[z++].ParameterName + ", " +
+                                    sqlParam[z++].ParameterName + ", " +
+                                    sqlParam[z++].ParameterName + ", " +
+                                    sqlParam[z++].ParameterName + ", " +
+                                    sqlParam[z++].ParameterName + ", " +
+                                    sqlParam[z++].ParameterName + ", " +
+                                    sqlParam[z++].ParameterName +
+                                    ")"
+                                    , con))
+                                {
+                                    subCommand.Transaction = sqlTransaction;
+
+                                    for (int i = 0; i < 8; i++)
+                                        subCommand.Parameters.Add(sqlParam[subz++]);
+                                    n = subCommand.ExecuteNonQuery();
+                                    subCommand.Parameters.Clear();
+
+                                    if (n == 0)
+                                        break;
+                                }
+                            }
+
+                        }
+                    }
+
+                    if (n > 0)
+                        sqlTransaction.Commit();
+                    else
+                        sqlTransaction.Rollback();
+                }
+            }
+            catch (Exception e)
+            {
+                if (sqlTransaction != null)
+                    sqlTransaction.Rollback();
+
+                Logging.Error("SqlCustomerTransRepository.cs - CreateCustomerTrans() " + e.Message);
+            }
+            finally
+            {
+                sqlTransaction.Dispose();
+            }
+
+            return n > 0;
+        }
+
+        public bool EditCustomerTrans(SqlParameter[] sqlParam)
+        {
+            int n = 0;
+            SqlConnection con;
+            SqlTransaction sqlTransaction = null;
+
+            try
+            {
+                using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+                    sqlTransaction = con.BeginTransaction();
+
+                    using (SqlCommand deleteCommand = new SqlCommand(
+                        "Delete [Customer_Trans_Detail] WHERE customer_trans_id = " + sqlParam[0].ParameterName, con))
+                    {
+                        deleteCommand.Transaction = sqlTransaction;
+                        deleteCommand.Parameters.Add(sqlParam[0]);
+                        n = deleteCommand.ExecuteNonQuery();
+                        deleteCommand.Parameters.Clear();
+
+                        using (SqlCommand command = new SqlCommand(
+                            "Update [Customer_Trans] set " +
+                            "customer_id = " + sqlParam[1].ParameterName + ", " +
+                            "tgl_transaksi = " + sqlParam[2].ParameterName
+                            , con))
+                        {
+                            command.Transaction = sqlTransaction;
+
+                            for (int i = 0; i < 9; i++)
+                                command.Parameters.Add(sqlParam[i]);
+                            n = command.ExecuteNonQuery();
+                            command.Parameters.Clear();
+
+                            int z = 9;
+                            int subz = 9;
+                            if ((n > 0) && sqlParam.Length > 9)
+                            {
+                                //-9 is total sqlparameter minus number of customer master
+                                // / 8 is remain of total sqlparameter minus 9 is customer detail who have 8 number of field
+                                for (int k = 0; k < ((sqlParam.Length - 9) / 8); k++)
+                                {
+                                    using (SqlCommand subCommand = new SqlCommand(
+                                        "Insert into [Customer_Trans_Detail] values(" +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName +
+                                        ")"
+                                        , con))
+                                    {
+                                        subCommand.Transaction = sqlTransaction;
+
+                                        for (int i = 0; i < 8; i++)
+                                            subCommand.Parameters.Add(sqlParam[subz++]);
+                                        n = subCommand.ExecuteNonQuery();
+                                        subCommand.Parameters.Clear();
+
+                                        if (n == 0)
+                                            break;
+                                    }
+                                }
+
+                            }
+                        }
+
+                        if (n > 0)
+                            sqlTransaction.Commit();
+                        else
+                            sqlTransaction.Rollback();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                if (sqlTransaction != null)
+                    sqlTransaction.Rollback();
+
+                Logging.Error("SqlCustomerTransRepository.cs - EditCustomerTrans() " + e.Message);
+            }
+            finally
+            {
+                sqlTransaction.Dispose();
+            }
+
+            return n > 0;
+        }
     }
 }
