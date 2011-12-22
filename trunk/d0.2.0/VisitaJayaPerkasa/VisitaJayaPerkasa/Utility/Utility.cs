@@ -72,6 +72,20 @@ namespace VisitaJayaPerkasa.Utility
             return ID;
         }
 
+        public static decimal ConvertStringToDecimal(string text) {
+            decimal dec = -1;
+            
+            try
+            {
+                dec = Decimal.Parse(text);
+            }
+            catch (Exception e) {
+                Logging.Error("Utility.cs - ConvertStringToDecimal " + e.Message);
+            }
+
+            return dec;
+        }
+
         public static bool IsObjectNullOrEmpty(object obj) {
             if (obj == null)
                 return true;

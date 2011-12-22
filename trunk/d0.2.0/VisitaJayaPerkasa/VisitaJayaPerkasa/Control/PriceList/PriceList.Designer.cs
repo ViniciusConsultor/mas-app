@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn1 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
             Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn1 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
             Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn2 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
@@ -379,6 +380,11 @@
             // 
             // 
             // 
+            gridViewTextBoxColumn1.FieldAlias = "ID";
+            gridViewTextBoxColumn1.FieldName = "ID";
+            gridViewTextBoxColumn1.HeaderText = "ID";
+            gridViewTextBoxColumn1.IsVisible = false;
+            gridViewTextBoxColumn1.UniqueName = "ID";
             gridViewDateTimeColumn1.DataType = typeof(System.DateTime);
             gridViewDateTimeColumn1.FieldAlias = "Date";
             gridViewDateTimeColumn1.FieldName = "Date";
@@ -417,6 +423,7 @@
             gridViewDecimalColumn1.ThousandsSeparator = true;
             gridViewDecimalColumn1.UniqueName = "column5";
             gridViewDecimalColumn1.Width = 120;
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDateTimeColumn1);
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn1);
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn2);
