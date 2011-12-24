@@ -38,7 +38,6 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.pickerFrom = new Telerik.WinControls.UI.RadDateTimePicker();
             this.cboCustomer = new Telerik.WinControls.UI.RadComboBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
@@ -70,7 +69,6 @@
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pickerFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -104,7 +102,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.pickerFrom);
             this.groupBox2.Controls.Add(this.cboCustomer);
             this.groupBox2.Controls.Add(this.radLabel1);
             this.groupBox2.Controls.Add(this.radLabel2);
@@ -114,21 +111,6 @@
             this.groupBox2.TabIndex = 27;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Master Data";
-            // 
-            // pickerFrom
-            // 
-            this.pickerFrom.AutoSize = true;
-            this.pickerFrom.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.pickerFrom.Location = new System.Drawing.Point(116, 41);
-            this.pickerFrom.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.pickerFrom.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.pickerFrom.Name = "pickerFrom";
-            this.pickerFrom.NullDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.pickerFrom.Size = new System.Drawing.Size(183, 22);
-            this.pickerFrom.TabIndex = 33;
-            this.pickerFrom.TabStop = false;
-            this.pickerFrom.Text = "radDateTimePicker1";
-            this.pickerFrom.Value = new System.DateTime(2011, 12, 20, 8, 27, 16, 140);
             // 
             // cboCustomer
             // 
@@ -157,9 +139,8 @@
             // 
             this.radLabel2.Location = new System.Drawing.Point(6, 44);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(30, 16);
+            this.radLabel2.Size = new System.Drawing.Size(2, 2);
             this.radLabel2.TabIndex = 28;
-            this.radLabel2.Text = "Date";
             // 
             // radToolStripElement1
             // 
@@ -213,7 +194,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(829, 49);
+            this.radToolStrip1.Size = new System.Drawing.Size(829, 27);
             this.radToolStrip1.TabIndex = 26;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
@@ -454,7 +435,7 @@
             this.CustomerTransDetailGridView.Name = "CustomerTransDetailGridView";
             this.CustomerTransDetailGridView.ReadOnly = true;
             this.CustomerTransDetailGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.CustomerTransDetailGridView.Size = new System.Drawing.Size(829, 124);
+            this.CustomerTransDetailGridView.Size = new System.Drawing.Size(829, 132);
             this.CustomerTransDetailGridView.TabIndex = 37;
             // 
             // btnAdd
@@ -489,14 +470,14 @@
             this.radSplitContainer1.Controls.Add(this.splitPanel1);
             this.radSplitContainer1.Controls.Add(this.splitPanel2);
             this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radSplitContainer1.Location = new System.Drawing.Point(0, 49);
+            this.radSplitContainer1.Location = new System.Drawing.Point(0, 27);
             this.radSplitContainer1.Name = "radSplitContainer1";
             this.radSplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // 
             // 
             this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer1.Size = new System.Drawing.Size(829, 362);
+            this.radSplitContainer1.Size = new System.Drawing.Size(829, 384);
             this.radSplitContainer1.TabIndex = 40;
             this.radSplitContainer1.TabStop = false;
             this.radSplitContainer1.Text = "radSplitContainer1";
@@ -514,7 +495,7 @@
             // 
             // 
             this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(829, 235);
+            this.splitPanel1.Size = new System.Drawing.Size(829, 249);
             this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.1535433F);
             this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 60);
             this.splitPanel1.TabIndex = 0;
@@ -524,13 +505,13 @@
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.CustomerTransDetailGridView);
-            this.splitPanel2.Location = new System.Drawing.Point(0, 238);
+            this.splitPanel2.Location = new System.Drawing.Point(0, 252);
             this.splitPanel2.Name = "splitPanel2";
             // 
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(829, 124);
+            this.splitPanel2.Size = new System.Drawing.Size(829, 132);
             this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.1535433F);
             this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -60);
             this.splitPanel2.TabIndex = 1;
@@ -547,7 +528,6 @@
             this.Size = new System.Drawing.Size(829, 411);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pickerFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCustomer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
@@ -607,7 +587,6 @@
         private Telerik.WinControls.UI.SplitPanel splitPanel1;
         private Telerik.WinControls.UI.SplitPanel splitPanel2;
         private Telerik.WinControls.UI.RadComboBox cboCustomer;
-        private Telerik.WinControls.UI.RadDateTimePicker pickerFrom;
         private Telerik.WinControls.UI.RadComboBox cboCondition;
         private Telerik.WinControls.UI.RadComboBox cboDestination;
         private Telerik.WinControls.UI.RadComboBox cboOrigin;

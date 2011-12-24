@@ -76,7 +76,6 @@ namespace VisitaJayaPerkasa.Control.Transaction
             {
                 wantToCreateVessel = false;
                 cboCustomer.SelectedValue = customerTrans.CustomerID;
-                pickerFrom.Value = customerTrans.TransDate.Value;
 
                 SqlCustomerTransRepository sqlCustomerTransRepository = new SqlCustomerTransRepository();
                 listCustomerTransDetail = sqlCustomerTransRepository.ListCustomerTransDetail(customerTrans.CustomerTransID);
