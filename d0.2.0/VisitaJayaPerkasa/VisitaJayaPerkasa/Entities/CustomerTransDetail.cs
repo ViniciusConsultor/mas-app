@@ -8,7 +8,6 @@ namespace VisitaJayaPerkasa.Entities
     public class CustomerTransDetail : CustomerTrans
     {
         public Guid CustomerDetailTransID { get; set; }
-        public Guid CustomerTransID { get; set; }
         public Guid TypeID { get; set; }
         public Guid PelayaranID { get; set; }
         public Guid Origin { get; set; }

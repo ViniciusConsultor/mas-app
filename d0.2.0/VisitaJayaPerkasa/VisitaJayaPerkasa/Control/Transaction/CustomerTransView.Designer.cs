@@ -33,6 +33,9 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.lblDate = new Telerik.WinControls.UI.RadLabel();
             this.lblCustomerName = new Telerik.WinControls.UI.RadLabel();
@@ -91,6 +94,7 @@
             this.radButtonElement1.ShowBorder = false;
             this.radButtonElement1.Text = "Close";
             this.radButtonElement1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.radButtonElement1.Click += new System.EventHandler(this.radButtonElement1_Click);
             // 
             // date
             // 
@@ -150,50 +154,64 @@
             this.CustomerTransDetailGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.CustomerTransDetailGridView.ForeColor = System.Drawing.SystemColors.ControlText;
             this.CustomerTransDetailGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.CustomerTransDetailGridView.Location = new System.Drawing.Point(0, 148);
+            this.CustomerTransDetailGridView.Location = new System.Drawing.Point(0, 359);
             // 
             // 
             // 
             this.CustomerTransDetailGridView.MasterGridViewTemplate.AllowAddNewRow = false;
-            gridViewTextBoxColumn1.FieldAlias = "FirstName";
-            gridViewTextBoxColumn1.FieldName = "FirstName";
-            gridViewTextBoxColumn1.HeaderText = "First Name";
-            gridViewTextBoxColumn1.UniqueName = "FirstName";
+            gridViewTextBoxColumn1.FieldAlias = "CustomerTransID";
+            gridViewTextBoxColumn1.FieldName = "CustomerTransID";
+            gridViewTextBoxColumn1.HeaderText = "CustomerTransID";
+            gridViewTextBoxColumn1.IsVisible = false;
+            gridViewTextBoxColumn1.UniqueName = "CustomerTransID";
             gridViewTextBoxColumn1.Width = 130;
-            gridViewTextBoxColumn2.FieldAlias = "LastName";
-            gridViewTextBoxColumn2.FieldName = "LastName";
-            gridViewTextBoxColumn2.HeaderText = "Last Name";
+            gridViewTextBoxColumn2.FieldAlias = "TypeName";
+            gridViewTextBoxColumn2.FieldName = "TypeName";
+            gridViewTextBoxColumn2.HeaderText = "Type";
             gridViewTextBoxColumn2.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            gridViewTextBoxColumn2.UniqueName = "LastName";
+            gridViewTextBoxColumn2.UniqueName = "TypeName";
             gridViewTextBoxColumn2.Width = 130;
-            gridViewTextBoxColumn3.FieldAlias = "CustomerDetailAddress";
-            gridViewTextBoxColumn3.FieldName = "CustomerDetailAddress";
-            gridViewTextBoxColumn3.HeaderText = "Address";
-            gridViewTextBoxColumn3.UniqueName = "CustomerDetailAddress";
+            gridViewTextBoxColumn3.FieldAlias = "PelayaranName";
+            gridViewTextBoxColumn3.FieldName = "PelayaranName";
+            gridViewTextBoxColumn3.HeaderText = "Pelayaran";
+            gridViewTextBoxColumn3.UniqueName = "PelayaranName";
             gridViewTextBoxColumn3.Width = 200;
-            gridViewTextBoxColumn4.FieldAlias = "CustomerDetailPhone";
-            gridViewTextBoxColumn4.FieldName = "CustomerDetailPhone";
-            gridViewTextBoxColumn4.HeaderText = "Phone";
-            gridViewTextBoxColumn4.UniqueName = "CustomerDetailPhone";
+            gridViewTextBoxColumn4.FieldName = "OriginName";
+            gridViewTextBoxColumn4.HeaderText = "Origin";
+            gridViewTextBoxColumn4.UniqueName = "OriginName";
             gridViewTextBoxColumn4.Width = 110;
-            gridViewTextBoxColumn5.FieldAlias = "CustomerDetailMobilePhone";
-            gridViewTextBoxColumn5.FieldName = "CustomerDetailMobilePhone";
-            gridViewTextBoxColumn5.HeaderText = "Mobile";
-            gridViewTextBoxColumn5.UniqueName = "CustomerDetailMobilePhone";
+            gridViewTextBoxColumn5.FieldName = "DestinationName";
+            gridViewTextBoxColumn5.HeaderText = "Destination";
+            gridViewTextBoxColumn5.UniqueName = "DestinationName";
             gridViewTextBoxColumn5.Width = 110;
+            gridViewTextBoxColumn6.FieldName = "ConditionName";
+            gridViewTextBoxColumn6.HeaderText = "Condition";
+            gridViewTextBoxColumn6.UniqueName = "ConditionName";
+            gridViewTextBoxColumn6.Width = 110;
+            gridViewTextBoxColumn7.FieldName = "NoSeal";
+            gridViewTextBoxColumn7.HeaderText = "No Seal";
+            gridViewTextBoxColumn7.UniqueName = "NoSeal";
+            gridViewTextBoxColumn7.Width = 110;
+            gridViewTextBoxColumn8.FieldName = "Price";
+            gridViewTextBoxColumn8.HeaderText = "Price";
+            gridViewTextBoxColumn8.UniqueName = "Price";
+            gridViewTextBoxColumn8.Width = 110;
             this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
             this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
             this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);
             this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn4);
             this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn5);
-            gridSortField1.FieldAlias = "LastName";
-            gridSortField1.FieldName = "LastName";
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn6);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn7);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn8);
+            gridSortField1.FieldAlias = "TypeName";
+            gridSortField1.FieldName = "TypeName";
             gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
             this.CustomerTransDetailGridView.MasterGridViewTemplate.SortExpressions.Add(gridSortField1);
             this.CustomerTransDetailGridView.Name = "CustomerTransDetailGridView";
             this.CustomerTransDetailGridView.ReadOnly = true;
             this.CustomerTransDetailGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.CustomerTransDetailGridView.Size = new System.Drawing.Size(695, 491);
+            this.CustomerTransDetailGridView.Size = new System.Drawing.Size(695, 280);
             this.CustomerTransDetailGridView.TabIndex = 36;
             // 
             // CustomerTransView
