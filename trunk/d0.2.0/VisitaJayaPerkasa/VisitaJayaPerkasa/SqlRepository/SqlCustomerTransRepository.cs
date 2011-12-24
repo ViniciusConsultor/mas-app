@@ -115,21 +115,37 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "Select ctd.id, ctd.customer_trans_id, ctd.type_id, ctd.pelayaran_id, ctd.origin, ctd.destination, ctd.price, ctd.condition_id, ctd.no_seal [Customer_Trans_Detail] ctd JOIN [Type_Cont] tc " +
-                        "ON (ctd.deleted is null OR ctd.deleted = '0') AND (tc.deleted is null OR tc.deleted = '0') AND ctd.type_id = tc.type_id WHERE ctd.customer_trans_id = '" + ID + "' AND (ctd.deleted is null OR ctd.deleted = '0')"
+                        "Select ctd.id, ctd.customer_trans_id, ctd.type_id, ctd.pelayaran_id, ctd.origin, " + 
+                        "ctd.destination, ctd.price, ctd.condition_id, ctd.no_seal, " +
+                        "(Select Top 1 type_name From [Type_Cont] tc Where tc.type_id = ctd.type_id) as type_name, " + 
+                        "(Select Top 1 name From [Pelayaran] p Where p.pelayaran_id = ctd.pelayaran_id) as pelayaran_name, " +
+                        "(Select Top 1 city_name From [City] c Where c.city_id = ctd.origin) as origin, " +
+                        "(Select Top 1 city_name From [City] c Where c.city_id = ctd.destination) as destination, " + 
+                        "(Select Top 1 condition_name From [Condition] c Where c.condition_id = ctd.condition_id) as condition " + 
+                        "FROM [Customer_Trans_Detail] ctd " +
+                        "Where (ctd.deleted is null OR ctd.deleted = '0') " +
+                        "AND ctd.customer_trans_id = '" + ID + "'"
                         , con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
                             CustomerTransDetail customerTransDetail = new CustomerTransDetail();
-                            //customer.CustomerDetailID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
-                            //customer.ID = Utility.Utility.ConvertToUUID(reader.GetValue(1).ToString());
-                            //customer.FirstName = (Utility.Utility.IsDBNull(reader.GetValue(2))) ? null : reader.GetString(2);
-                            //customer.LastName = (Utility.Utility.IsDBNull(reader.GetValue(3))) ? null : reader.GetString(3);
-                            //customer.CustomerDetailAddress = (Utility.Utility.IsDBNull(reader.GetValue(4))) ? null : reader.GetString(4);
-                            //customer.CustomerDetailPhone = (Utility.Utility.IsDBNull(reader.GetValue(5))) ? null : reader.GetString(5);
-                            //customer.CustomerDetailMobilePhone = (Utility.Utility.IsDBNull(reader.GetValue(6))) ? null : reader.GetString(6);
+                            customerTransDetail.CustomerDetailTransID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                            customerTransDetail.CustomerTransID = Utility.Utility.ConvertToUUID(reader.GetValue(1).ToString());
+                            customerTransDetail.TypeID = Utility.Utility.ConvertToUUID(reader.GetValue(2).ToString());
+                            customerTransDetail.PelayaranID = Utility.Utility.ConvertToUUID(reader.GetValue(3).ToString());
+                            customerTransDetail.Origin = Utility.Utility.ConvertToUUID(reader.GetValue(4).ToString());
+                            customerTransDetail.Destination = Utility.Utility.ConvertToUUID(reader.GetValue(5).ToString()); ;
+                            customerTransDetail.Price = reader.GetDecimal(6);
+                            customerTransDetail.ConditionID = Utility.Utility.ConvertToUUID(reader.GetValue(7).ToString()); ;
+                            customerTransDetail.NoSeal = reader.GetString(8);
+
+                            customerTransDetail.TypeName = reader.GetString(9);
+                            customerTransDetail.PelayaranName = reader.GetString(10);
+                            customerTransDetail.OriginName = reader.GetString(11);
+                            customerTransDetail.DestinationName = reader.GetString(12);
+                            customerTransDetail.ConditionName = reader.GetString(13);
 
                             if (listCustomerTransDetail == null)
                                 listCustomerTransDetail = new List<CustomerTransDetail>();

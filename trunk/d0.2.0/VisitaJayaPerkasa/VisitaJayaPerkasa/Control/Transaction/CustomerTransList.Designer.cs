@@ -143,16 +143,16 @@
             // gridViewTemplate1
             // 
             this.CustomerTransGridView.MasterGridViewTemplate.AllowAddNewRow = false;
-            gridViewTextBoxColumn1.FieldAlias = "ID";
-            gridViewTextBoxColumn1.FieldName = "ID";
+            gridViewTextBoxColumn1.FieldAlias = "CustomerTransID";
+            gridViewTextBoxColumn1.FieldName = "CustomerTransID";
             gridViewTextBoxColumn1.HeaderText = "ID";
             gridViewTextBoxColumn1.IsVisible = false;
-            gridViewTextBoxColumn1.UniqueName = "ID";
-            gridViewTextBoxColumn2.FieldAlias = "CustomerID ";
-            gridViewTextBoxColumn2.FieldName = "CustomerID ";
+            gridViewTextBoxColumn1.UniqueName = "CustomerTransID";
+            gridViewTextBoxColumn2.FieldAlias = "CustomerID";
+            gridViewTextBoxColumn2.FieldName = "CustomerID";
             gridViewTextBoxColumn2.HeaderText = "Customer ID";
             gridViewTextBoxColumn2.IsVisible = false;
-            gridViewTextBoxColumn2.UniqueName = "CustomerID ";
+            gridViewTextBoxColumn2.UniqueName = "CustomerID";
             gridViewTextBoxColumn2.Width = 110;
             gridViewTextBoxColumn3.FieldAlias = "CustomerName";
             gridViewTextBoxColumn3.FieldName = "CustomerName";
