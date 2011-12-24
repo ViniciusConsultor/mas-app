@@ -28,5 +28,12 @@ namespace VisitaJayaPerkasa.Control.Transaction
             lblCustomerName.Text = customerTrans.CustomerName;
             lblDate.Text = customerTrans.TransDate.ToString();
         }
+
+        private void radButtonElement1_Click(object sender, EventArgs e)
+        {
+            UserControl Controllers = new CustomerTransList();
+            Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(Controllers);
+
+        }
     }
 }
