@@ -89,6 +89,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerTransDetailGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomerTransDetailGridView.MasterGridViewTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClearGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemoveGrid)).BeginInit();
@@ -378,14 +379,14 @@
             this.CustomerTransDetailGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.CustomerTransDetailGridView.Location = new System.Drawing.Point(0, 0);
             // 
-            // 
+            // gridViewTemplate1
             // 
             this.CustomerTransDetailGridView.MasterGridViewTemplate.AllowAddNewRow = false;
-            gridViewTextBoxColumn1.FieldAlias = "CustomerTransID";
-            gridViewTextBoxColumn1.FieldName = "CustomerTransID";
-            gridViewTextBoxColumn1.HeaderText = "CustomerTransID";
+            gridViewTextBoxColumn1.FieldAlias = "CustomerDetailTransID";
+            gridViewTextBoxColumn1.FieldName = "CustomerDetailTransID";
+            gridViewTextBoxColumn1.HeaderText = "CustomerDetailTransID";
             gridViewTextBoxColumn1.IsVisible = false;
-            gridViewTextBoxColumn1.UniqueName = "CustomerTransID";
+            gridViewTextBoxColumn1.UniqueName = "CustomerDetailTransID";
             gridViewTextBoxColumn2.FieldAlias = "column1";
             gridViewTextBoxColumn2.FieldName = "TypeName";
             gridViewTextBoxColumn2.HeaderText = "Type";
@@ -548,6 +549,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomerTransDetailGridView.MasterGridViewTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerTransDetailGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClearGrid)).EndInit();
