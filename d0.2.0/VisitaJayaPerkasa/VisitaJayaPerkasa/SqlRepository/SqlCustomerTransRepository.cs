@@ -21,7 +21,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "Select u.id, u.customer_id, u.tgl_transaksi, ur.customer_name [Customer_Trans] u JOIN [Customer] ur " +
+                        "Select u.id, u.customer_id, u.tgl_transaksi, ur.customer_name FROM [Customer_Trans] u JOIN [Customer] ur " +
                         "ON (u.deleted is null OR u.deleted = '0') AND (ur.deleted is null OR ur.deleted = '0') AND u.customer_id = ur.customer_id", con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
@@ -148,7 +148,7 @@ namespace VisitaJayaPerkasa.SqlRepository
             return listCustomerTransDetail;
         }
 
-        public bool CreateCustomerTrans(SqlParameter[] sqlParamDeleted, SqlParameter[] sqlParamInsert)
+        public bool CreateCustomerTrans(SqlParameter[] sqlParamInsert, SqlParameter[] sqlParamMaster)
         {
             int n = 0;
             SqlConnection con;
@@ -161,82 +161,53 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
 
-                    if(sqlParamDeleted != null){
-                        for (int i = 0; i < sqlParamDeleted.Length; i++)
+                    using (SqlCommand masterCommand = new SqlCommand(
+                        "INSERT INTO [customer_trans] VALUES(" + sqlParamMaster[0].ParameterName + ", " + 
+                        sqlParamMaster[1].ParameterName + ", " + 
+                        sqlParamMaster[2].ParameterName + ", " + 
+                        sqlParamMaster[3].ParameterName + 
+                        ")", 
+                        con
+                        )) 
                         {
-                            using (SqlCommand deletedCommand = new SqlCommand(
-                                "Delete [Customer_Trans_Detail] WHERE customer_trans_id = " + sqlParamDeleted[i].ParameterName
-                                , con))
-                            {
-                                deletedCommand.Transaction = sqlTransaction;
-                                deletedCommand.Parameters.Add(sqlParamDeleted[i]);
-                                n = deletedCommand.ExecuteNonQuery();
-                            }
+                            masterCommand.Transaction = sqlTransaction;
 
-                            if (n == 0)
-                                break;
-                        }
-                    }
+                            for (int i = 0; i < sqlParamMaster.Length; i++)
+                                masterCommand.Parameters.Add(sqlParamMaster[i]);
+                            n = masterCommand.ExecuteNonQuery();
+                    
+                            if(n > 0){
+                                int k = 0;
+                                int value = 0;
+                                for(int i=0; i<sqlParamInsert.Length/10; i++){
+                                    n = 0;
+                                    using (SqlCommand command = new SqlCommand(
+                                        "Insert into [Customer_Trans_Detail] values (" +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName +
+                                        ")", con))
+                                    {
+                                        command.Transaction = sqlTransaction;
 
-                    if (n > 0 || sqlParamDeleted == null) { 
-                        
-                    }
+                                        for (int j = 0; j < 10; j++)
+                                            command.Parameters.Add(sqlParamInsert[value++]);
+                                        n = command.ExecuteNonQuery();
+                                        command.Parameters.Clear();
 
-
-
-                    //di bawah lom 
-                    using (SqlCommand command = new SqlCommand(
-                        "Insert into [Customer_Trans] values (" +
-                        sqlParam[0].ParameterName + ", " +
-                        sqlParam[1].ParameterName + ", " +
-                        sqlParam[2].ParameterName + ", " +
-                        sqlParam[3].ParameterName +
-                        ")", con))
-                    {
-                        command.Transaction = sqlTransaction;
-
-                        for (int i = 0; i < 9; i++)
-                            command.Parameters.Add(sqlParam[i]);
-                        n = command.ExecuteNonQuery();
-                        command.Parameters.Clear();
-
-                        int z = 9;
-                        int subz = 9;
-                        if ((n > 0) && sqlParam.Length > 9)
-                        {
-                            //-9 is total sqlparameter minus number of customer master
-                            // / 8 is remain of total sqlparameter minus 9 is customer detail who have 8 number of field
-                            for (int k = 0; k < ((sqlParam.Length - 9) / 8); k++)
-                            {
-                                using (SqlCommand subCommand = new SqlCommand(
-                                    "Insert into [Customer_Trans_Detail] values(" +
-                                    sqlParam[z++].ParameterName + ", " +
-                                    sqlParam[z++].ParameterName + ", " +
-                                    sqlParam[z++].ParameterName + ", " +
-                                    sqlParam[z++].ParameterName + ", " +
-                                    sqlParam[z++].ParameterName + ", " +
-                                    sqlParam[z++].ParameterName + ", " +
-                                    sqlParam[z++].ParameterName + ", " +
-                                    sqlParam[z++].ParameterName + ", " +
-                                    sqlParam[z++].ParameterName + ", " +
-                                    sqlParam[z++].ParameterName +
-                                    ")"
-                                    , con))
-                                {
-                                    subCommand.Transaction = sqlTransaction;
-
-                                    for (int i = 0; i < 8; i++)
-                                        subCommand.Parameters.Add(sqlParam[subz++]);
-                                    n = subCommand.ExecuteNonQuery();
-                                    subCommand.Parameters.Clear();
-
-                                    if (n == 0)
-                                        break;
+                                        if(n == 0)
+                                            break;
+                                    }
                                 }
                             }
-
                         }
-                    }
 
                     if (n > 0)
                         sqlTransaction.Commit();
@@ -259,7 +230,8 @@ namespace VisitaJayaPerkasa.SqlRepository
             return n > 0;
         }
 
-        public bool EditCustomerTrans(SqlParameter[] sqlParamDeleted, SqlParameter[] sqlParamInsert)
+
+        public bool EditCustomerTrans(SqlParameter[] sqlParamInsert, SqlParameter[] sqlParamMaster)
         {
             int n = 0;
             SqlConnection con;
@@ -272,69 +244,70 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
 
-                    using (SqlCommand deleteCommand = new SqlCommand(
-                        "Delete [Customer_Trans_Detail] WHERE customer_trans_id = " + sqlParamDeleted[0].ParameterName, con))
+                    using (SqlCommand deletedCommand = new SqlCommand(
+                        "Delete [Customer_Trans_Detail] WHERE customer_trans_id = " + sqlParamMaster[0].ParameterName,
+                        con
+                        ))
                     {
-                        deleteCommand.Transaction = sqlTransaction;
-                        deleteCommand.Parameters.Add(sqlParamDeleted[0]);
-                        n = deleteCommand.ExecuteNonQuery();
-                        deleteCommand.Parameters.Clear();
-
-                        using (SqlCommand command = new SqlCommand(
-                            "Update [Customer_Trans] set " +
-                            "customer_id = " + sqlParamInsert[1].ParameterName + ", " +
-                            "tgl_transaksi = " + sqlParamInsert[2].ParameterName
-                            , con))
-                        {
-                            command.Transaction = sqlTransaction;
-
-                            for (int i = 0; i < 9; i++)
-                                command.Parameters.Add(sqlParamInsert[i]);
-                            n = command.ExecuteNonQuery();
-                            command.Parameters.Clear();
-
-                            int z = 9;
-                            int subz = 9;
-                            if ((n > 0) && sqlParamInsert.Length > 9)
-                            {
-                                //-9 is total sqlparameter minus number of customer master
-                                // / 8 is remain of total sqlparameter minus 9 is customer detail who have 8 number of field
-                                for (int k = 0; k < ((sqlParamInsert.Length - 9) / 8); k++)
-                                {
-                                    using (SqlCommand subCommand = new SqlCommand(
-                                        "Insert into [Customer_Trans_Detail] values(" +
-                                        sqlParamInsert[z++].ParameterName + ", " +
-                                        sqlParamInsert[z++].ParameterName + ", " +
-                                        sqlParamInsert[z++].ParameterName + ", " +
-                                        sqlParamInsert[z++].ParameterName + ", " +
-                                        sqlParamInsert[z++].ParameterName + ", " +
-                                        sqlParamInsert[z++].ParameterName + ", " +
-                                        sqlParamInsert[z++].ParameterName + ", " +
-                                        sqlParamInsert[z++].ParameterName + ", " +
-                                        sqlParamInsert[z++].ParameterName + ", " +
-                                        sqlParamInsert[z++].ParameterName +
-                                        ")"
-                                        , con))
-                                    {
-                                        subCommand.Transaction = sqlTransaction;
-
-                                        for (int i = 0; i < 8; i++)
-                                            subCommand.Parameters.Add(sqlParamInsert[subz++]);
-                                        n = subCommand.ExecuteNonQuery();
-                                        subCommand.Parameters.Clear();
-
-                                        if (n == 0)
-                                            break;
-                                    }
-                                }
-
-                            }
-                        }
+                        deletedCommand.Transaction = sqlTransaction;
+                        deletedCommand.Parameters.Add(sqlParamMaster[0]);
+                        n = deletedCommand.ExecuteNonQuery();
+                        deletedCommand.Parameters.Clear();
 
                         if (n > 0)
-                            sqlTransaction.Commit();
-                        else
-                            sqlTransaction.Rollback();
+                        {
+                            n = 0;
+
+                            using (SqlCommand masterCommand = new SqlCommand(
+                                "Update [customer_trans] set customer_id = " + sqlParamMaster[1].ParameterName + " WHERE id = " + sqlParamMaster[0].ParameterName,
+                                con
+                                ))
+                            {
+                                masterCommand.Transaction = sqlTransaction;
+                                masterCommand.Parameters.Add(sqlParamMaster[1]);
+                                masterCommand.Parameters.Add(sqlParamMaster[0]);
+                                n = masterCommand.ExecuteNonQuery();
+
+                                if (n > 0)
+                                {
+                                    int k = 0;
+                                    int value = 0;
+                                    for (int i = 0; i < sqlParamInsert.Length / 10; i++)
+                                    {
+                                        n = 0;
+                                        using (SqlCommand command = new SqlCommand(
+                                            "Insert into [Customer_Trans_Detail] values (" +
+                                            sqlParamInsert[k++].ParameterName + ", " +
+                                            sqlParamInsert[k++].ParameterName + ", " +
+                                            sqlParamInsert[k++].ParameterName + ", " +
+                                            sqlParamInsert[k++].ParameterName + ", " +
+                                            sqlParamInsert[k++].ParameterName + ", " +
+                                            sqlParamInsert[k++].ParameterName + ", " +
+                                            sqlParamInsert[k++].ParameterName + ", " +
+                                            sqlParamInsert[k++].ParameterName + ", " +
+                                            sqlParamInsert[k++].ParameterName + ", " +
+                                            sqlParamInsert[k++].ParameterName +
+                                            ")", con))
+                                        {
+                                            command.Transaction = sqlTransaction;
+
+                                            for (int j = 0; j < 10; j++)
+                                                command.Parameters.Add(sqlParamInsert[value++]);
+                                            n = command.ExecuteNonQuery();
+                                            command.Parameters.Clear();
+
+                                            if (n == 0)
+                                                break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (n > 0)
+                                sqlTransaction.Commit();
+                            else
+                                sqlTransaction.Rollback();
+                        }
                     }
                 }
             }

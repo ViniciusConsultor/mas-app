@@ -18,8 +18,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
         
         private VisitaJayaPerkasa.Entities.CustomerTrans customerTrans;
         private List<VisitaJayaPerkasa.Entities.CustomerTransDetail> listCustomerTransDetail;
-        private List<VisitaJayaPerkasa.Entities.CustomerTransDetail> originListCustomerTransDetail;
-
+        
         private SqlCustomerTransRepository sqlCustomerTransRepository;
         private SqlCustomerRepository sqlCustomerRepository;
         private SqlTypeContRepository sqlTypeContRepository;
@@ -146,8 +145,8 @@ namespace VisitaJayaPerkasa.Control.Transaction
             else
             {
                 VisitaJayaPerkasa.Entities.CustomerTransDetail objCustTransDetail = new Entities.CustomerTransDetail();
-                objCustTransDetail.CustomerTransID = Guid.NewGuid();
-                
+                objCustTransDetail.CustomerDetailTransID = Guid.NewGuid();
+
                 objCustTransDetail.TypeID = Utility.Utility.ConvertToUUID(cboType.SelectedValue.ToString());
                 objCustTransDetail.TypeName = cboType.Text;
 
@@ -187,7 +186,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 string id = gridInfo.Cells[0].Value.ToString();
 
                 for (int i = 0; i < listCustomerTransDetail.Count; i++)
-                    if (listCustomerTransDetail.ElementAt(i).CustomerTransID.ToString().Equals(id))
+                    if (listCustomerTransDetail.ElementAt(i).CustomerDetailTransID.ToString().Equals(id))
                     {
                         listCustomerTransDetail.RemoveAt(i);
                         break;
@@ -211,27 +210,25 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 {
                     MessageBox.Show(this, "Please choose customer name", "Information");
                 }
-                else {
-                    string[] key = new string[originListCustomerTransDetail.Count];
-                    object[] value = new object[originListCustomerTransDetail.Count];
+                else { 
 
+                    //10 is number of field below
                     int k = 0;
-                    for (int i = 0; i < originListCustomerTransDetail.Count; i++) {
-                        key[k] = "id";
-                        value[k++] = originListCustomerTransDetail.ElementAt(i).CustomerDetailTransID;
-                    }
-                        
-                    SqlParameter[] sqlParamDeleted = SqlUtility.SetSqlParameter(key, value);
-                    key = new string[listCustomerTransDetail.Count];
-                    value = new object[listCustomerTransDetail.Count];
-                    k = 0;
+                    string[] key = new string[listCustomerTransDetail.Count * 10];
+                    object[] value = new object[listCustomerTransDetail.Count * 10];
+
+                    Guid TransID;
+                    if (wantToCreateVessel)
+                        TransID = Guid.NewGuid();
+                    else
+                        TransID = customerTrans.CustomerTransID;
 
                     for (int i = 0; i < listCustomerTransDetail.Count; i++) {
                         key[k] = "id";
                         value[k++] = listCustomerTransDetail.ElementAt(i).CustomerDetailTransID;
 
                         key[k] = "customer_trans_id";
-                        value[k++] = listCustomerTransDetail.ElementAt(i).CustomerTransID;
+                        value[k++] = TransID;
 
                         key[k] = "type_id";
                         value[k++] = listCustomerTransDetail.ElementAt(i).TypeID;
@@ -263,23 +260,37 @@ namespace VisitaJayaPerkasa.Control.Transaction
 
                     if (wantToCreateVessel)
                     {
-                        if (sqlCustomerTransRepository.CreateCustomerTrans(sqlParamDeleted, sqlParameterInsert)) {
+                        SqlParameter[] sqlParameterMaster = SqlUtility.SetSqlParameter(
+                            new string[] { "id", "customer_id", "tgl_transaksi", "deleted" },
+                            new object[] { TransID, cboCustomer.SelectedValue, DateTime.Today, 0 }
+                        );
+
+                        if (sqlCustomerTransRepository.CreateCustomerTrans(sqlParameterInsert, sqlParameterMaster)) {
                             MessageBox.Show(this, "Success save data", "Information");
                             radButtonElement2.PerformClick();
+
+                            sqlParameterMaster = null;
                         }
                         else
                             MessageBox.Show(this, "Cannot save data", "Information");
                     }
                     else {
-                        if (sqlCustomerTransRepository.EditCustomerTrans(sqlParamDeleted, sqlParameterInsert)) {
+                        SqlParameter[] sqlParameterMaster = SqlUtility.SetSqlParameter(
+                            new string[] { "id", "customer_id" },
+                            new object[] { TransID, cboCustomer.SelectedValue }
+                        );
+
+                        if (sqlCustomerTransRepository.EditCustomerTrans(sqlParameterInsert, sqlParameterMaster)) {                    
                             MessageBox.Show(this, "Success edit data", "Information");
+                            radButtonElement2.PerformClick();
+
+                            sqlParameterMaster = null;
                         }
                         else
                             MessageBox.Show(this, "Cannot edit data", "Information");
                     }
 
                         sqlCustomerTransRepository = null;
-                        sqlParamDeleted = null;
                         sqlParameterInsert = null;
                 }
             }

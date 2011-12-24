@@ -213,7 +213,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(829, 27);
+            this.radToolStrip1.Size = new System.Drawing.Size(829, 49);
             this.radToolStrip1.TabIndex = 26;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
@@ -454,7 +454,7 @@
             this.CustomerTransDetailGridView.Name = "CustomerTransDetailGridView";
             this.CustomerTransDetailGridView.ReadOnly = true;
             this.CustomerTransDetailGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.CustomerTransDetailGridView.Size = new System.Drawing.Size(829, 132);
+            this.CustomerTransDetailGridView.Size = new System.Drawing.Size(829, 124);
             this.CustomerTransDetailGridView.TabIndex = 37;
             // 
             // btnAdd
@@ -489,14 +489,14 @@
             this.radSplitContainer1.Controls.Add(this.splitPanel1);
             this.radSplitContainer1.Controls.Add(this.splitPanel2);
             this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radSplitContainer1.Location = new System.Drawing.Point(0, 27);
+            this.radSplitContainer1.Location = new System.Drawing.Point(0, 49);
             this.radSplitContainer1.Name = "radSplitContainer1";
             this.radSplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // 
             // 
             this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer1.Size = new System.Drawing.Size(829, 384);
+            this.radSplitContainer1.Size = new System.Drawing.Size(829, 362);
             this.radSplitContainer1.TabIndex = 40;
             this.radSplitContainer1.TabStop = false;
             this.radSplitContainer1.Text = "radSplitContainer1";
@@ -514,7 +514,7 @@
             // 
             // 
             this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(829, 249);
+            this.splitPanel1.Size = new System.Drawing.Size(829, 235);
             this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.1535433F);
             this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 60);
             this.splitPanel1.TabIndex = 0;
@@ -524,13 +524,13 @@
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.CustomerTransDetailGridView);
-            this.splitPanel2.Location = new System.Drawing.Point(0, 252);
+            this.splitPanel2.Location = new System.Drawing.Point(0, 238);
             this.splitPanel2.Name = "splitPanel2";
             // 
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(829, 132);
+            this.splitPanel2.Size = new System.Drawing.Size(829, 124);
             this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.1535433F);
             this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -60);
             this.splitPanel2.TabIndex = 1;
