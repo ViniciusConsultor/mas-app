@@ -90,6 +90,9 @@ namespace VisitaJayaPerkasa.Control.City
                         case "Name":
                             ShowCities = cities.Where(c => c.CityName.ToLower().Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.City>();
                             break;
+                        case "Days":
+                            ShowCities = cities.Where(c => c.Days.ToString().Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.City>();
+                            break;
                     }
 
                 }

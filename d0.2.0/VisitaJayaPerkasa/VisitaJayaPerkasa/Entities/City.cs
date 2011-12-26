@@ -10,6 +10,7 @@ namespace VisitaJayaPerkasa.Entities
         public Guid ID { get; set; }
         public string CityCode { get; set; }
         public string CityName { get; set; }
+        public int Days { get; set; }
         public int Deleted { get; set; }
     }
 }

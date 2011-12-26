@@ -36,11 +36,15 @@
             this.radButtonElement1 = new Telerik.WinControls.UI.RadButtonElement();
             this.lblCityName = new Telerik.WinControls.UI.RadLabel();
             this.lblCityCode = new Telerik.WinControls.UI.RadLabel();
+            this.lblDays = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCityName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCityCode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblDays)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel2
@@ -120,10 +124,28 @@
             this.lblCityCode.TabIndex = 22;
             this.lblCityCode.Text = "Code";
             // 
+            // lblDays
+            // 
+            this.lblDays.Location = new System.Drawing.Point(111, 98);
+            this.lblDays.Name = "lblDays";
+            this.lblDays.Size = new System.Drawing.Size(36, 16);
+            this.lblDays.TabIndex = 25;
+            this.lblDays.Text = "Name";
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Location = new System.Drawing.Point(33, 98);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(32, 16);
+            this.radLabel4.TabIndex = 24;
+            this.radLabel4.Text = "Days";
+            // 
             // CityView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblDays);
+            this.Controls.Add(this.radLabel4);
             this.Controls.Add(this.lblCityName);
             this.Controls.Add(this.lblCityCode);
             this.Controls.Add(this.radLabel2);
@@ -136,6 +158,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCityName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCityCode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblDays)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -151,5 +175,7 @@
         private Telerik.WinControls.UI.RadButtonElement radButtonElement1;
         private Telerik.WinControls.UI.RadLabel lblCityName;
         private Telerik.WinControls.UI.RadLabel lblCityCode;
+        private Telerik.WinControls.UI.RadLabel lblDays;
+        private Telerik.WinControls.UI.RadLabel radLabel4;
     }
 }

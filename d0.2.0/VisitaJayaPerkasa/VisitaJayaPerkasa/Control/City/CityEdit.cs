@@ -31,6 +31,7 @@ namespace VisitaJayaPerkasa.Control.City
                 wantToCreateCity = false;
                 etCityCode.Text = city.CityCode;
                 etCityName.Text = city.CityName;
+                etDays.Text = city.Days.ToString();
             }
         }
 
@@ -57,7 +58,7 @@ namespace VisitaJayaPerkasa.Control.City
                     }
 
                     param = null;
-                    param = SqlUtility.SetSqlParameter(new string[] { "city_id", "city_code", "city_name", "deleted" }, new object[] { Guid.NewGuid(), etCityCode.Text.Trim(), etCityName.Text.Trim(), 0 });
+                    param = SqlUtility.SetSqlParameter(new string[] { "city_id", "city_code", "city_name", "Days", "deleted" }, new object[] { Guid.NewGuid(), etCityCode.Text.Trim(), etCityName.Text.Trim(), Convert.ToInt32(etDays.Text.Trim()), 0 });
 
                     if (sqlCityRepository.CreateCity(param))
                     {
@@ -71,7 +72,7 @@ namespace VisitaJayaPerkasa.Control.City
                 }
                 else
                 {
-                    param = SqlUtility.SetSqlParameter(new string[] { "city_code", "city_name", "city_id" }, new object[] { etCityCode.Text.Trim(), etCityName.Text.Trim(), city.ID });
+                    param = SqlUtility.SetSqlParameter(new string[] { "city_code", "city_name", "Days", "city_id" }, new object[] { etCityCode.Text.Trim(), etCityName.Text.Trim(), Convert.ToInt32(etDays.Text.Trim()),  city.ID });
 
                     if (sqlCityRepository.EditCity(param))
                     {

@@ -21,7 +21,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT city_id, city_code, city_name FROM [City] " +
+                        "SELECT city_id, city_code, city_name, days FROM [City] " +
                         "WHERE (deleted is null OR deleted = '0') " +
                         "ORDER BY city_name ASC"
                         , con))
@@ -33,6 +33,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                             city.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
                             city.CityCode = reader.GetString(1);
                             city.CityName = reader.GetString(2);
+                            city.Days = reader.GetInt32(3);
 
                             if (listCity == null)
                                 listCity = new List<City>();
@@ -104,7 +105,8 @@ namespace VisitaJayaPerkasa.SqlRepository
                         sqlParam[0].ParameterName + ", " +
                         sqlParam[1].ParameterName + ", " +
                         sqlParam[2].ParameterName + ", " +
-                        sqlParam[3].ParameterName +
+                        sqlParam[3].ParameterName + ", " +
+                        sqlParam[4].ParameterName +
                         ")", con))
                     {
                         command.Transaction = sqlTransaction;
@@ -150,7 +152,8 @@ namespace VisitaJayaPerkasa.SqlRepository
                     using (SqlCommand command = new SqlCommand(
                         "Update [City] set city_code = " + sqlParam[0].ParameterName +
                         ", city_name = " + sqlParam[1].ParameterName +
-                        " WHERE city_id = " + sqlParam[2].ParameterName, con))
+                        ", days = " + sqlParam[2].ParameterName +
+                        " WHERE city_id = " + sqlParam[3].ParameterName, con))
                     {
                         command.Transaction = sqlTransaction;
 
