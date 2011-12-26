@@ -25,23 +25,51 @@ namespace VisitaJayaPerkasa.Control.CategoryControl
         private int pageSize;
         private int totalPage;
 
+        private BackgroundWorker backgroundWorker;
+
         public CategoryList()
         {
             InitializeComponent();
             pageSize = 15;
-            BeforeLoadData();
+            
+            backgroundWorker = new BackgroundWorker();
+            backgroundWorker.WorkerSupportsCancellation = true;
+            backgroundWorker.DoWork += new DoWorkEventHandler(this.bgWorker_DoWork);
+            backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
+
+            LoadData();
         }
 
-        private void BeforeLoadData() {
-            Constant.VisitaJayaPerkasaApplication.pBarForm = new Form.PBarDialog();
+        private void bgWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker bw = sender as BackgroundWorker;
 
-            Thread thread = new Thread(LoadData);
-            thread.Start();
-            Thread.Sleep(50);
+            this.LoadDataInBackground();
+
+            if (bw.CancellationPending)
+                e.Cancel = true;
+        }
+
+        private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+                MessageBox.Show("Operation was cancelled");
+            else if (e.Error != null)
+            {
+                string msg = String.Format("An error occurred: {0}", e.Error.Message);
+                MessageBox.Show(msg);
+            }
+            else
+                this.RefreshGrid();
+        }
+
+        private void LoadData() {
+            Constant.VisitaJayaPerkasaApplication.pBarForm = new Form.PBarDialog();
+            backgroundWorker.RunWorkerAsync();
             Constant.VisitaJayaPerkasaApplication.pBarForm.ShowDialog();
         }
 
-        public void LoadData()
+        public void LoadDataInBackground()
         {
             sqlCategoryRepository = new SqlCategoryRepository();
             categories = null;
@@ -78,8 +106,6 @@ namespace VisitaJayaPerkasa.Control.CategoryControl
             }
             else
                 totalPage = 0;
-
-            RefreshGrid();
         }
 
         public void RefreshGrid()
@@ -101,7 +127,6 @@ namespace VisitaJayaPerkasa.Control.CategoryControl
                     Constant.VisitaJayaPerkasaApplication.pBarForm = null;
                 }
             );
-            
         }
 
         private void radButtonElementPrev_Click(object sender, EventArgs e)
@@ -124,12 +149,12 @@ namespace VisitaJayaPerkasa.Control.CategoryControl
 
         private void radButtonElementRefresh_Click(object sender, EventArgs e)
         {
-            BeforeLoadData();
+            LoadData();
         }
 
         private void radButtonElementBtnSearch_Click(object sender, EventArgs e)
         {
-            BeforeLoadData();
+            LoadData();
         }
 
         private void radButtonElementCreate_Click(object sender, EventArgs e)
@@ -168,7 +193,7 @@ namespace VisitaJayaPerkasa.Control.CategoryControl
                     if (sqlCategoryRepository.DeleteCategory(sqlParam))
                     {
                         MessageBox.Show("Data Deleted !");
-                        BeforeLoadData();
+                        LoadData();
                     }
                     else
                         MessageBox.Show("Cannot Delete Data !");

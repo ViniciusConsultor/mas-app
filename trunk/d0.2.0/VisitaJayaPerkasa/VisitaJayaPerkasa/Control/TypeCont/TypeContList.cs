@@ -22,10 +22,18 @@ namespace VisitaJayaPerkasa.Control.TypeCont
         private int pageSize;
         private int totalPage;
 
+        private BackgroundWorker backgroundWorker;
+
         public TypeContList()
         {
             InitializeComponent();
             pageSize = 15;
+
+            backgroundWorker = new BackgroundWorker();
+            backgroundWorker.WorkerSupportsCancellation = true;
+            backgroundWorker.DoWork += new DoWorkEventHandler(this.bgWorker_DoWork);
+            backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
+
             LoadData();
         }
 
@@ -34,7 +42,37 @@ namespace VisitaJayaPerkasa.Control.TypeCont
             LoadData();
         }
 
-        public void LoadData()
+        private void bgWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker bw = sender as BackgroundWorker;
+
+            this.LoadDataInBackground();
+
+            if (bw.CancellationPending)
+                e.Cancel = true;
+        }
+
+        private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+                MessageBox.Show("Operation was cancelled");
+            else if (e.Error != null)
+            {
+                string msg = String.Format("An error occurred: {0}", e.Error.Message);
+                MessageBox.Show(msg);
+            }
+            else
+                this.RefreshGrid();
+        }
+
+        private void LoadData()
+        {
+            Constant.VisitaJayaPerkasaApplication.pBarForm = new Form.PBarDialog();
+            backgroundWorker.RunWorkerAsync();
+            Constant.VisitaJayaPerkasaApplication.pBarForm.ShowDialog();
+        }
+
+        public void LoadDataInBackground()
         {
             sqlTypeContRepository = new SqlTypeContRepository();
             TypeCont = null;
@@ -70,8 +108,6 @@ namespace VisitaJayaPerkasa.Control.TypeCont
             }
             else
                 totalPage = 0;
-
-            RefreshGrid();
         }
 
 
@@ -84,6 +120,16 @@ namespace VisitaJayaPerkasa.Control.TypeCont
 
             radToolStripLabelIndexing.Text = currentPage + " / " + totalPage;
             TypeContGridView.DataSource = ShowTypeCont;
+
+            Constant.VisitaJayaPerkasaApplication.pBarForm.Invoke
+            (
+                (MethodInvoker)delegate()
+                {
+                    Constant.VisitaJayaPerkasaApplication.pBarForm.Close();
+                    Constant.VisitaJayaPerkasaApplication.pBarForm.Dispose();
+                    Constant.VisitaJayaPerkasaApplication.pBarForm = null;
+                }
+            );
         }
 
         private void radButtonElementNext_Click(object sender, EventArgs e)
