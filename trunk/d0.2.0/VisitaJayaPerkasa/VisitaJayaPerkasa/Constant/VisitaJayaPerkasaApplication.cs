@@ -10,6 +10,7 @@ namespace VisitaJayaPerkasa.Constant
     {
         public static LoginForm loginForm;
         public static MainForm mainForm;
+        public static PBarDialog pBarForm;
 
         public static string cboDefaultText = "-- Choose --";
         public static string roleAdmin = "administrator";

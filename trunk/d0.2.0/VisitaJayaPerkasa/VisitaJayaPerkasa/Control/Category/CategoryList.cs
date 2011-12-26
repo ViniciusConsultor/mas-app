@@ -11,6 +11,7 @@ using Telerik.WinControls.UI;
 
 using VisitaJayaPerkasa.SqlRepository;
 using VisitaJayaPerkasa.Entities;
+using System.Threading;
 
 namespace VisitaJayaPerkasa.Control.CategoryControl
 {
@@ -28,7 +29,16 @@ namespace VisitaJayaPerkasa.Control.CategoryControl
         {
             InitializeComponent();
             pageSize = 15;
-            LoadData();
+            BeforeLoadData();
+        }
+
+        private void BeforeLoadData() {
+            Constant.VisitaJayaPerkasaApplication.pBarForm = new Form.PBarDialog();
+
+            Thread thread = new Thread(LoadData);
+            thread.Start();
+            Thread.Sleep(50);
+            Constant.VisitaJayaPerkasaApplication.pBarForm.ShowDialog();
         }
 
         public void LoadData()
@@ -81,6 +91,17 @@ namespace VisitaJayaPerkasa.Control.CategoryControl
 
             radToolStripLabelIndexing.Text = currentPage + " / " + totalPage;
             CategoryGridView.DataSource = ShowCategories;
+
+            Constant.VisitaJayaPerkasaApplication.pBarForm.Invoke
+            (
+                (MethodInvoker)delegate()
+                {
+                    Constant.VisitaJayaPerkasaApplication.pBarForm.Close();
+                    Constant.VisitaJayaPerkasaApplication.pBarForm.Dispose();
+                    Constant.VisitaJayaPerkasaApplication.pBarForm = null;
+                }
+            );
+            
         }
 
         private void radButtonElementPrev_Click(object sender, EventArgs e)
@@ -103,12 +124,12 @@ namespace VisitaJayaPerkasa.Control.CategoryControl
 
         private void radButtonElementRefresh_Click(object sender, EventArgs e)
         {
-            LoadData();
+            BeforeLoadData();
         }
 
         private void radButtonElementBtnSearch_Click(object sender, EventArgs e)
         {
-            LoadData();
+            BeforeLoadData();
         }
 
         private void radButtonElementCreate_Click(object sender, EventArgs e)
@@ -147,7 +168,7 @@ namespace VisitaJayaPerkasa.Control.CategoryControl
                     if (sqlCategoryRepository.DeleteCategory(sqlParam))
                     {
                         MessageBox.Show("Data Deleted !");
-                        LoadData();
+                        BeforeLoadData();
                     }
                     else
                         MessageBox.Show("Cannot Delete Data !");
