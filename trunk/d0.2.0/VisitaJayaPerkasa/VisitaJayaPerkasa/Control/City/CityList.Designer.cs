@@ -31,6 +31,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.radButtonElementEdit = new Telerik.WinControls.UI.RadButtonElement();
             this.radToolStripElement2 = new Telerik.WinControls.UI.RadToolStripElement();
@@ -274,9 +275,14 @@
             gridViewTextBoxColumn3.HeaderText = "City Name";
             gridViewTextBoxColumn3.UniqueName = "CityName";
             gridViewTextBoxColumn3.Width = 201;
+            gridViewTextBoxColumn4.FieldName = "Days";
+            gridViewTextBoxColumn4.HeaderText = "Days";
+            gridViewTextBoxColumn4.UniqueName = "Days";
+            gridViewTextBoxColumn4.Width = 110;
             this.CityGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
             this.CityGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
             this.CityGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);
+            this.CityGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn4);
             gridSortField1.FieldAlias = "CityCode";
             gridSortField1.FieldName = "CityCode";
             gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;

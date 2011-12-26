@@ -18,6 +18,7 @@ namespace VisitaJayaPerkasa.Control.City
 
             lblCityCode.Text = Utility.Utility.DisplayNullValues(city.CityCode);
             lblCityName.Text = Utility.Utility.DisplayNullValues(city.CityName);
+            lblDays.Text = Utility.Utility.DisplayNullValues(city.Days.ToString());
         }
 
         private void radButtonElement1_Click(object sender, EventArgs e)

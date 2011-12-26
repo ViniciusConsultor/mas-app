@@ -38,23 +38,29 @@
             this.radToolStripItem1 = new Telerik.WinControls.UI.RadToolStripItem();
             this.radToolStripElement1 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
+            this.etDays = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.etCityCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etCityName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etDays)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.etDays);
+            this.groupBox2.Controls.Add(this.radLabel3);
             this.groupBox2.Controls.Add(this.etCityCode);
             this.groupBox2.Controls.Add(this.radLabel2);
             this.groupBox2.Controls.Add(this.etCityName);
             this.groupBox2.Controls.Add(this.radLabel1);
             this.groupBox2.Location = new System.Drawing.Point(37, 71);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(356, 94);
+            this.groupBox2.Size = new System.Drawing.Size(356, 123);
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "City";
@@ -147,6 +153,22 @@
             this.radToolStrip1.TabIndex = 24;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
+            // etDays
+            // 
+            this.etDays.Location = new System.Drawing.Point(129, 87);
+            this.etDays.Name = "etDays";
+            this.etDays.Size = new System.Drawing.Size(210, 20);
+            this.etDays.TabIndex = 13;
+            this.etDays.TabStop = false;
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(21, 87);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(32, 16);
+            this.radLabel3.TabIndex = 14;
+            this.radLabel3.Text = "Days";
+            // 
             // CityEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -162,6 +184,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.etCityName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etDays)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,5 +203,7 @@
         private Telerik.WinControls.UI.RadToolStripItem radToolStripItem1;
         private Telerik.WinControls.UI.RadToolStripElement radToolStripElement1;
         private Telerik.WinControls.UI.RadToolStrip radToolStrip1;
+        private Telerik.WinControls.UI.RadTextBox etDays;
+        private Telerik.WinControls.UI.RadLabel radLabel3;
     }
 }
