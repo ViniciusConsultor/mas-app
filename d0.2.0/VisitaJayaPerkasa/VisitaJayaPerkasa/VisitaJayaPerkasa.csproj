@@ -300,6 +300,7 @@
     <Compile Include="Entities\CustomerTransDetail.cs" />
     <Compile Include="Entities\LeadTime.cs" />
     <Compile Include="Entities\Pelayaran.cs" />
+    <Compile Include="Entities\PelayaranDetail.cs" />
     <Compile Include="Entities\PriceList.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Schedule.cs" />
