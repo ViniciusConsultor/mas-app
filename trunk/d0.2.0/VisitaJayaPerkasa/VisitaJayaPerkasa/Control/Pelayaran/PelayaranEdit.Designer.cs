@@ -30,6 +30,7 @@
         {
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.etPelayaranName = new Telerik.WinControls.UI.RadTextBox();
@@ -153,7 +154,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(829, 49);
+            this.radToolStrip1.Size = new System.Drawing.Size(829, 27);
             this.radToolStrip1.TabIndex = 26;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
@@ -232,15 +233,20 @@
             gridViewTextBoxColumn2.HeaderText = "Vessel Name";
             gridViewTextBoxColumn2.UniqueName = "VesselName";
             gridViewTextBoxColumn2.Width = 130;
+            gridViewTextBoxColumn3.FieldName = "StatusPinjaman";
+            gridViewTextBoxColumn3.HeaderText = "Status Pinjaman";
+            gridViewTextBoxColumn3.IsVisible = false;
+            gridViewTextBoxColumn3.UniqueName = "StatusPinjaman";
             this.PelayaranDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
             this.PelayaranDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
+            this.PelayaranDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);
             gridSortField1.FieldAlias = "LastName";
             gridSortField1.FieldName = "VesselName";
             this.PelayaranDetailGridView.MasterGridViewTemplate.SortExpressions.Add(gridSortField1);
             this.PelayaranDetailGridView.Name = "PelayaranDetailGridView";
             this.PelayaranDetailGridView.ReadOnly = true;
             this.PelayaranDetailGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.PelayaranDetailGridView.Size = new System.Drawing.Size(829, 124);
+            this.PelayaranDetailGridView.Size = new System.Drawing.Size(829, 132);
             this.PelayaranDetailGridView.TabIndex = 37;
             // 
             // btnAdd
@@ -275,14 +281,14 @@
             this.radSplitContainer1.Controls.Add(this.splitPanel1);
             this.radSplitContainer1.Controls.Add(this.splitPanel2);
             this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radSplitContainer1.Location = new System.Drawing.Point(0, 49);
+            this.radSplitContainer1.Location = new System.Drawing.Point(0, 27);
             this.radSplitContainer1.Name = "radSplitContainer1";
             this.radSplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // 
             // 
             this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer1.Size = new System.Drawing.Size(829, 362);
+            this.radSplitContainer1.Size = new System.Drawing.Size(829, 384);
             this.radSplitContainer1.TabIndex = 40;
             this.radSplitContainer1.TabStop = false;
             this.radSplitContainer1.Text = "radSplitContainer1";
@@ -300,7 +306,7 @@
             // 
             // 
             this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(829, 235);
+            this.splitPanel1.Size = new System.Drawing.Size(829, 249);
             this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.1535433F);
             this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 60);
             this.splitPanel1.TabIndex = 0;
@@ -310,13 +316,13 @@
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.PelayaranDetailGridView);
-            this.splitPanel2.Location = new System.Drawing.Point(0, 238);
+            this.splitPanel2.Location = new System.Drawing.Point(0, 252);
             this.splitPanel2.Name = "splitPanel2";
             // 
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(829, 124);
+            this.splitPanel2.Size = new System.Drawing.Size(829, 132);
             this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.1535433F);
             this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -60);
             this.splitPanel2.TabIndex = 1;

@@ -164,7 +164,7 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
                 obj[i++] = id;
                 obj[i++] = SqlUtility.isDBNULL(PelayaranDetailGridView.Rows[j].Cells[0].Value + "");
                 obj[i++] = SqlUtility.isDBNULL(PelayaranDetailGridView.Rows[j].Cells[1].Value + "");
-                obj[i++] = 0;
+                obj[i++] = SqlUtility.isDBNULL(PelayaranDetailGridView.Rows[j].Cells[2].Value + "");
                 obj[i++] = 0;
             }
 
