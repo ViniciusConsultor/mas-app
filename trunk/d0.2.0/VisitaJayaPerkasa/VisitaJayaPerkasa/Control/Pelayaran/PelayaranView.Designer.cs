@@ -30,6 +30,7 @@
         {
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.lblPelayaranName = new Telerik.WinControls.UI.RadLabel();
             this.radToolStripElement1 = new Telerik.WinControls.UI.RadToolStripElement();
@@ -140,8 +141,13 @@
             gridViewTextBoxColumn2.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
             gridViewTextBoxColumn2.UniqueName = "VesselName";
             gridViewTextBoxColumn2.Width = 130;
+            gridViewTextBoxColumn3.FieldName = "StatusPinjaman";
+            gridViewTextBoxColumn3.HeaderText = "Status Pinjaman";
+            gridViewTextBoxColumn3.IsVisible = false;
+            gridViewTextBoxColumn3.UniqueName = "StatusPinjaman";
             this.PelayaranDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
             this.PelayaranDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
+            this.PelayaranDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);
             gridSortField1.FieldAlias = "VesselName";
             gridSortField1.FieldName = "VesselName";
             gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
