@@ -14,7 +14,6 @@ namespace VisitaJayaPerkasa.Control.Schedule
     public partial class ScheduleEdit : UserControl
     {
         private SqlCityRepository sqlCityRepository;
-        private SqlPelayaranRepository sqlPelayaranRepository;
         private SqlVesselRepository sqlVesselRepository;
         private SqlScheduleRepository sqlScheduleRepository;
         private VisitaJayaPerkasa.Entities.Schedule schedule;
@@ -24,12 +23,10 @@ namespace VisitaJayaPerkasa.Control.Schedule
         {
             InitializeComponent();
             sqlCityRepository = new SqlCityRepository();
-            sqlPelayaranRepository = new SqlPelayaranRepository();
             sqlVesselRepository = new SqlVesselRepository();
             this.schedule = schedule;
 
             List<VisitaJayaPerkasa.Entities.City> listCity = sqlCityRepository.GetCity();
-            List<VisitaJayaPerkasa.Entities.Pelayaran> listPelayaran = sqlPelayaranRepository.GetPelayaran();
             List<VisitaJayaPerkasa.Entities.Vessel> listVessel = sqlVesselRepository.GetVessels();
 
             cboBerangkat.DataSource = listCity;
@@ -39,10 +36,6 @@ namespace VisitaJayaPerkasa.Control.Schedule
             cboTujuan.DataSource = listCity;
             cboTujuan.DisplayMember = "CityName";
             cboTujuan.ValueMember = "ID";
-
-            cboPelayaran.DataSource = listPelayaran;
-            cboPelayaran.DisplayMember = "Name";
-            cboPelayaran.ValueMember = "ID";
 
             cboKapal.DataSource = listVessel;
             cboKapal.DisplayMember = "VesselName";
@@ -56,8 +49,6 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 cboBerangkat.Text = Constant.VisitaJayaPerkasaApplication.cboDefaultText;
                 cboTujuan.SelectedIndex = -1;
                 cboTujuan.Text = Constant.VisitaJayaPerkasaApplication.cboDefaultText;
-                cboPelayaran.SelectedIndex = -1;
-                cboPelayaran.Text = Constant.VisitaJayaPerkasaApplication.cboDefaultText;
                 cboKapal.SelectedIndex = -1;
                 cboKapal.Text = Constant.VisitaJayaPerkasaApplication.cboDefaultText;
             }
@@ -68,7 +59,6 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 cboBerangkat.SelectedItem = temp[0];
                 cboBerangkat.SelectedItem = temp[1];
                 cboKapal.SelectedItem = schedule.namaKapal;
-                cboPelayaran.SelectedItem = schedule.namaPelayaran;
 
                 pickerETD.Value = schedule.etd;
                 pickerTglClosing.Value = schedule.tglclosing;
@@ -79,12 +69,15 @@ namespace VisitaJayaPerkasa.Control.Schedule
             }
 
             listCity = null;
-            listPelayaran = null;
             listVessel = null;
-            sqlPelayaranRepository = null;
             sqlCityRepository = null;
             sqlVesselRepository = null;
-        }
+
+
+
+
+
+         }
 
         private void radButtonElement2_Click(object sender, EventArgs e)
         {
@@ -118,8 +111,6 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 MessageBox.Show(this, "Please select berangkat", "Information");
             else if(cboTujuan.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
                 MessageBox.Show(this, "Please select tujuan", "Information");
-            else if (cboPelayaran.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
-                MessageBox.Show(this, "Please select pelayaran", "Information");
             else if (cboKapal.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
                 MessageBox.Show(this, "Please select kapal", "Information");
             else if(etVOY.Text.Trim().Length == 0)
@@ -135,12 +126,11 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 if (wantToCreateVessel) {
                     SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(
                             new string[]{"schedule_id", "berangkat", "tujuan",
-                                "pelayaran_id", "vessel_id", "etd", "tgl_closing",
+                                "vessel_id", "etd", "tgl_closing",
                                 "voy", "ro", "deleted", "keterangan"},
                             new object[]{Guid.NewGuid(), 
                                 Utility.Utility.ConvertToUUID(cboBerangkat.SelectedValue.ToString()),
                                 Utility.Utility.ConvertToUUID(cboTujuan.SelectedValue.ToString()),
-                                Utility.Utility.ConvertToUUID(cboPelayaran.SelectedValue.ToString()),
                                 Utility.Utility.ConvertToUUID(cboKapal.SelectedValue.ToString()),
                                 pickerETD.Value.Date,
                                 pickerTglClosing.Value.Date,
@@ -162,12 +152,11 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 else {
                     SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(
                                 new string[]{"berangkat", "tujuan",
-                                "pelayaran_id", "vessel_id", "etd", "tgl_closing",
+                                "vessel_id", "etd", "tgl_closing",
                                 "voy", "ro", "deleted", "keterangan", "schedule_id"},
                                 new object[]{
                                 Utility.Utility.ConvertToUUID(cboBerangkat.SelectedValue.ToString()),
                                 Utility.Utility.ConvertToUUID(cboTujuan.SelectedValue.ToString()),
-                                Utility.Utility.ConvertToUUID(cboPelayaran.SelectedValue.ToString()),
                                 Utility.Utility.ConvertToUUID(cboKapal.SelectedValue.ToString()),
                                 pickerETD.Value.Date,
                                 pickerTglClosing.Value.Date,

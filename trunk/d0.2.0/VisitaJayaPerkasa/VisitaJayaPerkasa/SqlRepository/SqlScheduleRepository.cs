@@ -10,7 +10,8 @@ namespace VisitaJayaPerkasa.SqlRepository
 {
     public class SqlScheduleRepository
     {
-        public List<Schedule> ListSchedule(string date)
+        public List<Schedule> ListSchedule(string beginDate, string endDate, 
+            string destination, string vessel, string voy)
         {
             List<Schedule> listSchedule = null;
 
@@ -25,8 +26,10 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "s.keterangan, s.RO, s.tgl_closing, p.name, v.vessel_name, " +
                         "(SELECT TOP 1 city_name FROM [CITY] cc WHERE cc.city_id = s.berangkat) as berangkats, " + 
                         "(SELECT TOP 1 city_name FROM [CITY] cc WHERE cc.city_id = s.tujuan) as tujuans " +
-                        "FROM [Schedule] s JOIN " + 
-                        "[Vessel] v on s.etd > '" + date + "' AND s.vessel_id = s.vessel_id AND (s.deleted is null OR s.deleted = '0') AND (v.deleted is null OR v.deleted = '0') JOIN " + 
+                        "FROM [Schedule] s JOIN " +
+                        "[Vessel] v on v.vessel_id like '%" + vessel + "%' AND v.vessel_id = s.vessel_id AND (s.etd > '" + beginDate + "' AND s.etd < '" + endDate + "') AND " + 
+                        "s.voy like '%" + voy + "%' AND " + 
+                        "s.tujuan like '%" + destination + "%' AND s.vessel_id = s.vessel_id AND (s.deleted is null OR s.deleted = '0') AND (v.deleted is null OR v.deleted = '0') JOIN " + 
                         "[Pelayaran] p on p.pelayaran_id = s.pelayaran_id AND (p.deleted is null OR p.deleted = '0')"
                         , con))
                     {

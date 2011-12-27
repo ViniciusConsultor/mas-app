@@ -40,16 +40,27 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleList));
             this.radToolStripLabelIndexing = new Telerik.WinControls.UI.RadToolStripLabelElement();
             this.ScheduleGridView = new Telerik.WinControls.UI.RadGridView();
+            this.radCalendarEnd = new Telerik.WinControls.UI.RadCalendar();
+            this.radCalendarBegin = new Telerik.WinControls.UI.RadCalendar();
             this.radToolStripItem4 = new Telerik.WinControls.UI.RadToolStripItem();
+            this.cboKeySearch = new Telerik.WinControls.UI.RadComboBoxElement();
+            this.radComboBoxItem1 = new Telerik.WinControls.UI.RadComboBoxItem();
+            this.radComboBoxItem2 = new Telerik.WinControls.UI.RadComboBoxItem();
+            this.radComboBoxItem3 = new Telerik.WinControls.UI.RadComboBoxItem();
+            this.radComboBoxItem4 = new Telerik.WinControls.UI.RadComboBoxItem();
+            this.cboValueSearch = new Telerik.WinControls.UI.RadComboBoxElement();
+            this.txtRoSearch = new Telerik.WinControls.UI.RadTextBoxElement();
             this.radToolStripLabelElement1 = new Telerik.WinControls.UI.RadToolStripLabelElement();
-            this.actionBarDate = new Telerik.WinControls.UI.RadToolStripLabelElement();
-            this.radImageButtonElement1 = new Telerik.WinControls.UI.RadImageButtonElement();
-            this.radImageButtonElement2 = new Telerik.WinControls.UI.RadImageButtonElement();
+            this.actionBarDateBegin = new Telerik.WinControls.UI.RadToolStripLabelElement();
+            this.btnCalendarBegin = new Telerik.WinControls.UI.RadImageButtonElement();
+            this.radToolStripLabelElement2 = new Telerik.WinControls.UI.RadToolStripLabelElement();
+            this.actionBarDateEnd = new Telerik.WinControls.UI.RadToolStripLabelElement();
+            this.btnCalendarEnd = new Telerik.WinControls.UI.RadImageButtonElement();
+            this.btnSearch = new Telerik.WinControls.UI.RadImageButtonElement();
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.radToolStripElement1 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radToolStripItem1 = new Telerik.WinControls.UI.RadToolStripItem();
@@ -62,11 +73,14 @@
             this.radButtonElementNext = new Telerik.WinControls.UI.RadButtonElement();
             this.radToolStripElement2 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radToolStripItem3 = new Telerik.WinControls.UI.RadToolStripItem();
-            this.radCalendar1 = new Telerik.WinControls.UI.RadCalendar();
+            this.radToolStripElement3 = new Telerik.WinControls.UI.RadToolStripElement();
             ((System.ComponentModel.ISupportInitialize)(this.ScheduleGridView)).BeginInit();
             this.ScheduleGridView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radCalendarEnd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCalendarBegin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboKeySearch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboValueSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCalendar1)).BeginInit();
             this.SuspendLayout();
             // 
             // radToolStripLabelIndexing
@@ -78,13 +92,14 @@
             // ScheduleGridView
             // 
             this.ScheduleGridView.BackColor = System.Drawing.SystemColors.Control;
-            this.ScheduleGridView.Controls.Add(this.radCalendar1);
+            this.ScheduleGridView.Controls.Add(this.radCalendarEnd);
+            this.ScheduleGridView.Controls.Add(this.radCalendarBegin);
             this.ScheduleGridView.Cursor = System.Windows.Forms.Cursors.Default;
             this.ScheduleGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ScheduleGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.ScheduleGridView.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ScheduleGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.ScheduleGridView.Location = new System.Drawing.Point(0, 53);
+            this.ScheduleGridView.Location = new System.Drawing.Point(0, 97);
             // 
             // 
             // 
@@ -147,10 +162,6 @@
             gridViewTextBoxColumn12.FieldName = "Keterangan";
             gridViewTextBoxColumn12.HeaderText = "Keterangan";
             gridViewTextBoxColumn12.UniqueName = "Keterangan";
-            gridViewTextBoxColumn13.FieldAlias = "ro";
-            gridViewTextBoxColumn13.FieldName = "ro";
-            gridViewTextBoxColumn13.HeaderText = "RO";
-            gridViewTextBoxColumn13.UniqueName = "ro";
             this.ScheduleGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
             this.ScheduleGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
             this.ScheduleGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);
@@ -163,7 +174,6 @@
             this.ScheduleGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn10);
             this.ScheduleGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn11);
             this.ScheduleGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn12);
-            this.ScheduleGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn13);
             gridSortField1.FieldAlias = "tglclosing";
             gridSortField1.FieldName = "tglclosing";
             gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
@@ -171,53 +181,198 @@
             this.ScheduleGridView.Name = "ScheduleGridView";
             this.ScheduleGridView.ReadOnly = true;
             this.ScheduleGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ScheduleGridView.Size = new System.Drawing.Size(666, 365);
+            this.ScheduleGridView.Size = new System.Drawing.Size(666, 321);
             this.ScheduleGridView.TabIndex = 5;
             this.ScheduleGridView.ThemeName = "ControlDefault";
+            // 
+            // radCalendarEnd
+            // 
+            this.radCalendarEnd.CellAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radCalendarEnd.FastNavigationNextImage = ((System.Drawing.Image)(resources.GetObject("radCalendarEnd.FastNavigationNextImage")));
+            this.radCalendarEnd.FastNavigationPrevImage = ((System.Drawing.Image)(resources.GetObject("radCalendarEnd.FastNavigationPrevImage")));
+            this.radCalendarEnd.HeaderHeight = 17;
+            this.radCalendarEnd.HeaderWidth = 17;
+            this.radCalendarEnd.Location = new System.Drawing.Point(527, 0);
+            this.radCalendarEnd.Name = "radCalendarEnd";
+            this.radCalendarEnd.NavigationNextImage = ((System.Drawing.Image)(resources.GetObject("radCalendarEnd.NavigationNextImage")));
+            this.radCalendarEnd.NavigationPrevImage = ((System.Drawing.Image)(resources.GetObject("radCalendarEnd.NavigationPrevImage")));
+            this.radCalendarEnd.RangeMaxDate = new System.DateTime(2099, 12, 30, 0, 0, 0, 0);
+            this.radCalendarEnd.ShowOtherMonthsDays = false;
+            this.radCalendarEnd.Size = new System.Drawing.Size(278, 156);
+            this.radCalendarEnd.TabIndex = 8;
+            this.radCalendarEnd.Text = "radCalendar1";
+            this.radCalendarEnd.TitleAlign = System.Windows.Forms.VisualStyles.ContentAlignment.Center;
+            this.radCalendarEnd.Visible = false;
+            this.radCalendarEnd.ZoomFactor = 1.2F;
+            this.radCalendarEnd.SelectionChanged += new System.EventHandler(this.radCalendarEnd_SelectionChanged);
+            // 
+            // radCalendarBegin
+            // 
+            this.radCalendarBegin.CellAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radCalendarBegin.FastNavigationNextImage = ((System.Drawing.Image)(resources.GetObject("radCalendarBegin.FastNavigationNextImage")));
+            this.radCalendarBegin.FastNavigationPrevImage = ((System.Drawing.Image)(resources.GetObject("radCalendarBegin.FastNavigationPrevImage")));
+            this.radCalendarBegin.HeaderHeight = 17;
+            this.radCalendarBegin.HeaderWidth = 17;
+            this.radCalendarBegin.Location = new System.Drawing.Point(418, 3);
+            this.radCalendarBegin.Name = "radCalendarBegin";
+            this.radCalendarBegin.NavigationNextImage = ((System.Drawing.Image)(resources.GetObject("radCalendarBegin.NavigationNextImage")));
+            this.radCalendarBegin.NavigationPrevImage = ((System.Drawing.Image)(resources.GetObject("radCalendarBegin.NavigationPrevImage")));
+            this.radCalendarBegin.RangeMaxDate = new System.DateTime(2099, 12, 30, 0, 0, 0, 0);
+            this.radCalendarBegin.ShowOtherMonthsDays = false;
+            this.radCalendarBegin.Size = new System.Drawing.Size(278, 156);
+            this.radCalendarBegin.TabIndex = 7;
+            this.radCalendarBegin.Text = "radCalendar1";
+            this.radCalendarBegin.TitleAlign = System.Windows.Forms.VisualStyles.ContentAlignment.Center;
+            this.radCalendarBegin.Visible = false;
+            this.radCalendarBegin.ZoomFactor = 1.2F;
+            this.radCalendarBegin.SelectionChanged += new System.EventHandler(this.radCalendarBegin_SelectionChanged);
             // 
             // radToolStripItem4
             // 
             this.radToolStripItem4.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.cboKeySearch,
+            this.cboValueSearch,
+            this.txtRoSearch,
             this.radToolStripLabelElement1,
-            this.actionBarDate,
-            this.radImageButtonElement1,
-            this.radImageButtonElement2});
+            this.actionBarDateBegin,
+            this.btnCalendarBegin,
+            this.radToolStripLabelElement2,
+            this.actionBarDateEnd,
+            this.btnCalendarEnd,
+            this.btnSearch});
             this.radToolStripItem4.Key = "0";
             this.radToolStripItem4.Name = "radToolStripItem4";
             this.radToolStripItem4.Text = "radToolStripItem4";
+            // 
+            // cboKeySearch
+            // 
+            this.cboKeySearch.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cboKeySearch.ArrowButtonMinWidth = 16;
+            this.cboKeySearch.DefaultValue = null;
+            this.cboKeySearch.EditorElement = this.cboKeySearch;
+            this.cboKeySearch.EditorManager = null;
+            this.cboKeySearch.Focusable = true;
+            this.cboKeySearch.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radComboBoxItem1,
+            this.radComboBoxItem2,
+            this.radComboBoxItem3,
+            this.radComboBoxItem4});
+            this.cboKeySearch.MaxSize = new System.Drawing.Size(118, 20);
+            this.cboKeySearch.MaxValue = null;
+            this.cboKeySearch.MinSize = new System.Drawing.Size(118, 17);
+            this.cboKeySearch.MinValue = null;
+            this.cboKeySearch.Name = "cboKeySearch";
+            this.cboKeySearch.NullTextColor = System.Drawing.SystemColors.GrayText;
+            this.cboKeySearch.NullValue = null;
+            this.cboKeySearch.OwnerOffset = 0;
+            this.cboKeySearch.Text = "All";
+            this.cboKeySearch.Value = null;
+            this.cboKeySearch.SelectedIndexChanged += new System.EventHandler(this.cboKeySearch_SelectedIndexChanged);
+            this.cboKeySearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboKeySearch_KeyPress);
+            // 
+            // radComboBoxItem1
+            // 
+            this.radComboBoxItem1.Name = "radComboBoxItem1";
+            this.radComboBoxItem1.Text = "All";
+            // 
+            // radComboBoxItem2
+            // 
+            this.radComboBoxItem2.Name = "radComboBoxItem2";
+            this.radComboBoxItem2.Text = "Destination";
+            // 
+            // radComboBoxItem3
+            // 
+            this.radComboBoxItem3.Name = "radComboBoxItem3";
+            this.radComboBoxItem3.Text = "Vessel";
+            // 
+            // radComboBoxItem4
+            // 
+            this.radComboBoxItem4.Name = "radComboBoxItem4";
+            this.radComboBoxItem4.Text = "VOY";
+            // 
+            // cboValueSearch
+            // 
+            this.cboValueSearch.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cboValueSearch.ArrowButtonMinWidth = 16;
+            this.cboValueSearch.DefaultValue = null;
+            this.cboValueSearch.EditorElement = this.cboValueSearch;
+            this.cboValueSearch.EditorManager = null;
+            this.cboValueSearch.Focusable = true;
+            this.cboValueSearch.MaxSize = new System.Drawing.Size(118, 20);
+            this.cboValueSearch.MaxValue = null;
+            this.cboValueSearch.MinSize = new System.Drawing.Size(118, 17);
+            this.cboValueSearch.MinValue = null;
+            this.cboValueSearch.Name = "cboValueSearch";
+            this.cboValueSearch.NullTextColor = System.Drawing.SystemColors.GrayText;
+            this.cboValueSearch.NullValue = null;
+            this.cboValueSearch.OwnerOffset = 0;
+            this.cboValueSearch.Text = "-- Choose --";
+            this.cboValueSearch.Value = null;
+            this.cboValueSearch.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            this.cboValueSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboValueSearch_KeyPress);
+            // 
+            // txtRoSearch
+            // 
+            this.txtRoSearch.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtRoSearch.MaxSize = new System.Drawing.Size(118, 19);
+            this.txtRoSearch.MinSize = new System.Drawing.Size(118, 19);
+            this.txtRoSearch.Name = "txtRoSearch";
+            this.txtRoSearch.ShowBorder = true;
+            this.txtRoSearch.Text = "";
+            this.txtRoSearch.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
             // radToolStripLabelElement1
             // 
             this.radToolStripLabelElement1.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.radToolStripLabelElement1.Name = "radToolStripLabelElement1";
-            this.radToolStripLabelElement1.Text = "Date";
+            this.radToolStripLabelElement1.Text = "               Date";
             // 
-            // actionBarDate
+            // actionBarDateBegin
             // 
-            this.actionBarDate.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.actionBarDate.ForeColor = System.Drawing.Color.Aqua;
-            this.actionBarDate.Name = "actionBarDate";
-            this.actionBarDate.Text = "dd/mm/yyyy";
+            this.actionBarDateBegin.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.actionBarDateBegin.ForeColor = System.Drawing.Color.Aqua;
+            this.actionBarDateBegin.Name = "actionBarDateBegin";
+            this.actionBarDateBegin.Text = "dd/mm/yyyy";
             // 
-            // radImageButtonElement1
+            // btnCalendarBegin
             // 
-            this.radImageButtonElement1.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.radImageButtonElement1.Image = global::VisitaJayaPerkasa.Properties.Resources.calendar2;
-            this.radImageButtonElement1.ImageIndexClicked = 0;
-            this.radImageButtonElement1.ImageIndexHovered = 0;
-            this.radImageButtonElement1.Name = "radImageButtonElement1";
-            this.radImageButtonElement1.ShowBorder = false;
-            this.radImageButtonElement1.Text = "radImageButtonElement1";
-            this.radImageButtonElement1.Click += new System.EventHandler(this.radImageButtonElement1_Click);
+            this.btnCalendarBegin.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCalendarBegin.Image = global::VisitaJayaPerkasa.Properties.Resources.calendar2;
+            this.btnCalendarBegin.ImageIndexClicked = 0;
+            this.btnCalendarBegin.ImageIndexHovered = 0;
+            this.btnCalendarBegin.Name = "btnCalendarBegin";
+            this.btnCalendarBegin.ShowBorder = false;
+            this.btnCalendarBegin.Click += new System.EventHandler(this.btnCalendarBegin_Click);
             // 
-            // radImageButtonElement2
+            // radToolStripLabelElement2
             // 
-            this.radImageButtonElement2.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.radImageButtonElement2.Image = global::VisitaJayaPerkasa.Properties.Resources.search_16;
-            this.radImageButtonElement2.Name = "radImageButtonElement2";
-            this.radImageButtonElement2.ShowBorder = false;
-            this.radImageButtonElement2.Text = "";
-            this.radImageButtonElement2.Click += new System.EventHandler(this.radImageButtonElement2_Click);
+            this.radToolStripLabelElement2.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.radToolStripLabelElement2.Name = "radToolStripLabelElement2";
+            this.radToolStripLabelElement2.Text = " To ";
+            // 
+            // actionBarDateEnd
+            // 
+            this.actionBarDateEnd.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.actionBarDateEnd.Name = "actionBarDateEnd";
+            this.actionBarDateEnd.Text = "dd/mm/yyyy";
+            // 
+            // btnCalendarEnd
+            // 
+            this.btnCalendarEnd.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCalendarEnd.Image = global::VisitaJayaPerkasa.Properties.Resources.calendar2;
+            this.btnCalendarEnd.Name = "btnCalendarEnd";
+            this.btnCalendarEnd.ShowBorder = false;
+            this.btnCalendarEnd.Text = "";
+            this.btnCalendarEnd.Click += new System.EventHandler(this.btnCalendarEnd_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Image = global::VisitaJayaPerkasa.Properties.Resources.search_16;
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.ShowBorder = false;
+            this.btnSearch.Text = "";
+            this.btnSearch.Click += new System.EventHandler(this.radImageButtonElement4_Click);
             // 
             // radToolStrip1
             // 
@@ -226,7 +381,8 @@
             this.radToolStrip1.Dock = System.Windows.Forms.DockStyle.Top;
             this.radToolStrip1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radToolStripElement1,
-            this.radToolStripElement2});
+            this.radToolStripElement2,
+            this.radToolStripElement3});
             this.radToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.radToolStrip1.MinimumSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.Name = "radToolStrip1";
@@ -237,7 +393,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(666, 53);
+            this.radToolStrip1.Size = new System.Drawing.Size(666, 97);
             this.radToolStrip1.TabIndex = 4;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
@@ -341,26 +497,10 @@
             this.radToolStripItem3.Name = "radToolStripItem3";
             this.radToolStripItem3.Text = "radToolStripItem3";
             // 
-            // radCalendar1
+            // radToolStripElement3
             // 
-            this.radCalendar1.CellAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radCalendar1.FastNavigationNextImage = ((System.Drawing.Image)(resources.GetObject("radCalendar1.FastNavigationNextImage")));
-            this.radCalendar1.FastNavigationPrevImage = ((System.Drawing.Image)(resources.GetObject("radCalendar1.FastNavigationPrevImage")));
-            this.radCalendar1.HeaderHeight = 17;
-            this.radCalendar1.HeaderWidth = 17;
-            this.radCalendar1.Location = new System.Drawing.Point(140, 0);
-            this.radCalendar1.Name = "radCalendar1";
-            this.radCalendar1.NavigationNextImage = ((System.Drawing.Image)(resources.GetObject("radCalendar1.NavigationNextImage")));
-            this.radCalendar1.NavigationPrevImage = ((System.Drawing.Image)(resources.GetObject("radCalendar1.NavigationPrevImage")));
-            this.radCalendar1.RangeMaxDate = new System.DateTime(2099, 12, 30, 0, 0, 0, 0);
-            this.radCalendar1.ShowOtherMonthsDays = false;
-            this.radCalendar1.Size = new System.Drawing.Size(260, 182);
-            this.radCalendar1.TabIndex = 6;
-            this.radCalendar1.Text = "radCalendar1";
-            this.radCalendar1.TitleAlign = System.Windows.Forms.VisualStyles.ContentAlignment.Center;
-            this.radCalendar1.Visible = false;
-            this.radCalendar1.ZoomFactor = 1.2F;
-            this.radCalendar1.SelectionChanged += new System.EventHandler(this.radCalendar1_SelectionChanged_1);
+            this.radToolStripElement3.Name = "radToolStripElement3";
+            this.radToolStripElement3.Text = "radToolStripElement3";
             // 
             // ScheduleList
             // 
@@ -373,8 +513,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.ScheduleGridView)).EndInit();
             this.ScheduleGridView.ResumeLayout(false);
             this.ScheduleGridView.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radCalendarEnd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCalendarBegin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboKeySearch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboValueSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCalendar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -397,11 +540,23 @@
         private Telerik.WinControls.UI.RadToolStripItem radToolStripItem2;
         private Telerik.WinControls.UI.RadToolStripElement radToolStripElement2;
         private Telerik.WinControls.UI.RadToolStripLabelElement radToolStripLabelElement1;
-        private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElement1;
+        private Telerik.WinControls.UI.RadImageButtonElement btnCalendarBegin;
         private Telerik.WinControls.UI.RadToolStripItem radToolStripItem3;
-        private Telerik.WinControls.UI.RadToolStripLabelElement actionBarDate;
-        private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElement2;
-        private Telerik.WinControls.UI.RadCalendar radCalendar1;
+        private Telerik.WinControls.UI.RadToolStripLabelElement actionBarDateBegin;
+        private Telerik.WinControls.UI.RadCalendar radCalendarBegin;
+        private Telerik.WinControls.UI.RadComboBoxElement cboKeySearch;
+        private Telerik.WinControls.UI.RadComboBoxElement cboValueSearch;
+        private Telerik.WinControls.UI.RadToolStripLabelElement radToolStripLabelElement2;
+        private Telerik.WinControls.UI.RadToolStripLabelElement actionBarDateEnd;
+        private Telerik.WinControls.UI.RadImageButtonElement btnCalendarEnd;
+        private Telerik.WinControls.UI.RadImageButtonElement btnSearch;
+        private Telerik.WinControls.UI.RadTextBoxElement txtRoSearch;
+        private Telerik.WinControls.UI.RadCalendar radCalendarEnd;
+        private Telerik.WinControls.UI.RadComboBoxItem radComboBoxItem1;
+        private Telerik.WinControls.UI.RadComboBoxItem radComboBoxItem2;
+        private Telerik.WinControls.UI.RadComboBoxItem radComboBoxItem3;
+        private Telerik.WinControls.UI.RadComboBoxItem radComboBoxItem4;
+        private Telerik.WinControls.UI.RadToolStripElement radToolStripElement3;
 
     }
 }
