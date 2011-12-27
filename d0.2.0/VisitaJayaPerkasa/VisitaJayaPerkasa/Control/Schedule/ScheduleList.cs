@@ -22,24 +22,54 @@ namespace VisitaJayaPerkasa.Control.Schedule
         private int pageSize;
         private int totalPage;
 
+        private BackgroundWorker backgroundWorker;
+
         public ScheduleList()
         {
             InitializeComponent();
-            actionBarDate.Text = Utility.Utility.ConvertDateToString(DateTime.Now);
+            actionBarDateBegin.Text = Utility.Utility.ConvertDateToString(DateTime.Now);
+            actionBarDateEnd.Text = Utility.Utility.ConvertDateToString(DateTime.Now);
+
+            backgroundWorker = new BackgroundWorker();
+            backgroundWorker.WorkerSupportsCancellation = true;
+            backgroundWorker.DoWork += new DoWorkEventHandler(this.bgWorker_DoWork);
+            backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
+
+            cboValueSearch.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            txtRoSearch.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
 
             pageSize = 15;
             LoadData();
         }
 
-        private void radCalendar1_SelectionChanged(object sender, EventArgs e)
+        private void bgWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            radCalendar1.Visible = false;
-            actionBarDate.Text = Utility.Utility.ConvertDateToString(radCalendar1.SelectedDate);
+            BackgroundWorker bw = sender as BackgroundWorker;
+
+            this.LoadDataInBackground();
+
+            if (bw.CancellationPending)
+                e.Cancel = true;
         }
 
-        private void radImageButtonElement1_Click(object sender, EventArgs e)
+        private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            radCalendar1.Visible = true;
+            if (e.Cancelled)
+                MessageBox.Show("Operation was cancelled");
+            else if (e.Error != null)
+            {
+                string msg = String.Format("An error occurred: {0}", e.Error.Message);
+                MessageBox.Show(msg);
+            }
+            else
+                this.RefreshGrid();
+        }
+
+
+        private void radCalendar1_SelectionChanged(object sender, EventArgs e)
+        {
+            radCalendarBegin.Visible = false;
+            actionBarDateBegin.Text = Utility.Utility.ConvertDateToString(radCalendarBegin.SelectedDate);
         }
 
         private void radImageButtonElement2_Click(object sender, EventArgs e)
@@ -48,10 +78,35 @@ namespace VisitaJayaPerkasa.Control.Schedule
         }
 
         private void LoadData() {
+            Constant.VisitaJayaPerkasaApplication.pBarForm = new Form.PBarDialog();
+            backgroundWorker.RunWorkerAsync();
+            Constant.VisitaJayaPerkasaApplication.pBarForm.ShowDialog();
+        }
+
+        private void LoadDataInBackground()
+        {
             sqlScheduleRepository = new SqlScheduleRepository();
             schedules = null;
 
-            schedules = sqlScheduleRepository.ListSchedule(actionBarDate.Text);
+                    
+            if(cboKeySearch.Text.Equals("Destination"))
+                schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
+                    actionBarDateEnd.Text, cboValueSearch.SelectedValue.ToString(), "", ""
+                    );           
+            else if(cboKeySearch.Text.Equals("Vessel"))
+                schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
+                    actionBarDateEnd.Text, "", cboValueSearch.SelectedValue.ToString(), ""
+                    );
+            else if(cboKeySearch.Text.Equals("VOY"))
+                schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
+                    actionBarDateEnd.Text, "", "", txtRoSearch.Text.Trim()
+                    );
+            else
+                schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
+                    actionBarDateEnd.Text, "", "", ""
+                    );   
+
+
             if (schedules != null)
             {
                 showShedule = schedules;
@@ -66,8 +121,6 @@ namespace VisitaJayaPerkasa.Control.Schedule
             }
             else
                 totalPage = 0;
-
-            RefreshGrid();
         }
 
         private void radButtonElementCreate_Click(object sender, EventArgs e)
@@ -105,6 +158,16 @@ namespace VisitaJayaPerkasa.Control.Schedule
 
             radToolStripLabelIndexing.Text = currentPage + " / " + totalPage;
             ScheduleGridView.DataSource = showShedule;
+
+            Constant.VisitaJayaPerkasaApplication.pBarForm.Invoke
+            (
+                (MethodInvoker)delegate()
+                {
+                    Constant.VisitaJayaPerkasaApplication.pBarForm.Close();
+                    Constant.VisitaJayaPerkasaApplication.pBarForm.Dispose();
+                    Constant.VisitaJayaPerkasaApplication.pBarForm = null;
+                }
+            );
         }
 
         private void radButtonElementRefresh_Click(object sender, EventArgs e)
@@ -151,10 +214,88 @@ namespace VisitaJayaPerkasa.Control.Schedule
             }
         }
 
-        private void radCalendar1_SelectionChanged_1(object sender, EventArgs e)
+        private void radImageButtonElement4_Click(object sender, EventArgs e)
         {
-            actionBarDate.Text = Utility.Utility.ConvertDateToString(radCalendar1.SelectedDate);
-            radCalendar1.Visible = false;
+            if (Utility.Utility.ConvertStringToDate(actionBarDateBegin.Text) > Utility.Utility.ConvertStringToDate(actionBarDateEnd.Text))
+                MessageBox.Show(this, "Date begin greather than date end", "Information");
+            else
+                LoadData();
+        }
+
+        private void radCalendarEnd_SelectionChanged(object sender, EventArgs e)
+        {
+            actionBarDateEnd.Text = Utility.Utility.ConvertDateToString(radCalendarEnd.SelectedDate);
+            radCalendarEnd.Visible = false;
+        }
+
+        private void radCalendarBegin_SelectionChanged(object sender, EventArgs e)
+        {
+            actionBarDateBegin.Text = Utility.Utility.ConvertDateToString(radCalendarBegin.SelectedDate);
+            radCalendarBegin.Visible = false;
+        }
+
+        private void btnCalendarEnd_Click(object sender, EventArgs e)
+        {
+            radCalendarEnd.Visible = true;
+        }
+
+        private void btnCalendarBegin_Click(object sender, EventArgs e)
+        {
+            radCalendarBegin.Visible = true;
+        }
+
+        private void cboKeySearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(0);
+        }
+
+        private void cboValueSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(0);
+        }
+
+        private void cboKeySearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboKeySearch.Text.Equals("Destination"))
+            {
+                SqlCityRepository sqlCityRepository = new SqlCityRepository();
+                List<VisitaJayaPerkasa.Entities.City> listCity = sqlCityRepository.GetCity();
+                cboValueSearch.DataSource = null;
+
+                cboValueSearch.DataSource = listCity;
+                cboValueSearch.DisplayMember = "CityName";
+                cboValueSearch.ValueMember = "ID";
+
+                txtRoSearch.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+                cboValueSearch.Visibility = Telerik.WinControls.ElementVisibility.Visible;
+                listCity = null;
+                sqlCityRepository = null;
+            }
+            else if (cboKeySearch.Text.Equals("Vessel"))
+            {
+                SqlVesselRepository sqlVesselRepository = new SqlVesselRepository();
+                List<VisitaJayaPerkasa.Entities.Vessel> listVessel = sqlVesselRepository.GetVessels();
+                cboValueSearch.DataSource = null;
+
+                cboValueSearch.DataSource = listVessel;
+                cboValueSearch.DisplayMember = "VesselName";
+                cboValueSearch.ValueMember = "ID";
+
+                txtRoSearch.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+                cboValueSearch.Visibility = Telerik.WinControls.ElementVisibility.Visible;
+                sqlVesselRepository = null;
+                listVessel = null;
+            }
+            else if (cboKeySearch.Text.Equals("VOY"))
+            {
+                cboValueSearch.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+                txtRoSearch.Visibility = Telerik.WinControls.ElementVisibility.Visible;
+            }
+            else if (cboKeySearch.Text.Equals("All"))
+            {
+                cboValueSearch.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+                txtRoSearch.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            }
         }
 
     }
