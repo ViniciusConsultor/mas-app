@@ -38,6 +38,7 @@ namespace VisitaJayaPerkasa.Control.Customer
                 etPhone.Text = customer.Phone;
                 etFax.Text = customer.Fax;
                 etContactPerson.Text = customer.ContactPerson;
+                chkStatusPPN.Checked = Convert.ToBoolean(customer.StatusPPN);
 
                 SqlCustomerRepository sqlCustomerRepository = new SqlCustomerRepository();
                 listCustomerDetail = sqlCustomerRepository.ListCustomerDetail(customer.ID);
@@ -143,7 +144,7 @@ namespace VisitaJayaPerkasa.Control.Customer
         private string[] getStringSqlParameter() {
             //rowcount * 8 is number of field of customer detail
             // + 9 is number of field of customer
-            string[] strSqlParameter = new string[(CustomerDetailGridView.RowCount * 8) + 9];
+            string[] strSqlParameter = new string[(CustomerDetailGridView.RowCount * 8) + 10];
             strSqlParameter[0] = "customer_id";
             strSqlParameter[1] = "customer_name";
             strSqlParameter[2] = "office";
@@ -152,9 +153,10 @@ namespace VisitaJayaPerkasa.Control.Customer
             strSqlParameter[5] = "fax";
             strSqlParameter[6] = "email";
             strSqlParameter[7] = "contact_person";
-            strSqlParameter[8] = "deleted";
+            strSqlParameter[8] = "status_ppn";
+            strSqlParameter[9] = "deleted";
 
-            int j = 9;
+            int j = 10;
             for (int i = 0; i < CustomerDetailGridView.RowCount; i++) {
                 strSqlParameter[j++] = "customer_detail_id";
                 strSqlParameter[j++] = "customer_id";
@@ -173,7 +175,7 @@ namespace VisitaJayaPerkasa.Control.Customer
         {
             //rowcount * 8 is number of field of customer detail
             // + 9 is number of field of customer
-            object[] obj = new object[(CustomerDetailGridView.RowCount * 8) + 9];
+            object[] obj = new object[(CustomerDetailGridView.RowCount * 8) + 10];
             obj[0] = id;
             obj[1] = etCustomerName.Text.Trim();
             obj[2] = SqlUtility.isDBNULL(etOffice.Text.Trim());
@@ -182,9 +184,10 @@ namespace VisitaJayaPerkasa.Control.Customer
             obj[5] = SqlUtility.isDBNULL(etFax.Text.Trim());
             obj[6] = SqlUtility.isDBNULL(etEmail.Text.Trim());
             obj[7] = SqlUtility.isDBNULL(etContactPerson.Text.Trim());
-            obj[8] = 0;
+            obj[8] = chkStatusPPN.Checked;
+            obj[9] = 0;
 
-            int i = 9;
+            int i = 10;
             for (int j = 0; j < CustomerDetailGridView.RowCount; j++)
             {
                 obj[i++] = Guid.NewGuid();

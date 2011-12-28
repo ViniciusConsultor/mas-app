@@ -15,6 +15,7 @@ namespace VisitaJayaPerkasa.Entities
         public string Fax { get; set; }
         public string Email { get; set; }
         public string ContactPerson { get; set; }
+        public int StatusPPN { get; set; }
         public int Deleted { get; set; }
     }
 }
