@@ -36,7 +36,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                             customer.Fax = (Utility.Utility.IsDBNull(reader.GetValue(5))) ? null : reader.GetString(5);
                             customer.Email = (Utility.Utility.IsDBNull(reader.GetValue(6))) ? null : reader.GetString(6);
                             customer.ContactPerson = (Utility.Utility.IsDBNull(reader.GetValue(7))) ? null : reader.GetString(7);
-
+                            customer.StatusPPN = (Utility.Utility.IsDBNull(reader.GetValue(8))) ? 0 : Convert.ToInt32(reader.GetBoolean(8));
                             if (listCustomer == null)
                                 listCustomer = new List<Customer>();
 
@@ -172,22 +172,23 @@ namespace VisitaJayaPerkasa.SqlRepository
                         sqlParam[5].ParameterName + ", " +
                         sqlParam[6].ParameterName + ", " +
                         sqlParam[7].ParameterName + ", " +
-                        sqlParam[8].ParameterName +
+                        sqlParam[8].ParameterName + ", " +
+                        sqlParam[9].ParameterName +
                         ")", con))
                     {
                         command.Transaction = sqlTransaction;
 
-                        for (int i = 0; i < 9; i++)
+                        for (int i = 0; i < 10; i++)
                             command.Parameters.Add(sqlParam[i]);
                         n = command.ExecuteNonQuery();
                         command.Parameters.Clear();
 
-                        int z = 9;
-                        int subz = 9;
-                        if ((n > 0) && sqlParam.Length > 9) {
+                        int z = 10;
+                        int subz = 10;
+                        if ((n > 0) && sqlParam.Length > 10) {
                             //-9 is total sqlparameter minus number of customer master
                             // / 8 is remain of total sqlparameter minus 9 is customer detail who have 8 number of field
-                            for(int k=0;k<((sqlParam.Length - 9) / 8);k++){
+                            for(int k=0;k<((sqlParam.Length - 10) / 8);k++){
                                 using (SqlCommand subCommand = new SqlCommand(
                                     "Insert into [Customer_Detail] values(" +
                                     sqlParam[z++].ParameterName + ", " +
@@ -266,24 +267,25 @@ namespace VisitaJayaPerkasa.SqlRepository
                                 "fax = " + sqlParam[5].ParameterName + ", " +
                                 "email = " + sqlParam[6].ParameterName + ", " +
                                 "contact_person = " + sqlParam[7].ParameterName + ", " +
-                                "deleted = " + sqlParam[8].ParameterName + " WHERE " +
+                                "status_ppn = " + sqlParam[8].ParameterName + ", " +
+                                "deleted = " + sqlParam[9].ParameterName + " WHERE " +
                                 "customer_id = " + sqlParam[0].ParameterName 
                                 , con))
                             {
                                 command.Transaction = sqlTransaction;
 
-                                for (int i = 0; i < 9; i++)
+                                for (int i = 0; i < 10; i++)
                                     command.Parameters.Add(sqlParam[i]);
                                 n = command.ExecuteNonQuery();
                                 command.Parameters.Clear();
 
-                                int z = 9;
-                                int subz = 9;
-                                if ((n > 0) && sqlParam.Length > 9)
+                                int z = 10;
+                                int subz = 10;
+                                if ((n > 0) && sqlParam.Length > 10)
                                 {
                                     //-9 is total sqlparameter minus number of customer master
                                     // / 8 is remain of total sqlparameter minus 9 is customer detail who have 8 number of field
-                                    for (int k = 0; k < ((sqlParam.Length - 9) / 8); k++)
+                                    for (int k = 0; k < ((sqlParam.Length - 10) / 8); k++)
                                     {
                                         using (SqlCommand subCommand = new SqlCommand(
                                             "Insert into [Customer_Detail] values(" +

@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridSortField gridSortField2 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkStatusPPN = new Telerik.WinControls.UI.RadCheckBox();
             this.etAddress = new Telerik.WinControls.UI.RadTextBox();
             this.etOffice = new Telerik.WinControls.UI.RadTextBox();
             this.etCustomerName = new Telerik.WinControls.UI.RadTextBox();
@@ -51,6 +52,8 @@
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.radToolStripElement1 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radToolStripItem1 = new Telerik.WinControls.UI.RadToolStripItem();
+            this.radButtonElement1 = new Telerik.WinControls.UI.RadButtonElement();
+            this.radButtonElement2 = new Telerik.WinControls.UI.RadButtonElement();
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.etDetailAddress = new Telerik.WinControls.UI.RadTextBox();
@@ -67,12 +70,11 @@
             this.btnAdd = new Telerik.WinControls.UI.RadButton();
             this.btnClearGrid = new Telerik.WinControls.UI.RadButton();
             this.btnRemoveGrid = new Telerik.WinControls.UI.RadButton();
-            this.radButtonElement1 = new Telerik.WinControls.UI.RadButtonElement();
-            this.radButtonElement2 = new Telerik.WinControls.UI.RadButtonElement();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkStatusPPN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etOffice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etCustomerName)).BeginInit();
@@ -100,7 +102,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDetailGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CustomerDetailGridView.MasterGridViewTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClearGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemoveGrid)).BeginInit();
@@ -114,6 +115,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.chkStatusPPN);
             this.groupBox2.Controls.Add(this.etAddress);
             this.groupBox2.Controls.Add(this.etOffice);
             this.groupBox2.Controls.Add(this.etCustomerName);
@@ -130,10 +132,18 @@
             this.groupBox2.Controls.Add(this.radLabel9);
             this.groupBox2.Location = new System.Drawing.Point(17, 22);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(332, 187);
+            this.groupBox2.Size = new System.Drawing.Size(332, 205);
             this.groupBox2.TabIndex = 27;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Master Data";
+            // 
+            // chkStatusPPN
+            // 
+            this.chkStatusPPN.Location = new System.Drawing.Point(116, 180);
+            this.chkStatusPPN.Name = "chkStatusPPN";
+            this.chkStatusPPN.Size = new System.Drawing.Size(117, 18);
+            this.chkStatusPPN.TabIndex = 32;
+            this.chkStatusPPN.Text = "PPN";
             // 
             // etAddress
             // 
@@ -262,6 +272,26 @@
             this.radToolStripItem1.Name = "radToolStripItem1";
             this.radToolStripItem1.Text = "radToolStripItem1";
             // 
+            // radButtonElement1
+            // 
+            this.radButtonElement1.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.radButtonElement1.Image = global::VisitaJayaPerkasa.Properties.Resources.save_16;
+            this.radButtonElement1.Name = "radButtonElement1";
+            this.radButtonElement1.ShowBorder = false;
+            this.radButtonElement1.Text = "Save";
+            this.radButtonElement1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.radButtonElement1.Click += new System.EventHandler(this.radButtonElement1_Click);
+            // 
+            // radButtonElement2
+            // 
+            this.radButtonElement2.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.radButtonElement2.Image = global::VisitaJayaPerkasa.Properties.Resources.close_16;
+            this.radButtonElement2.Name = "radButtonElement2";
+            this.radButtonElement2.ShowBorder = false;
+            this.radButtonElement2.Text = "Close";
+            this.radButtonElement2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.radButtonElement2.Click += new System.EventHandler(this.radButtonElement2_Click);
+            // 
             // radToolStrip1
             // 
             this.radToolStrip1.AllowDragging = false;
@@ -295,7 +325,7 @@
             this.groupBox1.Controls.Add(this.etFirstName);
             this.groupBox1.Controls.Add(this.radLabel3);
             this.groupBox1.Controls.Add(this.radLabel4);
-            this.groupBox1.Location = new System.Drawing.Point(364, 39);
+            this.groupBox1.Location = new System.Drawing.Point(364, 53);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(332, 143);
             this.groupBox1.TabIndex = 28;
@@ -392,42 +422,42 @@
             this.CustomerDetailGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.CustomerDetailGridView.Location = new System.Drawing.Point(0, 0);
             // 
-            // gridViewTemplate1
+            // 
             // 
             this.CustomerDetailGridView.MasterGridViewTemplate.AllowAddNewRow = false;
-            gridViewTextBoxColumn6.FieldAlias = "FirstName";
-            gridViewTextBoxColumn6.FieldName = "FirstName";
-            gridViewTextBoxColumn6.HeaderText = "First Name";
-            gridViewTextBoxColumn6.UniqueName = "FirstName";
-            gridViewTextBoxColumn6.Width = 130;
-            gridViewTextBoxColumn7.FieldAlias = "LastName";
-            gridViewTextBoxColumn7.FieldName = "LastName";
-            gridViewTextBoxColumn7.HeaderText = "Last Name";
-            gridViewTextBoxColumn7.UniqueName = "LastName";
-            gridViewTextBoxColumn7.Width = 130;
-            gridViewTextBoxColumn8.FieldAlias = "CustomerDetailAddress";
-            gridViewTextBoxColumn8.FieldName = "CustomerDetailAddress";
-            gridViewTextBoxColumn8.HeaderText = "Address";
-            gridViewTextBoxColumn8.UniqueName = "CustomerDetailAddress";
-            gridViewTextBoxColumn8.Width = 200;
-            gridViewTextBoxColumn9.FieldAlias = "CustomerDetailPhone";
-            gridViewTextBoxColumn9.FieldName = "CustomerDetailPhone";
-            gridViewTextBoxColumn9.HeaderText = "Phone";
-            gridViewTextBoxColumn9.UniqueName = "CustomerDetailPhone";
-            gridViewTextBoxColumn9.Width = 110;
-            gridViewTextBoxColumn10.FieldAlias = "CustomerDetailMobilePhone";
-            gridViewTextBoxColumn10.FieldName = "CustomerDetailMobilePhone";
-            gridViewTextBoxColumn10.HeaderText = "Mobile";
-            gridViewTextBoxColumn10.UniqueName = "CustomerDetailMobilePhone";
-            gridViewTextBoxColumn10.Width = 110;
-            this.CustomerDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn6);
-            this.CustomerDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn7);
-            this.CustomerDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn8);
-            this.CustomerDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn9);
-            this.CustomerDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn10);
-            gridSortField2.FieldAlias = "LastName";
-            gridSortField2.FieldName = "LastName";
-            this.CustomerDetailGridView.MasterGridViewTemplate.SortExpressions.Add(gridSortField2);
+            gridViewTextBoxColumn1.FieldAlias = "FirstName";
+            gridViewTextBoxColumn1.FieldName = "FirstName";
+            gridViewTextBoxColumn1.HeaderText = "First Name";
+            gridViewTextBoxColumn1.UniqueName = "FirstName";
+            gridViewTextBoxColumn1.Width = 130;
+            gridViewTextBoxColumn2.FieldAlias = "LastName";
+            gridViewTextBoxColumn2.FieldName = "LastName";
+            gridViewTextBoxColumn2.HeaderText = "Last Name";
+            gridViewTextBoxColumn2.UniqueName = "LastName";
+            gridViewTextBoxColumn2.Width = 130;
+            gridViewTextBoxColumn3.FieldAlias = "CustomerDetailAddress";
+            gridViewTextBoxColumn3.FieldName = "CustomerDetailAddress";
+            gridViewTextBoxColumn3.HeaderText = "Address";
+            gridViewTextBoxColumn3.UniqueName = "CustomerDetailAddress";
+            gridViewTextBoxColumn3.Width = 200;
+            gridViewTextBoxColumn4.FieldAlias = "CustomerDetailPhone";
+            gridViewTextBoxColumn4.FieldName = "CustomerDetailPhone";
+            gridViewTextBoxColumn4.HeaderText = "Phone";
+            gridViewTextBoxColumn4.UniqueName = "CustomerDetailPhone";
+            gridViewTextBoxColumn4.Width = 110;
+            gridViewTextBoxColumn5.FieldAlias = "CustomerDetailMobilePhone";
+            gridViewTextBoxColumn5.FieldName = "CustomerDetailMobilePhone";
+            gridViewTextBoxColumn5.HeaderText = "Mobile";
+            gridViewTextBoxColumn5.UniqueName = "CustomerDetailMobilePhone";
+            gridViewTextBoxColumn5.Width = 110;
+            this.CustomerDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
+            this.CustomerDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
+            this.CustomerDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);
+            this.CustomerDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn4);
+            this.CustomerDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn5);
+            gridSortField1.FieldAlias = "LastName";
+            gridSortField1.FieldName = "LastName";
+            this.CustomerDetailGridView.MasterGridViewTemplate.SortExpressions.Add(gridSortField1);
             this.CustomerDetailGridView.Name = "CustomerDetailGridView";
             this.CustomerDetailGridView.ReadOnly = true;
             this.CustomerDetailGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -436,7 +466,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(364, 188);
+            this.btnAdd.Location = new System.Drawing.Point(364, 206);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(111, 21);
             this.btnAdd.TabIndex = 13;
@@ -445,7 +475,7 @@
             // 
             // btnClearGrid
             // 
-            this.btnClearGrid.Location = new System.Drawing.Point(481, 188);
+            this.btnClearGrid.Location = new System.Drawing.Point(481, 206);
             this.btnClearGrid.Name = "btnClearGrid";
             this.btnClearGrid.Size = new System.Drawing.Size(81, 21);
             this.btnClearGrid.TabIndex = 38;
@@ -454,32 +484,12 @@
             // 
             // btnRemoveGrid
             // 
-            this.btnRemoveGrid.Location = new System.Drawing.Point(568, 188);
+            this.btnRemoveGrid.Location = new System.Drawing.Point(568, 206);
             this.btnRemoveGrid.Name = "btnRemoveGrid";
             this.btnRemoveGrid.Size = new System.Drawing.Size(111, 21);
             this.btnRemoveGrid.TabIndex = 39;
             this.btnRemoveGrid.Text = "Remove Data";
             this.btnRemoveGrid.Click += new System.EventHandler(this.btnRemoveGrid_Click);
-            // 
-            // radButtonElement1
-            // 
-            this.radButtonElement1.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.radButtonElement1.Image = global::VisitaJayaPerkasa.Properties.Resources.save_16;
-            this.radButtonElement1.Name = "radButtonElement1";
-            this.radButtonElement1.ShowBorder = false;
-            this.radButtonElement1.Text = "Save";
-            this.radButtonElement1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.radButtonElement1.Click += new System.EventHandler(this.radButtonElement1_Click);
-            // 
-            // radButtonElement2
-            // 
-            this.radButtonElement2.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.radButtonElement2.Image = global::VisitaJayaPerkasa.Properties.Resources.close_16;
-            this.radButtonElement2.Name = "radButtonElement2";
-            this.radButtonElement2.ShowBorder = false;
-            this.radButtonElement2.Text = "Close";
-            this.radButtonElement2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.radButtonElement2.Click += new System.EventHandler(this.radButtonElement2_Click);
             // 
             // radSplitContainer1
             // 
@@ -544,6 +554,7 @@
             this.Size = new System.Drawing.Size(829, 411);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkStatusPPN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etOffice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etCustomerName)).EndInit();
@@ -571,7 +582,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.etFirstName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CustomerDetailGridView.MasterGridViewTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDetailGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClearGrid)).EndInit();
@@ -627,5 +637,6 @@
         private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
         private Telerik.WinControls.UI.SplitPanel splitPanel1;
         private Telerik.WinControls.UI.SplitPanel splitPanel2;
+        private Telerik.WinControls.UI.RadCheckBox chkStatusPPN;
     }
 }
