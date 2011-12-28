@@ -126,154 +126,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
         { 
             if ((!cboTypeSupplier.SelectedText.Equals("-- Choose --")) && (!cboTypeSupplier.SelectedText.Equals("")))
             {
-                if (PriceListGridView.RowCount > 0) {
-                    DialogResult dResult = MessageBox.Show(this, "Changing your data grid will not be save \n Do you want to save data in grid? ", "Confirmation", MessageBoxButtons.YesNo);
-
-                    if (dResult == DialogResult.Yes)
-                    {
-                        List<VisitaJayaPerkasa.Entities.PriceList> tempPriceList = new List<VisitaJayaPerkasa.Entities.PriceList>();
-                        List<string> listID = new List<string>();
-
-                        for (int i = 0; i < PriceListGridView.RowCount; i++)
-                        {
-                            VisitaJayaPerkasa.Entities.PriceList objPriceList = new VisitaJayaPerkasa.Entities.PriceList();
-
-                            string id = (PriceListGridView.Rows[i].Cells[0].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[0].Value.ToString();
-                            objPriceList.ID = Utility.Utility.ConvertToUUID(id);
-
-                            if (!id.Equals(Guid.Empty.ToString()))
-                                listID.Add(objPriceList.ID.ToString());
-
-                            id = (PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals("")) ? Utility.Utility.DefaultDateTime().ToString() : PriceListGridView.Rows[i].Cells[1].Value.ToString();
-                            objPriceList.Date = Utility.Utility.ConvertStringToDate(id);
-                            if (objPriceList.Date.ToString().Equals(Utility.Utility.DefaultDateTime().ToString()))
-                            {
-                                MessageBox.Show(this, "Please fill date in line " + i, "Information");
-                                DisableAndEnableTypeSupplier();
-                                return;
-                            }
-
-                            id = (PriceListGridView.Rows[i].Cells[2].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[2].Value.ToString();
-                            objPriceList.SupplierID = Utility.Utility.ConvertToUUID(id);
-                            if (objPriceList.SupplierID.ToString().Equals(Guid.Empty.ToString()))
-                            {
-                                MessageBox.Show(this, "Please fill supplier in line " + i, "Information");
-                                DisableAndEnableTypeSupplier();
-                                return;
-                            }
-
-                            id = (PriceListGridView.Rows[i].Cells[3].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[3].Value.ToString();
-                            objPriceList.Destination = Utility.Utility.ConvertToUUID(id);
-                            if (objPriceList.Destination.ToString().Equals(Guid.Empty.ToString()))
-                            {
-                                MessageBox.Show(this, "Please fill destination in line " + i, "Information");
-                                DisableAndEnableTypeSupplier();
-                                return;
-                            }
-
-                            id = (PriceListGridView.Rows[i].Cells[4].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[4].Value.ToString();
-                            objPriceList.TypeID = Utility.Utility.ConvertToUUID(id);
-                            if (objPriceList.TypeID.ToString().Equals(Guid.Empty.ToString()))
-                            {
-                                MessageBox.Show(this, "Please fill type in line " + i, "Information");
-                                DisableAndEnableTypeSupplier();
-                                return;
-                            }
-
-                            id = (PriceListGridView.Rows[i].Cells[5].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[5].Value.ToString();
-                            objPriceList.ConditionID = Utility.Utility.ConvertToUUID(id);
-                            if (objPriceList.ConditionID.ToString().Equals(Guid.Empty))
-                            {
-                                MessageBox.Show(this, "Please fill condition in line " + i, "Information");
-                                DisableAndEnableTypeSupplier();
-                                return;
-                            }
-
-                            id = (PriceListGridView.Rows[i].Cells[6].Value.ToString().Equals("")) ? "-1" : PriceListGridView.Rows[i].Cells[6].Value.ToString();
-                            objPriceList.Price = Utility.Utility.ConvertStringToDecimal(id);
-                            if (objPriceList.Price.ToString().Equals("-1"))
-                            {
-                                MessageBox.Show(this, "Please fill price in line and check your price" + i, "Information");
-                                DisableAndEnableTypeSupplier();
-                                return;
-                            }
-
-                            tempPriceList.Add(objPriceList);
-                            objPriceList = null;
-                        }
-
-
-                        SqlParameter[] sqlParamDeleted = null;
-                        SqlParameter[] sqlParamInsert = null;
-                        if (listID.Count > 0)
-                        {
-                            string[] key = new string[listID.Count];
-                            object[] value = new object[listID.Count];
-
-                            for (int j = 0; j < listID.Count; j++)
-                            {
-                                key[j] = "priceID";
-                                value[j] = listID.ElementAt(j);
-                            }
-
-                            sqlParamDeleted = SqlUtility.SetSqlParameter(key, value);
-                        }
-
-                        if (tempPriceList.Count > 0)
-                        {
-                            //7 is field who any in below for
-                            string[] key = new string[tempPriceList.Count * 7];
-                            object[] value = new object[tempPriceList.Count * 7];
-
-                            int nn = 0;
-                            for (int j = 0; j < tempPriceList.Count; j++)
-                            {
-                                key[nn] = "price_id";
-                                value[nn++] = Guid.NewGuid();
-
-                                key[nn] = "Date";
-                                value[nn++] = tempPriceList.ElementAt(j).Date;
-
-                                key[nn] = "supplier";
-                                value[nn++] = tempPriceList.ElementAt(j).SupplierID;
-
-                                key[nn] = "tujuan";
-                                value[nn++] = tempPriceList.ElementAt(j).Destination;
-
-                                key[nn] = "type";
-                                value[nn++] = tempPriceList.ElementAt(j).TypeID;
-
-                                key[nn] = "condition";
-                                value[nn++] = tempPriceList.ElementAt(j).ConditionID;
-
-                                key[nn] = "price";
-                                value[nn++] = tempPriceList.ElementAt(j).Price;
-                            }
-
-                            sqlParamInsert = SqlUtility.SetSqlParameter(key, value);
-                            sqlPriceListRepository = new SqlPriceListRepository();
-                            if (sqlPriceListRepository.SavePriceList(
-                                (sqlParamDeleted == null) ? null : sqlParamDeleted,
-                                sqlParamInsert))
-                                MessageBox.Show(this, "Success saving !", "Information");
-                            else
-                            {
-                                MessageBox.Show(this, "Failed save data !", "Information");
-                                DisableAndEnableTypeSupplier();
-                                return;
-                            }
-                        }
-
-                        PriceListGridView.Rows.Clear();
-                        PriceListGridView.Enabled = false;
-                    }
-                    else
-                    {
-                        DisableAndEnableTypeSupplier();
-                        return;
-                    }
-                }
-
                 sqlPriceListRepository = new SqlPriceListRepository();
                 listSupplier = sqlPriceListRepository.GetSupplier(Utility.Utility.ConvertToUUID(cboTypeSupplier.SelectedValue.ToString()));
 
@@ -286,6 +138,10 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
                 lastValueTypeSupplier = cboTypeSupplier.Text;
                 sqlPriceListRepository = null;
+
+                if (cboTypeSupplier.Text.ToLower().Equals("Shipping Lines")) { 
+                    
+                }
             }
         }
 
@@ -319,6 +175,148 @@ namespace VisitaJayaPerkasa.Control.PriceList
                 PriceListGridView.Enabled = true;
                 LoadCboGridView();
                 LoadData();
+            }
+        }
+
+        private void btnSaveGrid_Click(object sender, EventArgs e)
+        {
+            if (PriceListGridView.RowCount > 0)
+            {
+                List<VisitaJayaPerkasa.Entities.PriceList> tempPriceList = new List<VisitaJayaPerkasa.Entities.PriceList>();
+                List<string> listID = new List<string>();
+
+                for (int i = 0; i < PriceListGridView.RowCount; i++)
+                {
+                    VisitaJayaPerkasa.Entities.PriceList objPriceList = new VisitaJayaPerkasa.Entities.PriceList();
+
+                    string id = (PriceListGridView.Rows[i].Cells[0].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[0].Value.ToString();
+                    objPriceList.ID = Utility.Utility.ConvertToUUID(id);
+
+                    if (!id.Equals(Guid.Empty.ToString()))
+                        listID.Add(objPriceList.ID.ToString());
+
+                    id = (PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals("")) ? Utility.Utility.DefaultDateTime().ToString() : PriceListGridView.Rows[i].Cells[1].Value.ToString();
+                    objPriceList.Date = Utility.Utility.ConvertStringToDate(id);
+                    if (objPriceList.Date.ToString().Equals(Utility.Utility.DefaultDateTime().ToString()))
+                    {
+                        MessageBox.Show(this, "Please fill date in line " + i, "Information");
+                        DisableAndEnableTypeSupplier();
+                        return;
+                    }
+
+                    id = (PriceListGridView.Rows[i].Cells[2].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[2].Value.ToString();
+                    objPriceList.SupplierID = Utility.Utility.ConvertToUUID(id);
+                    if (objPriceList.SupplierID.ToString().Equals(Guid.Empty.ToString()))
+                    {
+                        MessageBox.Show(this, "Please fill supplier in line " + i, "Information");
+                        DisableAndEnableTypeSupplier();
+                        return;
+                    }
+
+                    id = (PriceListGridView.Rows[i].Cells[3].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[3].Value.ToString();
+                    objPriceList.Destination = Utility.Utility.ConvertToUUID(id);
+                    if (objPriceList.Destination.ToString().Equals(Guid.Empty.ToString()))
+                    {
+                        MessageBox.Show(this, "Please fill destination in line " + i, "Information");
+                        DisableAndEnableTypeSupplier();
+                        return;
+                    }
+
+                    id = (PriceListGridView.Rows[i].Cells[4].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[4].Value.ToString();
+                    objPriceList.TypeID = Utility.Utility.ConvertToUUID(id);
+                    if (objPriceList.TypeID.ToString().Equals(Guid.Empty.ToString()))
+                    {
+                        MessageBox.Show(this, "Please fill type in line " + i, "Information");
+                        DisableAndEnableTypeSupplier();
+                        return;
+                    }
+
+                    id = (PriceListGridView.Rows[i].Cells[5].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[5].Value.ToString();
+                    objPriceList.ConditionID = Utility.Utility.ConvertToUUID(id);
+                    if (objPriceList.ConditionID.ToString().Equals(Guid.Empty))
+                    {
+                        MessageBox.Show(this, "Please fill condition in line " + i, "Information");
+                        DisableAndEnableTypeSupplier();
+                        return;
+                    }
+
+                    id = (PriceListGridView.Rows[i].Cells[6].Value.ToString().Equals("")) ? "-1" : PriceListGridView.Rows[i].Cells[6].Value.ToString();
+                    objPriceList.Price = Utility.Utility.ConvertStringToDecimal(id);
+                    if (objPriceList.Price.ToString().Equals("-1"))
+                    {
+                        MessageBox.Show(this, "Please fill price in line and check your price" + i, "Information");
+                        DisableAndEnableTypeSupplier();
+                        return;
+                    }
+
+                    tempPriceList.Add(objPriceList);
+                    objPriceList = null;
+                }
+
+
+                SqlParameter[] sqlParamDeleted = null;
+                SqlParameter[] sqlParamInsert = null;
+                if (listID.Count > 0)
+                {
+                    string[] key = new string[listID.Count];
+                    object[] value = new object[listID.Count];
+
+                    for (int j = 0; j < listID.Count; j++)
+                    {
+                        key[j] = "priceID";
+                        value[j] = listID.ElementAt(j);
+                    }
+
+                    sqlParamDeleted = SqlUtility.SetSqlParameter(key, value);
+                }
+
+                if (tempPriceList.Count > 0)
+                {
+                    //7 is field who any in below for
+                    string[] key = new string[tempPriceList.Count * 7];
+                    object[] value = new object[tempPriceList.Count * 7];
+
+                    int nn = 0;
+                    for (int j = 0; j < tempPriceList.Count; j++)
+                    {
+                        key[nn] = "price_id";
+                        value[nn++] = Guid.NewGuid();
+
+                        key[nn] = "Date";
+                        value[nn++] = tempPriceList.ElementAt(j).Date;
+
+                        key[nn] = "supplier";
+                        value[nn++] = tempPriceList.ElementAt(j).SupplierID;
+
+                        key[nn] = "tujuan";
+                        value[nn++] = tempPriceList.ElementAt(j).Destination;
+
+                        key[nn] = "type";
+                        value[nn++] = tempPriceList.ElementAt(j).TypeID;
+
+                        key[nn] = "condition";
+                        value[nn++] = tempPriceList.ElementAt(j).ConditionID;
+
+                        key[nn] = "price";
+                        value[nn++] = tempPriceList.ElementAt(j).Price;
+                    }
+
+                    sqlParamInsert = SqlUtility.SetSqlParameter(key, value);
+                    sqlPriceListRepository = new SqlPriceListRepository();
+                    if (sqlPriceListRepository.SavePriceList(
+                        (sqlParamDeleted == null) ? null : sqlParamDeleted,
+                        sqlParamInsert))
+                        MessageBox.Show(this, "Success saving !", "Information");
+                    else
+                    {
+                        MessageBox.Show(this, "Failed save data !", "Information");
+                        DisableAndEnableTypeSupplier();
+                        return;
+                    }
+                }
+
+                PriceListGridView.Rows.Clear();
+                PriceListGridView.Enabled = false;
             }
         }
     }
