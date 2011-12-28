@@ -59,6 +59,7 @@
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.PriceListGridView = new Telerik.WinControls.UI.RadGridView();
+            this.btnSaveGrid = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -86,6 +87,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSaveGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // radSplitContainer1
@@ -123,6 +125,7 @@
             // 
             // radPanel1
             // 
+            this.radPanel1.Controls.Add(this.btnSaveGrid);
             this.radPanel1.Controls.Add(this.radButton2);
             this.radPanel1.Controls.Add(this.cboStuffingPlace);
             this.radPanel1.Controls.Add(this.cboRecipient);
@@ -439,6 +442,15 @@
             this.PriceListGridView.Size = new System.Drawing.Size(640, 159);
             this.PriceListGridView.TabIndex = 1;
             // 
+            // btnSaveGrid
+            // 
+            this.btnSaveGrid.Location = new System.Drawing.Point(231, 236);
+            this.btnSaveGrid.Name = "btnSaveGrid";
+            this.btnSaveGrid.Size = new System.Drawing.Size(141, 22);
+            this.btnSaveGrid.TabIndex = 32;
+            this.btnSaveGrid.Text = "Save Record Grid";
+            this.btnSaveGrid.Click += new System.EventHandler(this.btnSaveGrid_Click);
+            // 
             // PriceList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -474,6 +486,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSaveGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -503,6 +516,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel5;
         private Telerik.WinControls.UI.RadLabel radLabel6;
         private Telerik.WinControls.UI.RadButton radButton2;
+        private Telerik.WinControls.UI.RadButton btnSaveGrid;
 
     }
 }

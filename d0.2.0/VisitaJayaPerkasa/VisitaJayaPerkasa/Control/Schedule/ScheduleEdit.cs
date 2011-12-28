@@ -29,10 +29,6 @@ namespace VisitaJayaPerkasa.Control.Schedule
             List<VisitaJayaPerkasa.Entities.City> listCity = sqlCityRepository.GetCity();
             List<VisitaJayaPerkasa.Entities.Vessel> listVessel = sqlVesselRepository.GetVessels();
 
-            cboBerangkat.DataSource = listCity;
-            cboBerangkat.DisplayMember = "CityName";
-            cboBerangkat.ValueMember = "ID";
-
             cboTujuan.DataSource = listCity;
             cboTujuan.DisplayMember = "CityName";
             cboTujuan.ValueMember = "ID";
@@ -45,8 +41,6 @@ namespace VisitaJayaPerkasa.Control.Schedule
             {
                 wantToCreateVessel = true;
 
-                cboBerangkat.SelectedIndex = -1;
-                cboBerangkat.Text = Constant.VisitaJayaPerkasaApplication.cboDefaultText;
                 cboTujuan.SelectedIndex = -1;
                 cboTujuan.Text = Constant.VisitaJayaPerkasaApplication.cboDefaultText;
                 cboKapal.SelectedIndex = -1;
@@ -56,8 +50,6 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 wantToCreateVessel = false;
 
                 string[] temp = schedule.berangkatTujuan.Replace(" ", "").Split('-');
-                cboBerangkat.SelectedItem = temp[0];
-                cboBerangkat.SelectedItem = temp[1];
                 cboKapal.SelectedItem = schedule.namaKapal;
 
                 pickerETD.Value = schedule.etd;
@@ -107,9 +99,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
 
         private void radButtonElement1_Click(object sender, EventArgs e)
         {
-            if(cboBerangkat.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
-                MessageBox.Show(this, "Please select berangkat", "Information");
-            else if(cboTujuan.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
+            if(cboTujuan.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
                 MessageBox.Show(this, "Please select tujuan", "Information");
             else if (cboKapal.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
                 MessageBox.Show(this, "Please select kapal", "Information");
@@ -125,11 +115,10 @@ namespace VisitaJayaPerkasa.Control.Schedule
 
                 if (wantToCreateVessel) {
                     SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(
-                            new string[]{"schedule_id", "berangkat", "tujuan",
+                            new string[]{"schedule_id", "tujuan",
                                 "vessel_id", "etd", "tgl_closing",
                                 "voy", "ro", "deleted", "keterangan"},
                             new object[]{Guid.NewGuid(), 
-                                Utility.Utility.ConvertToUUID(cboBerangkat.SelectedValue.ToString()),
                                 Utility.Utility.ConvertToUUID(cboTujuan.SelectedValue.ToString()),
                                 Utility.Utility.ConvertToUUID(cboKapal.SelectedValue.ToString()),
                                 pickerETD.Value.Date,
@@ -151,11 +140,10 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 }
                 else {
                     SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(
-                                new string[]{"berangkat", "tujuan",
+                                new string[]{"tujuan",
                                 "vessel_id", "etd", "tgl_closing",
                                 "voy", "ro", "deleted", "keterangan", "schedule_id"},
                                 new object[]{
-                                Utility.Utility.ConvertToUUID(cboBerangkat.SelectedValue.ToString()),
                                 Utility.Utility.ConvertToUUID(cboTujuan.SelectedValue.ToString()),
                                 Utility.Utility.ConvertToUUID(cboKapal.SelectedValue.ToString()),
                                 pickerETD.Value.Date,
