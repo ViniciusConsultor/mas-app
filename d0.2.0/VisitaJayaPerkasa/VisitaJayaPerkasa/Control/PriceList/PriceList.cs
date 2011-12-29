@@ -10,6 +10,7 @@ using VisitaJayaPerkasa.SqlRepository;
 using VisitaJayaPerkasa.Entities;
 using Telerik.WinControls.UI;
 using System.Data.SqlClient;
+using VisitaJayaPerkasa.Form;
 
 namespace VisitaJayaPerkasa.Control.PriceList
 {
@@ -20,6 +21,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
         private SqlCityRepository sqlCityRepository;
         private SqlTypeContRepository sqlTypeContRepository;
         private SqlConditionRepository sqlConditionRepository;
+        private SqlCustomerRepository sqlCustomerRepository;
 
         private List<VisitaJayaPerkasa.Entities.PriceList> listPriceList;
         private List<VisitaJayaPerkasa.Entities.Category> listTypeOfSupplier;
@@ -27,7 +29,10 @@ namespace VisitaJayaPerkasa.Control.PriceList
         private List<VisitaJayaPerkasa.Entities.City> listCity;
         private List<VisitaJayaPerkasa.Entities.TypeCont> listType;
         private List<VisitaJayaPerkasa.Entities.Condition> listCondition;
+        private List<VisitaJayaPerkasa.Entities.Customer> listCustomer;
 
+        //this variable used for result from search on customer text
+        private VisitaJayaPerkasa.Entities.Customer searchResultCustomer;
         private string lastValueTypeSupplier;
 
         public PriceList()
@@ -35,6 +40,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
             InitializeComponent();
             sqlPriceListRepository = new SqlPriceListRepository();
             sqlCityRepository = new SqlCityRepository();
+            sqlCustomerRepository = new SqlCustomerRepository();
 
             listTypeOfSupplier = sqlPriceListRepository.GetTypeOfSupplier();
             cboTypeSupplier.DataSource = listTypeOfSupplier;
@@ -84,6 +90,11 @@ namespace VisitaJayaPerkasa.Control.PriceList
             ((GridViewComboBoxColumn)this.PriceListGridView.Columns[5]).DataSource = listCondition;
             ((GridViewComboBoxColumn)this.PriceListGridView.Columns[5]).DisplayMember = "ConditionName";
             ((GridViewComboBoxColumn)this.PriceListGridView.Columns[5]).ValueMember = "ID";
+
+            listCustomer = sqlCustomerRepository.ListCustomers();
+            ((GridViewComboBoxColumn)this.PriceListGridView.Columns[7]).DataSource = listCustomer;
+            ((GridViewComboBoxColumn)this.PriceListGridView.Columns[7]).DisplayMember = "CustomerName";
+            ((GridViewComboBoxColumn)this.PriceListGridView.Columns[7]).ValueMember = "ID";
 
             sqlSupplierRepository = null;
             sqlCityRepository = null;
@@ -139,21 +150,106 @@ namespace VisitaJayaPerkasa.Control.PriceList
                 lastValueTypeSupplier = cboTypeSupplier.Text;
                 sqlPriceListRepository = null;
 
-                if (cboTypeSupplier.Text.ToLower().Equals("Shipping Lines")) { 
-                    
+                if (cboTypeSupplier.Text.ToLower().Equals("shipping lines")) {
+                    lblRecipient.Visible = false;
+                    cboRecipient.Visible = false;
+
+                    lblStuffing.Visible = false;
+                    cboStuffingPlace.Visible = false;
+
+                    lblCustomer.Visible = true;
+                    txtCustomer.Visible = true;
+                    btnSearch.Visible = true;
+
+                    lblDestination.Visible = true;
+                    cbDestination.Visible = true;
+                }
+                else if (cboTypeSupplier.Text.ToLower().Equals("dooring agent")) {
+                    lblRecipient.Visible = true;
+                    cboRecipient.Visible = true;
+
+                    lblStuffing.Visible = false;
+                    cboStuffingPlace.Visible = false;
+
+                    lblCustomer.Visible = false;
+                    txtCustomer.Visible = false;
+                    btnSearch.Visible = false;
+
+                    lblDestination.Visible = true;
+                    cbDestination.Visible = true;
+                }
+                else if(cboTypeSupplier.Text.ToLower().Equals("trucking")){
+                    lblRecipient.Visible = false;
+                    cboRecipient.Visible = false;
+
+                    lblStuffing.Visible = true;
+                    cboStuffingPlace.Visible = true;
+
+                    lblCustomer.Visible = true;
+                    txtCustomer.Visible = true;
+                    btnSearch.Visible = true;
+
+                    lblDestination.Visible = false;
+                    cbDestination.Visible = false;
+                }
+                else if (cboTypeSupplier.Text.ToLower().Equals("general")) {
+                    lblRecipient.Visible = false;
+                    cboRecipient.Visible = false;
+
+                    lblStuffing.Visible = false;
+                    cboStuffingPlace.Visible = false;
+
+                    lblCustomer.Visible = false;
+                    txtCustomer.Visible = false;
+                    btnSearch.Visible = false;
+
+                    lblDestination.Visible = false;
+                    cbDestination.Visible = false;
                 }
             }
         }
 
         private void LoadData() {
             sqlPriceListRepository = new SqlPriceListRepository();
-            listPriceList = sqlPriceListRepository.GetPriceListByCriteria(pickerFrom.Value.Date, pickerTo.Value.Date, cbSupplier.SelectedValue.ToString(), cbDestination.SelectedValue.ToString());
 
-            for (int i = 0; i < listPriceList.Count(); i++)
+            if (cboTypeSupplier.Text.ToLower().Equals("shipping lines"))
             {
-                object[] obj = {listPriceList.ElementAt(i).ID, listPriceList.ElementAt(i).Date, listPriceList.ElementAt(i).SupplierID, listPriceList.ElementAt(i).Destination, listPriceList.ElementAt(i).TypeID, listPriceList.ElementAt(i).ConditionID, listPriceList.ElementAt(i).Price};
-                PriceListGridView.Rows.Add(obj);
+                listPriceList = sqlPriceListRepository.GetPriceListByCriteria(pickerFrom.Value.Date, pickerTo.Value.Date,
+                    cbSupplier.SelectedValue.ToString(), cbDestination.SelectedValue.ToString(), searchResultCustomer.ID.ToString());
             }
+            else if (cboTypeSupplier.Text.ToLower().Equals("dooring agent")) {
+                listPriceList = sqlPriceListRepository.GetPriceListByCriteria(pickerFrom.Value.Date, pickerTo.Value.Date,
+                    cbSupplier.SelectedValue.ToString(), cbDestination.SelectedValue.ToString(), "");
+            }
+            else if (cboTypeSupplier.Text.ToLower().Equals("trucking")) {
+                listPriceList = sqlPriceListRepository.GetPriceListByCriteria(pickerFrom.Value.Date, pickerTo.Value.Date,
+                    cbSupplier.SelectedValue.ToString(), "", searchResultCustomer.ID.ToString());
+            }
+            else if (cboTypeSupplier.Text.ToLower().Equals("general")) {
+                listPriceList = sqlPriceListRepository.GetPriceListByCriteria(pickerFrom.Value.Date, pickerTo.Value.Date,
+                    cbSupplier.SelectedValue.ToString(), cbDestination.SelectedValue.ToString(), searchResultCustomer.ID.ToString());
+            }
+
+            if (listPriceList != null)
+            {
+                PriceListGridView.Enabled = true;
+
+                for (int i = 0; i < listPriceList.Count(); i++)
+                {
+                    object[] obj = {listPriceList.ElementAt(i).ID, listPriceList.ElementAt(i).Date, 
+                        listPriceList.ElementAt(i).SupplierID, 
+                        listPriceList.ElementAt(i).Destination,
+                        listPriceList.ElementAt(i).TypeID, 
+                        listPriceList.ElementAt(i).ConditionID, 
+                        listPriceList.ElementAt(i).PriceSupplier,
+                        listPriceList.ElementAt(i).CustomerID,
+                        listPriceList.ElementAt(i).PriceCustomer
+                                   };
+                    PriceListGridView.Rows.Add(obj);
+                }
+            }
+            else
+                PriceListGridView.Enabled = false;
 
             sqlPriceListRepository = null;
         }
@@ -166,13 +262,37 @@ namespace VisitaJayaPerkasa.Control.PriceList
                 MessageBox.Show(this, "Please choose type of supplier", "Information");
             else if (cbSupplier.Text.Equals(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.cboDefaultText))
                 MessageBox.Show(this, "Please choose supplier", "Information");
-            else if (cbDestination.Text.Equals(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.cboDefaultText))
+            else if ((cboTypeSupplier.Text.Equals("shipping lines") || cboTypeSupplier.Text.Equals("dooring agent") || cboTypeSupplier.Text.Equals("general")) 
+                && cbDestination.Text.Equals(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.cboDefaultText))
                 MessageBox.Show(this, "Please choose destination", "Information");
             else if (pickerFrom.Value.Date > pickerTo.Value.Date)
                 MessageBox.Show(this, "Date from don't be greather than date to", "Information");
             else
             {
-                PriceListGridView.Enabled = true;
+                if (cboTypeSupplier.Text.ToLower().Equals("shipping lines")) {
+                    if (txtCustomer.Text.Equals("")) {
+                        MessageBox.Show(this, "Please choose customer", "Information");
+                        return;
+                    }
+                }
+                else if (cboTypeSupplier.Text.ToLower().Equals("dooring agent")) {
+
+                }
+                else if (cboTypeSupplier.Text.ToLower().Equals("trucking")) {
+                    if (txtCustomer.Text.Equals(""))
+                    {
+                        MessageBox.Show(this, "Please choose customer", "Information");
+                        return;
+                    }                
+                }
+                else if (cboTypeSupplier.Text.ToLower().Equals("general")) {
+                    if (txtCustomer.Text.Equals(""))
+                    {
+                        MessageBox.Show(this, "Please choose customer", "Information");
+                        return;
+                    }
+                }
+
                 LoadCboGridView();
                 LoadData();
             }
@@ -241,8 +361,8 @@ namespace VisitaJayaPerkasa.Control.PriceList
                     }
 
                     id = (PriceListGridView.Rows[i].Cells[6].Value.ToString().Equals("")) ? "-1" : PriceListGridView.Rows[i].Cells[6].Value.ToString();
-                    objPriceList.Price = Utility.Utility.ConvertStringToDecimal(id);
-                    if (objPriceList.Price.ToString().Equals("-1"))
+                    objPriceList.PriceCustomer = Utility.Utility.ConvertStringToDecimal(id);
+                    if (objPriceList.PriceCustomer.ToString().Equals("-1"))
                     {
                         MessageBox.Show(this, "Please fill price in line and check your price" + i, "Information");
                         DisableAndEnableTypeSupplier();
@@ -298,7 +418,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
                         value[nn++] = tempPriceList.ElementAt(j).ConditionID;
 
                         key[nn] = "price";
-                        value[nn++] = tempPriceList.ElementAt(j).Price;
+                        value[nn++] = tempPriceList.ElementAt(j).PriceCustomer;
                     }
 
                     sqlParamInsert = SqlUtility.SetSqlParameter(key, value);
@@ -318,6 +438,18 @@ namespace VisitaJayaPerkasa.Control.PriceList
                 PriceListGridView.Rows.Clear();
                 PriceListGridView.Enabled = false;
             }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            new SearchCustomer().ShowDialog();
+            if (Constant.VisitaJayaPerkasaApplication.objGetOtherView != null)
+            {
+                searchResultCustomer = (VisitaJayaPerkasa.Entities.Customer)Constant.VisitaJayaPerkasaApplication.objGetOtherView;
+                txtCustomer.Text = searchResultCustomer.CustomerName;
+            }
+
+            Constant.VisitaJayaPerkasaApplication.objGetOtherView = null;
         }
     }
 }

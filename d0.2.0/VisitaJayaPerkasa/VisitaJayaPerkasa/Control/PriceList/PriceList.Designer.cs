@@ -35,14 +35,16 @@
             Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn3 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
             Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn4 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn5 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.btnSaveGrid = new Telerik.WinControls.UI.RadButton();
             this.radButton2 = new Telerik.WinControls.UI.RadButton();
             this.cboStuffingPlace = new Telerik.WinControls.UI.RadComboBox();
             this.cboRecipient = new Telerik.WinControls.UI.RadComboBox();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.txtCustomer = new Telerik.WinControls.UI.RadTextBox();
             this.cbDestination = new Telerik.WinControls.UI.RadComboBox();
             this.cbSupplier = new Telerik.WinControls.UI.RadComboBox();
@@ -53,23 +55,23 @@
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.pickerFrom = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
+            this.lblRecipient = new Telerik.WinControls.UI.RadLabel();
+            this.lblDestination = new Telerik.WinControls.UI.RadLabel();
+            this.lblCustomer = new Telerik.WinControls.UI.RadLabel();
+            this.lblStuffing = new Telerik.WinControls.UI.RadLabel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.PriceListGridView = new Telerik.WinControls.UI.RadGridView();
-            this.btnSaveGrid = new Telerik.WinControls.UI.RadButton();
+            this.btnSearch = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
             this.splitPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSaveGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboStuffingPlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboRecipient)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbDestination)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbSupplier)).BeginInit();
@@ -80,14 +82,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerFrom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblRecipient)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblDestination)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCustomer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblStuffing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSaveGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView.MasterGridViewTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).BeginInit();
             this.SuspendLayout();
             // 
             // radSplitContainer1
@@ -102,7 +105,7 @@
             // 
             // 
             this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer1.Size = new System.Drawing.Size(640, 430);
+            this.radSplitContainer1.Size = new System.Drawing.Size(932, 430);
             this.radSplitContainer1.TabIndex = 0;
             this.radSplitContainer1.TabStop = false;
             this.radSplitContainer1.Text = "radSplitContainer1";
@@ -116,7 +119,7 @@
             // 
             // 
             this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(640, 268);
+            this.splitPanel1.Size = new System.Drawing.Size(932, 268);
             this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.1276347F);
             this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 54);
             this.splitPanel1.TabIndex = 0;
@@ -129,7 +132,7 @@
             this.radPanel1.Controls.Add(this.radButton2);
             this.radPanel1.Controls.Add(this.cboStuffingPlace);
             this.radPanel1.Controls.Add(this.cboRecipient);
-            this.radPanel1.Controls.Add(this.radButton1);
+            this.radPanel1.Controls.Add(this.btnSearch);
             this.radPanel1.Controls.Add(this.txtCustomer);
             this.radPanel1.Controls.Add(this.cbDestination);
             this.radPanel1.Controls.Add(this.cbSupplier);
@@ -140,15 +143,24 @@
             this.radPanel1.Controls.Add(this.radLabel8);
             this.radPanel1.Controls.Add(this.radLabel3);
             this.radPanel1.Controls.Add(this.pickerFrom);
-            this.radPanel1.Controls.Add(this.radLabel4);
-            this.radPanel1.Controls.Add(this.radLabel7);
-            this.radPanel1.Controls.Add(this.radLabel5);
-            this.radPanel1.Controls.Add(this.radLabel6);
+            this.radPanel1.Controls.Add(this.lblRecipient);
+            this.radPanel1.Controls.Add(this.lblDestination);
+            this.radPanel1.Controls.Add(this.lblCustomer);
+            this.radPanel1.Controls.Add(this.lblStuffing);
             this.radPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanel1.Location = new System.Drawing.Point(0, 0);
             this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(640, 268);
+            this.radPanel1.Size = new System.Drawing.Size(932, 268);
             this.radPanel1.TabIndex = 0;
+            // 
+            // btnSaveGrid
+            // 
+            this.btnSaveGrid.Location = new System.Drawing.Point(231, 236);
+            this.btnSaveGrid.Name = "btnSaveGrid";
+            this.btnSaveGrid.Size = new System.Drawing.Size(141, 22);
+            this.btnSaveGrid.TabIndex = 32;
+            this.btnSaveGrid.Text = "Save Record Grid";
+            this.btnSaveGrid.Click += new System.EventHandler(this.btnSaveGrid_Click);
             // 
             // radButton2
             // 
@@ -191,19 +203,9 @@
             this.cboRecipient.Visible = false;
             this.cboRecipient.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboRecipient_KeyPress);
             // 
-            // radButton1
-            // 
-            this.radButton1.Image = global::VisitaJayaPerkasa.Properties.Resources.search_16;
-            this.radButton1.Location = new System.Drawing.Point(559, 33);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(54, 22);
-            this.radButton1.TabIndex = 28;
-            this.radButton1.Text = "Search";
-            this.radButton1.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            this.radButton1.Visible = false;
-            // 
             // txtCustomer
             // 
+            this.txtCustomer.Enabled = false;
             this.txtCustomer.Location = new System.Drawing.Point(404, 33);
             this.txtCustomer.Name = "txtCustomer";
             this.txtCustomer.ReadOnly = true;
@@ -320,40 +322,40 @@
             this.pickerFrom.Text = "radDateTimePicker1";
             this.pickerFrom.Value = new System.DateTime(2011, 12, 20, 8, 27, 16, 140);
             // 
-            // radLabel4
+            // lblRecipient
             // 
-            this.radLabel4.Location = new System.Drawing.Point(327, 67);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(54, 16);
-            this.radLabel4.TabIndex = 15;
-            this.radLabel4.Text = "Recipient";
-            this.radLabel4.Visible = false;
+            this.lblRecipient.Location = new System.Drawing.Point(327, 67);
+            this.lblRecipient.Name = "lblRecipient";
+            this.lblRecipient.Size = new System.Drawing.Size(54, 16);
+            this.lblRecipient.TabIndex = 15;
+            this.lblRecipient.Text = "Recipient";
+            this.lblRecipient.Visible = false;
             // 
-            // radLabel7
+            // lblDestination
             // 
-            this.radLabel7.Location = new System.Drawing.Point(21, 101);
-            this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(63, 16);
-            this.radLabel7.TabIndex = 20;
-            this.radLabel7.Text = "Destination";
+            this.lblDestination.Location = new System.Drawing.Point(21, 101);
+            this.lblDestination.Name = "lblDestination";
+            this.lblDestination.Size = new System.Drawing.Size(63, 16);
+            this.lblDestination.TabIndex = 20;
+            this.lblDestination.Text = "Destination";
             // 
-            // radLabel5
+            // lblCustomer
             // 
-            this.radLabel5.Location = new System.Drawing.Point(326, 31);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(55, 16);
-            this.radLabel5.TabIndex = 17;
-            this.radLabel5.Text = "Customer";
-            this.radLabel5.Visible = false;
+            this.lblCustomer.Location = new System.Drawing.Point(326, 31);
+            this.lblCustomer.Name = "lblCustomer";
+            this.lblCustomer.Size = new System.Drawing.Size(55, 16);
+            this.lblCustomer.TabIndex = 17;
+            this.lblCustomer.Text = "Customer";
+            this.lblCustomer.Visible = false;
             // 
-            // radLabel6
+            // lblStuffing
             // 
-            this.radLabel6.Location = new System.Drawing.Point(326, 101);
-            this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(76, 16);
-            this.radLabel6.TabIndex = 19;
-            this.radLabel6.Text = "Stuffing Place";
-            this.radLabel6.Visible = false;
+            this.lblStuffing.Location = new System.Drawing.Point(326, 101);
+            this.lblStuffing.Name = "lblStuffing";
+            this.lblStuffing.Size = new System.Drawing.Size(76, 16);
+            this.lblStuffing.TabIndex = 19;
+            this.lblStuffing.Text = "Stuffing Place";
+            this.lblStuffing.Visible = false;
             // 
             // splitPanel2
             // 
@@ -364,7 +366,7 @@
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(640, 159);
+            this.splitPanel2.Size = new System.Drawing.Size(932, 159);
             this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.1276347F);
             this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -54);
             this.splitPanel2.TabIndex = 1;
@@ -381,7 +383,7 @@
             this.PriceListGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.PriceListGridView.Location = new System.Drawing.Point(0, 0);
             // 
-            // 
+            // gridViewTemplate1
             // 
             gridViewTextBoxColumn1.FieldAlias = "ID";
             gridViewTextBoxColumn1.FieldName = "ID";
@@ -396,36 +398,54 @@
             gridViewDateTimeColumn1.Width = 117;
             gridViewComboBoxColumn1.DisplayMember = null;
             gridViewComboBoxColumn1.FieldAlias = "column1";
+            gridViewComboBoxColumn1.FieldName = "Supplier";
             gridViewComboBoxColumn1.HeaderText = "Supplier Name";
-            gridViewComboBoxColumn1.UniqueName = "column1";
+            gridViewComboBoxColumn1.UniqueName = "Supplier";
             gridViewComboBoxColumn1.ValueMember = null;
             gridViewComboBoxColumn1.Width = 120;
             gridViewComboBoxColumn2.DisplayMember = null;
             gridViewComboBoxColumn2.FieldAlias = "column2";
+            gridViewComboBoxColumn2.FieldName = "tujuan";
             gridViewComboBoxColumn2.HeaderText = "Tujuan";
-            gridViewComboBoxColumn2.UniqueName = "column2";
+            gridViewComboBoxColumn2.UniqueName = "tujuan";
             gridViewComboBoxColumn2.ValueMember = null;
             gridViewComboBoxColumn2.Width = 100;
             gridViewComboBoxColumn3.DisplayMember = null;
             gridViewComboBoxColumn3.FieldAlias = "column3";
+            gridViewComboBoxColumn3.FieldName = "type";
             gridViewComboBoxColumn3.HeaderText = "Type";
-            gridViewComboBoxColumn3.UniqueName = "column3";
+            gridViewComboBoxColumn3.UniqueName = "type";
             gridViewComboBoxColumn3.ValueMember = null;
             gridViewComboBoxColumn3.Width = 100;
             gridViewComboBoxColumn4.DisplayMember = null;
             gridViewComboBoxColumn4.FieldAlias = "column4";
+            gridViewComboBoxColumn4.FieldName = "condition";
             gridViewComboBoxColumn4.HeaderText = "Condition";
-            gridViewComboBoxColumn4.UniqueName = "column4";
+            gridViewComboBoxColumn4.UniqueName = "condition";
             gridViewComboBoxColumn4.ValueMember = null;
             gridViewComboBoxColumn4.Width = 100;
             gridViewDecimalColumn1.DataType = typeof(decimal);
             gridViewDecimalColumn1.DecimalPlaces = 0;
             gridViewDecimalColumn1.FieldAlias = "column5";
+            gridViewDecimalColumn1.FieldName = "price_supplier";
             gridViewDecimalColumn1.FormatInfo = new System.Globalization.CultureInfo("ii-CN");
-            gridViewDecimalColumn1.HeaderText = "Harga";
+            gridViewDecimalColumn1.HeaderText = "Harga Supplier";
             gridViewDecimalColumn1.ThousandsSeparator = true;
-            gridViewDecimalColumn1.UniqueName = "column5";
+            gridViewDecimalColumn1.UniqueName = "price_supplier";
             gridViewDecimalColumn1.Width = 120;
+            gridViewComboBoxColumn5.DisplayMember = null;
+            gridViewComboBoxColumn5.FieldAlias = "customer";
+            gridViewComboBoxColumn5.FieldName = "customer";
+            gridViewComboBoxColumn5.HeaderText = "Customer Name";
+            gridViewComboBoxColumn5.UniqueName = "customer";
+            gridViewComboBoxColumn5.ValueMember = null;
+            gridViewComboBoxColumn5.Width = 110;
+            gridViewDecimalColumn2.DataType = typeof(decimal);
+            gridViewDecimalColumn2.FieldAlias = "price_customer";
+            gridViewDecimalColumn2.FieldName = "price_customer";
+            gridViewDecimalColumn2.HeaderText = "Harga Customer";
+            gridViewDecimalColumn2.UniqueName = "price_customer";
+            gridViewDecimalColumn2.Width = 110;
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDateTimeColumn1);
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn1);
@@ -433,23 +453,28 @@
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn3);
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn4);
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDecimalColumn1);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn5);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDecimalColumn2);
             gridSortField1.FieldAlias = "Tanggal";
             gridSortField1.FieldName = "Tanggal";
             gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
             this.PriceListGridView.MasterGridViewTemplate.SortExpressions.Add(gridSortField1);
             this.PriceListGridView.Name = "PriceListGridView";
             this.PriceListGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.PriceListGridView.Size = new System.Drawing.Size(640, 159);
+            this.PriceListGridView.Size = new System.Drawing.Size(932, 159);
             this.PriceListGridView.TabIndex = 1;
             // 
-            // btnSaveGrid
+            // btnSearch
             // 
-            this.btnSaveGrid.Location = new System.Drawing.Point(231, 236);
-            this.btnSaveGrid.Name = "btnSaveGrid";
-            this.btnSaveGrid.Size = new System.Drawing.Size(141, 22);
-            this.btnSaveGrid.TabIndex = 32;
-            this.btnSaveGrid.Text = "Save Record Grid";
-            this.btnSaveGrid.Click += new System.EventHandler(this.btnSaveGrid_Click);
+            this.btnSearch.Image = global::VisitaJayaPerkasa.Properties.Resources.search_16;
+            this.btnSearch.Location = new System.Drawing.Point(559, 33);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(54, 22);
+            this.btnSearch.TabIndex = 28;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.Visible = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // PriceList
             // 
@@ -457,7 +482,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radSplitContainer1);
             this.Name = "PriceList";
-            this.Size = new System.Drawing.Size(640, 430);
+            this.Size = new System.Drawing.Size(932, 430);
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
             this.radSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
@@ -465,10 +490,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             this.radPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSaveGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboStuffingPlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboRecipient)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCustomer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbDestination)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbSupplier)).EndInit();
@@ -479,14 +504,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerFrom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblRecipient)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblDestination)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCustomer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblStuffing)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView.MasterGridViewTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSaveGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearch)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -500,7 +526,7 @@
         private Telerik.WinControls.UI.RadPanel radPanel1;
         private Telerik.WinControls.UI.RadComboBox cboStuffingPlace;
         private Telerik.WinControls.UI.RadComboBox cboRecipient;
-        private Telerik.WinControls.UI.RadButton radButton1;
+        private Telerik.WinControls.UI.RadButton btnSearch;
         private Telerik.WinControls.UI.RadTextBox txtCustomer;
         private Telerik.WinControls.UI.RadComboBox cbDestination;
         private Telerik.WinControls.UI.RadComboBox cbSupplier;
@@ -511,10 +537,10 @@
         private Telerik.WinControls.UI.RadLabel radLabel8;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadDateTimePicker pickerFrom;
-        private Telerik.WinControls.UI.RadLabel radLabel4;
-        private Telerik.WinControls.UI.RadLabel radLabel7;
-        private Telerik.WinControls.UI.RadLabel radLabel5;
-        private Telerik.WinControls.UI.RadLabel radLabel6;
+        private Telerik.WinControls.UI.RadLabel lblRecipient;
+        private Telerik.WinControls.UI.RadLabel lblDestination;
+        private Telerik.WinControls.UI.RadLabel lblCustomer;
+        private Telerik.WinControls.UI.RadLabel lblStuffing;
         private Telerik.WinControls.UI.RadButton radButton2;
         private Telerik.WinControls.UI.RadButton btnSaveGrid;
 
