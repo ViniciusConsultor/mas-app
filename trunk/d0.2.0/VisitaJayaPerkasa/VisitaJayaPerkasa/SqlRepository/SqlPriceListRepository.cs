@@ -21,7 +21,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT c.* FROM [Category] c, [SUPPLIER] s WHERE (c.deleted = '0' OR c.deleted is null) AND " +
+                        "SELECT DISTINCT c.* FROM [Category] c, [SUPPLIER] s WHERE (c.deleted = '0' OR c.deleted is null) AND " +
                         "(s.deleted = '0' OR s.deleted is null) AND c.category_id = s.category_id " +
                         "ORDER BY category_name ASC"
                         , con))
@@ -91,7 +91,8 @@ namespace VisitaJayaPerkasa.SqlRepository
         }
 
 
-        public List<PriceList> GetPriceListByCriteria(DateTime from, DateTime to, string supplierID, string destinationID) {
+        public List<PriceList> GetPriceListByCriteria(DateTime from, DateTime to, string supplierID, string destinationID, 
+            string customerID) {
             List<PriceList> listPriceList = null;
             
             try
@@ -101,7 +102,9 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT * FROM [Price] WHERE (date between '" + from + "' AND '" + to + "') AND supplier_id like '" + supplierID + "' AND destination like '" + destinationID + "'" 
+                        "SELECT * FROM [Price] WHERE (date between '" + from + "' AND '" + to + "') " + 
+                        "AND supplier_id like '%" + supplierID + "%' AND destination like '%" + destinationID + "%' " + 
+                        "AND customer_id like '%" + customerID + "%'"
                         , con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
@@ -114,7 +117,9 @@ namespace VisitaJayaPerkasa.SqlRepository
                             objPriceList.Destination = Utility.Utility.ConvertToUUID(reader.GetValue(3).ToString());
                             objPriceList.TypeID = Utility.Utility.ConvertToUUID(reader.GetValue(4).ToString());
                             objPriceList.ConditionID = Utility.Utility.ConvertToUUID(reader.GetValue(5).ToString());
-                            objPriceList.Price = reader.GetDecimal(6);
+                            objPriceList.PriceSupplier = reader.GetDecimal(6);
+                            objPriceList.CustomerID = Utility.Utility.ConvertToUUID(reader.GetValue(7).ToString());
+                            objPriceList.PriceCustomer = reader.GetDecimal(8);
 
                             if (listPriceList == null)
                                 listPriceList = new List<PriceList>();

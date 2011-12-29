@@ -12,6 +12,8 @@ namespace VisitaJayaPerkasa.Constant
         public static MainForm mainForm;
         public static PBarDialog pBarForm;
 
+        public static object objGetOtherView;
+
         public static string cboDefaultText = "-- Choose --";
         public static string roleAdmin = "administrator";
         public static string connectionString = "Data Source=localhost;Initial Catalog=ShippingMain;Integrated Security=True";

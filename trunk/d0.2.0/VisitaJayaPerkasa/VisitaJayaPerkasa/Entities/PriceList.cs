@@ -13,6 +13,9 @@ namespace VisitaJayaPerkasa.Entities
         public Guid Destination { get; set; }
         public Guid TypeID { get; set; }
         public Guid ConditionID { get; set; }
-        public decimal Price { get; set; }
+        public decimal PriceCustomer { get; set; }
+        public Guid CustomerID { get; set; }
+        public decimal PriceSupplier { get; set; }
+
     }
 }
