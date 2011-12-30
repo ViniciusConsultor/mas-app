@@ -182,14 +182,17 @@ namespace VisitaJayaPerkasa.SqlRepository
                                     sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + ", " +
+                                    sqlParamInsert[i++].ParameterName + ", " +
+                                    sqlParamInsert[i++].ParameterName + ", " +
+                                    sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + 
                                     ")"
                                     , con))
                             {
                                 command.Transaction = sqlTransaction;
 
-                                //7 is field of price list
-                                for (int k = i - 7; k < i; k++)
+                                //10 is field of price list
+                                for (int k = i - 10; k < i; k++)
                                     command.Parameters.Add(sqlParamInsert[k]);
                                 n = command.ExecuteNonQuery();
 

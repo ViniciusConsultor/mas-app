@@ -33,8 +33,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
         //this variable used for result from search on customer text
         private VisitaJayaPerkasa.Entities.Customer searchResultCustomer;
-        private string lastValueTypeSupplier;
-
+        
         public PriceList()
         {
             InitializeComponent();
@@ -63,8 +62,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
             sqlPriceListRepository = null;
             sqlCityRepository = null;
-
-            lastValueTypeSupplier = cboTypeSupplier.Text;
         }
 
         private void LoadCboGridView() {
@@ -73,11 +70,17 @@ namespace VisitaJayaPerkasa.Control.PriceList
             sqlTypeContRepository = new SqlTypeContRepository();
             sqlConditionRepository = new SqlConditionRepository();
 
-            ((GridViewComboBoxColumn)this.PriceListGridView.Columns[2]).DataSource = listSupplier;
+            List<VisitaJayaPerkasa.Entities.Supplier> listTempSupplier = new List<Entities.Supplier>();
+            listTempSupplier.Add(listSupplier.ElementAt(cbSupplier.SelectedIndex));
+
+            List<VisitaJayaPerkasa.Entities.City> listTempCity = new List<Entities.City>();
+            listTempCity.Add(listCity.ElementAt(cbDestination.SelectedIndex));
+
+            ((GridViewComboBoxColumn)this.PriceListGridView.Columns[2]).DataSource = listTempSupplier;
             ((GridViewComboBoxColumn)this.PriceListGridView.Columns[2]).DisplayMember = "SupplierName";
             ((GridViewComboBoxColumn)this.PriceListGridView.Columns[2]).ValueMember = "Id";
 
-            ((GridViewComboBoxColumn)this.PriceListGridView.Columns[3]).DataSource = listCity;
+            ((GridViewComboBoxColumn)this.PriceListGridView.Columns[3]).DataSource = listTempCity;
             ((GridViewComboBoxColumn)this.PriceListGridView.Columns[3]).DisplayMember = "CityName";
             ((GridViewComboBoxColumn)this.PriceListGridView.Columns[3]).ValueMember = "ID";
 
@@ -92,9 +95,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
             ((GridViewComboBoxColumn)this.PriceListGridView.Columns[5]).ValueMember = "ID";
 
             listCustomer = sqlCustomerRepository.ListCustomers();
-            ((GridViewComboBoxColumn)this.PriceListGridView.Columns[7]).DataSource = listCustomer;
-            ((GridViewComboBoxColumn)this.PriceListGridView.Columns[7]).DisplayMember = "CustomerName";
-            ((GridViewComboBoxColumn)this.PriceListGridView.Columns[7]).ValueMember = "ID";
+            ((GridViewComboBoxColumn)this.PriceListGridView.Columns[9]).DataSource = listCustomer;
+            ((GridViewComboBoxColumn)this.PriceListGridView.Columns[9]).DisplayMember = "CustomerName";
+            ((GridViewComboBoxColumn)this.PriceListGridView.Columns[9]).ValueMember = "ID";
 
             sqlSupplierRepository = null;
             sqlCityRepository = null;
@@ -127,16 +130,15 @@ namespace VisitaJayaPerkasa.Control.PriceList
             e.KeyChar = Convert.ToChar(0);
         }
 
-        private void DisableAndEnableTypeSupplier() {
-            this.cboTypeSupplier.SelectedValueChanged -= new System.EventHandler(this.cboTypeSupplier_SelectedValueChanged);
-            cboTypeSupplier.SelectedItem = lastValueTypeSupplier;
-            this.cboTypeSupplier.SelectedValueChanged += new System.EventHandler(this.cboTypeSupplier_SelectedValueChanged);
-        }
 
         private void cboTypeSupplier_SelectedValueChanged(object sender, EventArgs e)
         { 
-            if ((!cboTypeSupplier.SelectedText.Equals("-- Choose --")) && (!cboTypeSupplier.SelectedText.Equals("")))
+            if ((!cboTypeSupplier.Text.Equals("-- Choose --")) && (!cboTypeSupplier.Text.Equals("")))
             {
+                PriceListGridView.Rows.Clear();
+                PriceListGridView.DataSource = null;
+                PriceListGridView.Enabled = false;
+
                 sqlPriceListRepository = new SqlPriceListRepository();
                 listSupplier = sqlPriceListRepository.GetSupplier(Utility.Utility.ConvertToUUID(cboTypeSupplier.SelectedValue.ToString()));
 
@@ -147,7 +149,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
                 cbSupplier.SelectedIndex = -1;
                 cbSupplier.Text = "-- Choose --";
 
-                lastValueTypeSupplier = cboTypeSupplier.Text;
                 sqlPriceListRepository = null;
 
                 if (cboTypeSupplier.Text.ToLower().Equals("shipping lines")) {
@@ -160,13 +161,16 @@ namespace VisitaJayaPerkasa.Control.PriceList
                     lblCustomer.Visible = true;
                     txtCustomer.Visible = true;
                     btnSearch.Visible = true;
+                    btnSearch.Enabled = true;
 
                     lblDestination.Visible = true;
                     cbDestination.Visible = true;
+                    cbDestination.Enabled = true;
                 }
                 else if (cboTypeSupplier.Text.ToLower().Equals("dooring agent")) {
                     lblRecipient.Visible = true;
                     cboRecipient.Visible = true;
+                    cboRecipient.Enabled = true;
 
                     lblStuffing.Visible = false;
                     cboStuffingPlace.Visible = false;
@@ -177,6 +181,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
                     lblDestination.Visible = true;
                     cbDestination.Visible = true;
+                    cbDestination.Enabled = true;
                 }
                 else if(cboTypeSupplier.Text.ToLower().Equals("trucking")){
                     lblRecipient.Visible = false;
@@ -184,27 +189,33 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
                     lblStuffing.Visible = true;
                     cboStuffingPlace.Visible = true;
+                    cboStuffingPlace.Enabled = true;
 
                     lblCustomer.Visible = true;
                     txtCustomer.Visible = true;
                     btnSearch.Visible = true;
+                    btnSearch.Enabled = true;
 
                     lblDestination.Visible = false;
                     cbDestination.Visible = false;
                 }
                 else if (cboTypeSupplier.Text.ToLower().Equals("general")) {
-                    lblRecipient.Visible = false;
-                    cboRecipient.Visible = false;
+                    lblRecipient.Visible = true;
+                    cboRecipient.Visible = true;
+                    cboRecipient.Enabled = true;
 
-                    lblStuffing.Visible = false;
-                    cboStuffingPlace.Visible = false;
+                    lblStuffing.Visible = true;
+                    cboStuffingPlace.Visible = true;
+                    cboStuffingPlace.Enabled = true;
 
-                    lblCustomer.Visible = false;
-                    txtCustomer.Visible = false;
-                    btnSearch.Visible = false;
+                    lblCustomer.Visible = true;
+                    txtCustomer.Visible = true;
+                    btnSearch.Visible = true;
+                    btnSearch.Enabled = true;
 
-                    lblDestination.Visible = false;
-                    cbDestination.Visible = false;
+                    lblDestination.Visible = true;
+                    cbDestination.Visible = true;
+                    cbDestination.Enabled = true;
                 }
             }
         }
@@ -230,17 +241,19 @@ namespace VisitaJayaPerkasa.Control.PriceList
                     cbSupplier.SelectedValue.ToString(), cbDestination.SelectedValue.ToString(), searchResultCustomer.ID.ToString());
             }
 
+            PriceListGridView.Enabled = true;
             if (listPriceList != null)
             {
-                PriceListGridView.Enabled = true;
-
                 for (int i = 0; i < listPriceList.Count(); i++)
                 {
-                    object[] obj = {listPriceList.ElementAt(i).ID, listPriceList.ElementAt(i).Date, 
+                    object[] obj = {listPriceList.ElementAt(i).ID, 
+                        listPriceList.ElementAt(i).Date, 
                         listPriceList.ElementAt(i).SupplierID, 
                         listPriceList.ElementAt(i).Destination,
                         listPriceList.ElementAt(i).TypeID, 
-                        listPriceList.ElementAt(i).ConditionID, 
+                        listPriceList.ElementAt(i).ConditionID,
+                        listPriceList.ElementAt(i).StuffingID,
+                        listPriceList.ElementAt(i).Recipient,
                         listPriceList.ElementAt(i).PriceSupplier,
                         listPriceList.ElementAt(i).CustomerID,
                         listPriceList.ElementAt(i).PriceCustomer
@@ -248,8 +261,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
                     PriceListGridView.Rows.Add(obj);
                 }
             }
-            else
-                PriceListGridView.Enabled = false;
 
             sqlPriceListRepository = null;
         }
@@ -262,28 +273,80 @@ namespace VisitaJayaPerkasa.Control.PriceList
                 MessageBox.Show(this, "Please choose type of supplier", "Information");
             else if (cbSupplier.Text.Equals(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.cboDefaultText))
                 MessageBox.Show(this, "Please choose supplier", "Information");
-            else if ((cboTypeSupplier.Text.Equals("shipping lines") || cboTypeSupplier.Text.Equals("dooring agent") || cboTypeSupplier.Text.Equals("general")) 
+            else if ((cboTypeSupplier.Text.ToLower().Equals("shipping lines") || cboTypeSupplier.Text.ToLower().Equals("dooring agent") || cboTypeSupplier.Text.ToLower().Equals("general")) 
                 && cbDestination.Text.Equals(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.cboDefaultText))
                 MessageBox.Show(this, "Please choose destination", "Information");
             else if (pickerFrom.Value.Date > pickerTo.Value.Date)
                 MessageBox.Show(this, "Date from don't be greather than date to", "Information");
             else
             {
+                /*Arrange of field grid                  
+0 id
+1 date
+2 supplier
+3 tujuan
+4 type
+5 condition
+6 stufing place
+7 recipient
+8 price supplier
+9 customer
+10 price customer
+*/
+
                 if (cboTypeSupplier.Text.ToLower().Equals("shipping lines")) {
                     if (txtCustomer.Text.Equals("")) {
                         MessageBox.Show(this, "Please choose customer", "Information");
                         return;
                     }
+
+                    cbDestination.Enabled = false;
+                    btnSearch.Enabled = false;
+
+
+                    PriceListGridView.Columns[1].IsVisible = true;
+                    PriceListGridView.Columns[2].IsVisible = true;
+                    PriceListGridView.Columns[3].IsVisible = true;
+                    PriceListGridView.Columns[4].IsVisible = true;
+                    PriceListGridView.Columns[5].IsVisible = true;
+                    PriceListGridView.Columns[6].IsVisible = false;
+                    PriceListGridView.Columns[7].IsVisible = false;
+                    PriceListGridView.Columns[8].IsVisible = true;
+                    PriceListGridView.Columns[9].IsVisible = true;
+                    PriceListGridView.Columns[10].IsVisible = false;
+                    PriceListGridView.Enabled = true;
                 }
                 else if (cboTypeSupplier.Text.ToLower().Equals("dooring agent")) {
-
+                    PriceListGridView.Columns[1].IsVisible = true;
+                    PriceListGridView.Columns[2].IsVisible = true;
+                    PriceListGridView.Columns[3].IsVisible = false;
+                    PriceListGridView.Columns[4].IsVisible = false;
+                    PriceListGridView.Columns[5].IsVisible = false;
+                    PriceListGridView.Columns[6].IsVisible = false;
+                    PriceListGridView.Columns[7].IsVisible = true;
+                    PriceListGridView.Columns[8].IsVisible = true;
+                    PriceListGridView.Columns[9].IsVisible = false;
+                    PriceListGridView.Columns[10].IsVisible = false;
+                    PriceListGridView.Enabled = true;
                 }
                 else if (cboTypeSupplier.Text.ToLower().Equals("trucking")) {
                     if (txtCustomer.Text.Equals(""))
                     {
                         MessageBox.Show(this, "Please choose customer", "Information");
                         return;
-                    }                
+                    }
+
+                    PriceListGridView.Columns[1].IsVisible = true;
+                    PriceListGridView.Columns[2].IsVisible = true;
+                    PriceListGridView.Columns[3].IsVisible = false;
+                    PriceListGridView.Columns[4].IsVisible = true;
+                    PriceListGridView.Columns[5].IsVisible = false;
+                    PriceListGridView.Columns[6].IsVisible = false;
+                    PriceListGridView.Columns[7].IsVisible = false;
+                    PriceListGridView.Columns[8].IsVisible = true;
+                    PriceListGridView.Columns[9].IsVisible = true;
+                    PriceListGridView.Columns[10].IsVisible = false;
+                    PriceListGridView.Enabled = true;
                 }
                 else if (cboTypeSupplier.Text.ToLower().Equals("general")) {
                     if (txtCustomer.Text.Equals(""))
@@ -291,7 +354,24 @@ namespace VisitaJayaPerkasa.Control.PriceList
                         MessageBox.Show(this, "Please choose customer", "Information");
                         return;
                     }
+
+                    PriceListGridView.Columns[1].IsVisible = true;
+                    PriceListGridView.Columns[2].IsVisible = true;
+                    PriceListGridView.Columns[3].IsVisible = false;
+                    PriceListGridView.Columns[4].IsVisible = false;
+                    PriceListGridView.Columns[5].IsVisible = false;
+                    PriceListGridView.Columns[6].IsVisible = false;
+                    PriceListGridView.Columns[7].IsVisible = false;
+                    PriceListGridView.Columns[8].IsVisible = true;
+                    PriceListGridView.Columns[9].IsVisible = false;
+                    PriceListGridView.Columns[10].IsVisible = false;
+                    PriceListGridView.Enabled = true;
                 }
+
+                cboTypeSupplier.Enabled = false;
+                cbSupplier.Enabled = false;
+                pickerFrom.Enabled = false;
+                pickerTo.Enabled = false;
 
                 LoadCboGridView();
                 LoadData();
@@ -302,75 +382,82 @@ namespace VisitaJayaPerkasa.Control.PriceList
         {
             if (PriceListGridView.RowCount > 0)
             {
+                //var listID is used for fill id who has already inserted
+                //this listID is used to delete all id and then write again (override)
                 List<VisitaJayaPerkasa.Entities.PriceList> tempPriceList = new List<VisitaJayaPerkasa.Entities.PriceList>();
                 List<string> listID = new List<string>();
 
-                for (int i = 0; i < PriceListGridView.RowCount; i++)
+                if (cboTypeSupplier.Text.ToLower().Equals("shipping lines"))
                 {
-                    VisitaJayaPerkasa.Entities.PriceList objPriceList = new VisitaJayaPerkasa.Entities.PriceList();
-
-                    string id = (PriceListGridView.Rows[i].Cells[0].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[0].Value.ToString();
-                    objPriceList.ID = Utility.Utility.ConvertToUUID(id);
-
-                    if (!id.Equals(Guid.Empty.ToString()))
-                        listID.Add(objPriceList.ID.ToString());
-
-                    id = (PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals("")) ? Utility.Utility.DefaultDateTime().ToString() : PriceListGridView.Rows[i].Cells[1].Value.ToString();
-                    objPriceList.Date = Utility.Utility.ConvertStringToDate(id);
-                    if (objPriceList.Date.ToString().Equals(Utility.Utility.DefaultDateTime().ToString()))
+                    for (int i = 0; i < PriceListGridView.RowCount; i++)
                     {
-                        MessageBox.Show(this, "Please fill date in line " + i, "Information");
-                        DisableAndEnableTypeSupplier();
-                        return;
-                    }
+                        VisitaJayaPerkasa.Entities.PriceList objPriceList = new VisitaJayaPerkasa.Entities.PriceList();
 
-                    id = (PriceListGridView.Rows[i].Cells[2].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[2].Value.ToString();
-                    objPriceList.SupplierID = Utility.Utility.ConvertToUUID(id);
-                    if (objPriceList.SupplierID.ToString().Equals(Guid.Empty.ToString()))
-                    {
-                        MessageBox.Show(this, "Please fill supplier in line " + i, "Information");
-                        DisableAndEnableTypeSupplier();
-                        return;
-                    }
+                        string id = (PriceListGridView.Rows[i].Cells[0].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[0].Value.ToString();
+                        objPriceList.ID = Utility.Utility.ConvertToUUID(id);
 
-                    id = (PriceListGridView.Rows[i].Cells[3].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[3].Value.ToString();
-                    objPriceList.Destination = Utility.Utility.ConvertToUUID(id);
-                    if (objPriceList.Destination.ToString().Equals(Guid.Empty.ToString()))
-                    {
-                        MessageBox.Show(this, "Please fill destination in line " + i, "Information");
-                        DisableAndEnableTypeSupplier();
-                        return;
-                    }
+                        if (!id.Equals(Guid.Empty.ToString()))
+                            listID.Add(objPriceList.ID.ToString());
 
-                    id = (PriceListGridView.Rows[i].Cells[4].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[4].Value.ToString();
-                    objPriceList.TypeID = Utility.Utility.ConvertToUUID(id);
-                    if (objPriceList.TypeID.ToString().Equals(Guid.Empty.ToString()))
-                    {
-                        MessageBox.Show(this, "Please fill type in line " + i, "Information");
-                        DisableAndEnableTypeSupplier();
-                        return;
-                    }
+                        id = (PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals("")) ? Utility.Utility.DefaultDateTime().ToString() : PriceListGridView.Rows[i].Cells[1].Value.ToString();
+                        objPriceList.Date = Utility.Utility.ConvertStringToDate(id);
+                        if (objPriceList.Date.ToString().Equals(Utility.Utility.DefaultDateTime().ToString()))
+                        {
+                            MessageBox.Show(this, "Please fill date in line " + i, "Information");
+                            return;
+                        }
 
-                    id = (PriceListGridView.Rows[i].Cells[5].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[5].Value.ToString();
-                    objPriceList.ConditionID = Utility.Utility.ConvertToUUID(id);
-                    if (objPriceList.ConditionID.ToString().Equals(Guid.Empty))
-                    {
-                        MessageBox.Show(this, "Please fill condition in line " + i, "Information");
-                        DisableAndEnableTypeSupplier();
-                        return;
-                    }
+                        id = (PriceListGridView.Rows[i].Cells[2].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[2].Value.ToString();
+                        objPriceList.SupplierID = Utility.Utility.ConvertToUUID(id);
+                        if (objPriceList.SupplierID.ToString().Equals(Guid.Empty.ToString()))
+                        {
+                            MessageBox.Show(this, "Please fill supplier in line " + i, "Information");
+                            return;
+                        }
 
-                    id = (PriceListGridView.Rows[i].Cells[6].Value.ToString().Equals("")) ? "-1" : PriceListGridView.Rows[i].Cells[6].Value.ToString();
-                    objPriceList.PriceCustomer = Utility.Utility.ConvertStringToDecimal(id);
-                    if (objPriceList.PriceCustomer.ToString().Equals("-1"))
-                    {
-                        MessageBox.Show(this, "Please fill price in line and check your price" + i, "Information");
-                        DisableAndEnableTypeSupplier();
-                        return;
-                    }
+                        id = (PriceListGridView.Rows[i].Cells[3].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[3].Value.ToString();
+                        objPriceList.Destination = Utility.Utility.ConvertToUUID(id);
+                        if (objPriceList.Destination.ToString().Equals(Guid.Empty.ToString()))
+                        {
+                            MessageBox.Show(this, "Please fill destination in line " + i, "Information");
+                            return;
+                        }
 
-                    tempPriceList.Add(objPriceList);
-                    objPriceList = null;
+                        id = (PriceListGridView.Rows[i].Cells[4].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[4].Value.ToString();
+                        objPriceList.TypeID = Utility.Utility.ConvertToUUID(id);
+                        if (objPriceList.TypeID.ToString().Equals(Guid.Empty.ToString()))
+                        {
+                            MessageBox.Show(this, "Please fill type in line " + i, "Information");
+                            return;
+                        }
+
+                        id = (PriceListGridView.Rows[i].Cells[5].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[5].Value.ToString();
+                        objPriceList.ConditionID = Utility.Utility.ConvertToUUID(id);
+                        if (objPriceList.ConditionID.ToString().Equals(Guid.Empty))
+                        {
+                            MessageBox.Show(this, "Please fill condition in line " + i, "Information");
+                            return;
+                        }
+
+                        id = (PriceListGridView.Rows[i].Cells[8].Value.ToString().Equals("")) ? "-1" : PriceListGridView.Rows[i].Cells[8].Value.ToString();
+                        objPriceList.PriceSupplier = Utility.Utility.ConvertStringToDecimal(id);
+                        if (objPriceList.PriceSupplier.ToString().Equals("-1"))
+                        {
+                            MessageBox.Show(this, "Please fill price supplier in line and check your price in line " + i, "Information");
+                            return;
+                        }
+
+                        id = (PriceListGridView.Rows[i].Cells[9].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[9].Value.ToString();
+                        objPriceList.CustomerID = Utility.Utility.ConvertToUUID(id);
+                        if (objPriceList.Destination.ToString().Equals(Guid.Empty.ToString()))
+                        {
+                            MessageBox.Show(this, "Please fill customer in line " + i, "Information");
+                            return;
+                        }
+
+                        tempPriceList.Add(objPriceList);
+                        objPriceList = null;
+                    }
                 }
 
 
@@ -392,9 +479,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
                 if (tempPriceList.Count > 0)
                 {
-                    //7 is field who any in below for
-                    string[] key = new string[tempPriceList.Count * 7];
-                    object[] value = new object[tempPriceList.Count * 7];
+                    //10 is field who any in below for
+                    string[] key = new string[tempPriceList.Count * 10];
+                    object[] value = new object[tempPriceList.Count * 10];
 
                     int nn = 0;
                     for (int j = 0; j < tempPriceList.Count; j++)
@@ -405,20 +492,29 @@ namespace VisitaJayaPerkasa.Control.PriceList
                         key[nn] = "Date";
                         value[nn++] = tempPriceList.ElementAt(j).Date;
 
-                        key[nn] = "supplier";
+                        key[nn] = "supplier_id";
                         value[nn++] = tempPriceList.ElementAt(j).SupplierID;
 
-                        key[nn] = "tujuan";
+                        key[nn] = "destination";
                         value[nn++] = tempPriceList.ElementAt(j).Destination;
 
-                        key[nn] = "type";
+                        key[nn] = "type_cont_id";
                         value[nn++] = tempPriceList.ElementAt(j).TypeID;
 
-                        key[nn] = "condition";
+                        key[nn] = "condition_id";
                         value[nn++] = tempPriceList.ElementAt(j).ConditionID;
 
-                        key[nn] = "price";
+                        key[nn] = "price_supplier";
+                        value[nn++] = tempPriceList.ElementAt(j).PriceSupplier;
+
+                        key[nn] = "customer_id";
+                        value[nn++] = tempPriceList.ElementAt(j).CustomerID;
+
+                        key[nn] = "price_customer";
                         value[nn++] = tempPriceList.ElementAt(j).PriceCustomer;
+
+                        key[nn] = "stuffing_id";
+                        value[nn++] = tempPriceList.ElementAt(j).StuffingID;
                     }
 
                     sqlParamInsert = SqlUtility.SetSqlParameter(key, value);
@@ -430,7 +526,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
                     else
                     {
                         MessageBox.Show(this, "Failed save data !", "Information");
-                        DisableAndEnableTypeSupplier();
                         return;
                     }
                 }
@@ -450,6 +545,17 @@ namespace VisitaJayaPerkasa.Control.PriceList
             }
 
             Constant.VisitaJayaPerkasaApplication.objGetOtherView = null;
+        }
+
+        private void btnClearAll_Click(object sender, EventArgs e)
+        {
+            pickerTo.Enabled = true;
+            pickerFrom.Enabled = true;
+            cboTypeSupplier.Enabled = true;
+            searchResultCustomer = null;
+            txtCustomer.Text = "";
+
+            cboTypeSupplier.SelectedItem = cboTypeSupplier.Items.ElementAt(0);
         }
     }
 }
