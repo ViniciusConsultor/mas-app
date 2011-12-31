@@ -30,10 +30,10 @@ namespace VisitaJayaPerkasa.SqlRepository
                             VisitaJayaPerkasa.Entities.WareHouse warehouse = new VisitaJayaPerkasa.Entities.WareHouse();
                             warehouse.Id = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
                             warehouse.Address = reader.GetString(1);
-                            warehouse.Phone = reader.GetString(2);
-                            warehouse.Fax = reader.GetString(3);
-                            warehouse.Email = reader.GetString(4);
-                            warehouse.ContactPerson = reader.GetString(5);
+                            warehouse.Phone = Utility.Utility.IsDBNull(reader.GetValue(2)) ? null : reader.GetString(2);
+                            warehouse.Fax = Utility.Utility.IsDBNull(reader.GetValue(3)) ? null : reader.GetString(3);
+                            warehouse.Email = Utility.Utility.IsDBNull(reader.GetValue(4)) ? null : reader.GetString(4);
+                            warehouse.ContactPerson = Utility.Utility.IsDBNull(reader.GetValue(5)) ? null : reader.GetString(5);
 
                             if (listWareHouse == null)
                                 listWareHouse = new List<VisitaJayaPerkasa.Entities.WareHouse>();

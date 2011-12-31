@@ -168,5 +168,10 @@ namespace VisitaJayaPerkasa.Form
         {
             ShowUserControl(new CustomerTransList());
         }
+
+        private void radImageButtonElement4_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new VisitaJayaPerkasa.Control.PriceListCustomer.PriceListCustomer());
+        }
     }
 }
