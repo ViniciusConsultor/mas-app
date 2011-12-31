@@ -92,7 +92,7 @@ namespace VisitaJayaPerkasa.SqlRepository
 
 
         public List<PriceList> GetPriceListByCriteria(DateTime from, DateTime to, string supplierID, string destinationID, 
-            string customerID) {
+            string customerID, string recipientID, string stuffingID, byte isSupplier, string typeContID) {
             List<PriceList> listPriceList = null;
             
             try
@@ -101,10 +101,20 @@ namespace VisitaJayaPerkasa.SqlRepository
                 {
                     con.Open();
 
+                    string addCriteria;
+                    if(isSupplier == 1)
+                        addCriteria = "(price_customer is null OR price_customer = 0) ";
+                    else
+                        addCriteria = "(price_supplier is null OR price_supplier = 0) AND type_cont_id like '" + typeContID + "' ";
+
+                    //issupplier == 1 so, is search from supplier
                     using (SqlCommand command = new SqlCommand(
                         "SELECT * FROM [Price] WHERE (date between '" + from + "' AND '" + to + "') " + 
                         "AND supplier_id like '%" + supplierID + "%' AND destination like '%" + destinationID + "%' " + 
-                        "AND customer_id like '%" + customerID + "%'"
+                        "AND customer_id like '%" + customerID + "%' AND recipient_id like '%" + recipientID + "%' " + 
+                        "AND stuffing_id like '%" + stuffingID + "%' AND " +
+                        addCriteria + 
+                        "ORDER BY date"
                         , con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
@@ -120,6 +130,8 @@ namespace VisitaJayaPerkasa.SqlRepository
                             objPriceList.PriceSupplier = reader.GetDecimal(6);
                             objPriceList.CustomerID = Utility.Utility.ConvertToUUID(reader.GetValue(7).ToString());
                             objPriceList.PriceCustomer = reader.GetDecimal(8);
+                            objPriceList.StuffingID = Utility.Utility.ConvertToUUID(reader.GetValue(9).ToString());
+                            objPriceList.Recipient = Utility.Utility.ConvertToUUID(reader.GetValue(10).ToString());
 
                             if (listPriceList == null)
                                 listPriceList = new List<PriceList>();
@@ -185,14 +197,15 @@ namespace VisitaJayaPerkasa.SqlRepository
                                     sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + ", " +
+                                    sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + 
                                     ")"
                                     , con))
                             {
                                 command.Transaction = sqlTransaction;
 
-                                //10 is field of price list
-                                for (int k = i - 10; k < i; k++)
+                                //11 is field of price list
+                                for (int k = i - 11; k < i; k++)
                                     command.Parameters.Add(sqlParamInsert[k]);
                                 n = command.ExecuteNonQuery();
 

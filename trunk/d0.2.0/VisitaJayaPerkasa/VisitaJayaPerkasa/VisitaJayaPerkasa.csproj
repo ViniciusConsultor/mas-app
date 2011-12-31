@@ -165,6 +165,12 @@
     <Compile Include="Control\Pelayaran\PelayaranView.Designer.cs">
       <DependentUpon>PelayaranView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Control\PriceListCustomer\PriceListCustomer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\PriceListCustomer\PriceListCustomer.Designer.cs">
+      <DependentUpon>PriceListCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Control\PriceList\PriceList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -302,6 +308,7 @@
     <Compile Include="Entities\Pelayaran.cs" />
     <Compile Include="Entities\PelayaranDetail.cs" />
     <Compile Include="Entities\PriceList.cs" />
+    <Compile Include="Entities\Recipient.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Schedule.cs" />
     <Compile Include="Entities\Supplier.cs" />
@@ -352,6 +359,7 @@
     <Compile Include="SqlRepository\SqlLeadTimeRepository.cs" />
     <Compile Include="SqlRepository\SqlPelayaranRepository.cs" />
     <Compile Include="SqlRepository\SqlPriceListRepository.cs" />
+    <Compile Include="SqlRepository\SqlRecipientRepository.cs" />
     <Compile Include="SqlRepository\SqlRoleRepository.cs" />
     <Compile Include="SqlRepository\SqlScheduleRepository.cs" />
     <Compile Include="SqlRepository\SqlSupplierRepository.cs" />
@@ -415,6 +423,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Control\Pelayaran\PelayaranView.resx">
       <DependentUpon>PelayaranView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\PriceListCustomer\PriceListCustomer.resx">
+      <DependentUpon>PriceListCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\Supplier\SupplierEdit.resx">
       <DependentUpon>SupplierEdit.cs</DependentUpon>

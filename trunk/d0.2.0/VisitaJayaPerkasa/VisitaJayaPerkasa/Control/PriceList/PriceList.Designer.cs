@@ -28,21 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn3 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn15 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn16 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn17 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn18 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn19 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn20 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn5 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn21 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn6 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridSortField gridSortField3 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn1 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn1 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn2 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn3 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn4 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn5 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn6 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn7 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.btnClearAll = new Telerik.WinControls.UI.RadButton();
             this.btnSaveGrid = new Telerik.WinControls.UI.RadButton();
             this.radButton2 = new Telerik.WinControls.UI.RadButton();
             this.cboStuffingPlace = new Telerik.WinControls.UI.RadComboBox();
@@ -55,8 +56,8 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.pickerTo = new Telerik.WinControls.UI.RadDateTimePicker();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.lblTo = new Telerik.WinControls.UI.RadLabel();
+            this.lblPeriode = new Telerik.WinControls.UI.RadLabel();
             this.pickerFrom = new Telerik.WinControls.UI.RadDateTimePicker();
             this.lblRecipient = new Telerik.WinControls.UI.RadLabel();
             this.lblDestination = new Telerik.WinControls.UI.RadLabel();
@@ -64,13 +65,13 @@
             this.lblStuffing = new Telerik.WinControls.UI.RadLabel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.PriceListGridView = new Telerik.WinControls.UI.RadGridView();
-            this.btnClearAll = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
             this.splitPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClearAll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboStuffingPlace)).BeginInit();
@@ -83,8 +84,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblPeriode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRecipient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblDestination)).BeginInit();
@@ -93,8 +94,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView.MasterGridViewTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnClearAll)).BeginInit();
             this.SuspendLayout();
             // 
             // radSplitContainer1
@@ -145,8 +144,8 @@
             this.radPanel1.Controls.Add(this.radLabel1);
             this.radPanel1.Controls.Add(this.pickerTo);
             this.radPanel1.Controls.Add(this.radLabel2);
-            this.radPanel1.Controls.Add(this.radLabel8);
-            this.radPanel1.Controls.Add(this.radLabel3);
+            this.radPanel1.Controls.Add(this.lblTo);
+            this.radPanel1.Controls.Add(this.lblPeriode);
             this.radPanel1.Controls.Add(this.pickerFrom);
             this.radPanel1.Controls.Add(this.lblRecipient);
             this.radPanel1.Controls.Add(this.lblDestination);
@@ -157,6 +156,15 @@
             this.radPanel1.Name = "radPanel1";
             this.radPanel1.Size = new System.Drawing.Size(932, 268);
             this.radPanel1.TabIndex = 0;
+            // 
+            // btnClearAll
+            // 
+            this.btnClearAll.Location = new System.Drawing.Point(84, 236);
+            this.btnClearAll.Name = "btnClearAll";
+            this.btnClearAll.Size = new System.Drawing.Size(141, 22);
+            this.btnClearAll.TabIndex = 33;
+            this.btnClearAll.Text = "Clear All";
+            this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
             // 
             // btnSaveGrid
             // 
@@ -309,21 +317,21 @@
             this.radLabel2.TabIndex = 18;
             this.radLabel2.Text = "Supplier Name";
             // 
-            // radLabel8
+            // lblTo
             // 
-            this.radLabel8.Location = new System.Drawing.Point(286, 143);
-            this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(16, 16);
-            this.radLabel8.TabIndex = 22;
-            this.radLabel8.Text = "to";
+            this.lblTo.Location = new System.Drawing.Point(286, 143);
+            this.lblTo.Name = "lblTo";
+            this.lblTo.Size = new System.Drawing.Size(16, 16);
+            this.lblTo.TabIndex = 22;
+            this.lblTo.Text = "to";
             // 
-            // radLabel3
+            // lblPeriode
             // 
-            this.radLabel3.Location = new System.Drawing.Point(21, 137);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(45, 16);
-            this.radLabel3.TabIndex = 16;
-            this.radLabel3.Text = "Periode";
+            this.lblPeriode.Location = new System.Drawing.Point(21, 137);
+            this.lblPeriode.Name = "lblPeriode";
+            this.lblPeriode.Size = new System.Drawing.Size(45, 16);
+            this.lblPeriode.TabIndex = 16;
+            this.lblPeriode.Text = "Periode";
             // 
             // pickerFrom
             // 
@@ -402,112 +410,103 @@
             this.PriceListGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.PriceListGridView.Location = new System.Drawing.Point(0, 0);
             // 
-            // gridViewTemplate1
             // 
-            gridViewTextBoxColumn3.FieldAlias = "ID";
-            gridViewTextBoxColumn3.FieldName = "ID";
-            gridViewTextBoxColumn3.HeaderText = "ID";
-            gridViewTextBoxColumn3.IsVisible = false;
-            gridViewTextBoxColumn3.UniqueName = "ID";
-            gridViewDateTimeColumn3.DataType = typeof(System.DateTime);
-            gridViewDateTimeColumn3.FieldAlias = "date";
-            gridViewDateTimeColumn3.FieldName = "date";
-            gridViewDateTimeColumn3.HeaderText = "Date";
-            gridViewDateTimeColumn3.MinWidth = 6;
-            gridViewDateTimeColumn3.UniqueName = "date";
-            gridViewDateTimeColumn3.Width = 100;
-            gridViewComboBoxColumn15.DisplayMember = null;
-            gridViewComboBoxColumn15.FieldAlias = "supplier";
-            gridViewComboBoxColumn15.FieldName = "supplier";
-            gridViewComboBoxColumn15.HeaderText = "Supplier Name";
-            gridViewComboBoxColumn15.UniqueName = "supplier";
-            gridViewComboBoxColumn15.ValueMember = null;
-            gridViewComboBoxColumn15.Width = 120;
-            gridViewComboBoxColumn16.DisplayMember = null;
-            gridViewComboBoxColumn16.FieldAlias = "column2";
-            gridViewComboBoxColumn16.FieldName = "tujuan";
-            gridViewComboBoxColumn16.HeaderText = "Tujuan";
-            gridViewComboBoxColumn16.UniqueName = "tujuan";
-            gridViewComboBoxColumn16.ValueMember = null;
-            gridViewComboBoxColumn16.Width = 100;
-            gridViewComboBoxColumn17.DisplayMember = null;
-            gridViewComboBoxColumn17.FieldAlias = "column3";
-            gridViewComboBoxColumn17.FieldName = "type";
-            gridViewComboBoxColumn17.HeaderText = "Type";
-            gridViewComboBoxColumn17.UniqueName = "type";
-            gridViewComboBoxColumn17.ValueMember = null;
-            gridViewComboBoxColumn17.Width = 100;
-            gridViewComboBoxColumn18.DisplayMember = null;
-            gridViewComboBoxColumn18.FieldAlias = "column4";
-            gridViewComboBoxColumn18.FieldName = "condition";
-            gridViewComboBoxColumn18.HeaderText = "Condition";
-            gridViewComboBoxColumn18.UniqueName = "condition";
-            gridViewComboBoxColumn18.ValueMember = null;
-            gridViewComboBoxColumn18.Width = 100;
-            gridViewComboBoxColumn19.DisplayMember = null;
-            gridViewComboBoxColumn19.FieldAlias = "stuffing";
-            gridViewComboBoxColumn19.FieldName = "stuffing";
-            gridViewComboBoxColumn19.HeaderText = "Stuffing Place";
-            gridViewComboBoxColumn19.UniqueName = "stuffing";
-            gridViewComboBoxColumn19.ValueMember = null;
-            gridViewComboBoxColumn19.Width = 130;
-            gridViewComboBoxColumn20.DisplayMember = null;
-            gridViewComboBoxColumn20.FieldAlias = "column1";
-            gridViewComboBoxColumn20.FieldName = "recipient1";
-            gridViewComboBoxColumn20.HeaderText = "Recipient";
-            gridViewComboBoxColumn20.UniqueName = "recipient1";
-            gridViewComboBoxColumn20.ValueMember = null;
-            gridViewComboBoxColumn20.Width = 120;
-            gridViewDecimalColumn5.DataType = typeof(decimal);
-            gridViewDecimalColumn5.DecimalPlaces = 0;
-            gridViewDecimalColumn5.FieldAlias = "column5";
-            gridViewDecimalColumn5.FieldName = "price_supplier";
-            gridViewDecimalColumn5.FormatInfo = new System.Globalization.CultureInfo("ii-CN");
-            gridViewDecimalColumn5.HeaderText = "Harga Supplier";
-            gridViewDecimalColumn5.ThousandsSeparator = true;
-            gridViewDecimalColumn5.UniqueName = "price_supplier";
-            gridViewDecimalColumn5.Width = 120;
-            gridViewComboBoxColumn21.DisplayMember = null;
-            gridViewComboBoxColumn21.FieldAlias = "customer";
-            gridViewComboBoxColumn21.FieldName = "customer";
-            gridViewComboBoxColumn21.HeaderText = "Customer Name";
-            gridViewComboBoxColumn21.UniqueName = "customer";
-            gridViewComboBoxColumn21.ValueMember = null;
-            gridViewComboBoxColumn21.Width = 110;
-            gridViewDecimalColumn6.DataType = typeof(decimal);
-            gridViewDecimalColumn6.FieldAlias = "price_customer";
-            gridViewDecimalColumn6.FieldName = "price_customer";
-            gridViewDecimalColumn6.HeaderText = "Harga Customer";
-            gridViewDecimalColumn6.UniqueName = "price_customer";
-            gridViewDecimalColumn6.Width = 110;
-            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);
-            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDateTimeColumn3);
-            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn15);
-            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn16);
-            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn17);
-            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn18);
-            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn19);
-            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn20);
-            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDecimalColumn5);
-            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn21);
-            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDecimalColumn6);
-            gridSortField3.FieldAlias = "Tanggal";
-            gridSortField3.FieldName = "Tanggal";
-            gridSortField3.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            this.PriceListGridView.MasterGridViewTemplate.SortExpressions.Add(gridSortField3);
+            // 
+            gridViewTextBoxColumn1.FieldAlias = "ID";
+            gridViewTextBoxColumn1.FieldName = "ID";
+            gridViewTextBoxColumn1.HeaderText = "ID";
+            gridViewTextBoxColumn1.IsVisible = false;
+            gridViewTextBoxColumn1.UniqueName = "ID";
+            gridViewDateTimeColumn1.DataType = typeof(System.DateTime);
+            gridViewDateTimeColumn1.FieldAlias = "date";
+            gridViewDateTimeColumn1.FieldName = "date";
+            gridViewDateTimeColumn1.HeaderText = "Date";
+            gridViewDateTimeColumn1.MinWidth = 6;
+            gridViewDateTimeColumn1.UniqueName = "date";
+            gridViewDateTimeColumn1.Width = 100;
+            gridViewComboBoxColumn1.DisplayMember = null;
+            gridViewComboBoxColumn1.FieldAlias = "supplier";
+            gridViewComboBoxColumn1.FieldName = "supplier";
+            gridViewComboBoxColumn1.HeaderText = "Supplier Name";
+            gridViewComboBoxColumn1.UniqueName = "supplier";
+            gridViewComboBoxColumn1.ValueMember = null;
+            gridViewComboBoxColumn1.Width = 120;
+            gridViewComboBoxColumn2.DisplayMember = null;
+            gridViewComboBoxColumn2.FieldAlias = "column2";
+            gridViewComboBoxColumn2.FieldName = "tujuan";
+            gridViewComboBoxColumn2.HeaderText = "Tujuan";
+            gridViewComboBoxColumn2.UniqueName = "tujuan";
+            gridViewComboBoxColumn2.ValueMember = null;
+            gridViewComboBoxColumn2.Width = 100;
+            gridViewComboBoxColumn3.DisplayMember = null;
+            gridViewComboBoxColumn3.FieldAlias = "column3";
+            gridViewComboBoxColumn3.FieldName = "type";
+            gridViewComboBoxColumn3.HeaderText = "Type";
+            gridViewComboBoxColumn3.UniqueName = "type";
+            gridViewComboBoxColumn3.ValueMember = null;
+            gridViewComboBoxColumn3.Width = 100;
+            gridViewComboBoxColumn4.DisplayMember = null;
+            gridViewComboBoxColumn4.FieldAlias = "column4";
+            gridViewComboBoxColumn4.FieldName = "condition";
+            gridViewComboBoxColumn4.HeaderText = "Condition";
+            gridViewComboBoxColumn4.UniqueName = "condition";
+            gridViewComboBoxColumn4.ValueMember = null;
+            gridViewComboBoxColumn4.Width = 100;
+            gridViewComboBoxColumn5.DisplayMember = null;
+            gridViewComboBoxColumn5.FieldAlias = "stuffing";
+            gridViewComboBoxColumn5.FieldName = "stuffing";
+            gridViewComboBoxColumn5.HeaderText = "Stuffing Place";
+            gridViewComboBoxColumn5.UniqueName = "stuffing";
+            gridViewComboBoxColumn5.ValueMember = null;
+            gridViewComboBoxColumn5.Width = 130;
+            gridViewComboBoxColumn6.DisplayMember = null;
+            gridViewComboBoxColumn6.FieldAlias = "column1";
+            gridViewComboBoxColumn6.FieldName = "recipient1";
+            gridViewComboBoxColumn6.HeaderText = "Recipient";
+            gridViewComboBoxColumn6.UniqueName = "recipient1";
+            gridViewComboBoxColumn6.ValueMember = null;
+            gridViewComboBoxColumn6.Width = 120;
+            gridViewDecimalColumn1.DataType = typeof(decimal);
+            gridViewDecimalColumn1.DecimalPlaces = 0;
+            gridViewDecimalColumn1.FieldAlias = "column5";
+            gridViewDecimalColumn1.FieldName = "price_supplier";
+            gridViewDecimalColumn1.FormatInfo = new System.Globalization.CultureInfo("ii-CN");
+            gridViewDecimalColumn1.HeaderText = "Harga Supplier";
+            gridViewDecimalColumn1.ThousandsSeparator = true;
+            gridViewDecimalColumn1.UniqueName = "price_supplier";
+            gridViewDecimalColumn1.Width = 120;
+            gridViewComboBoxColumn7.DisplayMember = null;
+            gridViewComboBoxColumn7.FieldAlias = "customer";
+            gridViewComboBoxColumn7.FieldName = "customer";
+            gridViewComboBoxColumn7.HeaderText = "Customer Name";
+            gridViewComboBoxColumn7.UniqueName = "customer";
+            gridViewComboBoxColumn7.ValueMember = null;
+            gridViewComboBoxColumn7.Width = 110;
+            gridViewDecimalColumn2.DataType = typeof(decimal);
+            gridViewDecimalColumn2.FieldAlias = "price_customer";
+            gridViewDecimalColumn2.FieldName = "price_customer";
+            gridViewDecimalColumn2.HeaderText = "Harga Customer";
+            gridViewDecimalColumn2.UniqueName = "price_customer";
+            gridViewDecimalColumn2.Width = 110;
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDateTimeColumn1);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn1);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn2);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn3);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn4);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn5);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn6);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDecimalColumn1);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn7);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDecimalColumn2);
+            gridSortField1.FieldAlias = "Tanggal";
+            gridSortField1.FieldName = "Tanggal";
+            gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            this.PriceListGridView.MasterGridViewTemplate.SortExpressions.Add(gridSortField1);
             this.PriceListGridView.Name = "PriceListGridView";
             this.PriceListGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.PriceListGridView.Size = new System.Drawing.Size(932, 159);
             this.PriceListGridView.TabIndex = 1;
-            // 
-            // btnClearAll
-            // 
-            this.btnClearAll.Location = new System.Drawing.Point(84, 236);
-            this.btnClearAll.Name = "btnClearAll";
-            this.btnClearAll.Size = new System.Drawing.Size(141, 22);
-            this.btnClearAll.TabIndex = 33;
-            this.btnClearAll.Text = "Clear All";
-            this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
             // 
             // PriceList
             // 
@@ -523,6 +522,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             this.radPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClearAll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboStuffingPlace)).EndInit();
@@ -535,8 +535,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblPeriode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRecipient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblDestination)).EndInit();
@@ -544,9 +544,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblStuffing)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView.MasterGridViewTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnClearAll)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -568,8 +566,8 @@
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadDateTimePicker pickerTo;
         private Telerik.WinControls.UI.RadLabel radLabel2;
-        private Telerik.WinControls.UI.RadLabel radLabel8;
-        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadLabel lblTo;
+        private Telerik.WinControls.UI.RadLabel lblPeriode;
         private Telerik.WinControls.UI.RadDateTimePicker pickerFrom;
         private Telerik.WinControls.UI.RadLabel lblRecipient;
         private Telerik.WinControls.UI.RadLabel lblDestination;
