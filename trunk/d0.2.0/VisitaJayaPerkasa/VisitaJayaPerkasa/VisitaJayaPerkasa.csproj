@@ -129,24 +129,6 @@
     <Compile Include="Control\Customer\CustomerView.Designer.cs">
       <DependentUpon>CustomerView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Control\LeadTime\LeadTimeEdit.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Control\LeadTime\LeadTimeEdit.Designer.cs">
-      <DependentUpon>LeadTimeEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Control\LeadTime\LeadTimeList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Control\LeadTime\LeadTimeList.Designer.cs">
-      <DependentUpon>LeadTimeList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Control\LeadTime\LeadTimeView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Control\LeadTime\LeadTimeView.Designer.cs">
-      <DependentUpon>LeadTimeView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Control\Pelayaran\PelayaranEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -261,24 +243,6 @@
     <Compile Include="Control\UserControls\UserView.Designer.cs">
       <DependentUpon>UserView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Control\VesselControls\VesselEdit.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Control\VesselControls\VesselEdit.Designer.cs">
-      <DependentUpon>VesselEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Control\VesselControls\VesselList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Control\VesselControls\VesselList.Designer.cs">
-      <DependentUpon>VesselList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Control\VesselControls\VesselView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Control\VesselControls\VesselView.Designer.cs">
-      <DependentUpon>VesselView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Control\Warehouse\WareHouseEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -304,7 +268,6 @@
     <Compile Include="Entities\CustomerDetail.cs" />
     <Compile Include="Entities\CustomerTrans.cs" />
     <Compile Include="Entities\CustomerTransDetail.cs" />
-    <Compile Include="Entities\LeadTime.cs" />
     <Compile Include="Entities\Pelayaran.cs" />
     <Compile Include="Entities\PelayaranDetail.cs" />
     <Compile Include="Entities\PriceList.cs" />
@@ -317,7 +280,6 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserProfile.cs" />
     <Compile Include="Entities\UserRole.cs" />
-    <Compile Include="Entities\Vessel.cs" />
     <Compile Include="Entities\WareHouse.cs" />
     <Compile Include="Form\LoginForm.cs">
       <SubType>Form</SubType>
@@ -356,7 +318,6 @@
     <Compile Include="SqlRepository\SqlConditionRepository.cs" />
     <Compile Include="SqlRepository\SqlCustomerRepository.cs" />
     <Compile Include="SqlRepository\SqlCustomerTransRepository.cs" />
-    <Compile Include="SqlRepository\SqlLeadTimeRepository.cs" />
     <Compile Include="SqlRepository\SqlPelayaranRepository.cs" />
     <Compile Include="SqlRepository\SqlPriceListRepository.cs" />
     <Compile Include="SqlRepository\SqlRecipientRepository.cs" />
@@ -366,7 +327,6 @@
     <Compile Include="SqlRepository\SqlTypeContRepository.cs" />
     <Compile Include="SqlRepository\SqlUserRepository.cs" />
     <Compile Include="SqlRepository\SqlUtility.cs" />
-    <Compile Include="SqlRepository\SqlVesselRepository.cs" />
     <Compile Include="SqlRepository\SqlWareHouseRepository.cs" />
     <Compile Include="Utility\Log\Logging.cs" />
     <Compile Include="Utility\Utility.cs" />
@@ -405,15 +365,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Control\Customer\CustomerView.resx">
       <DependentUpon>CustomerView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Control\LeadTime\LeadTimeEdit.resx">
-      <DependentUpon>LeadTimeEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Control\LeadTime\LeadTimeList.resx">
-      <DependentUpon>LeadTimeList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Control\LeadTime\LeadTimeView.resx">
-      <DependentUpon>LeadTimeView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\Pelayaran\PelayaranEdit.resx">
       <DependentUpon>PelayaranEdit.cs</DependentUpon>
@@ -471,15 +422,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Control\UserControls\UserView.resx">
       <DependentUpon>UserView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Control\VesselControls\VesselEdit.resx">
-      <DependentUpon>VesselEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Control\VesselControls\VesselList.resx">
-      <DependentUpon>VesselList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Control\VesselControls\VesselView.resx">
-      <DependentUpon>VesselView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\Warehouse\WareHouseEdit.resx">
       <DependentUpon>WareHouseEdit.cs</DependentUpon>

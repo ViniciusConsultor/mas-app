@@ -271,21 +271,6 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 listCity = null;
                 sqlCityRepository = null;
             }
-            else if (cboKeySearch.Text.Equals("Vessel"))
-            {
-                SqlVesselRepository sqlVesselRepository = new SqlVesselRepository();
-                List<VisitaJayaPerkasa.Entities.Vessel> listVessel = sqlVesselRepository.GetVessels();
-                cboValueSearch.DataSource = null;
-
-                cboValueSearch.DataSource = listVessel;
-                cboValueSearch.DisplayMember = "VesselName";
-                cboValueSearch.ValueMember = "ID";
-
-                txtRoSearch.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-                cboValueSearch.Visibility = Telerik.WinControls.ElementVisibility.Visible;
-                sqlVesselRepository = null;
-                listVessel = null;
-            }
             else if (cboKeySearch.Text.Equals("VOY"))
             {
                 cboValueSearch.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
