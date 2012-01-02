@@ -14,7 +14,6 @@ namespace VisitaJayaPerkasa.Control.Schedule
     public partial class ScheduleEdit : UserControl
     {
         private SqlCityRepository sqlCityRepository;
-        private SqlVesselRepository sqlVesselRepository;
         private SqlScheduleRepository sqlScheduleRepository;
         private VisitaJayaPerkasa.Entities.Schedule schedule;
         private bool wantToCreateVessel;
@@ -23,17 +22,14 @@ namespace VisitaJayaPerkasa.Control.Schedule
         {
             InitializeComponent();
             sqlCityRepository = new SqlCityRepository();
-            sqlVesselRepository = new SqlVesselRepository();
             this.schedule = schedule;
 
             List<VisitaJayaPerkasa.Entities.City> listCity = sqlCityRepository.GetCity();
-            List<VisitaJayaPerkasa.Entities.Vessel> listVessel = sqlVesselRepository.GetVessels();
 
             cboTujuan.DataSource = listCity;
             cboTujuan.DisplayMember = "CityName";
             cboTujuan.ValueMember = "ID";
 
-            cboKapal.DataSource = listVessel;
             cboKapal.DisplayMember = "VesselName";
             cboKapal.ValueMember = "ID";
 
@@ -61,9 +57,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
             }
 
             listCity = null;
-            listVessel = null;
             sqlCityRepository = null;
-            sqlVesselRepository = null;
 
 
 

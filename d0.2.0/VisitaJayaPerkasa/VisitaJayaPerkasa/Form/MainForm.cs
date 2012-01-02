@@ -10,12 +10,10 @@ using VisitaJayaPerkasa.Entities;
 using Telerik.WinControls.UI;
 using Telerik.WinControls;
 using VisitaJayaPerkasa.Control.UserControls;
-using VisitaJayaPerkasa.Control.VesselControls;
 using VisitaJayaPerkasa.Control.Customer;
 using VisitaJayaPerkasa.Control.CategoryControl;
 using VisitaJayaPerkasa.Control.City;
 using VisitaJayaPerkasa.Control.ConditionControl;
-using VisitaJayaPerkasa.Control.LeadTime;
 using VisitaJayaPerkasa.Control.Pelayaran;
 using VisitaJayaPerkasa.Control.Supplier;
 using VisitaJayaPerkasa.Control.TypeCont;
@@ -61,11 +59,6 @@ namespace VisitaJayaPerkasa.Form
             ShowUserControl(new UserList());
         }
 
-        private void radImageButtonRole_Click(object sender, EventArgs e)
-        {
-            ShowUserControl(new VesselList());
-        }
-
         private void radImageButtonVessel_Click(object sender, EventArgs e)
         {
             ShowUserControl(new UserList());
@@ -79,11 +72,6 @@ namespace VisitaJayaPerkasa.Form
         private void radMenuItemRole_Click(object sender, EventArgs e)
         {
             ShowUserControl(new UserList());
-        }
-
-        private void radMenuItemVessel_Click(object sender, EventArgs e)
-        {
-            ShowUserControl(new VesselList());
         }
 
         private void radMenuItemExit_Click(object sender, EventArgs e)
@@ -114,11 +102,6 @@ namespace VisitaJayaPerkasa.Form
             ShowUserControl(new CategoryList());
         }
 
-        private void radImageButtonElementVessel_Click(object sender, EventArgs e)
-        {
-            ShowUserControl(new VesselList());
-        }
-
         private void radImageButtonElementCity_Click(object sender, EventArgs e)
         {
             ShowUserControl(new CityList());
@@ -127,11 +110,6 @@ namespace VisitaJayaPerkasa.Form
         private void radImageButtonElementCondition_Click(object sender, EventArgs e)
         {
             ShowUserControl(new ConditionList());
-        }
-
-        private void radImageButtonElementLeadTime_Click(object sender, EventArgs e)
-        {
-            ShowUserControl(new LeadTimeList());
         }
 
         private void radImageButtonElementPelayaran_Click(object sender, EventArgs e)
