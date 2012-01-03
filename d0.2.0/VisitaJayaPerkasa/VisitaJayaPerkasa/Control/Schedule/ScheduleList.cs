@@ -92,7 +92,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
             if(cboKeySearch.Text.Equals("Destination"))
                 schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
                     actionBarDateEnd.Text, cboValueSearch.SelectedValue.ToString(), "", ""
-                    );           
+                    );
             else if(cboKeySearch.Text.Equals("Vessel"))
                 schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
                     actionBarDateEnd.Text, "", cboValueSearch.SelectedValue.ToString(), ""
@@ -275,6 +275,21 @@ namespace VisitaJayaPerkasa.Control.Schedule
             {
                 cboValueSearch.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
                 txtRoSearch.Visibility = Telerik.WinControls.ElementVisibility.Visible;
+            }
+            else if (cboKeySearch.Text.Equals("Vessel")) {
+                SqlPelayaranRepository sqlPelayaranRepository = new SqlPelayaranRepository();
+                List<VisitaJayaPerkasa.Entities.PelayaranDetail> listPelayaran = sqlPelayaranRepository.GetVessels();
+                cboValueSearch.DataSource = null;
+
+                cboValueSearch.DataSource = listPelayaran;
+                cboValueSearch.DisplayMember = "VesselName";
+                cboValueSearch.ValueMember = "VesselCode";
+
+                txtRoSearch.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+                cboValueSearch.Visibility = Telerik.WinControls.ElementVisibility.Visible;
+
+                listPelayaran = null;
+                sqlPelayaranRepository = null;
             }
             else if (cboKeySearch.Text.Equals("All"))
             {

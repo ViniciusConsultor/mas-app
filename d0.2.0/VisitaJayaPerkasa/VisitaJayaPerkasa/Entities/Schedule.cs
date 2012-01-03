@@ -11,13 +11,13 @@ namespace VisitaJayaPerkasa.Entities
         public Guid berangkat { get; set; }
         public Guid tujuan { get; set; }
         public Guid pelayaranID { get; set; }
-        public Guid vesselID { get; set; }
         public DateTime etd { get; set; }
         public DateTime tglclosing { get; set; }
         public string voy { get; set; }
         public string keterangan { get; set; }
         public string ro { get; set; }
-
+        public string vesselCode { get; set; }
+        
 
         //model for view
         public string berangkatTujuan { get; set; }

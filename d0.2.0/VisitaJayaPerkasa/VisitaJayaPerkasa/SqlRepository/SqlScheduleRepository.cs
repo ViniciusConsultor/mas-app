@@ -22,15 +22,21 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT s.schedule_id, s.berangkat, s.tujuan, s.pelayaran_id, s.vessel_id, s.voy, s.etd, " +
-                        "s.keterangan, s.RO, s.tgl_closing, p.name, v.vessel_name, " +
-                        "(SELECT TOP 1 city_name FROM [CITY] cc WHERE cc.city_id = s.berangkat) as berangkats, " + 
-                        "(SELECT TOP 1 city_name FROM [CITY] cc WHERE cc.city_id = s.tujuan) as tujuans " +
-                        "FROM [Schedule] s JOIN " +
-                        "[Vessel] v on v.vessel_id like '%" + vessel + "%' AND v.vessel_id = s.vessel_id AND (s.etd > '" + beginDate + "' AND s.etd < '" + endDate + "') AND " + 
-                        "s.voy like '%" + voy + "%' AND " + 
-                        "s.tujuan like '%" + destination + "%' AND s.vessel_id = s.vessel_id AND (s.deleted is null OR s.deleted = '0') AND (v.deleted is null OR v.deleted = '0') JOIN " + 
-                        "[Pelayaran] p on p.pelayaran_id = s.pelayaran_id AND (p.deleted is null OR p.deleted = '0')"
+                        "SELECT s.schedule_id, " + 
+//                        "s.berangkat, " + 
+                        "s.tujuan, s.pelayaran_id, s.etd, " +
+                        "s.tgl_closing, s.voy, s.RO, s.keterangan, " + 
+//                        "(SELECT TOP 1 city_name FROM [CITY] cc WHERE cc.city_id = s.berangkat) as berangkats, " + 
+                        "(SELECT TOP 1 city_name FROM [CITY] cc WHERE cc.city_id = s.tujuan) as tujuans, " +
+                        "(SELECT TOP 1 name FROM [PELAYARAN] p WHERE p.pelayaran_id = s.pelayaran_id) as pelayarans, " +
+                        "(SELECT TOP 1 vessel_name FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_id = s.pelayaran_id AND pd.vessel_code = s.vessel_code) as vessels, " +  
+                        "s.vessel_code, " +
+                        "(SELECT TOP 1 status_pinjaman FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_id = s.pelayaran_id AND pd.vessel_code = s.vessel_code) as status " + 
+                        "FROM [Schedule] s, [PELAYARAN] p " +
+                        "WHERE (p.deleted is null OR p.deleted = '0') AND p.pelayaran_id = s.pelayaran_id AND " + 
+                        "(s.etd > '" + beginDate + "' AND s.etd < '" + endDate + "') AND " + 
+                        "s.voy like '%" + voy + "%' AND s.vessel_code like '%" + vessel + "%' AND " + 
+                        "s.tujuan like '%" + destination + "%' AND (s.deleted is null OR s.deleted = '0')"
                         , con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
@@ -38,19 +44,17 @@ namespace VisitaJayaPerkasa.SqlRepository
                         {
                             Schedule schedule = new Schedule();
                             schedule.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
-                            schedule.berangkat = Utility.Utility.ConvertToUUID(reader.GetValue(1).ToString()); 
-                            schedule.tujuan = Utility.Utility.ConvertToUUID(reader.GetValue(2).ToString());
-                            schedule.pelayaranID = Utility.Utility.ConvertToUUID(reader.GetValue(3).ToString());
-                            schedule.vesselID = Utility.Utility.ConvertToUUID(reader.GetValue(4).ToString());
+                            schedule.tujuan = Utility.Utility.ConvertToUUID(reader.GetValue(1).ToString());
+                            schedule.pelayaranID = Utility.Utility.ConvertToUUID(reader.GetValue(2).ToString());
+                            schedule.etd = reader.GetDateTime(3);
+                            schedule.tglclosing = reader.GetDateTime(4);
                             schedule.voy = (Utility.Utility.IsDBNull(reader.GetValue(5))) ? null : reader.GetString(5);
-                            schedule.etd = reader.GetDateTime(6);
+                            schedule.ro = (Utility.Utility.IsDBNull(reader.GetValue(6))) ? null : reader.GetString(8);
                             schedule.keterangan = (Utility.Utility.IsDBNull(reader.GetValue(7))) ? null : reader.GetString(7);
-                            schedule.ro = (Utility.Utility.IsDBNull(reader.GetValue(8))) ? null : reader.GetString(8);
-                            schedule.tglclosing = reader.GetDateTime(9);
-                            schedule.namaPelayaran = reader.GetString(10);
-                            schedule.namaKapal = reader.GetString(11);
-                            schedule.berangkatTujuan = reader.GetString(12) + " - " + reader.GetString(13);
-
+                            schedule.berangkatTujuan = reader.GetString(8);
+                            schedule.namaPelayaran = reader.GetString(9);
+                            schedule.namaKapal = (reader.GetBoolean(12)) ? (reader.GetString(10) + " - loan") : reader.GetString(10);
+                            schedule.vesselCode = reader.GetString(11);
 
                             if (listSchedule == null)
                                 listSchedule = new List<Schedule>();

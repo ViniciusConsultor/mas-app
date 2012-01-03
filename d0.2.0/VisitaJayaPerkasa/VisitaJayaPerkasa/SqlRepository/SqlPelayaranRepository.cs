@@ -49,6 +49,45 @@ namespace VisitaJayaPerkasa.SqlRepository
             return listPelayaran;
         }
 
+        public List<PelayaranDetail> GetVessels()
+        {
+            List<PelayaranDetail> listVessel = null;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT DISTINCT vessel_code, vessel_name, status_pinjaman FROM [Pelayaran_Detail] WHERE (deleted is null OR deleted = '0') " +
+                        "ORDER BY vessel_name ASC"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            PelayaranDetail pelayaranDetail = new PelayaranDetail();
+                            pelayaranDetail.VesselCode = reader.GetValue(0).ToString();
+                            pelayaranDetail.VesselName = (reader.GetBoolean(2)) ? (reader.GetString(1) + " - loan") : reader.GetString(1);
+
+                            if (listVessel == null)
+                                listVessel = new List<PelayaranDetail>();
+
+                            listVessel.Add(pelayaranDetail);
+                            pelayaranDetail = null;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlPelayaranRepository.cs - GetVessels() " + e.Message);
+            }
+
+            return listVessel;
+        }
+
         public bool DeletePelayaran(SqlParameter[] sqlParam)
         {
             int n = 0;
