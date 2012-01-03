@@ -71,9 +71,9 @@
             // 
             this.radLabel2.Location = new System.Drawing.Point(21, 19);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(56, 16);
+            this.radLabel2.Size = new System.Drawing.Size(84, 16);
             this.radLabel2.TabIndex = 12;
-            this.radLabel2.Text = "City Code";
+            this.radLabel2.Text = "Condition Code";
             // 
             // etConditionName
             // 
@@ -87,9 +87,9 @@
             // 
             this.radLabel1.Location = new System.Drawing.Point(21, 55);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(59, 16);
+            this.radLabel1.Size = new System.Drawing.Size(87, 16);
             this.radLabel1.TabIndex = 7;
-            this.radLabel1.Text = "City Name";
+            this.radLabel1.Text = "Condition Name";
             // 
             // radToolStripElement1
             // 
