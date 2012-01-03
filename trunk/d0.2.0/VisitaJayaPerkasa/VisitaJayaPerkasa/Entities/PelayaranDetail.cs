@@ -11,6 +11,7 @@ namespace VisitaJayaPerkasa.Entities
         public string VesselCode { get; set; }
         public string VesselName { get; set; }
         public int StatusPinjaman { get; set; }
+        public string NamaStatusPinjaman { get; set; }
         public int PelayaranDetailDeleted { get; set; }
     }
 }

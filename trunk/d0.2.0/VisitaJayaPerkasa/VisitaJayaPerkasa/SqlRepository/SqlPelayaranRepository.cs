@@ -393,6 +393,14 @@ namespace VisitaJayaPerkasa.SqlRepository
                             pelayaranDetail.VesselCode = (Utility.Utility.IsDBNull(reader.GetValue(2))) ? null : reader.GetString(2);
                             pelayaranDetail.VesselName = (Utility.Utility.IsDBNull(reader.GetValue(3))) ? null : reader.GetString(3);
                             pelayaranDetail.StatusPinjaman = Convert.ToInt32(reader.GetBoolean(4));
+                            if (pelayaranDetail.StatusPinjaman == 1)
+                            {
+                                pelayaranDetail.NamaStatusPinjaman = "Pinjaman";
+                            }
+                            else
+                            {
+                                pelayaranDetail.NamaStatusPinjaman = "Milik Sendiri";
+                            }
 
                             if (listPelayaranDetail == null)
                                 listPelayaranDetail = new List<PelayaranDetail>();

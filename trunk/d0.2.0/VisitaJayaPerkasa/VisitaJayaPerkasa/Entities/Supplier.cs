@@ -9,6 +9,7 @@ namespace VisitaJayaPerkasa.Entities
     {
         public Guid Id { get; set; }
         public Guid CategoryId { get; set; }
+        public string CategoryName { get; set; }
         public string SupplierName { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }

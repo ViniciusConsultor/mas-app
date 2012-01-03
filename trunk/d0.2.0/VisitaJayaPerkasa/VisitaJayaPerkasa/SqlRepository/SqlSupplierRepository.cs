@@ -21,8 +21,8 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT * FROM [Supplier] WHERE deleted is null OR deleted = '0'"
-                        , con))
+                        "SELECT s.supplier_id, s.category_id, s.supplier_name, s.address, s.phone, s.fax, s.email, s.contact_person, c.category_name, s.deleted FROM [Supplier] s JOIN [CATEGORY] c " +
+                        "ON (s.deleted is null OR s.deleted = '0') AND (c.deleted is null OR c.deleted = '0') AND s.category_id = c.category_id", con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
@@ -36,6 +36,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                             supplier.Fax = (Utility.Utility.IsDBNull(reader.GetValue(5))) ? null : reader.GetString(5);
                             supplier.Email = (Utility.Utility.IsDBNull(reader.GetValue(6))) ? null : reader.GetString(6);
                             supplier.ContactPerson = (Utility.Utility.IsDBNull(reader.GetValue(7))) ? null : reader.GetString(7);
+                            supplier.CategoryName = (Utility.Utility.IsDBNull(reader.GetValue(8))) ? null : reader.GetString(8);
 
                             if (listSupplier == null)
                                 listSupplier = new List<Supplier>();
