@@ -26,7 +26,7 @@ namespace VisitaJayaPerkasa.Control.Supplier
 
 
             lblSupplierName.Text = supplier.SupplierName;
-            lblCategoryName.Text = supplier.CategoryId.ToString();
+            lblCategoryName.Text = supplier.CategoryName;
             lblAddres.Text = supplier.Address;
             lblEmail.Text = supplier.Email;
             lblPhone.Text = supplier.Phone;
