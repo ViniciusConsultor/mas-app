@@ -57,15 +57,21 @@ namespace VisitaJayaPerkasa.Control.Warehouse
                     param = null;
                     param = SqlUtility.SetSqlParameter(new string[] { "stuffing_place_id", "address", "phone", "fax", "email", "contact_person", "deleted" }, new object[] { Guid.NewGuid(), etAddress.Text.Trim(), etPhone.Text.Trim(), etFax.Text.Trim(), etEmail.Text.Trim(), etContact.Text.Trim(),  0 });
 
-                    if (sqlWareHouseRepository.CreateWareHouse(param))
-                    {
-                        MessageBox.Show(this, "Success create warehouse", "Information");
-                        radButtonElement2.PerformClick();
-                    }
+                    if (sqlWareHouseRepository.CheckWarehouseAddress(param, true))
+                        MessageBox.Show(this, "Address already exist", "Information");
                     else
                     {
-                        MessageBox.Show(this, "Cannot Create warehouse", "Information");
+                        if (sqlWareHouseRepository.CreateWareHouse(param))
+                        {
+                            MessageBox.Show(this, "Success create warehouse", "Information");
+                            radButtonElement2.PerformClick();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, "Cannot Create warehouse", "Information");
+                        }
                     }
+                    
                 }
                 else
                 {
