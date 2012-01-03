@@ -29,33 +29,33 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.etContact = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.etEmail = new Telerik.WinControls.UI.RadTextBox();
+            this.etEm = new Telerik.WinControls.UI.RadLabel();
+            this.etFax = new Telerik.WinControls.UI.RadTextBox();
+            this.et = new Telerik.WinControls.UI.RadLabel();
             this.etAddress = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.etPhone = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radToolStripElement1 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radToolStripItem1 = new Telerik.WinControls.UI.RadToolStripItem();
-            this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.radButtonElement1 = new Telerik.WinControls.UI.RadButtonElement();
             this.radButtonElement2 = new Telerik.WinControls.UI.RadButtonElement();
-            this.etFax = new Telerik.WinControls.UI.RadTextBox();
-            this.et = new Telerik.WinControls.UI.RadLabel();
-            this.etEmail = new Telerik.WinControls.UI.RadTextBox();
-            this.etEm = new Telerik.WinControls.UI.RadLabel();
-            this.etContact = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.etContact)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etEmail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etEm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etFax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.et)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etPhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etFax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.et)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etEmail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etEm)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etContact)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -76,6 +76,54 @@
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "WareHouse";
+            // 
+            // etContact
+            // 
+            this.etContact.Location = new System.Drawing.Point(129, 161);
+            this.etContact.Name = "etContact";
+            this.etContact.Size = new System.Drawing.Size(210, 20);
+            this.etContact.TabIndex = 17;
+            this.etContact.TabStop = false;
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.Location = new System.Drawing.Point(21, 161);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(84, 16);
+            this.radLabel5.TabIndex = 18;
+            this.radLabel5.Text = "Contact Person";
+            // 
+            // etEmail
+            // 
+            this.etEmail.Location = new System.Drawing.Point(129, 125);
+            this.etEmail.Name = "etEmail";
+            this.etEmail.Size = new System.Drawing.Size(210, 20);
+            this.etEmail.TabIndex = 15;
+            this.etEmail.TabStop = false;
+            // 
+            // etEm
+            // 
+            this.etEm.Location = new System.Drawing.Point(21, 125);
+            this.etEm.Name = "etEm";
+            this.etEm.Size = new System.Drawing.Size(35, 16);
+            this.etEm.TabIndex = 16;
+            this.etEm.Text = "Email";
+            // 
+            // etFax
+            // 
+            this.etFax.Location = new System.Drawing.Point(129, 89);
+            this.etFax.Name = "etFax";
+            this.etFax.Size = new System.Drawing.Size(210, 20);
+            this.etFax.TabIndex = 13;
+            this.etFax.TabStop = false;
+            // 
+            // et
+            // 
+            this.et.Location = new System.Drawing.Point(21, 89);
+            this.et.Name = "et";
+            this.et.Size = new System.Drawing.Size(25, 16);
+            this.et.TabIndex = 14;
+            this.et.Text = "Fax";
             // 
             // etAddress
             // 
@@ -124,27 +172,6 @@
             this.radToolStripItem1.Name = "radToolStripItem1";
             this.radToolStripItem1.Text = "radToolStripItem1";
             // 
-            // radToolStrip1
-            // 
-            this.radToolStrip1.AllowDragging = false;
-            this.radToolStrip1.AllowFloating = false;
-            this.radToolStrip1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radToolStrip1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radToolStripElement1});
-            this.radToolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.radToolStrip1.MinimumSize = new System.Drawing.Size(5, 5);
-            this.radToolStrip1.Name = "radToolStrip1";
-            this.radToolStrip1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // 
-            // 
-            this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
-            this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
-            this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(627, 27);
-            this.radToolStrip1.TabIndex = 21;
-            this.radToolStrip1.Text = "radToolStrip1";
-            // 
             // radButtonElement1
             // 
             this.radButtonElement1.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -165,53 +192,26 @@
             this.radButtonElement2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.radButtonElement2.Click += new System.EventHandler(this.radButtonElement2_Click);
             // 
-            // etFax
+            // radToolStrip1
             // 
-            this.etFax.Location = new System.Drawing.Point(129, 89);
-            this.etFax.Name = "etFax";
-            this.etFax.Size = new System.Drawing.Size(210, 20);
-            this.etFax.TabIndex = 13;
-            this.etFax.TabStop = false;
+            this.radToolStrip1.AllowDragging = false;
+            this.radToolStrip1.AllowFloating = false;
+            this.radToolStrip1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radToolStrip1.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radToolStripElement1});
+            this.radToolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.radToolStrip1.MinimumSize = new System.Drawing.Size(5, 5);
+            this.radToolStrip1.Name = "radToolStrip1";
+            this.radToolStrip1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // et
             // 
-            this.et.Location = new System.Drawing.Point(21, 89);
-            this.et.Name = "et";
-            this.et.Size = new System.Drawing.Size(25, 16);
-            this.et.TabIndex = 14;
-            this.et.Text = "Fax";
             // 
-            // etEmail
-            // 
-            this.etEmail.Location = new System.Drawing.Point(129, 125);
-            this.etEmail.Name = "etEmail";
-            this.etEmail.Size = new System.Drawing.Size(210, 20);
-            this.etEmail.TabIndex = 15;
-            this.etEmail.TabStop = false;
-            // 
-            // etEm
-            // 
-            this.etEm.Location = new System.Drawing.Point(21, 125);
-            this.etEm.Name = "etEm";
-            this.etEm.Size = new System.Drawing.Size(35, 16);
-            this.etEm.TabIndex = 16;
-            this.etEm.Text = "Email";
-            // 
-            // etContact
-            // 
-            this.etContact.Location = new System.Drawing.Point(129, 161);
-            this.etContact.Name = "etContact";
-            this.etContact.Size = new System.Drawing.Size(210, 20);
-            this.etContact.TabIndex = 17;
-            this.etContact.TabStop = false;
-            // 
-            // radLabel5
-            // 
-            this.radLabel5.Location = new System.Drawing.Point(21, 161);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(84, 16);
-            this.radLabel5.TabIndex = 18;
-            this.radLabel5.Text = "Contact Person";
+            this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
+            this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
+            this.radToolStrip1.ShowOverFlowButton = true;
+            this.radToolStrip1.Size = new System.Drawing.Size(627, 49);
+            this.radToolStrip1.TabIndex = 21;
+            this.radToolStrip1.Text = "radToolStrip1";
             // 
             // WareHouseEdit
             // 
@@ -224,17 +224,17 @@
             this.Load += new System.EventHandler(this.WareHouseEdit_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.etContact)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etEmail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etEm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etFax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.et)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etPhone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etFax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.et)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etEmail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etEm)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etContact)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

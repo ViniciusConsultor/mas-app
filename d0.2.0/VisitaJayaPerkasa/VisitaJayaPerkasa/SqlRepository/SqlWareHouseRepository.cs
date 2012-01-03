@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using VisitaJayaPerkasa.Utility.Log;
+using VisitaJayaPerkasa.Entities;
 
 namespace VisitaJayaPerkasa.SqlRepository
 {
@@ -191,6 +192,46 @@ namespace VisitaJayaPerkasa.SqlRepository
             }
 
             return n > 0;
+        }
+
+        public bool CheckWarehouseAddress(SqlParameter[] sqlParam, bool excludeDeleted = true)
+        {
+            bool exists = false;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    string conditional = "";
+                    if (!excludeDeleted)
+                        conditional = " AND deleted = '1'";
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 address FROM [WAREHOUSE] WHERE address = " + sqlParam[1].ParameterName + conditional, con))
+                    {
+                        foreach (SqlParameter tempSqlParam in sqlParam)
+                            command.Parameters.Add(tempSqlParam);
+
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            if (sqlParam[1].SqlValue.ToString().Equals((reader.GetValue(0).ToString()), StringComparison.CurrentCultureIgnoreCase))
+                                exists = true;
+                            else
+                                exists = false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                Logging.Error("SqlWareHouseRepository.cs - CheckWarehouseAddress() " + e.Message);
+            }
+
+            return exists;
         }
     }
 }
