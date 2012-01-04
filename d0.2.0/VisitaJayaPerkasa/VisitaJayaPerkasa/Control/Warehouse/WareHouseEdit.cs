@@ -75,8 +75,14 @@ namespace VisitaJayaPerkasa.Control.Warehouse
                 }
                 else
                 {
-                    param = SqlUtility.SetSqlParameter(new string[] { "address", "phone", "fax", "email", "contact_person", "stuffing_place_id" }, new object[] { etAddress.Text.Trim(), etPhone.Text.Trim(), etFax.Text.Trim(), etEmail.Text.Trim(), etContact.Text.Trim(), warehouse.Id });
+                    param = SqlUtility.SetSqlParameter(new string[] { "stuffing_place_id", "address" }, new object[] { warehouse.Id, etAddress.Text.Trim()});
+                    if (sqlWareHouseRepository.CheckWarehouseAddress(param, true, true))
+                    {
+                        MessageBox.Show(this, "Address already exist", "Information");
+                        return;
+                    }
 
+                    param = SqlUtility.SetSqlParameter(new string[] { "address", "phone", "fax", "email", "contact_person", "stuffing_place_id" }, new object[] { etAddress.Text.Trim(), etPhone.Text.Trim(), etFax.Text.Trim(), etEmail.Text.Trim(), etContact.Text.Trim(), warehouse.Id });
                     if (sqlWareHouseRepository.EditWareHouse(param))
                     {
                         MessageBox.Show(this, "Success Edit warehouse", "Information");

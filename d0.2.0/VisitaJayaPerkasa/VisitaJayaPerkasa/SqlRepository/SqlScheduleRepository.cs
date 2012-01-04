@@ -33,7 +33,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "s.vessel_code, " +
                         "(SELECT TOP 1 status_pinjaman FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_id = s.pelayaran_id AND pd.vessel_code = s.vessel_code) as status " + 
                         "FROM [Schedule] s, [PELAYARAN] p " +
-                        "WHERE (p.deleted is null OR p.deleted = '0') AND p.pelayaran_id = s.pelayaran_id AND " + 
+                        "WHERE (p.deleted is null OR p.deleted = '0') AND s.tgl_closing > '" + beginDate + "' AND p.pelayaran_id = s.pelayaran_id AND " + 
                         "(s.etd > '" + beginDate + "' AND s.etd < '" + endDate + "') AND " + 
                         "s.voy like '%" + voy + "%' AND s.vessel_code like '%" + vessel + "%' AND " + 
                         "s.tujuan like '%" + destination + "%' AND (s.deleted is null OR s.deleted = '0')"

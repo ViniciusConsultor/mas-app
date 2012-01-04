@@ -194,7 +194,7 @@ namespace VisitaJayaPerkasa.SqlRepository
             return n > 0;
         }
 
-        public bool CheckWarehouseAddress(SqlParameter[] sqlParam, bool excludeDeleted = true)
+        public bool CheckWarehouseAddress(SqlParameter[] sqlParam, bool excludeDeleted = true, bool isEdit = false)
         {
             bool exists = false;
 
@@ -205,8 +205,8 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     string conditional = "";
-                    if (!excludeDeleted)
-                        conditional = " AND deleted = '1'";
+                    if (isEdit)
+                        conditional = " AND stuffing_place_id != " + sqlParam[0].ParameterName;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT TOP 1 address FROM [WAREHOUSE] WHERE address = " + sqlParam[1].ParameterName + conditional, con))
@@ -215,6 +215,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                             command.Parameters.Add(tempSqlParam);
 
                         SqlDataReader reader = command.ExecuteReader();
+                        command.Parameters.Clear();
                         while (reader.Read())
                         {
                             if (sqlParam[1].SqlValue.ToString().Equals((reader.GetValue(0).ToString()), StringComparison.CurrentCultureIgnoreCase))

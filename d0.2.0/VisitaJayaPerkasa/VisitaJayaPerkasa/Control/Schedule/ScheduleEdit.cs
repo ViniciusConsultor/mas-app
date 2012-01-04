@@ -15,6 +15,8 @@ namespace VisitaJayaPerkasa.Control.Schedule
     {
         private SqlCityRepository sqlCityRepository;
         private SqlScheduleRepository sqlScheduleRepository;
+        private SqlPelayaranRepository sqlPelayaranRepository;
+
         private VisitaJayaPerkasa.Entities.Schedule schedule;
         private bool wantToCreateVessel;
 
@@ -22,14 +24,17 @@ namespace VisitaJayaPerkasa.Control.Schedule
         {
             InitializeComponent();
             sqlCityRepository = new SqlCityRepository();
+            sqlPelayaranRepository = new SqlPelayaranRepository();
             this.schedule = schedule;
 
             List<VisitaJayaPerkasa.Entities.City> listCity = sqlCityRepository.GetCity();
+            List<VisitaJayaPerkasa.Entities.PelayaranDetail> listPelayaran = sqlPelayaranRepository.GetVessels();
 
             cboTujuan.DataSource = listCity;
             cboTujuan.DisplayMember = "CityName";
             cboTujuan.ValueMember = "ID";
 
+            cboKapal.DataSource = listPelayaran;
             cboKapal.DisplayMember = "VesselName";
             cboKapal.ValueMember = "ID";
 
@@ -44,25 +49,19 @@ namespace VisitaJayaPerkasa.Control.Schedule
             }
             else {
                 wantToCreateVessel = false;
-
-                string[] temp = schedule.berangkatTujuan.Replace(" ", "").Split('-');
+                cboTujuan.SelectedItem = schedule.berangkatTujuan;
                 cboKapal.SelectedItem = schedule.namaKapal;
 
                 pickerETD.Value = schedule.etd;
                 pickerTglClosing.Value = schedule.tglclosing;
 
                 etVOY.Text = schedule.voy;
-                etRO.Text = schedule.ro;
+                etRObegin.Text = schedule.ro;
                 etKet.Text = schedule.keterangan;
             }
 
             listCity = null;
             sqlCityRepository = null;
-
-
-
-
-
          }
 
         private void radButtonElement2_Click(object sender, EventArgs e)
@@ -105,6 +104,17 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 MessageBox.Show(this, "date of tgl closing must be greather than etd", "Information");
             else
             {
+                try
+                {
+                    Int32.Parse(etRObegin.Text.Trim());
+                    Int32.Parse(etROend.Text.Trim());
+                }
+                catch (Exception ex) {
+                    Utility.Log.Logging.Information("try parse int for validate");
+                    MessageBox.Show(this, "Please correct Ro value", "Information");
+                    return;
+                }
+
                 sqlScheduleRepository = new SqlScheduleRepository();
 
                 if (wantToCreateVessel) {
@@ -118,7 +128,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
                                 pickerETD.Value.Date,
                                 pickerTglClosing.Value.Date,
                                 etVOY.Text.Trim(),
-                                etRO.Text.Trim(),
+                                etRObegin.Text.Trim(),
                                 0,
                                 etKet.Text.Trim()}
                         );
@@ -143,7 +153,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
                                 pickerETD.Value.Date,
                                 pickerTglClosing.Value.Date,
                                 etVOY.Text.Trim(),
-                                etRO.Text.Trim(),
+                                etRObegin.Text.Trim(),
                                 0,
                                 etKet.Text.Trim(),
                                 schedule.ID}
