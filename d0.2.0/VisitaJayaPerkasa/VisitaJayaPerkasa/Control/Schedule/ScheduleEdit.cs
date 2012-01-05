@@ -36,7 +36,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
 
             cboKapal.DataSource = listPelayaran;
             cboKapal.DisplayMember = "VesselName";
-            cboKapal.ValueMember = "ID";
+            cboKapal.ValueMember = "VesselCode";
 
             if (schedule == null)
             {
@@ -56,7 +56,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 pickerTglClosing.Value = schedule.tglclosing;
 
                 etVOY.Text = schedule.voy;
-                etRObegin.Text = schedule.ro;
+                etRObegin20.Text = schedule.ro_begin_20.ToString();
                 etKet.Text = schedule.keterangan;
             }
 
@@ -106,11 +106,26 @@ namespace VisitaJayaPerkasa.Control.Schedule
             {
                 try
                 {
-                    Int32.Parse(etRObegin.Text.Trim());
-                    Int32.Parse(etROend.Text.Trim());
+                    if (etRObegin20.Text.Trim().Length == 0 && etRObegin40.Text.Trim().Length == 0) {
+                        MessageBox.Show(this, "Please fill ro begin", "Information");
+                        return;
+                    }
+                    else if (etROend20.Text.Trim().Length == 0 && etROend40.Text.Trim().Length == 0) {
+                        MessageBox.Show(this, "Please fill ro end", "Information");
+                        return;
+                    }
+
+                    if (etRObegin20.Text.Trim().Length > 0)
+                        Int32.Parse(etRObegin20.Text.Trim());
+                    if (etRObegin40.Text.Trim().Length > 0)
+                        Int32.Parse(etRObegin40.Text.Trim());
+                    if (etROend20.Text.Trim().Length > 0)
+                        Int32.Parse(etROend20.Text.Trim());
+                    if (etROend40.Text.Trim().Length > 0)
+                        Int32.Parse(etROend40.Text.Trim());
                 }
                 catch (Exception ex) {
-                    Utility.Log.Logging.Information("try parse int for validate");
+                    Utility.Log.Logging.Information("try parse int for validate " + ex.Message);
                     MessageBox.Show(this, "Please correct Ro value", "Information");
                     return;
                 }
@@ -119,19 +134,29 @@ namespace VisitaJayaPerkasa.Control.Schedule
 
                 if (wantToCreateVessel) {
                     SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(
-                            new string[]{"schedule_id", "tujuan",
-                                "vessel_id", "etd", "tgl_closing",
-                                "voy", "ro", "deleted", "keterangan"},
+                            new string[]{"schedule_id", "tujuan", "pelayaran_id", "tgl_closing", 
+                                "voy", "deleted", "keterangan", "vessel_code", "ro_begin_20",
+                                "ro_begin_40", "ro_end_20", "ro_end_40", "etd", "td", "eta", "ta", 
+                                "unloading"
+                            },
                             new object[]{Guid.NewGuid(), 
                                 Utility.Utility.ConvertToUUID(cboTujuan.SelectedValue.ToString()),
-                                Utility.Utility.ConvertToUUID(cboKapal.SelectedValue.ToString()),
-                                pickerETD.Value.Date,
+                                Utility.Utility.ConvertToUUID(cboKapal.SelectedValue.ToString().Substring(0, 36)),
                                 pickerTglClosing.Value.Date,
                                 etVOY.Text.Trim(),
-                                etRObegin.Text.Trim(),
                                 0,
-                                etKet.Text.Trim()}
-                        );
+                                etKet.Text.Trim(),
+                                cboKapal.SelectedValue.ToString().Substring(36),
+                                Utility.Utility.IsStringNullorEmpty(etRObegin20.Text.Trim()) ? 0 : Int32.Parse(etRObegin20.Text.Trim()) ,
+                                Utility.Utility.IsStringNullorEmpty(etRObegin40.Text.Trim()) ? 0 : Int32.Parse(etRObegin40.Text.Trim()),
+                                Utility.Utility.IsStringNullorEmpty(etROend20.Text.Trim()) ? 0 : Int32.Parse(etROend20.Text.Trim()),
+                                Utility.Utility.IsStringNullorEmpty(etROend40.Text.Trim()) ? 0 : Int32.Parse(etROend40.Text.Trim()),
+                                pickerETD.Value.Date,
+                                pickerTD.Value.Date,
+                                pickerETA.Value.Date,
+                                pickerTA.Value.Date,
+                                pickerUnLoading.Value.Date
+                            });
 
                     if (sqlScheduleRepository.CreateNewSchedule(sqlParam))
                     {
@@ -153,7 +178,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
                                 pickerETD.Value.Date,
                                 pickerTglClosing.Value.Date,
                                 etVOY.Text.Trim(),
-                                etRObegin.Text.Trim(),
+                                etRObegin20.Text.Trim(),
                                 0,
                                 etKet.Text.Trim(),
                                 schedule.ID}
