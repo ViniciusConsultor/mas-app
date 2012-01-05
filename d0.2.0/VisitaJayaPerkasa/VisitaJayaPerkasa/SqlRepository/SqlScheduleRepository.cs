@@ -23,14 +23,11 @@ namespace VisitaJayaPerkasa.SqlRepository
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT s.schedule_id, " + 
-//                        "s.berangkat, " + 
-                        "s.tujuan, s.pelayaran_id, s.etd, " +
-                        "s.tgl_closing, s.voy, s.RO, s.keterangan, " + 
-//                        "(SELECT TOP 1 city_name FROM [CITY] cc WHERE cc.city_id = s.berangkat) as berangkats, " + 
+                        "s.tujuan, s.pelayaran_id, s.tgl_closing, s.voy, s.keterangan, s.vessel_code, " + 
+                        "s.ro_begin_20, s.ro_begin_40, s.ro_end_20, s.ro_end_40, s.etd, s.td, s.eta, s.ta, s.unloading, " + 
                         "(SELECT TOP 1 city_name FROM [CITY] cc WHERE cc.city_id = s.tujuan) as tujuans, " +
                         "(SELECT TOP 1 name FROM [PELAYARAN] p WHERE p.pelayaran_id = s.pelayaran_id) as pelayarans, " +
                         "(SELECT TOP 1 vessel_name FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_id = s.pelayaran_id AND pd.vessel_code = s.vessel_code) as vessels, " +  
-                        "s.vessel_code, " +
                         "(SELECT TOP 1 status_pinjaman FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_id = s.pelayaran_id AND pd.vessel_code = s.vessel_code) as status " + 
                         "FROM [Schedule] s, [PELAYARAN] p " +
                         "WHERE (p.deleted is null OR p.deleted = '0') AND s.tgl_closing > '" + beginDate + "' AND p.pelayaran_id = s.pelayaran_id AND " + 
@@ -46,15 +43,23 @@ namespace VisitaJayaPerkasa.SqlRepository
                             schedule.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
                             schedule.tujuan = Utility.Utility.ConvertToUUID(reader.GetValue(1).ToString());
                             schedule.pelayaranID = Utility.Utility.ConvertToUUID(reader.GetValue(2).ToString());
-                            schedule.etd = reader.GetDateTime(3);
-                            schedule.tglclosing = reader.GetDateTime(4);
-                            schedule.voy = (Utility.Utility.IsDBNull(reader.GetValue(5))) ? null : reader.GetString(5);
-                            schedule.ro = (Utility.Utility.IsDBNull(reader.GetValue(6))) ? null : reader.GetString(8);
-                            schedule.keterangan = (Utility.Utility.IsDBNull(reader.GetValue(7))) ? null : reader.GetString(7);
-                            schedule.berangkatTujuan = reader.GetString(8);
-                            schedule.namaPelayaran = reader.GetString(9);
-                            schedule.namaKapal = (reader.GetBoolean(12)) ? (reader.GetString(10) + " - loan") : reader.GetString(10);
-                            schedule.vesselCode = reader.GetString(11);
+                            schedule.tglclosing = reader.GetDateTime(3);
+                            schedule.voy = (Utility.Utility.IsDBNull(reader.GetValue(4))) ? null : reader.GetString(4);
+                            schedule.keterangan = (Utility.Utility.IsDBNull(reader.GetValue(5))) ? null : reader.GetString(5);
+                            schedule.vesselCode = reader.GetString(6);
+                            schedule.ro_begin_20 = (Utility.Utility.IsDBNull(reader.GetDecimal(7))) ? 0 : reader.GetInt32(7);
+                            schedule.ro_end_40 = (Utility.Utility.IsDBNull(reader.GetDecimal(8))) ? 0 : reader.GetInt32(8);
+                            schedule.ro_begin_20 = (Utility.Utility.IsDBNull(reader.GetDecimal(9))) ? 0 : reader.GetInt32(9);
+                            schedule.ro_end_40 = (Utility.Utility.IsDBNull(reader.GetDecimal(10))) ? 0 : reader.GetInt32(10);
+                            schedule.etd = reader.GetDateTime(11);
+                            schedule.td = reader.GetDateTime(12);
+                            schedule.eta = reader.GetDateTime(13);
+                            schedule.ta = reader.GetDateTime(14);
+                            schedule.unLoading = reader.GetDateTime(15);
+
+                            schedule.berangkatTujuan = reader.GetString(16);
+                            schedule.namaPelayaran = reader.GetString(17);
+                            schedule.namaKapal = (reader.GetBoolean(19)) ? (reader.GetString(18) + " - loan") : reader.GetString(18);
 
                             if (listSchedule == null)
                                 listSchedule = new List<Schedule>();
@@ -138,7 +143,13 @@ namespace VisitaJayaPerkasa.SqlRepository
                         sqlParam[7].ParameterName + ", " +
                         sqlParam[8].ParameterName + ", " +
                         sqlParam[9].ParameterName + ", " +
-                        sqlParam[10].ParameterName +
+                        sqlParam[10].ParameterName + ", " + 
+                        sqlParam[11].ParameterName + ", " +
+                        sqlParam[12].ParameterName + ", " +
+                        sqlParam[13].ParameterName + ", " +
+                        sqlParam[14].ParameterName + ", " +
+                        sqlParam[15].ParameterName + ", " +
+                        sqlParam[16].ParameterName +
                         ")", con))
                     {
                         command.Transaction = sqlTransaction;
