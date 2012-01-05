@@ -60,7 +60,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT DISTINCT vessel_code, vessel_name, status_pinjaman FROM [Pelayaran_Detail] WHERE (deleted is null OR deleted = '0') " +
+                        "SELECT DISTINCT vessel_code, vessel_name, status_pinjaman, pelayaran_id FROM [Pelayaran_Detail] WHERE (deleted is null OR deleted = '0') " +
                         "ORDER BY vessel_name ASC"
                         , con))
                     {
@@ -68,7 +68,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         while (reader.Read())
                         {
                             PelayaranDetail pelayaranDetail = new PelayaranDetail();
-                            pelayaranDetail.VesselCode = reader.GetValue(0).ToString();
+                            pelayaranDetail.VesselCode = reader.GetValue(3).ToString() + reader.GetValue(0).ToString();
                             pelayaranDetail.VesselName = (reader.GetBoolean(2)) ? (reader.GetString(1) + " - loan") : reader.GetString(1);
 
                             if (listVessel == null)
