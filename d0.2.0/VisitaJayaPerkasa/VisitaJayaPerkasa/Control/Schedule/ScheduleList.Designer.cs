@@ -73,7 +73,6 @@
             this.radToolStripElement2 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radToolStripItem3 = new Telerik.WinControls.UI.RadToolStripItem();
             ((System.ComponentModel.ISupportInitialize)(this.ScheduleGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ScheduleGridView.MasterGridViewTemplate)).BeginInit();
             this.ScheduleGridView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radCalendarBegin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCalendarEnd)).BeginInit();
@@ -100,7 +99,7 @@
             this.ScheduleGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ScheduleGridView.Location = new System.Drawing.Point(0, 53);
             // 
-            // gridViewTemplate1
+            // 
             // 
             this.ScheduleGridView.MasterGridViewTemplate.AllowAddNewRow = false;
             gridViewTextBoxColumn1.FieldAlias = "ID";
@@ -177,6 +176,7 @@
             this.ScheduleGridView.Size = new System.Drawing.Size(666, 365);
             this.ScheduleGridView.TabIndex = 5;
             this.ScheduleGridView.ThemeName = "ControlDefault";
+            this.ScheduleGridView.DoubleClick += new System.EventHandler(this.ScheduleGridView_DoubleClick);
             // 
             // radCalendarBegin
             // 
@@ -498,7 +498,6 @@
             this.Controls.Add(this.radToolStrip1);
             this.Name = "ScheduleList";
             this.Size = new System.Drawing.Size(666, 418);
-            ((System.ComponentModel.ISupportInitialize)(this.ScheduleGridView.MasterGridViewTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScheduleGridView)).EndInit();
             this.ScheduleGridView.ResumeLayout(false);
             this.ScheduleGridView.PerformLayout();

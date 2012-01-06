@@ -171,6 +171,12 @@
     <Compile Include="Control\Schedule\ScheduleList.Designer.cs">
       <DependentUpon>ScheduleList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Control\Schedule\ScheduleView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Schedule\ScheduleView.Designer.cs">
+      <DependentUpon>ScheduleView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Control\Supplier\SupplierEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -377,6 +383,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Control\PriceListCustomer\PriceListCustomer.resx">
       <DependentUpon>PriceListCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Schedule\ScheduleView.resx">
+      <DependentUpon>ScheduleView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\Supplier\SupplierEdit.resx">
       <DependentUpon>SupplierEdit.cs</DependentUpon>
