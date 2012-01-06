@@ -298,5 +298,18 @@ namespace VisitaJayaPerkasa.Control.Schedule
             }
         }
 
+        private void ScheduleGridView_DoubleClick(object sender, EventArgs e)
+        {
+            if (ScheduleGridView.SelectedRows.Count == 1)
+            {
+                GridViewRowInfo gridInfo = ScheduleGridView.SelectedRows.First();
+                string id = gridInfo.Cells[0].Value.ToString();
+                VisitaJayaPerkasa.Entities.Schedule tempSchedule = showShedule.Where(c => c.ID.ToString() == id).SingleOrDefault();
+
+                UserControl controllers = new ScheduleView(tempSchedule);
+                Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
+            }
+        }
+
     }
 }
