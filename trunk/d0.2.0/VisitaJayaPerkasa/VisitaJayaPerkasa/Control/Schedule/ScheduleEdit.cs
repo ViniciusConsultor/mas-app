@@ -52,11 +52,19 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 cboTujuan.SelectedItem = schedule.berangkatTujuan;
                 cboKapal.SelectedItem = schedule.namaKapal;
 
+                etVOY.Text = schedule.voy;
+
                 pickerETD.Value = schedule.etd;
+                pickerTD.Value = schedule.td;
+                pickerETA.Value = schedule.eta;
+                pickerTA.Value = schedule.ta;
+                pickerUnLoading.Value = schedule.unLoading;
                 pickerTglClosing.Value = schedule.tglclosing;
 
-                etVOY.Text = schedule.voy;
                 etRObegin20.Text = schedule.ro_begin_20.ToString();
+                etRObegin40.Text = schedule.ro_begin_40.ToString();
+                etROend20.Text = schedule.ro_end_20.ToString();
+                etROend40.Text = schedule.ro_end_40.ToString();
                 etKet.Text = schedule.keterangan;
             }
 
@@ -169,20 +177,30 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 }
                 else {
                     SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(
-                                new string[]{"tujuan",
-                                "vessel_id", "etd", "tgl_closing",
-                                "voy", "ro", "deleted", "keterangan", "schedule_id"},
-                                new object[]{
-                                Utility.Utility.ConvertToUUID(cboTujuan.SelectedValue.ToString()),
-                                Utility.Utility.ConvertToUUID(cboKapal.SelectedValue.ToString()),
-                                pickerETD.Value.Date,
-                                pickerTglClosing.Value.Date,
-                                etVOY.Text.Trim(),
-                                etRObegin20.Text.Trim(),
-                                0,
-                                etKet.Text.Trim(),
-                                schedule.ID}
-                            );
+                        new string[]{"schedule_id", "tujuan", "pelayaran_id", "tgl_closing", 
+                                                "voy", "deleted", "keterangan", "vessel_code", "ro_begin_20",
+                                                "ro_begin_40", "ro_end_20", "ro_end_40", "etd", "td", "eta", "ta", 
+                                                "unloading"
+                                            },
+                        new object[]{schedule.ID, 
+                                                Utility.Utility.ConvertToUUID(cboTujuan.SelectedValue.ToString()),
+                                                Utility.Utility.ConvertToUUID(cboKapal.SelectedValue.ToString().Substring(0, 36)),
+                                                pickerTglClosing.Value.Date,
+                                                etVOY.Text.Trim(),
+                                                0,
+                                                etKet.Text.Trim(),
+                                                cboKapal.SelectedValue.ToString().Substring(36),
+                                                Utility.Utility.IsStringNullorEmpty(etRObegin20.Text.Trim()) ? 0 : Int32.Parse(etRObegin20.Text.Trim()) ,
+                                                Utility.Utility.IsStringNullorEmpty(etRObegin40.Text.Trim()) ? 0 : Int32.Parse(etRObegin40.Text.Trim()),
+                                                Utility.Utility.IsStringNullorEmpty(etROend20.Text.Trim()) ? 0 : Int32.Parse(etROend20.Text.Trim()),
+                                                Utility.Utility.IsStringNullorEmpty(etROend40.Text.Trim()) ? 0 : Int32.Parse(etROend40.Text.Trim()),
+                                                pickerETD.Value.Date,
+                                                pickerTD.Value.Date,
+                                                pickerETA.Value.Date,
+                                                pickerTA.Value.Date,
+                                                pickerUnLoading.Value.Date
+                            });
+
 
                     if (sqlScheduleRepository.EditSchedule(sqlParam))
                     {

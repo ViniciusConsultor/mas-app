@@ -18,10 +18,10 @@ namespace VisitaJayaPerkasa.Entities
         public DateTime unLoading { get; set; }
         public DateTime tglclosing { get; set; }
 
-        public Int32 ro_begin_20 { get; set; }
-        public Int32 ro_begin_40 { get; set; }
-        public Int32 ro_end_40 { get; set; }
-        public Int32 ro_end_20 { get; set; }
+        public int ro_begin_20 { get; set; }
+        public int ro_begin_40 { get; set; }
+        public int ro_end_40 { get; set; }
+        public int ro_end_20 { get; set; }
 
         public string voy { get; set; }
         public string keterangan { get; set; }
