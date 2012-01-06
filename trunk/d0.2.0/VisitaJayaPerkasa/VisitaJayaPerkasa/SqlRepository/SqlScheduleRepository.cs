@@ -48,8 +48,8 @@ namespace VisitaJayaPerkasa.SqlRepository
                             schedule.keterangan = (Utility.Utility.IsDBNull(reader.GetValue(5))) ? null : reader.GetString(5);
                             schedule.vesselCode = reader.GetString(6);
                             schedule.ro_begin_20 = (Utility.Utility.IsDBNull(reader.GetDecimal(7))) ? 0 : reader.GetInt32(7);
-                            schedule.ro_end_40 = (Utility.Utility.IsDBNull(reader.GetDecimal(8))) ? 0 : reader.GetInt32(8);
-                            schedule.ro_begin_20 = (Utility.Utility.IsDBNull(reader.GetDecimal(9))) ? 0 : reader.GetInt32(9);
+                            schedule.ro_begin_40 = (Utility.Utility.IsDBNull(reader.GetDecimal(8))) ? 0 : reader.GetInt32(8);
+                            schedule.ro_end_20 = (Utility.Utility.IsDBNull(reader.GetDecimal(9))) ? 0 : reader.GetInt32(9);
                             schedule.ro_end_40 = (Utility.Utility.IsDBNull(reader.GetDecimal(10))) ? 0 : reader.GetInt32(10);
                             schedule.etd = reader.GetDateTime(11);
                             schedule.td = reader.GetDateTime(12);
