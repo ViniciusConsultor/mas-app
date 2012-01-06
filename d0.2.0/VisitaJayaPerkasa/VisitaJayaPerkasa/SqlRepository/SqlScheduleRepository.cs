@@ -47,10 +47,10 @@ namespace VisitaJayaPerkasa.SqlRepository
                             schedule.voy = (Utility.Utility.IsDBNull(reader.GetValue(4))) ? null : reader.GetString(4);
                             schedule.keterangan = (Utility.Utility.IsDBNull(reader.GetValue(5))) ? null : reader.GetString(5);
                             schedule.vesselCode = reader.GetString(6);
-                            schedule.ro_begin_20 = (Utility.Utility.IsDBNull(reader.GetDecimal(7))) ? 0 : reader.GetInt32(7);
-                            schedule.ro_begin_40 = (Utility.Utility.IsDBNull(reader.GetDecimal(8))) ? 0 : reader.GetInt32(8);
-                            schedule.ro_end_20 = (Utility.Utility.IsDBNull(reader.GetDecimal(9))) ? 0 : reader.GetInt32(9);
-                            schedule.ro_end_40 = (Utility.Utility.IsDBNull(reader.GetDecimal(10))) ? 0 : reader.GetInt32(10);
+                            schedule.ro_begin_20 = (Utility.Utility.IsDBNull(reader.GetDecimal(7))) ? 0 : int.Parse(reader.GetDecimal(7).ToString());
+                            schedule.ro_begin_40 = (Utility.Utility.IsDBNull(reader.GetDecimal(8))) ? 0 : int.Parse(reader.GetDecimal(8).ToString());
+                            schedule.ro_end_20 = (Utility.Utility.IsDBNull(reader.GetDecimal(9))) ? 0 : int.Parse(reader.GetDecimal(9).ToString());
+                            schedule.ro_end_40 = (Utility.Utility.IsDBNull(reader.GetDecimal(10))) ? 0 : int.Parse(reader.GetDecimal(10).ToString());
                             schedule.etd = reader.GetDateTime(11);
                             schedule.td = reader.GetDateTime(12);
                             schedule.eta = reader.GetDateTime(13);
@@ -192,18 +192,26 @@ namespace VisitaJayaPerkasa.SqlRepository
                 {
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
+
                     using (SqlCommand command = new SqlCommand(
-                        "Update [Schedule] set berangkat = " + sqlParam[0].ParameterName + ", " +
+                        "Update [Schedule] set " +
                         "tujuan = " + sqlParam[1].ParameterName + ", " +
                         "pelayaran_id = " + sqlParam[2].ParameterName + ", " +
-                        "vessel_id = " + sqlParam[3].ParameterName + ", " +
-                        "etd = " + sqlParam[4].ParameterName + ", " +
-                        "tgl_closing = " + sqlParam[5].ParameterName + ", " +
-                        "voy = " + sqlParam[6].ParameterName + ", " +
-                        "ro = " + sqlParam[7].ParameterName + ", " +
-                        "deleted = " + sqlParam[8].ParameterName + ", " +
-                        "keterangan = " + sqlParam[9].ParameterName + " " +
-                        "WHERE schedule_id = " + sqlParam[10].ParameterName, con))
+                        "tgl_closing = " + sqlParam[3].ParameterName + ", " +
+                        "voy = " + sqlParam[4].ParameterName + ", " +
+                        "deleted = " + sqlParam[5].ParameterName + ", " + 
+                        "keterangan = " + sqlParam[6].ParameterName + ", " +
+                        "vessel_code = " + sqlParam[7].ParameterName + ", " +
+                        "ro_begin_20 = " + sqlParam[8].ParameterName + ", " +
+                        "ro_begin_40 = " + sqlParam[9].ParameterName + ", " +
+                        "ro_end_20 = " + sqlParam[10].ParameterName + ", " +
+                        "ro_end_40 = " + sqlParam[11].ParameterName + ", " +
+                        "etd = " + sqlParam[12].ParameterName + ", " +
+                        "td = " + sqlParam[13].ParameterName + ", " +
+                        "eta = " + sqlParam[14].ParameterName + ", " +
+                        "ta = " + sqlParam[15].ParameterName + ", " +
+                        "unloading = " + sqlParam[16].ParameterName + " " +
+                        "WHERE schedule_id = " + sqlParam[0].ParameterName, con))
                     {
                         command.Transaction = sqlTransaction;
 
