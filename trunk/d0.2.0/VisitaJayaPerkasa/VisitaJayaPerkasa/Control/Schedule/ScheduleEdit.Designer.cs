@@ -33,6 +33,13 @@
             this.radToolStripItem1 = new Telerik.WinControls.UI.RadToolStripItem();
             this.radButtonElement2 = new Telerik.WinControls.UI.RadButtonElement();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
+            this.etROend40 = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
+            this.etROend20 = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
+            this.etRObegin40 = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.pickerUnLoading = new Telerik.WinControls.UI.RadDateTimePicker();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.pickerETA = new Telerik.WinControls.UI.RadDateTimePicker();
@@ -57,14 +64,14 @@
             this.cboTujuan = new Telerik.WinControls.UI.RadComboBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
-            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
-            this.etRObegin40 = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
-            this.etROend40 = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
-            this.etROend20 = new Telerik.WinControls.UI.RadTextBox();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etROend40)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etROend20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etRObegin40)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerUnLoading)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerETA)).BeginInit();
@@ -89,13 +96,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboTujuan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etRObegin40)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etROend40)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etROend20)).BeginInit();
             this.SuspendLayout();
             // 
             // radButtonElement1
@@ -171,6 +171,62 @@
             this.groupBox2.TabIndex = 27;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Schedule";
+            // 
+            // radLabel15
+            // 
+            this.radLabel15.Location = new System.Drawing.Point(340, 234);
+            this.radLabel15.Name = "radLabel15";
+            this.radLabel15.Size = new System.Drawing.Size(21, 16);
+            this.radLabel15.TabIndex = 45;
+            this.radLabel15.Text = "40\'";
+            // 
+            // etROend40
+            // 
+            this.etROend40.Location = new System.Drawing.Point(387, 230);
+            this.etROend40.Name = "etROend40";
+            this.etROend40.Size = new System.Drawing.Size(142, 20);
+            this.etROend40.TabIndex = 44;
+            this.etROend40.TabStop = false;
+            // 
+            // radLabel16
+            // 
+            this.radLabel16.Location = new System.Drawing.Point(340, 212);
+            this.radLabel16.Name = "radLabel16";
+            this.radLabel16.Size = new System.Drawing.Size(21, 16);
+            this.radLabel16.TabIndex = 43;
+            this.radLabel16.Text = "20\'";
+            // 
+            // etROend20
+            // 
+            this.etROend20.Location = new System.Drawing.Point(387, 208);
+            this.etROend20.Name = "etROend20";
+            this.etROend20.Size = new System.Drawing.Size(142, 20);
+            this.etROend20.TabIndex = 42;
+            this.etROend20.TabStop = false;
+            // 
+            // radLabel14
+            // 
+            this.radLabel14.Location = new System.Drawing.Point(340, 151);
+            this.radLabel14.Name = "radLabel14";
+            this.radLabel14.Size = new System.Drawing.Size(21, 16);
+            this.radLabel14.TabIndex = 41;
+            this.radLabel14.Text = "40\'";
+            // 
+            // etRObegin40
+            // 
+            this.etRObegin40.Location = new System.Drawing.Point(387, 147);
+            this.etRObegin40.Name = "etRObegin40";
+            this.etRObegin40.Size = new System.Drawing.Size(142, 20);
+            this.etRObegin40.TabIndex = 40;
+            this.etRObegin40.TabStop = false;
+            // 
+            // radLabel13
+            // 
+            this.radLabel13.Location = new System.Drawing.Point(340, 129);
+            this.radLabel13.Name = "radLabel13";
+            this.radLabel13.Size = new System.Drawing.Size(21, 16);
+            this.radLabel13.TabIndex = 39;
+            this.radLabel13.Text = "20\'";
             // 
             // pickerUnLoading
             // 
@@ -436,62 +492,6 @@
             this.radToolStrip1.TabIndex = 26;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
-            // radLabel13
-            // 
-            this.radLabel13.Location = new System.Drawing.Point(340, 129);
-            this.radLabel13.Name = "radLabel13";
-            this.radLabel13.Size = new System.Drawing.Size(21, 16);
-            this.radLabel13.TabIndex = 39;
-            this.radLabel13.Text = "20\'";
-            // 
-            // radLabel14
-            // 
-            this.radLabel14.Location = new System.Drawing.Point(340, 151);
-            this.radLabel14.Name = "radLabel14";
-            this.radLabel14.Size = new System.Drawing.Size(21, 16);
-            this.radLabel14.TabIndex = 41;
-            this.radLabel14.Text = "40\'";
-            // 
-            // etRObegin40
-            // 
-            this.etRObegin40.Location = new System.Drawing.Point(387, 147);
-            this.etRObegin40.Name = "etRObegin40";
-            this.etRObegin40.Size = new System.Drawing.Size(142, 20);
-            this.etRObegin40.TabIndex = 40;
-            this.etRObegin40.TabStop = false;
-            // 
-            // radLabel15
-            // 
-            this.radLabel15.Location = new System.Drawing.Point(340, 234);
-            this.radLabel15.Name = "radLabel15";
-            this.radLabel15.Size = new System.Drawing.Size(21, 16);
-            this.radLabel15.TabIndex = 45;
-            this.radLabel15.Text = "40\'";
-            // 
-            // etROend40
-            // 
-            this.etROend40.Location = new System.Drawing.Point(387, 230);
-            this.etROend40.Name = "etROend40";
-            this.etROend40.Size = new System.Drawing.Size(142, 20);
-            this.etROend40.TabIndex = 44;
-            this.etROend40.TabStop = false;
-            // 
-            // radLabel16
-            // 
-            this.radLabel16.Location = new System.Drawing.Point(340, 212);
-            this.radLabel16.Name = "radLabel16";
-            this.radLabel16.Size = new System.Drawing.Size(21, 16);
-            this.radLabel16.TabIndex = 43;
-            this.radLabel16.Text = "20\'";
-            // 
-            // etROend20
-            // 
-            this.etROend20.Location = new System.Drawing.Point(387, 208);
-            this.etROend20.Name = "etROend20";
-            this.etROend20.Size = new System.Drawing.Size(142, 20);
-            this.etROend20.TabIndex = 42;
-            this.etROend20.TabStop = false;
-            // 
             // ScheduleEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -502,6 +502,13 @@
             this.Size = new System.Drawing.Size(662, 393);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etROend40)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etROend20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etRObegin40)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerUnLoading)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerETA)).EndInit();
@@ -526,13 +533,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboTujuan)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etRObegin40)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etROend40)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etROend20)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
