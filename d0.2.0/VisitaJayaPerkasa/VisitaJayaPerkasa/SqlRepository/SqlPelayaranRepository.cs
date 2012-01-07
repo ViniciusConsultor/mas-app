@@ -60,16 +60,19 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT DISTINCT vessel_code, vessel_name, status_pinjaman, pelayaran_id FROM [Pelayaran_Detail] WHERE (deleted is null OR deleted = '0') " +
-                        "ORDER BY vessel_name ASC"
+                        "SELECT DISTINCT pd.vessel_code, pd.vessel_name, pd.status_pinjaman, p.name, pd.pelayaran_detail_id FROM [Pelayaran_Detail] pd " +
+                        "INNER JOIN [Pelayaran] p ON p.pelayaran_id = pd.pelayaran_id  " +
+                        "WHERE (pd.deleted is null OR pd.deleted = '0') " +
+                        "ORDER BY pd.vessel_name ASC"
                         , con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
                             PelayaranDetail pelayaranDetail = new PelayaranDetail();
-                            pelayaranDetail.VesselCode = reader.GetValue(3).ToString() + reader.GetValue(0).ToString();
-                            pelayaranDetail.VesselName = (reader.GetBoolean(2)) ? (reader.GetString(1) + " - loan") : reader.GetString(1);
+                            pelayaranDetail.PelayaranDetailID = Guid.Parse(reader.GetValue(4).ToString());
+                            pelayaranDetail.VesselCode = reader.GetValue(0).ToString();
+                            pelayaranDetail.VesselName = (reader.GetBoolean(2)) ? (reader.GetString(1) + " - " + reader.GetString(3) + " [loan]") : reader.GetString(1) + " - " + reader.GetString(3);
 
                             if (listVessel == null)
                                 listVessel = new List<PelayaranDetail>();
