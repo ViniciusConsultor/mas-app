@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn20 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn21 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn22 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn23 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn24 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn25 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn26 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn27 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn28 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn29 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn30 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn31 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn32 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridSortField gridSortField2 = new Telerik.WinControls.UI.GridSortField();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cboCustomer = new Telerik.WinControls.UI.RadComboBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
@@ -53,6 +53,8 @@
             this.radToolStripItem1 = new Telerik.WinControls.UI.RadToolStripItem();
             this.radButtonElement1 = new Telerik.WinControls.UI.RadButtonElement();
             this.radButtonElement2 = new Telerik.WinControls.UI.RadButtonElement();
+            this.radToolStripItem2 = new Telerik.WinControls.UI.RadToolStripItem();
+            this.btnShowHideEditor = new Telerik.WinControls.UI.RadButtonElement();
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtpUnloading = new System.Windows.Forms.DateTimePicker();
@@ -91,9 +93,8 @@
             this.btnRemoveGrid = new Telerik.WinControls.UI.RadButton();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
+            this.btnPrint = new Telerik.WinControls.UI.RadButton();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
-            this.radToolStripItem2 = new Telerik.WinControls.UI.RadToolStripItem();
-            this.btnShowHideEditor = new Telerik.WinControls.UI.RadButtonElement();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -132,6 +133,7 @@
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
             this.splitPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -214,6 +216,25 @@
             this.radButtonElement2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.radButtonElement2.Click += new System.EventHandler(this.radButtonElement2_Click);
             // 
+            // radToolStripItem2
+            // 
+            this.radToolStripItem2.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.btnShowHideEditor});
+            this.radToolStripItem2.Key = "1";
+            this.radToolStripItem2.Name = "radToolStripItem2";
+            this.radToolStripItem2.Text = "radToolStripItem2";
+            // 
+            // btnShowHideEditor
+            // 
+            this.btnShowHideEditor.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnShowHideEditor.Image = global::VisitaJayaPerkasa.Properties.Resources.edit_16;
+            this.btnShowHideEditor.ImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnShowHideEditor.Name = "btnShowHideEditor";
+            this.btnShowHideEditor.ShowBorder = false;
+            this.btnShowHideEditor.Text = "Collapse Editor";
+            this.btnShowHideEditor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnShowHideEditor.Click += new System.EventHandler(this.btnShowHideEditor_Click);
+            // 
             // radToolStrip1
             // 
             this.radToolStrip1.AllowDragging = false;
@@ -231,7 +252,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(885, 29);
+            this.radToolStrip1.Size = new System.Drawing.Size(885, 27);
             this.radToolStrip1.TabIndex = 26;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
@@ -568,101 +589,101 @@
             // 
             // 
             this.CustomerTransDetailGridView.MasterGridViewTemplate.AllowAddNewRow = false;
-            gridViewTextBoxColumn1.FieldAlias = "CustomerDetailTransID";
-            gridViewTextBoxColumn1.FieldName = "CustomerDetailTransID";
-            gridViewTextBoxColumn1.HeaderText = "CustomerDetailTransID";
-            gridViewTextBoxColumn1.IsVisible = false;
-            gridViewTextBoxColumn1.UniqueName = "CustomerDetailTransID";
-            gridViewTextBoxColumn2.FieldAlias = "column1";
-            gridViewTextBoxColumn2.FieldName = "TypeName";
-            gridViewTextBoxColumn2.HeaderText = "Type";
-            gridViewTextBoxColumn2.UniqueName = "TypeName";
-            gridViewTextBoxColumn2.Width = 100;
-            gridViewTextBoxColumn3.FieldAlias = "VesselName";
-            gridViewTextBoxColumn3.FieldName = "VesselName";
-            gridViewTextBoxColumn3.HeaderText = "Vessel";
-            gridViewTextBoxColumn3.UniqueName = "VesselName";
-            gridViewTextBoxColumn3.Width = 120;
-            gridViewTextBoxColumn4.FieldAlias = "OriginName";
-            gridViewTextBoxColumn4.FieldName = "OriginName";
-            gridViewTextBoxColumn4.HeaderText = "Origin";
-            gridViewTextBoxColumn4.UniqueName = "OriginName";
-            gridViewTextBoxColumn4.Width = 100;
-            gridViewTextBoxColumn5.FieldAlias = "DestinationName";
-            gridViewTextBoxColumn5.FieldName = "DestinationName";
-            gridViewTextBoxColumn5.HeaderText = "Destination";
-            gridViewTextBoxColumn5.UniqueName = "DestinationName";
-            gridViewTextBoxColumn5.Width = 110;
-            gridViewTextBoxColumn6.FieldAlias = "ConditionName";
-            gridViewTextBoxColumn6.FieldName = "ConditionName";
-            gridViewTextBoxColumn6.HeaderText = "Condition";
-            gridViewTextBoxColumn6.UniqueName = "ConditionName";
-            gridViewTextBoxColumn6.Width = 100;
-            gridViewTextBoxColumn7.FieldAlias = "NoSeal";
-            gridViewTextBoxColumn7.FieldName = "NoSeal";
-            gridViewTextBoxColumn7.HeaderText = "No Seal";
-            gridViewTextBoxColumn7.UniqueName = "NoSeal";
-            gridViewTextBoxColumn7.Width = 100;
-            gridViewTextBoxColumn8.FieldAlias = "Voyage";
-            gridViewTextBoxColumn8.FieldName = "Voyage";
-            gridViewTextBoxColumn8.HeaderText = "Voyage";
-            gridViewTextBoxColumn8.UniqueName = "Voyage";
-            gridViewTextBoxColumn8.Width = 70;
-            gridViewTextBoxColumn9.FieldAlias = "TruckNo";
-            gridViewTextBoxColumn9.FieldName = "TruckNo";
-            gridViewTextBoxColumn9.HeaderText = "TruckNo";
-            gridViewTextBoxColumn9.UniqueName = "TruckNo";
-            gridViewTextBoxColumn10.FieldAlias = "StuffingDate";
-            gridViewTextBoxColumn10.FieldName = "StuffingDate";
-            gridViewTextBoxColumn10.HeaderText = "StuffingDate";
-            gridViewTextBoxColumn10.UniqueName = "StuffingDate";
-            gridViewTextBoxColumn11.FieldAlias = "StuffingPlace";
-            gridViewTextBoxColumn11.FieldName = "StuffingPlace";
-            gridViewTextBoxColumn11.HeaderText = "StuffingPlace";
-            gridViewTextBoxColumn11.UniqueName = "StuffingPlace";
-            gridViewTextBoxColumn12.FieldAlias = "ETD";
-            gridViewTextBoxColumn12.FieldName = "ETD";
-            gridViewTextBoxColumn12.HeaderText = "ETD";
-            gridViewTextBoxColumn12.UniqueName = "ETD";
-            gridViewTextBoxColumn13.FieldAlias = "TD";
-            gridViewTextBoxColumn13.FieldName = "TD";
-            gridViewTextBoxColumn13.HeaderText = "TD";
-            gridViewTextBoxColumn13.UniqueName = "TD";
-            gridViewTextBoxColumn14.FieldAlias = "ETA";
-            gridViewTextBoxColumn14.FieldName = "ETA";
-            gridViewTextBoxColumn14.HeaderText = "ETA";
-            gridViewTextBoxColumn14.UniqueName = "ETA";
-            gridViewTextBoxColumn15.FieldAlias = "TA";
-            gridViewTextBoxColumn15.FieldName = "TA";
-            gridViewTextBoxColumn15.HeaderText = "TA";
-            gridViewTextBoxColumn15.UniqueName = "TA";
-            gridViewTextBoxColumn16.FieldAlias = "Unloading";
-            gridViewTextBoxColumn16.FieldName = "Unloading";
-            gridViewTextBoxColumn16.HeaderText = "Unloading";
-            gridViewTextBoxColumn16.UniqueName = "Unloading";
-            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
-            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
-            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);
-            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn4);
-            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn5);
-            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn6);
-            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn7);
-            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn8);
-            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn9);
-            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn10);
-            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn11);
-            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn12);
-            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn13);
-            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn14);
-            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn15);
-            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn16);
-            gridSortField1.FieldAlias = "LastName";
-            gridSortField1.FieldName = "LastName";
-            this.CustomerTransDetailGridView.MasterGridViewTemplate.SortExpressions.Add(gridSortField1);
+            gridViewTextBoxColumn17.FieldAlias = "CustomerDetailTransID";
+            gridViewTextBoxColumn17.FieldName = "CustomerDetailTransID";
+            gridViewTextBoxColumn17.HeaderText = "CustomerDetailTransID";
+            gridViewTextBoxColumn17.IsVisible = false;
+            gridViewTextBoxColumn17.UniqueName = "CustomerDetailTransID";
+            gridViewTextBoxColumn18.FieldAlias = "column1";
+            gridViewTextBoxColumn18.FieldName = "TypeName";
+            gridViewTextBoxColumn18.HeaderText = "Type";
+            gridViewTextBoxColumn18.UniqueName = "TypeName";
+            gridViewTextBoxColumn18.Width = 100;
+            gridViewTextBoxColumn19.FieldAlias = "VesselName";
+            gridViewTextBoxColumn19.FieldName = "VesselName";
+            gridViewTextBoxColumn19.HeaderText = "Vessel";
+            gridViewTextBoxColumn19.UniqueName = "VesselName";
+            gridViewTextBoxColumn19.Width = 120;
+            gridViewTextBoxColumn20.FieldAlias = "OriginName";
+            gridViewTextBoxColumn20.FieldName = "OriginName";
+            gridViewTextBoxColumn20.HeaderText = "Origin";
+            gridViewTextBoxColumn20.UniqueName = "OriginName";
+            gridViewTextBoxColumn20.Width = 100;
+            gridViewTextBoxColumn21.FieldAlias = "DestinationName";
+            gridViewTextBoxColumn21.FieldName = "DestinationName";
+            gridViewTextBoxColumn21.HeaderText = "Destination";
+            gridViewTextBoxColumn21.UniqueName = "DestinationName";
+            gridViewTextBoxColumn21.Width = 110;
+            gridViewTextBoxColumn22.FieldAlias = "ConditionName";
+            gridViewTextBoxColumn22.FieldName = "ConditionName";
+            gridViewTextBoxColumn22.HeaderText = "Condition";
+            gridViewTextBoxColumn22.UniqueName = "ConditionName";
+            gridViewTextBoxColumn22.Width = 100;
+            gridViewTextBoxColumn23.FieldAlias = "NoSeal";
+            gridViewTextBoxColumn23.FieldName = "NoSeal";
+            gridViewTextBoxColumn23.HeaderText = "No Seal";
+            gridViewTextBoxColumn23.UniqueName = "NoSeal";
+            gridViewTextBoxColumn23.Width = 100;
+            gridViewTextBoxColumn24.FieldAlias = "Voyage";
+            gridViewTextBoxColumn24.FieldName = "Voyage";
+            gridViewTextBoxColumn24.HeaderText = "Voyage";
+            gridViewTextBoxColumn24.UniqueName = "Voyage";
+            gridViewTextBoxColumn24.Width = 70;
+            gridViewTextBoxColumn25.FieldAlias = "TruckNo";
+            gridViewTextBoxColumn25.FieldName = "TruckNo";
+            gridViewTextBoxColumn25.HeaderText = "TruckNo";
+            gridViewTextBoxColumn25.UniqueName = "TruckNo";
+            gridViewTextBoxColumn26.FieldAlias = "StuffingDate";
+            gridViewTextBoxColumn26.FieldName = "StuffingDate";
+            gridViewTextBoxColumn26.HeaderText = "StuffingDate";
+            gridViewTextBoxColumn26.UniqueName = "StuffingDate";
+            gridViewTextBoxColumn27.FieldAlias = "StuffingPlace";
+            gridViewTextBoxColumn27.FieldName = "StuffingPlace";
+            gridViewTextBoxColumn27.HeaderText = "StuffingPlace";
+            gridViewTextBoxColumn27.UniqueName = "StuffingPlace";
+            gridViewTextBoxColumn28.FieldAlias = "ETD";
+            gridViewTextBoxColumn28.FieldName = "ETD";
+            gridViewTextBoxColumn28.HeaderText = "ETD";
+            gridViewTextBoxColumn28.UniqueName = "ETD";
+            gridViewTextBoxColumn29.FieldAlias = "TD";
+            gridViewTextBoxColumn29.FieldName = "TD";
+            gridViewTextBoxColumn29.HeaderText = "TD";
+            gridViewTextBoxColumn29.UniqueName = "TD";
+            gridViewTextBoxColumn30.FieldAlias = "ETA";
+            gridViewTextBoxColumn30.FieldName = "ETA";
+            gridViewTextBoxColumn30.HeaderText = "ETA";
+            gridViewTextBoxColumn30.UniqueName = "ETA";
+            gridViewTextBoxColumn31.FieldAlias = "TA";
+            gridViewTextBoxColumn31.FieldName = "TA";
+            gridViewTextBoxColumn31.HeaderText = "TA";
+            gridViewTextBoxColumn31.UniqueName = "TA";
+            gridViewTextBoxColumn32.FieldAlias = "Unloading";
+            gridViewTextBoxColumn32.FieldName = "Unloading";
+            gridViewTextBoxColumn32.HeaderText = "Unloading";
+            gridViewTextBoxColumn32.UniqueName = "Unloading";
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn17);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn18);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn19);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn20);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn21);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn22);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn23);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn24);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn25);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn26);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn27);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn28);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn29);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn30);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn31);
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn32);
+            gridSortField2.FieldAlias = "LastName";
+            gridSortField2.FieldName = "LastName";
+            this.CustomerTransDetailGridView.MasterGridViewTemplate.SortExpressions.Add(gridSortField2);
             this.CustomerTransDetailGridView.Name = "CustomerTransDetailGridView";
             this.CustomerTransDetailGridView.ReadOnly = true;
             this.CustomerTransDetailGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.CustomerTransDetailGridView.Size = new System.Drawing.Size(885, 111);
+            this.CustomerTransDetailGridView.Size = new System.Drawing.Size(885, 113);
             this.CustomerTransDetailGridView.TabIndex = 2;
             // 
             // btnAdd
@@ -697,20 +718,21 @@
             this.radSplitContainer1.Controls.Add(this.splitPanel1);
             this.radSplitContainer1.Controls.Add(this.splitPanel2);
             this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radSplitContainer1.Location = new System.Drawing.Point(0, 29);
+            this.radSplitContainer1.Location = new System.Drawing.Point(0, 27);
             this.radSplitContainer1.Name = "radSplitContainer1";
             this.radSplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // 
             // 
             this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer1.Size = new System.Drawing.Size(885, 382);
+            this.radSplitContainer1.Size = new System.Drawing.Size(885, 384);
             this.radSplitContainer1.TabIndex = 40;
             this.radSplitContainer1.TabStop = false;
             this.radSplitContainer1.Text = "radSplitContainer1";
             // 
             // splitPanel1
             // 
+            this.splitPanel1.Controls.Add(this.btnPrint);
             this.splitPanel1.Controls.Add(this.btnRemoveGrid);
             this.splitPanel1.Controls.Add(this.btnAdd);
             this.splitPanel1.Controls.Add(this.groupBox2);
@@ -731,6 +753,15 @@
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(685, 235);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(81, 21);
+            this.btnPrint.TabIndex = 40;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.CustomerTransDetailGridView);
@@ -740,31 +771,12 @@
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(885, 111);
+            this.splitPanel2.Size = new System.Drawing.Size(885, 113);
             this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.6376812F);
             this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -141);
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
-            // 
-            // radToolStripItem2
-            // 
-            this.radToolStripItem2.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.btnShowHideEditor});
-            this.radToolStripItem2.Key = "1";
-            this.radToolStripItem2.Name = "radToolStripItem2";
-            this.radToolStripItem2.Text = "radToolStripItem2";
-            // 
-            // btnShowHideEditor
-            // 
-            this.btnShowHideEditor.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnShowHideEditor.Image = global::VisitaJayaPerkasa.Properties.Resources.edit_16;
-            this.btnShowHideEditor.ImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnShowHideEditor.Name = "btnShowHideEditor";
-            this.btnShowHideEditor.ShowBorder = false;
-            this.btnShowHideEditor.Text = "Collapse Editor";
-            this.btnShowHideEditor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnShowHideEditor.Click += new System.EventHandler(this.btnShowHideEditor_Click);
             // 
             // CustomerTransEdit
             // 
@@ -814,6 +826,7 @@
             this.radSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
             this.splitPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -872,5 +885,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel13;
         private Telerik.WinControls.UI.RadToolStripItem radToolStripItem2;
         private Telerik.WinControls.UI.RadButtonElement btnShowHideEditor;
+        private Telerik.WinControls.UI.RadButton btnPrint;
     }
 }
