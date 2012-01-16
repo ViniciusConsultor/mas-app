@@ -21,7 +21,7 @@ namespace VisitaJayaPerkasa.Form.Report
         public RptTransForm(string customerName, Guid ID)
         {
             InitializeComponent();
-            this.customerName = customerName;
+            this.customerName = customerName.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText) ? "" : customerName;
             this.ID = ID;
         }
 
