@@ -243,6 +243,7 @@ SELECT person_id, username, password, deleted FROM [USER] WHERE (person_id = @pe
               <xs:element name="eta" msprop:Generator_ColumnVarNameInTable="columneta" msprop:Generator_ColumnPropNameInRow="eta" msprop:Generator_ColumnPropNameInTable="etaColumn" msprop:Generator_UserColumnName="eta" type="xs:dateTime" minOccurs="0" />
               <xs:element name="ta" msprop:Generator_ColumnVarNameInTable="columnta" msprop:Generator_ColumnPropNameInRow="ta" msprop:Generator_ColumnPropNameInTable="taColumn" msprop:Generator_UserColumnName="ta" type="xs:dateTime" minOccurs="0" />
               <xs:element name="unloading" msprop:Generator_ColumnVarNameInTable="columnunloading" msprop:Generator_ColumnPropNameInRow="unloading" msprop:Generator_ColumnPropNameInTable="unloadingColumn" msprop:Generator_UserColumnName="unloading" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="price" msprop:Generator_ColumnVarNameInTable="columnprice" msprop:Generator_ColumnPropNameInRow="price" msprop:Generator_ColumnPropNameInTable="priceColumn" msprop:Generator_UserColumnName="price" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

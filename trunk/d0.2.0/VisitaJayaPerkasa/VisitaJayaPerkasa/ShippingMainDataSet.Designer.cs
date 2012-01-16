@@ -1315,6 +1315,8 @@ namespace VisitaJayaPerkasa {
             
             private global::System.Data.DataColumn columnunloading;
             
+            private global::System.Data.DataColumn columnprice;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public REPORT_CUSTDataTable() {
@@ -1470,6 +1472,14 @@ namespace VisitaJayaPerkasa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn priceColumn {
+                get {
+                    return this.columnprice;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1505,7 +1515,23 @@ namespace VisitaJayaPerkasa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public REPORT_CUSTRow AddREPORT_CUSTRow(string type_name, string vessel_name, string origin, string destination, string condition, string no_seal, string voy, string truck_number, System.DateTime stuffing_date, string stuffing_place, System.DateTime etd, System.DateTime td, System.DateTime eta, System.DateTime ta, System.DateTime unloading) {
+            public REPORT_CUSTRow AddREPORT_CUSTRow(
+                        string type_name, 
+                        string vessel_name, 
+                        string origin, 
+                        string destination, 
+                        string condition, 
+                        string no_seal, 
+                        string voy, 
+                        string truck_number, 
+                        System.DateTime stuffing_date, 
+                        string stuffing_place, 
+                        System.DateTime etd, 
+                        System.DateTime td, 
+                        System.DateTime eta, 
+                        System.DateTime ta, 
+                        System.DateTime unloading, 
+                        decimal price) {
                 REPORT_CUSTRow rowREPORT_CUSTRow = ((REPORT_CUSTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         type_name,
@@ -1522,7 +1548,8 @@ namespace VisitaJayaPerkasa {
                         td,
                         eta,
                         ta,
-                        unloading};
+                        unloading,
+                        price};
                 rowREPORT_CUSTRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowREPORT_CUSTRow);
                 return rowREPORT_CUSTRow;
@@ -1560,6 +1587,7 @@ namespace VisitaJayaPerkasa {
                 this.columneta = base.Columns["eta"];
                 this.columnta = base.Columns["ta"];
                 this.columnunloading = base.Columns["unloading"];
+                this.columnprice = base.Columns["price"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1595,6 +1623,8 @@ namespace VisitaJayaPerkasa {
                 base.Columns.Add(this.columnta);
                 this.columnunloading = new global::System.Data.DataColumn("unloading", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnunloading);
+                this.columnprice = new global::System.Data.DataColumn("price", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnprice);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2205,6 +2235,22 @@ namespace VisitaJayaPerkasa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal price {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableREPORT_CUST.priceColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'price\' in table \'REPORT_CUST\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableREPORT_CUST.priceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Istype_nameNull() {
                 return this.IsNull(this.tableREPORT_CUST.type_nameColumn);
             }
@@ -2381,6 +2427,18 @@ namespace VisitaJayaPerkasa {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetunloadingNull() {
                 this[this.tableREPORT_CUST.unloadingColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IspriceNull() {
+                return this.IsNull(this.tableREPORT_CUST.priceColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetpriceNull() {
+                this[this.tableREPORT_CUST.priceColumn] = global::System.Convert.DBNull;
             }
         }
         
