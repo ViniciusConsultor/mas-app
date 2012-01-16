@@ -114,7 +114,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                 con.Open();
                 string strQry = "Select tc.type_name, pd.vessel_name, co.city_name as origin, cd.city_name as destination, " +
                         "cnd.condition_name as condition, ctd.no_seal, ctd.truck_number, ctd.voy, " +
-                        "ctd.stuffing_date, ctd.stuffing_place, ctd.etd, ctd.td, ctd.eta, ctd.ta, ctd.unloading " +
+                        "ctd.stuffing_date, ctd.stuffing_place, ctd.etd, ctd.td, ctd.eta, ctd.ta, ctd.unloading, ctd.price " +
                         "FROM [Customer_Trans_Detail] ctd " +
                         "INNER JOIN [Type_Cont] tc ON tc.type_id = ctd.type_id " +
                         "INNER JOIN [Pelayaran_Detail] pd ON pd.pelayaran_detail_id = ctd.pelayaran_detail_id " +
