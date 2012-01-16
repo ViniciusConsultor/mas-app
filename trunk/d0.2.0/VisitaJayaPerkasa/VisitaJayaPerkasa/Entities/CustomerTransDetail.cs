@@ -14,6 +14,7 @@ namespace VisitaJayaPerkasa.Entities
         public Guid Destination { get; set; }
         public Guid ConditionID { get; set; }
         public string NoSeal { get; set; }
+        public decimal Price { get; set; }
         public string Voyage { get; set; }
         public string TruckNo { get; set; }
         public DateTime StuffingDate { get; set; }
