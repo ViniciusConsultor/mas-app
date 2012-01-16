@@ -149,7 +149,7 @@ namespace VisitaJayaPerkasa.SqlRepository
 
             return listPriceList;
         }
-
+        
 
         public bool SavePriceList(SqlParameter[] sqlParamDeleted, SqlParameter[] sqlParamInsert) {
             int n = 0;
@@ -237,5 +237,43 @@ namespace VisitaJayaPerkasa.SqlRepository
 
             return n > 0;
         }
+
+
+        public decimal SearchPriceList(DateTime date, string customerID, string destinationID,
+            string typeContID, string conditionID)
+        {
+            decimal result = 0;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT price_customer FROM [Price] WHERE date <= '" + date + "' " +
+                        "AND customer_id like '%" + customerID + "%' AND destination like '%" + destinationID + "%' " +
+                        "AND type_cont_id like '%" + typeContID + "%' AND condition_id like '%" + conditionID + "%' " +
+                        "ORDER BY date DESC "
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            result = reader.GetDecimal(0);
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlPriceListRepository.cs - SearchPriceList() " + e.Message);
+            }
+
+            return result;
+        }
+
+
     }
 }

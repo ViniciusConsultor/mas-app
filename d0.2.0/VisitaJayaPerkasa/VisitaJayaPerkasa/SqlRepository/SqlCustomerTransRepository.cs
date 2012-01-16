@@ -150,7 +150,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     using (SqlCommand command = new SqlCommand(
                         "Select ctd.id, ctd.customer_trans_id, ctd.type_id, ctd.pelayaran_detail_id, ctd.origin, " +
                         "ctd.destination, ctd.condition_id, ctd.no_seal, ctd.truck_number, ctd.voy, " +
-                        "ctd.stuffing_date, ctd.stuffing_place, ctd.etd, ctd.td, ctd.eta, ctd.ta, ctd.unloading, " +
+                        "ctd.stuffing_date, ctd.stuffing_place, ctd.etd, ctd.td, ctd.eta, ctd.ta, ctd.unloading, ctd.price, " +
                         "tc.type_name, p.name as pelayaran_name, pd.vessel_name, co.city_name as origin, cd.city_name as destination, " +
                         "cnd.condition_name as condition, pd.status_pinjaman " +
                         "FROM [Customer_Trans_Detail] ctd " +
@@ -185,12 +185,13 @@ namespace VisitaJayaPerkasa.SqlRepository
                             customerTransDetail.ETA = reader.GetDateTime(14);
                             customerTransDetail.TA = reader.GetDateTime(15);
                             customerTransDetail.Unloading = reader.GetDateTime(16);
+                            customerTransDetail.Price = reader.GetDecimal(17);
 
-                            customerTransDetail.TypeName = reader.GetString(17);
-                            customerTransDetail.VesselName = (reader.GetBoolean(23)) ? (reader.GetString(19) + " - " + reader.GetString(18) + " [loan]") : reader.GetString(19) + " - " + reader.GetString(18);
-                            customerTransDetail.OriginName = reader.GetString(20);
-                            customerTransDetail.DestinationName = reader.GetString(21);
-                            customerTransDetail.ConditionName = reader.GetString(22);
+                            customerTransDetail.TypeName = reader.GetString(18);
+                            customerTransDetail.VesselName = (reader.GetBoolean(24)) ? (reader.GetString(20) + " - " + reader.GetString(19) + " [loan]") : reader.GetString(20) + " - " + reader.GetString(19);
+                            customerTransDetail.OriginName = reader.GetString(21);
+                            customerTransDetail.DestinationName = reader.GetString(22);
+                            customerTransDetail.ConditionName = reader.GetString(23);
 
                             if (listCustomerTransDetail == null)
                                 listCustomerTransDetail = new List<CustomerTransDetail>();
@@ -240,10 +241,11 @@ namespace VisitaJayaPerkasa.SqlRepository
                             if(n > 0){
                                 int k = 0;
                                 int value = 0;
-                                for(int i=0; i<sqlParamInsert.Length/18; i++){
+                                for(int i=0; i<sqlParamInsert.Length/19; i++){
                                     n = 0;
                                     using (SqlCommand command = new SqlCommand(
                                         "Insert into [Customer_Trans_Detail] values (" +
+                                        sqlParamInsert[k++].ParameterName + ", " +
                                         sqlParamInsert[k++].ParameterName + ", " +
                                         sqlParamInsert[k++].ParameterName + ", " +
                                         sqlParamInsert[k++].ParameterName + ", " +
@@ -266,7 +268,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                                     {
                                         command.Transaction = sqlTransaction;
 
-                                        for (int j = 0; j < 18; j++)
+                                        for (int j = 0; j < 19; j++)
                                             command.Parameters.Add(sqlParamInsert[value++]);
                                         n = command.ExecuteNonQuery();
                                         command.Parameters.Clear();
@@ -323,7 +325,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         n = deletedCommand.ExecuteNonQuery();
                         deletedCommand.Parameters.Clear();
 
-                        if (n > 0)
+                        if (n >= 0)
                         {
                             n = 0;
 
@@ -341,11 +343,12 @@ namespace VisitaJayaPerkasa.SqlRepository
                                 {
                                     int k = 0;
                                     int value = 0;
-                                    for (int i = 0; i < sqlParamInsert.Length / 18; i++)
+                                    for (int i = 0; i < sqlParamInsert.Length / 19; i++)
                                     {
                                         n = 0;
                                         using (SqlCommand command = new SqlCommand(
                                             "Insert into [Customer_Trans_Detail] values (" +
+                                        sqlParamInsert[k++].ParameterName + ", " +
                                         sqlParamInsert[k++].ParameterName + ", " +
                                         sqlParamInsert[k++].ParameterName + ", " +
                                         sqlParamInsert[k++].ParameterName + ", " +
@@ -368,7 +371,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                                         {
                                             command.Transaction = sqlTransaction;
 
-                                            for (int j = 0; j < 18; j++)
+                                            for (int j = 0; j < 19; j++)
                                                 command.Parameters.Add(sqlParamInsert[value++]);
                                             n = command.ExecuteNonQuery();
                                             command.Parameters.Clear();

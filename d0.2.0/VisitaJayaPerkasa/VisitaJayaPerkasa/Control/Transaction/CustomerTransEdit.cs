@@ -26,6 +26,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
         private SqlCityRepository sqlCityRepository;
         private SqlPelayaranRepository sqlPelayaranRepository;
         private SqlConditionRepository sqlConditionRepository;
+        private SqlPriceListRepository sqlPriceListRepository;
 
         public CustomerTransEdit(VisitaJayaPerkasa.Entities.CustomerTrans customerTrans)
         {
@@ -37,6 +38,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
             sqlCityRepository = new SqlCityRepository();
             sqlPelayaranRepository = new SqlPelayaranRepository();
             sqlConditionRepository = new SqlConditionRepository();
+            sqlPriceListRepository = new SqlPriceListRepository();
 
             List<VisitaJayaPerkasa.Entities.Customer> listCustomer = sqlCustomerRepository.ListCustomers();
             List<VisitaJayaPerkasa.Entities.TypeCont> listType = sqlTypeContRepository.GetTypeCont();
@@ -78,6 +80,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
             {
                 wantToCreateVessel = false;
                 cboCustomer.SelectedValue = customerTrans.CustomerID;
+                cboCustomer.Enabled = false;
 
                 SqlCustomerTransRepository sqlCustomerTransRepository = new SqlCustomerTransRepository();
                 listCustomerTransDetail = sqlCustomerTransRepository.ListCustomerTransDetail(customerTrans.CustomerTransID);
@@ -146,6 +149,8 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 MessageBox.Show(this, "Please fill Voyage", "Information");
             else if (etSeal.Text.Trim().Equals(""))
                 MessageBox.Show(this, "Please fill no seal", "Information");
+            else if (etPrice.Text.Trim().Equals(""))
+                MessageBox.Show(this, "Please fill set price", "Information");
             else
             {
                 VisitaJayaPerkasa.Entities.CustomerTransDetail objCustTransDetail = new Entities.CustomerTransDetail();
@@ -178,6 +183,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 objCustTransDetail.ETA = dtpETA.Value;
                 objCustTransDetail.TA = dtpTA.Value;
                 objCustTransDetail.Unloading = dtpUnloading.Value;
+                objCustTransDetail.Price = Decimal.Parse(etPrice.Text);
 
                 listCustomerTransDetail.Add(objCustTransDetail);
                 CustomerTransDetailGridView.DataSource = typeof(List<VisitaJayaPerkasa.Entities.CustomerTransDetail>);
@@ -201,6 +207,8 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 dtpTA.Value = DateTime.Now;
                 dtpUnloading.Value = DateTime.Now;
             }
+            if (listCustomerTransDetail.Count > 0)
+                cboCustomer.Enabled = false;
         }
 
         private void btnClearGrid_Click(object sender, EventArgs e)
@@ -208,6 +216,8 @@ namespace VisitaJayaPerkasa.Control.Transaction
             listCustomerTransDetail.Clear();
             CustomerTransDetailGridView.DataSource = typeof(List<VisitaJayaPerkasa.Entities.CustomerTransDetail>);
             CustomerTransDetailGridView.DataSource = listCustomerTransDetail;
+            if (listCustomerTransDetail.Count == 0 && wantToCreateVessel)
+                cboCustomer.Enabled = true;
         }
 
         private void btnRemoveGrid_Click(object sender, EventArgs e)
@@ -226,6 +236,8 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 CustomerTransDetailGridView.DataSource = typeof(List<VisitaJayaPerkasa.Entities.CustomerTransDetail>);
                 CustomerTransDetailGridView.DataSource = listCustomerTransDetail;
             }
+            if (listCustomerTransDetail.Count == 0 && wantToCreateVessel)
+                cboCustomer.Enabled = true;
         }
 
         private void radButtonElement2_Click(object sender, EventArgs e)
@@ -245,8 +257,8 @@ namespace VisitaJayaPerkasa.Control.Transaction
 
                     //10 is number of field below
                     int k = 0;
-                    string[] key = new string[listCustomerTransDetail.Count * 18];
-                    object[] value = new object[listCustomerTransDetail.Count * 18];
+                    string[] key = new string[listCustomerTransDetail.Count * 19];
+                    object[] value = new object[listCustomerTransDetail.Count * 19];
 
                     Guid TransID;
                     if (wantToCreateVessel)
@@ -278,6 +290,9 @@ namespace VisitaJayaPerkasa.Control.Transaction
 
                         key[k] = "no_seal";
                         value[k++] = listCustomerTransDetail.ElementAt(i).NoSeal;
+
+                        key[k] = "price";
+                        value[k++] = listCustomerTransDetail.ElementAt(i).Price;
 
                         key[k] = "stuffing_date";
                         value[k++] = listCustomerTransDetail.ElementAt(i).StuffingDate;
@@ -360,6 +375,23 @@ namespace VisitaJayaPerkasa.Control.Transaction
             else
                 btnShowHideEditor.Text = "Collapse Editor";
 
+        }
+
+        private void CBSelected_Changed(object sender, EventArgs e)
+        {
+            try
+            {
+                string custID = cboCustomer.SelectedValue.ToString();
+                string destID = cboDestination.SelectedValue.ToString();
+                string typeID = cboType.SelectedValue.ToString();
+                object cond = cboCondition.SelectedValue;
+                string condID = cboCondition.SelectedValue.ToString();
+                etPrice.Text = sqlPriceListRepository.SearchPriceList(DateTime.Now, custID, destID, typeID, condID).ToString();
+            }
+            catch (NullReferenceException ex)
+            {
+                etPrice.Text = "0";
+            }
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
