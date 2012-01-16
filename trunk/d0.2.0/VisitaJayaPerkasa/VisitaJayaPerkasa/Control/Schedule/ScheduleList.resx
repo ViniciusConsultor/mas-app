@@ -118,67 +118,67 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="radCalendarBegin.FastNavigationNextImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAAoAAAAJCAYAAAALpr0TAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvQAA
-        Dr0BR/uQrQAAAFlJREFUKFNtz9ENwCAIRVHSDu4STsESfDuUpaWt+CD4Y3JyfYnUx6WUTmVk2EUmtpV9
-        YYor2yHEHuJAwLVe3HHxCZj1zI/NQthUD/sUhsscHSBEe8MAf5jtBgcguXm/5jeEAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="radCalendarBegin.FastNavigationPrevImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAAoAAAAJCAYAAAALpr0TAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvQAA
-        Dr0BR/uQrQAAAEtJREFUKFOF0OENABAMhNGyuCUsZSknJJXLVcM/r1+aYEYHQOlj4me2Iw2DOXAYjMHD
-        YArZ3RpQdfiy80AdZBZi/x5ewF92NzN6vAA2dMGJPYpZ5gAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="radCalendarBegin.NavigationNextImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAAUAAAAJCAYAAAD6reaeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvQAA
-        Dr0BR/uQrQAAAD1JREFUGFdjmHLy338GdAASnLJ//18UcbAgugRcEFkCRRCqiwFdcNWq/8wogvX//zOB
-        LYSphAvABFEEgIIA+tBcvb+sRV8AAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="radCalendarBegin.NavigationPrevImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAAUAAAAJCAYAAAD6reaeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvQAA
-        Dr0BR/uQrQAAADlJREFUGFdjYEAC////Z5xy8t9/ZDEGkACKIEwALogsABZEFwAL1v//z4ShEmQTugTc
-        dmQJFCfBJACYOGDFOkgJaQAAAABJRU5ErkJggg==
-</value>
-  </data>
   <data name="radCalendarEnd.FastNavigationNextImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAAoAAAAJCAYAAAALpr0TAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvQAA
-        Dr0BR/uQrQAAAFlJREFUKFNtz9ENwCAIRVHSDu4STsESfDuUpaWt+CD4Y3JyfYnUx6WUTmVk2EUmtpV9
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvAAA
+        DrwBlbxySQAAAFlJREFUKFNtz9ENwCAIRVHSDu4STsESfDuUpaWt+CD4Y3JyfYnUx6WUTmVk2EUmtpV9
         YYor2yHEHuJAwLVe3HHxCZj1zI/NQthUD/sUhsscHSBEe8MAf5jtBgcguXm/5jeEAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="radCalendarEnd.FastNavigationPrevImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAAoAAAAJCAYAAAALpr0TAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvQAA
-        Dr0BR/uQrQAAAEtJREFUKFOF0OENABAMhNGyuCUsZSknJJXLVcM/r1+aYEYHQOlj4me2Iw2DOXAYjMHD
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvAAA
+        DrwBlbxySQAAAEtJREFUKFOF0OENABAMhNGyuCUsZSknJJXLVcM/r1+aYEYHQOlj4me2Iw2DOXAYjMHD
         YArZ3RpQdfiy80AdZBZi/x5ewF92NzN6vAA2dMGJPYpZ5gAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="radCalendarEnd.NavigationNextImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAAUAAAAJCAYAAAD6reaeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvQAA
-        Dr0BR/uQrQAAAD1JREFUGFdjmHLy338GdAASnLJ//18UcbAgugRcEFkCRRCqiwFdcNWq/8wogvX//zOB
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvAAA
+        DrwBlbxySQAAAD1JREFUGFdjmHLy338GdAASnLJ//18UcbAgugRcEFkCRRCqiwFdcNWq/8wogvX//zOB
         LYSphAvABFEEgIIA+tBcvb+sRV8AAAAASUVORK5CYII=
 </value>
   </data>
   <data name="radCalendarEnd.NavigationPrevImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAAUAAAAJCAYAAAD6reaeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvQAA
-        Dr0BR/uQrQAAADlJREFUGFdjYEAC////Z5xy8t9/ZDEGkACKIEwALogsABZEFwAL1v//z4ShEmQTugTc
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvAAA
+        DrwBlbxySQAAADlJREFUGFdjYEAC////Z5xy8t9/ZDEGkACKIEwALogsABZEFwAL1v//z4ShEmQTugTc
+        dmQJFCfBJACYOGDFOkgJaQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="radCalendarBegin.FastNavigationNextImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAAoAAAAJCAYAAAALpr0TAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvAAA
+        DrwBlbxySQAAAFlJREFUKFNtz9ENwCAIRVHSDu4STsESfDuUpaWt+CD4Y3JyfYnUx6WUTmVk2EUmtpV9
+        YYor2yHEHuJAwLVe3HHxCZj1zI/NQthUD/sUhsscHSBEe8MAf5jtBgcguXm/5jeEAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="radCalendarBegin.FastNavigationPrevImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAAoAAAAJCAYAAAALpr0TAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvAAA
+        DrwBlbxySQAAAEtJREFUKFOF0OENABAMhNGyuCUsZSknJJXLVcM/r1+aYEYHQOlj4me2Iw2DOXAYjMHD
+        YArZ3RpQdfiy80AdZBZi/x5ewF92NzN6vAA2dMGJPYpZ5gAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="radCalendarBegin.NavigationNextImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAAUAAAAJCAYAAAD6reaeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvAAA
+        DrwBlbxySQAAAD1JREFUGFdjmHLy338GdAASnLJ//18UcbAgugRcEFkCRRCqiwFdcNWq/8wogvX//zOB
+        LYSphAvABFEEgIIA+tBcvb+sRV8AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="radCalendarBegin.NavigationPrevImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAAUAAAAJCAYAAAD6reaeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvAAA
+        DrwBlbxySQAAADlJREFUGFdjYEAC////Z5xy8t9/ZDEGkACKIEwALogsABZEFwAL1v//z4ShEmQTugTc
         dmQJFCfBJACYOGDFOkgJaQAAAABJRU5ErkJggg==
 </value>
   </data>

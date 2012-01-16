@@ -42,7 +42,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                             Schedule schedule = new Schedule();
                             schedule.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
                             schedule.tujuan = Utility.Utility.ConvertToUUID(reader.GetValue(1).ToString());
-                            schedule.pelayaranID = Utility.Utility.ConvertToUUID(reader.GetValue(2).ToString());
+                            //schedule.pelayaranID = Utility.Utility.ConvertToUUID(reader.GetValue(2).ToString());
                             schedule.tglclosing = reader.GetDateTime(3);
                             schedule.voy = (Utility.Utility.IsDBNull(reader.GetValue(4))) ? null : reader.GetString(4);
                             schedule.keterangan = (Utility.Utility.IsDBNull(reader.GetValue(5))) ? null : reader.GetString(5);
@@ -58,7 +58,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                             schedule.unLoading = reader.GetDateTime(15);
 
                             schedule.berangkatTujuan = reader.GetString(16);
-                            schedule.namaPelayaran = reader.GetString(17);
+                            //schedule.namaPelayaran = reader.GetString(17);
                             schedule.namaKapal = (reader.GetBoolean(19)) ? (reader.GetString(18) + " - loan") : reader.GetString(18);
 
                             if (listSchedule == null)

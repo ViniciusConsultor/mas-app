@@ -157,7 +157,76 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 showShedule = null;
 
             radToolStripLabelIndexing.Text = currentPage + " / " + totalPage;
+
+
+            ColumnGroupsViewDefinition view = new ColumnGroupsViewDefinition();
+            view.ColumnGroups.Add(new GridViewColumnGroup(""));
+            view.ColumnGroups.Add(new GridViewColumnGroup(""));
+            view.ColumnGroups.Add(new GridViewColumnGroup(""));
+
+            view.ColumnGroups.Add(new GridViewColumnGroup(""));
+            view.ColumnGroups.Add(new GridViewColumnGroup(""));
+            view.ColumnGroups.Add(new GridViewColumnGroup(""));
+            view.ColumnGroups.Add(new GridViewColumnGroup(""));
+            view.ColumnGroups.Add(new GridViewColumnGroup(""));
+            view.ColumnGroups.Add(new GridViewColumnGroup(""));
+            view.ColumnGroups.Add(new GridViewColumnGroup(""));
+            view.ColumnGroups.Add(new GridViewColumnGroup(""));
+            view.ColumnGroups.Add(new GridViewColumnGroup(""));
+            view.ColumnGroups.Add(new GridViewColumnGroup(""));
+            view.ColumnGroups.Add(new GridViewColumnGroup("Ro Begin"));
+            view.ColumnGroups.Add(new GridViewColumnGroup("RO End"));
+
+            view.ColumnGroups[0].Rows.Add(new GridViewColumnGroupRow());
+            view.ColumnGroups[0].Rows[0].Columns.Add(ScheduleGridView.Columns["ID"]);
+
+            view.ColumnGroups[1].Rows.Add(new GridViewColumnGroupRow());
+            view.ColumnGroups[1].Rows[0].Columns.Add(ScheduleGridView.Columns["tujuan"]);
+
+            view.ColumnGroups[2].Rows.Add(new GridViewColumnGroupRow());
+            view.ColumnGroups[2].Rows[0].Columns.Add(ScheduleGridView.Columns["vesselID"]);
+
+            view.ColumnGroups[3].Rows.Add(new GridViewColumnGroupRow());
+            view.ColumnGroups[3].Rows[0].Columns.Add(ScheduleGridView.Columns["berangkatTujuan"]);
+
+            view.ColumnGroups[4].Rows.Add(new GridViewColumnGroupRow());
+            view.ColumnGroups[4].Rows[0].Columns.Add(ScheduleGridView.Columns["namaKapal"]);
+
+            view.ColumnGroups[5].Rows.Add(new GridViewColumnGroupRow());
+            view.ColumnGroups[5].Rows[0].Columns.Add(ScheduleGridView.Columns["voy"]);
+
+            view.ColumnGroups[6].Rows.Add(new GridViewColumnGroupRow());
+            view.ColumnGroups[6].Rows[0].Columns.Add(ScheduleGridView.Columns["tglclosing"]);
+
+            view.ColumnGroups[7].Rows.Add(new GridViewColumnGroupRow());
+            view.ColumnGroups[7].Rows[0].Columns.Add(ScheduleGridView.Columns["etd"]);
+
+            view.ColumnGroups[8].Rows.Add(new GridViewColumnGroupRow());
+            view.ColumnGroups[8].Rows[0].Columns.Add(ScheduleGridView.Columns["td"]);
+
+            view.ColumnGroups[9].Rows.Add(new GridViewColumnGroupRow());
+            view.ColumnGroups[9].Rows[0].Columns.Add(ScheduleGridView.Columns["eta"]);
+
+            view.ColumnGroups[10].Rows.Add(new GridViewColumnGroupRow());
+            view.ColumnGroups[10].Rows[0].Columns.Add(ScheduleGridView.Columns["ta"]);
+
+            view.ColumnGroups[11].Rows.Add(new GridViewColumnGroupRow());
+            view.ColumnGroups[11].Rows[0].Columns.Add(ScheduleGridView.Columns["Keterangan"]);
+
+            view.ColumnGroups[12].Rows.Add(new GridViewColumnGroupRow());
+            view.ColumnGroups[12].Rows[0].Columns.Add(ScheduleGridView.Columns["unLoading"]);
+
+            view.ColumnGroups[13].Rows.Add(new GridViewColumnGroupRow());
+            view.ColumnGroups[13].Rows[0].Columns.Add(ScheduleGridView.Columns["ro_begin_20"]);
+            view.ColumnGroups[13].Rows[0].Columns.Add(ScheduleGridView.Columns["ro_begin_40"]);
+
+            view.ColumnGroups[14].Rows.Add(new GridViewColumnGroupRow());
+            view.ColumnGroups[14].Rows[0].Columns.Add(ScheduleGridView.Columns["ro_end_20"]);
+            view.ColumnGroups[14].Rows[0].Columns.Add(ScheduleGridView.Columns["ro_end_40"]);
+
             ScheduleGridView.DataSource = showShedule;
+            this.ScheduleGridView.ViewDefinition = view;
+
 
             Constant.VisitaJayaPerkasaApplication.pBarForm.Invoke
             (

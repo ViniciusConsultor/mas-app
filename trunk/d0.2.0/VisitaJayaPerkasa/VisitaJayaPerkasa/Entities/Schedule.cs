@@ -9,7 +9,6 @@ namespace VisitaJayaPerkasa.Entities
     {
         public Guid ID { get; set; }
         public Guid tujuan { get; set; }
-        public Guid pelayaranID { get; set; }
 
         public DateTime etd { get; set; }
         public DateTime td { get; set; }
@@ -30,7 +29,6 @@ namespace VisitaJayaPerkasa.Entities
         
         //model for view
         public string berangkatTujuan { get; set; }
-        public string namaPelayaran { get; set; }
         public string namaKapal { get; set; }
 
     }
