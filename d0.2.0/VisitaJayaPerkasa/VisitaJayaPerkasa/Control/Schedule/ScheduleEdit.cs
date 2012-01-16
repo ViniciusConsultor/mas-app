@@ -70,6 +70,12 @@ namespace VisitaJayaPerkasa.Control.Schedule
 
             listCity = null;
             sqlCityRepository = null;
+            pickerETA.Value = DateTime.Now;
+            pickerTA.Value = DateTime.Now;
+            pickerETD.Value = DateTime.Now;
+            pickerTD.Value = DateTime.Now;
+            pickerUnLoading.Value = DateTime.Now;
+            pickerTglClosing.Value = DateTime.Now;
          }
 
         private void radButtonElement2_Click(object sender, EventArgs e)

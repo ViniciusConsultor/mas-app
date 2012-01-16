@@ -5,6 +5,7 @@ using System.Text;
 using VisitaJayaPerkasa.Entities;
 using System.Data.SqlClient;
 using VisitaJayaPerkasa.Utility.Log;
+using System.Data;
 
 namespace VisitaJayaPerkasa.SqlRepository
 {
@@ -102,6 +103,38 @@ namespace VisitaJayaPerkasa.SqlRepository
             }
 
             return n > 0;
+        }
+
+        public DataTable ReportCustomerTransDetail(Guid ID)
+        {
+            DataTable dt = null;
+            SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString);
+            try
+            {
+                con.Open();
+                string strQry = "Select tc.type_name, pd.vessel_name, co.city_name as origin, cd.city_name as destination, " +
+                        "cnd.condition_name as condition, ctd.no_seal, ctd.truck_number, ctd.voy, " +
+                        "ctd.stuffing_date, ctd.stuffing_place, ctd.etd, ctd.td, ctd.eta, ctd.ta, ctd.unloading " +
+                        "FROM [Customer_Trans_Detail] ctd " +
+                        "INNER JOIN [Type_Cont] tc ON tc.type_id = ctd.type_id " +
+                        "INNER JOIN [Pelayaran_Detail] pd ON pd.pelayaran_detail_id = ctd.pelayaran_detail_id " +
+                        "INNER JOIN [Pelayaran] p ON p.pelayaran_id = pd.pelayaran_id " +
+                        "INNER JOIN [City] co ON co.city_id = ctd.origin " +
+                        "INNER JOIN [City] cd ON cd.city_id = ctd.destination " +
+                        "INNER JOIN [Condition] cnd ON cnd.condition_id = ctd.condition_id " +
+                        "Where (ctd.deleted is null OR ctd.deleted = '0') " +
+                        "AND ctd.customer_trans_id = '" + ID + "'";
+                SqlDataAdapter da = new SqlDataAdapter(strQry, VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString);
+                ShippingMainDataSet ds = new ShippingMainDataSet();
+                da.Fill(ds, "REPORT_CUST");
+                dt = ds.Tables[3];
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlCustomerTransRepository.cs - ReportCustomerTransDetail() " + e.Message);
+            }
+            con.Close();
+            return dt;
         }
 
         public List<CustomerTransDetail> ListCustomerTransDetail(Guid ID)

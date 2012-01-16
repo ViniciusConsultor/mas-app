@@ -15,6 +15,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
     public partial class CustomerTransEdit : UserControl
     {
         private bool wantToCreateVessel;
+        public Guid ID;
         
         private VisitaJayaPerkasa.Entities.CustomerTrans customerTrans;
         private List<VisitaJayaPerkasa.Entities.CustomerTransDetail> listCustomerTransDetail;
@@ -80,6 +81,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
 
                 SqlCustomerTransRepository sqlCustomerTransRepository = new SqlCustomerTransRepository();
                 listCustomerTransDetail = sqlCustomerTransRepository.ListCustomerTransDetail(customerTrans.CustomerTransID);
+                ID = customerTrans.CustomerTransID;
 
                 if (listCustomerTransDetail != null)
                     CustomerTransDetailGridView.DataSource = listCustomerTransDetail;
@@ -320,8 +322,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
 
                         if (sqlCustomerTransRepository.CreateCustomerTrans(sqlParameterInsert, sqlParameterMaster)) {
                             MessageBox.Show(this, "Success save data", "Information");
-                            radButtonElement2.PerformClick();
-
+                            //radButtonElement2.PerformClick();
                             sqlParameterMaster = null;
                         }
                         else
@@ -335,8 +336,8 @@ namespace VisitaJayaPerkasa.Control.Transaction
 
                         if (sqlCustomerTransRepository.EditCustomerTrans(sqlParameterInsert, sqlParameterMaster)) {                    
                             MessageBox.Show(this, "Success edit data", "Information");
-                            radButtonElement2.PerformClick();
-
+                            //radButtonElement2.PerformClick();
+                            ID = TransID;
                             sqlParameterMaster = null;
                         }
                         else
@@ -359,6 +360,12 @@ namespace VisitaJayaPerkasa.Control.Transaction
             else
                 btnShowHideEditor.Text = "Collapse Editor";
 
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            Form.Report.RptTransForm rptTrans = new Form.Report.RptTransForm(cboCustomer.Text.ToString(), ID);
+            rptTrans.Show();
         }
     }
 }

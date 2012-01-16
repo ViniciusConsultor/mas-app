@@ -225,6 +225,27 @@ SELECT person_id, username, password, deleted FROM [USER] WHERE (person_id = @pe
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="REPORT_CUST" msprop:Generator_TableClassName="REPORT_CUSTDataTable" msprop:Generator_TableVarName="tableREPORT_CUST" msprop:Generator_TablePropName="REPORT_CUST" msprop:Generator_RowDeletingName="REPORT_CUSTRowDeleting" msprop:Generator_UserTableName="REPORT_CUST" msprop:Generator_RowChangingName="REPORT_CUSTRowChanging" msprop:Generator_RowEvHandlerName="REPORT_CUSTRowChangeEventHandler" msprop:Generator_RowDeletedName="REPORT_CUSTRowDeleted" msprop:Generator_RowEvArgName="REPORT_CUSTRowChangeEvent" msprop:Generator_RowChangedName="REPORT_CUSTRowChanged" msprop:Generator_RowClassName="REPORT_CUSTRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="type_name" msprop:Generator_ColumnVarNameInTable="columntype_name" msprop:Generator_ColumnPropNameInRow="type_name" msprop:Generator_ColumnPropNameInTable="type_nameColumn" msprop:Generator_UserColumnName="type_name" type="xs:string" minOccurs="0" />
+              <xs:element name="vessel_name" msprop:Generator_ColumnVarNameInTable="columnvessel_name" msprop:Generator_ColumnPropNameInRow="vessel_name" msprop:Generator_ColumnPropNameInTable="vessel_nameColumn" msprop:Generator_UserColumnName="vessel_name" type="xs:string" minOccurs="0" />
+              <xs:element name="origin" msprop:Generator_ColumnVarNameInTable="columnorigin" msprop:Generator_ColumnPropNameInRow="origin" msprop:Generator_ColumnPropNameInTable="originColumn" msprop:Generator_UserColumnName="origin" type="xs:string" minOccurs="0" />
+              <xs:element name="destination" msprop:Generator_ColumnVarNameInTable="columndestination" msprop:Generator_ColumnPropNameInRow="destination" msprop:Generator_ColumnPropNameInTable="destinationColumn" msprop:Generator_UserColumnName="destination" type="xs:string" minOccurs="0" />
+              <xs:element name="condition" msprop:Generator_ColumnVarNameInTable="columncondition" msprop:Generator_ColumnPropNameInRow="condition" msprop:Generator_ColumnPropNameInTable="conditionColumn" msprop:Generator_UserColumnName="condition" type="xs:string" minOccurs="0" />
+              <xs:element name="no_seal" msprop:Generator_ColumnVarNameInTable="columnno_seal" msprop:Generator_ColumnPropNameInRow="no_seal" msprop:Generator_ColumnPropNameInTable="no_sealColumn" msprop:Generator_UserColumnName="no_seal" type="xs:string" minOccurs="0" />
+              <xs:element name="voy" msprop:Generator_ColumnVarNameInTable="columnvoy" msprop:Generator_ColumnPropNameInRow="voy" msprop:Generator_ColumnPropNameInTable="voyColumn" msprop:Generator_UserColumnName="voy" type="xs:string" minOccurs="0" />
+              <xs:element name="truck_number" msprop:Generator_ColumnVarNameInTable="columntruck_number" msprop:Generator_ColumnPropNameInRow="truck_number" msprop:Generator_ColumnPropNameInTable="truck_numberColumn" msprop:Generator_UserColumnName="truck_number" type="xs:string" minOccurs="0" />
+              <xs:element name="stuffing_date" msprop:Generator_ColumnVarNameInTable="columnstuffing_date" msprop:Generator_ColumnPropNameInRow="stuffing_date" msprop:Generator_ColumnPropNameInTable="stuffing_dateColumn" msprop:Generator_UserColumnName="stuffing_date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="stuffing_place" msprop:Generator_ColumnVarNameInTable="columnstuffing_place" msprop:Generator_ColumnPropNameInRow="stuffing_place" msprop:Generator_ColumnPropNameInTable="stuffing_placeColumn" msprop:Generator_UserColumnName="stuffing_place" type="xs:string" minOccurs="0" />
+              <xs:element name="etd" msprop:Generator_ColumnVarNameInTable="columnetd" msprop:Generator_ColumnPropNameInRow="etd" msprop:Generator_ColumnPropNameInTable="etdColumn" msprop:Generator_UserColumnName="etd" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="td" msprop:Generator_ColumnVarNameInTable="columntd" msprop:Generator_ColumnPropNameInRow="td" msprop:Generator_ColumnPropNameInTable="tdColumn" msprop:Generator_UserColumnName="td" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="eta" msprop:Generator_ColumnVarNameInTable="columneta" msprop:Generator_ColumnPropNameInRow="eta" msprop:Generator_ColumnPropNameInTable="etaColumn" msprop:Generator_UserColumnName="eta" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ta" msprop:Generator_ColumnVarNameInTable="columnta" msprop:Generator_ColumnPropNameInRow="ta" msprop:Generator_ColumnPropNameInTable="taColumn" msprop:Generator_UserColumnName="ta" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="unloading" msprop:Generator_ColumnVarNameInTable="columnunloading" msprop:Generator_ColumnPropNameInRow="unloading" msprop:Generator_ColumnPropNameInTable="unloadingColumn" msprop:Generator_UserColumnName="unloading" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
