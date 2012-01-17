@@ -216,10 +216,10 @@
             gridViewTextBoxColumn10.FieldName = "StuffingDate";
             gridViewTextBoxColumn10.HeaderText = "StuffingDate";
             gridViewTextBoxColumn10.UniqueName = "StuffingDate";
-            gridViewTextBoxColumn11.FieldAlias = "StuffingPlace";
-            gridViewTextBoxColumn11.FieldName = "StuffingPlace";
+            gridViewTextBoxColumn11.FieldAlias = "WarehouseName";
+            gridViewTextBoxColumn11.FieldName = "WarehouseName";
             gridViewTextBoxColumn11.HeaderText = "StuffingPlace";
-            gridViewTextBoxColumn11.UniqueName = "StuffingPlace";
+            gridViewTextBoxColumn11.UniqueName = "WarehouseName";
             gridViewTextBoxColumn12.FieldAlias = "ETD";
             gridViewTextBoxColumn12.FieldName = "ETD";
             gridViewTextBoxColumn12.HeaderText = "ETD";
