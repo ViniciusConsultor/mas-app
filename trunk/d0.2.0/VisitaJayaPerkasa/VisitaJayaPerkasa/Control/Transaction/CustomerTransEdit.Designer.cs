@@ -58,6 +58,7 @@
             this.btnShowHideEditor = new Telerik.WinControls.UI.RadButtonElement();
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboStuffingPlace = new Telerik.WinControls.UI.RadComboBox();
             this.cboCondition = new Telerik.WinControls.UI.RadComboBox();
             this.etPrice = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel18 = new Telerik.WinControls.UI.RadLabel();
@@ -73,7 +74,6 @@
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.etVoy = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.etStuffingPlace = new Telerik.WinControls.UI.RadTextBox();
             this.dtpStuffingDate = new System.Windows.Forms.DateTimePicker();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
@@ -104,6 +104,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboStuffingPlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCondition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).BeginInit();
@@ -114,7 +115,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etVoy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etStuffingPlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etTruckNo)).BeginInit();
@@ -264,6 +264,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cboStuffingPlace);
             this.groupBox1.Controls.Add(this.cboCondition);
             this.groupBox1.Controls.Add(this.etPrice);
             this.groupBox1.Controls.Add(this.radLabel18);
@@ -279,7 +280,6 @@
             this.groupBox1.Controls.Add(this.radLabel13);
             this.groupBox1.Controls.Add(this.etVoy);
             this.groupBox1.Controls.Add(this.radLabel9);
-            this.groupBox1.Controls.Add(this.etStuffingPlace);
             this.groupBox1.Controls.Add(this.dtpStuffingDate);
             this.groupBox1.Controls.Add(this.radLabel8);
             this.groupBox1.Controls.Add(this.radLabel7);
@@ -302,6 +302,20 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detail Data";
+            // 
+            // cboStuffingPlace
+            // 
+            this.cboStuffingPlace.Location = new System.Drawing.Point(335, 42);
+            this.cboStuffingPlace.Name = "cboStuffingPlace";
+            // 
+            // 
+            // 
+            this.cboStuffingPlace.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
+            this.cboStuffingPlace.RootElement.StretchVertically = true;
+            this.cboStuffingPlace.Size = new System.Drawing.Size(150, 20);
+            this.cboStuffingPlace.TabIndex = 58;
+            this.cboStuffingPlace.TabStop = false;
+            this.cboStuffingPlace.Text = "-- Choose --";
             // 
             // cboCondition
             // 
@@ -435,14 +449,6 @@
             this.radLabel9.Size = new System.Drawing.Size(30, 16);
             this.radLabel9.TabIndex = 46;
             this.radLabel9.Text = "VOY";
-            // 
-            // etStuffingPlace
-            // 
-            this.etStuffingPlace.Location = new System.Drawing.Point(335, 41);
-            this.etStuffingPlace.Name = "etStuffingPlace";
-            this.etStuffingPlace.Size = new System.Drawing.Size(150, 20);
-            this.etStuffingPlace.TabIndex = 9;
-            this.etStuffingPlace.TabStop = false;
             // 
             // dtpStuffingDate
             // 
@@ -664,10 +670,10 @@
             gridViewTextBoxColumn10.FieldName = "StuffingDate";
             gridViewTextBoxColumn10.HeaderText = "StuffingDate";
             gridViewTextBoxColumn10.UniqueName = "StuffingDate";
-            gridViewTextBoxColumn11.FieldAlias = "StuffingPlace";
-            gridViewTextBoxColumn11.FieldName = "StuffingPlace";
+            gridViewTextBoxColumn11.FieldAlias = "WarehouseName";
+            gridViewTextBoxColumn11.FieldName = "WarehouseName";
             gridViewTextBoxColumn11.HeaderText = "StuffingPlace";
-            gridViewTextBoxColumn11.UniqueName = "StuffingPlace";
+            gridViewTextBoxColumn11.UniqueName = "WarehouseName";
             gridViewTextBoxColumn12.FieldAlias = "ETD";
             gridViewTextBoxColumn12.FieldName = "ETD";
             gridViewTextBoxColumn12.HeaderText = "ETD";
@@ -829,6 +835,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboStuffingPlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCondition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).EndInit();
@@ -839,7 +846,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etVoy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etStuffingPlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etTruckNo)).EndInit();
@@ -902,7 +908,6 @@
         private Telerik.WinControls.UI.RadTextBox etSeal;
         private Telerik.WinControls.UI.RadLabel radLabel5;
         private Telerik.WinControls.UI.RadLabel radLabel6;
-        private Telerik.WinControls.UI.RadTextBox etStuffingPlace;
         private System.Windows.Forms.DateTimePicker dtpStuffingDate;
         private Telerik.WinControls.UI.RadLabel radLabel8;
         private Telerik.WinControls.UI.RadLabel radLabel7;
@@ -925,5 +930,6 @@
         private Telerik.WinControls.UI.RadComboBox cboType;
         private Telerik.WinControls.UI.RadComboBox cboCondition;
         private Telerik.WinControls.UI.RadButton btnPrint;
+        private Telerik.WinControls.UI.RadComboBox cboStuffingPlace;
     }
 }

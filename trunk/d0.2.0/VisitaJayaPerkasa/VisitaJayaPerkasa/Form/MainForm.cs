@@ -83,13 +83,14 @@ namespace VisitaJayaPerkasa.Form
         private void radMenuItemLogOut_Click(object sender, EventArgs e)
         {
             UserProfile.user = null;
-            this.Close();
             VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.loginForm.Show();
+            this.Close();
         }
 
         private void mainForm_Closed(object sender, EventArgs e)
         {
-            VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.loginForm.Close();
+            if (UserProfile.user != null)
+                VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.loginForm.Close();
         }
 
         private void radImageButtonElementCustomer_Click(object sender, EventArgs e)

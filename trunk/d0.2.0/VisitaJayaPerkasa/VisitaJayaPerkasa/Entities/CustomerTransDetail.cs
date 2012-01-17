@@ -18,7 +18,7 @@ namespace VisitaJayaPerkasa.Entities
         public string Voyage { get; set; }
         public string TruckNo { get; set; }
         public DateTime StuffingDate { get; set; }
-        public string StuffingPlace { get; set; }
+        public Guid StuffingPlace { get; set; }
         public DateTime ETD { get; set; }
         public DateTime TD { get; set; }
         public DateTime ETA { get; set; }
@@ -32,5 +32,6 @@ namespace VisitaJayaPerkasa.Entities
         public string OriginName { get; set; }
         public string DestinationName { get; set; }
         public string ConditionName { get; set; }
+        public string WarehouseName { get; set; }
     }
 }

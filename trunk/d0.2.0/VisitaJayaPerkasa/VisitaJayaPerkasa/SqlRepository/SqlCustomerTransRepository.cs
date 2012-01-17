@@ -152,7 +152,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "ctd.destination, ctd.condition_id, ctd.no_seal, ctd.truck_number, ctd.voy, " +
                         "ctd.stuffing_date, ctd.stuffing_place, ctd.etd, ctd.td, ctd.eta, ctd.ta, ctd.unloading, ctd.price, " +
                         "tc.type_name, p.name as pelayaran_name, pd.vessel_name, co.city_name as origin, cd.city_name as destination, " +
-                        "cnd.condition_name as condition, pd.status_pinjaman " +
+                        "cnd.condition_name as condition, pd.status_pinjaman, w.[address] " +
                         "FROM [Customer_Trans_Detail] ctd " +
                         "INNER JOIN [Type_Cont] tc ON tc.type_id = ctd.type_id " +
                         "INNER JOIN [Pelayaran_Detail] pd ON pd.pelayaran_detail_id = ctd.pelayaran_detail_id " +
@@ -160,6 +160,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "INNER JOIN [City] co ON co.city_id = ctd.origin " +
                         "INNER JOIN [City] cd ON cd.city_id = ctd.destination " +
                         "INNER JOIN [Condition] cnd ON cnd.condition_id = ctd.condition_id " +
+                        "INNER JOIN [Warehouse] w ON w.stuffing_place_id = ctd.stuffing_place " +
                         "Where (ctd.deleted is null OR ctd.deleted = '0') " +
                         "AND ctd.customer_trans_id = '" + ID + "'"
                         , con))
@@ -179,7 +180,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                             customerTransDetail.TruckNo = reader.GetString(8);
                             customerTransDetail.Voyage = reader.GetString(9);
                             customerTransDetail.StuffingDate = reader.GetDateTime(10);
-                            customerTransDetail.StuffingPlace = reader.GetString(11);
+                            customerTransDetail.StuffingPlace = Utility.Utility.ConvertToUUID(reader.GetValue(11).ToString());
                             customerTransDetail.ETD = reader.GetDateTime(12);
                             customerTransDetail.TD = reader.GetDateTime(13);
                             customerTransDetail.ETA = reader.GetDateTime(14);
@@ -192,6 +193,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                             customerTransDetail.OriginName = reader.GetString(21);
                             customerTransDetail.DestinationName = reader.GetString(22);
                             customerTransDetail.ConditionName = reader.GetString(23);
+                            customerTransDetail.WarehouseName = reader.GetString(25);
 
                             if (listCustomerTransDetail == null)
                                 listCustomerTransDetail = new List<CustomerTransDetail>();

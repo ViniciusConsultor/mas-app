@@ -27,6 +27,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
         private SqlPelayaranRepository sqlPelayaranRepository;
         private SqlConditionRepository sqlConditionRepository;
         private SqlPriceListRepository sqlPriceListRepository;
+        private SqlWareHouseRepository sqlWarehouseRepository;
 
         public CustomerTransEdit(VisitaJayaPerkasa.Entities.CustomerTrans customerTrans)
         {
@@ -39,6 +40,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
             sqlPelayaranRepository = new SqlPelayaranRepository();
             sqlConditionRepository = new SqlConditionRepository();
             sqlPriceListRepository = new SqlPriceListRepository();
+            sqlWarehouseRepository = new SqlWareHouseRepository();
 
             List<VisitaJayaPerkasa.Entities.Customer> listCustomer = sqlCustomerRepository.ListCustomers();
             List<VisitaJayaPerkasa.Entities.TypeCont> listType = sqlTypeContRepository.GetTypeCont();
@@ -46,31 +48,50 @@ namespace VisitaJayaPerkasa.Control.Transaction
             List<VisitaJayaPerkasa.Entities.City> listDestination = sqlCityRepository.GetCity();
             List<VisitaJayaPerkasa.Entities.PelayaranDetail> listPelayaran = sqlPelayaranRepository.GetVessels();
             List<VisitaJayaPerkasa.Entities.Condition> listCondition = sqlConditionRepository.GetConditions();
+            List<VisitaJayaPerkasa.Entities.WareHouse> listWarehouse = sqlWarehouseRepository.GetWareHouse();
 
             cboCustomer.DataSource = listCustomer;
             cboCustomer.DisplayMember = "CustomerName";
             cboCustomer.ValueMember = "ID";
-
+            cboCustomer.SelectedIndex = -1;
+            cboCustomer.Text = "-- Choose --";
+            
             cboType.DataSource = listType;
             cboType.DisplayMember = "TypeName";
             cboType.ValueMember = "ID";
+            cboType.SelectedIndex = -1;
+            cboType.Text = "-- Choose --";
 
             cboOrigin.DataSource = listOrigin;
             cboOrigin.DisplayMember = "CityName";
             cboOrigin.ValueMember = "ID";
+            cboOrigin.SelectedIndex = -1;
+            cboOrigin.Text = "-- Choose --";
 
             cboDestination.DataSource = listDestination;
             cboDestination.DisplayMember = "CityName";
             cboDestination.ValueMember = "ID";
+            cboDestination.SelectedIndex = -1;
+            cboDestination.Text = "-- Choose --";
 
             cboPelayaranDetail.DataSource = listPelayaran;
             cboPelayaranDetail.DisplayMember = "VesselName";
             cboPelayaranDetail.ValueMember = "PelayaranDetailID";
+            cboPelayaranDetail.SelectedIndex = -1;
+            cboPelayaranDetail.Text = "-- Choose --";
 
             cboCondition.DataSource = listCondition;
             cboCondition.DisplayMember = "ConditionName";
             cboCondition.ValueMember = "ID";
+            cboCondition.SelectedIndex = -1;
+            cboCondition.Text = "-- Choose --";
 
+            cboStuffingPlace.DataSource = listWarehouse;
+            cboStuffingPlace.DisplayMember = "Address";
+            cboStuffingPlace.ValueMember = "Id";
+            cboStuffingPlace.SelectedIndex = -1;
+            cboStuffingPlace.Text = "-- Choose --";
+            
             if (customerTrans == null)
             {
                 wantToCreateVessel = true;
@@ -133,17 +154,21 @@ namespace VisitaJayaPerkasa.Control.Transaction
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if(cboType.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
-                MessageBox.Show(this, "Please choose type", "Information");
-            else if(cboPelayaranDetail.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
-                MessageBox.Show(this, "Please choose pelayaran", "Information");
-            else if (cboOrigin.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
-                MessageBox.Show(this, "Please choose origin", "Information");
-            else if (cboDestination.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
-                MessageBox.Show(this, "Please choose destination", "Information");
-            else if (cboCondition.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
-                MessageBox.Show(this, "Please choose condition", "Information");
-            else if(etTruckNo.Text.Trim().Equals(""))
+            if (cboCustomer.SelectedIndex == -1)
+                MessageBox.Show(this, "Please select Customer", "Information");
+            else if (cboType.SelectedIndex == -1)
+                MessageBox.Show(this, "Please select Cont Type", "Information");
+            else if (cboPelayaranDetail.SelectedIndex == -1)
+                MessageBox.Show(this, "Please select Vessel", "Information");
+            else if (cboOrigin.SelectedIndex == -1)
+                MessageBox.Show(this, "Please select Origin", "Information");
+            else if (cboDestination.SelectedIndex == -1)
+                MessageBox.Show(this, "Please select Destionation", "Information");
+            else if (cboCondition.SelectedIndex == -1)
+                MessageBox.Show(this, "Please select Condition", "Information");
+            else if (cboStuffingPlace.SelectedIndex == -1)
+                MessageBox.Show(this, "Please select Stuffing Place", "Information");
+            if(etTruckNo.Text.Trim().Equals(""))
                 MessageBox.Show(this, "Please fill truck number", "Information");
             else if (etVoy.Text.Trim().Equals(""))
                 MessageBox.Show(this, "Please fill Voyage", "Information");
@@ -176,7 +201,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 objCustTransDetail.Voyage = etVoy.Text.Trim();
 
                 objCustTransDetail.StuffingDate = dtpStuffingDate.Value;
-                objCustTransDetail.StuffingPlace = etStuffingPlace.Text.Trim();
+                objCustTransDetail.StuffingPlace = Utility.Utility.ConvertToUUID(cboStuffingPlace.SelectedValue.ToString());
 
                 objCustTransDetail.ETD = dtpETD.Value;
                 objCustTransDetail.TD = dtpTD.Value;
@@ -193,12 +218,18 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 etSeal.Text = "";
                 etTruckNo.Text = "";
                 etVoy.Text = "";
-                etStuffingPlace.Text = "";
-                cboCondition.SelectedIndex = 0;
-                cboOrigin.SelectedIndex = 0;
-                cboDestination.SelectedIndex = 0;
-                cboPelayaranDetail.SelectedIndex = 0;
-                cboType.SelectedIndex = 0;
+                cboStuffingPlace.SelectedIndex = -1;
+                cboStuffingPlace.Text = "-- Choose --";
+                cboCondition.SelectedIndex = -1;
+                cboCondition.Text = "-- Choose --";
+                cboOrigin.SelectedIndex = -1;
+                cboOrigin.Text = "-- Choose --";
+                cboDestination.SelectedIndex = -1;
+                cboDestination.Text = "-- Choose --";
+                cboPelayaranDetail.SelectedIndex = -1;
+                cboPelayaranDetail.Text = "-- Choose --";
+                cboType.SelectedIndex = -1;
+                cboType.Text = "-- Choose --";
 
                 dtpStuffingDate.Value = DateTime.Now;
                 dtpETD.Value = DateTime.Now;
