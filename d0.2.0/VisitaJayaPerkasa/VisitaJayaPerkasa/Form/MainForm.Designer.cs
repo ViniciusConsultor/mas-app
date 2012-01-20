@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridSortField gridSortField2 = new Telerik.WinControls.UI.GridSortField();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.radMenuItem7 = new Telerik.WinControls.UI.RadMenuItem();
             this.radRibbonBar1 = new Telerik.WinControls.UI.RadRibbonBar();
@@ -129,6 +129,7 @@
             this.radRibbonBar1.ExitButton.ButtonElement.Class = "RadMenuButtonElement";
             this.radRibbonBar1.ExitButton.ButtonElement.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.radRibbonBar1.ExitButton.Text = "Exit";
+            this.radRibbonBar1.ExitButton.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             this.radRibbonBar1.ImageList = this.imageList1;
             this.radRibbonBar1.Location = new System.Drawing.Point(0, 0);
             this.radRibbonBar1.Name = "radRibbonBar1";
@@ -141,6 +142,7 @@
             this.radRibbonBar1.OptionsButton.ButtonElement.Class = "RadMenuButtonElement";
             this.radRibbonBar1.OptionsButton.ButtonElement.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.radRibbonBar1.OptionsButton.Text = "Options";
+            this.radRibbonBar1.OptionsButton.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             this.radRibbonBar1.QuickAccessToolBarItems.AddRange(new Telerik.WinControls.RadItem[] {
             this.radButtonElement1});
             // 
@@ -510,10 +512,10 @@
             // gridViewTemplate1
             // 
             this.gridViewTemplate1.AllowAddNewRow = false;
-            gridSortField1.FieldAlias = "Tanggal";
-            gridSortField1.FieldName = "Tanggal";
-            gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            this.gridViewTemplate1.SortExpressions.Add(gridSortField1);
+            gridSortField2.FieldAlias = "Tanggal";
+            gridSortField2.FieldName = "Tanggal";
+            gridSortField2.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            this.gridViewTemplate1.SortExpressions.Add(gridSortField2);
             // 
             // radLabelElementWelcome
             // 
