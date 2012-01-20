@@ -37,8 +37,6 @@
             this.ribbonTab1 = new Telerik.WinControls.UI.RibbonTab();
             this.radRibbonBarGroupUser = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.radImageButtonUser = new Telerik.WinControls.UI.RadImageButtonElement();
-            this.radRibbonBarGroupCategory = new Telerik.WinControls.UI.RadRibbonBarGroup();
-            this.radImageButtonElementCategory = new Telerik.WinControls.UI.RadImageButtonElement();
             this.radRibbonBarGroup1 = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.radImageButtonElementCity = new Telerik.WinControls.UI.RadImageButtonElement();
             this.radRibbonBarGroup2 = new Telerik.WinControls.UI.RadRibbonBarGroup();
@@ -178,7 +176,6 @@
             this.ribbonTab1.IsSelected = true;
             this.ribbonTab1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroupUser,
-            this.radRibbonBarGroupCategory,
             this.radRibbonBarGroup1,
             this.radRibbonBarGroup2,
             this.radRibbonBarGroup3,
@@ -208,21 +205,6 @@
             this.radImageButtonUser.Text = "radImageButtonUser";
             this.radImageButtonUser.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
             this.radImageButtonUser.Click += new System.EventHandler(this.radImageButtonUser_Click);
-            // 
-            // radRibbonBarGroupCategory
-            // 
-            this.radRibbonBarGroupCategory.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radImageButtonElementCategory});
-            this.radRibbonBarGroupCategory.Name = "radRibbonBarGroupCategory";
-            this.radRibbonBarGroupCategory.Text = "Category";
-            // 
-            // radImageButtonElementCategory
-            // 
-            this.radImageButtonElementCategory.Image = ((System.Drawing.Image)(resources.GetObject("radImageButtonElementCategory.Image")));
-            this.radImageButtonElementCategory.ImageKey = "condition.jpeg";
-            this.radImageButtonElementCategory.Name = "radImageButtonElementCategory";
-            this.radImageButtonElementCategory.Text = "radImageButtonElementCategory";
-            this.radImageButtonElementCategory.Click += new System.EventHandler(this.radImageButtonElementCategory_Click);
             // 
             // radRibbonBarGroup1
             // 
@@ -601,7 +583,6 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItemExit;
         private Telerik.WinControls.UI.RibbonTab ribbonTab1;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroupUser;
-        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroupCategory;
         private Telerik.WinControls.UI.RibbonTab ribbonTab2;
         private Telerik.WinControls.UI.RibbonTab ribbonTab3;
         private System.Windows.Forms.ImageList imageList1;
@@ -620,7 +601,6 @@
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup6;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup7;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup8;
-        private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElementCategory;
         private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElementCity;
         private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElementCondition;
         private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElementCustomer;
