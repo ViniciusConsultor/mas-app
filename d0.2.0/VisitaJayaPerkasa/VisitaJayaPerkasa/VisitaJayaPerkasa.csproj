@@ -65,24 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constant\VisitaJayaPerkasaApplication.cs" />
-    <Compile Include="Control\Category\CategoryEdit.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Control\Category\CategoryEdit.Designer.cs">
-      <DependentUpon>CategoryEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Control\Category\CategoryList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Control\Category\CategoryList.Designer.cs">
-      <DependentUpon>CategoryList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Control\Category\CategoryView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Control\Category\CategoryView.Designer.cs">
-      <DependentUpon>CategoryView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Control\City\CityEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -361,15 +343,6 @@
     <Compile Include="SqlRepository\SqlWareHouseRepository.cs" />
     <Compile Include="Utility\Log\Logging.cs" />
     <Compile Include="Utility\Utility.cs" />
-    <EmbeddedResource Include="Control\Category\CategoryEdit.resx">
-      <DependentUpon>CategoryEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Control\Category\CategoryList.resx">
-      <DependentUpon>CategoryList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Control\Category\CategoryView.resx">
-      <DependentUpon>CategoryView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Control\City\CityEdit.resx">
       <DependentUpon>CityEdit.cs</DependentUpon>
     </EmbeddedResource>

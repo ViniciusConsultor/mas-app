@@ -11,7 +11,6 @@ using Telerik.WinControls.UI;
 using Telerik.WinControls;
 using VisitaJayaPerkasa.Control.UserControls;
 using VisitaJayaPerkasa.Control.Customer;
-using VisitaJayaPerkasa.Control.CategoryControl;
 using VisitaJayaPerkasa.Control.City;
 using VisitaJayaPerkasa.Control.ConditionControl;
 using VisitaJayaPerkasa.Control.Pelayaran;
@@ -35,7 +34,6 @@ namespace VisitaJayaPerkasa.Form
 
             if (! UserProfile.user.RoleObj.RoleName.ToLower().Equals(Constant.VisitaJayaPerkasaApplication.roleAdmin)) {
                 radRibbonBarGroupUser.Visibility = ElementVisibility.Collapsed;
-                radRibbonBarGroupCategory.Visibility = ElementVisibility.Collapsed;
 
                 radMenuItemUser.Visibility = ElementVisibility.Collapsed;
                 radMenuItemRole.Visibility = ElementVisibility.Collapsed;
@@ -96,11 +94,6 @@ namespace VisitaJayaPerkasa.Form
         private void radImageButtonElementCustomer_Click(object sender, EventArgs e)
         {
             ShowUserControl(new CustomerList());
-        }
-
-        private void radImageButtonElementCategory_Click(object sender, EventArgs e)
-        {
-            ShowUserControl(new CategoryList());
         }
 
         private void radImageButtonElementCity_Click(object sender, EventArgs e)
