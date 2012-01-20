@@ -91,6 +91,7 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
 
         private void btnClearGrid_Click(object sender, EventArgs e)
         {
+            listPelayaranDetail.Clear();
             PelayaranDetailGridView.DataSource = null;
         }
 

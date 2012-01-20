@@ -54,6 +54,9 @@
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SupplierDetailGridView = new Telerik.WinControls.UI.RadGridView();
+            this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
+            this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
+            this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             ((System.ComponentModel.ISupportInitialize)(this.lblContactPerson)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEmail)).BeginInit();
@@ -71,6 +74,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierDetailGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
+            this.radSplitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
+            this.splitPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
+            this.splitPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblContactPerson
@@ -246,7 +255,7 @@
             this.groupBox1.Controls.Add(this.radLabel8);
             this.groupBox1.Controls.Add(this.lblCategoryName);
             this.groupBox1.Controls.Add(this.lblSupplierName);
-            this.groupBox1.Location = new System.Drawing.Point(14, 42);
+            this.groupBox1.Location = new System.Drawing.Point(15, 28);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(444, 213);
             this.groupBox1.TabIndex = 35;
@@ -257,11 +266,11 @@
             // 
             this.SupplierDetailGridView.BackColor = System.Drawing.SystemColors.Control;
             this.SupplierDetailGridView.Cursor = System.Windows.Forms.Cursors.Default;
-            this.SupplierDetailGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.SupplierDetailGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SupplierDetailGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.SupplierDetailGridView.ForeColor = System.Drawing.SystemColors.ControlText;
             this.SupplierDetailGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.SupplierDetailGridView.Location = new System.Drawing.Point(0, 383);
+            this.SupplierDetailGridView.Location = new System.Drawing.Point(0, 0);
             // 
             // 
             // 
@@ -301,15 +310,59 @@
             this.SupplierDetailGridView.Name = "SupplierDetailGridView";
             this.SupplierDetailGridView.ReadOnly = true;
             this.SupplierDetailGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.SupplierDetailGridView.Size = new System.Drawing.Size(695, 256);
+            this.SupplierDetailGridView.Size = new System.Drawing.Size(695, 305);
             this.SupplierDetailGridView.TabIndex = 36;
+            // 
+            // radSplitContainer1
+            // 
+            this.radSplitContainer1.Controls.Add(this.splitPanel1);
+            this.radSplitContainer1.Controls.Add(this.splitPanel2);
+            this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radSplitContainer1.Location = new System.Drawing.Point(0, 27);
+            this.radSplitContainer1.Name = "radSplitContainer1";
+            this.radSplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // 
+            // 
+            this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.radSplitContainer1.Size = new System.Drawing.Size(695, 612);
+            this.radSplitContainer1.TabIndex = 37;
+            this.radSplitContainer1.TabStop = false;
+            this.radSplitContainer1.Text = "radSplitContainer1";
+            // 
+            // splitPanel1
+            // 
+            this.splitPanel1.Controls.Add(this.groupBox1);
+            this.splitPanel1.Location = new System.Drawing.Point(0, 0);
+            this.splitPanel1.Name = "splitPanel1";
+            // 
+            // 
+            // 
+            this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanel1.Size = new System.Drawing.Size(695, 304);
+            this.splitPanel1.TabIndex = 0;
+            this.splitPanel1.TabStop = false;
+            this.splitPanel1.Text = "splitPanel1";
+            // 
+            // splitPanel2
+            // 
+            this.splitPanel2.Controls.Add(this.SupplierDetailGridView);
+            this.splitPanel2.Location = new System.Drawing.Point(0, 307);
+            this.splitPanel2.Name = "splitPanel2";
+            // 
+            // 
+            // 
+            this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanel2.Size = new System.Drawing.Size(695, 305);
+            this.splitPanel2.TabIndex = 1;
+            this.splitPanel2.TabStop = false;
+            this.splitPanel2.Text = "splitPanel2";
             // 
             // SupplierView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.SupplierDetailGridView);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.radSplitContainer1);
             this.Controls.Add(this.radToolStrip1);
             this.Name = "SupplierView";
             this.Size = new System.Drawing.Size(695, 639);
@@ -331,6 +384,12 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierDetailGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
+            this.radSplitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
+            this.splitPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
+            this.splitPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -358,5 +417,8 @@
         private Telerik.WinControls.UI.RadGridView SupplierDetailGridView;
 
         #endregion
+        private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
+        private Telerik.WinControls.UI.SplitPanel splitPanel1;
+        private Telerik.WinControls.UI.SplitPanel splitPanel2;
     }
 }
