@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.etDays = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.etCityCode = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.etCityName = new Telerik.WinControls.UI.RadTextBox();
@@ -38,16 +40,14 @@
             this.radToolStripItem1 = new Telerik.WinControls.UI.RadToolStripItem();
             this.radToolStripElement1 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
-            this.etDays = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.etDays)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etCityCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etCityName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etDays)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -64,6 +64,22 @@
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "City";
+            // 
+            // etDays
+            // 
+            this.etDays.Location = new System.Drawing.Point(129, 87);
+            this.etDays.Name = "etDays";
+            this.etDays.Size = new System.Drawing.Size(210, 20);
+            this.etDays.TabIndex = 13;
+            this.etDays.TabStop = false;
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(21, 87);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(32, 16);
+            this.radLabel3.TabIndex = 14;
+            this.radLabel3.Text = "Days";
             // 
             // etCityCode
             // 
@@ -153,22 +169,6 @@
             this.radToolStrip1.TabIndex = 24;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
-            // etDays
-            // 
-            this.etDays.Location = new System.Drawing.Point(129, 87);
-            this.etDays.Name = "etDays";
-            this.etDays.Size = new System.Drawing.Size(210, 20);
-            this.etDays.TabIndex = 13;
-            this.etDays.TabStop = false;
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.Location = new System.Drawing.Point(21, 87);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(32, 16);
-            this.radLabel3.TabIndex = 14;
-            this.radLabel3.Text = "Days";
-            // 
             // CityEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -179,13 +179,13 @@
             this.Size = new System.Drawing.Size(627, 468);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.etDays)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etCityCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etCityName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etDays)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
