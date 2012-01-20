@@ -204,7 +204,7 @@ namespace VisitaJayaPerkasa.Control.ConditionControl
 
         private void ConditionGridView_DoubleClick(object sender, EventArgs e)
         {
-            if (ShowConditions != null)
+            if (ConditionGridView.SelectedRows.Count == 1)
             {
                 GridViewRowInfo gridInfo = ConditionGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();

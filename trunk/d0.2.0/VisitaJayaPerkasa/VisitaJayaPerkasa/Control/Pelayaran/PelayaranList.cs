@@ -159,7 +159,7 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
 
         private void PelayaranGridView_DoubleClick(object sender, EventArgs e)
         {
-            if (showPelayaran != null)
+            if (PelayaranGridView.SelectedRows.Count == 1)
             {
                 GridViewRowInfo gridInfo = PelayaranGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();

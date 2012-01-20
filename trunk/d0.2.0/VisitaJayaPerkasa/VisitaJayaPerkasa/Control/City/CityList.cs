@@ -207,7 +207,7 @@ namespace VisitaJayaPerkasa.Control.City
 
         private void CityGridView_DoubleClick(object sender, EventArgs e)
         {
-            if (ShowCities != null)
+            if (CityGridView.SelectedRows.Count == 1)
             {
                 GridViewRowInfo gridInfo = CityGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();

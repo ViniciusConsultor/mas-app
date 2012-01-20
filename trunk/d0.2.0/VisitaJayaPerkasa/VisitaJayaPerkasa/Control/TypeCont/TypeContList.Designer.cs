@@ -135,7 +135,7 @@
             this.TypeContGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.TypeContGridView.ForeColor = System.Drawing.SystemColors.ControlText;
             this.TypeContGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.TypeContGridView.Location = new System.Drawing.Point(0, 76);
+            this.TypeContGridView.Location = new System.Drawing.Point(0, 54);
             // 
             // 
             // 
@@ -161,10 +161,10 @@
             this.TypeContGridView.Name = "TypeContGridView";
             this.TypeContGridView.ReadOnly = true;
             this.TypeContGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TypeContGridView.Size = new System.Drawing.Size(627, 242);
+            this.TypeContGridView.Size = new System.Drawing.Size(627, 264);
             this.TypeContGridView.TabIndex = 9;
             this.TypeContGridView.ThemeName = "ControlDefault";
-            this.TypeContGridView.DoubleClick += new System.EventHandler(this.PelayaranGridView_DoubleClick);
+            this.TypeContGridView.DoubleClick += new System.EventHandler(this.TypeContGridView_DoubleClick);
             // 
             // radButtonElementNext
             // 
@@ -228,7 +228,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(627, 76);
+            this.radToolStrip1.Size = new System.Drawing.Size(627, 54);
             this.radToolStrip1.TabIndex = 8;
             this.radToolStrip1.Text = "radToolStrip1";
             // 

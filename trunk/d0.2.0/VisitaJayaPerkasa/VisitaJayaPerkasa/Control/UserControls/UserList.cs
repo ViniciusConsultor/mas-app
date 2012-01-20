@@ -162,7 +162,7 @@ namespace VisitaJayaPerkasa.Control.UserControls
 
         private void UserGridView_DoubleClick(object sender, EventArgs e)
         {
-            if (ShowUser != null)
+            if (UserGridView.SelectedRows.Count == 1)
             {
                 GridViewRowInfo gridInfo = UserGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();
