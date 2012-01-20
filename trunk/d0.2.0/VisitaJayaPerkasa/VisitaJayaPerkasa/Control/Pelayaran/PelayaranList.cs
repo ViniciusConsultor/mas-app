@@ -173,7 +173,7 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
 
         private void radButtonElementRemove_Click(object sender, EventArgs e)
         {
-            if (showPelayaran != null)
+            if (PelayaranGridView.SelectedRows.Count == 1)
             {
                 sqlPelataranRepository = new SqlPelayaranRepository();
                 DialogResult dResult = MessageBox.Show(this, "Are you sure want delete this data ? ", "Confirmation", MessageBoxButtons.YesNo);

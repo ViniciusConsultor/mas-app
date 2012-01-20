@@ -175,8 +175,8 @@ namespace VisitaJayaPerkasa.Control.UserControls
         }
 
         private void radButtonElementRemove_Click(object sender, EventArgs e)
-        {/*
-            if (Users != null)
+        {
+            if (UserGridView.SelectedRows.Count == 1)
             {
                 sqlUserRepository = new SqlUserRepository();
                 DialogResult dResult = MessageBox.Show(this, "Are you sure want delete this data ? ", "Confirmation", MessageBoxButtons.YesNo);
@@ -184,21 +184,20 @@ namespace VisitaJayaPerkasa.Control.UserControls
                 {
                     GridViewRowInfo gridInfo = UserGridView.SelectedRows.First();
                     string id = gridInfo.Cells[0].Value.ToString();
-                    User user = ShowUser.Where(c => c.PersonID.ToString() == id).SingleOrDefault();
 
+                    SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "person_id" }, new object[] { id });
 
-                    Guid roleID = sqlUserRepository.GetUserRole(user.PersonID);
-                    if (roleID != Guid.Empty)
+                    if (sqlUserRepository.DeleteUser(sqlParam))
                     {
-                        user.RoleObj = new Role();
-                        user.RoleObj.ID = roleID;
+                        MessageBox.Show("Data Deleted !");
+                        LoadData();
                     }
+                    else
+                        MessageBox.Show("Cannot Delete Data !");
 
-                    sqlUserRepository = null;
-                    UserControl controllers = new UserEdit(user);
-                    Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
+                    sqlParam = null;
                 }
-            }*/
+            }
         }
 
         private void radButtonElementCreate_Click(object sender, EventArgs e)
