@@ -70,6 +70,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         command.Transaction = sqlTransaction;
                         command.Parameters.Add(sqlParam[0]);
                         n = command.ExecuteNonQuery();
+                        command.Parameters.Clear();
 
                         if (n > 0)
                         {

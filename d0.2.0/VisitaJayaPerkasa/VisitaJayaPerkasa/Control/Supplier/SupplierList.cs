@@ -161,7 +161,7 @@ namespace VisitaJayaPerkasa.Control.Supplier
 
         private void radButtonElementRemove_Click(object sender, EventArgs e)
         {
-            if (Showsuppliers != null)
+            if (SupplierGridView.SelectedRows.Count == 1)
             {
                 sqlSupplierRepository = new SqlSupplierRepository();
                 DialogResult dResult = MessageBox.Show(this, "Are you sure want delete master and detail this supplier ? ", "Confirmation", MessageBoxButtons.YesNo);

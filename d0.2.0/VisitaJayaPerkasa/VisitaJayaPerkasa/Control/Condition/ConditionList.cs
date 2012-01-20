@@ -179,7 +179,7 @@ namespace VisitaJayaPerkasa.Control.ConditionControl
 
         private void radButtonElementRemove_Click(object sender, EventArgs e)
         {
-            if (ShowConditions != null)
+            if (ConditionGridView.SelectedRows.Count == 1)
             {
                 sqlConditionRepository = new SqlConditionRepository();
                 DialogResult dResult = MessageBox.Show(this, "Are you sure want delete this data ? ", "Confirmation", MessageBoxButtons.YesNo);

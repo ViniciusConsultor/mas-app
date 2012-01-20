@@ -154,7 +154,7 @@ namespace VisitaJayaPerkasa.Control.City
 
         private void radButtonElementRemove_Click(object sender, EventArgs e)
         {
-            if (ShowCities != null)
+            if (CityGridView.SelectedRows.Count == 1)
             {
                 sqlCityRepository = new SqlCityRepository();
                 DialogResult dResult = MessageBox.Show(this, "Are you sure want delete this data ? ", "Confirmation", MessageBoxButtons.YesNo);

@@ -196,7 +196,7 @@ namespace VisitaJayaPerkasa.Control.Customer
 
         private void radButtonElementRemove_Click(object sender, EventArgs e)
         {
-            if (showListCustomer != null)
+            if (CustomerGridView.SelectedRows.Count == 1)
             {
                 sqlCustomerRepository = new SqlCustomerRepository();
                 DialogResult dResult = MessageBox.Show(this, "Are you sure want delete master and detail this customer ? ", "Confirmation", MessageBoxButtons.YesNo);

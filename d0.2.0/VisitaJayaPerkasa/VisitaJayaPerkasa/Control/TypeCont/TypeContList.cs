@@ -163,7 +163,7 @@ namespace VisitaJayaPerkasa.Control.TypeCont
 
         private void radButtonElementRemove_Click(object sender, EventArgs e)
         {
-            if (ShowTypeCont != null)
+            if (TypeContGridView.SelectedRows.Count == 1)
             {
                 sqlTypeContRepository = new SqlTypeContRepository();
                 DialogResult dResult = MessageBox.Show(this, "Are you sure want delete this data ? ", "Confirmation", MessageBoxButtons.YesNo);
