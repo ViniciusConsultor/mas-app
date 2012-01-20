@@ -169,7 +169,7 @@ namespace VisitaJayaPerkasa.Control.Warehouse
 
         private void WareHouseGridView_DoubleClick(object sender, EventArgs e)
         {
-            if (ShowWareHouse != null)
+            if (WareHouseGridView.SelectedRows.Count == 1)
             {
                 GridViewRowInfo gridInfo = WareHouseGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();

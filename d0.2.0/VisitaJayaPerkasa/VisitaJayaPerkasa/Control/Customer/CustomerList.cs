@@ -169,7 +169,7 @@ namespace VisitaJayaPerkasa.Control.Customer
 
         private void CustomerGridView_DoubleClick(object sender, EventArgs e)
         {
-            if (showListCustomer != null)
+            if (CustomerGridView.SelectedRows.Count == 1)
             {
                 GridViewRowInfo gridInfo = CustomerGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();

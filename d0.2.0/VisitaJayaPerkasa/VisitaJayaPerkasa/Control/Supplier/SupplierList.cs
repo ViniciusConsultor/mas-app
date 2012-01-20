@@ -206,7 +206,7 @@ namespace VisitaJayaPerkasa.Control.Supplier
 
         private void SupplierGridView_DoubleClick(object sender, EventArgs e)
         {
-            if (Showsuppliers != null)
+            if (SupplierGridView.SelectedRows.Count == 1)
             {
                 GridViewRowInfo gridInfo = SupplierGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();

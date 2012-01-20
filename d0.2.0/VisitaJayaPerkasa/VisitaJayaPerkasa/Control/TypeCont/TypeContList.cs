@@ -160,19 +160,6 @@ namespace VisitaJayaPerkasa.Control.TypeCont
             LoadData();
         }
 
-        private void PelayaranGridView_DoubleClick(object sender, EventArgs e)
-        {
-            if (ShowTypeCont != null)
-            {
-                GridViewRowInfo gridInfo = TypeContGridView.SelectedRows.First();
-                string id = gridInfo.Cells[0].Value.ToString();
-                VisitaJayaPerkasa.Entities.TypeCont tempTypeCont = ShowTypeCont.Where(c => c.ID.ToString().Equals(id)).FirstOrDefault();
-
-
-                UserControl controllers = new TypeContView(tempTypeCont);
-                Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
-            }
-        }
 
         private void radButtonElementRemove_Click(object sender, EventArgs e)
         {
@@ -215,6 +202,20 @@ namespace VisitaJayaPerkasa.Control.TypeCont
                 VisitaJayaPerkasa.Entities.TypeCont tempTypeCont = ShowTypeCont.Where(c => c.ID.ToString() == id).SingleOrDefault();
 
                 UserControl controllers = new TypeContEdit(tempTypeCont);
+                Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
+            }
+        }
+
+        private void TypeContGridView_DoubleClick(object sender, EventArgs e)
+        {
+            if (TypeContGridView.SelectedRows.Count == 1)
+            {
+                GridViewRowInfo gridInfo = TypeContGridView.SelectedRows.First();
+                string id = gridInfo.Cells[0].Value.ToString();
+                VisitaJayaPerkasa.Entities.TypeCont tempTypeCont = ShowTypeCont.Where(c => c.ID.ToString().Equals(id)).FirstOrDefault();
+
+
+                UserControl controllers = new TypeContView(tempTypeCont);
                 Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
             }
         }
