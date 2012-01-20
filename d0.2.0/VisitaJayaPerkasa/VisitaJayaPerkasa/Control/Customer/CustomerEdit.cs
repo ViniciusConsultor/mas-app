@@ -108,6 +108,7 @@ namespace VisitaJayaPerkasa.Control.Customer
 
         private void btnClearGrid_Click(object sender, EventArgs e)
         {
+            listCustomerDetail.Clear();
             CustomerDetailGridView.DataSource = null;
         }
 

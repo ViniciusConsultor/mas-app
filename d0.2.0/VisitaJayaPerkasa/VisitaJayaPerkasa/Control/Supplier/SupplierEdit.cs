@@ -112,6 +112,7 @@ namespace VisitaJayaPerkasa.Control.Supplier
 
         private void btnClearGrid_Click(object sender, EventArgs e)
         {
+            listSupplierDetail.Clear();
             supplierDetailGridView.DataSource = null;
         }
 
