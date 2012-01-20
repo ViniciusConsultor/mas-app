@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridSortField gridSortField2 = new Telerik.WinControls.UI.GridSortField();
             this.radButtonElementEdit = new Telerik.WinControls.UI.RadButtonElement();
             this.radToolStripElement2 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radToolStripItem4 = new Telerik.WinControls.UI.RadToolStripItem();
@@ -109,6 +109,7 @@
             this.radComboBoxElement.Sorted = Telerik.WinControls.Enumerations.SortStyle.Ascending;
             this.radComboBoxElement.Text = "";
             this.radComboBoxElement.Value = null;
+            this.radComboBoxElement.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.radComboBoxElement_KeyPress);
             // 
             // radComboBoxItem1
             // 
@@ -242,7 +243,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(633, 54);
+            this.radToolStrip1.Size = new System.Drawing.Size(633, 76);
             this.radToolStrip1.TabIndex = 4;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
@@ -254,43 +255,43 @@
             this.CityGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.CityGridView.ForeColor = System.Drawing.SystemColors.ControlText;
             this.CityGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.CityGridView.Location = new System.Drawing.Point(0, 54);
+            this.CityGridView.Location = new System.Drawing.Point(0, 76);
             // 
             // 
             // 
             this.CityGridView.MasterGridViewTemplate.AllowAddNewRow = false;
-            gridViewTextBoxColumn1.FieldAlias = "ID";
-            gridViewTextBoxColumn1.FieldName = "ID";
-            gridViewTextBoxColumn1.HeaderText = "ID";
-            gridViewTextBoxColumn1.IsVisible = false;
-            gridViewTextBoxColumn1.UniqueName = "ID";
-            gridViewTextBoxColumn2.FieldAlias = "CityCode";
-            gridViewTextBoxColumn2.FieldName = "CityCode";
-            gridViewTextBoxColumn2.HeaderText = "City Code";
-            gridViewTextBoxColumn2.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            gridViewTextBoxColumn2.UniqueName = "CityCode";
-            gridViewTextBoxColumn2.Width = 119;
-            gridViewTextBoxColumn3.FieldAlias = "CityName";
-            gridViewTextBoxColumn3.FieldName = "CityName";
-            gridViewTextBoxColumn3.HeaderText = "City Name";
-            gridViewTextBoxColumn3.UniqueName = "CityName";
-            gridViewTextBoxColumn3.Width = 201;
-            gridViewTextBoxColumn4.FieldName = "Days";
-            gridViewTextBoxColumn4.HeaderText = "Days";
-            gridViewTextBoxColumn4.UniqueName = "Days";
-            gridViewTextBoxColumn4.Width = 110;
-            this.CityGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
-            this.CityGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
-            this.CityGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);
-            this.CityGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn4);
-            gridSortField1.FieldAlias = "CityCode";
-            gridSortField1.FieldName = "CityCode";
-            gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            this.CityGridView.MasterGridViewTemplate.SortExpressions.Add(gridSortField1);
+            gridViewTextBoxColumn5.FieldAlias = "ID";
+            gridViewTextBoxColumn5.FieldName = "ID";
+            gridViewTextBoxColumn5.HeaderText = "ID";
+            gridViewTextBoxColumn5.IsVisible = false;
+            gridViewTextBoxColumn5.UniqueName = "ID";
+            gridViewTextBoxColumn6.FieldAlias = "CityCode";
+            gridViewTextBoxColumn6.FieldName = "CityCode";
+            gridViewTextBoxColumn6.HeaderText = "City Code";
+            gridViewTextBoxColumn6.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            gridViewTextBoxColumn6.UniqueName = "CityCode";
+            gridViewTextBoxColumn6.Width = 119;
+            gridViewTextBoxColumn7.FieldAlias = "CityName";
+            gridViewTextBoxColumn7.FieldName = "CityName";
+            gridViewTextBoxColumn7.HeaderText = "City Name";
+            gridViewTextBoxColumn7.UniqueName = "CityName";
+            gridViewTextBoxColumn7.Width = 201;
+            gridViewTextBoxColumn8.FieldName = "Days";
+            gridViewTextBoxColumn8.HeaderText = "Days";
+            gridViewTextBoxColumn8.UniqueName = "Days";
+            gridViewTextBoxColumn8.Width = 110;
+            this.CityGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn5);
+            this.CityGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn6);
+            this.CityGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn7);
+            this.CityGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn8);
+            gridSortField2.FieldAlias = "CityCode";
+            gridSortField2.FieldName = "CityCode";
+            gridSortField2.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            this.CityGridView.MasterGridViewTemplate.SortExpressions.Add(gridSortField2);
             this.CityGridView.Name = "CityGridView";
             this.CityGridView.ReadOnly = true;
             this.CityGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.CityGridView.Size = new System.Drawing.Size(633, 351);
+            this.CityGridView.Size = new System.Drawing.Size(633, 329);
             this.CityGridView.TabIndex = 5;
             this.CityGridView.ThemeName = "ControlDefault";
             this.CityGridView.DoubleClick += new System.EventHandler(this.CityGridView_DoubleClick);

@@ -140,7 +140,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
 
             if (cboTypeSupplier.Text.ToLower().Equals("dooring agent")) {
-                List<Recipient> tempListRecipient = sqlRecipientRepository.GetRecipient();
+                List<VisitaJayaPerkasa.Entities.Recipient> tempListRecipient = sqlRecipientRepository.GetRecipient();
                 ((GridViewComboBoxColumn)this.PriceListGridView.Columns[7]).DataSource = tempListRecipient;
                 ((GridViewComboBoxColumn)this.PriceListGridView.Columns[7]).DisplayMember = "Name";
                 ((GridViewComboBoxColumn)this.PriceListGridView.Columns[7]).ValueMember = "ID";

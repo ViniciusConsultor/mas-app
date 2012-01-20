@@ -75,7 +75,6 @@ namespace VisitaJayaPerkasa.Form
         private void radMenuItemExit_Click(object sender, EventArgs e)
         {
             this.Close();
-            //VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.loginForm.Close();
         }
 
         private void radMenuItemLogOut_Click(object sender, EventArgs e)
@@ -144,6 +143,11 @@ namespace VisitaJayaPerkasa.Form
         private void radImageButtonElement4_Click(object sender, EventArgs e)
         {
             ShowUserControl(new VisitaJayaPerkasa.Control.PriceListCustomer.PriceListCustomer());
+        }
+
+        private void radRibbonBarGroupRecipient_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new VisitaJayaPerkasa.Control.Recipient.RecipientList());
         }
     }
 }

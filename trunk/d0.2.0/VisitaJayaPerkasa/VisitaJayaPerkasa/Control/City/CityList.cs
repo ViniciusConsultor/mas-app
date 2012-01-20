@@ -217,5 +217,10 @@ namespace VisitaJayaPerkasa.Control.City
                 Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
             }
         }
+
+        private void radComboBoxElement_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(0);
+        }
     }
 }

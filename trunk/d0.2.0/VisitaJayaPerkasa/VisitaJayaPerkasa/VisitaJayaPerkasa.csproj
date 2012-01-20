@@ -149,6 +149,24 @@
     <Compile Include="Control\PriceList\PriceList.Designer.cs">
       <DependentUpon>PriceList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Control\Recipient\RecipientEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Recipient\RecipientEdit.Designer.cs">
+      <DependentUpon>RecipientEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Recipient\RecipientList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Recipient\RecipientList.Designer.cs">
+      <DependentUpon>RecipientList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Recipient\RecipientView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Recipient\RecipientView.Designer.cs">
+      <DependentUpon>RecipientView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Control\Schedule\ScheduleEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -381,6 +399,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Control\PriceListCustomer\PriceListCustomer.resx">
       <DependentUpon>PriceListCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Recipient\RecipientEdit.resx">
+      <DependentUpon>RecipientEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Recipient\RecipientList.resx">
+      <DependentUpon>RecipientList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\Recipient\RecipientView.resx">
+      <DependentUpon>RecipientView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\Schedule\ScheduleView.resx">
       <DependentUpon>ScheduleView.cs</DependentUpon>

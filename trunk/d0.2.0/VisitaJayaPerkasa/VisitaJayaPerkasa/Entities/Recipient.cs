@@ -8,6 +8,10 @@ namespace VisitaJayaPerkasa.Entities
     public class Recipient
     {
         public Guid ID { get; set; }
+        public Guid SupplierID { get; set; }
         public string Name { get; set; }
+
+        //Field for view
+        public string SupplierName { get; set; }
     }
 }

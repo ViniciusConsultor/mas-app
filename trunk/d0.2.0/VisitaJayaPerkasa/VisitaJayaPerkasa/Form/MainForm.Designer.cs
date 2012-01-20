@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            Telerik.WinControls.UI.GridSortField gridSortField2 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.radMenuItem7 = new Telerik.WinControls.UI.RadMenuItem();
             this.radRibbonBar1 = new Telerik.WinControls.UI.RadRibbonBar();
@@ -78,6 +78,8 @@
             this.radLabelElementWelcome = new Telerik.WinControls.UI.RadLabelElement();
             this.radStatusStrip = new Telerik.WinControls.UI.RadStatusStrip();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.radRibbonBarGroup4 = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.radRibbonBarGroupRecipient = new Telerik.WinControls.UI.RadImageButtonElement();
             ((System.ComponentModel.ISupportInitialize)(this.radRibbonBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewTemplate1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip)).BeginInit();
@@ -102,6 +104,7 @@
             this.imageList1.Images.SetKeyName(11, "price.jpeg");
             this.imageList1.Images.SetKeyName(12, "schedule.jpeg");
             this.imageList1.Images.SetKeyName(13, "transaction.jpeg");
+            this.imageList1.Images.SetKeyName(14, "recipient.jpg");
             // 
             // radMenuItem7
             // 
@@ -184,7 +187,8 @@
             this.radRibbonBarGroup5,
             this.radRibbonBarGroup6,
             this.radRibbonBarGroup7,
-            this.radRibbonBarGroup8});
+            this.radRibbonBarGroup8,
+            this.radRibbonBarGroup4});
             this.ribbonTab1.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.ribbonTab1.Name = "ribbonTab1";
             this.ribbonTab1.StretchHorizontally = false;
@@ -512,10 +516,10 @@
             // gridViewTemplate1
             // 
             this.gridViewTemplate1.AllowAddNewRow = false;
-            gridSortField2.FieldAlias = "Tanggal";
-            gridSortField2.FieldName = "Tanggal";
-            gridSortField2.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            this.gridViewTemplate1.SortExpressions.Add(gridSortField2);
+            gridSortField1.FieldAlias = "Tanggal";
+            gridSortField1.FieldName = "Tanggal";
+            gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            this.gridViewTemplate1.SortExpressions.Add(gridSortField1);
             // 
             // radLabelElementWelcome
             // 
@@ -549,6 +553,21 @@
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(971, 418);
             this.MainPanel.TabIndex = 2;
+            // 
+            // radRibbonBarGroup4
+            // 
+            this.radRibbonBarGroup4.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radRibbonBarGroupRecipient});
+            this.radRibbonBarGroup4.Name = "radRibbonBarGroup4";
+            this.radRibbonBarGroup4.Text = "Recipient";
+            // 
+            // radRibbonBarGroupRecipient
+            // 
+            this.radRibbonBarGroupRecipient.Image = ((System.Drawing.Image)(resources.GetObject("radRibbonBarGroupRecipient.Image")));
+            this.radRibbonBarGroupRecipient.ImageKey = "recipient.jpg";
+            this.radRibbonBarGroupRecipient.Name = "radRibbonBarGroupRecipient";
+            this.radRibbonBarGroupRecipient.Text = "";
+            this.radRibbonBarGroupRecipient.Click += new System.EventHandler(this.radRibbonBarGroupRecipient_Click);
             // 
             // MainForm
             // 
@@ -624,5 +643,7 @@
         private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElement3;
         private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup12;
         private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElement4;
+        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup4;
+        private Telerik.WinControls.UI.RadImageButtonElement radRibbonBarGroupRecipient;
     }
 }

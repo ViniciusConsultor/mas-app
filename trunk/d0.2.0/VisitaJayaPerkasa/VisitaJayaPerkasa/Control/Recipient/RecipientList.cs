@@ -7,16 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using VisitaJayaPerkasa.SqlRepository;
-using System.Data.SqlClient;
 using Telerik.WinControls.UI;
+using System.Data.SqlClient;
 
-namespace VisitaJayaPerkasa.Control.Pelayaran
+namespace VisitaJayaPerkasa.Control.Recipient
 {
-    public partial class PelayaranList : UserControl
+    public partial class RecipientList : UserControl
     {
-        private SqlPelayaranRepository sqlPelataranRepository;
-        private List<VisitaJayaPerkasa.Entities.Pelayaran> pelayaran;
-        private List<VisitaJayaPerkasa.Entities.Pelayaran> showPelayaran;
+        private SqlRecipientRepository sqlRecipientRepository;
+        private List<VisitaJayaPerkasa.Entities.Recipient> recipient;
+        private List<VisitaJayaPerkasa.Entities.Recipient> showRecipient;
 
         private int currentPage;
         private int pageSize;
@@ -24,7 +24,7 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
 
         private BackgroundWorker backgroundWorker;
 
-        public PelayaranList()
+        public RecipientList()
         {
             InitializeComponent();
             pageSize = 15;
@@ -74,33 +74,36 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
 
         public void LoadDataInBackground()
         {
-            sqlPelataranRepository = new SqlPelayaranRepository();
-            pelayaran = null;
+            sqlRecipientRepository = new SqlRecipientRepository();
+            recipient = null;
 
             string searchValue = radTextBoxElementSearchWord.Text;
             string searchKey = radComboBoxElement.Text;
 
-            pelayaran = sqlPelataranRepository.GetPelayaran();
-            if (pelayaran != null)
+            recipient = sqlRecipientRepository.GetRecipient();
+            if (recipient != null)
             {
                 if (!string.IsNullOrEmpty(searchValue) && !string.IsNullOrEmpty(searchKey))
                 {
                     switch (searchKey)
                     {
                         case "Name":
-                            showPelayaran = pelayaran.Where(c => c.Name.Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.Pelayaran>();
+                            showRecipient = recipient.Where(c => c.Name.Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.Recipient>();
+                            break;
+                        case "Supplier Name" :
+                            showRecipient = recipient.Where(c => c.SupplierName.Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.Recipient>();
                             break;
                     }
                 }
                 else
-                    showPelayaran = pelayaran;
+                    showRecipient = recipient;
             }
             else
-                showPelayaran = null;
+                showRecipient = null;
 
-            if (showPelayaran != null)
+            if (showRecipient != null)
             {
-                totalPage = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(showPelayaran.Count() / Convert.ToDecimal(pageSize))));
+                totalPage = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(showRecipient.Count() / Convert.ToDecimal(pageSize))));
                 currentPage = 1;
             }
             else
@@ -111,12 +114,12 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
         public void RefreshGrid()
         {
             if (totalPage != 0)
-                showPelayaran = showPelayaran.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList<VisitaJayaPerkasa.Entities.Pelayaran>();
+                showRecipient = showRecipient.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList<VisitaJayaPerkasa.Entities.Recipient>();
             else
-                showPelayaran = null;
+                showRecipient = null;
 
             radToolStripLabelIndexing.Text = currentPage + " / " + totalPage;
-            PelayaranGridView.DataSource = showPelayaran;
+            RecipientGridView.DataSource = showRecipient;
 
             Constant.VisitaJayaPerkasaApplication.pBarForm.Invoke
             (
@@ -156,34 +159,21 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
         {
             LoadData();
         }
-
-        private void PelayaranGridView_DoubleClick(object sender, EventArgs e)
-        {
-            if (PelayaranGridView.SelectedRows.Count == 1)
-            {
-                GridViewRowInfo gridInfo = PelayaranGridView.SelectedRows.First();
-                string id = gridInfo.Cells[0].Value.ToString();
-                VisitaJayaPerkasa.Entities.Pelayaran pelayaran = showPelayaran.Where(c => c.ID.ToString().Equals(id)).FirstOrDefault();
-
-
-                UserControl controllers = new PelayaranView(pelayaran);
-                Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
-            }
-        }
+         
 
         private void radButtonElementRemove_Click(object sender, EventArgs e)
         {
-            if (PelayaranGridView.SelectedRows.Count == 1)
+            if (RecipientGridView.SelectedRows.Count == 1)
             {
-                sqlPelataranRepository = new SqlPelayaranRepository();
+                sqlRecipientRepository = new SqlRecipientRepository();
                 DialogResult dResult = MessageBox.Show(this, "Are you sure want delete this data ? ", "Confirmation", MessageBoxButtons.YesNo);
                 if (dResult == DialogResult.Yes)
                 {
-                    GridViewRowInfo gridInfo = PelayaranGridView.SelectedRows.First();
+                    GridViewRowInfo gridInfo = RecipientGridView.SelectedRows.First();
                     string id = gridInfo.Cells[0].Value.ToString();
-                    SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "pelayaran_id" }, new object[] { id });
+                    SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "recipient_id" }, new object[] { id });
 
-                    if (sqlPelataranRepository.DeletePelayaran(sqlParam))
+                    if (sqlRecipientRepository.DeleteRecipient(sqlParam))
                     {
                         MessageBox.Show("Data Deleted !");
                         LoadData();
@@ -196,22 +186,36 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
             }
         }
 
+        private void RecipientGridView_DoubleClick(object sender, EventArgs e)
+        {
+            if (RecipientGridView.SelectedRows.Count == 1)
+            {
+                GridViewRowInfo gridInfo = RecipientGridView.SelectedRows.First();
+                string id = gridInfo.Cells[0].Value.ToString();
+                VisitaJayaPerkasa.Entities.Recipient recipient = showRecipient.Where(c => c.ID.ToString().Equals(id)).FirstOrDefault();
+
+
+                UserControl controllers = new RecipientView(recipient);
+                Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
+            }
+        }
+
         private void radButtonElementCreate_Click(object sender, EventArgs e)
         {
-            VisitaJayaPerkasa.Entities.Pelayaran pelayaran = null;
-            UserControl controllers = new PelayaranEdit(pelayaran);
+            VisitaJayaPerkasa.Entities.Recipient recipient = null;
+            UserControl controllers = new RecipientEdit(recipient);
             Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
         }
 
         private void radButtonElementEdit_Click(object sender, EventArgs e)
         {
-            if (PelayaranGridView.SelectedRows.Count == 1)
+            if (RecipientGridView.SelectedRows.Count == 1)
             {
-                GridViewRowInfo gridInfo = PelayaranGridView.SelectedRows.First();
+                GridViewRowInfo gridInfo = RecipientGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();
-                VisitaJayaPerkasa.Entities.Pelayaran pelayaran = showPelayaran.Where(c => c.ID.ToString() == id).SingleOrDefault();
+                VisitaJayaPerkasa.Entities.Recipient recipient = showRecipient.Where(c => c.ID.ToString() == id).SingleOrDefault();
 
-                UserControl controllers = new PelayaranEdit(pelayaran);
+                UserControl controllers = new RecipientEdit(recipient);
                 Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
             }
         }

@@ -55,6 +55,43 @@ namespace VisitaJayaPerkasa.SqlRepository
             return listSupplier;
         }
 
+        public List<Supplier> GetListSupplierForRecipient()
+        {
+            List<Supplier> listSupplier = null;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT s.supplier_id, s.supplier_name FROM [Supplier] s WHERE (s.deleted is null OR s.deleted = '0') ", con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            Supplier supplier = new Supplier();
+                            supplier.Id = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                            supplier.SupplierName = (Utility.Utility.IsDBNull(reader.GetValue(1))) ? null : reader.GetString(1);
+
+                            if (listSupplier == null)
+                                listSupplier = new List<Supplier>();
+
+                            listSupplier.Add(supplier);
+                            supplier = null;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlSupplierRepository.cs - GetListSupplierForRecipient() " + e.Message);
+            }
+
+            return listSupplier;
+        }
+
         public List<SupplierDetail> ListSupplierDetail(Guid ID)
         {
             List<SupplierDetail> listSupplierrDetail = null;
