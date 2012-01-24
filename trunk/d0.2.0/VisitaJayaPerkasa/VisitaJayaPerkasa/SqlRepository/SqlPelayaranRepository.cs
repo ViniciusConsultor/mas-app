@@ -91,6 +91,50 @@ namespace VisitaJayaPerkasa.SqlRepository
             return listVessel;
         }
 
+        public List<PelayaranDetail> GetVessels(string destination)
+        {
+            List<PelayaranDetail> listVessel = null;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT DISTINCT pd.vessel_code, pd.vessel_name, pd.status_pinjaman, p.name, pd.pelayaran_detail_id " +
+                        "FROM [Pelayaran_Detail] pd " +
+                        "INNER JOIN [PELAYARAN] p ON p.pelayaran_id = pd.pelayaran_id " +
+                        "INNER JOIN [SCHEDULE] s ON s.pelayaran_id = pd.pelayaran_id " +
+                        "WHERE pd.deleted is null OR pd.deleted = '0' " +
+                        "AND s.tujuan = '" + Utility.Utility.ConvertToUUID(destination) + "' " + 
+                        "AND pd.vessel_code = s.vessel_code ", con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            PelayaranDetail pelayaranDetail = new PelayaranDetail();
+                            pelayaranDetail.PelayaranDetailID = Guid.Parse(reader.GetValue(4).ToString());
+                            pelayaranDetail.VesselCode = reader.GetValue(0).ToString();
+                            pelayaranDetail.VesselName = (reader.GetBoolean(2)) ? (reader.GetString(1) + " - " + reader.GetString(3) + " [loan]") : reader.GetString(1) + " - " + reader.GetString(3);
+
+                            if (listVessel == null)
+                                listVessel = new List<PelayaranDetail>();
+
+                            listVessel.Add(pelayaranDetail);
+                            pelayaranDetail = null;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlPelayaranRepository.cs - GetVessels() " + e.Message);
+            }
+
+            return listVessel;
+        }
+
         public bool DeletePelayaran(SqlParameter[] sqlParam)
         {
             int n = 0;

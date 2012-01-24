@@ -114,7 +114,11 @@ namespace VisitaJayaPerkasa.SqlRepository
                 con.Open();
                 string strQry = "Select tc.type_name, pd.vessel_name, co.city_name as origin, cd.city_name as destination, " +
                         "cnd.condition_name as condition, ctd.no_seal, ctd.truck_number, ctd.voy, " +
-                        "ctd.stuffing_date, ctd.stuffing_place, ctd.etd, ctd.td, ctd.eta, ctd.ta, ctd.unloading, ctd.price " +
+                        "ctd.stuffing_date, ctd.stuffing_place, ctd.etd, ctd.td, ctd.eta, ctd.ta, ctd.unloading, ctd.price, " +
+                         "r.recipient_name, ctd.jenis_barang, ctd.no_container, ctd.quantity " +
+                        "ctd.sj1, ctd.sj2, ctd.sj3, ctd.sj4, ctd.sj5, ctd.sj6, ctd.sj7, ctd.sj8, ctd.sj9, ctd.sj10, " +
+                        "ctd.sj11, ctd.sj12, ctd.sj13, ctd.sj14, ctd.sj15, ctd.sj16, ctd.sj17, ctd.sj18, ctd.sj19, ctd.sj20, " +
+                        "ctd.sj21, ctd.sj22, ctd.sj23, ctd.sj24, ctd.sj25, ctd.terima_toko, ctd.keterangan, ctd.no_ba " +
                         "FROM [Customer_Trans_Detail] ctd " +
                         "INNER JOIN [Type_Cont] tc ON tc.type_id = ctd.type_id " +
                         "INNER JOIN [Pelayaran_Detail] pd ON pd.pelayaran_detail_id = ctd.pelayaran_detail_id " +
@@ -122,6 +126,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "INNER JOIN [City] co ON co.city_id = ctd.origin " +
                         "INNER JOIN [City] cd ON cd.city_id = ctd.destination " +
                         "INNER JOIN [Condition] cnd ON cnd.condition_id = ctd.condition_id " +
+                        "INNER JOIN [RECIPIENT] r ON r.recipient_id = ctd.recipient_id " +
                         "Where (ctd.deleted is null OR ctd.deleted = '0') " +
                         "AND ctd.customer_trans_id = '" + ID + "'";
                 SqlDataAdapter da = new SqlDataAdapter(strQry, VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString);
@@ -152,7 +157,11 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "ctd.destination, ctd.condition_id, ctd.no_seal, ctd.truck_number, ctd.voy, " +
                         "ctd.stuffing_date, ctd.stuffing_place, ctd.etd, ctd.td, ctd.eta, ctd.ta, ctd.unloading, ctd.price, " +
                         "tc.type_name, p.name as pelayaran_name, pd.vessel_name, co.city_name as origin, cd.city_name as destination, " +
-                        "cnd.condition_name as condition, pd.status_pinjaman, w.[address] " +
+                        "cnd.condition_name as condition, pd.status_pinjaman, w.[address], " +
+                        "ctd.recipient_id, r.recipient_name, ctd.jenis_barang, ctd.no_container, ctd.quantity " +
+                        "ctd.sj1, ctd.sj2, ctd.sj3, ctd.sj4, ctd.sj5, ctd.sj6, ctd.sj7, ctd.sj8, ctd.sj9, ctd.sj10, " +
+                        "ctd.sj11, ctd.sj12, ctd.sj13, ctd.sj14, ctd.sj15, ctd.sj16, ctd.sj17, ctd.sj18, ctd.sj19, ctd.sj20, " +
+                        "ctd.sj21, ctd.sj22, ctd.sj23, ctd.sj24, ctd.sj25, ctd.terima_toko, ctd.keterangan, ctd.no_ba " +
                         "FROM [Customer_Trans_Detail] ctd " +
                         "INNER JOIN [Type_Cont] tc ON tc.type_id = ctd.type_id " +
                         "INNER JOIN [Pelayaran_Detail] pd ON pd.pelayaran_detail_id = ctd.pelayaran_detail_id " +
@@ -161,6 +170,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "INNER JOIN [City] cd ON cd.city_id = ctd.destination " +
                         "INNER JOIN [Condition] cnd ON cnd.condition_id = ctd.condition_id " +
                         "INNER JOIN [Warehouse] w ON w.stuffing_place_id = ctd.stuffing_place " +
+                        "INNER JOIN [RECIPIENT] r ON r.recipient_id = ctd.recipient_id " +
                         "Where (ctd.deleted is null OR ctd.deleted = '0') " +
                         "AND ctd.customer_trans_id = '" + ID + "'"
                         , con))
@@ -194,6 +204,40 @@ namespace VisitaJayaPerkasa.SqlRepository
                             customerTransDetail.DestinationName = reader.GetString(22);
                             customerTransDetail.ConditionName = reader.GetString(23);
                             customerTransDetail.WarehouseName = reader.GetString(25);
+
+                            customerTransDetail.RecipientID = Utility.Utility.ConvertToUUID(reader.GetString(26));
+                            customerTransDetail.RecipientName = reader.GetString(27);
+                            customerTransDetail.JenisBarang = reader.GetString(28);
+                            customerTransDetail.NoContainer = reader.GetString(29);
+                            customerTransDetail.Quantity = reader.GetString(30);
+                            customerTransDetail.Sj1 = reader.GetString(31);
+                            customerTransDetail.Sj2 = reader.GetString(32);
+                            customerTransDetail.Sj3 = reader.GetString(33);
+                            customerTransDetail.Sj4 = reader.GetString(34);
+                            customerTransDetail.Sj5 = reader.GetString(35);
+                            customerTransDetail.Sj6 = reader.GetString(36);
+                            customerTransDetail.Sj7 = reader.GetString(37);
+                            customerTransDetail.Sj8 = reader.GetString(38);
+                            customerTransDetail.Sj9 = reader.GetString(39);
+                            customerTransDetail.Sj10 = reader.GetString(40);
+                            customerTransDetail.Sj11 = reader.GetString(41);
+                            customerTransDetail.Sj12 = reader.GetString(42);
+                            customerTransDetail.Sj13 = reader.GetString(43);
+                            customerTransDetail.Sj14 = reader.GetString(44);
+                            customerTransDetail.Sj15 = reader.GetString(45);
+                            customerTransDetail.Sj16 = reader.GetString(46);
+                            customerTransDetail.Sj17 = reader.GetString(47);
+                            customerTransDetail.Sj18 = reader.GetString(48);
+                            customerTransDetail.Sj19 = reader.GetString(49);
+                            customerTransDetail.Sj20 = reader.GetString(50);
+                            customerTransDetail.Sj21 = reader.GetString(51);
+                            customerTransDetail.Sj22 = reader.GetString(52);
+                            customerTransDetail.Sj23 = reader.GetString(53);
+                            customerTransDetail.Sj24 = reader.GetString(54);
+                            customerTransDetail.Sj25 = reader.GetString(55);
+                            customerTransDetail.TerimaToko = reader.GetDateTime(56);
+                            customerTransDetail.Keterangan = reader.GetString(57);
+                            customerTransDetail.NoBA = reader.GetString(58);
 
                             if (listCustomerTransDetail == null)
                                 listCustomerTransDetail = new List<CustomerTransDetail>();
@@ -243,10 +287,42 @@ namespace VisitaJayaPerkasa.SqlRepository
                             if(n > 0){
                                 int k = 0;
                                 int value = 0;
-                                for(int i=0; i<sqlParamInsert.Length/19; i++){
+                                for(int i=0; i<sqlParamInsert.Length/51; i++){
                                     n = 0;
                                     using (SqlCommand command = new SqlCommand(
                                         "Insert into [Customer_Trans_Detail] values (" +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
                                         sqlParamInsert[k++].ParameterName + ", " +
                                         sqlParamInsert[k++].ParameterName + ", " +
                                         sqlParamInsert[k++].ParameterName + ", " +
@@ -270,7 +346,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                                     {
                                         command.Transaction = sqlTransaction;
 
-                                        for (int j = 0; j < 19; j++)
+                                        for (int j = 0; j < 51; j++)
                                             command.Parameters.Add(sqlParamInsert[value++]);
                                         n = command.ExecuteNonQuery();
                                         command.Parameters.Clear();
@@ -345,11 +421,43 @@ namespace VisitaJayaPerkasa.SqlRepository
                                 {
                                     int k = 0;
                                     int value = 0;
-                                    for (int i = 0; i < sqlParamInsert.Length / 19; i++)
+                                    for (int i = 0; i < sqlParamInsert.Length / 51; i++)
                                     {
                                         n = 0;
                                         using (SqlCommand command = new SqlCommand(
                                             "Insert into [Customer_Trans_Detail] values (" +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
+                                        sqlParamInsert[k++].ParameterName + ", " +
                                         sqlParamInsert[k++].ParameterName + ", " +
                                         sqlParamInsert[k++].ParameterName + ", " +
                                         sqlParamInsert[k++].ParameterName + ", " +
@@ -373,7 +481,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                                         {
                                             command.Transaction = sqlTransaction;
 
-                                            for (int j = 0; j < 19; j++)
+                                            for (int j = 0; j < 51; j++)
                                                 command.Parameters.Add(sqlParamInsert[value++]);
                                             n = command.ExecuteNonQuery();
                                             command.Parameters.Clear();
