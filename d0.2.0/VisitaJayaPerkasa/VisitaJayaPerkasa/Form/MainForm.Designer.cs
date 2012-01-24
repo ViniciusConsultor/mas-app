@@ -51,6 +51,8 @@
             this.radImageButtonElementTypeCont = new Telerik.WinControls.UI.RadImageButtonElement();
             this.radRibbonBarGroup8 = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.radImageButtonElementWareHouse = new Telerik.WinControls.UI.RadImageButtonElement();
+            this.radRibbonBarGroup4 = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.radRibbonBarGroupRecipient = new Telerik.WinControls.UI.RadImageButtonElement();
             this.ribbonTab4 = new Telerik.WinControls.UI.RibbonTab();
             this.radRibbonBarGroup9 = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.radImageButtonElement1 = new Telerik.WinControls.UI.RadImageButtonElement();
@@ -78,8 +80,6 @@
             this.radLabelElementWelcome = new Telerik.WinControls.UI.RadLabelElement();
             this.radStatusStrip = new Telerik.WinControls.UI.RadStatusStrip();
             this.MainPanel = new System.Windows.Forms.Panel();
-            this.radRibbonBarGroup4 = new Telerik.WinControls.UI.RadRibbonBarGroup();
-            this.radRibbonBarGroupRecipient = new Telerik.WinControls.UI.RadImageButtonElement();
             ((System.ComponentModel.ISupportInitialize)(this.radRibbonBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewTemplate1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip)).BeginInit();
@@ -152,7 +152,7 @@
             // 
             // 
             this.radRibbonBar1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
-            this.radRibbonBar1.Size = new System.Drawing.Size(971, 153);
+            this.radRibbonBar1.Size = new System.Drawing.Size(992, 153);
             this.radRibbonBar1.StartButtonImage = ((System.Drawing.Image)(resources.GetObject("radRibbonBar1.StartButtonImage")));
             this.radRibbonBar1.StartMenuItems.AddRange(new Telerik.WinControls.RadItem[] {
             this.radMenuItemMasterData,
@@ -316,6 +316,21 @@
             this.radImageButtonElementWareHouse.Name = "radImageButtonElementWareHouse";
             this.radImageButtonElementWareHouse.Text = "radImageButtonElementWareHouse";
             this.radImageButtonElementWareHouse.Click += new System.EventHandler(this.radImageButtonElementWareHouse_Click);
+            // 
+            // radRibbonBarGroup4
+            // 
+            this.radRibbonBarGroup4.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radRibbonBarGroupRecipient});
+            this.radRibbonBarGroup4.Name = "radRibbonBarGroup4";
+            this.radRibbonBarGroup4.Text = "Recipient";
+            // 
+            // radRibbonBarGroupRecipient
+            // 
+            this.radRibbonBarGroupRecipient.Image = ((System.Drawing.Image)(resources.GetObject("radRibbonBarGroupRecipient.Image")));
+            this.radRibbonBarGroupRecipient.ImageKey = "recipient.jpg";
+            this.radRibbonBarGroupRecipient.Name = "radRibbonBarGroupRecipient";
+            this.radRibbonBarGroupRecipient.Text = "";
+            this.radRibbonBarGroupRecipient.Click += new System.EventHandler(this.radRibbonBarGroupRecipient_Click);
             // 
             // ribbonTab4
             // 
@@ -539,7 +554,7 @@
             this.radStatusStrip.LayoutStyle = Telerik.WinControls.UI.RadStatusBarLayoutStyle.Stack;
             this.radStatusStrip.Location = new System.Drawing.Point(0, 571);
             this.radStatusStrip.Name = "radStatusStrip";
-            this.radStatusStrip.Size = new System.Drawing.Size(971, 24);
+            this.radStatusStrip.Size = new System.Drawing.Size(992, 24);
             this.radStatusStrip.SizingGrip = false;
             this.radStatusStrip.TabIndex = 1;
             this.radStatusStrip.Text = "radStatusStrip1";
@@ -551,29 +566,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MainPanel.Location = new System.Drawing.Point(0, 153);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(971, 418);
+            this.MainPanel.Size = new System.Drawing.Size(992, 418);
             this.MainPanel.TabIndex = 2;
-            // 
-            // radRibbonBarGroup4
-            // 
-            this.radRibbonBarGroup4.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radRibbonBarGroupRecipient});
-            this.radRibbonBarGroup4.Name = "radRibbonBarGroup4";
-            this.radRibbonBarGroup4.Text = "Recipient";
-            // 
-            // radRibbonBarGroupRecipient
-            // 
-            this.radRibbonBarGroupRecipient.Image = ((System.Drawing.Image)(resources.GetObject("radRibbonBarGroupRecipient.Image")));
-            this.radRibbonBarGroupRecipient.ImageKey = "recipient.jpg";
-            this.radRibbonBarGroupRecipient.Name = "radRibbonBarGroupRecipient";
-            this.radRibbonBarGroupRecipient.Text = "";
-            this.radRibbonBarGroupRecipient.Click += new System.EventHandler(this.radRibbonBarGroupRecipient_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(971, 595);
+            this.ClientSize = new System.Drawing.Size(992, 595);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.radStatusStrip);
             this.Controls.Add(this.radRibbonBar1);
