@@ -39,6 +39,7 @@
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn7 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
@@ -186,7 +187,7 @@
             // 
             // cboStuffingPlace
             // 
-            this.cboStuffingPlace.Location = new System.Drawing.Point(434, 101);
+            this.cboStuffingPlace.Location = new System.Drawing.Point(404, 101);
             this.cboStuffingPlace.Name = "cboStuffingPlace";
             // 
             // 
@@ -234,7 +235,7 @@
             this.txtCustomer.Location = new System.Drawing.Point(404, 33);
             this.txtCustomer.Name = "txtCustomer";
             this.txtCustomer.ReadOnly = true;
-            this.txtCustomer.Size = new System.Drawing.Size(149, 20);
+            this.txtCustomer.Size = new System.Drawing.Size(150, 20);
             this.txtCustomer.TabIndex = 27;
             this.txtCustomer.TabStop = false;
             this.txtCustomer.Visible = false;
@@ -359,7 +360,7 @@
             // 
             // lblDestination
             // 
-            this.lblDestination.Location = new System.Drawing.Point(21, 101);
+            this.lblDestination.Location = new System.Drawing.Point(21, 103);
             this.lblDestination.Name = "lblDestination";
             this.lblDestination.Size = new System.Drawing.Size(63, 16);
             this.lblDestination.TabIndex = 20;
@@ -377,7 +378,7 @@
             // 
             // lblStuffing
             // 
-            this.lblStuffing.Location = new System.Drawing.Point(326, 101);
+            this.lblStuffing.Location = new System.Drawing.Point(327, 103);
             this.lblStuffing.Name = "lblStuffing";
             this.lblStuffing.Size = new System.Drawing.Size(76, 16);
             this.lblStuffing.TabIndex = 19;
@@ -488,6 +489,12 @@
             gridViewDecimalColumn2.HeaderText = "Harga Customer";
             gridViewDecimalColumn2.UniqueName = "price_customer";
             gridViewDecimalColumn2.Width = 110;
+            gridViewDecimalColumn3.DataType = typeof(decimal);
+            gridViewDecimalColumn3.FieldAlias = "price_courier";
+            gridViewDecimalColumn3.FieldName = "price_courier";
+            gridViewDecimalColumn3.HeaderText = "Harga Kurir";
+            gridViewDecimalColumn3.UniqueName = "price_courier";
+            gridViewDecimalColumn3.Width = 110;
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDateTimeColumn1);
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn1);
@@ -499,6 +506,7 @@
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDecimalColumn1);
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn7);
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDecimalColumn2);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDecimalColumn3);
             gridSortField1.FieldAlias = "Tanggal";
             gridSortField1.FieldName = "Tanggal";
             gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;

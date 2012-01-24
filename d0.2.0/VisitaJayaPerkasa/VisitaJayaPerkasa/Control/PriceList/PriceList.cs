@@ -326,7 +326,8 @@ namespace VisitaJayaPerkasa.Control.PriceList
                         listPriceList.ElementAt(i).Recipient,
                         listPriceList.ElementAt(i).PriceSupplier,
                         listPriceList.ElementAt(i).CustomerID,
-                        listPriceList.ElementAt(i).PriceCustomer
+                        listPriceList.ElementAt(i).PriceCustomer,
+                        listPriceList.ElementAt(i).PriceCourier
                                    };
                     PriceListGridView.Rows.Add(obj);
                 }
@@ -362,6 +363,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
 8 price supplier
 9 customer
 10 price customer
+11 price courier
 */
 
                 if (cboTypeSupplier.Text.ToLower().Equals("shipping lines")) {
@@ -538,6 +540,17 @@ namespace VisitaJayaPerkasa.Control.PriceList
                             return;
                         }
 
+                        id = (PriceListGridView.Rows[i].Cells[11].Value.ToString().Equals("")) ? "-1" : PriceListGridView.Rows[i].Cells[11].Value.ToString();
+                        objPriceList.PriceCourier = Utility.Utility.ConvertStringToDecimal(id);
+                        if (objPriceList.PriceCourier.ToString().Equals("-1"))
+                        {
+                            MessageBox.Show(this, "Please fill price courier in line and check your price in line " + i, "Information");
+                            return;
+                        }
+
+                        if (!validateDate(objPriceList.Date, objPriceList.SupplierID, objPriceList.CustomerID, objPriceList, listID))
+                            continue;
+
                         tempPriceList.Add(objPriceList);
                         objPriceList = null;
                     }
@@ -600,6 +613,17 @@ namespace VisitaJayaPerkasa.Control.PriceList
                             MessageBox.Show(this, "Please fill price supplier in line and check your price in line " + i, "Information");
                             return;
                         }
+
+                        id = (PriceListGridView.Rows[i].Cells[11].Value.ToString().Equals("")) ? "-1" : PriceListGridView.Rows[i].Cells[11].Value.ToString();
+                        objPriceList.PriceCourier = Utility.Utility.ConvertStringToDecimal(id);
+                        if (objPriceList.PriceCourier.ToString().Equals("-1"))
+                        {
+                            MessageBox.Show(this, "Please fill price courier in line and check your price in line " + i, "Information");
+                            return;
+                        }
+
+                        if (!validateDate(objPriceList.Date, objPriceList.SupplierID, objPriceList.CustomerID, objPriceList, listID))
+                            continue;
 
                         tempPriceList.Add(objPriceList);
                         objPriceList = null;
@@ -665,6 +689,20 @@ namespace VisitaJayaPerkasa.Control.PriceList
                             return;
                         }
 
+                        id = (PriceListGridView.Rows[i].Cells[11].Value.ToString().Equals("")) ? "-1" : PriceListGridView.Rows[i].Cells[11].Value.ToString();
+                        objPriceList.PriceCourier = Utility.Utility.ConvertStringToDecimal(id);
+                        if (objPriceList.PriceCourier.ToString().Equals("-1"))
+                        {
+                            MessageBox.Show(this, "Please fill price courier in line and check your price in line " + i, "Information");
+                            return;
+                        }
+
+                        //if (!validateDate(objPriceList.Date, objPriceList.SupplierID, objPriceList.CustomerID, objPriceList, listID))
+                        //    continue;
+
+                        if (!validateTrucking(objPriceList.Date, objPriceList.SupplierID, objPriceList.CustomerID, objPriceList.StuffingID, objPriceList, listID))
+                            continue;
+
                         tempPriceList.Add(objPriceList);
                         objPriceList = null;
                     }
@@ -705,6 +743,17 @@ namespace VisitaJayaPerkasa.Control.PriceList
                             return;
                         }
 
+                        id = (PriceListGridView.Rows[i].Cells[11].Value.ToString().Equals("")) ? "-1" : PriceListGridView.Rows[i].Cells[11].Value.ToString();
+                        objPriceList.PriceCourier = Utility.Utility.ConvertStringToDecimal(id);
+                        if (objPriceList.PriceCourier.ToString().Equals("-1"))
+                        {
+                            MessageBox.Show(this, "Please fill price courier in line and check your price in line " + i, "Information");
+                            return;
+                        }
+
+                        if (!validateDate(objPriceList.Date, objPriceList.SupplierID, objPriceList.CustomerID, objPriceList, listID))
+                            continue;
+
                         tempPriceList.Add(objPriceList);
                         objPriceList = null;
                     }
@@ -730,8 +779,8 @@ namespace VisitaJayaPerkasa.Control.PriceList
                 if (tempPriceList.Count > 0)
                 {
                     //11 is field who any in below for
-                    string[] key = new string[tempPriceList.Count * 11];
-                    object[] value = new object[tempPriceList.Count * 11];
+                    string[] key = new string[tempPriceList.Count * 12];
+                    object[] value = new object[tempPriceList.Count * 12];
 
                     int nn = 0;
                     for (int j = 0; j < tempPriceList.Count; j++)
@@ -768,10 +817,14 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
                         key[nn] = "recipient_id";
                         value[nn++] = tempPriceList.ElementAt(j).Recipient;
+
+                        key[nn] = "price_courier";
+                        value[nn++] = tempPriceList.ElementAt(j).PriceCourier;
                     }
 
                     sqlParamInsert = SqlUtility.SetSqlParameter(key, value);
-                    sqlPriceListRepository = new SqlPriceListRepository();
+                    if (sqlPriceListRepository == null)
+                        sqlPriceListRepository = new SqlPriceListRepository();
                     if (sqlPriceListRepository.SavePriceList(
                         (sqlParamDeleted == null) ? null : sqlParamDeleted,
                         sqlParamInsert))
@@ -816,6 +869,62 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
 
             cboTypeSupplier.SelectedItem = cboTypeSupplier.Items.ElementAt(0);
+        }
+
+        private bool validateDate(DateTime date, Guid supplierID, Guid customerID, VisitaJayaPerkasa.Entities.PriceList objPriceList, List<String> listID)
+        {
+            bool result = true;
+
+            if (sqlPriceListRepository == null)
+                sqlPriceListRepository = new SqlPriceListRepository();
+            //query the db
+            int count = sqlPriceListRepository.FindPriceByDateSupplierCustomer(date, supplierID.ToString(), customerID.ToString());
+            if (count > 0)
+            {
+                DialogResult dlgRes = MessageBox.Show("We already have price list on " + date.ToString("dd/MMMM/yyyy") + ". Do you want to override?", "Data Duplication!", MessageBoxButtons.YesNo);
+                if (dlgRes == DialogResult.Yes)
+                {
+                    //query the price id we want to override and set the current data id to existing
+                    objPriceList.ID = (sqlPriceListRepository.GetPriceByDateSupplierCustomer(date, supplierID.ToString(), customerID.ToString()));
+                    //add ID to deleted list
+                    listID.Add(objPriceList.ID.ToString());
+                    result = true;
+                }
+                else if (dlgRes == DialogResult.No)
+                {
+                    //remove this data from list
+                    result = false;
+                }
+            }
+            return result;
+        }
+
+        private bool validateTrucking(DateTime date, Guid supplierID, Guid customerID, Guid stuffingID, VisitaJayaPerkasa.Entities.PriceList objPriceList, List<String> listID)
+        {
+            bool result = true;
+
+            if (sqlPriceListRepository == null)
+                sqlPriceListRepository = new SqlPriceListRepository();
+            //query the db
+            string msg = sqlPriceListRepository.FindPriceBySupplierCustomerStuffing(date, supplierID.ToString(), customerID.ToString(), stuffingID.ToString());
+            if (msg != "")
+            {
+                DialogResult dlgRes = MessageBox.Show("We already have price list on " + msg + ". Do you want to override?", "Data Duplication!", MessageBoxButtons.YesNo);
+                if (dlgRes == DialogResult.Yes)
+                {
+                    //query the price id we want to override and set the current data id to existing
+                    objPriceList.ID = (sqlPriceListRepository.GetPriceBySupplierCustomerStuffing(date, supplierID.ToString(), customerID.ToString(), stuffingID.ToString()));
+                    //add ID to deleted list
+                    listID.Add(objPriceList.ID.ToString());
+                    result = true;
+                }
+                else if (dlgRes == DialogResult.No)
+                {
+                    //remove this data from list
+                    result = false;
+                }
+            }
+            return result;
         }
     }
 }

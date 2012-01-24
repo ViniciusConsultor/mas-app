@@ -132,6 +132,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                             objPriceList.PriceCustomer = reader.GetDecimal(8);
                             objPriceList.StuffingID = Utility.Utility.ConvertToUUID(reader.GetValue(9).ToString());
                             objPriceList.Recipient = Utility.Utility.ConvertToUUID(reader.GetValue(10).ToString());
+                            objPriceList.PriceCourier = reader.GetDecimal(11);
 
                             if (listPriceList == null)
                                 listPriceList = new List<PriceList>();
@@ -180,14 +181,15 @@ namespace VisitaJayaPerkasa.SqlRepository
                         }
                     }
 
-                    if (n > 0  ||  sqlParamDeleted == null)
-                    {
+//                    if (n > 0  ||  sqlParamDeleted == null)
+//                    {
                         n = 0;
 
                         for (int i = 0; i < sqlParamInsert.Length; )
                         {
                             using (SqlCommand command = new SqlCommand(
                                     "Insert Into [Price] Values (" + 
+                                    sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + ", " +
@@ -205,7 +207,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                                 command.Transaction = sqlTransaction;
 
                                 //11 is field of price list
-                                for (int k = i - 11; k < i; k++)
+                                for (int k = i - 12; k < i; k++)
                                     command.Parameters.Add(sqlParamInsert[k]);
                                 n = command.ExecuteNonQuery();
 
@@ -218,9 +220,9 @@ namespace VisitaJayaPerkasa.SqlRepository
                             sqlTransaction.Commit();
                         else
                             sqlTransaction.Commit();
-                    }
-                    else
-                        sqlTransaction.Rollback();
+//                    }
+//                    else
+//                        sqlTransaction.Rollback();
                 }
             }
             catch (Exception e)
@@ -274,6 +276,143 @@ namespace VisitaJayaPerkasa.SqlRepository
             return result;
         }
 
+        public int FindPriceByDateSupplierCustomer(DateTime date, string supplierID, string customerID)
+        {
+            int result = 0;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
 
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT COUNT(*) FROM [Price] " +
+                        "WHERE [date] = '" + date + "' " +
+                        "AND supplier_id like '%" + supplierID + "%' " +
+                        "AND customer_id like '%" + customerID + "%'"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            result = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlPriceListRepository.cs - FindPriceByDateSupplierCustomer() " + e.Message);
+            }
+
+            return result;
+        }
+
+        public Guid GetPriceByDateSupplierCustomer(DateTime date, string supplierID, string customerID)
+        {
+            Guid result = Guid.Empty;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT price_id FROM [Price] " +
+                        "WHERE [date] = '" + date + "' " +
+                        "AND supplier_id like '%" + supplierID + "%' " +
+                        "AND customer_id like '%" + customerID + "%'"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            result = reader.GetGuid(0);
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlPriceListRepository.cs - GetPriceByDateSupplierCustomer() " + e.Message);
+            }
+
+            return result;
+        }
+
+        public string FindPriceBySupplierCustomerStuffing(DateTime date, string supplierID, string customerID, string stuffingID)
+        {
+            string result = "";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT 'Supplier: ' + ISNULL(s.supplier_name, 'null') + ', Customer: ' + ISNULL(c.customer_name, 'null') + ', Stuffing place: ' + ISNULL(w.address, 'null') + ' on ' + convert(varchar, p.[date], 106) " +
+                        "FROM [ShippingMain].[dbo].[PRICE] p " +
+                        "LEFT OUTER JOIN [ShippingMain].[dbo].[SUPPLIER] s " +
+                        "ON s.supplier_id = p.supplier_id " +
+                        "LEFT OUTER JOIN [ShippingMain].[dbo].[CUSTOMER] c " +
+                        "ON c.customer_id = p.customer_id " +
+                        "LEFT OUTER JOIN [ShippingMain].[dbo].[WAREHOUSE] w " +
+                        "ON w.stuffing_place_id = p.stuffing_id " +
+                        "WHERE p.[date] = '" + date + "' " +
+                        "AND p.supplier_id like '%" + supplierID + "%' " +
+                        "AND p.customer_id like '%" + customerID + "%' " +
+                        "AND p.stuffing_id like '%" + stuffingID + "%'"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            result = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlPriceListRepository.cs - FindPriceBySupplierCustomerStuffing() " + e.Message);
+            }
+
+            return result;
+        }
+
+        public Guid GetPriceBySupplierCustomerStuffing(DateTime date, string supplierID, string customerID, string stuffingID)
+        {
+            Guid result = Guid.Empty;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT price_id FROM [Price] " +
+                        "WHERE [date] = '" + date + "' " +
+                        "AND supplier_id like '%" + supplierID + "%' " +
+                        "AND customer_id like '%" + customerID + "%' " +
+                        "AND stuffing_id like '%" + stuffingID + "%'"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            result = reader.GetGuid(0);
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlPriceListRepository.cs - GetPriceBySupplierCustomerStuffing() " + e.Message);
+            }
+
+            return result;
+        }
     }
 }
