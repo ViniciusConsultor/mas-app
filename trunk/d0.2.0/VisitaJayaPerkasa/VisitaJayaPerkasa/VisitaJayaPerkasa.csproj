@@ -313,12 +313,12 @@
     <Compile Include="Form\PBarDialog.Designer.cs">
       <DependentUpon>PBarDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Report\RptTrans.cs">
+    <Compile Include="Form\Report\RptCustomerTrans.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RptTrans.rpt</DependentUpon>
-      <SubType>Component</SubType>
+      <DependentUpon>RptCustomerTrans.rpt</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form\Report\RptTransForm.cs">
       <SubType>Form</SubType>
@@ -478,9 +478,9 @@
       <DependentUpon>PBarDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Report\RptTrans.rpt">
+    <EmbeddedResource Include="Form\Report\RptCustomerTrans.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RptTrans.cs</LastGenOutput>
+      <LastGenOutput>RptCustomerTrans.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\RptTransForm.resx">

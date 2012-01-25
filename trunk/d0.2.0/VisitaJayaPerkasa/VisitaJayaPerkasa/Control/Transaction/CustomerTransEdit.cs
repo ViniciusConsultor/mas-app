@@ -191,6 +191,8 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 MessageBox.Show(this, "Please fill no seal", "Information");
             else if (etPrice.Text.Trim().Equals(""))
                 MessageBox.Show(this, "Please fill set price", "Information");
+            else if(dtpTD.Value <= dtpETD.Value)
+                MessageBox.Show(this, "Please select td greater than etd", "Information");
             else
             {
                 try

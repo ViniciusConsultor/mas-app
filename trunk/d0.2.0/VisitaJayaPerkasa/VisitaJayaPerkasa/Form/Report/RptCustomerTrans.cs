@@ -16,14 +16,14 @@ namespace VisitaJayaPerkasa.Form.Report {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RptTrans : ReportClass {
+    public class RptCustomerTrans : ReportClass {
         
-        public RptTrans() {
+        public RptCustomerTrans() {
         }
         
         public override string ResourceName {
             get {
-                return "RptTrans.rpt";
+                return "RptCustomerTrans.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         public override string FullResourceName {
             get {
-                return "VisitaJayaPerkasa.Form.Report.RptTrans.rpt";
+                return "VisitaJayaPerkasa.Form.Report.RptCustomerTrans.rpt";
             }
             set {
                 // Do nothing
@@ -98,7 +98,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_customerName {
+        public CrystalDecisions.Shared.IParameterField Parameter_col1 {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
@@ -106,7 +106,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_recipient_name {
+        public CrystalDecisions.Shared.IParameterField Parameter_col2 {
             get {
                 return this.DataDefinition.ParameterFields[1];
             }
@@ -114,7 +114,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_type_name {
+        public CrystalDecisions.Shared.IParameterField Parameter_col3 {
             get {
                 return this.DataDefinition.ParameterFields[2];
             }
@@ -122,7 +122,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_destination {
+        public CrystalDecisions.Shared.IParameterField Parameter_col4 {
             get {
                 return this.DataDefinition.ParameterFields[3];
             }
@@ -130,7 +130,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_jenis_barang {
+        public CrystalDecisions.Shared.IParameterField Parameter_col5 {
             get {
                 return this.DataDefinition.ParameterFields[4];
             }
@@ -138,7 +138,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_condition {
+        public CrystalDecisions.Shared.IParameterField Parameter_col6 {
             get {
                 return this.DataDefinition.ParameterFields[5];
             }
@@ -146,7 +146,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_stuffing_place {
+        public CrystalDecisions.Shared.IParameterField Parameter_col7 {
             get {
                 return this.DataDefinition.ParameterFields[6];
             }
@@ -154,7 +154,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_truck_number {
+        public CrystalDecisions.Shared.IParameterField Parameter_col8 {
             get {
                 return this.DataDefinition.ParameterFields[7];
             }
@@ -162,7 +162,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_no_container {
+        public CrystalDecisions.Shared.IParameterField Parameter_col9 {
             get {
                 return this.DataDefinition.ParameterFields[8];
             }
@@ -170,7 +170,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_no_seal {
+        public CrystalDecisions.Shared.IParameterField Parameter_col10 {
             get {
                 return this.DataDefinition.ParameterFields[9];
             }
@@ -178,7 +178,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_quantity {
+        public CrystalDecisions.Shared.IParameterField Parameter_col11 {
             get {
                 return this.DataDefinition.ParameterFields[10];
             }
@@ -186,7 +186,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj1 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col12 {
             get {
                 return this.DataDefinition.ParameterFields[11];
             }
@@ -194,7 +194,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj2 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col13 {
             get {
                 return this.DataDefinition.ParameterFields[12];
             }
@@ -202,7 +202,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj3 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col14 {
             get {
                 return this.DataDefinition.ParameterFields[13];
             }
@@ -210,7 +210,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj4 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col15 {
             get {
                 return this.DataDefinition.ParameterFields[14];
             }
@@ -218,7 +218,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj5 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col16 {
             get {
                 return this.DataDefinition.ParameterFields[15];
             }
@@ -226,7 +226,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj6 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col17 {
             get {
                 return this.DataDefinition.ParameterFields[16];
             }
@@ -234,7 +234,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj7 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col18 {
             get {
                 return this.DataDefinition.ParameterFields[17];
             }
@@ -242,7 +242,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj8 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col19 {
             get {
                 return this.DataDefinition.ParameterFields[18];
             }
@@ -250,7 +250,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj9 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col20 {
             get {
                 return this.DataDefinition.ParameterFields[19];
             }
@@ -258,7 +258,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj10 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col21 {
             get {
                 return this.DataDefinition.ParameterFields[20];
             }
@@ -266,7 +266,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj11 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col22 {
             get {
                 return this.DataDefinition.ParameterFields[21];
             }
@@ -274,7 +274,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj12 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col23 {
             get {
                 return this.DataDefinition.ParameterFields[22];
             }
@@ -282,7 +282,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj13 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col24 {
             get {
                 return this.DataDefinition.ParameterFields[23];
             }
@@ -290,7 +290,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj14 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col25 {
             get {
                 return this.DataDefinition.ParameterFields[24];
             }
@@ -298,7 +298,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj15 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col26 {
             get {
                 return this.DataDefinition.ParameterFields[25];
             }
@@ -306,7 +306,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj16 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col27 {
             get {
                 return this.DataDefinition.ParameterFields[26];
             }
@@ -314,7 +314,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj17 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col28 {
             get {
                 return this.DataDefinition.ParameterFields[27];
             }
@@ -322,7 +322,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj18 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col29 {
             get {
                 return this.DataDefinition.ParameterFields[28];
             }
@@ -330,7 +330,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj19 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col30 {
             get {
                 return this.DataDefinition.ParameterFields[29];
             }
@@ -338,7 +338,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj20 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col31 {
             get {
                 return this.DataDefinition.ParameterFields[30];
             }
@@ -346,7 +346,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj21 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col32 {
             get {
                 return this.DataDefinition.ParameterFields[31];
             }
@@ -354,7 +354,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj22 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col33 {
             get {
                 return this.DataDefinition.ParameterFields[32];
             }
@@ -362,7 +362,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj23 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col34 {
             get {
                 return this.DataDefinition.ParameterFields[33];
             }
@@ -370,7 +370,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj24 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col35 {
             get {
                 return this.DataDefinition.ParameterFields[34];
             }
@@ -378,7 +378,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sj25 {
+        public CrystalDecisions.Shared.IParameterField Parameter_col36 {
             get {
                 return this.DataDefinition.ParameterFields[35];
             }
@@ -386,7 +386,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_vessel_name {
+        public CrystalDecisions.Shared.IParameterField Parameter_col37 {
             get {
                 return this.DataDefinition.ParameterFields[36];
             }
@@ -394,7 +394,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_voy {
+        public CrystalDecisions.Shared.IParameterField Parameter_col38 {
             get {
                 return this.DataDefinition.ParameterFields[37];
             }
@@ -402,7 +402,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_etd {
+        public CrystalDecisions.Shared.IParameterField Parameter_col39 {
             get {
                 return this.DataDefinition.ParameterFields[38];
             }
@@ -410,7 +410,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_td {
+        public CrystalDecisions.Shared.IParameterField Parameter_col40 {
             get {
                 return this.DataDefinition.ParameterFields[39];
             }
@@ -418,7 +418,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_eta {
+        public CrystalDecisions.Shared.IParameterField Parameter_col41 {
             get {
                 return this.DataDefinition.ParameterFields[40];
             }
@@ -426,7 +426,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ta {
+        public CrystalDecisions.Shared.IParameterField Parameter_col42 {
             get {
                 return this.DataDefinition.ParameterFields[41];
             }
@@ -434,7 +434,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_unloading {
+        public CrystalDecisions.Shared.IParameterField Parameter_col43 {
             get {
                 return this.DataDefinition.ParameterFields[42];
             }
@@ -442,7 +442,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_terima_toko {
+        public CrystalDecisions.Shared.IParameterField Parameter_col44 {
             get {
                 return this.DataDefinition.ParameterFields[43];
             }
@@ -450,7 +450,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_keterangan {
+        public CrystalDecisions.Shared.IParameterField Parameter_col45 {
             get {
                 return this.DataDefinition.ParameterFields[44];
             }
@@ -458,17 +458,25 @@ namespace VisitaJayaPerkasa.Form.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_no_ba {
+        public CrystalDecisions.Shared.IParameterField Parameter_col46 {
             get {
                 return this.DataDefinition.ParameterFields[45];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_col47 {
+            get {
+                return this.DataDefinition.ParameterFields[46];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRptTrans : Component, ICachedReport {
+    public class CachedRptCustomerTrans : Component, ICachedReport {
         
-        public CachedRptTrans() {
+        public CachedRptCustomerTrans() {
         }
         
         [Browsable(false)]
@@ -505,7 +513,7 @@ namespace VisitaJayaPerkasa.Form.Report {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RptTrans rpt = new RptTrans();
+            RptCustomerTrans rpt = new RptCustomerTrans();
             rpt.Site = this.Site;
             return rpt;
         }
