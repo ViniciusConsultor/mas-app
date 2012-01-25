@@ -84,9 +84,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             SqlConnection con;
             SqlTransaction sqlTransaction = null;
 
-            try
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
             {
-                using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                try
                 {
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
@@ -103,17 +103,17 @@ namespace VisitaJayaPerkasa.SqlRepository
                     else
                         sqlTransaction.Rollback();
                 }
-            }
-            catch (Exception e)
-            {
-                if (sqlTransaction != null)
-                    sqlTransaction.Rollback();
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
 
-                Logging.Error("SqlScheduleRepository.cs - DeleteSchedule() " + e.Message);
-            }
-            finally
-            {
-                sqlTransaction.Dispose();
+                    Logging.Error("SqlScheduleRepository.cs - DeleteSchedule() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
             }
 
             return n > 0;
@@ -125,9 +125,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             SqlConnection con;
             SqlTransaction sqlTransaction = null;
 
-            try
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
             {
-                using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                try
                 {
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
@@ -143,7 +143,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         sqlParam[7].ParameterName + ", " +
                         sqlParam[8].ParameterName + ", " +
                         sqlParam[9].ParameterName + ", " +
-                        sqlParam[10].ParameterName + ", " + 
+                        sqlParam[10].ParameterName + ", " +
                         sqlParam[11].ParameterName + ", " +
                         sqlParam[12].ParameterName + ", " +
                         sqlParam[13].ParameterName + ", " +
@@ -164,17 +164,17 @@ namespace VisitaJayaPerkasa.SqlRepository
                     else
                         sqlTransaction.Rollback();
                 }
-            }
-            catch (Exception e)
-            {
-                if (sqlTransaction != null)
-                    sqlTransaction.Rollback();
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
 
-                Logging.Error("SqlScheduleRepository.cs - CreateNewSchedule() " + e.Message);
-            }
-            finally
-            {
-                sqlTransaction.Dispose();
+                    Logging.Error("SqlScheduleRepository.cs - CreateNewSchedule() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
             }
 
             return n > 0;
@@ -186,9 +186,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             SqlConnection con;
             SqlTransaction sqlTransaction = null;
 
-            try
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
             {
-                using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                try
                 {
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
@@ -199,7 +199,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "pelayaran_id = " + sqlParam[2].ParameterName + ", " +
                         "tgl_closing = " + sqlParam[3].ParameterName + ", " +
                         "voy = " + sqlParam[4].ParameterName + ", " +
-                        "deleted = " + sqlParam[5].ParameterName + ", " + 
+                        "deleted = " + sqlParam[5].ParameterName + ", " +
                         "keterangan = " + sqlParam[6].ParameterName + ", " +
                         "vessel_code = " + sqlParam[7].ParameterName + ", " +
                         "ro_begin_20 = " + sqlParam[8].ParameterName + ", " +
@@ -225,17 +225,17 @@ namespace VisitaJayaPerkasa.SqlRepository
                     else
                         sqlTransaction.Rollback();
                 }
-            }
-            catch (Exception e)
-            {
-                if (sqlTransaction != null)
-                    sqlTransaction.Rollback();
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
 
-                Logging.Error("SqlScheduleRepository.cs - EditSchedule() " + e.Message);
-            }
-            finally
-            {
-                sqlTransaction.Dispose();
+                    Logging.Error("SqlScheduleRepository.cs - EditSchedule() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
             }
 
             return n > 0;

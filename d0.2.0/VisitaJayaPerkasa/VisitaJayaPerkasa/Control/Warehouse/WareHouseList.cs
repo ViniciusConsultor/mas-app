@@ -183,7 +183,7 @@ namespace VisitaJayaPerkasa.Control.Warehouse
 
         private void radButtonElementRemove_Click(object sender, EventArgs e)
         {
-            if (ShowWareHouse != null)
+            if (WareHouseGridView.SelectedRows.Count == 1)
             {
                 sqlWareHouseRepository = new SqlWareHouseRepository();
                 DialogResult dResult = MessageBox.Show(this, "Are you sure want delete this data ? ", "Confirmation", MessageBoxButtons.YesNo);
@@ -208,7 +208,7 @@ namespace VisitaJayaPerkasa.Control.Warehouse
 
         private void radButtonElementEdit_Click(object sender, EventArgs e)
         {
-            if (ShowWareHouse != null)
+            if (WareHouseGridView.SelectedRows.Count == 1)
             {
                 GridViewRowInfo gridInfo = WareHouseGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();

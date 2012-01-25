@@ -58,9 +58,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             SqlConnection con;
             SqlTransaction sqlTransaction = null ;
 
-            try
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
             {
-                using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                try
                 {
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
@@ -92,18 +92,19 @@ namespace VisitaJayaPerkasa.SqlRepository
                     else
                         sqlTransaction.Rollback();
                 }
-            }
-            catch (Exception e)
-            {
-                if (sqlTransaction != null)
-                    sqlTransaction.Rollback();
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
 
-                Logging.Error("SqlUserRepository.cs - DeleteUser() " + e.Message);
+                    Logging.Error("SqlUserRepository.cs - DeleteUser() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
             }
-            finally {
-                sqlTransaction.Dispose();
-            }
-            
+
             return n > 0;
         }
 
@@ -113,53 +114,53 @@ namespace VisitaJayaPerkasa.SqlRepository
             SqlConnection con;
             SqlTransaction sqlTransaction = null;
 
-            try
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
             {
-                using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                try
                 {
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
                     using (SqlCommand command = new SqlCommand(
                         "Insert into [User] values (" +
-                        sqlParam[0].ParameterName + ", " + 
-                        sqlParam[1].ParameterName + ", " + 
-                        sqlParam[2].ParameterName + ", " + 
-                        sqlParam[3].ParameterName + ", " + 
-                        sqlParam[4].ParameterName + ", " + 
-                        sqlParam[5].ParameterName + ", " + 
-                        sqlParam[6].ParameterName + ", " + 
-                        sqlParam[7].ParameterName + ", " + 
-                        sqlParam[8].ParameterName + ", " + 
-                        sqlParam[9].ParameterName + ", " + 
-                        sqlParam[10].ParameterName + ", " + 
-                        sqlParam[11].ParameterName + ", " + 
-                        sqlParam[12].ParameterName + 
+                        sqlParam[0].ParameterName + ", " +
+                        sqlParam[1].ParameterName + ", " +
+                        sqlParam[2].ParameterName + ", " +
+                        sqlParam[3].ParameterName + ", " +
+                        sqlParam[4].ParameterName + ", " +
+                        sqlParam[5].ParameterName + ", " +
+                        sqlParam[6].ParameterName + ", " +
+                        sqlParam[7].ParameterName + ", " +
+                        sqlParam[8].ParameterName + ", " +
+                        sqlParam[9].ParameterName + ", " +
+                        sqlParam[10].ParameterName + ", " +
+                        sqlParam[11].ParameterName + ", " +
+                        sqlParam[12].ParameterName +
                         ")", con))
                     {
                         command.Transaction = sqlTransaction;
 
-                        for (int i = 0; i < 13; i++ )
+                        for (int i = 0; i < 13; i++)
                             command.Parameters.Add(sqlParam[i]);
                         n = command.ExecuteNonQuery();
-                        
+
                         if (n > 0)
                         {
                             n = 0;
 
                             using (SqlCommand subCommand = new SqlCommand(
-                                "Insert Into [User_Role] Values (" + 
+                                "Insert Into [User_Role] Values (" +
                                 sqlParam[13].ParameterName + ", " +
                                 sqlParam[14].ParameterName + ", " +
                                 sqlParam[15].ParameterName + ", " +
-                                sqlParam[16].ParameterName + 
+                                sqlParam[16].ParameterName +
                                 ")"
                                 , con))
                             {
                                 subCommand.Transaction = sqlTransaction;
 
-                                for (int i = 13; i < sqlParam.Length; i++ )
+                                for (int i = 13; i < sqlParam.Length; i++)
                                     subCommand.Parameters.Add(sqlParam[i]);
-        
+
                                 n = subCommand.ExecuteNonQuery();
                             }
                         }
@@ -170,21 +171,210 @@ namespace VisitaJayaPerkasa.SqlRepository
                     else
                         sqlTransaction.Rollback();
                 }
-            }
-            catch (Exception e)
-            {
-                if (sqlTransaction != null)
-                    sqlTransaction.Rollback();
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
 
-                Logging.Error("SqlUserRepository.cs - CreateUser() " + e.Message);
-            }
-            finally
-            {
-                sqlTransaction.Dispose();
+                    Logging.Error("SqlUserRepository.cs - CreateUser() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
             }
 
             return n > 0;
         }
+
+        public bool EditUser(SqlParameter[] sqlParam)
+        {
+            int n = 0;
+            SqlConnection con;
+            SqlTransaction sqlTransaction = null;
+
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    sqlTransaction = con.BeginTransaction();
+                    
+                    using (SqlCommand command = new SqlCommand(
+                        "Update [User] set username = " + sqlParam[1].ParameterName + ", " + 
+                        "password = " + sqlParam[2].ParameterName + ", " + 
+                        "password_hint = " + sqlParam[3].ParameterName + ", " + 
+                        "email = " + sqlParam[4].ParameterName + ", " + 
+                        "first_name = " + sqlParam[5].ParameterName + ", " + 
+                        "last_name = " + sqlParam[6].ParameterName + ", " + 
+                        "address = " + sqlParam[7].ParameterName + ", " + 
+                        "date_of_birth = " + sqlParam[8].ParameterName + ", " + 
+                        "marital_status = " + sqlParam[9].ParameterName + ", " + 
+                        "gender = " + sqlParam[10].ParameterName + ", " + 
+                        "mobile_phone_number = " + sqlParam[11].ParameterName + ", " + 
+                        "deleted = " + sqlParam[12].ParameterName + 
+                        "WHERE person_id = " + sqlParam[0].ParameterName
+                        , con))
+                    {
+                        command.Transaction = sqlTransaction;
+
+                        for (int i = 0; i < 13; i++)
+                            command.Parameters.Add(sqlParam[i]);
+                        n = command.ExecuteNonQuery();
+
+                        if (n > 0)
+                        {
+                            n = 0;
+                         
+                            using (SqlCommand subCommand = new SqlCommand(
+                                "Update [User_Role] set role_id = " + sqlParam[15].ParameterName + ", " + 
+                                "deleted = " + sqlParam[16].ParameterName + 
+                                " WHERE user_id = " + sqlParam[15].ParameterName
+                                , con))
+                            {
+                                subCommand.Transaction = sqlTransaction;
+
+                                for (int i = 13; i < sqlParam.Length; i++)
+                                    subCommand.Parameters.Add(sqlParam[i]);
+
+                                n = subCommand.ExecuteNonQuery();
+                            }
+                        }
+                    }
+
+                    if (n > 0)
+                        sqlTransaction.Commit();
+                    else
+                        sqlTransaction.Rollback();
+                }
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
+
+                    Logging.Error("SqlUserRepository.cs - EditUser() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
+            }
+
+            return n > 0;
+        }
+
+
+        public Guid GetPersonIDbyUserName(String userName) { 
+            Guid personID = Guid.Empty;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 person_id FROM [USER] WHERE username = '" + userName + "' AND deleted = '1'", con))
+                    {  
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            personID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                Logging.Error("SqlUserRepository.cs - GetPersonIDbyUserName() " + e.Message);
+            }
+
+            return personID;
+        }
+
+
+        public bool ActivateUser(SqlParameter[] sqlParam)
+        {
+            int n = 0;
+            SqlConnection con;
+            SqlTransaction sqlTransaction = null;
+            Guid personID = GetPersonIDbyUserName(sqlParam[1].Value.ToString());
+
+
+            if (personID.ToString().Equals(Guid.Empty.ToString()))
+                return false;
+
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    sqlTransaction = con.BeginTransaction();
+       
+                    using (SqlCommand command = new SqlCommand(
+                        "Update [User] set " + 
+                        "password = " + sqlParam[2].ParameterName + ", " +
+                        "password_hint = " + sqlParam[3].ParameterName + ", " +
+                        "email = " + sqlParam[4].ParameterName + ", " +
+                        "first_name = " + sqlParam[5].ParameterName + ", " +
+                        "last_name = " + sqlParam[6].ParameterName + ", " +
+                        "address = " + sqlParam[7].ParameterName + ", " +
+                        "date_of_birth = " + sqlParam[8].ParameterName + ", " +
+                        "marital_status = " + sqlParam[9].ParameterName + ", " +
+                        "gender = " + sqlParam[10].ParameterName + ", " +
+                        "mobile_phone_number = " + sqlParam[11].ParameterName + ", " +
+                        "deleted = " + sqlParam[12].ParameterName + " " + 
+                        "WHERE person_id = '" + personID + "'"
+                        , con))
+                    {
+                        command.Transaction = sqlTransaction;
+
+                        for (int i = 2; i < 13; i++)
+                            command.Parameters.Add(sqlParam[i]);
+                        n = command.ExecuteNonQuery();
+
+                        if (n > 0)
+                        {
+                            n = 0;
+
+                            using (SqlCommand subCommand = new SqlCommand(
+                                "Update [User_Role] set role_id = " + sqlParam[15].ParameterName + ", " +
+                                "deleted = " + sqlParam[16].ParameterName +
+                                " WHERE user_id = '" + personID + "'"
+                                , con))
+                            {
+                                subCommand.Transaction = sqlTransaction;
+
+                                for (int i = 13; i < sqlParam.Length; i++)
+                                    subCommand.Parameters.Add(sqlParam[i]);
+
+                                n = subCommand.ExecuteNonQuery();
+                            }
+                        }
+                    }
+
+                    if (n > 0)
+                        sqlTransaction.Commit();
+                    else
+                        sqlTransaction.Rollback();
+                }
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
+
+                    Logging.Error("SqlUserRepository.cs - ActivateUser() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
+            }
+
+            return n > 0;
+        }
+
 
         public void ValidateLogin(SqlParameter[] sqlParam) {
             try
@@ -227,23 +417,31 @@ namespace VisitaJayaPerkasa.SqlRepository
             }
         }
 
-        public bool CheckUserName(SqlParameter[] sqlParam)
+        public bool CheckUserName(SqlParameter[] sqlParam, Guid gID, bool checkDeletedData = false)
         {
-            bool exists = false;
+            bool exists = false; 
 
             try
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
                     con.Open();
+                    String criteria = "";
+                    if (!gID.ToString().Equals(Guid.Empty.ToString()))
+                        criteria = " AND person_id != '" + gID.ToString() + "'";
+                    else if (checkDeletedData)
+                        criteria = " AND deleted = '1'";
+                    else
+                        criteria = " AND (deleted is null OR deleted = '0')";
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT TOP 1 username FROM [USER] WHERE username = " + sqlParam[0].ParameterName, con))
+                        "SELECT TOP 1 username FROM [USER] WHERE username = " + sqlParam[0].ParameterName + criteria, con))
                     {
                         foreach (SqlParameter tempSqlParam in sqlParam)
                             command.Parameters.Add(tempSqlParam);
 
                         SqlDataReader reader = command.ExecuteReader();
+                        command.Parameters.Clear();
                         while (reader.Read())
                         {
                             exists = true;
@@ -259,6 +457,7 @@ namespace VisitaJayaPerkasa.SqlRepository
 
             return exists;
         }
+
 
         public Guid GetUserRole(Guid ID) {
             Guid RoleID = Guid.Empty;

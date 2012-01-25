@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using VisitaJayaPerkasa.Entities;
 using VisitaJayaPerkasa.SqlRepository;
 using System.Data.SqlClient;
+using VisitaJayaPerkasa.Utility.Log;
 
 namespace VisitaJayaPerkasa.Control.City
 {
@@ -42,8 +43,19 @@ namespace VisitaJayaPerkasa.Control.City
                 MessageBox.Show(this, "Please fill city code", "Information");
             else if (etCityName.Text.Trim().Length == 0)
                 MessageBox.Show(this, "Please fill city name", "Information");
+            else if(etDays.Text.Trim().Length == 0)
+                MessageBox.Show(this, "Please fill days", "Information");
             else
             {
+                try{
+                    Convert.ToInt32(etDays.Text.Trim());
+                }
+                catch(Exception err){
+                    MessageBox.Show(this, "days must be numeric", "Information");
+                    Logging.Error("CityEdit.cs - " + err.Message);
+                    return;
+                }
+
                 SqlCityRepository sqlCityRepository = new SqlCityRepository();
                 SqlParameter[] param;
 
