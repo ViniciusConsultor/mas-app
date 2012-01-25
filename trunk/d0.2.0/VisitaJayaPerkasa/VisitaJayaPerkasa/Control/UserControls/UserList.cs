@@ -209,28 +209,16 @@ namespace VisitaJayaPerkasa.Control.UserControls
 
         private void radButtonElementEdit_Click(object sender, EventArgs e)
         {
-            if (ShowUser != null)
+            if (UserGridView.SelectedRows.Count == 1)
             {
                 GridViewRowInfo gridInfo = UserGridView.SelectedRows.First();
                 string id = gridInfo.Cells[0].Value.ToString();
-                SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "person_id" }, new object[] { id });
+                Entities.User user = ShowUser.Where(c => c.PersonID.ToString() == id).SingleOrDefault();
 
-                if (sqlUserRepository.DeleteUser(sqlParam))
-                {
-                    MessageBox.Show("Data Deleted !");
-                    LoadData();
-                }
-                else
-                    MessageBox.Show("Cannot Delete Data !");
-
-                sqlParam = null;
-
-                User user = null;
                 UserControl controllers = new UserEdit(user);
                 Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
             }
         }
-
 
 
     }

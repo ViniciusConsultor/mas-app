@@ -55,9 +55,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             SqlConnection con;
             SqlTransaction sqlTransaction = null;
 
-            try
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
             {
-                using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                try
                 {
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
@@ -74,17 +74,17 @@ namespace VisitaJayaPerkasa.SqlRepository
                     else
                         sqlTransaction.Rollback();
                 }
-            }
-            catch (Exception e)
-            {
-                if (sqlTransaction != null)
-                    sqlTransaction.Rollback();
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
 
-                Logging.Error("SqlTypeContRepository.cs - DeleteTypeCont() " + e.Message);
-            }
-            finally
-            {
-                sqlTransaction.Dispose();
+                    Logging.Error("SqlTypeContRepository.cs - DeleteTypeCont() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
             }
 
             return n > 0;
@@ -130,9 +130,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             SqlConnection con;
             SqlTransaction sqlTransaction = null;
 
-            try
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
             {
-                using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                try
                 {
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
@@ -156,17 +156,17 @@ namespace VisitaJayaPerkasa.SqlRepository
                     else
                         sqlTransaction.Rollback();
                 }
-            }
-            catch (Exception e)
-            {
-                if (sqlTransaction != null)
-                    sqlTransaction.Rollback();
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
 
-                Logging.Error("SqlTypeContRepository.cs - CreateTypeCont() " + e.Message);
-            }
-            finally
-            {
-                sqlTransaction.Dispose();
+                    Logging.Error("SqlTypeContRepository.cs - CreateTypeCont() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
             }
 
             return n > 0;
@@ -179,9 +179,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             SqlConnection con;
             SqlTransaction sqlTransaction = null;
 
-            try
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
             {
-                using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                try
                 {
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
@@ -202,17 +202,17 @@ namespace VisitaJayaPerkasa.SqlRepository
                     else
                         sqlTransaction.Rollback();
                 }
-            }
-            catch (Exception e)
-            {
-                if (sqlTransaction != null)
-                    sqlTransaction.Rollback();
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
 
-                Logging.Error("SqlTypeContRepository.cs - EditTypeCont() " + e.Message);
-            }
-            finally
-            {
-                sqlTransaction.Dispose();
+                    Logging.Error("SqlTypeContRepository.cs - EditTypeCont() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
             }
 
             return n > 0;

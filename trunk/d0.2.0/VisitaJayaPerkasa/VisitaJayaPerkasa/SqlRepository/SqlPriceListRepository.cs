@@ -157,9 +157,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             SqlConnection con;
             SqlTransaction sqlTransaction = null;
 
-            try
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
             {
-                using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                try
                 {
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
@@ -179,16 +179,15 @@ namespace VisitaJayaPerkasa.SqlRepository
                             if (n == 0)
                                 break;
                         }
-                    }
-
+                    } 
 //                    if (n > 0  ||  sqlParamDeleted == null)
-//                    {
+//                    { 
                         n = 0;
 
                         for (int i = 0; i < sqlParamInsert.Length; )
                         {
                             using (SqlCommand command = new SqlCommand(
-                                    "Insert Into [Price] Values (" + 
+                                    "Insert Into [Price] Values (" +
                                     sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + ", " +
@@ -198,9 +197,9 @@ namespace VisitaJayaPerkasa.SqlRepository
                                     sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + ", " +
+                                    sqlParamInsert[i++].ParameterName + ", " + 
                                     sqlParamInsert[i++].ParameterName + ", " +
-                                    sqlParamInsert[i++].ParameterName + ", " +
-                                    sqlParamInsert[i++].ParameterName + 
+                                    sqlParamInsert[i++].ParameterName +  
                                     ")"
                                     , con))
                             {
@@ -224,17 +223,17 @@ namespace VisitaJayaPerkasa.SqlRepository
 //                    else
 //                        sqlTransaction.Rollback();
                 }
-            }
-            catch (Exception e)
-            {
-                if (sqlTransaction != null)
-                    sqlTransaction.Rollback();
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
 
-                Logging.Error("SqlPriceListRepository.cs - SavePriceList() " + e.Message);
-            }
-            finally
-            {
-                sqlTransaction.Dispose();
+                    Logging.Error("SqlPriceListRepository.cs - SavePriceList() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
             }
 
             return n > 0;

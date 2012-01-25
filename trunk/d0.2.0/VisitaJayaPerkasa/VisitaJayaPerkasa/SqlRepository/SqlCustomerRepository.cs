@@ -104,9 +104,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             SqlConnection con;
             SqlTransaction sqlTransaction = null;
 
-            try
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
             {
-                using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                try
                 {
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
@@ -120,13 +120,14 @@ namespace VisitaJayaPerkasa.SqlRepository
                         command.ExecuteNonQuery();
                         command.Parameters.Clear();
 
-                            using (SqlCommand subCommand = new SqlCommand(
-                                "Update [Customer] set deleted = '1' WHERE customer_id = " + sqlParam[0].ParameterName, con
-                                )) {
-                                    subCommand.Transaction = sqlTransaction;
-                                    subCommand.Parameters.Add(sqlParam[0]);
-                                    n = subCommand.ExecuteNonQuery();
-                            }
+                        using (SqlCommand subCommand = new SqlCommand(
+                            "Update [Customer] set deleted = '1' WHERE customer_id = " + sqlParam[0].ParameterName, con
+                            ))
+                        {
+                            subCommand.Transaction = sqlTransaction;
+                            subCommand.Parameters.Add(sqlParam[0]);
+                            n = subCommand.ExecuteNonQuery();
+                        }
                     }
 
                     if (n > 0)
@@ -134,17 +135,17 @@ namespace VisitaJayaPerkasa.SqlRepository
                     else
                         sqlTransaction.Rollback();
                 }
-            }
-            catch (Exception e)
-            {
-                if (sqlTransaction != null)
-                    sqlTransaction.Rollback();
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
 
-                Logging.Error("SqlCustomerRepository.cs - DeleteCustomer() " + e.Message);
-            }
-            finally
-            {
-                sqlTransaction.Dispose();
+                    Logging.Error("SqlCustomerRepository.cs - DeleteCustomer() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
             }
 
             return n > 0;
@@ -156,9 +157,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             SqlConnection con;
             SqlTransaction sqlTransaction = null;
 
-            try
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
             {
-                using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                try
                 {
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
@@ -185,10 +186,12 @@ namespace VisitaJayaPerkasa.SqlRepository
 
                         int z = 10;
                         int subz = 10;
-                        if ((n > 0) && sqlParam.Length > 10) {
+                        if ((n > 0) && sqlParam.Length > 10)
+                        {
                             //-9 is total sqlparameter minus number of customer master
                             // / 8 is remain of total sqlparameter minus 9 is customer detail who have 8 number of field
-                            for(int k=0;k<((sqlParam.Length - 10) / 8);k++){
+                            for (int k = 0; k < ((sqlParam.Length - 10) / 8); k++)
+                            {
                                 using (SqlCommand subCommand = new SqlCommand(
                                     "Insert into [Customer_Detail] values(" +
                                     sqlParam[z++].ParameterName + ", " +
@@ -198,10 +201,11 @@ namespace VisitaJayaPerkasa.SqlRepository
                                     sqlParam[z++].ParameterName + ", " +
                                     sqlParam[z++].ParameterName + ", " +
                                     sqlParam[z++].ParameterName + ", " +
-                                    sqlParam[z++].ParameterName + 
+                                    sqlParam[z++].ParameterName +
                                     ")"
-                                    , con)) {
-                                        subCommand.Transaction = sqlTransaction;
+                                    , con))
+                                {
+                                    subCommand.Transaction = sqlTransaction;
 
                                     for (int i = 0; i < 8; i++)
                                         subCommand.Parameters.Add(sqlParam[subz++]);
@@ -221,17 +225,17 @@ namespace VisitaJayaPerkasa.SqlRepository
                     else
                         sqlTransaction.Rollback();
                 }
-            }
-            catch (Exception e)
-            {
-                if (sqlTransaction != null)
-                    sqlTransaction.Rollback();
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
 
-                Logging.Error("SqlCustomerRepository.cs - CreateCustomer() " + e.Message);
-            }
-            finally
-            {
-                sqlTransaction.Dispose();
+                    Logging.Error("SqlCustomerRepository.cs - CreateCustomer() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
             }
 
             return n > 0;
@@ -243,9 +247,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             SqlConnection con;
             SqlTransaction sqlTransaction = null;
 
-            try
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
             {
-                using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                try
                 {
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
@@ -258,62 +262,62 @@ namespace VisitaJayaPerkasa.SqlRepository
                         n = deleteCommand.ExecuteNonQuery();
                         deleteCommand.Parameters.Clear();
 
-                            using (SqlCommand command = new SqlCommand(
-                                "Update [Customer] set " +
-                                "customer_name = " + sqlParam[1].ParameterName + ", " +
-                                "office = " + sqlParam[2].ParameterName + ", " +
-                                "address = " + sqlParam[3].ParameterName + ", " +
-                                "phone = " + sqlParam[4].ParameterName + ", " +
-                                "fax = " + sqlParam[5].ParameterName + ", " +
-                                "email = " + sqlParam[6].ParameterName + ", " +
-                                "contact_person = " + sqlParam[7].ParameterName + ", " +
-                                "status_ppn = " + sqlParam[8].ParameterName + ", " +
-                                "deleted = " + sqlParam[9].ParameterName + " WHERE " +
-                                "customer_id = " + sqlParam[0].ParameterName 
-                                , con))
+                        using (SqlCommand command = new SqlCommand(
+                            "Update [Customer] set " +
+                            "customer_name = " + sqlParam[1].ParameterName + ", " +
+                            "office = " + sqlParam[2].ParameterName + ", " +
+                            "address = " + sqlParam[3].ParameterName + ", " +
+                            "phone = " + sqlParam[4].ParameterName + ", " +
+                            "fax = " + sqlParam[5].ParameterName + ", " +
+                            "email = " + sqlParam[6].ParameterName + ", " +
+                            "contact_person = " + sqlParam[7].ParameterName + ", " +
+                            "status_ppn = " + sqlParam[8].ParameterName + ", " +
+                            "deleted = " + sqlParam[9].ParameterName + " WHERE " +
+                            "customer_id = " + sqlParam[0].ParameterName
+                            , con))
+                        {
+                            command.Transaction = sqlTransaction;
+
+                            for (int i = 0; i < 10; i++)
+                                command.Parameters.Add(sqlParam[i]);
+                            n = command.ExecuteNonQuery();
+                            command.Parameters.Clear();
+
+                            int z = 10;
+                            int subz = 10;
+                            if ((n > 0) && sqlParam.Length > 10)
                             {
-                                command.Transaction = sqlTransaction;
-
-                                for (int i = 0; i < 10; i++)
-                                    command.Parameters.Add(sqlParam[i]);
-                                n = command.ExecuteNonQuery();
-                                command.Parameters.Clear();
-
-                                int z = 10;
-                                int subz = 10;
-                                if ((n > 0) && sqlParam.Length > 10)
+                                //-9 is total sqlparameter minus number of customer master
+                                // / 8 is remain of total sqlparameter minus 9 is customer detail who have 8 number of field
+                                for (int k = 0; k < ((sqlParam.Length - 10) / 8); k++)
                                 {
-                                    //-9 is total sqlparameter minus number of customer master
-                                    // / 8 is remain of total sqlparameter minus 9 is customer detail who have 8 number of field
-                                    for (int k = 0; k < ((sqlParam.Length - 10) / 8); k++)
+                                    using (SqlCommand subCommand = new SqlCommand(
+                                        "Insert into [Customer_Detail] values(" +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName +
+                                        ")"
+                                        , con))
                                     {
-                                        using (SqlCommand subCommand = new SqlCommand(
-                                            "Insert into [Customer_Detail] values(" +
-                                            sqlParam[z++].ParameterName + ", " +
-                                            sqlParam[z++].ParameterName + ", " +
-                                            sqlParam[z++].ParameterName + ", " +
-                                            sqlParam[z++].ParameterName + ", " +
-                                            sqlParam[z++].ParameterName + ", " +
-                                            sqlParam[z++].ParameterName + ", " +
-                                            sqlParam[z++].ParameterName + ", " +
-                                            sqlParam[z++].ParameterName +
-                                            ")"
-                                            , con))
-                                        {
-                                            subCommand.Transaction = sqlTransaction;
+                                        subCommand.Transaction = sqlTransaction;
 
-                                            for (int i = 0; i < 8; i++)
-                                                subCommand.Parameters.Add(sqlParam[subz++]);
-                                            n = subCommand.ExecuteNonQuery();
-                                            subCommand.Parameters.Clear();
+                                        for (int i = 0; i < 8; i++)
+                                            subCommand.Parameters.Add(sqlParam[subz++]);
+                                        n = subCommand.ExecuteNonQuery();
+                                        subCommand.Parameters.Clear();
 
-                                            if (n == 0)
-                                                break;
-                                        }
+                                        if (n == 0)
+                                            break;
                                     }
-
                                 }
+
                             }
+                        }
 
                         if (n > 0)
                             sqlTransaction.Commit();
@@ -321,17 +325,17 @@ namespace VisitaJayaPerkasa.SqlRepository
                             sqlTransaction.Rollback();
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                if (sqlTransaction != null)
-                    sqlTransaction.Rollback();
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
 
-                Logging.Error("SqlCustomerRepository.cs - CreateCustomer() " + e.Message);
-            }
-            finally
-            {
-                sqlTransaction.Dispose();
+                    Logging.Error("SqlCustomerRepository.cs - CreateCustomer() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
             }
 
             return n > 0;
