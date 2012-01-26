@@ -25,9 +25,12 @@ namespace VisitaJayaPerkasa.Control.Supplier
             InitializeComponent();
             sqlCategoryRepository = new SqlCategoryRepository();
             List<VisitaJayaPerkasa.Entities.Category> listCategory = sqlCategoryRepository.GetCategories();
+            
             cboCategory.DataSource = listCategory;
             cboCategory.DisplayMember = "CategoryName";
             cboCategory.ValueMember = "ID";
+            cboCategory.SelectedIndex = -1;
+            cboCategory.Text = "-- Choose --";
             this.supplier = supplier;
 
             if (supplier == null)
