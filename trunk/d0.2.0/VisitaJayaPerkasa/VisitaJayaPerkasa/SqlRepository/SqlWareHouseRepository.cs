@@ -53,6 +53,134 @@ namespace VisitaJayaPerkasa.SqlRepository
             return listWareHouse;
         }
 
+        public bool CheckWarehouse(SqlParameter[] sqlParam, Guid gID, bool checkDeletedData = false)
+        {
+            bool exists = false;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+                    String criteria = "";
+                    if (!gID.ToString().Equals(Guid.Empty.ToString()))
+                        criteria = " AND stuffing_place_id != '" + gID.ToString() + "'";
+                    else if (checkDeletedData)
+                        criteria = " AND deleted = '1'";
+                    else
+                        criteria = " AND (deleted is null OR deleted = '0')";
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 address FROM [WAREHOUSE] WHERE address = '" + sqlParam[0].Value + "' AND email = '" + sqlParam[1].Value + "' AND contact_person = '" + sqlParam[2].Value + "'" + criteria, con))
+                    {
+                        //foreach (SqlParameter tempSqlParam in sqlParam)
+                        //    command.Parameters.Add(tempSqlParam);
+
+                        SqlDataReader reader = command.ExecuteReader();
+                        command.Parameters.Clear();
+                        while (reader.Read())
+                        {
+                            exists = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                Logging.Error("SqlWareHouseRepository.cs - CheckWarehouse() " + e.Message);
+            }
+
+            return exists;
+        }
+
+        public bool ActivateWarehouse(SqlParameter[] sqlParam)
+        {
+            int n = 0;
+            SqlConnection con;
+            SqlTransaction sqlTransaction = null;
+            Guid ID = GetWarehouseID(sqlParam[1].Value.ToString(), sqlParam[4].Value.ToString(), sqlParam[5].Value.ToString());
+
+
+            if (ID.ToString().Equals(Guid.Empty.ToString()))
+                return false;
+
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    sqlTransaction = con.BeginTransaction();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "Update [WAREHOUSE] set " +
+                        "address = " + sqlParam[1].ParameterName + ", " +
+                        "phone = " + sqlParam[2].ParameterName + ", " +
+                        "fax = " + sqlParam[3].ParameterName + ", " +
+                        "email = " + sqlParam[4].ParameterName + ", " +
+                        "contact_person = " + sqlParam[5].ParameterName + ", " +
+                        "deleted = " + sqlParam[6].ParameterName + " " +
+                        "WHERE stuffing_place_id = '" + ID + "'"
+                        , con))
+                    {
+                        command.Transaction = sqlTransaction;
+
+                        for (int i = 1; i < 7; i++)
+                            command.Parameters.Add(sqlParam[i]);
+                        n = command.ExecuteNonQuery();
+                    }
+
+                    if (n > 0)
+                        sqlTransaction.Commit();
+                    else
+                        sqlTransaction.Rollback();
+                }
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
+
+                    Logging.Error("SqlWareHouseRepository.cs - ActivateWarehouse() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
+            }
+
+            return n > 0;
+        }
+
+        public Guid GetWarehouseID(String address, String email, String contactPerson)
+        {
+            Guid ID = Guid.Empty;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 stuffing_place_id FROM [WAREHOUSE] WHERE address = '" + address + "' AND email = '" + email + "' AND contact_person = '" +  contactPerson +"' AND deleted = '1'", con)) 
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                Logging.Error("SqlWareHouseRepository.cs - GetWarehouseID() " + e.Message);
+            }
+
+            return ID;
+        }
+
         public bool DeleteWareHouse(SqlParameter[] sqlParam)
         {
             int n = 0;
