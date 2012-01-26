@@ -50,9 +50,11 @@ namespace VisitaJayaPerkasa.SqlRepository
 
             return listCondition;
         }
-        public bool CheckConditionCode(SqlParameter[] sqlParam, bool excludeDeleted = true)
+
+
+        public string GetConditionIDByCode(string code)
         {
-            bool exists = false;
+            string ID = Guid.Empty.ToString();
 
             try
             {
@@ -60,17 +62,52 @@ namespace VisitaJayaPerkasa.SqlRepository
                 {
                     con.Open();
 
-                    string conditional = "";
-                    if (!excludeDeleted)
-                        conditional = " AND deleted = '1'";
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT condition_id FROM [Condition] WHERE condition_code = '" + code + "'"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            ID = reader.GetGuid(0).ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlConditionRepository.cs - GetConditionIDByCode() " + e.Message);
+            }
+
+            return ID;
+        }
+
+        public bool CheckConditionCode(SqlParameter[] sqlParam, Guid ID, bool checkDeletedData = false)
+        {
+            bool exists = false;
+            String criteria;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    if (!ID.ToString().Equals(Guid.Empty.ToString()))
+                        criteria = " AND condition_id != '" + ID.ToString() + "'";
+                    else if (checkDeletedData)
+                        criteria = " AND deleted = '1'";
+                    else
+                        criteria = " AND (deleted is null OR deleted = '0')";
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT TOP 1 condition_id FROM [Condition] WHERE condition_code = " + sqlParam[0].ParameterName + conditional, con))
+                        "SELECT TOP 1 condition_id FROM [Condition] WHERE condition_code = " + sqlParam[0].ParameterName + criteria, con))
                     {
                         foreach (SqlParameter tempSqlParam in sqlParam)
                             command.Parameters.Add(tempSqlParam);
 
                         SqlDataReader reader = command.ExecuteReader();
+                        command.Parameters.Clear();
                         while (reader.Read())
                         {
                             exists = true;
@@ -134,6 +171,58 @@ namespace VisitaJayaPerkasa.SqlRepository
 
             return n > 0;
         }
+
+
+        public bool ActivateCondition(SqlParameter[] sqlParam)
+        {
+            int n = 0;
+            SqlConnection con;
+            SqlTransaction sqlTransaction = null;
+
+            string ID = GetConditionIDByCode(sqlParam[1].Value.ToString());
+            if (ID.Equals(Guid.Empty.ToString()))
+                return false;
+
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    sqlTransaction = con.BeginTransaction();
+                    using (SqlCommand command = new SqlCommand(
+                        "Update [Condition] set " + 
+                        "condition_name = " + sqlParam[2].ParameterName + ", " +
+                        "deleted = " + sqlParam[3].ParameterName +
+                        " WHERE condition_id = '" + ID + "'" , con))
+                    {
+                        command.Transaction = sqlTransaction;
+
+                        for (int i = 2; i < sqlParam.Length; i++)
+                            command.Parameters.Add(sqlParam[i]);
+                        n = command.ExecuteNonQuery();
+                    }
+
+                    if (n > 0)
+                        sqlTransaction.Commit();
+                    else
+                        sqlTransaction.Rollback();
+                }
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
+
+                    Logging.Error("SqlConditionRepository.cs - ActivateCondition() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
+            }
+
+            return n > 0;
+        }
+
 
         public bool EditCondition(SqlParameter[] sqlParam)
         {

@@ -262,61 +262,240 @@ namespace VisitaJayaPerkasa.SqlRepository
                         n = deleteCommand.ExecuteNonQuery();
                         deleteCommand.Parameters.Clear();
 
-                        using (SqlCommand command = new SqlCommand(
-                            "Update [Customer] set " +
-                            "customer_name = " + sqlParam[1].ParameterName + ", " +
-                            "office = " + sqlParam[2].ParameterName + ", " +
-                            "address = " + sqlParam[3].ParameterName + ", " +
-                            "phone = " + sqlParam[4].ParameterName + ", " +
-                            "fax = " + sqlParam[5].ParameterName + ", " +
-                            "email = " + sqlParam[6].ParameterName + ", " +
-                            "contact_person = " + sqlParam[7].ParameterName + ", " +
-                            "status_ppn = " + sqlParam[8].ParameterName + ", " +
-                            "deleted = " + sqlParam[9].ParameterName + " WHERE " +
-                            "customer_id = " + sqlParam[0].ParameterName
-                            , con))
-                        {
-                            command.Transaction = sqlTransaction;
-
-                            for (int i = 0; i < 10; i++)
-                                command.Parameters.Add(sqlParam[i]);
-                            n = command.ExecuteNonQuery();
-                            command.Parameters.Clear();
-
-                            int z = 10;
-                            int subz = 10;
-                            if ((n > 0) && sqlParam.Length > 10)
+                            using (SqlCommand command = new SqlCommand(
+                                "Update [Customer] set " +
+                                "customer_name = " + sqlParam[1].ParameterName + ", " +
+                                "office = " + sqlParam[2].ParameterName + ", " +
+                                "address = " + sqlParam[3].ParameterName + ", " +
+                                "phone = " + sqlParam[4].ParameterName + ", " +
+                                "fax = " + sqlParam[5].ParameterName + ", " +
+                                "email = " + sqlParam[6].ParameterName + ", " +
+                                "contact_person = " + sqlParam[7].ParameterName + ", " +
+                                "status_ppn = " + sqlParam[8].ParameterName + ", " +
+                                "deleted = " + sqlParam[9].ParameterName + " WHERE " +
+                                "customer_id = " + sqlParam[0].ParameterName
+                                , con))
                             {
-                                //-9 is total sqlparameter minus number of customer master
-                                // / 8 is remain of total sqlparameter minus 9 is customer detail who have 8 number of field
-                                for (int k = 0; k < ((sqlParam.Length - 10) / 8); k++)
+                                command.Transaction = sqlTransaction;
+
+                                for (int i = 0; i < 10; i++)
+                                    command.Parameters.Add(sqlParam[i]);
+                                n = command.ExecuteNonQuery();
+                                command.Parameters.Clear();
+
+                                int z = 10;
+                                int subz = 10;
+                                if ((n > 0) && sqlParam.Length > 10)
                                 {
-                                    using (SqlCommand subCommand = new SqlCommand(
-                                        "Insert into [Customer_Detail] values(" +
-                                        sqlParam[z++].ParameterName + ", " +
-                                        sqlParam[z++].ParameterName + ", " +
-                                        sqlParam[z++].ParameterName + ", " +
-                                        sqlParam[z++].ParameterName + ", " +
-                                        sqlParam[z++].ParameterName + ", " +
-                                        sqlParam[z++].ParameterName + ", " +
-                                        sqlParam[z++].ParameterName + ", " +
-                                        sqlParam[z++].ParameterName +
-                                        ")"
-                                        , con))
+                                    //-9 is total sqlparameter minus number of customer master
+                                    // / 8 is remain of total sqlparameter minus 9 is customer detail who have 8 number of field
+                                    for (int k = 0; k < ((sqlParam.Length - 10) / 8); k++)
                                     {
-                                        subCommand.Transaction = sqlTransaction;
+                                        using (SqlCommand subCommand = new SqlCommand(
+                                            "Insert into [Customer_Detail] values(" +
+                                            sqlParam[z++].ParameterName + ", " +
+                                            sqlParam[z++].ParameterName + ", " +
+                                            sqlParam[z++].ParameterName + ", " +
+                                            sqlParam[z++].ParameterName + ", " +
+                                            sqlParam[z++].ParameterName + ", " +
+                                            sqlParam[z++].ParameterName + ", " +
+                                            sqlParam[z++].ParameterName + ", " +
+                                            sqlParam[z++].ParameterName +
+                                            ")"
+                                            , con))
+                                        {
+                                            subCommand.Transaction = sqlTransaction;
 
-                                        for (int i = 0; i < 8; i++)
-                                            subCommand.Parameters.Add(sqlParam[subz++]);
-                                        n = subCommand.ExecuteNonQuery();
-                                        subCommand.Parameters.Clear();
+                                            for (int i = 0; i < 8; i++)
+                                                subCommand.Parameters.Add(sqlParam[subz++]);
+                                            n = subCommand.ExecuteNonQuery();
+                                            subCommand.Parameters.Clear();
 
-                                        if (n == 0)
-                                            break;
+                                            if (n == 0)
+                                                break;
+                                        }
                                     }
-                                }
 
+                                }
                             }
+                        }
+
+                        if (n > 0)
+                            sqlTransaction.Commit();
+                        else
+                            sqlTransaction.Rollback();
+                }
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
+
+                    n = 0;
+                    Logging.Error("SqlCustomerRepository.cs - CreateCustomer() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
+            }
+
+            return n > 0;
+        }
+
+
+        public bool CheckCustomer(SqlParameter[] sqlParam, Guid ID, bool checkDeletedData = false)
+        {
+            bool exists = false;
+            String criteria;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    if (!ID.ToString().Equals(Guid.Empty.ToString()))
+                        criteria = " AND customer_id != '" + ID.ToString() + "'";
+                    else if (checkDeletedData)
+                        criteria = " AND deleted = '1'";
+                    else
+                        criteria = " AND (deleted is null OR deleted = '0')";
+
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 customer_id FROM [Customer] WHERE customer_name = " + sqlParam[1].ParameterName + 
+                        " AND office = " + sqlParam[2].ParameterName + criteria, con))
+                    {
+                        command.Parameters.Add(sqlParam[1]);
+                        command.Parameters.Add(sqlParam[2]);
+
+                        SqlDataReader reader = command.ExecuteReader();
+                        command.Parameters.Clear();
+                        while (reader.Read())
+                        {
+                            exists = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                Logging.Error("SqlCityRepository.cs - CheckCustomer() " + e.Message);
+            }
+
+            return exists;
+        }
+
+
+        public string GetCustomerIdByNameAndOffice(String Name, String office)
+        {
+            string ID = Guid.Empty.ToString();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 customer_id FROM [Customer] " +
+                        "WHERE customer_name = '" + Name + "' AND office = '" + office + "'"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            ID = reader.GetGuid(0).ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlCustomerRepository.cs - GetCustomerIdByNameAndOffice() " + e.Message);
+            }
+
+            return ID;
+        }
+
+
+        public bool ActivateCustomer(SqlParameter[] sqlParam)
+        {
+            int n = 0;
+            SqlConnection con;
+            SqlTransaction sqlTransaction = null;
+
+            String ID = GetCustomerIdByNameAndOffice(sqlParam[1].Value.ToString(), sqlParam[2].Value.ToString());
+            if (ID.Equals(Guid.Empty.ToString()))
+                return false;
+
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    sqlTransaction = con.BeginTransaction();
+
+                    using (SqlCommand deleteCommand = new SqlCommand(
+                        "Delete [Customer_Detail] WHERE customer_id = '" + ID + "'", con))
+                    {
+                        deleteCommand.Transaction = sqlTransaction;
+                        n = deleteCommand.ExecuteNonQuery();
+
+                            using (SqlCommand command = new SqlCommand(
+                                "Update [Customer] set " +
+                                "address = " + sqlParam[3].ParameterName + ", " +
+                                "phone = " + sqlParam[4].ParameterName + ", " +
+                                "fax = " + sqlParam[5].ParameterName + ", " +
+                                "email = " + sqlParam[6].ParameterName + ", " +
+                                "contact_person = " + sqlParam[7].ParameterName + ", " +
+                                "status_ppn = " + sqlParam[8].ParameterName + ", " +
+                                "deleted = " + sqlParam[9].ParameterName + " WHERE " +
+                                "customer_id = '" + ID + "'"
+                                , con))
+                            {
+                                command.Transaction = sqlTransaction;
+
+                                for (int i = 3; i < 10; i++)
+                                    command.Parameters.Add(sqlParam[i]);
+                                n = command.ExecuteNonQuery();
+                                command.Parameters.Clear();
+
+                                int z = 10;
+                                int subz = 10;
+                                if ((n > 0) && sqlParam.Length > 10)
+                                {
+                                    //-9 is total sqlparameter minus number of customer master
+                                    // / 8 is remain of total sqlparameter minus 9 is customer detail who have 8 number of field
+                                    for (int k = 0; k < ((sqlParam.Length - 10) / 8); k++)
+                                    {
+                                        using (SqlCommand subCommand = new SqlCommand(
+                                            "Insert into [Customer_Detail] values(" +
+                                            sqlParam[(z+=2) - 2].ParameterName + ", " + //+2 for handle ID who not increment one value
+                                            "'" + ID + "', " +
+                                            sqlParam[z++].ParameterName + ", " +
+                                            sqlParam[z++].ParameterName + ", " +
+                                            sqlParam[z++].ParameterName + ", " +
+                                            sqlParam[z++].ParameterName + ", " +
+                                            sqlParam[z++].ParameterName + ", " +
+                                            sqlParam[z++].ParameterName +
+                                            ")"
+                                            , con))
+                                        {
+                                            subCommand.Transaction = sqlTransaction;
+
+                                            for (int i = 0; i < 8; i++)
+                                                subCommand.Parameters.Add(sqlParam[subz++]);
+                                            n = subCommand.ExecuteNonQuery();
+                                            subCommand.Parameters.Clear();
+
+                                            if (n == 0)
+                                                break;
+                                        }
+                                    }
+
+                                }
                         }
 
                         if (n > 0)
@@ -330,7 +509,8 @@ namespace VisitaJayaPerkasa.SqlRepository
                     if (sqlTransaction != null)
                         sqlTransaction.Rollback();
 
-                    Logging.Error("SqlCustomerRepository.cs - CreateCustomer() " + e.Message);
+                    n = 0;
+                    Logging.Error("SqlCustomerRepository.cs - ActivateCustomer() " + e.Message);
                 }
                 finally
                 {
@@ -340,6 +520,7 @@ namespace VisitaJayaPerkasa.SqlRepository
 
             return n > 0;
         }
+
 
     }
 }

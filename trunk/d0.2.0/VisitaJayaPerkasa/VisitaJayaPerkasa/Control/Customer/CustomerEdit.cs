@@ -225,6 +225,32 @@ namespace VisitaJayaPerkasa.Control.Customer
             }
         }
 
+
+        private bool CheckDoubleCustomerDetail() {
+            bool AnyDoubleData = false;
+
+            for (int j = 0; j < CustomerDetailGridView.RowCount; j++)
+            {
+                String firstName0 = SqlUtility.isDBNULL(CustomerDetailGridView.Rows[j].Cells[2].Value + "") + "";
+                String lastName0 = SqlUtility.isDBNULL(CustomerDetailGridView.Rows[j].Cells[3].Value + "") + "";
+
+                for (int i = j + 1; i < CustomerDetailGridView.RowCount; i++)
+                {
+                    String firstName1 = SqlUtility.isDBNULL(CustomerDetailGridView.Rows[i].Cells[2].Value + "") + "";
+                    String lastName1 = SqlUtility.isDBNULL(CustomerDetailGridView.Rows[i].Cells[3].Value + "") + "";
+
+                    if (firstName0.Equals(firstName1) && lastName0.Equals(lastName1)) {
+                        i = CustomerDetailGridView.RowCount;
+                        j = i;
+                        AnyDoubleData = true;
+                    }
+                }
+            }
+
+            return AnyDoubleData;
+        }
+
+
         private void SaveData() {
             SqlCustomerRepository sqlCustomerRepository = null;
 
@@ -236,6 +262,29 @@ namespace VisitaJayaPerkasa.Control.Customer
                 string[] strSqlParam = getStringSqlParameter();
                 object[] objSqlParam = GetObjSqlParameter(newGuid);
                 SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(strSqlParam, objSqlParam);
+                
+                if (sqlCustomerRepository.CheckCustomer(sqlParam, Guid.Empty, true))
+                {
+                    DialogResult dResult = MessageBox.Show(this, "Customer has already deleted. Do you want to activate ?", "Confirmation", MessageBoxButtons.YesNo);
+                    if (dResult == DialogResult.Yes)
+                    {
+                        if (sqlCustomerRepository.ActivateCustomer(sqlParam))
+                        {
+                            MessageBox.Show(this, "Success Activate Customer", "Information");
+                            radButtonElement2.PerformClick();
+                        }
+                        else
+                            MessageBox.Show(this, "Cannot Activate Customer", "Information");
+
+                        sqlParam = null;
+                    }
+                    return;
+                }
+                else if (sqlCustomerRepository.CheckCustomer(sqlParam, Guid.Empty))
+                {
+                    MessageBox.Show(this, "Customer has already exists", "Information");
+                    return;
+                }
 
                 if (sqlCustomerRepository.CreateCustomer(sqlParam))
                 {
@@ -257,6 +306,12 @@ namespace VisitaJayaPerkasa.Control.Customer
                 string[] strSqlParam = getStringSqlParameter();
                 object[] objSqlParam = GetObjSqlParameter(customer.ID);
                 SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(strSqlParam, objSqlParam);
+
+                if (sqlCustomerRepository.CheckCustomer(sqlParam, this.customer.ID))
+                {
+                    MessageBox.Show(this, "customer has already exist. if it has already deleted. you must activate it with create new data", "Information");
+                    return;
+                }
 
                 if (sqlCustomerRepository.EditCustomer(sqlParam))
                 {

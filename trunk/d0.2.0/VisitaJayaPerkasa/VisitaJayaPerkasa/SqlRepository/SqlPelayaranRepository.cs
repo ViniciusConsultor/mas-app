@@ -176,9 +176,11 @@ namespace VisitaJayaPerkasa.SqlRepository
             return n > 0;
         }
 
-        public bool CheckPelayaran(SqlParameter[] sqlParam)
+
+        public bool CheckPelayaran(SqlParameter[] sqlParam, Guid ID, bool checkDeletedData = false)
         {
             bool exists = false;
+            String criteria;
 
             try
             {
@@ -186,13 +188,22 @@ namespace VisitaJayaPerkasa.SqlRepository
                 {
                     con.Open();
 
+                    if (!ID.ToString().Equals(Guid.Empty.ToString()))
+                        criteria = " AND pelayaran_id != '" + ID.ToString() + "'";
+                    else if (checkDeletedData)
+                        criteria = " AND deleted = '1'";
+                    else
+                        criteria = " AND (deleted is null OR deleted = '0')";
+
+
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT TOP 1 pelayaran_id FROM [Pelayaran] WHERE name = " + sqlParam[0].ParameterName, con))
+                        "SELECT TOP 1 pelayaran_id FROM [Pelayaran] WHERE name = " + sqlParam[1].ParameterName +
+                        criteria, con))
                     {
-                        foreach (SqlParameter tempSqlParam in sqlParam)
-                            command.Parameters.Add(tempSqlParam);
+                        command.Parameters.Add(sqlParam[1]);
 
                         SqlDataReader reader = command.ExecuteReader();
+                        command.Parameters.Clear();
                         while (reader.Read())
                         {
                             exists = true;
@@ -202,7 +213,6 @@ namespace VisitaJayaPerkasa.SqlRepository
             }
             catch (Exception e)
             {
-
                 Logging.Error("SqlPelayaranRepository.cs - CheckPelayaran() " + e.Message);
             }
 
@@ -406,6 +416,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     if (sqlTransaction != null)
                         sqlTransaction.Rollback();
 
+                    n = 0;
                     Logging.Error("SqlPelayaranRepository.cs - EditPelayaran() " + e.Message);
                 }
                 finally
@@ -465,5 +476,132 @@ namespace VisitaJayaPerkasa.SqlRepository
 
             return listPelayaranDetail;
         }
+
+
+        public bool ActivatePelayaran(SqlParameter[] sqlParam)
+        {
+            int n = 0;
+            SqlConnection con;
+            SqlTransaction sqlTransaction = null;
+            string ID = GetPelayaranIDByName(sqlParam[1].Value.ToString());
+
+            if (ID.Equals(Guid.Empty.ToString()))
+                return false;
+
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    sqlTransaction = con.BeginTransaction();
+
+                    using (SqlCommand deleteCommand = new SqlCommand(
+                        "Delete [Pelayaran_Detail] WHERE pelayaran_id = '" + ID + "'" , con))
+                    {
+                        deleteCommand.Transaction = sqlTransaction;
+                        n = deleteCommand.ExecuteNonQuery();
+
+                        using (SqlCommand command = new SqlCommand(
+                            "Update [Pelayaran] set " +
+                            "name = " + sqlParam[1].ParameterName + ", " +
+                            "deleted = " + sqlParam[2].ParameterName + " WHERE " +
+                            "pelayaran_id = '" + ID + "'"
+                            , con))
+                        {
+                            command.Transaction = sqlTransaction;
+
+                            for (int i = 1; i < 3; i++)
+                                command.Parameters.Add(sqlParam[i]);
+                            n = command.ExecuteNonQuery();
+                            command.Parameters.Clear();
+
+                            int z = 3;
+                            int subz = 3;
+                            if ((n > 0) && sqlParam.Length > 3)
+                            {
+                                //-9 is total sqlparameter minus number of customer master
+                                // / 8 is remain of total sqlparameter minus 9 is customer detail who have 8 number of field
+                                for (int k = 0; k < ((sqlParam.Length - 3) / 6); k++)
+                                {
+                                    using (SqlCommand subCommand = new SqlCommand(
+                                        "Insert into [Pelayaran_Detail] values(" +
+                                        sqlParam[(z+=2) - 2].ParameterName + ", " + //+2 for handle ID index on below
+                                        "'" + ID + "', " + 
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName +
+                                        ")"
+                                        , con))
+                                    {
+                                        subCommand.Transaction = sqlTransaction;
+
+                                        for (int i = 0; i < 6; i++)
+                                            subCommand.Parameters.Add(sqlParam[subz++]);
+                                        n = subCommand.ExecuteNonQuery();
+                                        subCommand.Parameters.Clear();
+
+                                        if (n == 0)
+                                            break;
+                                    }
+                                }
+
+                            }
+                        }
+
+                        if (n > 0)
+                            sqlTransaction.Commit();
+                        else
+                            sqlTransaction.Rollback();
+                    }
+                }
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
+
+                    n = 0;
+                    Logging.Error("SqlPelayaranRepository.cs - ActivatePelayaran() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
+            }
+
+            return n > 0;
+        }
+
+
+        public string GetPelayaranIDByName(string name)
+        {
+            string ID = Guid.Empty.ToString();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT pelayaran_id FROM [Pelayaran] WHERE name = '" + name + "'"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            ID = reader.GetGuid(0).ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlPelayaranRepository.cs - GetPelayaranIDByName() " + e.Message);
+            }
+
+            return ID;
+        }
+
     }
 }

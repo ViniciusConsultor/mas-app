@@ -51,9 +51,13 @@ namespace VisitaJayaPerkasa.SqlRepository
 
             return listCity;
         }
-        public bool CheckCityCode(SqlParameter[] sqlParam, bool excludeDeleted = true)
+
+
+
+        public bool CheckCityCode(SqlParameter[] sqlParam, Guid ID, bool checkDeletedData = false)
         {
             bool exists = false;
+            String criteria;
 
             try
             {
@@ -61,17 +65,22 @@ namespace VisitaJayaPerkasa.SqlRepository
                 {
                     con.Open();
 
-                    string conditional = "";
-                    if (!excludeDeleted)
-                        conditional = " AND deleted = '1'";
+                    if (!ID.ToString().Equals(Guid.Empty.ToString()))
+                        criteria = " AND city_id != '" + ID.ToString() + "'";
+                    else if (checkDeletedData)
+                        criteria = " AND deleted = '1'";
+                    else
+                        criteria = " AND (deleted is null OR deleted = '0')";
+
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT TOP 1 city_id FROM [City] WHERE city_code = " + sqlParam[0].ParameterName + conditional, con))
+                        "SELECT TOP 1 city_id FROM [City] WHERE city_code = " + sqlParam[0].ParameterName + criteria, con))
                     {
                         foreach (SqlParameter tempSqlParam in sqlParam)
                             command.Parameters.Add(tempSqlParam);
 
                         SqlDataReader reader = command.ExecuteReader();
+                        command.Parameters.Clear();
                         while (reader.Read())
                         {
                             exists = true;
@@ -180,6 +189,88 @@ namespace VisitaJayaPerkasa.SqlRepository
             }
 
             return n > 0;
+        }
+
+
+        public bool ActivateCity(SqlParameter[] sqlParam)
+        {
+            int n = 0;
+            SqlConnection con;
+            SqlTransaction sqlTransaction = null;
+
+            String CityID = GetCityByCityCode(sqlParam[1].Value.ToString());
+            if(CityID.Equals(Guid.Empty.ToString()))
+                return false;
+
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    sqlTransaction = con.BeginTransaction();
+                    using (SqlCommand command = new SqlCommand(
+                        "Update [City] set " +
+                        "city_name = " + sqlParam[2].ParameterName +
+                        ", days = " + sqlParam[3].ParameterName +
+                        ", deleted = " + sqlParam[4].ParameterName + 
+                        " WHERE city_id = '" + CityID + "'" , con))
+                    {
+                        command.Transaction = sqlTransaction;
+
+                        for (int i = 2; i < sqlParam.Length; i++)
+                            command.Parameters.Add(sqlParam[i]);
+                        n = command.ExecuteNonQuery();
+                    }
+
+                    if (n > 0)
+                        sqlTransaction.Commit();
+                    else
+                        sqlTransaction.Rollback();
+                }
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
+
+                    Logging.Error("SqlCityRepository.cs - ActivateCity() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
+            }
+
+            return n > 0;
+        }
+
+        public string GetCityByCityCode(String cityCode) { 
+            string CityID = Guid.Empty.ToString();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 city_id FROM [City] " +
+                        "WHERE city_code = '" + cityCode + "'"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            CityID = reader.GetGuid(0).ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlCityRepository.cs - GetCityByCityCode() " + e.Message);
+            }
+
+            return CityID;
         }
 
         public bool DeleteCity(SqlParameter[] sqlParam)
