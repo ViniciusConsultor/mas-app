@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using VisitaJayaPerkasa.SqlRepository;
 using System.Data.SqlClient;
 using Telerik.WinControls.UI;
+using VisitaJayaPerkasa.Utility.Log;
 
 namespace VisitaJayaPerkasa.Control.Pelayaran
 {
@@ -56,6 +57,10 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
         {
             if (etPelayaranName.Text.Trim().Length == 0)
                 MessageBox.Show(this, "Please fill pelayaran name", "Information");
+            else if(etVesselCode.Text.Trim().Length == 0)
+                MessageBox.Show(this, "Please fill vessel code", "Information");
+            else if (etVesselName.Text.Trim().Length == 0)
+                MessageBox.Show(this, "Please fill vessel name", "Information");
             else
             {
                 VisitaJayaPerkasa.Entities.PelayaranDetail pelDetail = new Entities.PelayaranDetail();
@@ -193,6 +198,7 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
             }
         }
 
+
         private void SaveData()
         {
             SqlPelayaranRepository sqlPelayaranRepository = null;
@@ -205,6 +211,30 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
                 string[] strSqlParam = getStringSqlParameter();
                 object[] objSqlParam = GetObjSqlParameter(newGuid);
                 SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(strSqlParam, objSqlParam);
+
+                if (sqlPelayaranRepository.CheckPelayaran(sqlParam, Guid.Empty, true))
+                {
+                    DialogResult dResult = MessageBox.Show(this, "Pelayaran has already deleted. Do you want to activate ?", "Confirmation", MessageBoxButtons.YesNo);
+                    if (dResult == DialogResult.Yes)
+                    {
+                        if (sqlPelayaranRepository.ActivatePelayaran(sqlParam))
+                        {
+                            MessageBox.Show(this, "Success Activate Pelayaran", "Information");
+                            radButtonElement2.PerformClick();
+                        }
+                        else
+                            MessageBox.Show(this, "Cannot Activate Pelayaran", "Information");
+
+                        sqlParam = null;
+                    }
+                    return;
+                }
+                else if (sqlPelayaranRepository.CheckPelayaran(sqlParam, Guid.Empty))
+                {
+                    MessageBox.Show(this, "Pelayaran has already exists", "Information");
+                    return;
+                }
+
 
                 if (sqlPelayaranRepository.CreatePelayaran(sqlParam))
                 {
@@ -226,6 +256,12 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
                 string[] strSqlParam = getStringSqlParameter();
                 object[] objSqlParam = GetObjSqlParameter(pelayaran.ID);
                 SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(strSqlParam, objSqlParam);
+
+                if (sqlPelayaranRepository.CheckPelayaran(sqlParam, this.pelayaran.ID))
+                {
+                    MessageBox.Show(this, "Pelayaran has already exist. if it has already deleted. you must activate it with create new data", "Information");
+                    return;
+                }
 
                 if (sqlPelayaranRepository.EditPelayaran(sqlParam))
                 {

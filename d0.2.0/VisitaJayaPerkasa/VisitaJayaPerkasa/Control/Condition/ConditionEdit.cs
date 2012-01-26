@@ -50,9 +50,28 @@ namespace VisitaJayaPerkasa.Control.ConditionControl
                 {
                     //Check city code has already exists ?
                     param = SqlUtility.SetSqlParameter(new string[] { "condition_code" }, new object[] { etConditionCode.Text.Trim() });
-                    if (sqlConditionRepository.CheckConditionCode(param))
+                    if (sqlConditionRepository.CheckConditionCode(param, Guid.Empty, true))
                     {
-                        MessageBox.Show(this, "Condition has already exists !", "Information");
+                        DialogResult dResult = MessageBox.Show(this, "City has already deleted. Do you want to activate ?", "Confirmation", MessageBoxButtons.YesNo);
+                        if (dResult == DialogResult.Yes)
+                        {
+                            param = SqlUtility.SetSqlParameter(new string[] { "condition_id", "condition_code", "condition_name", "deleted" }, new object[] { Guid.NewGuid(), etConditionCode.Text.Trim(), etConditionName.Text.Trim(), 0 });
+
+                            if (sqlConditionRepository.ActivateCondition(param))
+                            {
+                                MessageBox.Show(this, "Success Activate Condition", "Information");
+                                radButtonClose.PerformClick();
+                            }
+                            else
+                                MessageBox.Show(this, "Cannot Activate Condition", "Information");
+
+                            param = null;
+                        }
+                        return;
+                    }
+                    else if (sqlConditionRepository.CheckConditionCode(param, Guid.Empty))
+                    {
+                        MessageBox.Show(this, "Condition has already exists", "Information");
                         return;
                     }
 
@@ -72,6 +91,12 @@ namespace VisitaJayaPerkasa.Control.ConditionControl
                 else
                 {
                     param = SqlUtility.SetSqlParameter(new string[] { "condition_code", "condition_name", "condition_id" }, new object[] { etConditionCode.Text.Trim(), etConditionName.Text.Trim(), condition.ID });
+
+                    if (sqlConditionRepository.CheckConditionCode(param, this.condition.ID))
+                    {
+                        MessageBox.Show(this, "condition has already exist. if it has already deleted. you must activate it with create new data", "Information");
+                        return;
+                    }
 
                     if (sqlConditionRepository.EditCondition(param))
                     {

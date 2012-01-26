@@ -63,9 +63,28 @@ namespace VisitaJayaPerkasa.Control.City
                 {
                     //Check city code has already exists ?
                     param = SqlUtility.SetSqlParameter(new string[] { "city_code" }, new object[] { etCityCode.Text.Trim() });
-                    if (sqlCityRepository.CheckCityCode(param))
+                    if (sqlCityRepository.CheckCityCode(param, Guid.Empty, true))
                     {
-                        MessageBox.Show(this, "City has already exists !", "Information");
+                        DialogResult dResult = MessageBox.Show(this, "City has already deleted. Do you want to activate ?", "Confirmation", MessageBoxButtons.YesNo);
+                        if (dResult == DialogResult.Yes)
+                        {
+                            param = SqlUtility.SetSqlParameter(new string[] { "city_id", "city_code", "city_name", "Days", "deleted" }, new object[] { Guid.NewGuid(), etCityCode.Text.Trim(), etCityName.Text.Trim(), Convert.ToInt32(etDays.Text.Trim()), 0 });
+
+                            if (sqlCityRepository.ActivateCity(param))
+                            {
+                                MessageBox.Show(this, "Success Activate City", "Information");
+                                radButtonElement2.PerformClick();
+                            }
+                            else
+                                MessageBox.Show(this, "Cannot Activate City", "Information");
+
+                            param = null;
+                        }
+                        return;
+                    }
+                    else if (sqlCityRepository.CheckCityCode(param, Guid.Empty))
+                    {
+                        MessageBox.Show(this, "City has already exists", "Information");
                         return;
                     }
 
@@ -84,7 +103,12 @@ namespace VisitaJayaPerkasa.Control.City
                 }
                 else
                 {
-                    param = SqlUtility.SetSqlParameter(new string[] { "city_code", "city_name", "Days", "city_id" }, new object[] { etCityCode.Text.Trim(), etCityName.Text.Trim(), Convert.ToInt32(etDays.Text.Trim()),  city.ID });
+                    param = SqlUtility.SetSqlParameter(new string[] { "city_code", "city_name", "Days", "city_id" }, new object[] { etCityCode.Text.Trim(), etCityName.Text.Trim(), Convert.ToInt32(etDays.Text.Trim()), city.ID });
+                    if (sqlCityRepository.CheckCityCode(param, this.city.ID))
+                    {
+                        MessageBox.Show(this, "city has already exist. if it has already deleted. you must activate it with create new data", "Information");
+                        return;
+                    }
 
                     if (sqlCityRepository.EditCity(param))
                     {
