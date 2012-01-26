@@ -269,6 +269,7 @@
             this.cbSupplier.TabIndex = 25;
             this.cbSupplier.TabStop = false;
             this.cbSupplier.Text = "-- Choose --";
+            this.cbSupplier.SelectedIndexChanged += new System.EventHandler(this.cbSupplier_SelectedIndexChanged);
             this.cbSupplier.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbSupplier_KeyPress);
             // 
             // cboTypeSupplier
