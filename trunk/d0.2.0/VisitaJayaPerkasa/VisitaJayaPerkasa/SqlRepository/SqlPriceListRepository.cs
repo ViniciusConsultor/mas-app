@@ -307,9 +307,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             return result;
         }
 
-        public Guid GetPriceByDateSupplierCustomer(DateTime date, string supplierID, string customerID)
+        public VisitaJayaPerkasa.Entities.PriceList GetPriceByDateSupplierCustomer(DateTime date, string supplierID, string customerID)
         {
-            Guid result = Guid.Empty;
+            VisitaJayaPerkasa.Entities.PriceList result = new VisitaJayaPerkasa.Entities.PriceList();
             try
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
@@ -317,7 +317,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT price_id FROM [Price] " +
+                        "SELECT * FROM [Price] " +
                         "WHERE [date] = '" + date + "' " +
                         "AND supplier_id like '%" + supplierID + "%' " +
                         "AND customer_id like '%" + customerID + "%'"
@@ -326,7 +326,18 @@ namespace VisitaJayaPerkasa.SqlRepository
                         SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
-                            result = reader.GetGuid(0);
+                            result.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                            result.Date = reader.GetDateTime(1);
+                            result.SupplierID = Utility.Utility.ConvertToUUID(reader.GetValue(2).ToString());
+                            result.Destination = Utility.Utility.ConvertToUUID(reader.GetValue(3).ToString());
+                            result.TypeID = Utility.Utility.ConvertToUUID(reader.GetValue(4).ToString());
+                            result.ConditionID = Utility.Utility.ConvertToUUID(reader.GetValue(5).ToString());
+                            result.PriceSupplier = reader.GetDecimal(6);
+                            result.CustomerID = Utility.Utility.ConvertToUUID(reader.GetValue(7).ToString());
+                            result.PriceCustomer = reader.GetDecimal(8);
+                            result.StuffingID = Utility.Utility.ConvertToUUID(reader.GetValue(9).ToString());
+                            result.Recipient = Utility.Utility.ConvertToUUID(reader.GetValue(10).ToString());
+                            result.PriceCourier = reader.GetDecimal(11);
                             break;
                         }
                     }
@@ -340,7 +351,7 @@ namespace VisitaJayaPerkasa.SqlRepository
             return result;
         }
 
-        public string FindPriceBySupplierCustomerStuffing(DateTime date, string supplierID, string customerID, string stuffingID)
+        public string FindPriceBySupplierCustomerStuffing(DateTime date, string supplierID, string customerID, string stuffingID, string typeContID)
         {
             string result = "";
             try
@@ -350,18 +361,21 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT 'Supplier: ' + ISNULL(s.supplier_name, 'null') + ', Customer: ' + ISNULL(c.customer_name, 'null') + ', Stuffing place: ' + ISNULL(w.address, 'null') + ' on ' + convert(varchar, p.[date], 106) " +
+                        "SELECT 'Supplier: ' + ISNULL(s.supplier_name, 'null') + CHAR(13) + CHAR(10) + 'Customer: ' + ISNULL(c.customer_name, 'null') + CHAR(13) + CHAR(10) + 'Stuffing place: ' + ISNULL(w.address, 'null') + CHAR(13) + CHAR(10) + 'Type Cont: ' + ISNULL(t.type_name, 'null') + CHAR(13) + CHAR(10) + 'on ' + convert(varchar, p.[date], 106) " +
                         "FROM [ShippingMain].[dbo].[PRICE] p " +
                         "LEFT OUTER JOIN [ShippingMain].[dbo].[SUPPLIER] s " +
                         "ON s.supplier_id = p.supplier_id " +
                         "LEFT OUTER JOIN [ShippingMain].[dbo].[CUSTOMER] c " +
                         "ON c.customer_id = p.customer_id " +
+                        "LEFT OUTER JOIN [ShippingMain].[dbo].[TYPE_CONT] t " +
+                        "ON t.type_id = p.type_cont_id " +
                         "LEFT OUTER JOIN [ShippingMain].[dbo].[WAREHOUSE] w " +
                         "ON w.stuffing_place_id = p.stuffing_id " +
                         "WHERE p.[date] = '" + date + "' " +
-                        "AND p.supplier_id like '%" + supplierID + "%' " +
-                        "AND p.customer_id like '%" + customerID + "%' " +
-                        "AND p.stuffing_id like '%" + stuffingID + "%'"
+                        "AND p.supplier_id = '" + supplierID + "' " +
+                        "AND p.customer_id = '" + customerID + "' " +
+                        "AND p.stuffing_id = '" + stuffingID + "' " +
+                        "AND p.type_cont_id = '" + typeContID + "'"
                         , con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
@@ -380,9 +394,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             return result;
         }
 
-        public Guid GetPriceBySupplierCustomerStuffing(DateTime date, string supplierID, string customerID, string stuffingID)
+        public VisitaJayaPerkasa.Entities.PriceList GetPriceBySupplierCustomerStuffing(DateTime date, string supplierID, string customerID, string stuffingID, string typeContID)
         {
-            Guid result = Guid.Empty;
+            VisitaJayaPerkasa.Entities.PriceList result = new VisitaJayaPerkasa.Entities.PriceList();
             try
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
@@ -390,17 +404,29 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT price_id FROM [Price] " +
+                        "SELECT * FROM [Price] " +
                         "WHERE [date] = '" + date + "' " +
-                        "AND supplier_id like '%" + supplierID + "%' " +
-                        "AND customer_id like '%" + customerID + "%' " +
-                        "AND stuffing_id like '%" + stuffingID + "%'"
+                        "AND supplier_id = '" + supplierID + "' " +
+                        "AND customer_id = '" + customerID + "' " +
+                        "AND stuffing_id = '" + stuffingID + "' " +
+                        "AND type_cont_id = '" + typeContID + "'"
                         , con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
-                            result = reader.GetGuid(0);
+                            result.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                            result.Date = reader.GetDateTime(1);
+                            result.SupplierID = Utility.Utility.ConvertToUUID(reader.GetValue(2).ToString());
+                            result.Destination = Utility.Utility.ConvertToUUID(reader.GetValue(3).ToString());
+                            result.TypeID = Utility.Utility.ConvertToUUID(reader.GetValue(4).ToString());
+                            result.ConditionID = Utility.Utility.ConvertToUUID(reader.GetValue(5).ToString());
+                            result.PriceSupplier = reader.GetDecimal(6);
+                            result.CustomerID = Utility.Utility.ConvertToUUID(reader.GetValue(7).ToString());
+                            result.PriceCustomer = reader.GetDecimal(8);
+                            result.StuffingID = Utility.Utility.ConvertToUUID(reader.GetValue(9).ToString());
+                            result.Recipient = Utility.Utility.ConvertToUUID(reader.GetValue(10).ToString());
+                            result.PriceCourier = reader.GetDecimal(11);
                             break;
                         }
                     }

@@ -53,6 +53,51 @@ namespace VisitaJayaPerkasa.SqlRepository
                 return listRecipient;
         }
 
+        public List<Recipient> GetRecipientBySupplier(string supplierID)
+        {
+            List<Recipient> listRecipient = new List<Recipient>();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT recipient_id, recipient_name, supplier_id, " +
+                        "(SELECT supplier_name FROM [SUPPLIER] s WHERE s.supplier_id = r.supplier_id) as SupplierName " +
+                        "FROM [Recipient] r " +
+                        "WHERE (r.deleted is null OR r.deleted = '0') " +
+                        "AND r.supplier_id = '" + supplierID + "' " +
+                        "ORDER BY recipient_name ASC"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            Recipient recipient = new Recipient();
+                            recipient.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                            recipient.Name = reader.GetString(1);
+                            recipient.SupplierID = Utility.Utility.ConvertToUUID(reader.GetValue(2).ToString());
+                            recipient.SupplierName = reader.GetString(3);
+
+                            if (listRecipient == null)
+                                listRecipient = new List<Recipient>();
+
+                            listRecipient.Add(recipient);
+                            recipient = null;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlRecipientRepository.cs - GetRecipient() " + e.Message);
+            }
+
+            return listRecipient;
+        }
+
         public Guid GetRecipientIDbyRecipientName(String recipientName , Guid supplierID)
         {
             Guid ID = Guid.Empty;
