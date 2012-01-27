@@ -23,17 +23,18 @@ namespace VisitaJayaPerkasa.SqlRepository
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT s.schedule_id, " + 
-                        "s.tujuan, s.pelayaran_id, s.tgl_closing, s.voy, s.keterangan, s.vessel_code, " + 
+                        "s.tujuan, p.pelayaran_id, s.tgl_closing, s.voy, s.keterangan, s.vessel_code, " + 
                         "s.ro_begin_20, s.ro_begin_40, s.ro_end_20, s.ro_end_40, s.etd, s.td, s.eta, s.ta, s.unloading, " + 
                         "(SELECT TOP 1 city_name FROM [CITY] cc WHERE cc.city_id = s.tujuan) as tujuans, " +
-                        "(SELECT TOP 1 name FROM [PELAYARAN] p WHERE p.pelayaran_id = s.pelayaran_id) as pelayarans, " +
-                        "(SELECT TOP 1 vessel_name FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_id = s.pelayaran_id AND pd.vessel_code = s.vessel_code) as vessels, " +  
-                        "(SELECT TOP 1 status_pinjaman FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_id = s.pelayaran_id AND pd.vessel_code = s.vessel_code) as status " + 
-                        "FROM [Schedule] s, [PELAYARAN] p " +
-                        "WHERE (p.deleted is null OR p.deleted = '0') AND s.tgl_closing > '" + beginDate + "' AND p.pelayaran_id = s.pelayaran_id AND " + 
+                        "(SELECT TOP 1 name FROM [PELAYARAN] pp WHERE pp.pelayaran_id = p.pelayaran_id) as pelayarans, " +
+                        "(SELECT TOP 1 vessel_name FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_detail_id = s.pelayaran_detail_id) as vessels, " +  
+                        "(SELECT TOP 1 status_pinjaman FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_detail_id = s.pelayaran_detail_id) as status " + 
+                        "FROM [Schedule] s, [PELAYARAN_DETAIL] p " +
+                        "WHERE (p.deleted is null OR p.deleted = '0') AND s.tgl_closing > '" + beginDate + "' AND p.pelayaran_detail_id = s.pelayaran_detail_id AND " + 
                         "(s.etd > '" + beginDate + "' AND s.etd < '" + endDate + "') AND " + 
                         "s.voy like '%" + voy + "%' AND s.vessel_code like '%" + vessel + "%' AND " + 
-                        "s.tujuan like '%" + destination + "%' AND (s.deleted is null OR s.deleted = '0')"
+                        "s.tujuan like '%" + destination + "%' AND (s.deleted is null OR s.deleted = '0') " + 
+                        "AND TA is null"
                         , con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
@@ -52,14 +53,18 @@ namespace VisitaJayaPerkasa.SqlRepository
                             schedule.ro_end_20 = (Utility.Utility.IsDBNull(reader.GetDecimal(9))) ? 0 : int.Parse(reader.GetDecimal(9).ToString());
                             schedule.ro_end_40 = (Utility.Utility.IsDBNull(reader.GetDecimal(10))) ? 0 : int.Parse(reader.GetDecimal(10).ToString());
                             schedule.etd = reader.GetDateTime(11);
-                            schedule.td = reader.GetDateTime(12);
-                            schedule.eta = reader.GetDateTime(13);
-                            schedule.ta = reader.GetDateTime(14);
+
+                            if(! Utility.Utility.IsDBNull(reader.GetValue(12)))
+                                schedule.td = reader.GetDateTime(12);
+                            if (!Utility.Utility.IsDBNull(reader.GetValue(13)))
+                                schedule.eta = reader.GetDateTime(13);
+                            if (!Utility.Utility.IsDBNull(reader.GetValue(14)))
+                                schedule.ta = reader.GetDateTime(14);
                             schedule.unLoading = reader.GetDateTime(15);
 
                             schedule.berangkatTujuan = reader.GetString(16);
-                            //schedule.namaPelayaran = reader.GetString(17);
-                            schedule.namaKapal = (reader.GetBoolean(19)) ? (reader.GetString(18) + " - loan") : reader.GetString(18);
+                            schedule.namaPelayaran = reader.GetString(17);
+                            schedule.namaKapal = (reader.GetBoolean(19)) ? (reader.GetString(18) + " - " + schedule.namaPelayaran + " [loan]") :  reader.GetString(18) + " - " + schedule.namaPelayaran;
 
                             if (listSchedule == null)
                                 listSchedule = new List<Schedule>();
@@ -196,7 +201,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     using (SqlCommand command = new SqlCommand(
                         "Update [Schedule] set " +
                         "tujuan = " + sqlParam[1].ParameterName + ", " +
-                        "pelayaran_id = " + sqlParam[2].ParameterName + ", " +
+                        "pelayaran_detail_id = " + sqlParam[2].ParameterName + ", " +
                         "tgl_closing = " + sqlParam[3].ParameterName + ", " +
                         "voy = " + sqlParam[4].ParameterName + ", " +
                         "deleted = " + sqlParam[5].ParameterName + ", " +

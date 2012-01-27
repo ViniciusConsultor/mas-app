@@ -36,20 +36,10 @@
             this.radToolStripElement1 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.lblKapal = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.lblETD = new Telerik.WinControls.UI.RadLabel();
-            this.lblTD = new Telerik.WinControls.UI.RadLabel();
-            this.lblTA = new Telerik.WinControls.UI.RadLabel();
-            this.lblUnLoading = new Telerik.WinControls.UI.RadLabel();
-            this.lblETA = new Telerik.WinControls.UI.RadLabel();
             this.lblVOY = new Telerik.WinControls.UI.RadLabel();
-            this.lblKeterangan = new Telerik.WinControls.UI.RadLabel();
             this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel18 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
@@ -60,25 +50,19 @@
             this.radLabel24 = new Telerik.WinControls.UI.RadLabel();
             this.lblRE20 = new Telerik.WinControls.UI.RadLabel();
             this.lblRE40 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.lblUnLoading = new Telerik.WinControls.UI.RadLabel();
+            this.lblKeterangan = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.lblTujuan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblKapal)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblETD)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTD)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblUnLoading)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblETA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblVOY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblKeterangan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).BeginInit();
@@ -89,6 +73,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRE20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRE40)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUnLoading)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblKeterangan)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTujuan
@@ -156,7 +144,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(557, 48);
+            this.radToolStrip1.Size = new System.Drawing.Size(557, 49);
             this.radToolStrip1.TabIndex = 25;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
@@ -167,30 +155,6 @@
             this.lblKapal.Size = new System.Drawing.Size(12, 16);
             this.lblKapal.TabIndex = 27;
             this.lblKapal.Text = "s";
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.Location = new System.Drawing.Point(25, 159);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(21, 16);
-            this.radLabel3.TabIndex = 30;
-            this.radLabel3.Text = "TD";
-            // 
-            // radLabel4
-            // 
-            this.radLabel4.Location = new System.Drawing.Point(25, 181);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(28, 16);
-            this.radLabel4.TabIndex = 29;
-            this.radLabel4.Text = "ETA";
-            // 
-            // radLabel5
-            // 
-            this.radLabel5.Location = new System.Drawing.Point(25, 225);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(61, 16);
-            this.radLabel5.TabIndex = 29;
-            this.radLabel5.Text = "UnLoading";
             // 
             // radLabel6
             // 
@@ -208,22 +172,6 @@
             this.radLabel7.TabIndex = 29;
             this.radLabel7.Text = "ETD";
             // 
-            // radLabel8
-            // 
-            this.radLabel8.Location = new System.Drawing.Point(25, 203);
-            this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(21, 16);
-            this.radLabel8.TabIndex = 31;
-            this.radLabel8.Text = "TA";
-            // 
-            // radLabel9
-            // 
-            this.radLabel9.Location = new System.Drawing.Point(25, 247);
-            this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(65, 16);
-            this.radLabel9.TabIndex = 32;
-            this.radLabel9.Text = "Keterangan";
-            // 
             // lblETD
             // 
             this.lblETD.Location = new System.Drawing.Point(137, 137);
@@ -232,38 +180,6 @@
             this.lblETD.TabIndex = 33;
             this.lblETD.Text = "a";
             // 
-            // lblTD
-            // 
-            this.lblTD.Location = new System.Drawing.Point(137, 159);
-            this.lblTD.Name = "lblTD";
-            this.lblTD.Size = new System.Drawing.Size(12, 16);
-            this.lblTD.TabIndex = 30;
-            this.lblTD.Text = "a";
-            // 
-            // lblTA
-            // 
-            this.lblTA.Location = new System.Drawing.Point(137, 203);
-            this.lblTA.Name = "lblTA";
-            this.lblTA.Size = new System.Drawing.Size(12, 16);
-            this.lblTA.TabIndex = 34;
-            this.lblTA.Text = "a";
-            // 
-            // lblUnLoading
-            // 
-            this.lblUnLoading.Location = new System.Drawing.Point(137, 225);
-            this.lblUnLoading.Name = "lblUnLoading";
-            this.lblUnLoading.Size = new System.Drawing.Size(12, 16);
-            this.lblUnLoading.TabIndex = 35;
-            this.lblUnLoading.Text = "a";
-            // 
-            // lblETA
-            // 
-            this.lblETA.Location = new System.Drawing.Point(137, 181);
-            this.lblETA.Name = "lblETA";
-            this.lblETA.Size = new System.Drawing.Size(12, 16);
-            this.lblETA.TabIndex = 36;
-            this.lblETA.Text = "a";
-            // 
             // lblVOY
             // 
             this.lblVOY.Location = new System.Drawing.Point(137, 115);
@@ -271,14 +187,6 @@
             this.lblVOY.Size = new System.Drawing.Size(12, 16);
             this.lblVOY.TabIndex = 30;
             this.lblVOY.Text = "a";
-            // 
-            // lblKeterangan
-            // 
-            this.lblKeterangan.Location = new System.Drawing.Point(137, 247);
-            this.lblKeterangan.Name = "lblKeterangan";
-            this.lblKeterangan.Size = new System.Drawing.Size(12, 16);
-            this.lblKeterangan.TabIndex = 37;
-            this.lblKeterangan.Text = "a";
             // 
             // radLabel17
             // 
@@ -360,6 +268,38 @@
             this.lblRE40.TabIndex = 47;
             this.lblRE40.Text = "a";
             // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(25, 159);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(61, 16);
+            this.radLabel3.TabIndex = 29;
+            this.radLabel3.Text = "UnLoading";
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Location = new System.Drawing.Point(25, 181);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(65, 16);
+            this.radLabel4.TabIndex = 32;
+            this.radLabel4.Text = "Keterangan";
+            // 
+            // lblUnLoading
+            // 
+            this.lblUnLoading.Location = new System.Drawing.Point(137, 159);
+            this.lblUnLoading.Name = "lblUnLoading";
+            this.lblUnLoading.Size = new System.Drawing.Size(12, 16);
+            this.lblUnLoading.TabIndex = 35;
+            this.lblUnLoading.Text = "a";
+            // 
+            // lblKeterangan
+            // 
+            this.lblKeterangan.Location = new System.Drawing.Point(137, 181);
+            this.lblKeterangan.Name = "lblKeterangan";
+            this.lblKeterangan.Size = new System.Drawing.Size(12, 16);
+            this.lblKeterangan.TabIndex = 37;
+            this.lblKeterangan.Text = "a";
+            // 
             // ScheduleView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -376,18 +316,12 @@
             this.Controls.Add(this.radLabel17);
             this.Controls.Add(this.lblKeterangan);
             this.Controls.Add(this.lblVOY);
-            this.Controls.Add(this.lblETA);
             this.Controls.Add(this.lblUnLoading);
-            this.Controls.Add(this.lblTA);
-            this.Controls.Add(this.lblTD);
             this.Controls.Add(this.lblETD);
-            this.Controls.Add(this.radLabel9);
-            this.Controls.Add(this.radLabel8);
-            this.Controls.Add(this.radLabel6);
-            this.Controls.Add(this.radLabel5);
             this.Controls.Add(this.radLabel4);
-            this.Controls.Add(this.radLabel7);
+            this.Controls.Add(this.radLabel6);
             this.Controls.Add(this.radLabel3);
+            this.Controls.Add(this.radLabel7);
             this.Controls.Add(this.lblTujuan);
             this.Controls.Add(this.radLabel2);
             this.Controls.Add(this.radLabel1);
@@ -400,20 +334,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblKapal)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblETD)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTD)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblUnLoading)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblETA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblVOY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblKeterangan)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).EndInit();
@@ -424,6 +348,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRE20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRE40)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUnLoading)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblKeterangan)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -439,20 +367,10 @@
         private Telerik.WinControls.UI.RadToolStripElement radToolStripElement1;
         private Telerik.WinControls.UI.RadToolStrip radToolStrip1;
         private Telerik.WinControls.UI.RadLabel lblKapal;
-        private Telerik.WinControls.UI.RadLabel radLabel3;
-        private Telerik.WinControls.UI.RadLabel radLabel4;
-        private Telerik.WinControls.UI.RadLabel radLabel5;
         private Telerik.WinControls.UI.RadLabel radLabel6;
         private Telerik.WinControls.UI.RadLabel radLabel7;
-        private Telerik.WinControls.UI.RadLabel radLabel8;
-        private Telerik.WinControls.UI.RadLabel radLabel9;
         private Telerik.WinControls.UI.RadLabel lblETD;
-        private Telerik.WinControls.UI.RadLabel lblTD;
-        private Telerik.WinControls.UI.RadLabel lblTA;
-        private Telerik.WinControls.UI.RadLabel lblUnLoading;
-        private Telerik.WinControls.UI.RadLabel lblETA;
         private Telerik.WinControls.UI.RadLabel lblVOY;
-        private Telerik.WinControls.UI.RadLabel lblKeterangan;
         private Telerik.WinControls.UI.RadLabel radLabel17;
         private Telerik.WinControls.UI.RadLabel radLabel18;
         private Telerik.WinControls.UI.RadLabel radLabel19;
@@ -463,5 +381,9 @@
         private Telerik.WinControls.UI.RadLabel radLabel24;
         private Telerik.WinControls.UI.RadLabel lblRE20;
         private Telerik.WinControls.UI.RadLabel lblRE40;
+        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.UI.RadLabel lblUnLoading;
+        private Telerik.WinControls.UI.RadLabel lblKeterangan;
     }
 }

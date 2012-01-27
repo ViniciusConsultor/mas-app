@@ -50,11 +50,13 @@ namespace VisitaJayaPerkasa.Control.PriceList
             sqlWareHouseRepository = new SqlWareHouseRepository();
 
             listTypeOfSupplier = sqlPriceListRepository.GetTypeOfSupplier();
+            cboTypeSupplier.SelectedValueChanged -= new EventHandler(cboTypeSupplier_SelectedValueChanged);
             cboTypeSupplier.DataSource = listTypeOfSupplier;
             cboTypeSupplier.DisplayMember = "CategoryName";
             cboTypeSupplier.ValueMember = "ID";
             cboTypeSupplier.SelectedIndex = -1;
             cboTypeSupplier.SelectedText = Constant.VisitaJayaPerkasaApplication.cboDefaultText;
+            cboTypeSupplier.SelectedValueChanged += new EventHandler(cboTypeSupplier_SelectedValueChanged);
             supplierTypeCompleted = true;
 
             listCity = sqlCityRepository.GetCity();
@@ -82,8 +84,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
             cboRecipient.Enabled = false;
             sqlPriceListRepository = null;
             PriceListGridView.Enabled = false;
-
-            sqlPriceListRepository = null;
             sqlCityRepository = null;
         }
 

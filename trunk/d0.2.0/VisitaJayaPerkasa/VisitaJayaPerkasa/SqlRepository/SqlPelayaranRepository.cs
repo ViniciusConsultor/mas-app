@@ -73,6 +73,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                             pelayaranDetail.PelayaranDetailID = Guid.Parse(reader.GetValue(4).ToString());
                             pelayaranDetail.VesselCode = reader.GetValue(0).ToString();
                             pelayaranDetail.VesselName = (reader.GetBoolean(2)) ? (reader.GetString(1) + " - " + reader.GetString(3) + " [loan]") : reader.GetString(1) + " - " + reader.GetString(3);
+                            pelayaranDetail.VesselCodeAndPelayaranID = pelayaranDetail.PelayaranDetailID + pelayaranDetail.VesselCode;
 
                             if (listVessel == null)
                                 listVessel = new List<PelayaranDetail>();

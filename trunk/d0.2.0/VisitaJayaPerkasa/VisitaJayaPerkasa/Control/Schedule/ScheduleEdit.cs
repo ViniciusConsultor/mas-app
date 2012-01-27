@@ -36,7 +36,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
 
             cboKapal.DataSource = listPelayaran;
             cboKapal.DisplayMember = "VesselName";
-            cboKapal.ValueMember = "VesselCode";
+            cboKapal.ValueMember = "VesselCodeAndPelayaranID";
 
             if (schedule == null)
             {
@@ -46,6 +46,20 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 cboTujuan.Text = Constant.VisitaJayaPerkasaApplication.cboDefaultText;
                 cboKapal.SelectedIndex = -1;
                 cboKapal.Text = Constant.VisitaJayaPerkasaApplication.cboDefaultText;
+
+                lblETA.Visible = false;
+                lblTA.Visible = false;
+                lblTD.Visible = false;
+                pickerETA.Visible = false;
+                pickerTA.Visible = false;
+                pickerTD.Visible = false;
+
+                pickerETA.Value = DateTime.Now;
+                pickerTA.Value = DateTime.Now;
+                pickerETD.Value = DateTime.Now;
+                pickerTD.Value = DateTime.Now;
+                pickerUnLoading.Value = DateTime.Now;
+                pickerTglClosing.Value = DateTime.Now;
             }
             else {
                 wantToCreateVessel = false;
@@ -55,9 +69,6 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 etVOY.Text = schedule.voy;
 
                 pickerETD.Value = schedule.etd;
-                pickerTD.Value = schedule.td;
-                pickerETA.Value = schedule.eta;
-                pickerTA.Value = schedule.ta;
                 pickerUnLoading.Value = schedule.unLoading;
                 pickerTglClosing.Value = schedule.tglclosing;
 
@@ -66,16 +77,17 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 etROend20.Text = schedule.ro_end_20.ToString();
                 etROend40.Text = schedule.ro_end_40.ToString();
                 etKet.Text = schedule.keterangan;
+
+                lblETA.Visible = true;
+                lblTA.Visible = true;
+                lblTD.Visible = true;
+                pickerETA.Visible = true;
+                pickerTA.Visible = true;
+                pickerTD.Visible = true;
             }
 
             listCity = null;
             sqlCityRepository = null;
-            pickerETA.Value = DateTime.Now;
-            pickerTA.Value = DateTime.Now;
-            pickerETD.Value = DateTime.Now;
-            pickerTD.Value = DateTime.Now;
-            pickerUnLoading.Value = DateTime.Now;
-            pickerTglClosing.Value = DateTime.Now;
          }
 
         private void radButtonElement2_Click(object sender, EventArgs e)
@@ -148,7 +160,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
 
                 if (wantToCreateVessel) {
                     SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(
-                            new string[]{"schedule_id", "tujuan", "pelayaran_id", "tgl_closing", 
+                            new string[]{"schedule_id", "tujuan", "pelayaran_detail_id", "tgl_closing", 
                                 "voy", "deleted", "keterangan", "vessel_code", "ro_begin_20",
                                 "ro_begin_40", "ro_end_20", "ro_end_40", "etd", "td", "eta", "ta", 
                                 "unloading"
@@ -166,9 +178,9 @@ namespace VisitaJayaPerkasa.Control.Schedule
                                 Utility.Utility.IsStringNullorEmpty(etROend20.Text.Trim()) ? 0 : Int32.Parse(etROend20.Text.Trim()),
                                 Utility.Utility.IsStringNullorEmpty(etROend40.Text.Trim()) ? 0 : Int32.Parse(etROend40.Text.Trim()),
                                 pickerETD.Value.Date,
-                                pickerTD.Value.Date,
-                                pickerETA.Value.Date,
-                                pickerTA.Value.Date,
+                                DBNull.Value,
+                                DBNull.Value,
+                                DBNull.Value,
                                 pickerUnLoading.Value.Date
                             });
 
@@ -183,7 +195,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 }
                 else {
                     SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(
-                        new string[]{"schedule_id", "tujuan", "pelayaran_id", "tgl_closing", 
+                        new string[]{"schedule_id", "tujuan", "pelayaran_detail_id", "tgl_closing", 
                                                 "voy", "deleted", "keterangan", "vessel_code", "ro_begin_20",
                                                 "ro_begin_40", "ro_end_20", "ro_end_40", "etd", "td", "eta", "ta", 
                                                 "unloading"
