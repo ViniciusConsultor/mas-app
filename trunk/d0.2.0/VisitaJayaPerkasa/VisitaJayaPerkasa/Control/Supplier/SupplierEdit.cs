@@ -193,6 +193,29 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 object[] objSqlParam = GetObjSqlParameter(newGuid);
                 SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(strSqlParam, objSqlParam);
 
+                if (sqlSupplierRepository.CheckSupplier(sqlParam, Guid.Empty, true))
+                {
+                    DialogResult dResult = MessageBox.Show(this, "Supplier has already deleted. Do you want to activate ?", "Confirmation", MessageBoxButtons.YesNo);
+                    if (dResult == DialogResult.Yes)
+                    {
+                        if (sqlSupplierRepository.ActivateSupplier(sqlParam))
+                        {
+                            MessageBox.Show(this, "Success Activate Supplier", "Information");
+                            radButtonElement2.PerformClick();
+                        }
+                        else
+                            MessageBox.Show(this, "Cannot Activate Supplier", "Information");
+
+                        sqlParam = null;
+                    }
+                    return;
+                }
+                else if (sqlSupplierRepository.CheckSupplier(sqlParam, Guid.Empty))
+                {
+                    MessageBox.Show(this, "Supplier has already exists", "Information");
+                    return;
+                }
+
                 if (sqlSupplierRepository.CreateSupplier(sqlParam))
                 {
                     MessageBox.Show(this, "Success insert supplier data", "Information");
@@ -214,6 +237,12 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 object[] objSqlParam = GetObjSqlParameter(supplier.Id);
                 SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(strSqlParam, objSqlParam);
 
+                if (sqlSupplierRepository.CheckSupplier(sqlParam, this.supplier.Id))
+                {
+                    MessageBox.Show(this, "supplier has already exist. if it has already deleted. you must activate it with create new data", "Information");
+                    return;
+                }
+
                 if (sqlSupplierRepository.EditSupplier(sqlParam))
                 {
                     MessageBox.Show(this, "Success edit supplier data", "Information");
@@ -229,6 +258,52 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 objSqlParam = null;
                 sqlParam = null;
             }
+
+            //if (wantToCreateVessel)
+            //{
+            //    sqlSupplierRepository = new SqlSupplierRepository();
+            //    Guid newGuid = Guid.NewGuid();
+
+            //    string[] strSqlParam = getStringSqlParameter();
+            //    object[] objSqlParam = GetObjSqlParameter(newGuid);
+            //    SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(strSqlParam, objSqlParam);
+
+            //    if (sqlSupplierRepository.CreateSupplier(sqlParam))
+            //    {
+            //        MessageBox.Show(this, "Success insert supplier data", "Information");
+            //        radButtonElement2.PerformClick();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show(this, "Cannot insert supplier data", "Information");
+            //    }
+            //    sqlSupplierRepository = null;
+            //    strSqlParam = null;
+            //    objSqlParam = null;
+            //    sqlParam = null;
+            //}
+            //else
+            //{
+            //    sqlSupplierRepository = new SqlSupplierRepository();
+            //    string[] strSqlParam = getStringSqlParameter();
+            //    object[] objSqlParam = GetObjSqlParameter(supplier.Id);
+            //    SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(strSqlParam, objSqlParam);
+
+            //    if (sqlSupplierRepository.EditSupplier(sqlParam))
+            //    {
+            //        MessageBox.Show(this, "Success edit supplier data", "Information");
+            //        radButtonElement2.PerformClick();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show(this, "Cannot edit supplier data", "Information");
+            //    }
+
+            //    sqlSupplierRepository = null;
+            //    strSqlParam = null;
+            //    objSqlParam = null;
+            //    sqlParam = null;
+            //}
 
         }
 

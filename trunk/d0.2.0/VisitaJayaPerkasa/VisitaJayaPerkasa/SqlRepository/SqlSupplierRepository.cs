@@ -55,6 +55,136 @@ namespace VisitaJayaPerkasa.SqlRepository
             return listSupplier;
         }
 
+        public bool CheckSupplier(SqlParameter[] sqlParam, Guid gID, bool checkDeletedData = false)
+        {
+            bool exists = false;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+                    String criteria = "";
+                    if (!gID.ToString().Equals(Guid.Empty.ToString()))
+                        criteria = " AND supplier_id != '" + gID.ToString() + "'";
+                    else if (checkDeletedData)
+                        criteria = " AND deleted = '1'";
+                    else
+                        criteria = " AND (deleted is null OR deleted = '0')";
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 supplier_id FROM [SUPPLIER] WHERE supplier_name = '" + sqlParam[2].Value + "' AND category_id = '" + sqlParam[1].Value + "' AND email = '" + sqlParam[6].Value + "'" + criteria, con))
+                    {
+                        //foreach (SqlParameter tempSqlParam in sqlParam)
+                        //    command.Parameters.Add(tempSqlParam);
+
+                        SqlDataReader reader = command.ExecuteReader();
+                        command.Parameters.Clear();
+                        while (reader.Read())
+                        {
+                            exists = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                Logging.Error("SqlSupplierRepository.cs - CheckSupplier() " + e.Message);
+            }
+
+            return exists;
+        }
+
+        public bool ActivateSupplier(SqlParameter[] sqlParam)
+        {
+            int n = 0;
+            SqlConnection con;
+            SqlTransaction sqlTransaction = null;
+            Guid ID = GetSupplierID(sqlParam[2].Value.ToString(), sqlParam[6].Value.ToString(), sqlParam[1].Value.ToString());
+
+
+            if (ID.ToString().Equals(Guid.Empty.ToString()))
+                return false;
+
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    sqlTransaction = con.BeginTransaction();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "Update [SUPPLIER] set " +
+                        "category_id = " + sqlParam[1].ParameterName + ", " +
+                        "supplier_name = " + sqlParam[2].ParameterName + ", " +
+                        "address = " + sqlParam[3].ParameterName + ", " +
+                        "phone = " + sqlParam[4].ParameterName + ", " +
+                        "fax = " + sqlParam[5].ParameterName + ", " +
+                        "email = " + sqlParam[6].ParameterName + ", " +
+                        "contact_person = " + sqlParam[7].ParameterName + ", " +
+                        "deleted = " + sqlParam[8].ParameterName + " " +
+                        "WHERE supplier_id = '" + ID + "'"
+                        , con))
+                    {
+                        command.Transaction = sqlTransaction;
+
+                        for (int i = 1; i < 9; i++)
+                            command.Parameters.Add(sqlParam[i]);
+                        n = command.ExecuteNonQuery();
+                    }
+
+                    if (n > 0)
+                        sqlTransaction.Commit();
+                    else
+                        sqlTransaction.Rollback();
+                }
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
+
+                    Logging.Error("SqlSupplierRepository.cs - ActivateSupplier() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
+            }
+
+            return n > 0;
+        }
+
+        public Guid GetSupplierID(String supplierName, String categoryID, String email)
+        {
+            Guid ID = Guid.Empty;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 supplier_id FROM [SUPPLIER] WHERE supplier_name = '" + supplierName + "' AND category_id = '" + categoryID + "' AND email = '" + email + "' AND deleted = '1'", con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                Logging.Error("SqlSupplierRepository.cs - GetSupplierID() " + e.Message);
+            }
+
+            return ID;
+        }
+
         public List<Supplier> GetListSupplierForRecipient()
         {
             List<Supplier> listSupplier = null;
