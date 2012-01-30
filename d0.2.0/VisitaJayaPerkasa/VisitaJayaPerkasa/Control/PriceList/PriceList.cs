@@ -788,7 +788,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
             if (cboTypeSupplier.Text.ToLower().Equals("dooring agent") && supplierTypeCompleted)
             {
                 if (cbSupplier.SelectedIndex >= 0)
-                    listRecipient = sqlRecipientRepository.GetRecipientBySupplier(listSupplier[cbSupplier.SelectedIndex].Id.ToString());
+                    listRecipient = sqlRecipientRepository.GetRecipient();
                 else
                     listRecipient = new List<VisitaJayaPerkasa.Entities.Recipient>();
                 cboRecipient.DataSource = listRecipient;

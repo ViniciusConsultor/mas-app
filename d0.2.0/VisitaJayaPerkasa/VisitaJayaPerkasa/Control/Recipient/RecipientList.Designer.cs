@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridSortField gridSortField2 = new Telerik.WinControls.UI.GridSortField();
             this.radToolStripLabelIndexing = new Telerik.WinControls.UI.RadToolStripLabelElement();
             this.RecipientGridView = new Telerik.WinControls.UI.RadGridView();
             this.radComboBoxElement = new Telerik.WinControls.UI.RadComboBoxElement();
@@ -52,6 +52,7 @@
             this.radButtonElementNext = new Telerik.WinControls.UI.RadButtonElement();
             this.radToolStripElement2 = new Telerik.WinControls.UI.RadToolStripElement();
             ((System.ComponentModel.ISupportInitialize)(this.RecipientGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RecipientGridView.MasterGridViewTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radComboBoxElement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             this.SuspendLayout();
@@ -72,33 +73,31 @@
             this.RecipientGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.RecipientGridView.Location = new System.Drawing.Point(0, 76);
             // 
-            // 
+            // gridViewTemplate1
             // 
             this.RecipientGridView.MasterGridViewTemplate.AllowAddNewRow = false;
-            gridViewTextBoxColumn1.FieldAlias = "ID";
-            gridViewTextBoxColumn1.FieldName = "ID";
-            gridViewTextBoxColumn1.HeaderText = "ID";
-            gridViewTextBoxColumn1.IsVisible = false;
-            gridViewTextBoxColumn1.UniqueName = "ID";
-            gridViewTextBoxColumn2.FieldAlias = "SupplierID";
-            gridViewTextBoxColumn2.FieldName = "SupplierID";
-            gridViewTextBoxColumn2.HeaderText = "SupplierID";
-            gridViewTextBoxColumn2.IsVisible = false;
-            gridViewTextBoxColumn2.UniqueName = "SupplierID";
-            gridViewTextBoxColumn3.FieldAlias = "Name";
-            gridViewTextBoxColumn3.FieldName = "Name";
-            gridViewTextBoxColumn3.HeaderText = "Name";
-            gridViewTextBoxColumn3.UniqueName = "Name";
-            gridViewTextBoxColumn3.Width = 181;
-            gridViewTextBoxColumn4.FieldAlias = "Supp";
-            gridViewTextBoxColumn4.FieldName = "SupplierName";
-            gridViewTextBoxColumn4.HeaderText = "Supplier Name";
-            gridViewTextBoxColumn4.UniqueName = "SupplierName";
-            gridViewTextBoxColumn4.Width = 250;
-            this.RecipientGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
-            this.RecipientGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
-            this.RecipientGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);
+            gridViewTextBoxColumn4.FieldAlias = "ID";
+            gridViewTextBoxColumn4.FieldName = "ID";
+            gridViewTextBoxColumn4.HeaderText = "ID";
+            gridViewTextBoxColumn4.IsVisible = false;
+            gridViewTextBoxColumn4.UniqueName = "ID";
+            gridViewTextBoxColumn5.FieldAlias = "Name";
+            gridViewTextBoxColumn5.FieldName = "Name";
+            gridViewTextBoxColumn5.HeaderText = "Name";
+            gridViewTextBoxColumn5.UniqueName = "Name";
+            gridViewTextBoxColumn5.Width = 181;
+            gridViewTextBoxColumn6.FieldAlias = "Address";
+            gridViewTextBoxColumn6.FieldName = "Address";
+            gridViewTextBoxColumn6.HeaderText = "Address";
+            gridViewTextBoxColumn6.UniqueName = "Address";
+            gridViewTextBoxColumn6.Width = 200;
             this.RecipientGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn4);
+            this.RecipientGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn5);
+            this.RecipientGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn6);
+            gridSortField2.FieldAlias = "SupplierName";
+            gridSortField2.FieldName = "SupplierName";
+            gridSortField2.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            this.RecipientGridView.MasterGridViewTemplate.SortExpressions.Add(gridSortField2);
             this.RecipientGridView.Name = "RecipientGridView";
             this.RecipientGridView.ReadOnly = true;
             this.RecipientGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -141,7 +140,7 @@
             // radComboBoxItem1
             // 
             this.radComboBoxItem1.Name = "radComboBoxItem1";
-            this.radComboBoxItem1.Text = "Supplier Name";
+            this.radComboBoxItem1.Text = "Address";
             // 
             // radToolStripItem4
             // 
@@ -298,6 +297,7 @@
             this.Controls.Add(this.radToolStrip1);
             this.Name = "RecipientList";
             this.Size = new System.Drawing.Size(837, 376);
+            ((System.ComponentModel.ISupportInitialize)(this.RecipientGridView.MasterGridViewTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RecipientGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radComboBoxElement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();

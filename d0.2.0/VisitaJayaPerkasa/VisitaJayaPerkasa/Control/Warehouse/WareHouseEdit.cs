@@ -49,7 +49,7 @@ namespace VisitaJayaPerkasa.Control.Warehouse
             {
                 SqlWareHouseRepository sqlWareHouseRepository = new SqlWareHouseRepository();
 
-                SqlParameter[] param = SqlUtility.SetSqlParameter(new string[] { "address", "email", "contact_person" }, new object[] { etAddress.Text.Trim(), etEmail.Text.Trim(), etContact.Text.Trim() });
+                SqlParameter[] param = SqlUtility.SetSqlParameter(new string[] { "address", /*"email", "contact_person"*/ }, new object[] { etAddress.Text.Trim()/*, etEmail.Text.Trim(), etContact.Text.Trim()*/ });
 
 
                 if (wantToCreateVessel)

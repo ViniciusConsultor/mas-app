@@ -29,14 +29,15 @@ namespace VisitaJayaPerkasa.Control.Supplier
             cboCategory.DataSource = listCategory;
             cboCategory.DisplayMember = "CategoryName";
             cboCategory.ValueMember = "ID";
-            cboCategory.SelectedIndex = -1;
-            cboCategory.Text = "-- Choose --";
             this.supplier = supplier;
 
             if (supplier == null)
             {
                 wantToCreateVessel = true;
                 listSupplierDetail = new List<Entities.SupplierDetail>();
+
+                cboCategory.SelectedIndex = -1;
+                cboCategory.Text = "-- Choose --";
             }
             else
             {
@@ -63,7 +64,7 @@ namespace VisitaJayaPerkasa.Control.Supplier
 
         private void cboCategory_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.KeyChar = Convert.ToChar(8);
+            e.KeyChar = Convert.ToChar(0);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -374,5 +375,6 @@ namespace VisitaJayaPerkasa.Control.Supplier
             UserControl Controllers = new SupplierList();
             Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(Controllers);
         }
+
     }
 }

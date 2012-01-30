@@ -15,7 +15,6 @@ namespace VisitaJayaPerkasa.Control.Recipient
     {
         private bool wantToCreateRecipient;
         private VisitaJayaPerkasa.Entities.Recipient recipient;
-        private List<VisitaJayaPerkasa.Entities.Supplier> listSupplier;
         private SqlRecipientRepository sqlRecipientRepository;
 
         public RecipientEdit(VisitaJayaPerkasa.Entities.Recipient recipient)
@@ -23,15 +22,6 @@ namespace VisitaJayaPerkasa.Control.Recipient
             InitializeComponent();
             this.recipient = recipient;
             sqlRecipientRepository = new SqlRecipientRepository();
-            SqlSupplierRepository sqlSupplierRepository = new SqlSupplierRepository();
-            listSupplier = sqlSupplierRepository.GetListSupplierForRecipient();
-
-
-            cbSupplier.DataSource = listSupplier;
-            cbSupplier.ValueMember = "Id";
-            cbSupplier.DisplayMember = "SupplierName";
-            cbSupplier.SelectedIndex = -1;
-            cbSupplier.Text = VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.cboDefaultText;
 
             if (recipient == null)
             {
@@ -41,7 +31,10 @@ namespace VisitaJayaPerkasa.Control.Recipient
             {
                 wantToCreateRecipient = false;
                 etRecipientName.Text = recipient.Name;
-                cbSupplier.SelectedItem = recipient.SupplierName;
+                etAddress.Text = recipient.Address;
+                etPhone1.Text = recipient.Phone1;
+                etPhone2.Text = recipient.Phone2;
+                etPhone3.Text = recipient.Phone3;
             }
             sqlRecipientRepository = null;
         }
@@ -54,22 +47,25 @@ namespace VisitaJayaPerkasa.Control.Recipient
 
         private void radButtonElement1_Click(object sender, EventArgs e)
         {
-            if(cbSupplier.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
-                MessageBox.Show(this, "Please choose supplier", "Information");
-            else if (etRecipientName.Text.Trim().Equals(""))
+            if (etRecipientName.Text.Trim().Equals(""))
                 MessageBox.Show(this, "Please fill recipient name", "Information");
+            else if (etAddress.Text.Trim().Equals(""))
+                MessageBox.Show(this, "Please fill address", "Information");
             else
             {
                 sqlRecipientRepository = new SqlRecipientRepository();
 
-                SqlParameter[] param = SqlUtility.SetSqlParameter(new string[] { "recipient_name", "supplier_id" }, new object[] { etRecipientName.Text.Trim(), cbSupplier.SelectedValue.ToString() });
+                SqlParameter[] param = SqlUtility.SetSqlParameter(new string[] { "recipient_name", "address" }, new object[] { etRecipientName.Text.Trim(), etAddress.Text.Trim() });
 
                 if (wantToCreateRecipient)
                 {
                     VisitaJayaPerkasa.Entities.Recipient recipient = new VisitaJayaPerkasa.Entities.Recipient();
                     recipient.ID = Guid.NewGuid();
-                    recipient.SupplierID = Utility.Utility.ConvertToUUID(cbSupplier.SelectedValue.ToString());
                     recipient.Name = etRecipientName.Text.Trim();
+                    recipient.Address = etAddress.Text.Trim();
+                    recipient.Phone1 = etPhone1.Text.Trim();
+                    recipient.Phone2 = etPhone2.Text.Trim();
+                    recipient.Phone3 = etPhone3.Text.Trim();
                     recipient.Deleted = 0;
 
                     if (sqlRecipientRepository.CheckRecipientName(param, Guid.Empty, true))
@@ -77,8 +73,8 @@ namespace VisitaJayaPerkasa.Control.Recipient
                         DialogResult dResult = MessageBox.Show(this, "Recipient name has already deleted. Do you want to activate ?", "Confirmation", MessageBoxButtons.YesNo);
                         if (dResult == DialogResult.Yes)
                         {
-                            SqlParameter[] parameters = SqlUtility.SetSqlParameter(new string[] { "recipient_id", "recipient_name", "supplier_id", "deleted" }
-                            , new object[] { recipient.ID, recipient.Name, recipient.SupplierID, recipient.Deleted });
+                            SqlParameter[] parameters = SqlUtility.SetSqlParameter(new string[] { "recipient_id", "recipient_name", "address", "phone1", "phone2", "phone3", "deleted" }
+                            , new object[] { recipient.ID, recipient.Name, recipient.Address, recipient.Phone1, recipient.Phone2, recipient.Phone3, recipient.Deleted });
 
                             if (sqlRecipientRepository.ActivateRecipient(parameters))
                             {
@@ -99,8 +95,8 @@ namespace VisitaJayaPerkasa.Control.Recipient
                     }
 
                     //Create user 
-                    SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "recipient_id", "recipient_name", "supplier_id", "deleted" }
-                            , new object[] { recipient.ID, recipient.Name, recipient.SupplierID, recipient.Deleted });
+                    SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "recipient_id", "recipient_name", "address", "phone1", "phone2", "phone3", "deleted" }
+                    , new object[] { recipient.ID, recipient.Name, recipient.Address, recipient.Phone1, recipient.Phone2, recipient.Phone3, recipient.Deleted });
 
                     if (sqlRecipientRepository.CreateRecipient(sqlParam))
                     {
@@ -115,10 +111,14 @@ namespace VisitaJayaPerkasa.Control.Recipient
                 else
                 {
                     VisitaJayaPerkasa.Entities.Recipient recipient = new VisitaJayaPerkasa.Entities.Recipient();
-                    recipient.SupplierID = Utility.Utility.ConvertToUUID(cbSupplier.SelectedValue.ToString());
-                    recipient.Name = etRecipientName.Text.Trim();
-                    recipient.Deleted = 0;
                     recipient.ID = this.recipient.ID;
+                    recipient.Name = etRecipientName.Text.Trim();
+                    recipient.Address = etAddress.Text.Trim();
+                    recipient.Phone1 = etPhone1.Text.Trim();
+                    recipient.Phone2 = etPhone2.Text.Trim();
+                    recipient.Phone3 = etPhone3.Text.Trim();
+                    recipient.Deleted = 0;
+
 
                     if (sqlRecipientRepository.CheckRecipientName(param, recipient.ID))
                     {
@@ -126,8 +126,8 @@ namespace VisitaJayaPerkasa.Control.Recipient
                         return;
                     }
 
-                    SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "recipient_id", "recipient_name", "supplier_id", "deleted" }
-                            , new object[] { recipient.ID, recipient.Name, recipient.SupplierID, recipient.Deleted });
+                    SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "recipient_id", "recipient_name", "address", "phone1", "phone2", "phone3", "deleted" }
+                    , new object[] { recipient.ID, recipient.Name, recipient.Address, recipient.Phone1, recipient.Phone2, recipient.Phone3, recipient.Deleted });
 
                     if (sqlRecipientRepository.EditRecipient(sqlParam))
                     {
@@ -140,45 +140,6 @@ namespace VisitaJayaPerkasa.Control.Recipient
                     }
                 }
             }
-
-
-            //        if (sqlRecipientRepository.CheckRecipient(param))
-            //        {
-            //            MessageBox.Show(this, "Recipient has already exists !", "Information");
-            //            return;
-            //        }
-
-            //        param = null;
-            //        param = SqlUtility.SetSqlParameter(new string[] { "recipient_id", "recipient_name", "supplier_id", "deleted" }, new object[] { Guid.NewGuid(), etRecipientName.Text.Trim(), cbSupplier.SelectedValue, 0 });
-
-            //        if (sqlRecipientRepository.CreateRecipient(param))
-            //        {
-            //            MessageBox.Show(this, "Success create recipient", "Information");
-            //            radButtonElement2.PerformClick();
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show(this, "Cannot Create recipient", "Information");
-            //        }
-            //    }
-            //    else
-            //    {
-            //        param = SqlUtility.SetSqlParameter(new string[] { "recipient_name", "supplier_id", "recipient_id" }, new object[] { etRecipientName.Text.Trim(), cbSupplier.SelectedValue, recipient.ID });
-
-            //        if (sqlRecipientRepository.EditRecipient(param))
-            //        {
-            //            MessageBox.Show(this, "Success Edit recipient", "Information");
-            //            radButtonElement2.PerformClick();
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show(this, "Cannot Edit recipient", "Information");
-            //        }
-            //    }
-
-            //    param = null;
-            //    sqlRecipientRepository = null;
-            //}
         }
 
         private void cbSupplier_KeyPress(object sender, KeyPressEventArgs e)

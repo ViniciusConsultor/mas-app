@@ -29,18 +29,30 @@
         private void InitializeComponent()
         {
             this.radButtonElement1 = new Telerik.WinControls.UI.RadButtonElement();
-            this.lblSupplierName = new Telerik.WinControls.UI.RadLabel();
+            this.lblAddress = new Telerik.WinControls.UI.RadLabel();
             this.lblRecipientName = new Telerik.WinControls.UI.RadLabel();
             this.radToolStripItem1 = new Telerik.WinControls.UI.RadToolStripItem();
             this.radToolStripElement1 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
-            ((System.ComponentModel.ISupportInitialize)(this.lblSupplierName)).BeginInit();
+            this.lblPhone2 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.lblPhone1 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
+            this.lblPhone3 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            ((System.ComponentModel.ISupportInitialize)(this.lblAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRecipientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblPhone2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblPhone1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblPhone3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             this.SuspendLayout();
             // 
             // radButtonElement1
@@ -53,13 +65,13 @@
             this.radButtonElement1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.radButtonElement1.Click += new System.EventHandler(this.radButtonElement1_Click);
             // 
-            // lblSupplierName
+            // lblAddress
             // 
-            this.lblSupplierName.Location = new System.Drawing.Point(126, 76);
-            this.lblSupplierName.Name = "lblSupplierName";
-            this.lblSupplierName.Size = new System.Drawing.Size(36, 16);
-            this.lblSupplierName.TabIndex = 30;
-            this.lblSupplierName.Text = "Name";
+            this.lblAddress.Location = new System.Drawing.Point(126, 76);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(36, 16);
+            this.lblAddress.TabIndex = 30;
+            this.lblAddress.Text = "Name";
             // 
             // lblRecipientName
             // 
@@ -87,9 +99,9 @@
             // 
             this.radLabel2.Location = new System.Drawing.Point(20, 76);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(81, 16);
+            this.radLabel2.Size = new System.Drawing.Size(48, 16);
             this.radLabel2.TabIndex = 28;
-            this.radLabel2.Text = "Supplier Name";
+            this.radLabel2.Text = "Address";
             // 
             // radLabel1
             // 
@@ -120,22 +132,82 @@
             this.radToolStrip1.TabIndex = 26;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
+            // lblPhone2
+            // 
+            this.lblPhone2.Location = new System.Drawing.Point(126, 120);
+            this.lblPhone2.Name = "lblPhone2";
+            this.lblPhone2.Size = new System.Drawing.Size(36, 16);
+            this.lblPhone2.TabIndex = 32;
+            this.lblPhone2.Text = "Name";
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Location = new System.Drawing.Point(20, 120);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(48, 16);
+            this.radLabel4.TabIndex = 31;
+            this.radLabel4.Text = "Phone 2";
+            // 
+            // lblPhone1
+            // 
+            this.lblPhone1.Location = new System.Drawing.Point(126, 98);
+            this.lblPhone1.Name = "lblPhone1";
+            this.lblPhone1.Size = new System.Drawing.Size(57, 16);
+            this.lblPhone1.TabIndex = 34;
+            this.lblPhone1.Text = "lblPhone1";
+            // 
+            // radLabel6
+            // 
+            this.radLabel6.Location = new System.Drawing.Point(20, 98);
+            this.radLabel6.Name = "radLabel6";
+            this.radLabel6.Size = new System.Drawing.Size(48, 16);
+            this.radLabel6.TabIndex = 33;
+            this.radLabel6.Text = "Phone 1";
+            // 
+            // lblPhone3
+            // 
+            this.lblPhone3.Location = new System.Drawing.Point(126, 142);
+            this.lblPhone3.Name = "lblPhone3";
+            this.lblPhone3.Size = new System.Drawing.Size(36, 16);
+            this.lblPhone3.TabIndex = 32;
+            this.lblPhone3.Text = "Name";
+            // 
+            // radLabel8
+            // 
+            this.radLabel8.Location = new System.Drawing.Point(20, 142);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Size = new System.Drawing.Size(48, 16);
+            this.radLabel8.TabIndex = 31;
+            this.radLabel8.Text = "Phone 3";
+            // 
             // RecipientView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblSupplierName);
+            this.Controls.Add(this.lblPhone3);
+            this.Controls.Add(this.lblPhone1);
+            this.Controls.Add(this.radLabel8);
+            this.Controls.Add(this.radLabel6);
+            this.Controls.Add(this.lblPhone2);
+            this.Controls.Add(this.radLabel4);
+            this.Controls.Add(this.lblAddress);
             this.Controls.Add(this.lblRecipientName);
             this.Controls.Add(this.radLabel2);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.radToolStrip1);
             this.Name = "RecipientView";
             this.Size = new System.Drawing.Size(781, 386);
-            ((System.ComponentModel.ISupportInitialize)(this.lblSupplierName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRecipientName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblPhone2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblPhone1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblPhone3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,12 +216,18 @@
         #endregion
 
         private Telerik.WinControls.UI.RadButtonElement radButtonElement1;
-        private Telerik.WinControls.UI.RadLabel lblSupplierName;
+        private Telerik.WinControls.UI.RadLabel lblAddress;
         private Telerik.WinControls.UI.RadLabel lblRecipientName;
         private Telerik.WinControls.UI.RadToolStripItem radToolStripItem1;
         private Telerik.WinControls.UI.RadToolStripElement radToolStripElement1;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadToolStrip radToolStrip1;
+        private Telerik.WinControls.UI.RadLabel lblPhone2;
+        private Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.UI.RadLabel lblPhone1;
+        private Telerik.WinControls.UI.RadLabel radLabel6;
+        private Telerik.WinControls.UI.RadLabel lblPhone3;
+        private Telerik.WinControls.UI.RadLabel radLabel8;
     }
 }

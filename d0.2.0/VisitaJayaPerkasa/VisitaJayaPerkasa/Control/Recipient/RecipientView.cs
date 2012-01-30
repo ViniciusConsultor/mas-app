@@ -16,7 +16,10 @@ namespace VisitaJayaPerkasa.Control.Recipient
             InitializeComponent();
 
             lblRecipientName.Text = recipient.Name;
-            lblSupplierName.Text = recipient.SupplierName;
+            lblAddress.Text = recipient.Address;
+            lblPhone1.Text = recipient.Phone1;
+            lblPhone2.Text = recipient.Phone2;
+            lblPhone3.Text = recipient.Phone3;
         }
 
         private void radButtonElement1_Click(object sender, EventArgs e)
