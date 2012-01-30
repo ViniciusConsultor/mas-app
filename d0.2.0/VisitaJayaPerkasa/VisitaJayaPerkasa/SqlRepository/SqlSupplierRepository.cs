@@ -93,6 +93,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             return exists;
         }
 
+      
+
+
         public bool ActivateSupplier(SqlParameter[] sqlParam)
         {
             int n = 0;
@@ -104,6 +107,7 @@ namespace VisitaJayaPerkasa.SqlRepository
             if (ID.ToString().Equals(Guid.Empty.ToString()))
                 return false;
 
+
             using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
             {
                 try
@@ -111,37 +115,80 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
 
-                    using (SqlCommand command = new SqlCommand(
-                        "Update [SUPPLIER] set " +
-                        "category_id = " + sqlParam[1].ParameterName + ", " +
-                        "supplier_name = " + sqlParam[2].ParameterName + ", " +
-                        "address = " + sqlParam[3].ParameterName + ", " +
-                        "phone = " + sqlParam[4].ParameterName + ", " +
-                        "fax = " + sqlParam[5].ParameterName + ", " +
-                        "email = " + sqlParam[6].ParameterName + ", " +
-                        "contact_person = " + sqlParam[7].ParameterName + ", " +
-                        "deleted = " + sqlParam[8].ParameterName + " " +
-                        "WHERE supplier_id = '" + ID + "'"
-                        , con))
+                    using (SqlCommand deleteCommand = new SqlCommand(
+                        "Delete [Supplier_Detail] WHERE supplier_id = '" + ID + "'" , con))
                     {
-                        command.Transaction = sqlTransaction;
+                        deleteCommand.Transaction = sqlTransaction;
+                        n = deleteCommand.ExecuteNonQuery();
 
-                        for (int i = 1; i < 9; i++)
-                            command.Parameters.Add(sqlParam[i]);
-                        n = command.ExecuteNonQuery();
+                        using (SqlCommand command = new SqlCommand(
+                            "Update [Supplier] set " +
+                            "category_id = " + sqlParam[1].ParameterName + ", " +
+                            "supplier_name = " + sqlParam[2].ParameterName + ", " +
+                            "address = " + sqlParam[3].ParameterName + ", " +
+                            "phone = " + sqlParam[4].ParameterName + ", " +
+                            "fax = " + sqlParam[5].ParameterName + ", " +
+                            "email = " + sqlParam[6].ParameterName + ", " +
+                            "contact_person = " + sqlParam[7].ParameterName + ", " +
+                            "deleted = " + sqlParam[8].ParameterName + " WHERE " +
+                            "supplier_id = '" + ID + "'"
+                            , con))
+                        {
+                            command.Transaction = sqlTransaction;
+
+                            for (int i = 0; i < 9; i++)
+                                command.Parameters.Add(sqlParam[i]);
+                            n = command.ExecuteNonQuery();
+                            command.Parameters.Clear();
+
+                            int z = 9;
+                            int subz = 9;
+                            if ((n > 0) && sqlParam.Length > 9)
+                            {
+                                //-9 is total sqlparameter minus number of customer master
+                                // / 8 is remain of total sqlparameter minus 9 is customer detail who have 8 number of field
+                                for (int k = 0; k < ((sqlParam.Length - 9) / 8); k++)
+                                {
+                                    using (SqlCommand subCommand = new SqlCommand(
+                                        "Insert into [Supplier_Detail] values(" +
+                                        sqlParam[(z += 2) - 2].ParameterName + ", " + // for handle index of ID
+                                        "'" + ID + "', " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName +
+                                        ")"
+                                        , con))
+                                    {
+                                        subCommand.Transaction = sqlTransaction;
+
+                                        for (int i = 0; i < 8; i++)
+                                            subCommand.Parameters.Add(sqlParam[subz++]);
+                                        n = subCommand.ExecuteNonQuery();
+                                        subCommand.Parameters.Clear();
+
+                                        if (n == 0)
+                                            break;
+                                    }
+                                }
+
+                            }
+                        }
+
+                        if (n > 0)
+                            sqlTransaction.Commit();
+                        else
+                            sqlTransaction.Rollback();
                     }
-
-                    if (n > 0)
-                        sqlTransaction.Commit();
-                    else
-                        sqlTransaction.Rollback();
                 }
                 catch (Exception e)
                 {
                     if (sqlTransaction != null)
                         sqlTransaction.Rollback();
 
-                    Logging.Error("SqlSupplierRepository.cs - ActivateSupplier() " + e.Message);
+                    Logging.Error("SqlCustomerRepository.cs - CreateSupplier() " + e.Message);
                 }
                 finally
                 {
@@ -151,6 +198,8 @@ namespace VisitaJayaPerkasa.SqlRepository
 
             return n > 0;
         }
+
+
 
         public Guid GetSupplierID(String supplierName, String categoryID/*, String email*/)
         {
