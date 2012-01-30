@@ -90,8 +90,8 @@ namespace VisitaJayaPerkasa.Control.Recipient
                         case "Name":
                             showRecipient = recipient.Where(c => c.Name.Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.Recipient>();
                             break;
-                        case "Supplier Name" :
-                            showRecipient = recipient.Where(c => c.SupplierName.Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.Recipient>();
+                        case "Address" :
+                            showRecipient = recipient.Where(c => c.Address.Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.Recipient>();
                             break;
                     }
                 }

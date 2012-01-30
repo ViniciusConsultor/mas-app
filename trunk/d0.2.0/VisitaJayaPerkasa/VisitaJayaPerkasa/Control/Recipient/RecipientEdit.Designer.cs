@@ -33,13 +33,25 @@
             this.radToolStripItem1 = new Telerik.WinControls.UI.RadToolStripItem();
             this.radButtonElement1 = new Telerik.WinControls.UI.RadButtonElement();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cbSupplier = new Telerik.WinControls.UI.RadComboBox();
+            this.etPhone3 = new Telerik.WinControls.UI.RadTextBox();
+            this.etPhone2 = new Telerik.WinControls.UI.RadTextBox();
+            this.etPhone1 = new Telerik.WinControls.UI.RadTextBox();
+            this.etAddress = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.etRecipientName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cbSupplier)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etPhone3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etPhone2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etPhone1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etAddress)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etRecipientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -83,42 +95,90 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.cbSupplier);
+            this.groupBox2.Controls.Add(this.etPhone3);
+            this.groupBox2.Controls.Add(this.etPhone2);
+            this.groupBox2.Controls.Add(this.etPhone1);
+            this.groupBox2.Controls.Add(this.etAddress);
+            this.groupBox2.Controls.Add(this.radLabel5);
+            this.groupBox2.Controls.Add(this.radLabel4);
+            this.groupBox2.Controls.Add(this.radLabel3);
             this.groupBox2.Controls.Add(this.radLabel2);
             this.groupBox2.Controls.Add(this.etRecipientName);
             this.groupBox2.Controls.Add(this.radLabel1);
             this.groupBox2.Location = new System.Drawing.Point(3, 54);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(356, 93);
+            this.groupBox2.Size = new System.Drawing.Size(366, 185);
             this.groupBox2.TabIndex = 27;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Recipient";
             // 
-            // cbSupplier
+            // etPhone3
             // 
-            this.cbSupplier.Location = new System.Drawing.Point(129, 33);
-            this.cbSupplier.Name = "cbSupplier";
+            this.etPhone3.Location = new System.Drawing.Point(128, 136);
+            this.etPhone3.Name = "etPhone3";
+            this.etPhone3.Size = new System.Drawing.Size(210, 20);
+            this.etPhone3.TabIndex = 31;
+            this.etPhone3.TabStop = false;
             // 
+            // etPhone2
             // 
+            this.etPhone2.Location = new System.Drawing.Point(128, 110);
+            this.etPhone2.Name = "etPhone2";
+            this.etPhone2.Size = new System.Drawing.Size(210, 20);
+            this.etPhone2.TabIndex = 30;
+            this.etPhone2.TabStop = false;
             // 
-            this.cbSupplier.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
-            this.cbSupplier.Size = new System.Drawing.Size(210, 20);
-            this.cbSupplier.TabIndex = 13;
-            this.cbSupplier.TabStop = false;
-            this.cbSupplier.Text = "-- Choose --";
-            this.cbSupplier.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbSupplier_KeyPress);
+            // etPhone1
+            // 
+            this.etPhone1.Location = new System.Drawing.Point(128, 84);
+            this.etPhone1.Name = "etPhone1";
+            this.etPhone1.Size = new System.Drawing.Size(210, 20);
+            this.etPhone1.TabIndex = 29;
+            this.etPhone1.TabStop = false;
+            // 
+            // etAddress
+            // 
+            this.etAddress.Location = new System.Drawing.Point(128, 58);
+            this.etAddress.Name = "etAddress";
+            this.etAddress.Size = new System.Drawing.Size(210, 20);
+            this.etAddress.TabIndex = 28;
+            this.etAddress.TabStop = false;
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.Location = new System.Drawing.Point(20, 136);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(55, 16);
+            this.radLabel5.TabIndex = 10;
+            this.radLabel5.Text = "- Phone 3";
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Location = new System.Drawing.Point(20, 110);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(55, 16);
+            this.radLabel4.TabIndex = 9;
+            this.radLabel4.Text = "- Phone 2";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(20, 84);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(55, 16);
+            this.radLabel3.TabIndex = 8;
+            this.radLabel3.Text = "- Phone 1";
             // 
             // radLabel2
             // 
-            this.radLabel2.Location = new System.Drawing.Point(21, 33);
+            this.radLabel2.Location = new System.Drawing.Point(20, 58);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(81, 16);
-            this.radLabel2.TabIndex = 12;
-            this.radLabel2.Text = "Supplier Name";
+            this.radLabel2.Size = new System.Drawing.Size(48, 16);
+            this.radLabel2.TabIndex = 8;
+            this.radLabel2.Text = "Address";
             // 
             // etRecipientName
             // 
-            this.etRecipientName.Location = new System.Drawing.Point(129, 64);
+            this.etRecipientName.Location = new System.Drawing.Point(128, 32);
             this.etRecipientName.Name = "etRecipientName";
             this.etRecipientName.Size = new System.Drawing.Size(210, 20);
             this.etRecipientName.TabIndex = 2;
@@ -126,7 +186,7 @@
             // 
             // radLabel1
             // 
-            this.radLabel1.Location = new System.Drawing.Point(21, 64);
+            this.radLabel1.Location = new System.Drawing.Point(20, 32);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(87, 16);
             this.radLabel1.TabIndex = 7;
@@ -163,7 +223,13 @@
             this.Size = new System.Drawing.Size(807, 381);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cbSupplier)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etPhone3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etPhone2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etPhone1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etAddress)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etRecipientName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
@@ -180,10 +246,16 @@
         private Telerik.WinControls.UI.RadToolStripItem radToolStripItem1;
         private Telerik.WinControls.UI.RadButtonElement radButtonElement1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private Telerik.WinControls.UI.RadComboBox cbSupplier;
-        private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadTextBox etRecipientName;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadToolStrip radToolStrip1;
+        private Telerik.WinControls.UI.RadTextBox etPhone3;
+        private Telerik.WinControls.UI.RadTextBox etPhone2;
+        private Telerik.WinControls.UI.RadTextBox etPhone1;
+        private Telerik.WinControls.UI.RadTextBox etAddress;
+        private Telerik.WinControls.UI.RadLabel radLabel5;
+        private Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadLabel radLabel2;
     }
 }

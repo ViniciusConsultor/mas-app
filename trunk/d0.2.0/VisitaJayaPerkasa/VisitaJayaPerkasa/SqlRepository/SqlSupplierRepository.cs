@@ -73,11 +73,8 @@ namespace VisitaJayaPerkasa.SqlRepository
                         criteria = " AND (deleted is null OR deleted = '0')";
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT TOP 1 supplier_id FROM [SUPPLIER] WHERE supplier_name = '" + sqlParam[2].Value + "' AND category_id = '" + sqlParam[1].Value + "' AND email = '" + sqlParam[6].Value + "'" + criteria, con))
+                        "SELECT TOP 1 supplier_id FROM [SUPPLIER] WHERE supplier_name = '" + sqlParam[2].Value + "' AND category_id = '" + sqlParam[1].Value + "'" + /*" AND email = '" + sqlParam[6].Value + "'" +*/ criteria, con))
                     {
-                        //foreach (SqlParameter tempSqlParam in sqlParam)
-                        //    command.Parameters.Add(tempSqlParam);
-
                         SqlDataReader reader = command.ExecuteReader();
                         command.Parameters.Clear();
                         while (reader.Read())
@@ -101,7 +98,7 @@ namespace VisitaJayaPerkasa.SqlRepository
             int n = 0;
             SqlConnection con;
             SqlTransaction sqlTransaction = null;
-            Guid ID = GetSupplierID(sqlParam[2].Value.ToString(), sqlParam[6].Value.ToString(), sqlParam[1].Value.ToString());
+            Guid ID = GetSupplierID(sqlParam[2].Value.ToString(), sqlParam[1].Value.ToString()/*, sqlParam[6].Value.ToString()*/);
 
 
             if (ID.ToString().Equals(Guid.Empty.ToString()))
@@ -155,7 +152,7 @@ namespace VisitaJayaPerkasa.SqlRepository
             return n > 0;
         }
 
-        public Guid GetSupplierID(String supplierName, String categoryID, String email)
+        public Guid GetSupplierID(String supplierName, String categoryID/*, String email*/)
         {
             Guid ID = Guid.Empty;
 
@@ -166,7 +163,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT TOP 1 supplier_id FROM [SUPPLIER] WHERE supplier_name = '" + supplierName + "' AND category_id = '" + categoryID + "' AND email = '" + email + "' AND deleted = '1'", con))
+                        "SELECT TOP 1 supplier_id FROM [SUPPLIER] WHERE supplier_name = '" + supplierName + "' AND category_id = '" + categoryID + "'" + /* AND email = '" + email + "'*/ " AND deleted = '1'", con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())

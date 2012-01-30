@@ -20,8 +20,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         con.Open();
 
                         using (SqlCommand command = new SqlCommand(
-                            "SELECT recipient_id, recipient_name, supplier_id, " + 
-                            "(SELECT supplier_name FROM [SUPPLIER] s WHERE s.supplier_id = r.supplier_id) as SupplierName " + 
+                            "SELECT recipient_id, recipient_name, address, phone1, phone2, phone3 " + 
                             "FROM [Recipient] r " +
                             "WHERE (r.deleted is null OR r.deleted = '0') " +  
                             "ORDER BY recipient_name ASC"
@@ -33,8 +32,10 @@ namespace VisitaJayaPerkasa.SqlRepository
                                 Recipient recipient= new Recipient();
                                 recipient.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
                                 recipient.Name = reader.GetString(1);
-                                recipient.SupplierID = Utility.Utility.ConvertToUUID(reader.GetValue(2).ToString());
-                                recipient.SupplierName = reader.GetString(3);
+                                recipient.Address = reader.GetValue(2).ToString();
+                                recipient.Phone1 = Utility.Utility.IsDBNull(reader.GetValue(3)) ? null : reader.GetString(3);
+                                recipient.Phone2 = Utility.Utility.IsDBNull(reader.GetValue(4)) ? null : reader.GetString(4);
+                                recipient.Phone3 = Utility.Utility.IsDBNull(reader.GetValue(5)) ? null : reader.GetString(5);
 
                                 if (listRecipient == null)
                                     listRecipient = new List<Recipient>();
@@ -52,7 +53,7 @@ namespace VisitaJayaPerkasa.SqlRepository
 
                 return listRecipient;
         }
-
+        /*
         public List<Recipient> GetRecipientBySupplier(string supplierID)
         {
             List<Recipient> listRecipient = new List<Recipient>();
@@ -96,9 +97,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             }
 
             return listRecipient;
-        }
+        }*/
 
-        public Guid GetRecipientIDbyRecipientName(String recipientName , Guid supplierID)
+        public Guid GetRecipientIDbyRecipientName(String recipientName , string address)
         {
             Guid ID = Guid.Empty;
 
@@ -109,7 +110,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT TOP 1 recipient_id FROM [RECIPIENT] WHERE recipient_name = '" + recipientName + "' AND supplier_id = '" + supplierID + "' AND deleted = '1'", con))
+                        "SELECT TOP 1 recipient_id FROM [RECIPIENT] WHERE recipient_name = '" + recipientName + "' AND address = '" + address + "' AND deleted = '1'", con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
@@ -220,11 +221,8 @@ namespace VisitaJayaPerkasa.SqlRepository
                         criteria = " AND (deleted is null OR deleted = '0')";
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT TOP 1 recipient_name FROM [RECIPIENT] WHERE recipient_name = '" + sqlParam[0].Value + "' AND supplier_id = '" + Utility.Utility.ConvertToUUID(sqlParam[1].Value.ToString()) + "'" + criteria, con))
+                        "SELECT TOP 1 recipient_name FROM [RECIPIENT] WHERE recipient_name = '" + sqlParam[0].Value + "' AND address = '" + sqlParam[1].Value.ToString() + "'" + criteria, con))
                     {
-                        //foreach (SqlParameter tempSqlParam in sqlParam)
-                        //    command.Parameters.Add(tempSqlParam);
-
                         SqlDataReader reader = command.ExecuteReader();
                         command.Parameters.Clear();
                         while (reader.Read())
@@ -248,7 +246,7 @@ namespace VisitaJayaPerkasa.SqlRepository
             int n = 0;
             SqlConnection con;
             SqlTransaction sqlTransaction = null;
-            Guid ID = GetRecipientIDbyRecipientName(sqlParam[1].Value.ToString(), Utility.Utility.ConvertToUUID(sqlParam[2].Value.ToString()));
+            Guid ID = GetRecipientIDbyRecipientName(sqlParam[1].Value.ToString(), sqlParam[2].Value.ToString());
 
 
             if (ID.ToString().Equals(Guid.Empty.ToString()))
@@ -264,14 +262,17 @@ namespace VisitaJayaPerkasa.SqlRepository
                     using (SqlCommand command = new SqlCommand(
                         "Update [RECIPIENT] set " +
                         "recipient_name = " + sqlParam[1].ParameterName + ", " +
-                        "supplier_id = " + sqlParam[2].ParameterName + ", " +
-                        "deleted = " + sqlParam[3].ParameterName + " " +
+                        "address = " + sqlParam[2].ParameterName + ", " +
+                        "phone1 = " + sqlParam[3].ParameterName + ", " +
+                        "phone2 = " + sqlParam[4].ParameterName + ", " +
+                        "phone3 = " + sqlParam[5].ParameterName + ", " +
+                        "deleted = " + sqlParam[6].ParameterName + " " + 
                         "WHERE recipient_id = '" + ID + "'"
                         , con))
                     {
                         command.Transaction = sqlTransaction;
 
-                        for (int i = 1; i < 4; i++)
+                        for (int i = 1; i < sqlParam.Length; i++)
                             command.Parameters.Add(sqlParam[i]);
                         n = command.ExecuteNonQuery();
                     }
@@ -315,7 +316,10 @@ namespace VisitaJayaPerkasa.SqlRepository
                         sqlParam[0].ParameterName + ", " +
                         sqlParam[1].ParameterName + ", " +
                         sqlParam[2].ParameterName + ", " +
-                        sqlParam[3].ParameterName +
+                        sqlParam[3].ParameterName + ", " +
+                        sqlParam[4].ParameterName + ", " +
+                        sqlParam[5].ParameterName + ", " +
+                        sqlParam[6].ParameterName +
                         ")", con))
                     {
                         command.Transaction = sqlTransaction;
@@ -335,7 +339,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     if (sqlTransaction != null)
                         sqlTransaction.Rollback();
 
-                    Logging.Error("SqlRecipientRepository.cs - CheckRecipient() " + e.Message);
+                    Logging.Error("SqlRecipientRepository.cs - CreateRecipient() " + e.Message);
                 }
                 finally
                 {
@@ -360,9 +364,13 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
                     using (SqlCommand command = new SqlCommand(
-                        "Update [Recipient] set recipient_name = " + sqlParam[0].ParameterName +
-                        ", supplier_id = " + sqlParam[1].ParameterName +
-                        " WHERE recipient_id = " + sqlParam[2].ParameterName, con))
+                        "Update [Recipient] set " + 
+                        "recipient_name = " + sqlParam[1].ParameterName + ", " +
+                        "address = " + sqlParam[2].ParameterName + ", " +
+                        "phone1 = " + sqlParam[3].ParameterName + ", " +
+                        "phone2 = " + sqlParam[4].ParameterName + ", " +
+                        "phone3 = " + sqlParam[5].ParameterName +
+                        " WHERE recipient_id = " + sqlParam[0].ParameterName, con))
                     {
                         command.Transaction = sqlTransaction;
 

@@ -71,7 +71,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         criteria = " AND (deleted is null OR deleted = '0')";
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT TOP 1 address FROM [WAREHOUSE] WHERE address = '" + sqlParam[0].Value + "' AND email = '" + sqlParam[1].Value + "' AND contact_person = '" + sqlParam[2].Value + "'" + criteria, con))
+                        "SELECT TOP 1 address FROM [WAREHOUSE] WHERE address = '" + sqlParam[0].Value + "'" + /* AND email = '" + sqlParam[1].Value + "' AND contact_person = '" + sqlParam[2].Value + "'" */  criteria, con))
                     {
                         //foreach (SqlParameter tempSqlParam in sqlParam)
                         //    command.Parameters.Add(tempSqlParam);
@@ -99,7 +99,7 @@ namespace VisitaJayaPerkasa.SqlRepository
             int n = 0;
             SqlConnection con;
             SqlTransaction sqlTransaction = null;
-            Guid ID = GetWarehouseID(sqlParam[1].Value.ToString(), sqlParam[4].Value.ToString(), sqlParam[5].Value.ToString());
+            Guid ID = GetWarehouseID(sqlParam[1].Value.ToString()/*, sqlParam[4].Value.ToString(), sqlParam[5].Value.ToString()*/);
 
 
             if (ID.ToString().Equals(Guid.Empty.ToString()))
@@ -151,7 +151,7 @@ namespace VisitaJayaPerkasa.SqlRepository
             return n > 0;
         }
 
-        public Guid GetWarehouseID(String address, String email, String contactPerson)
+        public Guid GetWarehouseID(String address)
         {
             Guid ID = Guid.Empty;
 
@@ -162,7 +162,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT TOP 1 stuffing_place_id FROM [WAREHOUSE] WHERE address = '" + address + "' AND email = '" + email + "' AND contact_person = '" +  contactPerson +"' AND deleted = '1'", con)) 
+                        "SELECT TOP 1 stuffing_place_id FROM [WAREHOUSE] WHERE address = '" + address /*+ "' AND email = '" + email + "' AND contact_person = '" +  contactPerson + */ + "' AND deleted = '1'", con)) 
                     {
                         SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())

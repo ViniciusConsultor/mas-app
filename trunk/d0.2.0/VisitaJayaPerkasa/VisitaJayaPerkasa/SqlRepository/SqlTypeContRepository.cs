@@ -311,9 +311,11 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
                     sqlTransaction = con.BeginTransaction();
                     using (SqlCommand command = new SqlCommand(
-                        "Update [Type_Cont] set type_code = " + sqlParam[0].ParameterName +
-                        ", type_name = " + sqlParam[1].ParameterName +
-                        " WHERE type_id = " + sqlParam[2].ParameterName, con))
+                        "Update [Type_Cont] set " + 
+                        "type_code = " + sqlParam[1].ParameterName + ", " + 
+                        "type_name = " + sqlParam[2].ParameterName + ", " + 
+                        "deleted = " + sqlParam[3].ParameterName + 
+                        " WHERE type_id = " + sqlParam[0].ParameterName, con))
                     {
                         command.Transaction = sqlTransaction;
 

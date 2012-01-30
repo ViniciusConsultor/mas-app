@@ -126,8 +126,8 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 MessageBox.Show(this, "Please fill voy", "Information");
             else if(pickerETD.Value.Date <= DateTime.Today.Date)
                 MessageBox.Show(this, "Please correct etd", "Information");
-            else if(pickerTglClosing.Value.Date < pickerETD.Value.Date)
-                MessageBox.Show(this, "date of tgl closing must be greather than etd", "Information");
+            else if(pickerTglClosing.Value.Date > pickerETD.Value.Date)
+                MessageBox.Show(this, "date of tgl closing must be lower than etd", "Information");
             else
             {
                 try
