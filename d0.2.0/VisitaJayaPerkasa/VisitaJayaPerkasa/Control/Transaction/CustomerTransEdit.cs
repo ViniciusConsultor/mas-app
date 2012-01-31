@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using VisitaJayaPerkasa.SqlRepository;
 using Telerik.WinControls.UI;
 using System.Data.SqlClient;
+using VisitaJayaPerkasa.Utility.Log;
 
 namespace VisitaJayaPerkasa.Control.Transaction
 {
@@ -327,7 +328,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 }
                 catch (NullReferenceException ex)
                 {
-                    
+                    Logging.Error("CustomerTransEdit.cs - btnAddClick '" + ex.Message + "'");
                 }
             }
             if (listCustomerTransDetail.Count > 0)
@@ -625,6 +626,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
             catch (NullReferenceException ex)
             {
                 etPrice.Text = "0";
+                Logging.Error("CustomerTransEdit.cs - CBSelected_Changed '" + ex.Message + "'");
             }
         }
 

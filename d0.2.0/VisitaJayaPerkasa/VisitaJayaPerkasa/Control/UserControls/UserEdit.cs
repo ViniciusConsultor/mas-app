@@ -28,7 +28,7 @@ namespace VisitaJayaPerkasa.Control.UserControls
             cboUserRole.DisplayMember = "RoleName";
             cboUserRole.ValueMember = "ID";
 
-            radioButtonMale.IsChecked = true;
+            //radioButtonMale.IsChecked = true;
 
             if (listRole != null)
             {

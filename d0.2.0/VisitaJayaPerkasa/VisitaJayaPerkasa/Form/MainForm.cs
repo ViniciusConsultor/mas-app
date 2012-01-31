@@ -17,9 +17,10 @@ using VisitaJayaPerkasa.Control.Pelayaran;
 using VisitaJayaPerkasa.Control.Supplier;
 using VisitaJayaPerkasa.Control.TypeCont;
 using VisitaJayaPerkasa.Control.Warehouse;
-using VisitaJayaPerkasa.Control.PriceList;
 using VisitaJayaPerkasa.Control.Schedule;
 using VisitaJayaPerkasa.Control.Transaction;
+using VisitaJayaPerkasa.Control.Recipient;
+using VisitaJayaPerkasa.Control.PriceListCustomer;
 
 namespace VisitaJayaPerkasa.Form
 {
@@ -36,7 +37,6 @@ namespace VisitaJayaPerkasa.Form
                 radRibbonBarGroupUser.Visibility = ElementVisibility.Collapsed;
 
                 radMenuItemUser.Visibility = ElementVisibility.Collapsed;
-                radMenuItemRole.Visibility = ElementVisibility.Collapsed;
             }
 
             string temp = ((! Utility.Utility.IsStringNullorEmpty(UserProfile.user.FirstName)) && (! Utility.Utility.IsStringNullorEmpty(UserProfile.user.LastName))) ? (UserProfile.user.FirstName + ", " + UserProfile.user.LastName) : (UserProfile.user.FirstName + UserProfile.user.LastName);
@@ -52,22 +52,7 @@ namespace VisitaJayaPerkasa.Form
             MainPanel.Controls.Add(controllers);            
         }
 
-        private void radImageButtonUser_Click(object sender, EventArgs e)
-        {
-            ShowUserControl(new UserList());
-        }
-
-        private void radImageButtonVessel_Click(object sender, EventArgs e)
-        {
-            ShowUserControl(new UserList());
-        }
-
         private void radMenuItemUser_Click(object sender, EventArgs e)
-        {
-            ShowUserControl(new UserList());
-        }
-
-        private void radMenuItemRole_Click(object sender, EventArgs e)
         {
             ShowUserControl(new UserList());
         }
@@ -90,9 +75,72 @@ namespace VisitaJayaPerkasa.Form
                 VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.loginForm.Close();
         }
 
-        private void radImageButtonElementCustomer_Click(object sender, EventArgs e)
+        private void radMenuItemCity_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new CityList());
+        }
+
+        private void radMenuItemCondition_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new ConditionList());
+        }
+
+        private void radMenuItemCustomer_Click(object sender, EventArgs e)
         {
             ShowUserControl(new CustomerList());
+        }
+
+        private void radMenuItemPelayaran_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new PelayaranList());
+        }
+
+        private void radMenuItemSupplier_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new SupplierList());
+        }
+
+        private void radMenuItemTypeCont_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new TypeContList());
+        }
+
+        private void radMenuItemWareHouse_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new WareHouseList());
+        }
+
+        private void radMenuItemRecipient_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new RecipientList());
+        }
+
+        private void radMenuItemPriceList_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new VisitaJayaPerkasa.Control.PriceList.PriceList());
+        }
+
+        private void radMenuItemSchedule_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new ScheduleList());
+        }
+
+        private void radMenuItemPriceListCustomer_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new PriceListCustomer());
+        }
+
+        private void radMenuItemOrderList_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new CustomerTransList());
+        }
+
+
+
+        //Group Item
+        private void radImageButtonUser_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new UserList());
         }
 
         private void radImageButtonElementCity_Click(object sender, EventArgs e)
@@ -103,6 +151,11 @@ namespace VisitaJayaPerkasa.Form
         private void radImageButtonElementCondition_Click(object sender, EventArgs e)
         {
             ShowUserControl(new ConditionList());
+        }
+
+        private void radImageButtonElementCustomer_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new CustomerList());
         }
 
         private void radImageButtonElementPelayaran_Click(object sender, EventArgs e)
@@ -125,29 +178,32 @@ namespace VisitaJayaPerkasa.Form
             ShowUserControl(new WareHouseList());
         }
 
-        private void radImageButtonElement1_Click(object sender, EventArgs e)
+        private void radRibbonBarGroupRecipient_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new RecipientList());
+        }
+
+        private void radImageButtonPriceList_Click(object sender, EventArgs e)
         {
             ShowUserControl(new VisitaJayaPerkasa.Control.PriceList.PriceList());
         }
 
-        private void radImageButtonElement2_Click(object sender, EventArgs e)
+        private void radImageButtonSchedule_Click(object sender, EventArgs e)
         {
             ShowUserControl(new ScheduleList());
         }
 
-        private void radImageButtonElement3_Click(object sender, EventArgs e)
+        private void radImageButtonPriceListCust_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new PriceListCustomer());
+        }
+
+        private void radImageButtonOrderList_Click(object sender, EventArgs e)
         {
             ShowUserControl(new CustomerTransList());
         }
 
-        private void radImageButtonElement4_Click(object sender, EventArgs e)
-        {
-            ShowUserControl(new VisitaJayaPerkasa.Control.PriceListCustomer.PriceListCustomer());
-        }
 
-        private void radRibbonBarGroupRecipient_Click(object sender, EventArgs e)
-        {
-            ShowUserControl(new VisitaJayaPerkasa.Control.Recipient.RecipientList());
-        }
+
     }
 }
