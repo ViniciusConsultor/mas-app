@@ -88,6 +88,13 @@ namespace VisitaJayaPerkasa.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap checking_16 {
+            get {
+                object obj = ResourceManager.GetObject("checking-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap close_16 {
             get {
                 object obj = ResourceManager.GetObject("close-16", resourceCulture);
