@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            Telerik.WinControls.UI.GridSortField gridSortField2 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.radMenuItem7 = new Telerik.WinControls.UI.RadMenuItem();
             this.gridViewTemplate1 = new Telerik.WinControls.UI.GridViewTemplate();
@@ -90,6 +90,12 @@
             this.radMenuItemLogOut = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuSeparatorItem2 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
             this.radMenuItemExit = new Telerik.WinControls.UI.RadMenuItem();
+            this.radRibbonBarGroup13 = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.radRibbonBarGroup14 = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.radRibbonBarGroup15 = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.radImageButtonContainer = new Telerik.WinControls.UI.RadImageButtonElement();
+            this.radImageButtonDelivery = new Telerik.WinControls.UI.RadImageButtonElement();
+            this.radImageButtonInvoice = new Telerik.WinControls.UI.RadImageButtonElement();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewTemplate1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRibbonBar1)).BeginInit();
@@ -115,6 +121,9 @@
             this.imageList1.Images.SetKeyName(12, "schedule.jpeg");
             this.imageList1.Images.SetKeyName(13, "transaction.jpeg");
             this.imageList1.Images.SetKeyName(14, "recipient.jpg");
+            this.imageList1.Images.SetKeyName(15, "container.jpg");
+            this.imageList1.Images.SetKeyName(16, "delivery.jpg");
+            this.imageList1.Images.SetKeyName(17, "invoice.jpg");
             // 
             // radMenuItem7
             // 
@@ -124,10 +133,10 @@
             // gridViewTemplate1
             // 
             this.gridViewTemplate1.AllowAddNewRow = false;
-            gridSortField2.FieldAlias = "Tanggal";
-            gridSortField2.FieldName = "Tanggal";
-            gridSortField2.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            this.gridViewTemplate1.SortExpressions.Add(gridSortField2);
+            gridSortField1.FieldAlias = "Tanggal";
+            gridSortField1.FieldName = "Tanggal";
+            gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            this.gridViewTemplate1.SortExpressions.Add(gridSortField1);
             // 
             // radLabelElementWelcome
             // 
@@ -463,7 +472,6 @@
             this.ribbonTab2.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ribbonTab2.ContentPanel.Location = new System.Drawing.Point(0, 0);
             this.ribbonTab2.ContentPanel.Size = new System.Drawing.Size(200, 100);
-            this.ribbonTab2.IsSelected = true;
             this.ribbonTab2.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radRibbonBarGroup11});
             this.ribbonTab2.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
@@ -498,6 +506,11 @@
             this.ribbonTab3.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ribbonTab3.ContentPanel.Location = new System.Drawing.Point(0, 0);
             this.ribbonTab3.ContentPanel.Size = new System.Drawing.Size(200, 100);
+            this.ribbonTab3.IsSelected = true;
+            this.ribbonTab3.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radRibbonBarGroup13,
+            this.radRibbonBarGroup14,
+            this.radRibbonBarGroup15});
             this.ribbonTab3.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.ribbonTab3.Name = "ribbonTab3";
             this.ribbonTab3.StretchHorizontally = false;
@@ -652,6 +665,48 @@
             this.radMenuItemExit.Text = "Exit";
             this.radMenuItemExit.Click += new System.EventHandler(this.radMenuItemExit_Click);
             // 
+            // radRibbonBarGroup13
+            // 
+            this.radRibbonBarGroup13.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radImageButtonContainer});
+            this.radRibbonBarGroup13.Name = "radRibbonBarGroup13";
+            this.radRibbonBarGroup13.Text = "Container";
+            // 
+            // radRibbonBarGroup14
+            // 
+            this.radRibbonBarGroup14.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radImageButtonDelivery});
+            this.radRibbonBarGroup14.Name = "radRibbonBarGroup14";
+            this.radRibbonBarGroup14.Text = "Delivery";
+            // 
+            // radRibbonBarGroup15
+            // 
+            this.radRibbonBarGroup15.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radImageButtonInvoice});
+            this.radRibbonBarGroup15.Name = "radRibbonBarGroup15";
+            this.radRibbonBarGroup15.Text = "Invoice";
+            // 
+            // radImageButtonContainer
+            // 
+            this.radImageButtonContainer.Image = ((System.Drawing.Image)(resources.GetObject("radImageButtonContainer.Image")));
+            this.radImageButtonContainer.ImageIndex = 15;
+            this.radImageButtonContainer.Name = "radImageButtonContainer";
+            this.radImageButtonContainer.Text = "";
+            // 
+            // radImageButtonDelivery
+            // 
+            this.radImageButtonDelivery.Image = ((System.Drawing.Image)(resources.GetObject("radImageButtonDelivery.Image")));
+            this.radImageButtonDelivery.ImageIndex = 16;
+            this.radImageButtonDelivery.Name = "radImageButtonDelivery";
+            this.radImageButtonDelivery.Text = "";
+            // 
+            // radImageButtonInvoice
+            // 
+            this.radImageButtonInvoice.Image = ((System.Drawing.Image)(resources.GetObject("radImageButtonInvoice.Image")));
+            this.radImageButtonInvoice.ImageKey = "invoice.jpg";
+            this.radImageButtonInvoice.Name = "radImageButtonInvoice";
+            this.radImageButtonInvoice.Text = "";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -738,5 +793,11 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItemPriceList;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemSchedule;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemPriceListCustomer;
+        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup13;
+        private Telerik.WinControls.UI.RadImageButtonElement radImageButtonContainer;
+        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup14;
+        private Telerik.WinControls.UI.RadImageButtonElement radImageButtonDelivery;
+        private Telerik.WinControls.UI.RadRibbonBarGroup radRibbonBarGroup15;
+        private Telerik.WinControls.UI.RadImageButtonElement radImageButtonInvoice;
     }
 }

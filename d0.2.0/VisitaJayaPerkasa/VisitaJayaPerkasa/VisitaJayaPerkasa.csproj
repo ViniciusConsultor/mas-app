@@ -313,6 +313,24 @@
     <Compile Include="Form\PBarDialog.Designer.cs">
       <DependentUpon>PBarDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\Report\Container\RptContainerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\Container\RptContainerForm.Designer.cs">
+      <DependentUpon>RptContainerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\Delivery\RptDeliveryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\Delivery\RptDeliveryForm.Designer.cs">
+      <DependentUpon>RptDeliveryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\Invoice\RptInvoiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\Invoice\RptInvoiceForm.Designer.cs">
+      <DependentUpon>RptInvoiceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\Report\RptCustomerTrans.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -478,6 +496,18 @@
       <DependentUpon>PBarDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\Container\RptContainerForm.resx">
+      <DependentUpon>RptContainerForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\Delivery\RptDeliveryForm.resx">
+      <DependentUpon>RptDeliveryForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\Invoice\RptInvoiceForm.resx">
+      <DependentUpon>RptInvoiceForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\RptCustomerTrans.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptCustomerTrans.cs</LastGenOutput>
@@ -570,6 +600,7 @@
   <ItemGroup>
     <None Include="Resources\checking-16.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
