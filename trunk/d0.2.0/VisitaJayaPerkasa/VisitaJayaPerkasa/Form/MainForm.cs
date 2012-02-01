@@ -21,6 +21,7 @@ using VisitaJayaPerkasa.Control.Schedule;
 using VisitaJayaPerkasa.Control.Transaction;
 using VisitaJayaPerkasa.Control.Recipient;
 using VisitaJayaPerkasa.Control.PriceListCustomer;
+using VisitaJayaPerkasa.Form.Report.Container;
 
 namespace VisitaJayaPerkasa.Form
 {
@@ -201,6 +202,11 @@ namespace VisitaJayaPerkasa.Form
         private void radImageButtonOrderList_Click(object sender, EventArgs e)
         {
             ShowUserControl(new CustomerTransList());
+        }
+
+        private void radImageButtonContainer_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new RptContainerControl());
         }
 
 

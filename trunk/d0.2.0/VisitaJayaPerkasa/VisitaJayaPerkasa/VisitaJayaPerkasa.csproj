@@ -275,6 +275,11 @@
     <Compile Include="Control\Warehouse\WareHouseView.Designer.cs">
       <DependentUpon>WareHouseView.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataSetContainer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetContainer.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\Condition.cs" />
@@ -313,11 +318,17 @@
     <Compile Include="Form\PBarDialog.Designer.cs">
       <DependentUpon>PBarDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Report\Container\RptContainerForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Form\Report\Container\RptContainer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptContainer.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Form\Report\Container\RptContainerForm.Designer.cs">
-      <DependentUpon>RptContainerForm.cs</DependentUpon>
+    <Compile Include="Form\Report\Container\RptContainerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Report\Container\RptContainerControl.Designer.cs">
+      <DependentUpon>RptContainerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\Report\Delivery\RptDeliveryForm.cs">
       <SubType>Form</SubType>
@@ -496,9 +507,12 @@
       <DependentUpon>PBarDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Report\Container\RptContainerForm.resx">
-      <DependentUpon>RptContainerForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Form\Report\Container\RptContainer.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptContainer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\Container\RptContainerControl.resx">
+      <DependentUpon>RptContainerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\Delivery\RptDeliveryForm.resx">
       <DependentUpon>RptDeliveryForm.cs</DependentUpon>
@@ -529,6 +543,18 @@
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
+    <None Include="DataSetContainer.xsc">
+      <DependentUpon>DataSetContainer.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetContainer.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetContainer.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSetContainer.xss">
+      <DependentUpon>DataSetContainer.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

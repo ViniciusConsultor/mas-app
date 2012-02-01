@@ -29,10 +29,12 @@ namespace VisitaJayaPerkasa.Form.Report
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkPengirim = new Telerik.WinControls.UI.RadCheckBox();
+            this.chkSJ12 = new Telerik.WinControls.UI.RadCheckBox();
+            this.chkTgl = new Telerik.WinControls.UI.RadCheckBox();
             this.chkNoBa = new Telerik.WinControls.UI.RadCheckBox();
             this.chkSJ13 = new Telerik.WinControls.UI.RadCheckBox();
             this.chkSJ11 = new Telerik.WinControls.UI.RadCheckBox();
-            this.chkSJ12 = new Telerik.WinControls.UI.RadCheckBox();
             this.chkKeterangan = new Telerik.WinControls.UI.RadCheckBox();
             this.chkTerimaToko = new Telerik.WinControls.UI.RadCheckBox();
             this.chkUnloading = new Telerik.WinControls.UI.RadCheckBox();
@@ -78,13 +80,13 @@ namespace VisitaJayaPerkasa.Form.Report
             this.chkAll = new Telerik.WinControls.UI.RadCheckBox();
             this.btnShowReport = new Telerik.WinControls.UI.RadButton();
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.chkTgl = new Telerik.WinControls.UI.RadCheckBox();
-            this.chkPengirim = new Telerik.WinControls.UI.RadCheckBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPengirim)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSJ12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTgl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkNoBa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSJ13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSJ11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkSJ12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkKeterangan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkTerimaToko)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkUnloading)).BeginInit();
@@ -129,8 +131,6 @@ namespace VisitaJayaPerkasa.Form.Report
             ((System.ComponentModel.ISupportInitialize)(this.chkRecipientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnShowReport)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkTgl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkPengirim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -193,6 +193,30 @@ namespace VisitaJayaPerkasa.Form.Report
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Field Filter";
             // 
+            // chkPengirim
+            // 
+            this.chkPengirim.Location = new System.Drawing.Point(9, 65);
+            this.chkPengirim.Name = "chkPengirim";
+            this.chkPengirim.Size = new System.Drawing.Size(100, 18);
+            this.chkPengirim.TabIndex = 49;
+            this.chkPengirim.Text = "Pengirim";
+            // 
+            // chkSJ12
+            // 
+            this.chkSJ12.Location = new System.Drawing.Point(124, 21);
+            this.chkSJ12.Name = "chkSJ12";
+            this.chkSJ12.Size = new System.Drawing.Size(100, 18);
+            this.chkSJ12.TabIndex = 23;
+            this.chkSJ12.Text = "SJ 12";
+            // 
+            // chkTgl
+            // 
+            this.chkTgl.Location = new System.Drawing.Point(9, 43);
+            this.chkTgl.Name = "chkTgl";
+            this.chkTgl.Size = new System.Drawing.Size(100, 18);
+            this.chkTgl.TabIndex = 48;
+            this.chkTgl.Text = "Tanggal";
+            // 
             // chkNoBa
             // 
             this.chkNoBa.Location = new System.Drawing.Point(124, 569);
@@ -216,14 +240,6 @@ namespace VisitaJayaPerkasa.Form.Report
             this.chkSJ11.Size = new System.Drawing.Size(100, 18);
             this.chkSJ11.TabIndex = 22;
             this.chkSJ11.Text = "SJ 11";
-            // 
-            // chkSJ12
-            // 
-            this.chkSJ12.Location = new System.Drawing.Point(124, 21);
-            this.chkSJ12.Name = "chkSJ12";
-            this.chkSJ12.Size = new System.Drawing.Size(100, 18);
-            this.chkSJ12.TabIndex = 23;
-            this.chkSJ12.Text = "SJ 12";
             // 
             // chkKeterangan
             // 
@@ -590,22 +606,6 @@ namespace VisitaJayaPerkasa.Form.Report
             this.crystalReportViewer1.TabIndex = 1;
             this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
-            // chkTgl
-            // 
-            this.chkTgl.Location = new System.Drawing.Point(9, 43);
-            this.chkTgl.Name = "chkTgl";
-            this.chkTgl.Size = new System.Drawing.Size(100, 18);
-            this.chkTgl.TabIndex = 48;
-            this.chkTgl.Text = "Tanggal";
-            // 
-            // chkPengirim
-            // 
-            this.chkPengirim.Location = new System.Drawing.Point(9, 65);
-            this.chkPengirim.Name = "chkPengirim";
-            this.chkPengirim.Size = new System.Drawing.Size(100, 18);
-            this.chkPengirim.TabIndex = 49;
-            this.chkPengirim.Text = "Pengirim";
-            // 
             // RptTransForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -623,10 +623,12 @@ namespace VisitaJayaPerkasa.Form.Report
             this.ThemeName = "ControlDefault";
             this.Load += new System.EventHandler(this.RptTransForm_Load);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chkPengirim)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSJ12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTgl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkNoBa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSJ13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSJ11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkSJ12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkKeterangan)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkTerimaToko)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkUnloading)).EndInit();
@@ -671,8 +673,6 @@ namespace VisitaJayaPerkasa.Form.Report
             ((System.ComponentModel.ISupportInitialize)(this.chkRecipientName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnShowReport)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkTgl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkPengirim)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
