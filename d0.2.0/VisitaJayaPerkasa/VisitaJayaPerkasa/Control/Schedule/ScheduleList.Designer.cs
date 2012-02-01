@@ -103,7 +103,7 @@
             this.ScheduleGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.ScheduleGridView.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ScheduleGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.ScheduleGridView.Location = new System.Drawing.Point(0, 53);
+            this.ScheduleGridView.Location = new System.Drawing.Point(0, 75);
             // 
             // 
             // 
@@ -207,7 +207,7 @@
             this.ScheduleGridView.Name = "ScheduleGridView";
             this.ScheduleGridView.ReadOnly = true;
             this.ScheduleGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ScheduleGridView.Size = new System.Drawing.Size(912, 501);
+            this.ScheduleGridView.Size = new System.Drawing.Size(912, 479);
             this.ScheduleGridView.TabIndex = 5;
             this.ScheduleGridView.ThemeName = "ControlDefault";
             this.ScheduleGridView.DoubleClick += new System.EventHandler(this.ScheduleGridView_DoubleClick);
@@ -420,7 +420,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(912, 53);
+            this.radToolStrip1.Size = new System.Drawing.Size(912, 75);
             this.radToolStrip1.TabIndex = 4;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
