@@ -25,10 +25,10 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "SELECT s.schedule_id, " + 
                         "s.tujuan, p.pelayaran_id, s.tgl_closing, s.voy, s.keterangan, s.vessel_code, " + 
                         "s.ro_begin_20, s.ro_begin_40, s.ro_end_20, s.ro_end_40, s.etd, s.td, s.eta, s.ta, s.unloading, " + 
-                        "(SELECT TOP 1 city_name FROM [CITY] cc WHERE cc.city_id = s.tujuan) as tujuans, " +
-                        "(SELECT TOP 1 name FROM [PELAYARAN] pp WHERE pp.pelayaran_id = p.pelayaran_id) as pelayarans, " +
-                        "(SELECT TOP 1 vessel_name FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_detail_id = s.pelayaran_detail_id) as vessels, " +  
-                        "(SELECT TOP 1 status_pinjaman FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_detail_id = s.pelayaran_detail_id) as status " + 
+                        "(SELECT TOP 1 city_name FROM [CITY] cc WHERE cc.city_id = s.tujuan AND (cc.deleted is null OR cc.deleted = '0')) as tujuans, " +
+                        "(SELECT TOP 1 sup.supplier_name FROM [PELAYARAN] pp, [supplier] sup WHERE pp.pelayaran_id = p.pelayaran_id AND pp.supplier_id = sup.supplier_id AND (sup.deleted is null OR sup.deleted = '0') AND (pp.deleted is null OR pp.deleted = '0')) as pelayarans, " +
+                        "(SELECT TOP 1 vessel_name FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_detail_id = s.pelayaran_detail_id AND (pd.deleted is null OR pd.deleted = '0')) as vessels, " +  
+                        "(SELECT TOP 1 status_pinjaman FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_detail_id = s.pelayaran_detail_id AND (pd.deleted is null OR pd.deleted = '0')) as status " + 
                         "FROM [Schedule] s, [PELAYARAN_DETAIL] p " +
                         "WHERE (p.deleted is null OR p.deleted = '0') AND s.tgl_closing > '" + beginDate + "' AND p.pelayaran_detail_id = s.pelayaran_detail_id AND " + 
                         "(s.etd > '" + beginDate + "' AND s.etd < '" + endDate + "') AND " + 

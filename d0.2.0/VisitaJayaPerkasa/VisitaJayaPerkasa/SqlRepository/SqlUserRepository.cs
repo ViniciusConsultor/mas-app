@@ -212,7 +212,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "marital_status = " + sqlParam[9].ParameterName + ", " + 
                         "gender = " + sqlParam[10].ParameterName + ", " + 
                         "mobile_phone_number = " + sqlParam[11].ParameterName + ", " + 
-                        "deleted = " + sqlParam[12].ParameterName + 
+                        "deleted = " + sqlParam[12].ParameterName + " " + 
                         "WHERE person_id = " + sqlParam[0].ParameterName
                         , con))
                     {

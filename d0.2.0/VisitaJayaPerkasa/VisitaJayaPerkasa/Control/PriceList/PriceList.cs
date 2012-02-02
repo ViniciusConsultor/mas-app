@@ -34,6 +34,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
         private List<VisitaJayaPerkasa.Entities.Customer> listCustomer;
         private List<VisitaJayaPerkasa.Entities.Recipient> listRecipient;
         private List<WareHouse> listWarehouse;
+        private List<Guid> listPriceIdDeleted;
 
         //this variable used for result from search on customer text
         private VisitaJayaPerkasa.Entities.Customer searchResultCustomer;
@@ -48,6 +49,8 @@ namespace VisitaJayaPerkasa.Control.PriceList
             sqlCustomerRepository = new SqlCustomerRepository();
             sqlRecipientRepository = new SqlRecipientRepository();
             sqlWareHouseRepository = new SqlWareHouseRepository();
+
+            listPriceIdDeleted = new List<Guid>();
 
             listTypeOfSupplier = sqlPriceListRepository.GetTypeOfSupplier();
             cboTypeSupplier.SelectedValueChanged -= new EventHandler(cboTypeSupplier_SelectedValueChanged);
@@ -85,6 +88,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
             sqlPriceListRepository = null;
             PriceListGridView.Enabled = false;
             sqlCityRepository = null;
+
+            pickerFrom.Value = DateTime.Today;
+            pickerTo.Value = DateTime.Today;
         }
 
         private void LoadCboGridView() {
@@ -314,11 +320,15 @@ namespace VisitaJayaPerkasa.Control.PriceList
                     "", "", 1, "");
             }
 
+
+
             PriceListGridView.Enabled = true;
             if (listPriceList != null)
             {
                 for (int i = 0; i < listPriceList.Count(); i++)
                 {
+                    listPriceIdDeleted.Add(listPriceList.ElementAt(i).ID);
+
                     object[] obj = {listPriceList.ElementAt(i).ID, 
                         listPriceList.ElementAt(i).Date, 
                         listPriceList.ElementAt(i).SupplierID, 
@@ -479,7 +489,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
                 //var listID is used for fill id who has already inserted
                 //this listID is used to delete all id and then write again (override)
                 List<VisitaJayaPerkasa.Entities.PriceList> tempPriceList = new List<VisitaJayaPerkasa.Entities.PriceList>();
-                List<string> listID = new List<string>();
 
                 if (cboTypeSupplier.Text.ToLower().Equals("shipping lines"))
                 {
@@ -489,9 +498,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
                         string id = (PriceListGridView.Rows[i].Cells[0].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[0].Value.ToString();
                         objPriceList.ID = Utility.Utility.ConvertToUUID(id);
-
-                        if (!id.Equals(Guid.Empty.ToString()))
-                            listID.Add(objPriceList.ID.ToString());
 
                         id = (PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals("")) ? Utility.Utility.DefaultDateTime().ToString() : PriceListGridView.Rows[i].Cells[1].Value.ToString();
                         objPriceList.Date = Utility.Utility.ConvertStringToDate(id);
@@ -525,11 +531,24 @@ namespace VisitaJayaPerkasa.Control.PriceList
                             return;
                         }
 
-                        if (!validateDate(objPriceList, listID, tempPriceList))
-                            continue;
-
                         tempPriceList.Add(objPriceList);
                         objPriceList = null;
+                    }
+
+
+
+                    for (int i = 0; i < tempPriceList.Count; i++) {
+                        for (int j = i + 1; j < tempPriceList.Count; j++) {
+                            if (
+                                PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[1].Value.ToString())
+                                && PriceListGridView.Rows[i].Cells[4].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[4].Value.ToString())
+                                && PriceListGridView.Rows[i].Cells[5].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[5].Value.ToString())
+                                ) {
+                                    MessageBox.Show(this, "Record -" + i + " and record -" + j + " have same record of date, type and condition. Please remove one", "Information");
+                                    return;
+                            }
+
+                        }
                     }
                 }
                 else if (cboTypeSupplier.Text.ToLower().Equals("dooring agent")) {
@@ -539,9 +558,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
                         string id = (PriceListGridView.Rows[i].Cells[0].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[0].Value.ToString();
                         objPriceList.ID = Utility.Utility.ConvertToUUID(id);
-
-                        if (!id.Equals(Guid.Empty.ToString()))
-                            listID.Add(objPriceList.ID.ToString());
 
                         id = (PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals("")) ? Utility.Utility.DefaultDateTime().ToString() : PriceListGridView.Rows[i].Cells[1].Value.ToString();
                         objPriceList.Date = Utility.Utility.ConvertStringToDate(id);
@@ -567,11 +583,25 @@ namespace VisitaJayaPerkasa.Control.PriceList
                             return;
                         }
 
-                        if (!validateDate(objPriceList, listID, tempPriceList))
-                            continue;
-
                         tempPriceList.Add(objPriceList);
                         objPriceList = null;
+                    }
+
+
+                    for (int i = 0; i < tempPriceList.Count; i++)
+                    {
+                        for (int j = i + 1; j < tempPriceList.Count; j++)
+                        {
+                            if (
+                                PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[1].Value.ToString())
+                                && PriceListGridView.Rows[i].Cells[4].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[4].Value.ToString())
+                                )
+                            {
+                                MessageBox.Show(this, "Record -" + i + " and record -" + j + " has same record of date and type. Please remove one", "Information");
+                                return;
+                            }
+
+                        }
                     }
                 }
                 else if (cboTypeSupplier.Text.ToLower().Equals("trucking"))
@@ -582,9 +612,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
                         string id = (PriceListGridView.Rows[i].Cells[0].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[0].Value.ToString();
                         objPriceList.ID = Utility.Utility.ConvertToUUID(id);
-
-                        if (!id.Equals(Guid.Empty.ToString()))
-                            listID.Add(objPriceList.ID.ToString());
 
                         id = (PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals("")) ? Utility.Utility.DefaultDateTime().ToString() : PriceListGridView.Rows[i].Cells[1].Value.ToString();
                         objPriceList.Date = Utility.Utility.ConvertStringToDate(id);
@@ -618,11 +645,25 @@ namespace VisitaJayaPerkasa.Control.PriceList
                             return;
                         }
 
-                        if (!validateTrucking(objPriceList, listID, tempPriceList))
-                            continue;
 
                         tempPriceList.Add(objPriceList);
                         objPriceList = null;
+                    }
+
+                    for (int i = 0; i < tempPriceList.Count; i++)
+                    {
+                        for (int j = i + 1; j < tempPriceList.Count; j++)
+                        {
+                            if (
+                                PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[1].Value.ToString())
+                                && PriceListGridView.Rows[i].Cells[4].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[4].Value.ToString())
+                                )
+                            {
+                                MessageBox.Show(this, "Record -" + i + " and record -" + j + " have same record of date and type. Please remove one", "Information");
+                                return;
+                            }
+
+                        }
                     }
                 }
                 else if (cboTypeSupplier.Text.ToLower().Equals("general"))
@@ -633,9 +674,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
                         string id = (PriceListGridView.Rows[i].Cells[0].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[0].Value.ToString();
                         objPriceList.ID = Utility.Utility.ConvertToUUID(id);
-
-                        if (!id.Equals(Guid.Empty.ToString()))
-                            listID.Add(objPriceList.ID.ToString());
 
                         id = (PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals("")) ? Utility.Utility.DefaultDateTime().ToString() : PriceListGridView.Rows[i].Cells[1].Value.ToString();
                         objPriceList.Date = Utility.Utility.ConvertStringToDate(id);
@@ -653,26 +691,38 @@ namespace VisitaJayaPerkasa.Control.PriceList
                             return;
                         }
 
-                        if (!validateDate(objPriceList, listID, tempPriceList))
-                            continue;
 
                         tempPriceList.Add(objPriceList);
                         objPriceList = null;
+                    }
+
+
+                    for (int i = 0; i < tempPriceList.Count; i++)
+                    {
+                        for (int j = i + 1; j < tempPriceList.Count; j++)
+                        {
+                            if (PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[1].Value.ToString()))
+                            {
+                                MessageBox.Show(this, "Record -" + i + " and record -" + j + " have same record of date. Please remove one", "Information");
+                                return;
+                            }
+
+                        }
                     }
                 }
 
 
                 SqlParameter[] sqlParamDeleted = null;
                 SqlParameter[] sqlParamInsert = null;
-                if (listID.Count > 0)
+                if (listPriceIdDeleted.Count > 0)
                 {
-                    string[] key = new string[listID.Count];
-                    object[] value = new object[listID.Count];
+                    string[] key = new string[listPriceIdDeleted.Count];
+                    object[] value = new object[listPriceIdDeleted.Count];
 
-                    for (int j = 0; j < listID.Count; j++)
+                    for (int j = 0; j < listPriceIdDeleted.Count; j++)
                     {
                         key[j] = "priceID";
-                        value[j] = listID.ElementAt(j);
+                        value[j] = listPriceIdDeleted.ElementAt(j);
                     }
 
                     sqlParamDeleted = SqlUtility.SetSqlParameter(key, value);
@@ -740,7 +790,10 @@ namespace VisitaJayaPerkasa.Control.PriceList
                     if (sqlPriceListRepository.SavePriceList(
                         (sqlParamDeleted == null) ? null : sqlParamDeleted,
                         sqlParamInsert))
+                    {
                         MessageBox.Show(this, "Success saving !", "Information");
+                        listPriceIdDeleted.Clear();
+                    }
                     else
                     {
                         MessageBox.Show(this, "Failed save data !", "Information");
@@ -767,6 +820,8 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
         private void btnClearAll_Click(object sender, EventArgs e)
         {
+            listPriceIdDeleted.Clear();
+
             pickerTo.Enabled = true;
             pickerFrom.Enabled = true;
             cboTypeSupplier.Enabled = true;
@@ -799,6 +854,8 @@ namespace VisitaJayaPerkasa.Control.PriceList
             }
         }
 
+
+        /*
         private bool validateDate(VisitaJayaPerkasa.Entities.PriceList objPriceList, List<String> listID, List<VisitaJayaPerkasa.Entities.PriceList> priceList)
         {
             bool result = true;
@@ -854,6 +911,8 @@ namespace VisitaJayaPerkasa.Control.PriceList
             }
             return result;
         }
+         */
+         
 
         private bool validateTrucking(VisitaJayaPerkasa.Entities.PriceList objPriceList, List<String> listID, List<VisitaJayaPerkasa.Entities.PriceList> priceList)
         {

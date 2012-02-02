@@ -160,7 +160,7 @@
             // 
             // btnClearAll
             // 
-            this.btnClearAll.Location = new System.Drawing.Point(84, 236);
+            this.btnClearAll.Location = new System.Drawing.Point(77, 174);
             this.btnClearAll.Name = "btnClearAll";
             this.btnClearAll.Size = new System.Drawing.Size(141, 22);
             this.btnClearAll.TabIndex = 33;
@@ -169,7 +169,7 @@
             // 
             // btnSaveGrid
             // 
-            this.btnSaveGrid.Location = new System.Drawing.Point(231, 236);
+            this.btnSaveGrid.Location = new System.Drawing.Point(224, 174);
             this.btnSaveGrid.Name = "btnSaveGrid";
             this.btnSaveGrid.Size = new System.Drawing.Size(141, 22);
             this.btnSaveGrid.TabIndex = 32;
@@ -178,7 +178,7 @@
             // 
             // radButton2
             // 
-            this.radButton2.Location = new System.Drawing.Point(378, 236);
+            this.radButton2.Location = new System.Drawing.Point(371, 174);
             this.radButton2.Name = "radButton2";
             this.radButton2.Size = new System.Drawing.Size(141, 22);
             this.radButton2.TabIndex = 31;
@@ -422,6 +422,7 @@
             gridViewDateTimeColumn1.DataType = typeof(System.DateTime);
             gridViewDateTimeColumn1.FieldAlias = "date";
             gridViewDateTimeColumn1.FieldName = "date";
+            gridViewDateTimeColumn1.FormatString = "{0:MM/dd/yyyy}";
             gridViewDateTimeColumn1.HeaderText = "Date";
             gridViewDateTimeColumn1.MinWidth = 6;
             gridViewDateTimeColumn1.UniqueName = "date";

@@ -88,7 +88,7 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
                     switch (searchKey)
                     {
                         case "Name":
-                            showPelayaran = pelayaran.Where(c => c.Name.Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.Pelayaran>();
+                            showPelayaran = pelayaran.Where(c => c.supplierName.Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.Pelayaran>();
                             break;
                     }
                 }

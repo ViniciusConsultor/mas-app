@@ -38,6 +38,9 @@ namespace VisitaJayaPerkasa.Control.Schedule
             cboValueSearch.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             txtRoSearch.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
 
+            radCalendarBegin.Visible = false;
+            radCalendarEnd.Visible = false;
+
             pageSize = 15;
             LoadData();
         }
@@ -66,11 +69,6 @@ namespace VisitaJayaPerkasa.Control.Schedule
         }
 
 
-        private void radCalendar1_SelectionChanged(object sender, EventArgs e)
-        {
-            radCalendarBegin.Visible = false;
-            actionBarDateBegin.Text = Utility.Utility.ConvertDateToString(radCalendarBegin.SelectedDate);
-        }
 
         private void radImageButtonElement2_Click(object sender, EventArgs e)
         {
@@ -291,27 +289,6 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 LoadData();
         }
 
-        private void radCalendarEnd_SelectionChanged(object sender, EventArgs e)
-        {
-            actionBarDateEnd.Text = Utility.Utility.ConvertDateToString(radCalendarEnd.SelectedDate);
-            radCalendarEnd.Visible = false;
-        }
-
-        private void radCalendarBegin_SelectionChanged(object sender, EventArgs e)
-        {
-            actionBarDateBegin.Text = Utility.Utility.ConvertDateToString(radCalendarBegin.SelectedDate);
-            radCalendarBegin.Visible = false;
-        }
-
-        private void btnCalendarEnd_Click(object sender, EventArgs e)
-        {
-            radCalendarEnd.Visible = true;
-        }
-
-        private void btnCalendarBegin_Click(object sender, EventArgs e)
-        {
-            radCalendarBegin.Visible = true;
-        }
 
         private void cboKeySearch_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -379,6 +356,30 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
             }
         }
+
+        private void radCalendarBegin_SelectionChanged(object sender, EventArgs e)
+        {
+            actionBarDateBegin.Text = Utility.Utility.ConvertDateToString(radCalendarBegin.SelectedDate);
+            radCalendarBegin.Visible = false;
+        }
+
+
+        private void radCalendarEnd_SelectionChanged(object sender, EventArgs e)
+        {
+            actionBarDateEnd.Text = Utility.Utility.ConvertDateToString(radCalendarEnd.SelectedDate);
+            radCalendarEnd.Visible = false;
+        }
+
+        private void btnCalendarBegin_Click(object sender, EventArgs e)
+        {
+            radCalendarBegin.Visible = true;
+        }
+
+        private void btnCalendarEnd_Click(object sender, EventArgs e)
+        {
+            radCalendarEnd.Visible = true;
+        }
+
 
     }
 }
