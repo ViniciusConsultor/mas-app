@@ -23,16 +23,26 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
         {
             InitializeComponent();
             this.pelayaran = pelayaran;
+            List<VisitaJayaPerkasa.Entities.Supplier> listSupplier;
+            SqlSupplierRepository sqlSupplierRepository = new SqlSupplierRepository();
+            listSupplier = sqlSupplierRepository.ListSuppliers();
+
+            cbSupplier.DataSource = listSupplier;
+            cbSupplier.DisplayMember = "SupplierName";
+            cbSupplier.ValueMember = "Id";
 
             if (pelayaran == null)
             {
                 wantToCreateVessel = true;
                 listPelayaranDetail = new List<Entities.PelayaranDetail>();
+
+                cbSupplier.SelectedIndex = -1;
+                cbSupplier.Text = VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.cboDefaultText;
             }
             else
             {
                 wantToCreateVessel = false;
-                etPelayaranName.Text = pelayaran.Name;
+                cbSupplier.SelectedValue = pelayaran.supplierID;
 
                 SqlPelayaranRepository sqlPelayaranRepository = new SqlPelayaranRepository();
                 listPelayaranDetail = sqlPelayaranRepository.ListPelayaranDetail(pelayaran.ID);
@@ -55,8 +65,8 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (etPelayaranName.Text.Trim().Length == 0)
-                MessageBox.Show(this, "Please fill pelayaran name", "Information");
+            if (cbSupplier.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
+                MessageBox.Show(this, "Please choose pelayaran name", "Information");
             else if(etVesselCode.Text.Trim().Length == 0)
                 MessageBox.Show(this, "Please fill vessel code", "Information");
             else if (etVesselName.Text.Trim().Length == 0)
@@ -137,7 +147,7 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
             // + 9 is number of field of customer
             string[] strSqlParameter = new string[(PelayaranDetailGridView.RowCount * 6) + 3];
             strSqlParameter[0] = "pelayaran_id";
-            strSqlParameter[1] = "name";
+            strSqlParameter[1] = "supplier_id";
             strSqlParameter[2] = "deleted";
 
             int j = 3;
@@ -160,7 +170,7 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
             // + 9 is number of field of customer
             object[] obj = new object[(PelayaranDetailGridView.RowCount * 6) + 3];
             obj[0] = id;
-            obj[1] = etPelayaranName.Text.Trim();
+            obj[1] = cbSupplier.SelectedValue;
             obj[2] = 0;
 
             int i = 3;
@@ -179,9 +189,9 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
 
         private void radButtonElement1_Click(object sender, EventArgs e)
         {
-            if (etPelayaranName .Text.Trim().Length == 0)
+            if (cbSupplier.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
             {
-                MessageBox.Show(this, "Please fill pelayaran name", "Information");
+                MessageBox.Show(this, "Please choose pelayaran name", "Information");
             }
             else
             {
@@ -281,76 +291,11 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
 
         }
 
-
-        /*
-        private void radButtonElement2_Click(object sender, EventArgs e)
+        private void radComboBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            UserControl Controllers = new PelayaranList();
-            Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(Controllers);
+            e.KeyChar = Convert.ToChar(0);
         }
 
-        private void radButtonElement1_Click(object sender, EventArgs e)
-        {
-            if (etPelayaranName.Text.Trim().Length == 0)
-                MessageBox.Show(this, "Please fill pelayaran name", "Information");
-            else
-            {
-                SqlPelayaranRepository sqlPelayaranRepository = new SqlPelayaranRepository();
-                SqlParameter[] sqlParam;
 
-
-                if (wantToCreateVessel)
-                {
-                    sqlParam = SqlUtility.SetSqlParameter(new string[] { "name" }, new object[] { etPelayaranName.Text });
-                    if (sqlPelayaranRepository.CheckPelayaran(sqlParam)) {
-                        MessageBox.Show(this, "Please fill another pelayaran name (has already exists)", "Information");
-                        return;
-                    }
-
-                    sqlParam = null;
-                    sqlParam = SqlUtility.SetSqlParameter(new string[]{"pelayaran_id", "name", "deleted"}, new object[]{Guid.NewGuid(), etPelayaranName.Text, 0});
-                    if (sqlPelayaranRepository.CreatePelayaran(sqlParam)) {
-                        MessageBox.Show(this, "Success create pelayaran", "Information");
-                        radButtonElement2.PerformClick();
-                    }
-                    else
-                    {
-                        MessageBox.Show(this, "Cannot Create pelayaran", "Information");
-                    }
-                }
-                else
-                {
-                    sqlParam = SqlUtility.SetSqlParameter(new string[] {"name" }, new object[] { etPelayaranName.Text });
-                    VisitaJayaPerkasa.Entities.Pelayaran TempObj = sqlPelayaranRepository.CheckPelayaranForEdit(sqlParam);
-
-                    if (TempObj == null)
-                    {
-                        sqlParam = SqlUtility.SetSqlParameter(new string[] { "name", "pelayaran_id" }, new object[] { etPelayaranName.Text, pelayaran.ID });
-                        if (sqlPelayaranRepository.EditPelayaran(sqlParam))
-                        {
-                            MessageBox.Show(this, "Success Edit Pelayaran", "Information");
-                            radButtonElement2.PerformClick();
-                        }
-                        else {
-                            MessageBox.Show(this, "Cannot Edit Pelayaran", "Information");
-                        }
-                    }
-                    else if (TempObj.ID == pelayaran.ID)
-                    {
-                        MessageBox.Show(this, "No any changed", "Information");
-                        return;
-                    }
-                    else {
-                        MessageBox.Show(this, "Name has already exists", "Information");
-                        return;
-                    }
-
-                    sqlParam = null;
-                    TempObj = null;
-                    sqlPelayaranRepository = null;
-                }
-            }
-        }
-         */ 
     }
 }

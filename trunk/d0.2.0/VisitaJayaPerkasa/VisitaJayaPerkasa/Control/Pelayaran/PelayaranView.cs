@@ -25,7 +25,7 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
                 PelayaranDetailGridView.DataSource = listPelayaranDetail;
 
 
-            lblPelayaranName.Text = pelayaran.Name;
+            lblPelayaranName.Text = pelayaran.supplierName;
         }
 
         private void radButtonElement1_Click(object sender, EventArgs e)

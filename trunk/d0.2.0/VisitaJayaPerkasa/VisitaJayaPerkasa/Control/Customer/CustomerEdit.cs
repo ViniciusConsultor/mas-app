@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using System.Data.SqlClient;
 using VisitaJayaPerkasa.SqlRepository;
+using System.Text.RegularExpressions;
 
 namespace VisitaJayaPerkasa.Control.Customer
 {
@@ -209,6 +210,12 @@ namespace VisitaJayaPerkasa.Control.Customer
             if (etCustomerName.Text.Trim().Length == 0)
             {
                 MessageBox.Show(this, "Please fill customer name", "Information");
+            }
+            else if (!Regex.Match(etEmail.Text.Trim(), @"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
+            + @"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\."
+            + @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+            + @"([a-zA-Z]+[\w-]+\.)+[a-zA-Z]{2,4})$").Success) {
+                MessageBox.Show(this, "invalid email", "Information");
             }
             else
             {

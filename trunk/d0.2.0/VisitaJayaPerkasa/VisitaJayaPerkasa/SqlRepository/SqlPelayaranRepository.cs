@@ -21,7 +21,10 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT pelayaran_id, name FROM [Pelayaran] WHERE (deleted is null OR deleted = '0') " +
+                        "SELECT pelayaran_id, pelayaran.supplier_id, supplier.supplier_name as name FROM [Pelayaran], [supplier] " + 
+                        "WHERE (pelayaran.deleted is null OR pelayaran.deleted = '0') " +
+                        "and ([supplier].deleted is null OR [supplier].deleted = '0') " +
+                        "and [supplier].supplier_id = pelayaran.supplier_id " + 
                         "ORDER BY name ASC"
                         , con))
                     {
@@ -30,7 +33,8 @@ namespace VisitaJayaPerkasa.SqlRepository
                         {
                             Pelayaran pelayaran = new Pelayaran();
                             pelayaran.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
-                            pelayaran.Name = reader.GetString(1);
+                            pelayaran.supplierID = Utility.Utility.ConvertToUUID(reader.GetValue(1).ToString());
+                            pelayaran.supplierName = reader.GetString(2);
 
                             if (listPelayaran == null)
                                 listPelayaran = new List<Pelayaran>();
@@ -60,8 +64,9 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT DISTINCT pd.vessel_code, pd.vessel_name, pd.status_pinjaman, p.name, pd.pelayaran_detail_id FROM [Pelayaran_Detail] pd " +
+                        "SELECT DISTINCT pd.vessel_code, pd.vessel_name, pd.status_pinjaman, s.supplier_name, pd.pelayaran_detail_id FROM [Pelayaran_Detail] pd " +
                         "INNER JOIN [Pelayaran] p ON p.pelayaran_id = pd.pelayaran_id  " +
+                        "INNER JOIN [Supplier] s ON s.supplier_id = p.supplier_id " +
                         "WHERE (pd.deleted is null OR pd.deleted = '0') " +
                         "ORDER BY pd.vessel_name ASC"
                         , con))
@@ -103,11 +108,13 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT DISTINCT pd.vessel_code, pd.vessel_name, pd.status_pinjaman, p.name, pd.pelayaran_detail_id " +
+                        "SELECT DISTINCT pd.vessel_code, pd.vessel_name, pd.status_pinjaman, sup.supplier_name, pd.pelayaran_detail_id " +
                         "FROM [Pelayaran_Detail] pd " +
                         "INNER JOIN [PELAYARAN] p ON p.pelayaran_id = pd.pelayaran_id " +
                         "INNER JOIN [SCHEDULE] s ON s.pelayaran_id = pd.pelayaran_id " +
-                        "WHERE pd.deleted is null OR pd.deleted = '0' " +
+                        "INNER JOIN [SUPPLIER] sup ON p.supplier_id = sup.supplier_id " +
+                        "WHERE (pd.deleted is null OR pd.deleted = '0') AND (sup.deleted is null OR sup.deleted = '0') " +
+                        "AND (s.deleted is null OR s.deleteed = '0') AND (p.deleted is null OR p.deleted = '0') " +
                         "AND s.tujuan = '" + Utility.Utility.ConvertToUUID(destination) + "' " + 
                         "AND pd.vessel_code = s.vessel_code ", con))
                     {
@@ -198,7 +205,7 @@ namespace VisitaJayaPerkasa.SqlRepository
 
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT TOP 1 pelayaran_id FROM [Pelayaran] WHERE name = " + sqlParam[1].ParameterName +
+                        "SELECT TOP 1 pelayaran_id FROM [Pelayaran] WHERE supplier_id = " + sqlParam[1].ParameterName +
                         criteria, con))
                     {
                         command.Parameters.Add(sqlParam[1]);
@@ -231,7 +238,8 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT TOP 1 pelayaran_id, name FROM [Pelayaran] WHERE name = " + sqlParam[0].ParameterName, con))
+                        "SELECT TOP 1 pelayaran_id, pelayaran.supplier_id, supplier.supplier_name FROM [Pelayaran], [supplier] " + 
+                        "WHERE pelayaran.supplier_id = supplier.supplier_id and supplier.supplier_name = " + sqlParam[0].ParameterName, con))
                     {
                         foreach (SqlParameter tempSqlParam in sqlParam)
                             command.Parameters.Add(tempSqlParam);
@@ -241,7 +249,8 @@ namespace VisitaJayaPerkasa.SqlRepository
                         {
                             pelayaran = new Pelayaran();
                             pelayaran.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
-                            pelayaran.Name = reader.GetString(1);
+                            pelayaran.supplierID = Utility.Utility.ConvertToUUID(reader.GetValue(1).ToString());
+                            pelayaran.supplierName = reader.GetString(2);
                         }
                     }
                 }
@@ -504,7 +513,7 @@ namespace VisitaJayaPerkasa.SqlRepository
 
                         using (SqlCommand command = new SqlCommand(
                             "Update [Pelayaran] set " +
-                            "name = " + sqlParam[1].ParameterName + ", " +
+                            "supplier_id = " + sqlParam[1].ParameterName + ", " +
                             "deleted = " + sqlParam[2].ParameterName + " WHERE " +
                             "pelayaran_id = '" + ID + "'"
                             , con))
@@ -573,7 +582,7 @@ namespace VisitaJayaPerkasa.SqlRepository
             return n > 0;
         }
 
-
+        
         public string GetPelayaranIDByName(string name)
         {
             string ID = Guid.Empty.ToString();
@@ -585,7 +594,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT pelayaran_id FROM [Pelayaran] WHERE name = '" + name + "'"
+                        "SELECT pelayaran_id FROM [Pelayaran] WHERE supplier_id = '" + name + "'"
                         , con))
                     {
                         SqlDataReader reader = command.ExecuteReader();

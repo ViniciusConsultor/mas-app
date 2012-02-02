@@ -180,10 +180,9 @@ namespace VisitaJayaPerkasa.SqlRepository
                                 break;
                         }
                     } 
-//                    if (n > 0  ||  sqlParamDeleted == null)
-//                    { 
-                        n = 0;
 
+                    if (n > 0  ||  sqlParamDeleted == null)
+                    { 
                         for (int i = 0; i < sqlParamInsert.Length; )
                         {
                             using (SqlCommand command = new SqlCommand(
@@ -217,11 +216,9 @@ namespace VisitaJayaPerkasa.SqlRepository
 
                         if (n > 0)
                             sqlTransaction.Commit();
-                        else
-                            sqlTransaction.Commit();
-//                    }
-//                    else
-//                        sqlTransaction.Rollback();
+                    }
+                    else
+                        sqlTransaction.Rollback();
                 }
                 catch (Exception e)
                 {

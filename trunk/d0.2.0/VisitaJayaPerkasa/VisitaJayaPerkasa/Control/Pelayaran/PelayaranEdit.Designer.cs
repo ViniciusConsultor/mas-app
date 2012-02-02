@@ -34,7 +34,6 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.etPelayaranName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radToolStripElement1 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radToolStripItem1 = new Telerik.WinControls.UI.RadToolStripItem();
@@ -54,8 +53,8 @@
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
+            this.cbSupplier = new Telerik.WinControls.UI.RadComboBox();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.etPelayaranName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -74,11 +73,12 @@
             this.splitPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbSupplier)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.etPelayaranName);
+            this.groupBox2.Controls.Add(this.cbSupplier);
             this.groupBox2.Controls.Add(this.radLabel1);
             this.groupBox2.Location = new System.Drawing.Point(16, 39);
             this.groupBox2.Name = "groupBox2";
@@ -86,14 +86,6 @@
             this.groupBox2.TabIndex = 27;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Master Data";
-            // 
-            // etPelayaranName
-            // 
-            this.etPelayaranName.Location = new System.Drawing.Point(82, 22);
-            this.etPelayaranName.Name = "etPelayaranName";
-            this.etPelayaranName.Size = new System.Drawing.Size(210, 20);
-            this.etPelayaranName.TabIndex = 1;
-            this.etPelayaranName.TabStop = false;
             // 
             // radLabel1
             // 
@@ -335,6 +327,20 @@
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
             // 
+            // cbSupplier
+            // 
+            this.cbSupplier.Location = new System.Drawing.Point(66, 19);
+            this.cbSupplier.Name = "cbSupplier";
+            // 
+            // 
+            // 
+            this.cbSupplier.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
+            this.cbSupplier.Size = new System.Drawing.Size(215, 20);
+            this.cbSupplier.TabIndex = 26;
+            this.cbSupplier.TabStop = false;
+            this.cbSupplier.Text = "-- Choose --";
+            this.cbSupplier.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.radComboBox1_KeyPress);
+            // 
             // PelayaranEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -345,7 +351,6 @@
             this.Size = new System.Drawing.Size(829, 411);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.etPelayaranName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -365,6 +370,7 @@
             this.splitPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cbSupplier)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -379,7 +385,6 @@
         private Telerik.WinControls.UI.RadButtonElement radButtonElement2;
         private Telerik.WinControls.UI.RadToolStrip radToolStrip1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private Telerik.WinControls.UI.RadTextBox etPelayaranName;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadGridView PelayaranDetailGridView;
         private Telerik.WinControls.UI.RadButton btnAdd;
@@ -393,6 +398,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadTextBox etVesselName;
         private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadComboBox cbSupplier;
 
     }
 }
