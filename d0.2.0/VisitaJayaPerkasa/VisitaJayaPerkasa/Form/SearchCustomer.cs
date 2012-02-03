@@ -23,7 +23,7 @@ namespace VisitaJayaPerkasa.Form
         {
             InitializeComponent();
             SqlCustomerRepository sqlCustomerRepository = new SqlCustomerRepository();
-            listCustomer = sqlCustomerRepository.ListCustomers();
+            listCustomer = sqlCustomerRepository.listCustomerForPriceList();
 
             CustomerGridView.DataSource = listCustomer;
 

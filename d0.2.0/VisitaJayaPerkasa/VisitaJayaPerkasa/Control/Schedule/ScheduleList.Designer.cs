@@ -78,8 +78,8 @@
             this.radButtonElementNext = new Telerik.WinControls.UI.RadButtonElement();
             this.radToolStripElement2 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radToolStripItem3 = new Telerik.WinControls.UI.RadToolStripItem();
+            this.cbFinish = new Telerik.WinControls.UI.RadCheckBoxElement();
             ((System.ComponentModel.ISupportInitialize)(this.ScheduleGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ScheduleGridView.MasterGridViewTemplate)).BeginInit();
             this.ScheduleGridView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radCalendarEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCalendarBegin)).BeginInit();
@@ -104,9 +104,9 @@
             this.ScheduleGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.ScheduleGridView.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ScheduleGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.ScheduleGridView.Location = new System.Drawing.Point(0, 53);
+            this.ScheduleGridView.Location = new System.Drawing.Point(0, 75);
             // 
-            // gridViewTemplate1
+            // 
             // 
             this.ScheduleGridView.MasterGridViewTemplate.AllowAddNewRow = false;
             gridViewTextBoxColumn1.FieldAlias = "ID";
@@ -218,7 +218,7 @@
             this.ScheduleGridView.Name = "ScheduleGridView";
             this.ScheduleGridView.ReadOnly = true;
             this.ScheduleGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ScheduleGridView.Size = new System.Drawing.Size(912, 501);
+            this.ScheduleGridView.Size = new System.Drawing.Size(912, 479);
             this.ScheduleGridView.TabIndex = 5;
             this.ScheduleGridView.ThemeName = "ControlDefault";
             this.ScheduleGridView.DoubleClick += new System.EventHandler(this.ScheduleGridView_DoubleClick);
@@ -268,6 +268,7 @@
             this.radToolStripItem4.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.cboKeySearch,
             this.cboValueSearch,
+            this.cbFinish,
             this.txtRoSearch,
             this.radToolStripLabelElement1,
             this.actionBarDateBegin,
@@ -429,7 +430,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(912, 53);
+            this.radToolStrip1.Size = new System.Drawing.Size(912, 75);
             this.radToolStrip1.TabIndex = 4;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
@@ -533,6 +534,12 @@
             this.radToolStripItem3.Name = "radToolStripItem3";
             this.radToolStripItem3.Text = "radToolStripItem3";
             // 
+            // cbFinish
+            // 
+            this.cbFinish.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cbFinish.Name = "cbFinish";
+            this.cbFinish.Text = "Finished";
+            // 
             // ScheduleList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -541,7 +548,6 @@
             this.Controls.Add(this.radToolStrip1);
             this.Name = "ScheduleList";
             this.Size = new System.Drawing.Size(912, 554);
-            ((System.ComponentModel.ISupportInitialize)(this.ScheduleGridView.MasterGridViewTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScheduleGridView)).EndInit();
             this.ScheduleGridView.ResumeLayout(false);
             this.ScheduleGridView.PerformLayout();
@@ -588,6 +594,7 @@
         private Telerik.WinControls.UI.RadComboBoxItem radComboBoxItem4;
         private Telerik.WinControls.UI.RadCalendar radCalendarEnd;
         private Telerik.WinControls.UI.RadCalendar radCalendarBegin;
+        private Telerik.WinControls.UI.RadCheckBoxElement cbFinish;
 
     }
 }

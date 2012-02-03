@@ -21,7 +21,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT * FROM [Customer] WHERE deleted is null OR deleted = '0'"
+                        "SELECT * FROM [Customer] WHERE (deleted is null OR deleted = '0') AND customer_name != '" + Constant.VisitaJayaPerkasaApplication.strGeneralCustomer + "'"
                         , con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
@@ -49,6 +49,51 @@ namespace VisitaJayaPerkasa.SqlRepository
             catch (Exception e)
             {
                 Logging.Error("SqlCustomerRepository.cs - listCustomers() " + e.Message);
+            }
+
+            return listCustomer;
+        }
+
+
+        public List<Customer> listCustomerForPriceList()
+        {
+            List<Customer> listCustomer = null;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT * FROM [Customer] WHERE (deleted is null OR deleted = '0')"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            Customer customer = new Customer();
+                            customer.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                            customer.CustomerName = (Utility.Utility.IsDBNull(reader.GetValue(1))) ? null : reader.GetString(1);
+                            customer.Office = (Utility.Utility.IsDBNull(reader.GetValue(2))) ? null : reader.GetString(2);
+                            customer.Address = (Utility.Utility.IsDBNull(reader.GetValue(3))) ? null : reader.GetString(3);
+                            customer.Phone = (Utility.Utility.IsDBNull(reader.GetValue(4))) ? null : reader.GetString(4);
+                            customer.Fax = (Utility.Utility.IsDBNull(reader.GetValue(5))) ? null : reader.GetString(5);
+                            customer.Email = (Utility.Utility.IsDBNull(reader.GetValue(6))) ? null : reader.GetString(6);
+                            customer.ContactPerson = (Utility.Utility.IsDBNull(reader.GetValue(7))) ? null : reader.GetString(7);
+                            customer.StatusPPN = (Utility.Utility.IsDBNull(reader.GetValue(8))) ? 0 : Convert.ToInt32(reader.GetBoolean(8));
+                            if (listCustomer == null)
+                                listCustomer = new List<Customer>();
+
+                            listCustomer.Add(customer);
+                            customer = null;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlCustomerRepository.cs - listCustomerForPriceList() " + e.Message);
             }
 
             return listCustomer;

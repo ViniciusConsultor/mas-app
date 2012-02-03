@@ -11,9 +11,15 @@ namespace VisitaJayaPerkasa.SqlRepository
     public class SqlScheduleRepository
     {
         public List<Schedule> ListSchedule(string beginDate, string endDate, 
-            string destination, string vessel, string voy)
+            string destination, string vessel, string voy, bool isFinish)
         {
             List<Schedule> listSchedule = null;
+            String criteria;
+
+            if (isFinish)
+                criteria = "AND s.td is not null ";
+            else
+                criteria = "AND s.td is null ";
 
             try
             {
@@ -34,7 +40,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "(s.etd > '" + beginDate + "' AND s.etd < '" + endDate + "') AND " + 
                         "s.voy like '%" + voy + "%' AND s.vessel_code like '%" + vessel + "%' AND " + 
                         "s.tujuan like '%" + destination + "%' AND (s.deleted is null OR s.deleted = '0') " + 
-                        "AND TA is null"
+                        criteria
                         , con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
@@ -48,10 +54,10 @@ namespace VisitaJayaPerkasa.SqlRepository
                             schedule.voy = (Utility.Utility.IsDBNull(reader.GetValue(4))) ? null : reader.GetString(4);
                             schedule.keterangan = (Utility.Utility.IsDBNull(reader.GetValue(5))) ? null : reader.GetString(5);
                             schedule.vesselCode = reader.GetString(6);
-                            schedule.ro_begin_20 = (Utility.Utility.IsDBNull(reader.GetDecimal(7))) ? 0 : int.Parse(reader.GetDecimal(7).ToString());
-                            schedule.ro_begin_40 = (Utility.Utility.IsDBNull(reader.GetDecimal(8))) ? 0 : int.Parse(reader.GetDecimal(8).ToString());
-                            schedule.ro_end_20 = (Utility.Utility.IsDBNull(reader.GetDecimal(9))) ? 0 : int.Parse(reader.GetDecimal(9).ToString());
-                            schedule.ro_end_40 = (Utility.Utility.IsDBNull(reader.GetDecimal(10))) ? 0 : int.Parse(reader.GetDecimal(10).ToString());
+                            schedule.ro_begin_20 = (Utility.Utility.IsDBNull(reader.GetValue(7))) ? 0 : int.Parse(reader.GetDecimal(7).ToString());
+                            schedule.ro_begin_40 = (Utility.Utility.IsDBNull(reader.GetValue(8))) ? 0 : int.Parse(reader.GetDecimal(8).ToString());
+                            schedule.ro_end_20 = (Utility.Utility.IsDBNull(reader.GetValue(9))) ? 0 : int.Parse(reader.GetDecimal(9).ToString());
+                            schedule.ro_end_40 = (Utility.Utility.IsDBNull(reader.GetValue(10))) ? 0 : int.Parse(reader.GetDecimal(10).ToString());
                             schedule.etd = reader.GetDateTime(11);
 
                             if(! Utility.Utility.IsDBNull(reader.GetValue(12)))

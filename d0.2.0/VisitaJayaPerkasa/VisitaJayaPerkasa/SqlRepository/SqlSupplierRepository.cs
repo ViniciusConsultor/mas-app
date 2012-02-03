@@ -145,14 +145,15 @@ namespace VisitaJayaPerkasa.SqlRepository
                             int subz = 9;
                             if ((n > 0) && sqlParam.Length > 9)
                             {
-                                //-9 is total sqlparameter minus number of customer master
-                                // / 8 is remain of total sqlparameter minus 9 is customer detail who have 8 number of field
-                                for (int k = 0; k < ((sqlParam.Length - 9) / 8); k++)
+                                //-10 is total sqlparameter minus number of customer master
+                                // / 9 is remain of total sqlparameter minus 10 is customer detail who have 9 number of field
+                                for (int k = 0; k < ((sqlParam.Length - 10) / 8); k++)
                                 {
                                     using (SqlCommand subCommand = new SqlCommand(
                                         "Insert into [Supplier_Detail] values(" +
                                         sqlParam[(z += 2) - 2].ParameterName + ", " + // for handle index of ID
                                         "'" + ID + "', " +
+                                        sqlParam[z++].ParameterName + ", " +
                                         sqlParam[z++].ParameterName + ", " +
                                         sqlParam[z++].ParameterName + ", " +
                                         sqlParam[z++].ParameterName + ", " +
@@ -164,7 +165,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                                     {
                                         subCommand.Transaction = sqlTransaction;
 
-                                        for (int i = 0; i < 8; i++)
+                                        for (int i = 0; i < 9; i++)
                                             subCommand.Parameters.Add(sqlParam[subz++]);
                                         n = subCommand.ExecuteNonQuery();
                                         subCommand.Parameters.Clear();
@@ -188,6 +189,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     if (sqlTransaction != null)
                         sqlTransaction.Rollback();
 
+                    n = 0;
                     Logging.Error("SqlCustomerRepository.cs - CreateSupplier() " + e.Message);
                 }
                 finally
@@ -293,6 +295,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                             supplier.SupplierDetailPhone = (Utility.Utility.IsDBNull(reader.GetValue(4))) ? null : reader.GetString(4);
                             supplier.SupplierDetailMobilePhone = (Utility.Utility.IsDBNull(reader.GetValue(5))) ? null : reader.GetString(5);
                             supplier.SupplierDetailAddress = (Utility.Utility.IsDBNull(reader.GetValue(6))) ? null : reader.GetString(6);
+                            supplier.SupplierMobileExt = (Utility.Utility.IsDBNull(reader.GetValue(8))) ? null : reader.GetString(8);
                             if (listSupplierrDetail == null)
                                 listSupplierrDetail = new List<SupplierDetail>();
 
@@ -399,12 +402,13 @@ namespace VisitaJayaPerkasa.SqlRepository
                         int subz = 9;
                         if ((n > 0) && sqlParam.Length > 9)
                         {
-                            //-9 is total sqlparameter minus number of customer master
-                            // / 8 is remain of total sqlparameter minus 9 is customer detail who have 8 number of field
-                            for (int k = 0; k < ((sqlParam.Length - 9) / 8); k++)
+                            //-10 is total sqlparameter minus number of customer master
+                            // / 9 is remain of total sqlparameter minus 10 is customer detail who have 9 number of field
+                            for (int k = 0; k < ((sqlParam.Length - 9) / 9); k++)
                             {
                                 using (SqlCommand subCommand = new SqlCommand(
                                     "Insert into [Supplier_Detail] values(" +
+                                    sqlParam[z++].ParameterName + ", " +
                                     sqlParam[z++].ParameterName + ", " +
                                     sqlParam[z++].ParameterName + ", " +
                                     sqlParam[z++].ParameterName + ", " +
@@ -418,7 +422,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                                 {
                                     subCommand.Transaction = sqlTransaction;
 
-                                    for (int i = 0; i < 8; i++)
+                                    for (int i = 0; i < 9; i++)
                                         subCommand.Parameters.Add(sqlParam[subz++]);
                                     n = subCommand.ExecuteNonQuery();
                                     subCommand.Parameters.Clear();
@@ -441,6 +445,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     if (sqlTransaction != null)
                         sqlTransaction.Rollback();
 
+                    n = 0;
                     Logging.Error("SqlCustomerRepository.cs - CreateSupplier() " + e.Message);
                 }
                 finally
@@ -497,12 +502,13 @@ namespace VisitaJayaPerkasa.SqlRepository
                             int subz = 9;
                             if ((n > 0) && sqlParam.Length > 9)
                             {
-                                //-9 is total sqlparameter minus number of customer master
-                                // / 8 is remain of total sqlparameter minus 9 is customer detail who have 8 number of field
-                                for (int k = 0; k < ((sqlParam.Length - 9) / 8); k++)
+                                //-10 is total sqlparameter minus number of customer master
+                                // / 9 is remain of total sqlparameter minus 10 is customer detail who have 9 number of field
+                                for (int k = 0; k < ((sqlParam.Length - 9) / 9); k++)
                                 {
                                     using (SqlCommand subCommand = new SqlCommand(
                                         "Insert into [Supplier_Detail] values(" +
+                                        sqlParam[z++].ParameterName + ", " +
                                         sqlParam[z++].ParameterName + ", " +
                                         sqlParam[z++].ParameterName + ", " +
                                         sqlParam[z++].ParameterName + ", " +
@@ -516,7 +522,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                                     {
                                         subCommand.Transaction = sqlTransaction;
 
-                                        for (int i = 0; i < 8; i++)
+                                        for (int i = 0; i < 9; i++)
                                             subCommand.Parameters.Add(sqlParam[subz++]);
                                         n = subCommand.ExecuteNonQuery();
                                         subCommand.Parameters.Clear();
@@ -540,6 +546,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     if (sqlTransaction != null)
                         sqlTransaction.Rollback();
 
+                    n = 0;
                     Logging.Error("SqlCustomerRepository.cs - CreateSupplier() " + e.Message);
                 }
                 finally

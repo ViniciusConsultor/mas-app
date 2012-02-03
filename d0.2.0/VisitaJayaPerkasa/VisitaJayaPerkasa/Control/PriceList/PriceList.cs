@@ -11,6 +11,7 @@ using VisitaJayaPerkasa.Entities;
 using Telerik.WinControls.UI;
 using System.Data.SqlClient;
 using VisitaJayaPerkasa.Form;
+using Telerik.WinControls.Enumerations;
 
 namespace VisitaJayaPerkasa.Control.PriceList
 {
@@ -39,8 +40,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
         //this variable used for result from search on customer text
         private VisitaJayaPerkasa.Entities.Customer searchResultCustomer;
 
-        private bool supplierTypeCompleted = false;
-        
         public PriceList()
         {
             InitializeComponent();
@@ -60,7 +59,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
             cboTypeSupplier.SelectedIndex = -1;
             cboTypeSupplier.SelectedText = Constant.VisitaJayaPerkasaApplication.cboDefaultText;
             cboTypeSupplier.SelectedValueChanged += new EventHandler(cboTypeSupplier_SelectedValueChanged);
-            supplierTypeCompleted = true;
 
             listCity = sqlCityRepository.GetCity();
             cbDestination.DataSource = listCity;
@@ -69,7 +67,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
             cbDestination.SelectedIndex = -1;
             cbDestination.SelectedText = Constant.VisitaJayaPerkasaApplication.cboDefaultText;
 
-            listRecipient = new List<VisitaJayaPerkasa.Entities.Recipient>();
+
+
+            listRecipient = sqlRecipientRepository.GetRecipient();
             cboRecipient.DataSource = listRecipient;
             cboRecipient.DisplayMember = "Name";
             cboRecipient.ValueMember = "ID";
@@ -85,6 +85,8 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
             cbSupplier.Enabled = false;
             cboRecipient.Enabled = false;
+            cbDislayAll.Visible = false;
+            cbDislayAll.Enabled = false;
             sqlPriceListRepository = null;
             PriceListGridView.Enabled = false;
             sqlCityRepository = null;
@@ -223,6 +225,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
             lblRecipient.Visible = true;
             cboRecipient.Visible = true;
             cboRecipient.Enabled = true;
+            cbRecipientDisplay.Visible = true;
+            cbRecipientDisplay.Enabled = true;
+
 
             lblStuffing.Visible = false;
             cboStuffingPlace.Visible = false;
@@ -230,6 +235,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
             lblCustomer.Visible = false;
             txtCustomer.Visible = false;
             btnSearch.Visible = false;
+
+            cbDislayAll.Visible = false;
+            cbDislayAll.Enabled = false;
 
             lblDestination.Visible = true;
             cbDestination.Visible = true;
@@ -246,6 +254,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
                     lblRecipient.Visible = false;
                     cboRecipient.Visible = false;
 
+                    cbRecipientDisplay.Visible = false;
+                    cbRecipientDisplay.Enabled = false;
+
                     lblStuffing.Visible = false;
                     cboStuffingPlace.Visible = false;
 
@@ -257,6 +268,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
                     lblDestination.Visible = true;
                     cbDestination.Visible = true;
                     cbDestination.Enabled = true;
+
+                    cbDislayAll.Visible = true;
+                    cbDislayAll.Enabled = true;
                 }
                 else if (cboTypeSupplier.Text.ToLower().Equals("dooring agent")) {
                     SetTypeOfSupplierDooringAgent();
@@ -264,6 +278,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
                 else if(cboTypeSupplier.Text.ToLower().Equals("trucking")){
                     lblRecipient.Visible = false;
                     cboRecipient.Visible = false;
+
+                    cbRecipientDisplay.Visible = false;
+                    cbRecipientDisplay.Enabled = false;
 
                     lblStuffing.Visible = true;
                     cboStuffingPlace.Visible = true;
@@ -276,11 +293,17 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
                     lblDestination.Visible = false;
                     cbDestination.Visible = false;
+
+                    cbDislayAll.Visible = true;
+                    cbDislayAll.Enabled = true;
                 }
                 else if (cboTypeSupplier.Text.ToLower().Equals("general")) {
                     lblRecipient.Visible = false;
                     cboRecipient.Visible = false;
                     cboRecipient.Enabled = false;
+
+                    cbRecipientDisplay.Visible = false;
+                    cbRecipientDisplay.Enabled = false;
 
                     lblStuffing.Visible = false;
                     cboStuffingPlace.Visible = false;
@@ -294,25 +317,37 @@ namespace VisitaJayaPerkasa.Control.PriceList
                     lblDestination.Visible = false;
                     cbDestination.Visible = false;
                     cbDestination.Enabled = false;
+                    cbDislayAll.Visible = false;
+                    cbDislayAll.Enabled = false;
                 }
             }
         }
 
         private void LoadData() {
             sqlPriceListRepository = new SqlPriceListRepository();
+            PriceListGridView.ReadOnly = false;
 
             if (cboTypeSupplier.Text.ToLower().Equals("shipping lines"))
             {
                 listPriceList = sqlPriceListRepository.GetPriceListByCriteria(pickerFrom.Value.Date, pickerTo.Value.Date,
-                    cbSupplier.SelectedValue.ToString(), cbDestination.SelectedValue.ToString(), searchResultCustomer.ID.ToString(), "", "", 1, "");
+                    cbSupplier.SelectedValue.ToString(), cbDestination.SelectedValue.ToString(), (! cbDislayAll.Checked) ? searchResultCustomer.ID.ToString() : "", "", "", 1, "");
+
+                if(cbDislayAll.Checked)
+                    PriceListGridView.ReadOnly = true;
             }
             else if (cboTypeSupplier.Text.ToLower().Equals("dooring agent")) {
                 listPriceList = sqlPriceListRepository.GetPriceListByCriteria(pickerFrom.Value.Date, pickerTo.Value.Date,
-                    cbSupplier.SelectedValue.ToString(), cbDestination.SelectedValue.ToString(), "", cboRecipient.SelectedValue.ToString(), "", 1, "");
+                    cbSupplier.SelectedValue.ToString(), cbDestination.SelectedValue.ToString(), "", (! cbRecipientDisplay.Checked) ? cboRecipient.SelectedValue.ToString() : "", "", 1, "");
+
+                if (cbRecipientDisplay.Checked)
+                    PriceListGridView.ReadOnly = true;
             }
             else if (cboTypeSupplier.Text.ToLower().Equals("trucking")) {
                 listPriceList = sqlPriceListRepository.GetPriceListByCriteria(pickerFrom.Value.Date, pickerTo.Value.Date,
-                    cbSupplier.SelectedValue.ToString(), "", searchResultCustomer.ID.ToString(), "", cboStuffingPlace.SelectedValue.ToString(), 1, "");
+                    cbSupplier.SelectedValue.ToString(), "", (!cbDislayAll.Checked) ? searchResultCustomer.ID.ToString() : "", "", cboStuffingPlace.SelectedValue.ToString(), 1, "");
+
+                if (cbDislayAll.Checked)
+                    PriceListGridView.ReadOnly = true;
             }
             else if (cboTypeSupplier.Text.ToLower().Equals("general")) {
                 listPriceList = sqlPriceListRepository.GetPriceListByCriteria(pickerFrom.Value.Date, pickerTo.Value.Date,
@@ -380,13 +415,19 @@ namespace VisitaJayaPerkasa.Control.PriceList
 */
 
                 if (cboTypeSupplier.Text.ToLower().Equals("shipping lines")) {
-                    if (txtCustomer.Text.Equals("")) {
+                    if (txtCustomer.Text.Equals("") && (! cbDislayAll.Checked)) {
                         MessageBox.Show(this, "Please choose customer", "Information");
                         return;
                     }
 
+                    if(cbDislayAll.Checked)
+                        PriceListGridView.Columns[9].IsVisible = true;
+                    else
+                        PriceListGridView.Columns[9].IsVisible = false;
+
                     cbDestination.Enabled = false;
                     btnSearch.Enabled = false;
+                    cbDislayAll.Enabled = false;
 
 
                     PriceListGridView.Columns[1].IsVisible = true;
@@ -397,19 +438,25 @@ namespace VisitaJayaPerkasa.Control.PriceList
                     PriceListGridView.Columns[6].IsVisible = false;
                     PriceListGridView.Columns[7].IsVisible = false;
                     PriceListGridView.Columns[8].IsVisible = true;
-                    PriceListGridView.Columns[9].IsVisible = false;
                     PriceListGridView.Columns[10].IsVisible = false;
                     PriceListGridView.Columns[11].IsVisible = false;
                     PriceListGridView.Enabled = true;
                 }
                 else if (cboTypeSupplier.Text.ToLower().Equals("dooring agent")) {
-                    if (cboRecipient.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText)) {
+                    if (cboRecipient.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText) && (!cbRecipientDisplay.Checked))
+                    {
                         MessageBox.Show(this, "Please choose recipient", "Information");
                         return;
                     }
 
+                    if (cbRecipientDisplay.Checked)
+                        PriceListGridView.Columns[7].IsVisible = true;
+                    else
+                        PriceListGridView.Columns[7].IsVisible = false;
+
                     cbDestination.Enabled = false;
                     cboRecipient.Enabled = false;
+                    cbRecipientDisplay.Enabled = false;
 
                     PriceListGridView.Columns[1].IsVisible = true;
                     PriceListGridView.Columns[2].IsVisible = false;
@@ -417,7 +464,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
                     PriceListGridView.Columns[4].IsVisible = true;
                     PriceListGridView.Columns[5].IsVisible = false;
                     PriceListGridView.Columns[6].IsVisible = false;
-                    PriceListGridView.Columns[7].IsVisible = false;
                     PriceListGridView.Columns[8].IsVisible = true;
                     PriceListGridView.Columns[9].IsVisible = false;
                     PriceListGridView.Columns[10].IsVisible = false;
@@ -425,7 +471,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
                     PriceListGridView.Enabled = true;
                 }
                 else if (cboTypeSupplier.Text.ToLower().Equals("trucking")) {
-                    if (txtCustomer.Text.Equals(""))
+                    if (txtCustomer.Text.Equals("") && (! cbDislayAll.Checked))
                     {
                         MessageBox.Show(this, "Please choose customer", "Information");
                         return;
@@ -436,7 +482,13 @@ namespace VisitaJayaPerkasa.Control.PriceList
                         return;
                     }
 
+                    if (cbDislayAll.Checked)
+                        PriceListGridView.Columns[9].IsVisible = true;
+                    else
+                        PriceListGridView.Columns[9].IsVisible = false;
+
                     cboStuffingPlace.Enabled = false;
+                    cbDislayAll.Enabled = false;
 
                     PriceListGridView.Columns[1].IsVisible = true;
                     PriceListGridView.Columns[2].IsVisible = false;
@@ -446,7 +498,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
                     PriceListGridView.Columns[6].IsVisible = false;
                     PriceListGridView.Columns[7].IsVisible = false;
                     PriceListGridView.Columns[8].IsVisible = true;
-                    PriceListGridView.Columns[9].IsVisible = false;
                     PriceListGridView.Columns[10].IsVisible = false;
                     PriceListGridView.Columns[11].IsVisible = true;
                     PriceListGridView.Enabled = true;
@@ -838,22 +889,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
             cboTypeSupplier.SelectedItem = cboTypeSupplier.Items.ElementAt(0);
         }
 
-        private void cbSupplier_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cboTypeSupplier.Text.ToLower().Equals("dooring agent") && supplierTypeCompleted)
-            {
-                if (cbSupplier.SelectedIndex >= 0)
-                    listRecipient = sqlRecipientRepository.GetRecipient();
-                else
-                    listRecipient = new List<VisitaJayaPerkasa.Entities.Recipient>();
-                cboRecipient.DataSource = listRecipient;
-                cboRecipient.DisplayMember = "Name";
-                cboRecipient.ValueMember = "ID";
-                cboRecipient.SelectedIndex = -1;
-                cboRecipient.Text = Constant.VisitaJayaPerkasaApplication.cboDefaultText;
-            }
-        }
-
 
         /*
         private bool validateDate(VisitaJayaPerkasa.Entities.PriceList objPriceList, List<String> listID, List<VisitaJayaPerkasa.Entities.PriceList> priceList)
@@ -967,6 +1002,30 @@ namespace VisitaJayaPerkasa.Control.PriceList
                 }
             }
             return result;
+        }
+
+        private void cbDislayAll_ToggleStateChanged(object sender, StateChangedEventArgs args)
+        {
+            if (args.ToggleState == ToggleState.On)
+            {
+                searchResultCustomer = null;
+                txtCustomer.Text = "";
+                btnSearch.Enabled = false;
+            }
+            else
+                btnSearch.Enabled = true;
+        }
+
+        private void cbRecipient_ToggleStateChanged(object sender, StateChangedEventArgs args)
+        {
+            if (args.ToggleState == ToggleState.On)
+            {
+                cboRecipient.SelectedIndex = -1;
+                cboRecipient.Text = Constant.VisitaJayaPerkasaApplication.cboDefaultText;
+                cboRecipient.Enabled = false;
+            }
+            else
+                cboRecipient.Enabled = true;
         }
     }
 }
