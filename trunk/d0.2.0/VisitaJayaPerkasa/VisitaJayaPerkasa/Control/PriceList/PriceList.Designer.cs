@@ -66,6 +66,8 @@
             this.lblStuffing = new Telerik.WinControls.UI.RadLabel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.PriceListGridView = new Telerik.WinControls.UI.RadGridView();
+            this.cbDislayAll = new Telerik.WinControls.UI.RadCheckBox();
+            this.cbRecipientDisplay = new Telerik.WinControls.UI.RadCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -95,6 +97,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView.MasterGridViewTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbDislayAll)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbRecipientDisplay)).BeginInit();
             this.SuspendLayout();
             // 
             // radSplitContainer1
@@ -132,6 +137,8 @@
             // 
             // radPanel1
             // 
+            this.radPanel1.Controls.Add(this.cbRecipientDisplay);
+            this.radPanel1.Controls.Add(this.cbDislayAll);
             this.radPanel1.Controls.Add(this.btnClearAll);
             this.radPanel1.Controls.Add(this.btnSaveGrid);
             this.radPanel1.Controls.Add(this.radButton2);
@@ -269,7 +276,6 @@
             this.cbSupplier.TabIndex = 25;
             this.cbSupplier.TabStop = false;
             this.cbSupplier.Text = "-- Choose --";
-            this.cbSupplier.SelectedIndexChanged += new System.EventHandler(this.cbSupplier_SelectedIndexChanged);
             this.cbSupplier.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbSupplier_KeyPress);
             // 
             // cboTypeSupplier
@@ -412,7 +418,7 @@
             this.PriceListGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.PriceListGridView.Location = new System.Drawing.Point(0, 0);
             // 
-            // 
+            // gridViewTemplate1
             // 
             gridViewTextBoxColumn1.FieldAlias = "ID";
             gridViewTextBoxColumn1.FieldName = "ID";
@@ -474,6 +480,7 @@
             gridViewDecimalColumn1.FieldAlias = "column5";
             gridViewDecimalColumn1.FieldName = "price_supplier";
             gridViewDecimalColumn1.FormatInfo = new System.Globalization.CultureInfo("ii-CN");
+            gridViewDecimalColumn1.FormatString = "{0:c}";
             gridViewDecimalColumn1.HeaderText = "Harga Supplier";
             gridViewDecimalColumn1.ThousandsSeparator = true;
             gridViewDecimalColumn1.UniqueName = "price_supplier";
@@ -518,6 +525,25 @@
             this.PriceListGridView.Size = new System.Drawing.Size(932, 159);
             this.PriceListGridView.TabIndex = 1;
             // 
+            // cbDislayAll
+            // 
+            this.cbDislayAll.Location = new System.Drawing.Point(619, 35);
+            this.cbDislayAll.Name = "cbDislayAll";
+            this.cbDislayAll.Size = new System.Drawing.Size(136, 18);
+            this.cbDislayAll.TabIndex = 34;
+            this.cbDislayAll.Text = "Display All Customer";
+            this.cbDislayAll.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.cbDislayAll_ToggleStateChanged);
+            // 
+            // cbRecipientDisplay
+            // 
+            this.cbRecipientDisplay.Location = new System.Drawing.Point(560, 67);
+            this.cbRecipientDisplay.Name = "cbRecipientDisplay";
+            this.cbRecipientDisplay.Size = new System.Drawing.Size(136, 18);
+            this.cbRecipientDisplay.TabIndex = 35;
+            this.cbRecipientDisplay.Text = "Display All Recipient";
+            this.cbRecipientDisplay.Visible = false;
+            this.cbRecipientDisplay.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.cbRecipient_ToggleStateChanged);
+            // 
             // PriceList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -554,7 +580,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblStuffing)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView.MasterGridViewTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbDislayAll)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbRecipientDisplay)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -586,6 +615,8 @@
         private Telerik.WinControls.UI.RadButton radButton2;
         private Telerik.WinControls.UI.RadButton btnSaveGrid;
         private Telerik.WinControls.UI.RadButton btnClearAll;
+        private Telerik.WinControls.UI.RadCheckBox cbDislayAll;
+        private Telerik.WinControls.UI.RadCheckBox cbRecipientDisplay;
 
     }
 }

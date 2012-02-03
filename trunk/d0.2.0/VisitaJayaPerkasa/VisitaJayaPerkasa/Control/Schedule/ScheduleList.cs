@@ -89,19 +89,19 @@ namespace VisitaJayaPerkasa.Control.Schedule
                     
             if(cboKeySearch.Text.Equals("Destination"))
                 schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
-                    actionBarDateEnd.Text, cboValueSearch.SelectedValue.ToString(), "", ""
+                    actionBarDateEnd.Text, cboValueSearch.SelectedValue.ToString(), "", "", cbFinish.IsChecked
                     );
             else if(cboKeySearch.Text.Equals("Vessel"))
                 schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
-                    actionBarDateEnd.Text, "", cboValueSearch.SelectedValue.ToString(), ""
+                    actionBarDateEnd.Text, "", cboValueSearch.SelectedValue.ToString(), "", cbFinish.IsChecked
                     );
             else if(cboKeySearch.Text.Equals("VOY"))
                 schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
-                    actionBarDateEnd.Text, "", "", txtRoSearch.Text.Trim()
+                    actionBarDateEnd.Text, "", "", txtRoSearch.Text.Trim(), cbFinish.IsChecked
                     );
             else
                 schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
-                    actionBarDateEnd.Text, "", "", ""
+                    actionBarDateEnd.Text, "", "", "", cbFinish.IsChecked
                     );   
 
 

@@ -84,6 +84,7 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 supplierDetail.SupplierDetailPhone = etDetailPhone.Text.Trim();
                 supplierDetail.SupplierDetailMobilePhone = etDetailMobile.Text.Trim();
                 supplierDetail.SupplierDetailAddress = etDetailAddress.Text.Trim();
+                supplierDetail.SupplierMobileExt = etExt.Text.Trim();
 
                 for (int i = 0; i < listSupplierDetail.Count; i++)
                 {
@@ -259,60 +260,13 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 objSqlParam = null;
                 sqlParam = null;
             }
-
-            //if (wantToCreateVessel)
-            //{
-            //    sqlSupplierRepository = new SqlSupplierRepository();
-            //    Guid newGuid = Guid.NewGuid();
-
-            //    string[] strSqlParam = getStringSqlParameter();
-            //    object[] objSqlParam = GetObjSqlParameter(newGuid);
-            //    SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(strSqlParam, objSqlParam);
-
-            //    if (sqlSupplierRepository.CreateSupplier(sqlParam))
-            //    {
-            //        MessageBox.Show(this, "Success insert supplier data", "Information");
-            //        radButtonElement2.PerformClick();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show(this, "Cannot insert supplier data", "Information");
-            //    }
-            //    sqlSupplierRepository = null;
-            //    strSqlParam = null;
-            //    objSqlParam = null;
-            //    sqlParam = null;
-            //}
-            //else
-            //{
-            //    sqlSupplierRepository = new SqlSupplierRepository();
-            //    string[] strSqlParam = getStringSqlParameter();
-            //    object[] objSqlParam = GetObjSqlParameter(supplier.Id);
-            //    SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(strSqlParam, objSqlParam);
-
-            //    if (sqlSupplierRepository.EditSupplier(sqlParam))
-            //    {
-            //        MessageBox.Show(this, "Success edit supplier data", "Information");
-            //        radButtonElement2.PerformClick();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show(this, "Cannot edit supplier data", "Information");
-            //    }
-
-            //    sqlSupplierRepository = null;
-            //    strSqlParam = null;
-            //    objSqlParam = null;
-            //    sqlParam = null;
-            //}
-
         }
 
         private string[] getStringSqlParameter()
         {
-            //rowcount * 8 is number of field of customer detail
-            // + 9 is number of field of customer
-            string[] strSqlParameter = new string[(supplierDetailGridView.RowCount * 8) + 9];
+            //rowcount * 9 is number of field of supplier detail
+            // + 9 is number of field of supplier
+            string[] strSqlParameter = new string[(supplierDetailGridView.RowCount * 9) + 9];
             strSqlParameter[0] = "supplier_id";
             strSqlParameter[1] = "category_id";
             strSqlParameter[2] = "supplier_name";
@@ -334,6 +288,7 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 strSqlParameter[j++] = "mobile_phone";
                 strSqlParameter[j++] = "address";
                 strSqlParameter[j++] = "deleted";
+                strSqlParameter[j++] = "Extention";
             }
 
             return strSqlParameter;
@@ -341,9 +296,9 @@ namespace VisitaJayaPerkasa.Control.Supplier
 
         private object[] GetObjSqlParameter(Guid id)
         {
-            //rowcount * 8 is number of field of customer detail
-            // + 9 is number of field of customer
-            object[] obj = new object[(supplierDetailGridView.RowCount * 8) + 9];
+            //rowcount * 9 is number of field of supplier detail
+            // + 9 is number of field of supplier
+            object[] obj = new object[(supplierDetailGridView.RowCount * 9) + 9];
             obj[0] = id;
             obj[1] = SqlUtility.isDBNULL(cboCategory.SelectedValue.ToString().Trim());
             obj[2] = etSupplierName.Text.Trim();
@@ -361,10 +316,11 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 obj[i++] = id;
                 obj[i++] = SqlUtility.isDBNULL(supplierDetailGridView.Rows[j].Cells[0].Value + "");
                 obj[i++] = SqlUtility.isDBNULL(supplierDetailGridView.Rows[j].Cells[1].Value + "");
-                obj[i++] = SqlUtility.isDBNULL(supplierDetailGridView.Rows[j].Cells[2].Value + "");
                 obj[i++] = SqlUtility.isDBNULL(supplierDetailGridView.Rows[j].Cells[3].Value + "");
                 obj[i++] = SqlUtility.isDBNULL(supplierDetailGridView.Rows[j].Cells[4].Value + "");
+                obj[i++] = SqlUtility.isDBNULL(supplierDetailGridView.Rows[j].Cells[5].Value + "");
                 obj[i++] = 0;
+                obj[i++] = SqlUtility.isDBNULL(supplierDetailGridView.Rows[j].Cells[2].Value + "");
             }
 
             return obj;

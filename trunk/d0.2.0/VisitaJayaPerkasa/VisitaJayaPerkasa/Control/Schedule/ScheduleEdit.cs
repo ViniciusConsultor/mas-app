@@ -74,8 +74,6 @@ namespace VisitaJayaPerkasa.Control.Schedule
 
                 etRObegin20.Text = schedule.ro_begin_20.ToString();
                 etRObegin40.Text = schedule.ro_begin_40.ToString();
-                etROend20.Text = schedule.ro_end_20.ToString();
-                etROend40.Text = schedule.ro_end_40.ToString();
                 etKet.Text = schedule.keterangan;
 
                 lblETA.Visible = true;
@@ -136,19 +134,11 @@ namespace VisitaJayaPerkasa.Control.Schedule
                         MessageBox.Show(this, "Please fill ro begin", "Information");
                         return;
                     }
-                    else if (etROend20.Text.Trim().Length == 0 && etROend40.Text.Trim().Length == 0) {
-                        MessageBox.Show(this, "Please fill ro end", "Information");
-                        return;
-                    }
 
                     if (etRObegin20.Text.Trim().Length > 0)
                         Int32.Parse(etRObegin20.Text.Trim());
                     if (etRObegin40.Text.Trim().Length > 0)
                         Int32.Parse(etRObegin40.Text.Trim());
-                    if (etROend20.Text.Trim().Length > 0)
-                        Int32.Parse(etROend20.Text.Trim());
-                    if (etROend40.Text.Trim().Length > 0)
-                        Int32.Parse(etROend40.Text.Trim());
                 }
                 catch (Exception ex) {
                     Utility.Log.Logging.Information("try parse int for validate " + ex.Message);
@@ -175,8 +165,8 @@ namespace VisitaJayaPerkasa.Control.Schedule
                                 cboKapal.SelectedValue.ToString().Substring(36),
                                 Utility.Utility.IsStringNullorEmpty(etRObegin20.Text.Trim()) ? 0 : Int32.Parse(etRObegin20.Text.Trim()) ,
                                 Utility.Utility.IsStringNullorEmpty(etRObegin40.Text.Trim()) ? 0 : Int32.Parse(etRObegin40.Text.Trim()),
-                                Utility.Utility.IsStringNullorEmpty(etROend20.Text.Trim()) ? 0 : Int32.Parse(etROend20.Text.Trim()),
-                                Utility.Utility.IsStringNullorEmpty(etROend40.Text.Trim()) ? 0 : Int32.Parse(etROend40.Text.Trim()),
+                                DBNull.Value,
+                                DBNull.Value,
                                 pickerETD.Value.Date,
                                 DBNull.Value,
                                 DBNull.Value,
@@ -210,8 +200,8 @@ namespace VisitaJayaPerkasa.Control.Schedule
                                                 cboKapal.SelectedValue.ToString().Substring(36),
                                                 Utility.Utility.IsStringNullorEmpty(etRObegin20.Text.Trim()) ? 0 : Int32.Parse(etRObegin20.Text.Trim()) ,
                                                 Utility.Utility.IsStringNullorEmpty(etRObegin40.Text.Trim()) ? 0 : Int32.Parse(etRObegin40.Text.Trim()),
-                                                Utility.Utility.IsStringNullorEmpty(etROend20.Text.Trim()) ? 0 : Int32.Parse(etROend20.Text.Trim()),
-                                                Utility.Utility.IsStringNullorEmpty(etROend40.Text.Trim()) ? 0 : Int32.Parse(etROend40.Text.Trim()),
+                                                DBNull.Value,
+                                                DBNull.Value,
                                                 pickerETD.Value.Date,
                                                 pickerTD.Value.Date,
                                                 pickerETA.Value.Date,

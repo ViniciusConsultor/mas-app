@@ -33,10 +33,6 @@
             this.radToolStripItem1 = new Telerik.WinControls.UI.RadToolStripItem();
             this.radButtonElement2 = new Telerik.WinControls.UI.RadButtonElement();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
-            this.etROend40 = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
-            this.etROend20 = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
             this.etRObegin40 = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
@@ -48,7 +44,6 @@
             this.lblTA = new Telerik.WinControls.UI.RadLabel();
             this.pickerTD = new Telerik.WinControls.UI.RadDateTimePicker();
             this.lblTD = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.etKet = new Telerik.WinControls.UI.RadTextBox();
             this.etRObegin20 = new Telerik.WinControls.UI.RadTextBox();
             this.pickerETD = new Telerik.WinControls.UI.RadDateTimePicker();
@@ -65,10 +60,6 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etROend40)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etROend20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etRObegin40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
@@ -80,7 +71,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblTA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerTD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTD)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etKet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etRObegin20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerETD)).BeginInit();
@@ -135,10 +125,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.radLabel15);
-            this.groupBox2.Controls.Add(this.etROend40);
-            this.groupBox2.Controls.Add(this.radLabel16);
-            this.groupBox2.Controls.Add(this.etROend20);
             this.groupBox2.Controls.Add(this.radLabel14);
             this.groupBox2.Controls.Add(this.etRObegin40);
             this.groupBox2.Controls.Add(this.radLabel13);
@@ -150,7 +136,6 @@
             this.groupBox2.Controls.Add(this.lblTA);
             this.groupBox2.Controls.Add(this.pickerTD);
             this.groupBox2.Controls.Add(this.lblTD);
-            this.groupBox2.Controls.Add(this.radLabel3);
             this.groupBox2.Controls.Add(this.etKet);
             this.groupBox2.Controls.Add(this.etRObegin20);
             this.groupBox2.Controls.Add(this.pickerETD);
@@ -171,38 +156,6 @@
             this.groupBox2.TabIndex = 27;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Schedule";
-            // 
-            // radLabel15
-            // 
-            this.radLabel15.Location = new System.Drawing.Point(340, 234);
-            this.radLabel15.Name = "radLabel15";
-            this.radLabel15.Size = new System.Drawing.Size(21, 16);
-            this.radLabel15.TabIndex = 45;
-            this.radLabel15.Text = "40\'";
-            // 
-            // etROend40
-            // 
-            this.etROend40.Location = new System.Drawing.Point(387, 230);
-            this.etROend40.Name = "etROend40";
-            this.etROend40.Size = new System.Drawing.Size(142, 20);
-            this.etROend40.TabIndex = 44;
-            this.etROend40.TabStop = false;
-            // 
-            // radLabel16
-            // 
-            this.radLabel16.Location = new System.Drawing.Point(340, 212);
-            this.radLabel16.Name = "radLabel16";
-            this.radLabel16.Size = new System.Drawing.Size(21, 16);
-            this.radLabel16.TabIndex = 43;
-            this.radLabel16.Text = "20\'";
-            // 
-            // etROend20
-            // 
-            this.etROend20.Location = new System.Drawing.Point(387, 208);
-            this.etROend20.Name = "etROend20";
-            this.etROend20.Size = new System.Drawing.Size(142, 20);
-            this.etROend20.TabIndex = 42;
-            this.etROend20.TabStop = false;
             // 
             // radLabel14
             // 
@@ -232,7 +185,7 @@
             // 
             this.pickerUnLoading.AutoSize = true;
             this.pickerUnLoading.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.pickerUnLoading.Location = new System.Drawing.Point(387, 267);
+            this.pickerUnLoading.Location = new System.Drawing.Point(387, 173);
             this.pickerUnLoading.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.pickerUnLoading.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.pickerUnLoading.Name = "pickerUnLoading";
@@ -245,7 +198,7 @@
             // 
             // radLabel12
             // 
-            this.radLabel12.Location = new System.Drawing.Point(319, 271);
+            this.radLabel12.Location = new System.Drawing.Point(319, 177);
             this.radLabel12.Name = "radLabel12";
             this.radLabel12.Size = new System.Drawing.Size(61, 16);
             this.radLabel12.TabIndex = 37;
@@ -319,14 +272,6 @@
             this.lblTD.Size = new System.Drawing.Size(21, 16);
             this.lblTD.TabIndex = 29;
             this.lblTD.Text = "TD";
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.Location = new System.Drawing.Point(319, 189);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(59, 16);
-            this.radLabel3.TabIndex = 27;
-            this.radLabel3.Text = "RO END : ";
             // 
             // etKet
             // 
@@ -502,10 +447,6 @@
             this.Size = new System.Drawing.Size(662, 393);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etROend40)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etROend20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etRObegin40)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
@@ -517,7 +458,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblTA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerTD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTD)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etKet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etRObegin20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerETD)).EndInit();
@@ -560,7 +500,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel5;
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private Telerik.WinControls.UI.RadComboBox cboTujuan;
-        private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadDateTimePicker pickerUnLoading;
         private Telerik.WinControls.UI.RadLabel radLabel12;
         private Telerik.WinControls.UI.RadDateTimePicker pickerETA;
@@ -570,10 +509,6 @@
         private Telerik.WinControls.UI.RadDateTimePicker pickerTD;
         private Telerik.WinControls.UI.RadLabel lblTD;
         private Telerik.WinControls.UI.RadLabel radLabel13;
-        private Telerik.WinControls.UI.RadLabel radLabel15;
-        private Telerik.WinControls.UI.RadTextBox etROend40;
-        private Telerik.WinControls.UI.RadLabel radLabel16;
-        private Telerik.WinControls.UI.RadTextBox etROend20;
         private Telerik.WinControls.UI.RadLabel radLabel14;
         private Telerik.WinControls.UI.RadTextBox etRObegin40;
     }
