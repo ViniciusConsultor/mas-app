@@ -184,6 +184,7 @@
             // pickerUnLoading
             // 
             this.pickerUnLoading.AutoSize = true;
+            this.pickerUnLoading.Culture = new System.Globalization.CultureInfo("id-ID");
             this.pickerUnLoading.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.pickerUnLoading.Location = new System.Drawing.Point(387, 173);
             this.pickerUnLoading.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
@@ -207,6 +208,7 @@
             // pickerETA
             // 
             this.pickerETA.AutoSize = true;
+            this.pickerETA.Culture = new System.Globalization.CultureInfo("id-ID");
             this.pickerETA.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.pickerETA.Location = new System.Drawing.Point(94, 97);
             this.pickerETA.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
@@ -230,6 +232,7 @@
             // pickerTA
             // 
             this.pickerTA.AutoSize = true;
+            this.pickerTA.Culture = new System.Globalization.CultureInfo("id-ID");
             this.pickerTA.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.pickerTA.Location = new System.Drawing.Point(94, 123);
             this.pickerTA.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
@@ -253,6 +256,7 @@
             // pickerTD
             // 
             this.pickerTD.AutoSize = true;
+            this.pickerTD.Culture = new System.Globalization.CultureInfo("id-ID");
             this.pickerTD.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.pickerTD.Location = new System.Drawing.Point(387, 19);
             this.pickerTD.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
@@ -297,6 +301,7 @@
             // pickerETD
             // 
             this.pickerETD.AutoSize = true;
+            this.pickerETD.Culture = new System.Globalization.CultureInfo("id-ID");
             this.pickerETD.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.pickerETD.Location = new System.Drawing.Point(387, 45);
             this.pickerETD.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
@@ -312,6 +317,7 @@
             // pickerTglClosing
             // 
             this.pickerTglClosing.AutoSize = true;
+            this.pickerTglClosing.Culture = new System.Globalization.CultureInfo("id-ID");
             this.pickerTglClosing.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.pickerTglClosing.Location = new System.Drawing.Point(387, 75);
             this.pickerTglClosing.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
@@ -433,7 +439,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(662, 27);
+            this.radToolStrip1.Size = new System.Drawing.Size(662, 49);
             this.radToolStrip1.TabIndex = 26;
             this.radToolStrip1.Text = "radToolStrip1";
             // 

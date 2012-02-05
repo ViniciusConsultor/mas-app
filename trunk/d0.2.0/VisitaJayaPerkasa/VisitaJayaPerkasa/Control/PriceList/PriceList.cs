@@ -35,7 +35,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
         private List<VisitaJayaPerkasa.Entities.Customer> listCustomer;
         private List<VisitaJayaPerkasa.Entities.Recipient> listRecipient;
         private List<WareHouse> listWarehouse;
-        private List<Guid> listPriceIdDeleted;
+        private List<Guid> listPriceDeleteExistsData;
 
         //this variable used for result from search on customer text
         private VisitaJayaPerkasa.Entities.Customer searchResultCustomer;
@@ -49,7 +49,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
             sqlRecipientRepository = new SqlRecipientRepository();
             sqlWareHouseRepository = new SqlWareHouseRepository();
 
-            listPriceIdDeleted = new List<Guid>();
+            listPriceDeleteExistsData = new List<Guid>();
 
             listTypeOfSupplier = sqlPriceListRepository.GetTypeOfSupplier();
             cboTypeSupplier.SelectedValueChanged -= new EventHandler(cboTypeSupplier_SelectedValueChanged);
@@ -362,8 +362,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
             {
                 for (int i = 0; i < listPriceList.Count(); i++)
                 {
-                    listPriceIdDeleted.Add(listPriceList.ElementAt(i).ID);
-
                     object[] obj = {listPriceList.ElementAt(i).ID, 
                         listPriceList.ElementAt(i).Date, 
                         listPriceList.ElementAt(i).SupplierID, 
@@ -387,6 +385,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
         private void radButton2_Click(object sender, EventArgs e)
         {
             PriceListGridView.Rows.Clear();
+            radButton2.Enabled = false;
 
             if (cboTypeSupplier.Text.Equals(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.cboDefaultText))
                 MessageBox.Show(this, "Please choose type of supplier", "Information");
@@ -537,8 +536,6 @@ namespace VisitaJayaPerkasa.Control.PriceList
         {
             if (PriceListGridView.RowCount > 0)
             {
-                //var listID is used for fill id who has already inserted
-                //this listID is used to delete all id and then write again (override)
                 List<VisitaJayaPerkasa.Entities.PriceList> tempPriceList = new List<VisitaJayaPerkasa.Entities.PriceList>();
 
                 if (cboTypeSupplier.Text.ToLower().Equals("shipping lines"))
@@ -550,7 +547,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
                         string id = (PriceListGridView.Rows[i].Cells[0].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[0].Value.ToString();
                         objPriceList.ID = Utility.Utility.ConvertToUUID(id);
 
-                        id = (PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals("")) ? Utility.Utility.DefaultDateTime().ToString() : PriceListGridView.Rows[i].Cells[1].Value.ToString();
+                        id = (PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals("")) ? Utility.Utility.DefaultDateTime().ToString() : Utility.Utility.ChangeDateMMDD(PriceListGridView.Rows[i].Cells[1].Value.ToString());
                         objPriceList.Date = Utility.Utility.ConvertStringToDate(id);
                         if (objPriceList.Date.ToString().Equals(Utility.Utility.DefaultDateTime().ToString()))
                         {
@@ -598,9 +595,34 @@ namespace VisitaJayaPerkasa.Control.PriceList
                                     MessageBox.Show(this, "Record -" + i + " and record -" + j + " have same record of date, type and condition. Please remove one", "Information");
                                     return;
                             }
-
                         }
                     }
+
+
+                    sqlPriceListRepository = new SqlPriceListRepository();
+                    listPriceDeleteExistsData.Clear();
+                    List<int> indexDeleted = new List<int>();
+
+                    for (int i = 0; i < tempPriceList.Count; i++) {
+                        Guid exists = Guid.Empty;
+                        exists = sqlPriceListRepository.GetPriceCustomerByShippingLines(tempPriceList.ElementAt(i).Date, 
+                                                    tempPriceList.ElementAt(i).TypeID.ToString(),
+                                                    tempPriceList.ElementAt(i).ConditionID.ToString());
+
+                        if (! exists.ToString().Equals(Guid.Empty.ToString())) { 
+                            DialogResult dResult = MessageBox.Show(this, "Record - " + i + " has already exist. \n If you don't want to override this data, so your data not will be save. \n Do you want to override ?", "Confirmation", MessageBoxButtons.YesNo);
+                            if (dResult == DialogResult.Yes)
+                                listPriceDeleteExistsData.Add(exists);
+                            else
+                                indexDeleted.Add(i);
+                        }
+                    }
+
+
+                    for (int i = 0; i < indexDeleted.Count; i++)
+                        tempPriceList.RemoveAt(indexDeleted.ElementAt(i));
+
+                    sqlPriceListRepository = null;
                 }
                 else if (cboTypeSupplier.Text.ToLower().Equals("dooring agent")) {
                     for (int i = 0; i < PriceListGridView.RowCount; i++)
@@ -610,7 +632,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
                         string id = (PriceListGridView.Rows[i].Cells[0].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[0].Value.ToString();
                         objPriceList.ID = Utility.Utility.ConvertToUUID(id);
 
-                        id = (PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals("")) ? Utility.Utility.DefaultDateTime().ToString() : PriceListGridView.Rows[i].Cells[1].Value.ToString();
+                        id = (PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals("")) ? Utility.Utility.DefaultDateTime().ToString() : Utility.Utility.ChangeDateMMDD(PriceListGridView.Rows[i].Cells[1].Value.ToString());
                         objPriceList.Date = Utility.Utility.ConvertStringToDate(id);
                         if (objPriceList.Date.ToString().Equals(Utility.Utility.DefaultDateTime().ToString()))
                         {
@@ -651,9 +673,34 @@ namespace VisitaJayaPerkasa.Control.PriceList
                                 MessageBox.Show(this, "Record -" + i + " and record -" + j + " has same record of date and type. Please remove one", "Information");
                                 return;
                             }
-
                         }
                     }
+
+
+                    sqlPriceListRepository = new SqlPriceListRepository();
+                    listPriceDeleteExistsData.Clear();
+                    List<int> indexDeleted = new List<int>();
+
+                    for (int i = 0; i < tempPriceList.Count; i++)
+                    {
+                        Guid exists = Guid.Empty;
+                        exists = sqlPriceListRepository.GetPriceCustomerByDAgentANDTrucking(tempPriceList.ElementAt(i).Date,
+                                                    tempPriceList.ElementAt(i).TypeID.ToString());
+                        if (!exists.ToString().Equals(Guid.Empty.ToString()))
+                        {
+                            DialogResult dResult = MessageBox.Show(this, "Record - " + i + " has already exist. \n If you don't want to override this data, so your data not will be save. \n Do you want to override ?", "Confirmation", MessageBoxButtons.YesNo);
+                            if (dResult == DialogResult.Yes)
+                                listPriceDeleteExistsData.Add(exists);
+                            else
+                                indexDeleted.Add(i);
+                        }
+                    }
+
+
+                    for (int i = 0; i < indexDeleted.Count; i++)
+                        tempPriceList.RemoveAt(indexDeleted.ElementAt(i));
+
+                    sqlPriceListRepository = null;
                 }
                 else if (cboTypeSupplier.Text.ToLower().Equals("trucking"))
                 {
@@ -664,7 +711,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
                         string id = (PriceListGridView.Rows[i].Cells[0].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[0].Value.ToString();
                         objPriceList.ID = Utility.Utility.ConvertToUUID(id);
 
-                        id = (PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals("")) ? Utility.Utility.DefaultDateTime().ToString() : PriceListGridView.Rows[i].Cells[1].Value.ToString();
+                        id = (PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals("")) ? Utility.Utility.DefaultDateTime().ToString() : Utility.Utility.ChangeDateMMDD(PriceListGridView.Rows[i].Cells[1].Value.ToString());
                         objPriceList.Date = Utility.Utility.ConvertStringToDate(id);
                         if (objPriceList.Date.ToString().Equals(Utility.Utility.DefaultDateTime().ToString()))
                         {
@@ -713,9 +760,34 @@ namespace VisitaJayaPerkasa.Control.PriceList
                                 MessageBox.Show(this, "Record -" + i + " and record -" + j + " have same record of date and type. Please remove one", "Information");
                                 return;
                             }
-
                         }
                     }
+
+
+                    sqlPriceListRepository = new SqlPriceListRepository();
+                    listPriceDeleteExistsData.Clear();
+                    List<int> indexDeleted = new List<int>();
+
+                    for (int i = 0; i < tempPriceList.Count; i++)
+                    {
+                        Guid exists = Guid.Empty;
+                        exists = sqlPriceListRepository.GetPriceCustomerByDAgentANDTrucking(tempPriceList.ElementAt(i).Date,
+                                                    tempPriceList.ElementAt(i).TypeID.ToString());
+                        if (!exists.ToString().Equals(Guid.Empty.ToString()))
+                        {
+                            DialogResult dResult = MessageBox.Show(this, "Record - " + i + " has already exist. \n If you don't want to override this data, so your data not will be save. \n Do you want to override ?", "Confirmation", MessageBoxButtons.YesNo);
+                            if (dResult == DialogResult.Yes)
+                                listPriceDeleteExistsData.Add(exists);
+                            else
+                                indexDeleted.Add(i);
+                        }
+                    }
+
+
+                    for (int i = 0; i < indexDeleted.Count; i++)
+                        tempPriceList.RemoveAt(indexDeleted.ElementAt(i));
+
+                    sqlPriceListRepository = null;
                 }
                 else if (cboTypeSupplier.Text.ToLower().Equals("general"))
                 {
@@ -726,7 +798,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
                         string id = (PriceListGridView.Rows[i].Cells[0].Value.ToString().Equals("")) ? Guid.Empty.ToString() : PriceListGridView.Rows[i].Cells[0].Value.ToString();
                         objPriceList.ID = Utility.Utility.ConvertToUUID(id);
 
-                        id = (PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals("")) ? Utility.Utility.DefaultDateTime().ToString() : PriceListGridView.Rows[i].Cells[1].Value.ToString();
+                        id = (PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals("")) ? Utility.Utility.DefaultDateTime().ToString() : Utility.Utility.ChangeDateMMDD(PriceListGridView.Rows[i].Cells[1].Value.ToString());
                         objPriceList.Date = Utility.Utility.ConvertStringToDate(id);
                         if (objPriceList.Date.ToString().Equals(Utility.Utility.DefaultDateTime().ToString()))
                         {
@@ -763,20 +835,20 @@ namespace VisitaJayaPerkasa.Control.PriceList
                 }
 
 
-                SqlParameter[] sqlParamDeleted = null;
+                SqlParameter[] sqlParamDeletedPrice = null;
                 SqlParameter[] sqlParamInsert = null;
-                if (listPriceIdDeleted.Count > 0)
+                if (listPriceDeleteExistsData.Count > 0)
                 {
-                    string[] key = new string[listPriceIdDeleted.Count];
-                    object[] value = new object[listPriceIdDeleted.Count];
+                    string[] key = new string[listPriceDeleteExistsData.Count];
+                    object[] value = new object[listPriceDeleteExistsData.Count];
 
-                    for (int j = 0; j < listPriceIdDeleted.Count; j++)
+                    for (int j = 0; j < listPriceDeleteExistsData.Count; j++)
                     {
                         key[j] = "priceID";
-                        value[j] = listPriceIdDeleted.ElementAt(j);
+                        value[j] = listPriceDeleteExistsData.ElementAt(j);
                     }
 
-                    sqlParamDeleted = SqlUtility.SetSqlParameter(key, value);
+                    sqlParamDeletedPrice = SqlUtility.SetSqlParameter(key, value);
                 }
 
                 if (tempPriceList.Count > 0)
@@ -839,11 +911,11 @@ namespace VisitaJayaPerkasa.Control.PriceList
                     if (sqlPriceListRepository == null)
                         sqlPriceListRepository = new SqlPriceListRepository();
                     if (sqlPriceListRepository.SavePriceList(
-                        (sqlParamDeleted == null) ? null : sqlParamDeleted,
+                        (sqlParamDeletedPrice == null) ? null : sqlParamDeletedPrice,
                         sqlParamInsert))
                     {
                         MessageBox.Show(this, "Success saving !", "Information");
-                        listPriceIdDeleted.Clear();
+                        listPriceDeleteExistsData.Clear();
                     }
                     else
                     {
@@ -871,7 +943,8 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
         private void btnClearAll_Click(object sender, EventArgs e)
         {
-            listPriceIdDeleted.Clear();
+            listPriceDeleteExistsData.Clear();
+            radButton2.Enabled = true;
 
             pickerTo.Enabled = true;
             pickerFrom.Enabled = true;

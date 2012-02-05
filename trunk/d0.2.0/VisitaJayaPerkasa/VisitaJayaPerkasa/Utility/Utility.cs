@@ -31,6 +31,7 @@ namespace VisitaJayaPerkasa.Utility
             return dt;
         }
 
+        
         public static DateTime ConvertStringToDate(string dateTime) {
             DateTime DateTime = DefaultDateTime();
 
@@ -43,6 +44,14 @@ namespace VisitaJayaPerkasa.Utility
 
             return DateTime;
         }
+
+
+        public static string GetDateOnly(string date) {
+            string[] tempSplit = date.Split(' ');
+
+            return tempSplit[0];
+        }
+
 
         public static string ConvertDateToString(DateTime dateTime) {
             string value = null;
@@ -57,6 +66,17 @@ namespace VisitaJayaPerkasa.Utility
 
             return value;
         }
+
+
+        public static string ChangeDateMMDD(string date) {
+            string temp = date;
+            string[] tempSplit = date.Split('/');
+
+            temp = tempSplit[1] + "/" + tempSplit[0] + "/" + tempSplit[2];
+
+            return temp;
+        }
+
 
         public static Guid ConvertToUUID(string Id) {
             Guid ID = Guid.Empty;

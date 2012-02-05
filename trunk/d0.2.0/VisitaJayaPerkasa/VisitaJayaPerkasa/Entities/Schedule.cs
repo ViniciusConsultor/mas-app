@@ -24,7 +24,6 @@ namespace VisitaJayaPerkasa.Entities
 
         public string voy { get; set; }
         public string keterangan { get; set; }
-        public string ro { get; set; }
         public string vesselCode { get; set; }
         
         //model for view
