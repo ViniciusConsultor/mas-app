@@ -76,12 +76,33 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 etRObegin40.Text = schedule.ro_begin_40.ToString();
                 etKet.Text = schedule.keterangan;
 
+
+                lblETA.Visible = false;
+                lblTA.Visible = false;
+                lblTD.Visible = false;
+                pickerETA.Visible = false;
+                pickerTA.Visible = false;
+                pickerTD.Visible = false;
+
+                /*
                 lblETA.Visible = true;
                 lblTA.Visible = true;
                 lblTD.Visible = true;
                 pickerETA.Visible = true;
                 pickerTA.Visible = true;
                 pickerTD.Visible = true;
+                
+
+                if (schedule.eta != null) {
+                    cboKapal.Enabled = false;
+                    cboTujuan.Enabled = false;
+                    etVOY.Enabled = false;
+                    pickerETD.Enabled = false;
+                    pickerUnLoading.Enabled = false;
+                    pickerTglClosing.Enabled = false;
+                    etRObegin20.Enabled = false;
+                    etRObegin40.Enabled = false;
+                }*/
             }
 
             listCity = null;
@@ -165,8 +186,8 @@ namespace VisitaJayaPerkasa.Control.Schedule
                                 cboKapal.SelectedValue.ToString().Substring(36),
                                 Utility.Utility.IsStringNullorEmpty(etRObegin20.Text.Trim()) ? 0 : Int32.Parse(etRObegin20.Text.Trim()) ,
                                 Utility.Utility.IsStringNullorEmpty(etRObegin40.Text.Trim()) ? 0 : Int32.Parse(etRObegin40.Text.Trim()),
-                                DBNull.Value,
-                                DBNull.Value,
+                                0,
+                                0,
                                 pickerETD.Value.Date,
                                 DBNull.Value,
                                 DBNull.Value,
@@ -184,6 +205,18 @@ namespace VisitaJayaPerkasa.Control.Schedule
                     }
                 }
                 else {
+                    if (schedule.ro_end_20 > Int32.Parse(etRObegin20.Text.Trim()))
+                    {
+                        MessageBox.Show(this, "Please correct ro begin 20. \n Ro end 20 greater than ro begin 20", "Information");
+                        return;
+                    }
+                    else if (schedule.ro_end_40 > Int32.Parse(etRObegin40.Text.Trim()))
+                    {
+                        MessageBox.Show(this, "Please correct ro begin 40. \n Ro end 40 greater than ro begin 40", "Information");
+                        return;
+                    }
+
+
                     SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(
                         new string[]{"schedule_id", "tujuan", "pelayaran_detail_id", "tgl_closing", 
                                                 "voy", "deleted", "keterangan", "vessel_code", "ro_begin_20",
@@ -200,8 +233,8 @@ namespace VisitaJayaPerkasa.Control.Schedule
                                                 cboKapal.SelectedValue.ToString().Substring(36),
                                                 Utility.Utility.IsStringNullorEmpty(etRObegin20.Text.Trim()) ? 0 : Int32.Parse(etRObegin20.Text.Trim()) ,
                                                 Utility.Utility.IsStringNullorEmpty(etRObegin40.Text.Trim()) ? 0 : Int32.Parse(etRObegin40.Text.Trim()),
-                                                DBNull.Value,
-                                                DBNull.Value,
+                                                schedule.ro_end_20,
+                                                schedule.ro_end_40,
                                                 pickerETD.Value.Date,
                                                 pickerTD.Value.Date,
                                                 pickerETA.Value.Date,

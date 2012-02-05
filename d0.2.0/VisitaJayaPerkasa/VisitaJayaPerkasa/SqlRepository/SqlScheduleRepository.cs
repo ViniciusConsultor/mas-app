@@ -36,8 +36,9 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "(SELECT TOP 1 vessel_name FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_detail_id = s.pelayaran_detail_id AND (pd.deleted is null OR pd.deleted = '0')) as vessels, " +  
                         "(SELECT TOP 1 status_pinjaman FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_detail_id = s.pelayaran_detail_id AND (pd.deleted is null OR pd.deleted = '0')) as status " + 
                         "FROM [Schedule] s, [PELAYARAN_DETAIL] p " +
-                        "WHERE (p.deleted is null OR p.deleted = '0') AND s.tgl_closing > '" + beginDate + "' AND p.pelayaran_detail_id = s.pelayaran_detail_id AND " + 
-                        "(s.etd > '" + beginDate + "' AND s.etd < '" + endDate + "') AND " + 
+                        "WHERE (p.deleted is null OR p.deleted = '0') AND " + 
+                        "p.pelayaran_detail_id = s.pelayaran_detail_id AND " + 
+                        "(convert(varchar(10), s.etd, 101) >= '" + beginDate + "' AND convert(varchar(10), s.etd, 101) <= '" + endDate + "') AND " + 
                         "s.voy like '%" + voy + "%' AND s.vessel_code like '%" + vessel + "%' AND " + 
                         "s.tujuan like '%" + destination + "%' AND (s.deleted is null OR s.deleted = '0') " + 
                         criteria

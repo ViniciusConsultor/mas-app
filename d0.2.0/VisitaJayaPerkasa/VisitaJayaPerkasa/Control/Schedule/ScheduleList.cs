@@ -30,6 +30,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
             actionBarDateBegin.Text = Utility.Utility.ConvertDateToString(DateTime.Now);
             actionBarDateEnd.Text = Utility.Utility.ConvertDateToString(DateTime.Now);
 
+
             backgroundWorker = new BackgroundWorker();
             backgroundWorker.WorkerSupportsCancellation = true;
             backgroundWorker.DoWork += new DoWorkEventHandler(this.bgWorker_DoWork);
@@ -40,6 +41,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
 
             radCalendarBegin.Visible = false;
             radCalendarEnd.Visible = false;
+            cbFinish.ToggleState = Telerik.WinControls.Enumerations.ToggleState.Off;
 
             pageSize = 15;
             LoadData();
@@ -89,19 +91,19 @@ namespace VisitaJayaPerkasa.Control.Schedule
                     
             if(cboKeySearch.Text.Equals("Destination"))
                 schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
-                    actionBarDateEnd.Text, cboValueSearch.SelectedValue.ToString(), "", "", cbFinish.IsChecked
+                    actionBarDateEnd.Text, cboValueSearch.SelectedValue.ToString(), "", "", (cbFinish.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On) ? true : false
                     );
             else if(cboKeySearch.Text.Equals("Vessel"))
                 schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
-                    actionBarDateEnd.Text, "", cboValueSearch.SelectedValue.ToString(), "", cbFinish.IsChecked
+                    actionBarDateEnd.Text, "", cboValueSearch.SelectedValue.ToString(), "", (cbFinish.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On) ? true : false
                     );
             else if(cboKeySearch.Text.Equals("VOY"))
                 schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
-                    actionBarDateEnd.Text, "", "", txtRoSearch.Text.Trim(), cbFinish.IsChecked
+                    actionBarDateEnd.Text, "", "", txtRoSearch.Text.Trim(), (cbFinish.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On) ? true : false
                     );
             else
                 schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
-                    actionBarDateEnd.Text, "", "", "", cbFinish.IsChecked
+                    actionBarDateEnd.Text, "", "", "", (cbFinish.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On) ? true : false
                     );   
 
 
@@ -283,10 +285,12 @@ namespace VisitaJayaPerkasa.Control.Schedule
 
         private void radImageButtonElement4_Click(object sender, EventArgs e)
         {
-            if (Utility.Utility.ConvertStringToDate(actionBarDateBegin.Text) > Utility.Utility.ConvertStringToDate(actionBarDateEnd.Text))
+            if (Utility.Utility.ConvertStringToDate(Utility.Utility.ChangeDateMMDD(actionBarDateBegin.Text)) > Utility.Utility.ConvertStringToDate(Utility.Utility.ChangeDateMMDD(actionBarDateEnd.Text)))
                 MessageBox.Show(this, "Date begin greather than date end", "Information");
             else
+            {
                 LoadData();
+            }
         }
 
 
@@ -379,7 +383,5 @@ namespace VisitaJayaPerkasa.Control.Schedule
         {
             radCalendarEnd.Visible = true;
         }
-
-
     }
 }

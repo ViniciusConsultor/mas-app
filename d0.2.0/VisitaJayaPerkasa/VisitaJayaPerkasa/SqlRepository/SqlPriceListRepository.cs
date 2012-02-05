@@ -436,5 +436,79 @@ namespace VisitaJayaPerkasa.SqlRepository
 
             return result;
         }
+
+
+
+
+
+
+        /* Search Price list for Check exist or not by criteria*/
+        public Guid GetPriceCustomerByShippingLines(DateTime date, string typeContID, string conditionID)
+        {
+            Guid ID = Guid.Empty;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 price_id FROM [Price] " +
+                        "WHERE convert(varchar(10), [date], 101) = '" + Utility.Utility.GetDateOnly(date.ToString()) + "' " +
+                        "AND type_cont_id = '" + typeContID + "' " + 
+                        "AND condition_id = '" + conditionID + "'"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlPriceListRepository.cs - GetPriceCustomerByShippingLines() " + e.Message);
+            }
+
+            return ID;
+        }
+
+
+
+        public Guid GetPriceCustomerByDAgentANDTrucking(DateTime date, string typeContID)
+        {
+            Guid ID = Guid.Empty;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 price_id FROM [Price] " +
+                        "WHERE convert(varchar(10), [date], 101) = '" + Utility.Utility.GetDateOnly(date.ToString()) + "' " +
+                        "AND type_cont_id = '" + typeContID + "'"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlPriceListRepository.cs - GetPriceCustomerByDAgentANDTrucking() " + e.Message);
+            }
+
+            return ID;
+        }
+
+
+        /*Finish search */
     }
 }

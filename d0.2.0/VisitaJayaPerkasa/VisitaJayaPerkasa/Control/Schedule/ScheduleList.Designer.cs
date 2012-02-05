@@ -58,6 +58,7 @@
             this.radComboBoxItem3 = new Telerik.WinControls.UI.RadComboBoxItem();
             this.radComboBoxItem4 = new Telerik.WinControls.UI.RadComboBoxItem();
             this.cboValueSearch = new Telerik.WinControls.UI.RadComboBoxElement();
+            this.cbFinish = new Telerik.WinControls.UI.RadCheckBoxElement();
             this.txtRoSearch = new Telerik.WinControls.UI.RadTextBoxElement();
             this.radToolStripLabelElement1 = new Telerik.WinControls.UI.RadToolStripLabelElement();
             this.actionBarDateBegin = new Telerik.WinControls.UI.RadToolStripLabelElement();
@@ -78,7 +79,6 @@
             this.radButtonElementNext = new Telerik.WinControls.UI.RadButtonElement();
             this.radToolStripElement2 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radToolStripItem3 = new Telerik.WinControls.UI.RadToolStripItem();
-            this.cbFinish = new Telerik.WinControls.UI.RadCheckBoxElement();
             ((System.ComponentModel.ISupportInitialize)(this.ScheduleGridView)).BeginInit();
             this.ScheduleGridView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radCalendarEnd)).BeginInit();
@@ -226,6 +226,7 @@
             // radCalendarEnd
             // 
             this.radCalendarEnd.CellAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radCalendarEnd.Culture = new System.Globalization.CultureInfo("id-ID");
             this.radCalendarEnd.FastNavigationNextImage = ((System.Drawing.Image)(resources.GetObject("radCalendarEnd.FastNavigationNextImage")));
             this.radCalendarEnd.FastNavigationPrevImage = ((System.Drawing.Image)(resources.GetObject("radCalendarEnd.FastNavigationPrevImage")));
             this.radCalendarEnd.HeaderHeight = 17;
@@ -246,6 +247,7 @@
             // radCalendarBegin
             // 
             this.radCalendarBegin.CellAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radCalendarBegin.Culture = new System.Globalization.CultureInfo("id-ID");
             this.radCalendarBegin.FastNavigationNextImage = ((System.Drawing.Image)(resources.GetObject("radCalendarBegin.FastNavigationNextImage")));
             this.radCalendarBegin.FastNavigationPrevImage = ((System.Drawing.Image)(resources.GetObject("radCalendarBegin.FastNavigationPrevImage")));
             this.radCalendarBegin.HeaderHeight = 17;
@@ -347,6 +349,12 @@
             this.cboValueSearch.Value = null;
             this.cboValueSearch.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             this.cboValueSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboValueSearch_KeyPress);
+            // 
+            // cbFinish
+            // 
+            this.cbFinish.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cbFinish.Name = "cbFinish";
+            this.cbFinish.Text = "Finished";
             // 
             // txtRoSearch
             // 
@@ -533,12 +541,6 @@
             // 
             this.radToolStripItem3.Name = "radToolStripItem3";
             this.radToolStripItem3.Text = "radToolStripItem3";
-            // 
-            // cbFinish
-            // 
-            this.cbFinish.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cbFinish.Name = "cbFinish";
-            this.cbFinish.Text = "Finished";
             // 
             // ScheduleList
             // 
