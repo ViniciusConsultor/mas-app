@@ -54,10 +54,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 pickerTA.Visible = false;
                 pickerTD.Visible = false;
 
-                pickerETA.Value = DateTime.Now;
-                pickerTA.Value = DateTime.Now;
                 pickerETD.Value = DateTime.Now;
-                pickerTD.Value = DateTime.Now;
                 pickerUnLoading.Value = DateTime.Now;
                 pickerTglClosing.Value = DateTime.Now;
             }
@@ -76,33 +73,16 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 etRObegin40.Text = schedule.ro_begin_40.ToString();
                 etKet.Text = schedule.keterangan;
 
-
-                lblETA.Visible = false;
-                lblTA.Visible = false;
-                lblTD.Visible = false;
-                pickerETA.Visible = false;
-                pickerTA.Visible = false;
-                pickerTD.Visible = false;
-
-                /*
                 lblETA.Visible = true;
                 lblTA.Visible = true;
                 lblTD.Visible = true;
                 pickerETA.Visible = true;
                 pickerTA.Visible = true;
                 pickerTD.Visible = true;
-                
 
-                if (schedule.eta != null) {
-                    cboKapal.Enabled = false;
-                    cboTujuan.Enabled = false;
-                    etVOY.Enabled = false;
-                    pickerETD.Enabled = false;
-                    pickerUnLoading.Enabled = false;
-                    pickerTglClosing.Enabled = false;
-                    etRObegin20.Enabled = false;
-                    etRObegin40.Enabled = false;
-                }*/
+                pickerETA.Value = DateTime.Now;
+                pickerTA.Value = DateTime.Now;
+                pickerTD.Value = DateTime.Now;
             }
 
             listCity = null;
@@ -143,7 +123,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 MessageBox.Show(this, "Please select kapal", "Information");
             else if(etVOY.Text.Trim().Length == 0)
                 MessageBox.Show(this, "Please fill voy", "Information");
-            else if(pickerETD.Value.Date <= DateTime.Today.Date)
+            else if(pickerETD.Value.Date <= DateTime.Today.Date && wantToCreateVessel)
                 MessageBox.Show(this, "Please correct etd", "Information");
             else if(pickerTglClosing.Value.Date > pickerETD.Value.Date)
                 MessageBox.Show(this, "date of tgl closing must be lower than etd", "Information");
@@ -205,7 +185,19 @@ namespace VisitaJayaPerkasa.Control.Schedule
                     }
                 }
                 else {
-                    if (schedule.ro_end_20 > Int32.Parse(etRObegin20.Text.Trim()))
+                    if (pickerETA.Value.Date < pickerTD.Value.Date) {
+                        MessageBox.Show(this, "Eta must be greather than TD ", "Information");
+                        return;
+                    }
+                    else if(pickerTD.Value.Date < pickerETD.Value.Date){
+                        MessageBox.Show(this, "TD must be greather than ETD", "Information");
+                        return;
+                    }
+                    else if (pickerTA.Value.Date < pickerETA.Value.Date) {
+                        MessageBox.Show(this, "TA must be greather than ETA", "Information");
+                        return;
+                    }
+                    else if (schedule.ro_end_20 > Int32.Parse(etRObegin20.Text.Trim()))
                     {
                         MessageBox.Show(this, "Please correct ro begin 20. \n Ro end 20 greater than ro begin 20", "Information");
                         return;

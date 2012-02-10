@@ -30,6 +30,7 @@
         {
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn1 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
+            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn2 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
             Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn1 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
             Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn2 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
             Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn3 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
@@ -44,6 +45,8 @@
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.cbRecipientDisplay = new Telerik.WinControls.UI.RadCheckBox();
+            this.cbDislayAll = new Telerik.WinControls.UI.RadCheckBox();
             this.btnClearAll = new Telerik.WinControls.UI.RadButton();
             this.btnSaveGrid = new Telerik.WinControls.UI.RadButton();
             this.radButton2 = new Telerik.WinControls.UI.RadButton();
@@ -66,14 +69,14 @@
             this.lblStuffing = new Telerik.WinControls.UI.RadLabel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.PriceListGridView = new Telerik.WinControls.UI.RadGridView();
-            this.cbDislayAll = new Telerik.WinControls.UI.RadCheckBox();
-            this.cbRecipientDisplay = new Telerik.WinControls.UI.RadCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
             this.splitPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbRecipientDisplay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbDislayAll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClearAll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
@@ -98,8 +101,6 @@
             this.splitPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView.MasterGridViewTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbDislayAll)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbRecipientDisplay)).BeginInit();
             this.SuspendLayout();
             // 
             // radSplitContainer1
@@ -164,6 +165,25 @@
             this.radPanel1.Name = "radPanel1";
             this.radPanel1.Size = new System.Drawing.Size(932, 268);
             this.radPanel1.TabIndex = 0;
+            // 
+            // cbRecipientDisplay
+            // 
+            this.cbRecipientDisplay.Location = new System.Drawing.Point(560, 67);
+            this.cbRecipientDisplay.Name = "cbRecipientDisplay";
+            this.cbRecipientDisplay.Size = new System.Drawing.Size(136, 18);
+            this.cbRecipientDisplay.TabIndex = 35;
+            this.cbRecipientDisplay.Text = "Display All Recipient";
+            this.cbRecipientDisplay.Visible = false;
+            this.cbRecipientDisplay.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.cbRecipient_ToggleStateChanged);
+            // 
+            // cbDislayAll
+            // 
+            this.cbDislayAll.Location = new System.Drawing.Point(619, 35);
+            this.cbDislayAll.Name = "cbDislayAll";
+            this.cbDislayAll.Size = new System.Drawing.Size(136, 18);
+            this.cbDislayAll.TabIndex = 34;
+            this.cbDislayAll.Text = "Display All Customer";
+            this.cbDislayAll.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.cbDislayAll_ToggleStateChanged);
             // 
             // btnClearAll
             // 
@@ -305,6 +325,7 @@
             // pickerTo
             // 
             this.pickerTo.AutoSize = true;
+            this.pickerTo.Culture = new System.Globalization.CultureInfo("id-ID");
             this.pickerTo.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.pickerTo.Location = new System.Drawing.Point(308, 137);
             this.pickerTo.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
@@ -344,6 +365,7 @@
             // pickerFrom
             // 
             this.pickerFrom.AutoSize = true;
+            this.pickerFrom.Culture = new System.Globalization.CultureInfo("id-ID");
             this.pickerFrom.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.pickerFrom.Location = new System.Drawing.Point(97, 137);
             this.pickerFrom.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
@@ -426,13 +448,20 @@
             gridViewTextBoxColumn1.IsVisible = false;
             gridViewTextBoxColumn1.UniqueName = "ID";
             gridViewDateTimeColumn1.DataType = typeof(System.DateTime);
-            gridViewDateTimeColumn1.FieldAlias = "date";
-            gridViewDateTimeColumn1.FieldName = "date";
+            gridViewDateTimeColumn1.FieldAlias = "dateFrom";
+            gridViewDateTimeColumn1.FieldName = "dateFrom";
             gridViewDateTimeColumn1.FormatString = "{0:MM/dd/yyyy}";
-            gridViewDateTimeColumn1.HeaderText = "Date";
+            gridViewDateTimeColumn1.HeaderText = "Date From";
             gridViewDateTimeColumn1.MinWidth = 6;
-            gridViewDateTimeColumn1.UniqueName = "date";
+            gridViewDateTimeColumn1.UniqueName = "dateFrom";
             gridViewDateTimeColumn1.Width = 100;
+            gridViewDateTimeColumn2.DataType = typeof(System.DateTime);
+            gridViewDateTimeColumn2.FieldAlias = "dateTo";
+            gridViewDateTimeColumn2.FieldName = "dateTo";
+            gridViewDateTimeColumn2.FormatString = "{0:MM/dd/yyyy}";
+            gridViewDateTimeColumn2.HeaderText = "Date To";
+            gridViewDateTimeColumn2.UniqueName = "dateTo";
+            gridViewDateTimeColumn2.Width = 100;
             gridViewComboBoxColumn1.DisplayMember = null;
             gridViewComboBoxColumn1.FieldAlias = "supplier";
             gridViewComboBoxColumn1.FieldName = "supplier";
@@ -506,6 +535,7 @@
             gridViewDecimalColumn3.Width = 110;
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDateTimeColumn1);
+            this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewDateTimeColumn2);
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn1);
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn2);
             this.PriceListGridView.MasterGridViewTemplate.Columns.Add(gridViewComboBoxColumn3);
@@ -525,25 +555,6 @@
             this.PriceListGridView.Size = new System.Drawing.Size(932, 159);
             this.PriceListGridView.TabIndex = 1;
             // 
-            // cbDislayAll
-            // 
-            this.cbDislayAll.Location = new System.Drawing.Point(619, 35);
-            this.cbDislayAll.Name = "cbDislayAll";
-            this.cbDislayAll.Size = new System.Drawing.Size(136, 18);
-            this.cbDislayAll.TabIndex = 34;
-            this.cbDislayAll.Text = "Display All Customer";
-            this.cbDislayAll.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.cbDislayAll_ToggleStateChanged);
-            // 
-            // cbRecipientDisplay
-            // 
-            this.cbRecipientDisplay.Location = new System.Drawing.Point(560, 67);
-            this.cbRecipientDisplay.Name = "cbRecipientDisplay";
-            this.cbRecipientDisplay.Size = new System.Drawing.Size(136, 18);
-            this.cbRecipientDisplay.TabIndex = 35;
-            this.cbRecipientDisplay.Text = "Display All Recipient";
-            this.cbRecipientDisplay.Visible = false;
-            this.cbRecipientDisplay.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.cbRecipient_ToggleStateChanged);
-            // 
             // PriceList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -558,6 +569,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             this.radPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbRecipientDisplay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbDislayAll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClearAll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
@@ -582,8 +595,6 @@
             this.splitPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView.MasterGridViewTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PriceListGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbDislayAll)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbRecipientDisplay)).EndInit();
             this.ResumeLayout(false);
 
         }

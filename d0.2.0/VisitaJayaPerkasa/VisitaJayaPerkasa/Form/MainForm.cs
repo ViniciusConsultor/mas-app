@@ -35,7 +35,7 @@ namespace VisitaJayaPerkasa.Form
             Constant.VisitaJayaPerkasaApplication.mainForm = this;
 
             if (! UserProfile.user.RoleObj.RoleName.ToLower().Equals(Constant.VisitaJayaPerkasaApplication.roleAdmin)) {
-                radRibbonBarGroupUser.Visibility = ElementVisibility.Collapsed;
+                RBGUser.Visibility = ElementVisibility.Collapsed;
 
                 radMenuItemUser.Visibility = ElementVisibility.Collapsed;
             }
@@ -137,75 +137,97 @@ namespace VisitaJayaPerkasa.Form
         }
 
 
+        private void SetEnableDisableGroup(RadRibbonBarGroup rbg) {
+            if (Constant.VisitaJayaPerkasaApplication.RBGroup != null)
+                Constant.VisitaJayaPerkasaApplication.RBGroup.Enabled = true;
+
+            Constant.VisitaJayaPerkasaApplication.RBGroup = rbg;
+            Constant.VisitaJayaPerkasaApplication.RBGroup.Enabled = false;
+        }
+
 
         //Group Item
         private void radImageButtonUser_Click(object sender, EventArgs e)
         {
+            SetEnableDisableGroup(RBGUser);
             ShowUserControl(new UserList());
         }
 
         private void radImageButtonElementCity_Click(object sender, EventArgs e)
         {
+            SetEnableDisableGroup(RBGCity);
             ShowUserControl(new CityList());
         }
 
         private void radImageButtonElementCondition_Click(object sender, EventArgs e)
         {
+            SetEnableDisableGroup(RBGCondition);
             ShowUserControl(new ConditionList());
         }
 
         private void radImageButtonElementCustomer_Click(object sender, EventArgs e)
         {
+            SetEnableDisableGroup(RBGCustomer);
             ShowUserControl(new CustomerList());
         }
 
         private void radImageButtonElementPelayaran_Click(object sender, EventArgs e)
         {
+            SetEnableDisableGroup(RBGPelayaran);
             ShowUserControl(new PelayaranList());
         }
 
         private void radImageButtonElementSupplier_Click(object sender, EventArgs e)
         {
+            SetEnableDisableGroup(RBGSupplier);
             ShowUserControl(new SupplierList());
         }
 
         private void radImageButtonElementTypeCont_Click(object sender, EventArgs e)
         {
+            SetEnableDisableGroup(RBGTypeCont);
             ShowUserControl(new TypeContList());
         }
 
         private void radImageButtonElementWareHouse_Click(object sender, EventArgs e)
         {
+            SetEnableDisableGroup(RBGWarehouse);
             ShowUserControl(new WareHouseList());
         }
 
         private void radRibbonBarGroupRecipient_Click(object sender, EventArgs e)
         {
+            SetEnableDisableGroup(RBGRecipient);
             ShowUserControl(new RecipientList());
         }
 
         private void radImageButtonPriceList_Click(object sender, EventArgs e)
         {
+            SetEnableDisableGroup(RBGPriceList);
             ShowUserControl(new VisitaJayaPerkasa.Control.PriceList.PriceList());
         }
 
         private void radImageButtonSchedule_Click(object sender, EventArgs e)
         {
+            SetEnableDisableGroup(RBGSchedule);
             ShowUserControl(new ScheduleList());
         }
 
         private void radImageButtonPriceListCust_Click(object sender, EventArgs e)
         {
+            SetEnableDisableGroup(RBGPriceListCust);
             ShowUserControl(new PriceListCustomer());
         }
 
         private void radImageButtonOrderList_Click(object sender, EventArgs e)
         {
+            SetEnableDisableGroup(RBGTransaction);
             ShowUserControl(new CustomerTransList());
         }
 
         private void radImageButtonContainer_Click(object sender, EventArgs e)
         {
+            SetEnableDisableGroup(RBGContainer);
             ShowUserControl(new RptContainerControl());
         }
 

@@ -38,7 +38,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "FROM [Schedule] s, [PELAYARAN_DETAIL] p " +
                         "WHERE (p.deleted is null OR p.deleted = '0') AND " + 
                         "p.pelayaran_detail_id = s.pelayaran_detail_id AND " + 
-                        "(convert(varchar(10), s.etd, 101) >= '" + beginDate + "' AND convert(varchar(10), s.etd, 101) <= '" + endDate + "') AND " + 
+                        "(cast(s.etd as date) >= cast('" + beginDate + "' as date) AND cast(s.etd as date) <= cast('" + endDate + "' as date)) AND " + 
                         "s.voy like '%" + voy + "%' AND s.vessel_code like '%" + vessel + "%' AND " + 
                         "s.tujuan like '%" + destination + "%' AND (s.deleted is null OR s.deleted = '0') " + 
                         criteria

@@ -87,7 +87,8 @@ namespace VisitaJayaPerkasa.Control.PriceListCustomer
                 for (int i = 0; i < listPrice.Count(); i++)
                 {
                     object[] obj = {listPrice.ElementAt(i).ID, 
-                        listPrice.ElementAt(i).Date, 
+                        listPrice.ElementAt(i).DateFrom,
+                        listPrice.ElementAt(i).DateTo,
                         listPrice.ElementAt(i).CustomerID,
                         listPrice.ElementAt(i).Destination,
                         listPrice.ElementAt(i).TypeID, 
@@ -180,8 +181,8 @@ namespace VisitaJayaPerkasa.Control.PriceListCustomer
                             listID.Add(objPriceList.ID.ToString());
 
                         id = (radGridView1.Rows[i].Cells[1].Value.ToString().Equals("")) ? Utility.Utility.DefaultDateTime().ToString() : radGridView1.Rows[i].Cells[1].Value.ToString();
-                        objPriceList.Date = Utility.Utility.ConvertStringToDate(id);
-                        if (objPriceList.Date.ToString().Equals(Utility.Utility.DefaultDateTime().ToString()))
+                        objPriceList.DateFrom = Utility.Utility.ConvertStringToDate(id);
+                        if (objPriceList.DateFrom.ToString().Equals(Utility.Utility.DefaultDateTime().ToString()))
                         {
                             MessageBox.Show(this, "Please fill date in line " + i, "Information");
                             return;
@@ -260,8 +261,8 @@ namespace VisitaJayaPerkasa.Control.PriceListCustomer
                         key[nn] = "price_id";
                         value[nn++] = Guid.NewGuid();
 
-                        key[nn] = "Date";
-                        value[nn++] = tempPriceList.ElementAt(j).Date;
+                        key[nn] = "dateFrom";
+                        value[nn++] = tempPriceList.ElementAt(j).DateFrom;
 
                         key[nn] = "supplier_id";
                         value[nn++] = tempPriceList.ElementAt(j).SupplierID;
