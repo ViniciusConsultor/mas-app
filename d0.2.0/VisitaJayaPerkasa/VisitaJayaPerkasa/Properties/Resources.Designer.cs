@@ -116,9 +116,23 @@ namespace VisitaJayaPerkasa.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ic_master {
+            get {
+                object obj = ResourceManager.GetObject("ic_master", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap ic_masterdata {
             get {
                 object obj = ResourceManager.GetObject("ic_masterdata", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ic_report {
+            get {
+                object obj = ResourceManager.GetObject("ic_report", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,6 +147,13 @@ namespace VisitaJayaPerkasa.Properties {
         internal static System.Drawing.Bitmap ic_transaction {
             get {
                 object obj = ResourceManager.GetObject("ic_transaction", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ic_transaction1 {
+            get {
+                object obj = ResourceManager.GetObject("ic_transaction1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
