@@ -109,12 +109,17 @@ namespace VisitaJayaPerkasa.SqlRepository
 
                     //issupplier == 1 so, is search from supplier
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT * FROM [Price] WHERE (date between '" + from + "' AND '" + to + "') " + 
+                        "SELECT * FROM [Price] WHERE " +
+                        "((cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
+	                    "AND cast(dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date)) " +
+                        "OR " +
+                        "(cast(dateFrom as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
+                        "AND cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(to) + "' as date))) " + 
                         "AND supplier_id like '%" + supplierID + "%' AND destination like '%" + destinationID + "%' " + 
                         "AND customer_id like '%" + customerID + "%' AND recipient_id like '%" + recipientID + "%' " + 
                         "AND stuffing_id like '%" + stuffingID + "%' AND " +
                         addCriteria + 
-                        "ORDER BY date"
+                        "ORDER BY dateFrom"
                         , con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
@@ -122,17 +127,18 @@ namespace VisitaJayaPerkasa.SqlRepository
                         {
                             PriceList objPriceList = new PriceList();
                             objPriceList.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
-                            objPriceList.Date = reader.GetDateTime(1);
-                            objPriceList.SupplierID = Utility.Utility.ConvertToUUID(reader.GetValue(2).ToString());
-                            objPriceList.Destination = Utility.Utility.ConvertToUUID(reader.GetValue(3).ToString());
-                            objPriceList.TypeID = Utility.Utility.ConvertToUUID(reader.GetValue(4).ToString());
-                            objPriceList.ConditionID = Utility.Utility.ConvertToUUID(reader.GetValue(5).ToString());
-                            objPriceList.PriceSupplier = reader.GetDecimal(6);
-                            objPriceList.CustomerID = Utility.Utility.ConvertToUUID(reader.GetValue(7).ToString());
-                            objPriceList.PriceCustomer = reader.GetDecimal(8);
-                            objPriceList.StuffingID = Utility.Utility.ConvertToUUID(reader.GetValue(9).ToString());
-                            objPriceList.Recipient = Utility.Utility.ConvertToUUID(reader.GetValue(10).ToString());
-                            objPriceList.PriceCourier = reader.GetDecimal(11);
+                            objPriceList.DateFrom = reader.GetDateTime(1);
+                            objPriceList.DateTo = reader.GetDateTime(2);
+                            objPriceList.SupplierID = Utility.Utility.ConvertToUUID(reader.GetValue(3).ToString());
+                            objPriceList.Destination = Utility.Utility.ConvertToUUID(reader.GetValue(4).ToString());
+                            objPriceList.TypeID = Utility.Utility.ConvertToUUID(reader.GetValue(5).ToString());
+                            objPriceList.ConditionID = Utility.Utility.ConvertToUUID(reader.GetValue(6).ToString());
+                            objPriceList.PriceSupplier = reader.GetDecimal(7);
+                            objPriceList.CustomerID = Utility.Utility.ConvertToUUID(reader.GetValue(8).ToString());
+                            objPriceList.PriceCustomer = reader.GetDecimal(9);
+                            objPriceList.StuffingID = Utility.Utility.ConvertToUUID(reader.GetValue(10).ToString());
+                            objPriceList.Recipient = Utility.Utility.ConvertToUUID(reader.GetValue(11).ToString());
+                            objPriceList.PriceCourier = reader.GetDecimal(12);
 
                             if (listPriceList == null)
                                 listPriceList = new List<PriceList>();
@@ -196,7 +202,8 @@ namespace VisitaJayaPerkasa.SqlRepository
                                     sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + ", " +
-                                    sqlParamInsert[i++].ParameterName + ", " + 
+                                    sqlParamInsert[i++].ParameterName + ", " +
+                                    sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName +  
                                     ")"
@@ -204,8 +211,8 @@ namespace VisitaJayaPerkasa.SqlRepository
                             {
                                 command.Transaction = sqlTransaction;
 
-                                //11 is field of price list
-                                for (int k = i - 12; k < i; k++)
+                                //13 is field of price list
+                                for (int k = i - 13; k < i; k++)
                                     command.Parameters.Add(sqlParamInsert[k]);
                                 n = command.ExecuteNonQuery();
 
@@ -237,6 +244,26 @@ namespace VisitaJayaPerkasa.SqlRepository
         }
 
 
+
+
+        /** this function will be pending because, it used on transaction 
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         */
         public decimal SearchPriceList(DateTime date, string customerID, string destinationID,
             string typeContID, string conditionID)
         {
@@ -252,7 +279,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "SELECT price_customer FROM [Price] WHERE date <= '" + date + "' " +
                         "AND customer_id like '%" + customerID + "%' AND destination like '%" + destinationID + "%' " +
                         "AND type_cont_id like '%" + typeContID + "%' AND condition_id like '%" + conditionID + "%' " +
-                        "ORDER BY date DESC "
+                        "ORDER BY dateFrom DESC "
                         , con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
@@ -324,17 +351,18 @@ namespace VisitaJayaPerkasa.SqlRepository
                         while (reader.Read())
                         {
                             result.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
-                            result.Date = reader.GetDateTime(1);
-                            result.SupplierID = Utility.Utility.ConvertToUUID(reader.GetValue(2).ToString());
-                            result.Destination = Utility.Utility.ConvertToUUID(reader.GetValue(3).ToString());
-                            result.TypeID = Utility.Utility.ConvertToUUID(reader.GetValue(4).ToString());
-                            result.ConditionID = Utility.Utility.ConvertToUUID(reader.GetValue(5).ToString());
-                            result.PriceSupplier = reader.GetDecimal(6);
-                            result.CustomerID = Utility.Utility.ConvertToUUID(reader.GetValue(7).ToString());
-                            result.PriceCustomer = reader.GetDecimal(8);
-                            result.StuffingID = Utility.Utility.ConvertToUUID(reader.GetValue(9).ToString());
-                            result.Recipient = Utility.Utility.ConvertToUUID(reader.GetValue(10).ToString());
-                            result.PriceCourier = reader.GetDecimal(11);
+                            result.DateFrom = reader.GetDateTime(1);
+                            result.DateTo = reader.GetDateTime(2);
+                            result.SupplierID = Utility.Utility.ConvertToUUID(reader.GetValue(3).ToString());
+                            result.Destination = Utility.Utility.ConvertToUUID(reader.GetValue(4).ToString());
+                            result.TypeID = Utility.Utility.ConvertToUUID(reader.GetValue(5).ToString());
+                            result.ConditionID = Utility.Utility.ConvertToUUID(reader.GetValue(6).ToString());
+                            result.PriceSupplier = reader.GetDecimal(7);
+                            result.CustomerID = Utility.Utility.ConvertToUUID(reader.GetValue(8).ToString());
+                            result.PriceCustomer = reader.GetDecimal(9);
+                            result.StuffingID = Utility.Utility.ConvertToUUID(reader.GetValue(10).ToString());
+                            result.Recipient = Utility.Utility.ConvertToUUID(reader.GetValue(11).ToString());
+                            result.PriceCourier = reader.GetDecimal(12);
                             break;
                         }
                     }
@@ -413,17 +441,18 @@ namespace VisitaJayaPerkasa.SqlRepository
                         while (reader.Read())
                         {
                             result.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
-                            result.Date = reader.GetDateTime(1);
-                            result.SupplierID = Utility.Utility.ConvertToUUID(reader.GetValue(2).ToString());
-                            result.Destination = Utility.Utility.ConvertToUUID(reader.GetValue(3).ToString());
-                            result.TypeID = Utility.Utility.ConvertToUUID(reader.GetValue(4).ToString());
-                            result.ConditionID = Utility.Utility.ConvertToUUID(reader.GetValue(5).ToString());
-                            result.PriceSupplier = reader.GetDecimal(6);
-                            result.CustomerID = Utility.Utility.ConvertToUUID(reader.GetValue(7).ToString());
-                            result.PriceCustomer = reader.GetDecimal(8);
-                            result.StuffingID = Utility.Utility.ConvertToUUID(reader.GetValue(9).ToString());
-                            result.Recipient = Utility.Utility.ConvertToUUID(reader.GetValue(10).ToString());
-                            result.PriceCourier = reader.GetDecimal(11);
+                            result.DateFrom = reader.GetDateTime(1);
+                            result.DateTo = reader.GetDateTime(2);
+                            result.SupplierID = Utility.Utility.ConvertToUUID(reader.GetValue(3).ToString());
+                            result.Destination = Utility.Utility.ConvertToUUID(reader.GetValue(4).ToString());
+                            result.TypeID = Utility.Utility.ConvertToUUID(reader.GetValue(5).ToString());
+                            result.ConditionID = Utility.Utility.ConvertToUUID(reader.GetValue(6).ToString());
+                            result.PriceSupplier = reader.GetDecimal(7);
+                            result.CustomerID = Utility.Utility.ConvertToUUID(reader.GetValue(8).ToString());
+                            result.PriceCustomer = reader.GetDecimal(9);
+                            result.StuffingID = Utility.Utility.ConvertToUUID(reader.GetValue(10).ToString());
+                            result.Recipient = Utility.Utility.ConvertToUUID(reader.GetValue(11).ToString());
+                            result.PriceCourier = reader.GetDecimal(12);
                             break;
                         }
                     }
@@ -443,9 +472,10 @@ namespace VisitaJayaPerkasa.SqlRepository
 
 
         /* Search Price list for Check exist or not by criteria*/
-        public Guid GetPriceCustomerByShippingLines(DateTime date, string typeContID, string conditionID)
+        public Guid GetPriceCustomerByShippingLines(DateTime from, DateTime to, string typeContID, string conditionID)
         {
             Guid ID = Guid.Empty;
+           
             try
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
@@ -454,7 +484,11 @@ namespace VisitaJayaPerkasa.SqlRepository
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT TOP 1 price_id FROM [Price] " +
-                        "WHERE convert(varchar(10), [date], 101) = '" + Utility.Utility.GetDateOnly(date.ToString()) + "' " +
+                        "WHERE ((cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
+                        "AND cast(dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date)) " +
+                        "OR " +
+                        "(cast(dateFrom as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
+                        "AND cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(to) + "' as date))) " + 
                         "AND type_cont_id = '" + typeContID + "' " + 
                         "AND condition_id = '" + conditionID + "'"
                         , con))
@@ -477,7 +511,7 @@ namespace VisitaJayaPerkasa.SqlRepository
 
 
 
-        public Guid GetPriceCustomerByDAgentANDTrucking(DateTime date, string typeContID)
+        public Guid GetPriceCustomerByDAgentANDTrucking(DateTime from, DateTime to, string typeContID)
         {
             Guid ID = Guid.Empty;
             try
@@ -488,7 +522,11 @@ namespace VisitaJayaPerkasa.SqlRepository
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT TOP 1 price_id FROM [Price] " +
-                        "WHERE convert(varchar(10), [date], 101) = '" + Utility.Utility.GetDateOnly(date.ToString()) + "' " +
+                        "WHERE ((cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
+                        "AND cast(dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date)) " +
+                        "OR " +
+                        "(cast(dateFrom as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
+                        "AND cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(to) + "' as date))) " + 
                         "AND type_cont_id = '" + typeContID + "'"
                         , con))
                     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VisitaJayaPerkasa.Form;
+using Telerik.WinControls.UI;
 
 namespace VisitaJayaPerkasa.Constant
 {
@@ -13,6 +14,7 @@ namespace VisitaJayaPerkasa.Constant
         public static PBarDialog pBarForm;
 
         public static object objGetOtherView;
+        public static RadRibbonBarGroup RBGroup = null;
 
         public static string cboDefaultText = "-- Choose --";
         public static string strGeneralCustomer = "General Customer";

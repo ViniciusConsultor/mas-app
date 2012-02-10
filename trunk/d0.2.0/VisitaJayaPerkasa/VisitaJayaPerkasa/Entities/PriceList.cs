@@ -8,7 +8,8 @@ namespace VisitaJayaPerkasa.Entities
     public class PriceList
     {
         public Guid ID { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime DateFrom { get; set; }
+        public DateTime DateTo { get; set; }
         public Guid SupplierID { get; set; }
         public Guid Destination { get; set; }
         public Guid TypeID { get; set; }
