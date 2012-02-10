@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            Telerik.WinControls.UI.GridSortField gridSortField2 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.radMenuItem7 = new Telerik.WinControls.UI.RadMenuItem();
             this.gridViewTemplate1 = new Telerik.WinControls.UI.GridViewTemplate();
@@ -134,10 +134,10 @@
             // gridViewTemplate1
             // 
             this.gridViewTemplate1.AllowAddNewRow = false;
-            gridSortField2.FieldAlias = "Tanggal";
-            gridSortField2.FieldName = "Tanggal";
-            gridSortField2.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            this.gridViewTemplate1.SortExpressions.Add(gridSortField2);
+            gridSortField1.FieldAlias = "Tanggal";
+            gridSortField1.FieldName = "Tanggal";
+            gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            this.gridViewTemplate1.SortExpressions.Add(gridSortField1);
             // 
             // radLabelElementWelcome
             // 
@@ -155,9 +155,9 @@
             this.radLabelElementWelcome,
             this.radLabelElementWelcome});
             this.radStatusStrip.LayoutStyle = Telerik.WinControls.UI.RadStatusBarLayoutStyle.Stack;
-            this.radStatusStrip.Location = new System.Drawing.Point(0, 571);
+            this.radStatusStrip.Location = new System.Drawing.Point(0, 575);
             this.radStatusStrip.Name = "radStatusStrip";
-            this.radStatusStrip.Size = new System.Drawing.Size(992, 24);
+            this.radStatusStrip.Size = new System.Drawing.Size(992, 20);
             this.radStatusStrip.SizingGrip = false;
             this.radStatusStrip.TabIndex = 1;
             this.radStatusStrip.Text = "radStatusStrip1";
@@ -571,7 +571,7 @@
             // 
             // radMenuItemMasterData
             // 
-            this.radMenuItemMasterData.Image = global::VisitaJayaPerkasa.Properties.Resources.ic_masterdata;
+            this.radMenuItemMasterData.Image = global::VisitaJayaPerkasa.Properties.Resources.ic_master;
             this.radMenuItemMasterData.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radMenuItemUser,
             this.radMenuItemCity,
@@ -669,7 +669,7 @@
             // 
             // radMenuItemTransaction
             // 
-            this.radMenuItemTransaction.Image = global::VisitaJayaPerkasa.Properties.Resources.ic_transaction;
+            this.radMenuItemTransaction.Image = global::VisitaJayaPerkasa.Properties.Resources.ic_transaction1;
             this.radMenuItemTransaction.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radMenuItemOrderList});
             this.radMenuItemTransaction.Name = "radMenuItemTransaction";
@@ -683,7 +683,7 @@
             // 
             // radMenuItemReporting
             // 
-            this.radMenuItemReporting.Image = global::VisitaJayaPerkasa.Properties.Resources.ic_reporting;
+            this.radMenuItemReporting.Image = global::VisitaJayaPerkasa.Properties.Resources.ic_report;
             this.radMenuItemReporting.Name = "radMenuItemReporting";
             this.radMenuItemReporting.Text = "Reporting";
             // 
