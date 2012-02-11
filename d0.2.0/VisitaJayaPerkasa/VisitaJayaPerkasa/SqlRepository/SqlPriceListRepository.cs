@@ -133,12 +133,13 @@ namespace VisitaJayaPerkasa.SqlRepository
                             objPriceList.Destination = Utility.Utility.ConvertToUUID(reader.GetValue(4).ToString());
                             objPriceList.TypeID = Utility.Utility.ConvertToUUID(reader.GetValue(5).ToString());
                             objPriceList.ConditionID = Utility.Utility.ConvertToUUID(reader.GetValue(6).ToString());
-                            objPriceList.PriceSupplier = reader.GetDecimal(7);
+                            objPriceList.PriceSupplier = Utility.Utility.IsDBNull(reader.GetValue(7)) ? 0 : reader.GetDecimal(7);
                             objPriceList.CustomerID = Utility.Utility.ConvertToUUID(reader.GetValue(8).ToString());
-                            objPriceList.PriceCustomer = reader.GetDecimal(9);
+                            objPriceList.PriceCustomer = Utility.Utility.IsDBNull(reader.GetValue(9)) ? 0 : reader.GetDecimal(9);
                             objPriceList.StuffingID = Utility.Utility.ConvertToUUID(reader.GetValue(10).ToString());
                             objPriceList.Recipient = Utility.Utility.ConvertToUUID(reader.GetValue(11).ToString());
-                            objPriceList.PriceCourier = reader.GetDecimal(12);
+                            objPriceList.PriceCourier = Utility.Utility.IsDBNull(reader.GetValue(12)) ? 0 : reader.GetDecimal(12);
+                            objPriceList.Item = Utility.Utility.IsDBNull(reader.GetValue(13)) ? null : reader.GetString(13);
 
                             if (listPriceList == null)
                                 listPriceList = new List<PriceList>();
@@ -205,14 +206,15 @@ namespace VisitaJayaPerkasa.SqlRepository
                                     sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName + ", " +
+                                    sqlParamInsert[i++].ParameterName + ", " +
                                     sqlParamInsert[i++].ParameterName +  
                                     ")"
                                     , con))
                             {
                                 command.Transaction = sqlTransaction;
 
-                                //13 is field of price list
-                                for (int k = i - 13; k < i; k++)
+                                //14 is field of price list
+                                for (int k = i - 14; k < i; k++)
                                     command.Parameters.Add(sqlParamInsert[k]);
                                 n = command.ExecuteNonQuery();
 
@@ -541,6 +543,45 @@ namespace VisitaJayaPerkasa.SqlRepository
             catch (Exception e)
             {
                 Logging.Error("SqlPriceListRepository.cs - GetPriceCustomerByDAgentANDTrucking() " + e.Message);
+            }
+
+            return ID;
+        }
+
+
+
+
+        public Guid GetPriceMenuCustomer(DateTime from, DateTime to, string conditionID)
+        {
+            Guid ID = Guid.Empty;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 price_id FROM [Price] " +
+                        "WHERE ((cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
+                        "AND cast(dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date)) " +
+                        "OR " +
+                        "(cast(dateFrom as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
+                        "AND cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(to) + "' as date))) " +
+                        "AND condition_id = '" + conditionID + "'"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlPriceListRepository.cs - GetPriceMenuCustomer() " + e.Message);
             }
 
             return ID;
