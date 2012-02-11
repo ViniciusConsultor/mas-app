@@ -605,21 +605,33 @@ Arrange of field grid
 
 
                     for (int i = 0; i < tempPriceList.Count; i++) {
-                        for (int j = i + 1; j < tempPriceList.Count; j++) {
+                        for (int j = i+1; j < tempPriceList.Count; j++) {
                             if (
-                                PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[1].Value.ToString())
-                                && PriceListGridView.Rows[i].Cells[2].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[2].Value.ToString())
-                                && PriceListGridView.Rows[i].Cells[5].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[5].Value.ToString())
-                                && PriceListGridView.Rows[i].Cells[6].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[6].Value.ToString())
-                                ) {
-                                    MessageBox.Show(this, "Record -" + i + " and record -" + j + " have same record of date, type and condition. Please remove one", "Information");
-                                    return;
+                                (
+                                    tempPriceList.ElementAt(i).TypeID.ToString().Equals(tempPriceList.ElementAt(j).TypeID.ToString()) &&
+                                    tempPriceList.ElementAt(i).ConditionID.ToString().Equals(tempPriceList.ElementAt(j).ConditionID.ToString())
+                                )
+                                &&
+                                (
+                                    (
+                                        tempPriceList.ElementAt(i).DateFrom <= tempPriceList.ElementAt(j).DateFrom &&
+                                        tempPriceList.ElementAt(i).DateTo >= tempPriceList.ElementAt(j).DateFrom
+                                    )
+                                    ||
+                                    (
+                                        tempPriceList.ElementAt(i).DateFrom >= tempPriceList.ElementAt(j).DateFrom &&
+                                        tempPriceList.ElementAt(i).DateFrom <= tempPriceList.ElementAt(j).DateTo
+                                    )
+                                )
+                              ) {
+                                  MessageBox.Show(this, "Please fix record - " + i + " and record -" + j + " have same record of date, type and condition. Please remove one", "Information");
+                                  return;
                             }
                         }
                     }
 
 
-                    sqlPriceListRepository = new SqlPriceListRepository();
+                        sqlPriceListRepository = new SqlPriceListRepository();
                     listPriceDeleteExistsData.Clear();
                     listIndexPriceDeleteExistsData.Clear();
                     List<int> indexDeleted = new List<int>();
@@ -648,7 +660,7 @@ Arrange of field grid
                         tempPriceList.RemoveAt(indexDeleted.ElementAt(i));
 
                     for (int i = 0; i < listPriceDeleteExistsData.Count; i++) {
-                        for (int j = i+1; j < listPriceDeleteExistsData.Count; i++) {
+                        for (int j = i+1; j < listPriceDeleteExistsData.Count; j++) {
                             if (listPriceDeleteExistsData.ElementAt(i) == listPriceDeleteExistsData.ElementAt(j)) {
                                 MessageBox.Show(this, "Please fix record -" + listIndexPriceDeleteExistsData.ElementAt(i) + " and record -" + listIndexPriceDeleteExistsData.ElementAt(j) + " have same record of date, type and condition. Please remove one", "Information");
                                 return;   
@@ -714,12 +726,24 @@ Arrange of field grid
                         for (int j = i + 1; j < tempPriceList.Count; j++)
                         {
                             if (
-                                PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[1].Value.ToString())
-                                && PriceListGridView.Rows[i].Cells[2].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[2].Value.ToString())
-                                && PriceListGridView.Rows[i].Cells[5].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[5].Value.ToString())
+                                (
+                                    tempPriceList.ElementAt(i).TypeID.ToString().Equals(tempPriceList.ElementAt(j).TypeID.ToString())
                                 )
+                                &&
+                                (
+                                    (
+                                        tempPriceList.ElementAt(i).DateFrom <= tempPriceList.ElementAt(j).DateFrom &&
+                                        tempPriceList.ElementAt(i).DateTo >= tempPriceList.ElementAt(j).DateFrom
+                                    )
+                                    ||
+                                    (
+                                        tempPriceList.ElementAt(i).DateFrom >= tempPriceList.ElementAt(j).DateFrom &&
+                                        tempPriceList.ElementAt(i).DateFrom <= tempPriceList.ElementAt(j).DateTo
+                                    )
+                                )
+                              )
                             {
-                                MessageBox.Show(this, "Record -" + i + " and record -" + j + " has same record of date and type. Please remove one", "Information");
+                                MessageBox.Show(this, "Please fix record - " + i + " and record -" + j + " have same record of date and type. Please remove one", "Information");
                                 return;
                             }
                         }
@@ -755,7 +779,7 @@ Arrange of field grid
 
                     for (int i = 0; i < listPriceDeleteExistsData.Count; i++)
                     {
-                        for (int j = i + 1; j < listPriceDeleteExistsData.Count; i++)
+                        for (int j = i + 1; j < listPriceDeleteExistsData.Count; j++)
                         {
                             if (listPriceDeleteExistsData.ElementAt(i) == listPriceDeleteExistsData.ElementAt(j))
                             {
@@ -826,17 +850,30 @@ Arrange of field grid
                         objPriceList = null;
                     }
 
+
                     for (int i = 0; i < tempPriceList.Count; i++)
                     {
                         for (int j = i + 1; j < tempPriceList.Count; j++)
                         {
                             if (
-                                PriceListGridView.Rows[i].Cells[1].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[1].Value.ToString())
-                                && PriceListGridView.Rows[i].Cells[2].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[2].Value.ToString())
-                                && PriceListGridView.Rows[i].Cells[5].Value.ToString().Equals(PriceListGridView.Rows[j].Cells[5].Value.ToString())
+                                (
+                                    tempPriceList.ElementAt(i).TypeID.ToString().Equals(tempPriceList.ElementAt(j).TypeID.ToString())
                                 )
+                                &&
+                                (
+                                    (
+                                        tempPriceList.ElementAt(i).DateFrom <= tempPriceList.ElementAt(j).DateFrom &&
+                                        tempPriceList.ElementAt(i).DateTo >= tempPriceList.ElementAt(j).DateFrom
+                                    )
+                                    ||
+                                    (
+                                        tempPriceList.ElementAt(i).DateFrom >= tempPriceList.ElementAt(j).DateFrom &&
+                                        tempPriceList.ElementAt(i).DateFrom <= tempPriceList.ElementAt(j).DateTo
+                                    )
+                                )
+                              )
                             {
-                                MessageBox.Show(this, "Record -" + i + " and record -" + j + " have same record of date and type. Please remove one", "Information");
+                                MessageBox.Show(this, "Please fix record - " + i + " and record -" + j + " have same record of date and type. Please remove one", "Information");
                                 return;
                             }
                         }
@@ -872,7 +909,7 @@ Arrange of field grid
 
                     for (int i = 0; i < listPriceDeleteExistsData.Count; i++)
                     {
-                        for (int j = i + 1; j < listPriceDeleteExistsData.Count; i++)
+                        for (int j = i + 1; j < listPriceDeleteExistsData.Count; j++)
                         {
                             if (listPriceDeleteExistsData.ElementAt(i) == listPriceDeleteExistsData.ElementAt(j))
                             {
@@ -884,6 +921,8 @@ Arrange of field grid
 
                     sqlPriceListRepository = null;
                 }
+
+                    /*
                 else if (cboTypeSupplier.Text.ToLower().Equals("general"))
                 {
                     for (int i = 0; i < PriceListGridView.RowCount; i++)
@@ -942,6 +981,7 @@ Arrange of field grid
                         }
                     }
                 }
+                */
 
 
                 SqlParameter[] sqlParamDeletedPrice = null;
@@ -962,9 +1002,9 @@ Arrange of field grid
 
                 if (tempPriceList.Count > 0)
                 {
-                    //13 is field who any in below for
-                    string[] key = new string[tempPriceList.Count * 13];
-                    object[] value = new object[tempPriceList.Count * 13];
+                    //14 is field who any in below for
+                    string[] key = new string[tempPriceList.Count * 14];
+                    object[] value = new object[tempPriceList.Count * 14];
 
                     int nn = 0;
                     for (int j = 0; j < tempPriceList.Count; j++)
@@ -1017,6 +1057,9 @@ Arrange of field grid
 
                         key[nn] = "price_courier";
                         value[nn++] = tempPriceList.ElementAt(j).PriceCourier;
+
+                        key[nn] = "item";
+                        value[nn++] = DBNull.Value;
                     }
 
                     sqlParamInsert = SqlUtility.SetSqlParameter(key, value);

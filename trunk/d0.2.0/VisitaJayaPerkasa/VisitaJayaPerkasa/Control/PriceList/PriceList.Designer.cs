@@ -517,6 +517,7 @@
             gridViewComboBoxColumn7.DisplayMember = null;
             gridViewComboBoxColumn7.FieldAlias = "customer";
             gridViewComboBoxColumn7.FieldName = "customer";
+            gridViewComboBoxColumn7.FormatString = "{0:c}";
             gridViewComboBoxColumn7.HeaderText = "Customer Name";
             gridViewComboBoxColumn7.UniqueName = "customer";
             gridViewComboBoxColumn7.ValueMember = null;
@@ -524,12 +525,14 @@
             gridViewDecimalColumn2.DataType = typeof(decimal);
             gridViewDecimalColumn2.FieldAlias = "price_customer";
             gridViewDecimalColumn2.FieldName = "price_customer";
+            gridViewDecimalColumn2.FormatString = "{0:c}";
             gridViewDecimalColumn2.HeaderText = "Harga Customer";
             gridViewDecimalColumn2.UniqueName = "price_customer";
             gridViewDecimalColumn2.Width = 110;
             gridViewDecimalColumn3.DataType = typeof(decimal);
             gridViewDecimalColumn3.FieldAlias = "price_courier";
             gridViewDecimalColumn3.FieldName = "price_courier";
+            gridViewDecimalColumn3.FormatString = "{0:c}";
             gridViewDecimalColumn3.HeaderText = "Harga Kurir";
             gridViewDecimalColumn3.UniqueName = "price_courier";
             gridViewDecimalColumn3.Width = 110;
