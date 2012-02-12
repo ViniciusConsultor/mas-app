@@ -231,6 +231,12 @@ namespace VisitaJayaPerkasa.Form
             ShowUserControl(new RptContainerControl());
         }
 
+        private void radImageButtonATK_Click(object sender, EventArgs e)
+        {
+            SetEnableDisableGroup(RBGATK);
+            ShowUserControl(new VisitaJayaPerkasa.Control.ATK.ATKView());
+        }
+
 
 
     }

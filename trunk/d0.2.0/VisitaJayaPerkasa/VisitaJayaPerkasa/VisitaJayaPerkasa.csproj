@@ -65,6 +65,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constant\VisitaJayaPerkasaApplication.cs" />
+    <Compile Include="Control\ATK\ATKView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\ATK\ATKView.Designer.cs">
+      <DependentUpon>ATKView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Control\City\CityEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
