@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            Telerik.WinControls.UI.GridSortField gridSortField2 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.radMenuItem7 = new Telerik.WinControls.UI.RadMenuItem();
             this.gridViewTemplate1 = new Telerik.WinControls.UI.GridViewTemplate();
@@ -137,10 +137,10 @@
             // gridViewTemplate1
             // 
             this.gridViewTemplate1.AllowAddNewRow = false;
-            gridSortField2.FieldAlias = "Tanggal";
-            gridSortField2.FieldName = "Tanggal";
-            gridSortField2.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            this.gridViewTemplate1.SortExpressions.Add(gridSortField2);
+            gridSortField1.FieldAlias = "Tanggal";
+            gridSortField1.FieldName = "Tanggal";
+            gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            this.gridViewTemplate1.SortExpressions.Add(gridSortField1);
             // 
             // radLabelElementWelcome
             // 

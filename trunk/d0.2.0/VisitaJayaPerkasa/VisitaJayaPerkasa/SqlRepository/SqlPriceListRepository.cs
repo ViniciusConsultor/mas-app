@@ -10,9 +10,17 @@ namespace VisitaJayaPerkasa.SqlRepository
 {
     public class SqlPriceListRepository
     {
-        public List<Category> GetTypeOfSupplier()
+
+        //isAtkTypeOfSupplier : 0 is false     AND      1 is true
+        public List<Category> GetTypeOfSupplier(byte isAtkTypeOfSupplier)
         {
             List<Category> listCategory = null;
+            string criteria;
+
+            if (isAtkTypeOfSupplier == 0)
+                criteria = " AND category_name not like '%General%' ";
+            else
+                criteria = " AND category_name like '%General%' ";
 
             try
             {
@@ -22,7 +30,7 @@ namespace VisitaJayaPerkasa.SqlRepository
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT DISTINCT c.* FROM [Category] c, [SUPPLIER] s WHERE (c.deleted = '0' OR c.deleted is null) AND " +
-                        "(s.deleted = '0' OR s.deleted is null) AND c.category_id = s.category_id " +
+                        "(s.deleted = '0' OR s.deleted is null) AND c.category_id = s.category_id" + criteria + 
                         "ORDER BY category_name ASC"
                         , con))
                     {
@@ -49,6 +57,44 @@ namespace VisitaJayaPerkasa.SqlRepository
             }
 
             return listCategory;
+        }
+
+        public bool DeletePrice(Guid ID) {
+            int n = 0;
+            SqlConnection con;
+            SqlTransaction sqlTransaction = null;
+
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    sqlTransaction = con.BeginTransaction();
+                    using (SqlCommand command = new SqlCommand(
+                        "delete [Price] WHERE price_id = '" + ID + "'", con))
+                    {
+                        command.Transaction = sqlTransaction;
+                        n = command.ExecuteNonQuery();
+                    }
+
+                    if (n > 0)
+                        sqlTransaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
+
+                    Logging.Error("SqlPriceListRepository.cs - DeletePrice() " + e.Message);
+                    n = 0;
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
+            }
+
+            return n > 0;
         }
 
         public List<Supplier> GetSupplier(Guid ID)
@@ -90,7 +136,6 @@ namespace VisitaJayaPerkasa.SqlRepository
             return listSupplier;
         }
 
-
         public List<PriceList> GetPriceListByCriteria(DateTime from, DateTime to, string supplierID, string destinationID, 
             string customerID, string recipientID, string stuffingID, byte isSupplier, string typeContID) {
             List<PriceList> listPriceList = null;
@@ -109,7 +154,7 @@ namespace VisitaJayaPerkasa.SqlRepository
 
                     //issupplier == 1 so, is search from supplier
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT * FROM [Price] WHERE " +
+                        "SELECT p.*, (SELECT TOP 1 supplier_name FROM supplier s WHERE s.supplier_id = p.supplier_id) as supplierName FROM [Price] p WHERE " +
                         "((cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
 	                    "AND cast(dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date)) " +
                         "OR " +
@@ -128,7 +173,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                             PriceList objPriceList = new PriceList();
                             objPriceList.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
                             objPriceList.DateFrom = reader.GetDateTime(1);
-                            objPriceList.DateTo = reader.GetDateTime(2);
+                            objPriceList.DateTo = Utility.Utility.IsDBNull(reader.GetValue(2)) ? Utility.Utility.DefaultDateTime() : reader.GetDateTime(2);
                             objPriceList.SupplierID = Utility.Utility.ConvertToUUID(reader.GetValue(3).ToString());
                             objPriceList.Destination = Utility.Utility.ConvertToUUID(reader.GetValue(4).ToString());
                             objPriceList.TypeID = Utility.Utility.ConvertToUUID(reader.GetValue(5).ToString());
@@ -140,6 +185,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                             objPriceList.Recipient = Utility.Utility.ConvertToUUID(reader.GetValue(11).ToString());
                             objPriceList.PriceCourier = Utility.Utility.IsDBNull(reader.GetValue(12)) ? 0 : reader.GetDecimal(12);
                             objPriceList.Item = Utility.Utility.IsDBNull(reader.GetValue(13)) ? null : reader.GetString(13);
+                            objPriceList.SupplierName = Utility.Utility.IsDBNull(reader.GetValue(14)) ? null : reader.GetString(14);
 
                             if (listPriceList == null)
                                 listPriceList = new List<PriceList>();
@@ -246,26 +292,7 @@ namespace VisitaJayaPerkasa.SqlRepository
         }
 
 
-
-
-        /** this function will be pending because, it used on transaction 
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         */
+        
         public decimal SearchPriceList(DateTime date, string customerID, string destinationID,
             string typeContID, string conditionID)
         {
@@ -301,6 +328,214 @@ namespace VisitaJayaPerkasa.SqlRepository
             return result;
         }
 
+
+        /* Search Price list for Check exist or not by criteria*/
+        public Guid GetPriceCustomerByShippingLines(DateTime from, DateTime to, string typeContID, string conditionID)
+        {
+            Guid ID = Guid.Empty;
+           
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 price_id FROM [Price] " +
+                        "WHERE ((cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
+                        "AND cast(dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date)) " +
+                        "OR " +
+                        "(cast(dateFrom as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
+                        "AND cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(to) + "' as date))) " + 
+                        "AND type_cont_id = '" + typeContID + "' " + 
+                        "AND condition_id = '" + conditionID + "'"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlPriceListRepository.cs - GetPriceCustomerByShippingLines() " + e.Message);
+            }
+
+            return ID;
+        }
+
+
+
+        public Guid GetPriceCustomerByDAgentANDTrucking(DateTime from, DateTime to, string typeContID)
+        {
+            Guid ID = Guid.Empty;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 price_id FROM [Price] " +
+                        "WHERE ((cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
+                        "AND cast(dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date)) " +
+                        "OR " +
+                        "(cast(dateFrom as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
+                        "AND cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(to) + "' as date))) " + 
+                        "AND type_cont_id = '" + typeContID + "'"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlPriceListRepository.cs - GetPriceCustomerByDAgentANDTrucking() " + e.Message);
+            }
+
+            return ID;
+        }
+
+
+        public bool EditPriceATK(SqlParameter[] sqlParamEdit) {
+            int n = 0;
+            SqlConnection con;
+            SqlTransaction sqlTransaction = null;
+
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    sqlTransaction = con.BeginTransaction();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "Update [Price] set supplier_id = " + sqlParamEdit[0].ParameterName + 
+                        ", dateFrom = " + sqlParamEdit[1].ParameterName + 
+                        ", item = " + sqlParamEdit[2].ParameterName + 
+                        ", price_supplier = " + sqlParamEdit[3].ParameterName +
+                        " WHERE price_id = " + sqlParamEdit[4].ParameterName, con))
+                    {
+                        command.Transaction = sqlTransaction;
+                        for (int i = 0; i < sqlParamEdit.Length; i++)
+                            command.Parameters.Add(sqlParamEdit[i]);
+
+                        n = command.ExecuteNonQuery();
+                    }
+
+                    if (n > 0)
+                        sqlTransaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
+
+                    Logging.Error("SqlPriceListRepository.cs - EditPriceATK() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
+            }
+
+            return n > 0;
+        }
+
+
+        public bool GetExistsDatePriceATK(SqlParameter[] sqlParam, bool isCreate)
+        {
+            string criteria = "";
+
+            bool exist = false;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+                    if (isCreate)
+                        criteria = "";
+                    else
+                        criteria = " AND price_id != '" + sqlParam[3].Value + "' ";
+
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 price_id FROM [Price] " +
+                        "WHERE cast(dateFrom as date) = cast(" + sqlParam[0].ParameterName + " as date)" +  
+                        " AND item = " + sqlParam[1].ParameterName + 
+                        " AND supplier_id = " + sqlParam[2].ParameterName +
+                        criteria
+                        , con))
+                    {
+                        command.Parameters.Add(sqlParam[0]);
+                        command.Parameters.Add(sqlParam[1]);
+                        command.Parameters.Add(sqlParam[2]);
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            exist = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlPriceListRepository.cs - GetExistsDatePriceATK() " + e.Message);
+            }
+
+            return exist;
+        }
+
+
+        public Guid GetPriceMenuCustomer(DateTime from, DateTime to, string conditionID)
+        {
+            Guid ID = Guid.Empty;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 price_id FROM [Price] " +
+                        "WHERE ((cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
+                        "AND cast(dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date)) " +
+                        "OR " +
+                        "(cast(dateFrom as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
+                        "AND cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(to) + "' as date))) " +
+                        "AND condition_id = '" + conditionID + "'"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlPriceListRepository.cs - GetPriceMenuCustomer() " + e.Message);
+            }
+
+            return ID;
+        }
+
+
+        /*Finish search */
+
+
+        /*
         public int FindPriceByDateSupplierCustomer(DateTime date, string supplierID, string customerID)
         {
             int result = 0;
@@ -468,126 +703,6 @@ namespace VisitaJayaPerkasa.SqlRepository
             return result;
         }
 
-
-
-
-
-
-        /* Search Price list for Check exist or not by criteria*/
-        public Guid GetPriceCustomerByShippingLines(DateTime from, DateTime to, string typeContID, string conditionID)
-        {
-            Guid ID = Guid.Empty;
-           
-            try
-            {
-                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
-                {
-                    con.Open();
-
-                    using (SqlCommand command = new SqlCommand(
-                        "SELECT TOP 1 price_id FROM [Price] " +
-                        "WHERE ((cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
-                        "AND cast(dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date)) " +
-                        "OR " +
-                        "(cast(dateFrom as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
-                        "AND cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(to) + "' as date))) " + 
-                        "AND type_cont_id = '" + typeContID + "' " + 
-                        "AND condition_id = '" + conditionID + "'"
-                        , con))
-                    {
-                        SqlDataReader reader = command.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Logging.Error("SqlPriceListRepository.cs - GetPriceCustomerByShippingLines() " + e.Message);
-            }
-
-            return ID;
-        }
-
-
-
-        public Guid GetPriceCustomerByDAgentANDTrucking(DateTime from, DateTime to, string typeContID)
-        {
-            Guid ID = Guid.Empty;
-            try
-            {
-                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
-                {
-                    con.Open();
-
-                    using (SqlCommand command = new SqlCommand(
-                        "SELECT TOP 1 price_id FROM [Price] " +
-                        "WHERE ((cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
-                        "AND cast(dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date)) " +
-                        "OR " +
-                        "(cast(dateFrom as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
-                        "AND cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(to) + "' as date))) " + 
-                        "AND type_cont_id = '" + typeContID + "'"
-                        , con))
-                    {
-                        SqlDataReader reader = command.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Logging.Error("SqlPriceListRepository.cs - GetPriceCustomerByDAgentANDTrucking() " + e.Message);
-            }
-
-            return ID;
-        }
-
-
-
-
-        public Guid GetPriceMenuCustomer(DateTime from, DateTime to, string conditionID)
-        {
-            Guid ID = Guid.Empty;
-
-            try
-            {
-                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
-                {
-                    con.Open();
-
-                    using (SqlCommand command = new SqlCommand(
-                        "SELECT TOP 1 price_id FROM [Price] " +
-                        "WHERE ((cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
-                        "AND cast(dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date)) " +
-                        "OR " +
-                        "(cast(dateFrom as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
-                        "AND cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(to) + "' as date))) " +
-                        "AND condition_id = '" + conditionID + "'"
-                        , con))
-                    {
-                        SqlDataReader reader = command.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Logging.Error("SqlPriceListRepository.cs - GetPriceMenuCustomer() " + e.Message);
-            }
-
-            return ID;
-        }
-
-
-        /*Finish search */
+        */
     }
 }

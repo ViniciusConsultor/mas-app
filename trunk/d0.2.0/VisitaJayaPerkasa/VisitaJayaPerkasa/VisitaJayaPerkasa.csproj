@@ -65,11 +65,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constant\VisitaJayaPerkasaApplication.cs" />
-    <Compile Include="Control\ATK\ATKView.cs">
+    <Compile Include="Control\ATK\AtkEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Control\ATK\ATKView.Designer.cs">
-      <DependentUpon>ATKView.cs</DependentUpon>
+    <Compile Include="Control\ATK\AtkEdit.Designer.cs">
+      <DependentUpon>AtkEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ATK\AtkList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\ATK\AtkList.Designer.cs">
+      <DependentUpon>AtkList.cs</DependentUpon>
     </Compile>
     <Compile Include="Control\City\CityEdit.cs">
       <SubType>UserControl</SubType>
@@ -396,6 +402,12 @@
     <Compile Include="SqlRepository\SqlWareHouseRepository.cs" />
     <Compile Include="Utility\Log\Logging.cs" />
     <Compile Include="Utility\Utility.cs" />
+    <EmbeddedResource Include="Control\ATK\AtkEdit.resx">
+      <DependentUpon>AtkEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\ATK\AtkList.resx">
+      <DependentUpon>AtkList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\City\CityEdit.resx">
       <DependentUpon>CityEdit.cs</DependentUpon>
     </EmbeddedResource>
