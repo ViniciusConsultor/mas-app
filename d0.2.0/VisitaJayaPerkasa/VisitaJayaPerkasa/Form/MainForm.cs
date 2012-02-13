@@ -234,7 +234,7 @@ namespace VisitaJayaPerkasa.Form
         private void radImageButtonATK_Click(object sender, EventArgs e)
         {
             SetEnableDisableGroup(RBGATK);
-            ShowUserControl(new VisitaJayaPerkasa.Control.ATK.ATKView());
+            ShowUserControl(new VisitaJayaPerkasa.Control.ATK.AtkList());
         }
 
 

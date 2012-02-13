@@ -53,7 +53,7 @@ namespace VisitaJayaPerkasa.Control.PriceList
             listPriceDeleteExistsData = new List<Guid>();
             listIndexPriceDeleteExistsData = new List<int>();
 
-            listTypeOfSupplier = sqlPriceListRepository.GetTypeOfSupplier();
+            listTypeOfSupplier = sqlPriceListRepository.GetTypeOfSupplier(0);
             cboTypeSupplier.SelectedValueChanged -= new EventHandler(cboTypeSupplier_SelectedValueChanged);
             cboTypeSupplier.DataSource = listTypeOfSupplier;
             cboTypeSupplier.DisplayMember = "CategoryName";
@@ -1176,7 +1176,6 @@ Arrange of field grid
             }
             return result;
         }
-         */
          
 
         private bool validateTrucking(VisitaJayaPerkasa.Entities.PriceList objPriceList, List<String> listID, List<VisitaJayaPerkasa.Entities.PriceList> priceList)
@@ -1233,6 +1232,7 @@ Arrange of field grid
             }
             return result;
         }
+         */
 
         private void cbDislayAll_ToggleStateChanged(object sender, StateChangedEventArgs args)
         {

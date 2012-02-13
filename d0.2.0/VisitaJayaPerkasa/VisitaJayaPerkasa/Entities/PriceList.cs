@@ -21,5 +21,8 @@ namespace VisitaJayaPerkasa.Entities
         public decimal PriceCourier { get; set; }
         public Guid CustomerID { get; set; }
         public string Item { get; set; }
+
+        //Model
+        public string SupplierName { get; set; }
     }
 }
