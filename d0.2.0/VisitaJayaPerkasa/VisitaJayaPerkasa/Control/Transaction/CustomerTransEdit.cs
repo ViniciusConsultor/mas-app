@@ -51,7 +51,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
             List<VisitaJayaPerkasa.Entities.TypeCont> listType = sqlTypeContRepository.GetTypeCont();
             List<VisitaJayaPerkasa.Entities.City> listOrigin = sqlCityRepository.GetCity();
             List<VisitaJayaPerkasa.Entities.City> listDestination = sqlCityRepository.GetCity();
-            //List<VisitaJayaPerkasa.Entities.PelayaranDetail> listPelayaran = sqlPelayaranRepository.GetVessels();
+            List<VisitaJayaPerkasa.Entities.PelayaranDetail> listPelayaran = sqlPelayaranRepository.GetVessels();
             List<VisitaJayaPerkasa.Entities.Condition> listCondition = sqlConditionRepository.GetConditions();
             List<VisitaJayaPerkasa.Entities.WareHouse> listWarehouse = sqlWarehouseRepository.GetWareHouse();
             List<VisitaJayaPerkasa.Entities.Recipient> listRecipient = sqlRecipientRepository.GetRecipient();
@@ -81,13 +81,13 @@ namespace VisitaJayaPerkasa.Control.Transaction
             cboDestination.Text = "-- Choose --";
 
             days = from p in listDestination 
-                   select p.Days; 
+                   select p.Days;
 
-            //cboPelayaranDetail.DataSource = listPelayaran;
-            //cboPelayaranDetail.DisplayMember = "vesselname";
-            //cboPelayaranDetail.ValueMember = "pelayarandetailid";
-            //cboPelayaranDetail.SelectedIndex = -1;
-            //cboPelayaranDetail.Text = "-- choose --";
+            cboPelayaranDetail.DataSource = listPelayaran;
+            cboPelayaranDetail.DisplayMember = "vesselname";
+            cboPelayaranDetail.ValueMember = "pelayarandetailid";
+            cboPelayaranDetail.SelectedIndex = -1;
+            cboPelayaranDetail.Text = "-- choose --";
 
             cboCondition.DataSource = listCondition;
             cboCondition.DisplayMember = "ConditionName";
@@ -133,7 +133,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
             sqlCustomerRepository = null;
             sqlTypeContRepository = null;
             sqlCityRepository = null;
-            //sqlPelayaranRepository = null;
+            sqlPelayaranRepository = null;
             sqlConditionRepository = null;
             sqlRecipientRepository = null;
         }
@@ -639,6 +639,77 @@ namespace VisitaJayaPerkasa.Control.Transaction
         private void dtpTD_ValueChanged(object sender, EventArgs e)
         {
             dtpETA.Value = (cboDestination.Text == "-- Choose --") ? DateTime.Now : dtpTD.Value.AddDays(days.ElementAt(selectedIdx));
+        }
+
+        private void CustomerTransDetailGridView_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            GridViewRowInfo gridInfo = CustomerTransDetailGridView.SelectedRows.First();
+            string id = gridInfo.Cells[0].Value.ToString();
+            VisitaJayaPerkasa.Entities.CustomerTransDetail customerTrans = listCustomerTransDetail.Where(c => c.CustomerTransID.ToString().Equals(id)).FirstOrDefault();
+
+            cboType.SelectedValue = customerTrans.TypeID.ToString();
+            cboType.Text = customerTrans.TypeName;
+
+            cboPelayaranDetail.SelectedValue = customerTrans.PelayaranDetailID.ToString();
+            cboPelayaranDetail.Text = customerTrans.VesselName;
+
+            cboOrigin.SelectedValue = customerTrans.Origin.ToString();
+            cboOrigin.Text = customerTrans.OriginName;
+
+            cboDestination.SelectedValue = customerTrans.Destination.ToString();
+            cboDestination.Text = customerTrans.DestinationName;
+            
+            cboCondition.SelectedValue = customerTrans.ConditionID.ToString();
+            cboCondition.Text = customerTrans.ConditionName;
+
+            etSeal.Text = customerTrans.NoSeal;
+            etTruckNo.Text = customerTrans.TruckNo;
+            etVoy.Text = customerTrans.Voyage;
+
+            dtpStuffingDate.Value = customerTrans.StuffingDate;
+
+            cboStuffingPlace.SelectedValue = customerTrans.StuffingPlace.ToString();
+
+            dtpETD.Value = customerTrans.ETD;
+            dtpTD.Value = customerTrans.TD;
+            dtpETA.Value = customerTrans.ETA;
+            dtpTA.Value = customerTrans.TA;
+            dtpUnloading.Value = customerTrans.Unloading;
+            etPrice.Text = customerTrans.Price.ToString();
+
+            cboRecipient.SelectedValue = customerTrans.RecipientID.ToString();
+            cboRecipient.Text = customerTrans.RecipientName;
+            etJenisBarang.Text = customerTrans.JenisBarang;
+            etNoContainer.Text = customerTrans.NoContainer;
+            etQty.Text = customerTrans.Quantity.ToString();
+            etBA.Text = customerTrans.NoBA;
+            dtpTerimaToko.Value = customerTrans.TerimaToko.Value;
+            etKeterangan.Text = customerTrans.Keterangan;
+            etSJ1.Text = customerTrans.Sj1;
+            etSJ2.Text = customerTrans.Sj2;
+            etSJ3.Text = customerTrans.Sj3;
+            etSJ4.Text = customerTrans.Sj4;
+            etSJ5.Text = customerTrans.Sj5;
+            etSJ6.Text = customerTrans.Sj6;
+            etSJ7.Text = customerTrans.Sj7;
+            etSJ8.Text = customerTrans.Sj8;
+            etSJ9.Text = customerTrans.Sj9;
+            etSJ10.Text = customerTrans.Sj10;
+            etSJ11.Text = customerTrans.Sj11;
+            etSJ12.Text = customerTrans.Sj12;
+            etSJ13.Text = customerTrans.Sj13;
+            etSJ14.Text = customerTrans.Sj14;
+            etSJ15.Text = customerTrans.Sj15;
+            etSJ16.Text = customerTrans.Sj16;
+            etSJ17.Text = customerTrans.Sj17;
+            etSJ18.Text = customerTrans.Sj18;
+            etSJ19.Text = customerTrans.Sj19;
+            etSJ20.Text = customerTrans.Sj20;
+            etSJ21.Text = customerTrans.Sj21;
+            etSJ22.Text = customerTrans.Sj22;
+            etSJ23.Text = customerTrans.Sj23;
+            etSJ24.Text = customerTrans.Sj24;
+            etSJ25.Text = customerTrans.Sj25;
         }
     }
 }

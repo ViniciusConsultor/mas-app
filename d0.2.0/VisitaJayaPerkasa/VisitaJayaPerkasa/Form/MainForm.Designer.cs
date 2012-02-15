@@ -408,7 +408,6 @@
             this.ribbonTab4.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ribbonTab4.ContentPanel.Location = new System.Drawing.Point(0, 0);
             this.ribbonTab4.ContentPanel.Size = new System.Drawing.Size(200, 100);
-            this.ribbonTab4.IsSelected = true;
             this.ribbonTab4.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.RBGPriceList,
             this.RBGSchedule,
@@ -527,6 +526,7 @@
             this.ribbonTab3.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ribbonTab3.ContentPanel.Location = new System.Drawing.Point(0, 0);
             this.ribbonTab3.ContentPanel.Size = new System.Drawing.Size(200, 100);
+            this.ribbonTab3.IsSelected = true;
             this.ribbonTab3.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.RBGContainer,
             this.RBGDelivery,
@@ -578,6 +578,7 @@
             this.radImageButtonInvoice.ImageKey = "invoice.jpg";
             this.radImageButtonInvoice.Name = "radImageButtonInvoice";
             this.radImageButtonInvoice.Text = "";
+            this.radImageButtonInvoice.Click += new System.EventHandler(this.radImageButtonInvoice_Click);
             // 
             // radButtonElement1
             // 
