@@ -348,11 +348,18 @@
     <Compile Include="Form\Report\Delivery\RptDeliveryForm.Designer.cs">
       <DependentUpon>RptDeliveryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Report\Invoice\RptInvoiceForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Form\Report\Invoice\RptInvoice.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptInvoice.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Form\Report\Invoice\RptInvoiceForm.Designer.cs">
-      <DependentUpon>RptInvoiceForm.cs</DependentUpon>
+    <Compile Include="Form\Report\Invoice\RptInvoiceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Report\Invoice\RptInvoiceControl.Designer.cs">
+      <DependentUpon>RptInvoiceControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\Report\RptCustomerTrans.cs">
       <AutoGen>True</AutoGen>
@@ -373,6 +380,12 @@
     <Compile Include="Form\SearchCustomer.Designer.cs">
       <DependentUpon>SearchCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\SearchCustomerTrans.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\SearchCustomerTrans.Designer.cs">
+      <DependentUpon>SearchCustomerTrans.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShippingMainDataSet.cs">
@@ -390,6 +403,7 @@
     <Compile Include="SqlRepository\SqlConditionRepository.cs" />
     <Compile Include="SqlRepository\SqlCustomerRepository.cs" />
     <Compile Include="SqlRepository\SqlCustomerTransRepository.cs" />
+    <Compile Include="SqlRepository\SqlInvoiceRepository.cs" />
     <Compile Include="SqlRepository\SqlPelayaranRepository.cs" />
     <Compile Include="SqlRepository\SqlPriceListRepository.cs" />
     <Compile Include="SqlRepository\SqlRecipientRepository.cs" />
@@ -536,9 +550,13 @@
       <DependentUpon>RptDeliveryForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Report\Invoice\RptInvoiceForm.resx">
-      <DependentUpon>RptInvoiceForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Form\Report\Invoice\RptInvoice.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptInvoice.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\Invoice\RptInvoiceControl.resx">
+      <DependentUpon>RptInvoiceControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\RptCustomerTrans.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -551,6 +569,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\SearchCustomer.resx">
       <DependentUpon>SearchCustomer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\SearchCustomerTrans.resx">
+      <DependentUpon>SearchCustomerTrans.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
