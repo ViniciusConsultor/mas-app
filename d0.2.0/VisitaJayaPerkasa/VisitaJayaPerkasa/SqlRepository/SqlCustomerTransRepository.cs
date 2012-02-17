@@ -514,41 +514,31 @@ namespace VisitaJayaPerkasa.SqlRepository
             return n > 0;
         }
 
-        //public DataTable ReportInvoice(Guid ID)
-        //{
-        //    DataTable dt = null;
-        //    SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString);
-        //    try
-        //    {
-        //        con.Open();
-        //        string strQry = "Select tc.type_name, pd.vessel_name, co.city_name as origin, cd.city_name as destination, " +
-        //                "cnd.condition_name as condition, ctd.no_seal, ctd.truck_number, ctd.voy, " +
-        //                "ctd.stuffing_date, ctd.stuffing_place, ctd.etd, ctd.td, ctd.eta, ctd.ta, ctd.unloading, ctd.price, " +
-        //                 "r.recipient_name, ctd.jenis_barang, ctd.no_container, ctd.quantity " +
-        //                "ctd.sj1, ctd.sj2, ctd.sj3, ctd.sj4, ctd.sj5, ctd.sj6, ctd.sj7, ctd.sj8, ctd.sj9, ctd.sj10, " +
-        //                "ctd.sj11, ctd.sj12, ctd.sj13, ctd.sj14, ctd.sj15, ctd.sj16, ctd.sj17, ctd.sj18, ctd.sj19, ctd.sj20, " +
-        //                "ctd.sj21, ctd.sj22, ctd.sj23, ctd.sj24, ctd.sj25, ctd.terima_toko, ctd.keterangan, ctd.no_ba " +
-        //                "FROM [Customer_Trans_Detail] ctd " +
-        //                "INNER JOIN [Type_Cont] tc ON tc.type_id = ctd.type_id " +
-        //                "INNER JOIN [Pelayaran_Detail] pd ON pd.pelayaran_detail_id = ctd.pelayaran_detail_id " +
-        //                "INNER JOIN [Pelayaran] p ON p.pelayaran_id = pd.pelayaran_id " +
-        //                "INNER JOIN [City] co ON co.city_id = ctd.origin " +
-        //                "INNER JOIN [City] cd ON cd.city_id = ctd.destination " +
-        //                "INNER JOIN [Condition] cnd ON cnd.condition_id = ctd.condition_id " +
-        //                "INNER JOIN [RECIPIENT] r ON r.recipient_id = ctd.recipient_id " +
-        //                "Where (ctd.deleted is null OR ctd.deleted = '0') " +
-        //                "AND ctd.customer_trans_id = '" + ID + "'";
-        //        SqlDataAdapter da = new SqlDataAdapter(strQry, VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString);
-        //        ShippingMainDataSet ds = new ShippingMainDataSet();
-        //        da.Fill(ds, "REPORT_CUST");
-        //        dt = ds.Tables[3];
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Logging.Error("SqlCustomerTransRepository.cs - ReportCustomerTransDetail() " + e.Message);
-        //    }
-        //    con.Close();
-        //    return dt;
-        //}
+        public DataTable ReportInvoice(Guid ID)
+        {
+            DataTable dt = null;
+            SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString);
+            try
+            {
+                con.Open();
+                string strQry = "Select ctd.no_ba, ctd.no_container, tc.type_name, pd.vessel_name, ctd.ta, ctd.terima_toko, cd.city_name, ctd.price " +
+                        "FROM [Customer_Trans_Detail] ctd " +
+                        "INNER JOIN [Type_Cont] tc ON tc.type_id = ctd.type_id " +
+                        "INNER JOIN [Pelayaran_Detail] pd ON pd.pelayaran_detail_id = ctd.pelayaran_detail_id " +
+                        "INNER JOIN [Pelayaran] p ON p.pelayaran_id = pd.pelayaran_id " +
+                        "INNER JOIN [City] cd ON cd.city_id = ctd.destination " +
+                        "Where ctd.customer_trans_id = '" + ID + "'";
+                SqlDataAdapter da = new SqlDataAdapter(strQry, VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString);
+                ShippingMainDataSet ds = new ShippingMainDataSet();
+                da.Fill(ds, "INVOICE_NONPPN");
+                dt = ds.Tables[5];
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlCustomerTransRepository.cs - ReportCustomerTransDetail() " + e.Message);
+            }
+            con.Close();
+            return dt;
+        }
     }
 }
