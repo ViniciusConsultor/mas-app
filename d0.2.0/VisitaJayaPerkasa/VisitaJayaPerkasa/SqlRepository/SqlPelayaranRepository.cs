@@ -97,7 +97,8 @@ namespace VisitaJayaPerkasa.SqlRepository
             return listVessel;
         }
 
-        public List<PelayaranDetail> GetVessels(string destination)
+
+        public List<PelayaranDetail> GetVessels(string destination, DateTime date)
         {
             List<PelayaranDetail> listVessel = null;
 
@@ -111,10 +112,12 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "SELECT DISTINCT pd.vessel_code, pd.vessel_name, pd.status_pinjaman, sup.supplier_name, pd.pelayaran_detail_id " +
                         "FROM [Pelayaran_Detail] pd " +
                         "INNER JOIN [PELAYARAN] p ON p.pelayaran_id = pd.pelayaran_id " +
-                        "INNER JOIN [SCHEDULE] s ON s.pelayaran_id = pd.pelayaran_id " +
+                        "INNER JOIN [SCHEDULE] s ON s.pelayaran_detail_id = pd.pelayaran_detail_id " +
                         "INNER JOIN [SUPPLIER] sup ON p.supplier_id = sup.supplier_id " +
                         "WHERE (pd.deleted is null OR pd.deleted = '0') AND (sup.deleted is null OR sup.deleted = '0') " +
-                        "AND (s.deleted is null OR s.deleteed = '0') AND (p.deleted is null OR p.deleted = '0') " +
+                        "AND cast(s.tgl_closing as date) >= cast('" + Utility.Utility.ConvertDateToString(date) + "' as date) " +
+                        "AND (s.deleted is null OR s.deleted = '0') AND (p.deleted is null OR p.deleted = '0') " +
+                        "AND s.ta is null " + 
                         "AND s.tujuan = '" + Utility.Utility.ConvertToUUID(destination) + "' " + 
                         "AND pd.vessel_code = s.vessel_code ", con))
                     {

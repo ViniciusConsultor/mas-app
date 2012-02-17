@@ -305,9 +305,12 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT price_customer FROM [Price] WHERE date <= '" + date + "' " +
+                        "SELECT TOP 1 price_customer FROM [Price] " + 
+                        "WHERE (cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(date) + "' as date) " +
+                        "AND cast(dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(date) + "' as date)) " +
                         "AND customer_id like '%" + customerID + "%' AND destination like '%" + destinationID + "%' " +
                         "AND type_cont_id like '%" + typeContID + "%' AND condition_id like '%" + conditionID + "%' " +
+                        "AND condition_id like '%" + conditionID + "%' " + 
                         "ORDER BY dateFrom DESC "
                         , con))
                     {
@@ -329,8 +332,51 @@ namespace VisitaJayaPerkasa.SqlRepository
         }
 
 
+        public decimal SearchPriceListGeneral(DateTime date, string destinationID,
+            string typeContID, string conditionID)
+        {
+            decimal result = 0;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 price_customer FROM [Price] p " +
+                        "WHERE (cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(date) + "' as date) " +
+                        "AND cast(dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(date) + "' as date)) " +
+                        "AND destination like '%" + destinationID + "%' " +
+                        "AND condition_id like '%" + conditionID + "%' " + 
+                        "AND type_cont_id like '%" + typeContID + "%' AND condition_id like '%" + conditionID + "%' AND exists( " +
+                        "SELECT 1 FROM [Customer] c WHERE c.customer_name like 'General Customer' AND c.customer_id = p.customer_id " +
+                        ") " + 
+                        "ORDER BY dateFrom DESC "
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            result = reader.GetDecimal(0);
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlPriceListRepository.cs - SearchPriceList() " + e.Message);
+            }
+
+            return result;
+        }
+
+
+
         /* Search Price list for Check exist or not by criteria*/
-        public Guid GetPriceCustomerByShippingLines(DateTime from, DateTime to, string typeContID, string conditionID)
+        public Guid GetPriceCustomerByShippingLines(DateTime from, DateTime to, string typeContID, string conditionID, 
+            string supplierID, string destinationID, string customerID)
         {
             Guid ID = Guid.Empty;
            
@@ -348,7 +394,11 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "(cast(dateFrom as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
                         "AND cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(to) + "' as date))) " + 
                         "AND type_cont_id = '" + typeContID + "' " + 
-                        "AND condition_id = '" + conditionID + "'"
+                        "AND condition_id = '" + conditionID + "' " + 
+                        "AND customer_id = '" + customerID + "' " + 
+                        "AND destination = '" + destinationID + "' " + 
+                        "AND supplier_id = '" + supplierID + "' " + 
+                        "AND "
                         , con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
@@ -369,7 +419,8 @@ namespace VisitaJayaPerkasa.SqlRepository
 
 
 
-        public Guid GetPriceCustomerByDAgentANDTrucking(DateTime from, DateTime to, string typeContID)
+        public Guid GetPriceCustomerByTrucking(DateTime from, DateTime to, string typeContID, string supplierID, 
+            string customerID, string stuffingID)
         {
             Guid ID = Guid.Empty;
             try
@@ -385,7 +436,10 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "OR " +
                         "(cast(dateFrom as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
                         "AND cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(to) + "' as date))) " + 
-                        "AND type_cont_id = '" + typeContID + "'"
+                        "AND type_cont_id = '" + typeContID + "' " + 
+                        "AND supplier_id = '" + supplierID + "' " + 
+                        "AND customer_id = '" + customerID + "' " + 
+                        "AND stuffing_id = '" + stuffingID + "'"
                         , con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
@@ -403,6 +457,49 @@ namespace VisitaJayaPerkasa.SqlRepository
 
             return ID;
         }
+
+
+
+        public Guid GetPriceCustomerByDooringAgent(DateTime from, DateTime to, string typeContID, string supplierID,
+            string destinationID, string recipientID)
+        {
+            Guid ID = Guid.Empty;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 price_id FROM [Price] " +
+                        "WHERE ((cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
+                        "AND cast(dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date)) " +
+                        "OR " +
+                        "(cast(dateFrom as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
+                        "AND cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(to) + "' as date))) " +
+                        "AND type_cont_id = '" + typeContID + "' " +
+                        "AND supplier_id = '" + supplierID + "' " +
+                        "AND destination = '" + destinationID + "' " +
+                        "AND recipient_id = '" + recipientID + "'"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlPriceListRepository.cs - GetPriceCustomerByDAgentANDTrucking() " + e.Message);
+            }
+
+            return ID;
+        }
+
+
 
 
         public bool EditPriceATK(SqlParameter[] sqlParamEdit) {
@@ -495,7 +592,7 @@ namespace VisitaJayaPerkasa.SqlRepository
         }
 
 
-        public Guid GetPriceMenuCustomer(DateTime from, DateTime to, string conditionID)
+        public Guid GetPriceMenuCustomer(DateTime from, DateTime to, string conditionID, string typeID, string destinationID, string customerID)
         {
             Guid ID = Guid.Empty;
 
@@ -512,7 +609,10 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "OR " +
                         "(cast(dateFrom as date) >= cast('" + Utility.Utility.ConvertDateToString(from) + "' as date) " +
                         "AND cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(to) + "' as date))) " +
-                        "AND condition_id = '" + conditionID + "'"
+                        "AND condition_id = '" + conditionID + "' " + 
+                        "AND type_cont_id = '" + typeID + "' " + 
+                        "AND destination = '" + destinationID + "' " +
+                        "AND customer_id = '" + customerID + "'"
                         , con))
                     {
                         SqlDataReader reader = command.ExecuteReader();

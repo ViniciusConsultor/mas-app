@@ -130,6 +130,14 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 sqlCustomerTransRepository = null;
             }
 
+
+
+            cboCustomer.SelectedIndexChanged += new EventHandler(cboSelected_SelectedIndexChanged);
+            cboType.SelectedIndexChanged += new EventHandler(cboSelected_SelectedIndexChanged);
+            cboDestination.SelectedIndexChanged += new EventHandler(cboSelected_SelectedIndexChanged);
+            cboCondition.SelectedIndexChanged += new EventHandler(cboSelected_SelectedIndexChanged);
+
+
             sqlCustomerRepository = null;
             sqlTypeContRepository = null;
             sqlCityRepository = null;
@@ -171,29 +179,69 @@ namespace VisitaJayaPerkasa.Control.Transaction
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (cboCustomer.SelectedIndex == -1)
+            {
                 MessageBox.Show(this, "Please select Customer", "Information");
+                return;
+            }
             else if (cboType.SelectedIndex == -1)
+            {
                 MessageBox.Show(this, "Please select Cont Type", "Information");
+                return;
+            }
             else if (cboPelayaranDetail.SelectedIndex == -1)
+            {
                 MessageBox.Show(this, "Please select Vessel", "Information");
+                return;
+            }
             else if (cboOrigin.SelectedIndex == -1)
+            {
                 MessageBox.Show(this, "Please select Origin", "Information");
+                return;
+            }
             else if (cboDestination.SelectedIndex == -1)
+            {
                 MessageBox.Show(this, "Please select Destionation", "Information");
+                return;
+            }
             else if (cboCondition.SelectedIndex == -1)
+            {
                 MessageBox.Show(this, "Please select Condition", "Information");
+                return;
+            }
             else if (cboStuffingPlace.SelectedIndex == -1)
+            {
                 MessageBox.Show(this, "Please select Stuffing Place", "Information");
-            if(etTruckNo.Text.Trim().Equals(""))
+                return;
+            }
+            else if(cboRecipient.SelectedIndex == -1){
+                MessageBox.Show(this, "Please select Recipient", "Information");
+                return;
+            }
+            else if (etTruckNo.Text.Trim().Equals(""))
+            {
                 MessageBox.Show(this, "Please fill truck number", "Information");
+                return;
+            }
             else if (etVoy.Text.Trim().Equals(""))
+            {
                 MessageBox.Show(this, "Please fill Voyage", "Information");
+                return;
+            }
             else if (etSeal.Text.Trim().Equals(""))
+            {
                 MessageBox.Show(this, "Please fill no seal", "Information");
+                return;
+            }
             else if (etPrice.Text.Trim().Equals(""))
+            {
                 MessageBox.Show(this, "Please fill set price", "Information");
-            else if(dtpTD.Value <= dtpETD.Value)
+                return;
+            }
+            else if (dtpTD.Value <= dtpETD.Value)
+            {
                 MessageBox.Show(this, "Please select td greater than etd", "Information");
+                return;
+            }
             else
             {
                 try
@@ -303,6 +351,14 @@ namespace VisitaJayaPerkasa.Control.Transaction
                     etSJ23.Text = "";
                     etSJ24.Text = "";
                     etSJ25.Text = "";
+
+
+                    cboCustomer.SelectedIndexChanged -= new EventHandler(cboSelected_SelectedIndexChanged);
+                    cboType.SelectedIndexChanged -= new EventHandler(cboSelected_SelectedIndexChanged);
+                    cboDestination.SelectedIndexChanged -= new EventHandler(cboSelected_SelectedIndexChanged);
+                    cboCondition.SelectedIndexChanged -= new EventHandler(cboSelected_SelectedIndexChanged);
+
+
                     cboStuffingPlace.SelectedIndex = -1;
                     cboStuffingPlace.Text = "-- Choose --";
                     cboCondition.SelectedIndex = -1;
@@ -318,6 +374,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
                     cboRecipient.SelectedIndex = -1;
                     cboRecipient.Text = "-- Choose --";
 
+
                     dtpStuffingDate.Value = DateTime.Now;
                     dtpETD.Value = DateTime.Now;
                     dtpTD.Value = DateTime.Now;
@@ -325,6 +382,12 @@ namespace VisitaJayaPerkasa.Control.Transaction
                     dtpTA.Value = DateTime.Now;
                     dtpUnloading.Value = DateTime.Now;
                     dtpTerimaToko.Value = DateTime.Now;
+
+
+                    cboCustomer.SelectedIndexChanged += new EventHandler(cboSelected_SelectedIndexChanged);
+                    cboType.SelectedIndexChanged += new EventHandler(cboSelected_SelectedIndexChanged);
+                    cboDestination.SelectedIndexChanged += new EventHandler(cboSelected_SelectedIndexChanged);
+                    cboCondition.SelectedIndexChanged += new EventHandler(cboSelected_SelectedIndexChanged);
                 }
                 catch (NullReferenceException ex)
                 {
@@ -379,7 +442,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 }
                 else { 
 
-                    //10 is number of field below
+                    //51 is number of field below
                     int k = 0;
                     string[] key = new string[listCustomerTransDetail.Count * 51];
                     object[] value = new object[listCustomerTransDetail.Count * 51];
@@ -557,7 +620,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
 
                         if (sqlCustomerTransRepository.CreateCustomerTrans(sqlParameterInsert, sqlParameterMaster)) {
                             MessageBox.Show(this, "Success save data", "Information");
-                            //radButtonElement2.PerformClick();
+                            radButtonElement2.PerformClick();
                             sqlParameterMaster = null;
                         }
                         else
@@ -571,7 +634,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
 
                         if (sqlCustomerTransRepository.EditCustomerTrans(sqlParameterInsert, sqlParameterMaster)) {                    
                             MessageBox.Show(this, "Success edit data", "Information");
-                            //radButtonElement2.PerformClick();
+                            radButtonElement2.PerformClick();
                             ID = TransID;
                             sqlParameterMaster = null;
                         }
@@ -597,39 +660,6 @@ namespace VisitaJayaPerkasa.Control.Transaction
 
         }
 
-        private void CBSelected_Changed(object sender, EventArgs e)
-        {
-            try
-            {
-                RadComboBox cbo = sender as RadComboBox;
-                if (cbo.Tag.ToString() == "666")
-                {
-                    List<VisitaJayaPerkasa.Entities.PelayaranDetail> listPelayaran = sqlPelayaranRepository.GetVessels(cbo.SelectedValue.ToString());
-                    cboPelayaranDetail.DataSource = listPelayaran;
-                    cboPelayaranDetail.DisplayMember = "VesselName";
-                    cboPelayaranDetail.ValueMember = "PelayaranDetailID";
-                    cboPelayaranDetail.SelectedIndex = -1;
-                    cboPelayaranDetail.Text = "-- Choose --";
-
-                    selectedIdx = cbo.SelectedIndex;
-
-                    dtpETA.Value = (dtpTD.Value.ToShortDateString() == DateTime.Today.ToShortDateString()) ? DateTime.Now : dtpTD.Value.AddDays(days.ElementAt(selectedIdx));
-
-                }
-                string custID = cboCustomer.SelectedValue.ToString();
-                string destID = cboDestination.SelectedValue.ToString();
-                string typeID = cboType.SelectedValue.ToString();
-                object cond = cboCondition.SelectedValue;
-                string condID = cboCondition.SelectedValue.ToString();
-                etPrice.Text = sqlPriceListRepository.SearchPriceList(DateTime.Now, custID, destID, typeID, condID).ToString();
-            }
-            catch (NullReferenceException ex)
-            {
-                etPrice.Text = "0";
-                Logging.Error("CustomerTransEdit.cs - CBSelected_Changed '" + ex.Message + "'");
-            }
-        }
-
         private void btnPrint_Click(object sender, EventArgs e)
         {
             Form.Report.RptTransForm rptTrans = new Form.Report.RptTransForm(cboCustomer.Text.ToString(), ID);
@@ -639,6 +669,79 @@ namespace VisitaJayaPerkasa.Control.Transaction
         private void dtpTD_ValueChanged(object sender, EventArgs e)
         {
             dtpETA.Value = (cboDestination.Text == "-- Choose --") ? DateTime.Now : dtpTD.Value.AddDays(days.ElementAt(selectedIdx));
+        }
+
+
+        private void cboSelected_SelectedIndexChanged(object sender, EventArgs e) {
+            try
+            {
+                RadComboBox cbo = sender as RadComboBox;
+
+                if (cbo.Tag != null)
+                {
+                    if (cbo.Tag.ToString() == "111")
+                    {
+                        List<VisitaJayaPerkasa.Entities.PelayaranDetail> listPelayaran = sqlPelayaranRepository.GetVessels(cbo.SelectedValue.ToString(), DateTime.Today);
+                        cboPelayaranDetail.DataSource = listPelayaran;
+                        cboPelayaranDetail.DisplayMember = "VesselName";
+                        cboPelayaranDetail.ValueMember = "PelayaranDetailID";
+                        cboPelayaranDetail.SelectedIndex = -1;
+                        cboPelayaranDetail.Text = "-- Choose --";
+
+
+                        if (listPelayaran == null)
+                        {
+                            MessageBox.Show(this, "No schedule in list", "Information");
+                            return;
+                        }
+
+                        selectedIdx = cbo.SelectedIndex;
+                        dtpETA.Value = (dtpTD.Value.ToShortDateString() == DateTime.Today.ToShortDateString()) ? DateTime.Now : dtpTD.Value.AddDays(days.ElementAt(selectedIdx));
+
+                    }
+                }
+
+                String custID, destID, typeID, condID;
+                custID = destID = typeID = condID = null;
+
+                if (!cboCustomer.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
+                    custID = cboCustomer.SelectedValue.ToString();
+                if (!cboDestination.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
+                    destID = cboDestination.SelectedValue.ToString();
+                if (!cboType.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
+                    typeID = cboType.SelectedValue.ToString();
+                if (!cboCondition.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
+                    condID = cboCondition.SelectedValue.ToString();
+
+                if (custID != null && destID != null && typeID != null && condID != null)
+                {
+                    etPrice.Text = sqlPriceListRepository.SearchPriceList(DateTime.Now, custID, destID, typeID, condID).ToString();
+                    if (etPrice.Text.Equals("0"))
+                        etPrice.Text = sqlPriceListRepository.SearchPriceListGeneral(DateTime.Now, destID, typeID, condID).ToString();
+                    if (etPrice.Text.Equals("0"))
+                        MessageBox.Show(this, "No price for this customer", "Information");
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                etPrice.Text = "0";
+                Logging.Error("CustomerTransEdit.cs - CBSelected_Changed '" + ex.Message + "'");
+            }
+        }
+
+        private void cboCondition_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(0);
+        }
+
+        private void cboStuffingPlace_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(0);
+        }
+
+        private void cboRecipient_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(0);
         }
 
         private void CustomerTransDetailGridView_CellDoubleClick(object sender, GridViewCellEventArgs e)

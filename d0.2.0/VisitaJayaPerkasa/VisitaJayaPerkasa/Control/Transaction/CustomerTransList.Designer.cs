@@ -161,9 +161,10 @@
             gridViewTextBoxColumn3.Width = 128;
             gridViewTextBoxColumn4.FieldAlias = "TransDate";
             gridViewTextBoxColumn4.FieldName = "TransDate";
+            gridViewTextBoxColumn4.FormatString = "{0:MM/dd/yyyy}";
             gridViewTextBoxColumn4.HeaderText = "Date";
             gridViewTextBoxColumn4.UniqueName = "TransDate";
-            gridViewTextBoxColumn4.Width = 100;
+            gridViewTextBoxColumn4.Width = 110;
             this.CustomerTransGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
             this.CustomerTransGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
             this.CustomerTransGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);

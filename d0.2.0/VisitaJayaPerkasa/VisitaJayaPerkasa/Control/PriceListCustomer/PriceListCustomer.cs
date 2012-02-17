@@ -272,7 +272,10 @@ namespace VisitaJayaPerkasa.Control.PriceListCustomer
 
                     exists = sqlPriceListRepository.GetPriceMenuCustomer(tempPriceList.ElementAt(i).DateFrom,
                                                 tempPriceList.ElementAt(i).DateTo,
-                                                tempPriceList.ElementAt(i).ConditionID.ToString());
+                                                tempPriceList.ElementAt(i).ConditionID.ToString(),
+                                                cboType.SelectedValue.ToString(),
+                                                cbDestination.SelectedValue.ToString(),
+                                                searchResultCustomer.ID.ToString());
 
                     if (!exists.ToString().Equals(Guid.Empty.ToString()))
                     {
@@ -439,6 +442,8 @@ namespace VisitaJayaPerkasa.Control.PriceListCustomer
             else
             {
                 btnDisplayData.Enabled = false;
+                cboType.Enabled = false;
+                cbDestination.Enabled = false;
 
                 LoadGridViewData();
                 LoadData();
