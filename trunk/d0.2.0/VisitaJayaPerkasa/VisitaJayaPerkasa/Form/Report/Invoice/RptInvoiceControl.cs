@@ -55,7 +55,7 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice
             if (chkStatus.Checked)
                 strPath = Application.StartupPath + @"\Form\Report\Invoice\RptInvoice.rpt";
             else
-                strPath = "";
+                strPath = Application.StartupPath + @"\Form\Report\Invoice\RptInvoicePPN.rpt";
             // Object for load report.
             ReportDocument rpt = new ReportDocument();
             rpt.Load(strPath);
@@ -63,7 +63,7 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice
             //Set Parameter
             DataTable dt = null;
             sqlCustomerTransRepository = new SqlCustomerTransRepository();
-            dt = sqlCustomerTransRepository.ReportCustomerTransDetail(ID);
+            dt = sqlCustomerTransRepository.ReportInvoice(ID);
 
             ParameterFields pfields = new ParameterFields();
             ParameterField pfield = new ParameterField();

@@ -357,9 +357,17 @@
     </Compile>
     <Compile Include="Form\Report\Invoice\RptInvoiceControl.cs">
       <SubType>UserControl</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Form\Report\Invoice\RptInvoiceControl.Designer.cs">
       <DependentUpon>RptInvoiceControl.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Form\Report\Invoice\RptInvoicePPN.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptInvoicePPN.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form\Report\RptCustomerTrans.cs">
       <AutoGen>True</AutoGen>
@@ -557,6 +565,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\Invoice\RptInvoiceControl.resx">
       <DependentUpon>RptInvoiceControl.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\Invoice\RptInvoicePPN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptInvoicePPN.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\RptCustomerTrans.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
