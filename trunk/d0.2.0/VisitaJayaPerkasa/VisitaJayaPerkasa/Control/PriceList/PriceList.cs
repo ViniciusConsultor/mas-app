@@ -642,7 +642,10 @@ Arrange of field grid
                         exists = sqlPriceListRepository.GetPriceCustomerByShippingLines(tempPriceList.ElementAt(i).DateFrom, 
                                                     tempPriceList.ElementAt(i).DateTo,
                                                     tempPriceList.ElementAt(i).TypeID.ToString(),
-                                                    tempPriceList.ElementAt(i).ConditionID.ToString());
+                                                    tempPriceList.ElementAt(i).ConditionID.ToString(), 
+                                                    cbSupplier.SelectedValue.ToString(),
+                                                    cbDestination.SelectedValue.ToString(),
+                                                    searchResultCustomer.ID.ToString());
 
                         if (! exists.ToString().Equals(Guid.Empty.ToString())) { 
                             DialogResult dResult = MessageBox.Show(this, "Record - " + i + " has already exist. \n If you don't want to override this data, so your data not will be save. \n Do you want to override ?", "Confirmation", MessageBoxButtons.YesNo);
@@ -758,10 +761,13 @@ Arrange of field grid
                     for (int i = 0; i < tempPriceList.Count; i++)
                     {
                         Guid exists = Guid.Empty;
-                        exists = sqlPriceListRepository.GetPriceCustomerByDAgentANDTrucking(
+                        exists = sqlPriceListRepository.GetPriceCustomerByDooringAgent(
                                                     tempPriceList.ElementAt(i).DateFrom,
                                                     tempPriceList.ElementAt(i).DateTo,
-                                                    tempPriceList.ElementAt(i).TypeID.ToString());
+                                                    tempPriceList.ElementAt(i).TypeID.ToString(),
+                                                    cbSupplier.SelectedValue.ToString(),
+                                                    cbDestination.SelectedValue.ToString(),
+                                                    cboRecipient.SelectedValue.ToString());
                         if (!exists.ToString().Equals(Guid.Empty.ToString()))
                         {
                             DialogResult dResult = MessageBox.Show(this, "Record - " + i + " has already exist. \n If you don't want to override this data, so your data not will be save. \n Do you want to override ?", "Confirmation", MessageBoxButtons.YesNo);
@@ -888,9 +894,12 @@ Arrange of field grid
                     for (int i = 0; i < tempPriceList.Count; i++)
                     {
                         Guid exists = Guid.Empty;
-                        exists = sqlPriceListRepository.GetPriceCustomerByDAgentANDTrucking(tempPriceList.ElementAt(i).DateFrom,
+                        exists = sqlPriceListRepository.GetPriceCustomerByTrucking(tempPriceList.ElementAt(i).DateFrom,
                                                     tempPriceList.ElementAt(i).DateTo,
-                                                    tempPriceList.ElementAt(i).TypeID.ToString());
+                                                    tempPriceList.ElementAt(i).TypeID.ToString(),
+                                                    cbSupplier.SelectedValue.ToString(),
+                                                    searchResultCustomer.ID.ToString(),
+                                                    cboStuffingPlace.SelectedValue.ToString());
                         if (!exists.ToString().Equals(Guid.Empty.ToString()))
                         {
                             DialogResult dResult = MessageBox.Show(this, "Record - " + i + " has already exist. \n If you don't want to override this data, so your data not will be save. \n Do you want to override ?", "Confirmation", MessageBoxButtons.YesNo);
