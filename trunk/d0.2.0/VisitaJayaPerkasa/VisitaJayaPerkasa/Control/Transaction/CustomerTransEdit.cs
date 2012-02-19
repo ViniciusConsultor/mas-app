@@ -87,7 +87,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
             cboPelayaranDetail.DisplayMember = "vesselname";
             cboPelayaranDetail.ValueMember = "pelayarandetailid";
             cboPelayaranDetail.SelectedIndex = -1;
-            cboPelayaranDetail.Text = "-- choose --";
+            cboPelayaranDetail.Text = "-- Choose --";
 
             cboCondition.DataSource = listCondition;
             cboCondition.DisplayMember = "ConditionName";
@@ -436,10 +436,9 @@ namespace VisitaJayaPerkasa.Control.Transaction
         private void radButtonElement1_Click(object sender, EventArgs e)
         {
             if (CustomerTransDetailGridView.Rows.Count > 0) {
+                sqlCustomerTransRepository = new SqlCustomerTransRepository();
                 if (cboCustomer.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
-                {
                     MessageBox.Show(this, "Please choose customer name", "Information");
-                }
                 else { 
 
                     //51 is number of field below
@@ -608,9 +607,8 @@ namespace VisitaJayaPerkasa.Control.Transaction
                         value[k++] = listCustomerTransDetail.ElementAt(i).Deleted;
                     }
 
-                    SqlParameter[] sqlParameterInsert = SqlUtility.SetSqlParameter(key, value);
-                    sqlCustomerTransRepository = new SqlCustomerTransRepository();
 
+                    SqlParameter[] sqlParameterInsert = SqlUtility.SetSqlParameter(key, value);
                     if (wantToCreateVessel)
                     {
                         SqlParameter[] sqlParameterMaster = SqlUtility.SetSqlParameter(
@@ -673,6 +671,8 @@ namespace VisitaJayaPerkasa.Control.Transaction
 
 
         private void cboSelected_SelectedIndexChanged(object sender, EventArgs e) {
+            sqlPelayaranRepository = new SqlPelayaranRepository();
+
             try
             {
                 RadComboBox cbo = sender as RadComboBox;
@@ -727,6 +727,8 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 etPrice.Text = "0";
                 Logging.Error("CustomerTransEdit.cs - CBSelected_Changed '" + ex.Message + "'");
             }
+
+            sqlPelayaranRepository = null;
         }
 
         private void cboCondition_KeyPress_1(object sender, KeyPressEventArgs e)
@@ -744,6 +746,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
             e.KeyChar = Convert.ToChar(0);
         }
 
+        /*
         private void CustomerTransDetailGridView_CellDoubleClick(object sender, GridViewCellEventArgs e)
         {
             GridViewRowInfo gridInfo = CustomerTransDetailGridView.SelectedRows.First();
@@ -813,6 +816,6 @@ namespace VisitaJayaPerkasa.Control.Transaction
             etSJ23.Text = customerTrans.Sj23;
             etSJ24.Text = customerTrans.Sj24;
             etSJ25.Text = customerTrans.Sj25;
-        }
+        }*/
     }
 }

@@ -156,9 +156,9 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "Select ctd.id, ctd.customer_trans_id, ctd.type_id, ctd.pelayaran_detail_id, ctd.origin, " +
                         "ctd.destination, ctd.condition_id, ctd.no_seal, ctd.truck_number, ctd.voy, " +
                         "ctd.stuffing_date, ctd.stuffing_place, ctd.etd, ctd.td, ctd.eta, ctd.ta, ctd.unloading, ctd.price, " +
-                        "tc.type_name, p.name as pelayaran_name, pd.vessel_name, co.city_name as origin, cd.city_name as destination, " +
+                        "tc.type_name, (SELECT TOP 1 supplier_name FROM [SUPPLIER] s WHERE s.supplier_id = p.supplier_id) as pelayaran_name, pd.vessel_name, co.city_name as origin, cd.city_name as destination, " +
                         "cnd.condition_name as condition, pd.status_pinjaman, w.[address], " +
-                        "ctd.recipient_id, r.recipient_name, ctd.jenis_barang, ctd.no_container, ctd.quantity " +
+                        "ctd.recipient_id, r.recipient_name, ctd.jenis_barang, ctd.no_container, ctd.quantity, " +
                         "ctd.sj1, ctd.sj2, ctd.sj3, ctd.sj4, ctd.sj5, ctd.sj6, ctd.sj7, ctd.sj8, ctd.sj9, ctd.sj10, " +
                         "ctd.sj11, ctd.sj12, ctd.sj13, ctd.sj14, ctd.sj15, ctd.sj16, ctd.sj17, ctd.sj18, ctd.sj19, ctd.sj20, " +
                         "ctd.sj21, ctd.sj22, ctd.sj23, ctd.sj24, ctd.sj25, ctd.terima_toko, ctd.keterangan, ctd.no_ba " +
@@ -205,39 +205,39 @@ namespace VisitaJayaPerkasa.SqlRepository
                             customerTransDetail.ConditionName = reader.GetString(23);
                             customerTransDetail.WarehouseName = reader.GetString(25);
 
-                            customerTransDetail.RecipientID = Utility.Utility.ConvertToUUID(reader.GetString(26));
+                            customerTransDetail.RecipientID = Utility.Utility.ConvertToUUID(reader.GetValue(26).ToString());
                             customerTransDetail.RecipientName = reader.GetString(27);
-                            customerTransDetail.JenisBarang = reader.GetString(28);
-                            customerTransDetail.NoContainer = reader.GetString(29);
-                            customerTransDetail.Quantity = reader.GetString(30);
-                            customerTransDetail.Sj1 = reader.GetString(31);
-                            customerTransDetail.Sj2 = reader.GetString(32);
-                            customerTransDetail.Sj3 = reader.GetString(33);
-                            customerTransDetail.Sj4 = reader.GetString(34);
-                            customerTransDetail.Sj5 = reader.GetString(35);
-                            customerTransDetail.Sj6 = reader.GetString(36);
-                            customerTransDetail.Sj7 = reader.GetString(37);
-                            customerTransDetail.Sj8 = reader.GetString(38);
-                            customerTransDetail.Sj9 = reader.GetString(39);
-                            customerTransDetail.Sj10 = reader.GetString(40);
-                            customerTransDetail.Sj11 = reader.GetString(41);
-                            customerTransDetail.Sj12 = reader.GetString(42);
-                            customerTransDetail.Sj13 = reader.GetString(43);
-                            customerTransDetail.Sj14 = reader.GetString(44);
-                            customerTransDetail.Sj15 = reader.GetString(45);
-                            customerTransDetail.Sj16 = reader.GetString(46);
-                            customerTransDetail.Sj17 = reader.GetString(47);
-                            customerTransDetail.Sj18 = reader.GetString(48);
-                            customerTransDetail.Sj19 = reader.GetString(49);
-                            customerTransDetail.Sj20 = reader.GetString(50);
-                            customerTransDetail.Sj21 = reader.GetString(51);
-                            customerTransDetail.Sj22 = reader.GetString(52);
-                            customerTransDetail.Sj23 = reader.GetString(53);
-                            customerTransDetail.Sj24 = reader.GetString(54);
-                            customerTransDetail.Sj25 = reader.GetString(55);
-                            customerTransDetail.TerimaToko = reader.GetDateTime(56);
-                            customerTransDetail.Keterangan = reader.GetString(57);
-                            customerTransDetail.NoBA = reader.GetString(58);
+                            customerTransDetail.JenisBarang = Utility.Utility.IsDBNull(reader.GetValue(28)) ? null : reader.GetString(28);
+                            customerTransDetail.NoContainer = Utility.Utility.IsDBNull(reader.GetValue(29)) ? null : reader.GetString(29);
+                            customerTransDetail.Quantity = Utility.Utility.IsDBNull(reader.GetValue(30)) ? null : reader.GetString(30);
+                            customerTransDetail.Sj1 = Utility.Utility.IsDBNull(reader.GetValue(31)) ? null : reader.GetString(31);
+                            customerTransDetail.Sj2 = Utility.Utility.IsDBNull(reader.GetValue(32)) ? null : reader.GetString(32);
+                            customerTransDetail.Sj3 = Utility.Utility.IsDBNull(reader.GetValue(33)) ? null : reader.GetString(33);
+                            customerTransDetail.Sj4 = Utility.Utility.IsDBNull(reader.GetValue(34)) ? null : reader.GetString(34);
+                            customerTransDetail.Sj5 = Utility.Utility.IsDBNull(reader.GetValue(35)) ? null : reader.GetString(35);
+                            customerTransDetail.Sj6 = Utility.Utility.IsDBNull(reader.GetValue(36)) ? null : reader.GetString(36);
+                            customerTransDetail.Sj7 = Utility.Utility.IsDBNull(reader.GetValue(37)) ? null : reader.GetString(37);
+                            customerTransDetail.Sj8 = Utility.Utility.IsDBNull(reader.GetValue(38)) ? null : reader.GetString(38);
+                            customerTransDetail.Sj9 = Utility.Utility.IsDBNull(reader.GetValue(39)) ? null : reader.GetString(39);
+                            customerTransDetail.Sj10 = Utility.Utility.IsDBNull(reader.GetValue(40)) ? null : reader.GetString(40);
+                            customerTransDetail.Sj11 = Utility.Utility.IsDBNull(reader.GetValue(41)) ? null : reader.GetString(41);
+                            customerTransDetail.Sj12 = Utility.Utility.IsDBNull(reader.GetValue(42)) ? null : reader.GetString(42);
+                            customerTransDetail.Sj13 = Utility.Utility.IsDBNull(reader.GetValue(43)) ? null : reader.GetString(43);
+                            customerTransDetail.Sj14 = Utility.Utility.IsDBNull(reader.GetValue(44)) ? null : reader.GetString(44);
+                            customerTransDetail.Sj15 = Utility.Utility.IsDBNull(reader.GetValue(45)) ? null : reader.GetString(45);
+                            customerTransDetail.Sj16 = Utility.Utility.IsDBNull(reader.GetValue(46)) ? null : reader.GetString(46);
+                            customerTransDetail.Sj17 = Utility.Utility.IsDBNull(reader.GetValue(47)) ? null : reader.GetString(47);
+                            customerTransDetail.Sj18 = Utility.Utility.IsDBNull(reader.GetValue(48)) ? null : reader.GetString(48);
+                            customerTransDetail.Sj19 = Utility.Utility.IsDBNull(reader.GetValue(49)) ? null : reader.GetString(49);
+                            customerTransDetail.Sj20 = Utility.Utility.IsDBNull(reader.GetValue(50)) ? null : reader.GetString(50);
+                            customerTransDetail.Sj21 = Utility.Utility.IsDBNull(reader.GetValue(51)) ? null : reader.GetString(51);
+                            customerTransDetail.Sj22 = Utility.Utility.IsDBNull(reader.GetValue(52)) ? null : reader.GetString(52);
+                            customerTransDetail.Sj23 = Utility.Utility.IsDBNull(reader.GetValue(53)) ? null : reader.GetString(53);
+                            customerTransDetail.Sj24 = Utility.Utility.IsDBNull(reader.GetValue(54)) ? null : reader.GetString(54);
+                            customerTransDetail.Sj25 = Utility.Utility.IsDBNull(reader.GetValue(55)) ? null : reader.GetString(55);
+                            customerTransDetail.TerimaToko = Utility.Utility.IsDBNull(reader.GetValue(56)) ? Utility.Utility.DefaultDateTime() : reader.GetDateTime(56);
+                            customerTransDetail.Keterangan = Utility.Utility.IsDBNull(reader.GetValue(57)) ? null : reader.GetString(57);
+                            customerTransDetail.NoBA = Utility.Utility.IsDBNull(reader.GetValue(58)) ? null : reader.GetString(58);
 
                             if (listCustomerTransDetail == null)
                                 listCustomerTransDetail = new List<CustomerTransDetail>();

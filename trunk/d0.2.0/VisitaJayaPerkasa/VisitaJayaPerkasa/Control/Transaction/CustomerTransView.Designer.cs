@@ -63,6 +63,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerTransDetailGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomerTransDetailGridView.MasterGridViewTemplate)).BeginInit();
             this.SuspendLayout();
             // 
             // lblDate
@@ -165,7 +166,7 @@
             this.CustomerTransDetailGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.CustomerTransDetailGridView.Location = new System.Drawing.Point(0, 351);
             // 
-            // 
+            // gridViewTemplate1
             // 
             this.CustomerTransDetailGridView.MasterGridViewTemplate.AllowAddNewRow = false;
             gridViewTextBoxColumn1.FieldAlias = "CustomerDetailTransID";
@@ -258,10 +259,11 @@
             gridViewDecimalColumn1.DataType = typeof(decimal);
             gridViewDecimalColumn1.FieldAlias = "Price";
             gridViewDecimalColumn1.FieldName = "Price";
-            gridViewDecimalColumn1.FormatString = "Rp {0:c}";
+            gridViewDecimalColumn1.FormatString = "{0:c}";
             gridViewDecimalColumn1.HeaderText = "Price";
             gridViewDecimalColumn1.ThousandsSeparator = true;
             gridViewDecimalColumn1.UniqueName = "Price";
+            gridViewDecimalColumn1.Width = 80;
             this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
             this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
             this.CustomerTransDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);
@@ -305,6 +307,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomerTransDetailGridView.MasterGridViewTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerTransDetailGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

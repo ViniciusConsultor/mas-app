@@ -18,7 +18,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
         private SqlPelayaranRepository sqlPelayaranRepository;
 
         private VisitaJayaPerkasa.Entities.Schedule schedule;
-        private bool wantToCreateVessel;
+        private bool wantToCreateVessel, wantToEditTdETC;
 
         public ScheduleEdit(VisitaJayaPerkasa.Entities.Schedule schedule)
         {
@@ -60,6 +60,15 @@ namespace VisitaJayaPerkasa.Control.Schedule
             }
             else {
                 wantToCreateVessel = false;
+                 
+                DialogResult dResult = MessageBox.Show(this, "Are you sure want to edit TD, TA and etc ? ", "Confirmation", MessageBoxButtons.YesNo);
+                if (dResult == DialogResult.Yes)
+                    wantToEditTdETC = true;
+                else
+                    wantToEditTdETC = false;
+
+
+
                 cboTujuan.SelectedItem = schedule.berangkatTujuan;
                 cboKapal.SelectedItem = schedule.namaKapal;
 
@@ -79,10 +88,33 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 pickerETA.Visible = true;
                 pickerTA.Visible = true;
                 pickerTD.Visible = true;
-
+                
                 pickerETA.Value = DateTime.Now;
                 pickerTA.Value = DateTime.Now;
                 pickerTD.Value = DateTime.Now;
+
+
+                if (wantToEditTdETC)
+                {
+                    cboTujuan.Enabled = false;
+                    cboKapal.Enabled = false;
+                    etVOY.Enabled = false;
+                    pickerETD.Enabled = false;
+                    pickerTglClosing.Enabled = false;
+                    pickerUnLoading.Enabled = false;
+                    etRObegin20.Enabled = false;
+                    etRObegin40.Enabled = false;
+                    etKet.Enabled = false;
+                }
+                else {
+                    lblETA.Visible = false;
+                    lblTA.Visible = false;
+                    lblTD.Visible = false;
+
+                    pickerETA.Visible = false;
+                    pickerTA.Visible = false;
+                    pickerTD.Visible = false;
+                }
             }
 
             listCity = null;
@@ -185,27 +217,45 @@ namespace VisitaJayaPerkasa.Control.Schedule
                     }
                 }
                 else {
-                    if (pickerETA.Value.Date < pickerTD.Value.Date) {
-                        MessageBox.Show(this, "Eta must be greather than TD ", "Information");
-                        return;
-                    }
-                    else if(pickerTD.Value.Date < pickerETD.Value.Date){
-                        MessageBox.Show(this, "TD must be greather than ETD", "Information");
-                        return;
-                    }
-                    else if (pickerTA.Value.Date < pickerETA.Value.Date) {
-                        MessageBox.Show(this, "TA must be greather than ETA", "Information");
-                        return;
-                    }
-                    else if (schedule.ro_end_20 > Int32.Parse(etRObegin20.Text.Trim()))
+                    if (wantToEditTdETC)
                     {
-                        MessageBox.Show(this, "Please correct ro begin 20. \n Ro end 20 greater than ro begin 20", "Information");
-                        return;
+                        if (pickerETA.Value.Date < pickerTD.Value.Date)
+                        {
+                            MessageBox.Show(this, "Eta must be greather than TD ", "Information");
+                            return;
+                        }
+                        else if (pickerTD.Value.Date < pickerETD.Value.Date)
+                        {
+                            MessageBox.Show(this, "TD must be greather than ETD", "Information");
+                            return;
+                        }
+                        else if (pickerTA.Value.Date < pickerETA.Value.Date)
+                        {
+                            MessageBox.Show(this, "TA must be greather than ETA", "Information");
+                            return;
+                        }
+                        else if (schedule.ro_end_20 > Int32.Parse(etRObegin20.Text.Trim()))
+                        {
+                            MessageBox.Show(this, "Please correct ro begin 20. \n Ro end 20 greater than ro begin 20", "Information");
+                            return;
+                        }
+                        else if (schedule.ro_end_40 > Int32.Parse(etRObegin40.Text.Trim()))
+                        {
+                            MessageBox.Show(this, "Please correct ro begin 40. \n Ro end 40 greater than ro begin 40", "Information");
+                            return;
+                        }
                     }
-                    else if (schedule.ro_end_40 > Int32.Parse(etRObegin40.Text.Trim()))
-                    {
-                        MessageBox.Show(this, "Please correct ro begin 40. \n Ro end 40 greater than ro begin 40", "Information");
-                        return;
+                    else { 
+                        if (schedule.ro_end_20 > Int32.Parse(etRObegin20.Text.Trim()))
+                        {
+                            MessageBox.Show(this, "Please correct ro begin 20. \n Ro end 20 greater than ro begin 20", "Information");
+                            return;
+                        }
+                        else if (schedule.ro_end_40 > Int32.Parse(etRObegin40.Text.Trim()))
+                        {
+                            MessageBox.Show(this, "Please correct ro begin 40. \n Ro end 40 greater than ro begin 40", "Information");
+                            return;
+                        }
                     }
 
 
@@ -228,9 +278,9 @@ namespace VisitaJayaPerkasa.Control.Schedule
                                                 schedule.ro_end_20,
                                                 schedule.ro_end_40,
                                                 pickerETD.Value.Date,
-                                                pickerTD.Value.Date,
-                                                pickerETA.Value.Date,
-                                                pickerTA.Value.Date,
+                                                (wantToEditTdETC) ? pickerTD.Value.Date : schedule.td,
+                                                (wantToEditTdETC) ? pickerETA.Value.Date : schedule.eta,
+                                                (wantToEditTdETC) ? pickerTA.Value.Date : schedule.ta,
                                                 pickerUnLoading.Value.Date
                             });
 
