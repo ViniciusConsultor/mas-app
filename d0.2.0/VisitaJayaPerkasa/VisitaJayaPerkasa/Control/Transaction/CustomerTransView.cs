@@ -26,7 +26,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
 
 
             lblCustomerName.Text = customerTrans.CustomerName;
-            lblDate.Text = customerTrans.TransDate.ToString();
+            lblDate.Text = Utility.Utility.GetDateOnly(Utility.Utility.ChangeDateMMDD(customerTrans.TransDate.ToString()));
         }
 
         private void radButtonElement1_Click(object sender, EventArgs e)
