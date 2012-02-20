@@ -346,6 +346,20 @@ SELECT person_id, username, password, deleted FROM [USER] WHERE (person_id = @pe
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="INVOICE_PPN" msprop:Generator_TableClassName="INVOICE_PPNDataTable" msprop:Generator_TableVarName="tableINVOICE_PPN" msprop:Generator_TablePropName="INVOICE_PPN" msprop:Generator_RowDeletingName="INVOICE_PPNRowDeleting" msprop:Generator_UserTableName="INVOICE_PPN" msprop:Generator_RowChangingName="INVOICE_PPNRowChanging" msprop:Generator_RowEvHandlerName="INVOICE_PPNRowChangeEventHandler" msprop:Generator_RowDeletedName="INVOICE_PPNRowDeleted" msprop:Generator_RowEvArgName="INVOICE_PPNRowChangeEvent" msprop:Generator_RowChangedName="INVOICE_PPNRowChanged" msprop:Generator_RowClassName="INVOICE_PPNRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="no_ba" msprop:Generator_ColumnVarNameInTable="columnno_ba" msprop:Generator_ColumnPropNameInRow="no_ba" msprop:Generator_ColumnPropNameInTable="no_baColumn" msprop:Generator_UserColumnName="no_ba" type="xs:string" minOccurs="0" />
+              <xs:element name="no_container" msprop:Generator_ColumnVarNameInTable="columnno_container" msprop:Generator_ColumnPropNameInRow="no_container" msprop:Generator_ColumnPropNameInTable="no_containerColumn" msprop:Generator_UserColumnName="no_container" type="xs:string" minOccurs="0" />
+              <xs:element name="type_name" msprop:Generator_ColumnVarNameInTable="columntype_name" msprop:Generator_ColumnPropNameInRow="type_name" msprop:Generator_ColumnPropNameInTable="type_nameColumn" msprop:Generator_UserColumnName="type_name" type="xs:string" minOccurs="0" />
+              <xs:element name="vessel_name" msprop:Generator_ColumnVarNameInTable="columnvessel_name" msprop:Generator_ColumnPropNameInRow="vessel_name" msprop:Generator_ColumnPropNameInTable="vessel_nameColumn" msprop:Generator_UserColumnName="vessel_name" type="xs:string" minOccurs="0" />
+              <xs:element name="ta" msprop:Generator_ColumnVarNameInTable="columnta" msprop:Generator_ColumnPropNameInRow="ta" msprop:Generator_ColumnPropNameInTable="taColumn" msprop:Generator_UserColumnName="ta" type="xs:string" minOccurs="0" />
+              <xs:element name="terima_toko" msprop:Generator_ColumnVarNameInTable="columnterima_toko" msprop:Generator_ColumnPropNameInRow="terima_toko" msprop:Generator_ColumnPropNameInTable="terima_tokoColumn" msprop:Generator_UserColumnName="terima_toko" type="xs:string" minOccurs="0" />
+              <xs:element name="city_name" msprop:Generator_ColumnVarNameInTable="columncity_name" msprop:Generator_ColumnPropNameInRow="city_name" msprop:Generator_ColumnPropNameInTable="city_nameColumn" msprop:Generator_UserColumnName="city_name" type="xs:string" minOccurs="0" />
+              <xs:element name="price" msprop:Generator_ColumnVarNameInTable="columnprice" msprop:Generator_ColumnPropNameInRow="price" msprop:Generator_ColumnPropNameInTable="priceColumn" msprop:Generator_UserColumnName="price" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
