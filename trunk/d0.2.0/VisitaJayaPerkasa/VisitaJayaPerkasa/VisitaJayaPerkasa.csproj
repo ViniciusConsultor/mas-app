@@ -368,6 +368,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RptInvoicePPN.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Form\Report\Kwitansi\conversion.cs" />
+    <Compile Include="Form\Report\Kwitansi\RptCetakKwitansi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\Kwitansi\RptCetakKwitansi.Designer.cs">
+      <DependentUpon>RptCetakKwitansi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\Kwitansi\RptKwitansi.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptKwitansi.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Form\Report\RptCustomerTrans.cs">
       <AutoGen>True</AutoGen>
@@ -570,6 +585,15 @@
     <EmbeddedResource Include="Form\Report\Invoice\RptInvoicePPN.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptInvoicePPN.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\Kwitansi\RptCetakKwitansi.resx">
+      <DependentUpon>RptCetakKwitansi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\Kwitansi\RptKwitansi.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptKwitansi.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\RptCustomerTrans.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -688,6 +712,7 @@
   <ItemGroup>
     <None Include="Resources\ic_transaction.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VisitaJayaPerkasa.Form.Report.Invoice {
+namespace VisitaJayaPerkasa.Form.Report.Kwitansi {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -16,14 +16,14 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RptInvoicePPN : ReportClass {
+    public class RptKwitansi : ReportClass {
         
-        public RptInvoicePPN() {
+        public RptKwitansi() {
         }
         
         public override string ResourceName {
             get {
-                return "RptInvoicePPN.rpt";
+                return "RptKwitansi.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice {
         
         public override string FullResourceName {
             get {
-                return "VisitaJayaPerkasa.Form.Report.Invoice.RptInvoicePPN.rpt";
+                return "VisitaJayaPerkasa.Form.Report.Kwitansi.RptKwitansi.rpt";
             }
             set {
                 // Do nothing
@@ -58,7 +58,7 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section ReportHeaderSection1 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section2 {
             get {
                 return this.ReportDefinition.Sections[1];
             }
@@ -66,7 +66,7 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section2 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
             get {
                 return this.ReportDefinition.Sections[2];
             }
@@ -74,7 +74,7 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
             get {
                 return this.ReportDefinition.Sections[3];
             }
@@ -82,7 +82,7 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
             get {
                 return this.ReportDefinition.Sections[4];
             }
@@ -90,15 +90,7 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
-            get {
-                return this.ReportDefinition.Sections[5];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_subTotal {
+        public CrystalDecisions.Shared.IParameterField Parameter_spell {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
@@ -106,7 +98,7 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ppn {
+        public CrystalDecisions.Shared.IParameterField Parameter_price {
             get {
                 return this.DataDefinition.ParameterFields[1];
             }
@@ -114,41 +106,17 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_total {
+        public CrystalDecisions.Shared.IParameterField Parameter_keterangan {
             get {
                 return this.DataDefinition.ParameterFields[2];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_customerName {
-            get {
-                return this.DataDefinition.ParameterFields[3];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_userName {
-            get {
-                return this.DataDefinition.ParameterFields[4];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_invoiceNo {
-            get {
-                return this.DataDefinition.ParameterFields[5];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRptInvoicePPN : Component, ICachedReport {
+    public class CachedRptKwitansi : Component, ICachedReport {
         
-        public CachedRptInvoicePPN() {
+        public CachedRptKwitansi() {
         }
         
         [Browsable(false)]
@@ -185,7 +153,7 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RptInvoicePPN rpt = new RptInvoicePPN();
+            RptKwitansi rpt = new RptKwitansi();
             rpt.Site = this.Site;
             return rpt;
         }

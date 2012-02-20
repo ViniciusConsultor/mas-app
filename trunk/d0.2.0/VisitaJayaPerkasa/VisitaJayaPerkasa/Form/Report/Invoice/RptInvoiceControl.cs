@@ -65,6 +65,26 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice
             sqlCustomerTransRepository = new SqlCustomerTransRepository();
             dt = sqlCustomerTransRepository.ReportInvoice(ID);
 
+            decimal total = decimal.Zero;
+            string totalStr = String.Empty;
+            decimal PPN = decimal.Zero;
+            string ppnStr = String.Empty;
+            decimal subTotal = decimal.Zero;
+            string subTotalStr = String.Empty;
+            if (!chkStatus.Checked)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (row[7].ToString() != "")
+                        total += Convert.ToDecimal(row[7].ToString());
+                }
+                totalStr = total.ToString();
+                subTotal = total - (total * (10 / 100));
+                subTotalStr = subTotal.ToString();
+                PPN = (total * (10 / 100));
+                ppnStr = total.ToString();
+            }
+
             ParameterFields pfields = new ParameterFields();
             ParameterField pfield = new ParameterField();
             ParameterDiscreteValue disValue = new ParameterDiscreteValue();
@@ -88,6 +108,30 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice
             disValue.Value = invoiceNo;
             pfield.CurrentValues.Add(disValue);
             pfields.Add(pfield);
+
+            if (!chkStatus.Checked)
+            {
+                pfield = new ParameterField();
+                pfield.Name = "subTotal";
+                disValue = new ParameterDiscreteValue();
+                disValue.Value = subTotalStr;
+                pfield.CurrentValues.Add(disValue);
+                pfields.Add(pfield);
+
+                pfield = new ParameterField();
+                pfield.Name = "ppn";
+                disValue = new ParameterDiscreteValue();
+                disValue.Value = ppnStr;
+                pfield.CurrentValues.Add(disValue);
+                pfields.Add(pfield);
+
+                pfield = new ParameterField();
+                pfield.Name = "total";
+                disValue = new ParameterDiscreteValue();
+                disValue.Value = totalStr;
+                pfield.CurrentValues.Add(disValue);
+                pfields.Add(pfield);
+            }
 
             rpt.SetDataSource(dt);
 
