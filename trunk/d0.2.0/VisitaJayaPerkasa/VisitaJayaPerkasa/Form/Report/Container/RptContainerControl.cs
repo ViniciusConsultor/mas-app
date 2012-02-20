@@ -64,15 +64,15 @@ namespace VisitaJayaPerkasa.Form.Report.Container
             ParameterField singleParameter;
             ParameterDiscreteValue parameterDiscreteValue;
             string query = "SELECT ";
-            int colNumber = 0;
+            int columnNo = 0;
 
             if (cbPengirim.Checked)
             {
-                colNumber++;
-                query = query.Insert(query.Length, "c.customer_name as Pengirim");
+                columnNo++;
+                query = query.Insert(query.Length, "c.customer_name as Column" + columnNo.ToString());
 
                 singleParameter = new ParameterField();
-                singleParameter.Name = "col" + colNumber;
+                singleParameter.Name = "col" + columnNo;
 
                 parameterDiscreteValue = new ParameterDiscreteValue();
                 parameterDiscreteValue.Value = "Pengirim";
@@ -83,31 +83,54 @@ namespace VisitaJayaPerkasa.Form.Report.Container
             
             if (cbPenerima.Checked)
             {
-                colNumber++;
+                columnNo++;
 
-                if (query.Length > "SELECT ".Length)
+                if (query.Contains("Column"))
+                {
                     query = query.Insert(query.Length, ", ");
-                query = query.Insert(query.Length, "r.recipient_name as Penerima");
+                }
+                query = query.Insert(query.Length, "r.recipient_name as Column" + columnNo.ToString());
 
                 singleParameter = new ParameterField();
-                singleParameter.Name = "col" + colNumber;
+                singleParameter.Name = "col" + columnNo;
 
                 parameterDiscreteValue = new ParameterDiscreteValue();
                 parameterDiscreteValue.Value = "Penerima";
                 singleParameter.CurrentValues.Add(parameterDiscreteValue);
                 pluralParameter.Add(singleParameter);
             }
+
+            if (cbCont.Checked)
+            {
+                columnNo++;
+
+                if (query.Contains("Column"))
+                {
+                    query = query.Insert(query.Length, ", ");
+                }
+                query = query.Insert(query.Length, "tc.type_name as Column" + columnNo.ToString());
+
+                singleParameter = new ParameterField();
+                singleParameter.Name = "col" + columnNo;
+
+                parameterDiscreteValue = new ParameterDiscreteValue();
+                parameterDiscreteValue.Value = "Cont";
+                singleParameter.CurrentValues.Add(parameterDiscreteValue);
+                pluralParameter.Add(singleParameter);
+            }
             
             if (cbNoContainer.Checked)
             {
-                colNumber++;
+                columnNo++;
 
-                if (query.Length > "SELECT ".Length)
+                if (query.Contains("Column"))
+                {
                     query = query.Insert(query.Length, ", ");
-                query = query.Insert(query.Length, "ctd.no_container as NoContainer");
+                }
+                query = query.Insert(query.Length, "ctd.no_container as Column" + columnNo.ToString());
 
                 singleParameter = new ParameterField();
-                singleParameter.Name = "col" + colNumber;
+                singleParameter.Name = "col" + columnNo;
 
                 parameterDiscreteValue = new ParameterDiscreteValue();
                 parameterDiscreteValue.Value = "No Container";
@@ -117,14 +140,15 @@ namespace VisitaJayaPerkasa.Form.Report.Container
             
             if (cbSeal.Checked)
             {
-                colNumber++;
-
-                if (query.Length > "SELECT ".Length)
+                columnNo++;
+                if (query.Contains("Column"))
+                {
                     query = query.Insert(query.Length, ", ");
-                query = query.Insert(query.Length, "ctd.no_seal as Seal");
+                }
+                query = query.Insert(query.Length, "ctd.no_seal as Column" + columnNo.ToString());
 
                 singleParameter = new ParameterField();
-                singleParameter.Name = "col" + colNumber;
+                singleParameter.Name = "col" + columnNo;
 
                 parameterDiscreteValue = new ParameterDiscreteValue();
                 parameterDiscreteValue.Value = "No Seal";
@@ -134,44 +158,29 @@ namespace VisitaJayaPerkasa.Form.Report.Container
             
             if (cbColly.Checked)
             {
-                colNumber++;
+                columnNo++;
 
-                if (query.Length > "SELECT ".Length)
+                if (query.Contains("Column"))
+                {
                     query = query.Insert(query.Length, ", ");
-                query = query.Insert(query.Length, "ctd.colly as Colly");
+                }
+                query = query.Insert(query.Length, "ctd.colly as Column" + columnNo.ToString());
 
                 singleParameter = new ParameterField();
-                singleParameter.Name = "col" + colNumber;
+                singleParameter.Name = "col" + columnNo;
 
                 parameterDiscreteValue = new ParameterDiscreteValue();
                 parameterDiscreteValue.Value = "Colly";
                 singleParameter.CurrentValues.Add(parameterDiscreteValue);
                 pluralParameter.Add(singleParameter);
             }
-            
-            if (cbCont.Checked)
+
+
+            for (int i = columnNo; i < 6; i++)
             {
-                colNumber++;
-
-                if (query.Length > "SELECT ".Length)
-                    query = query.Insert(query.Length, ", ");
-                query = query.Insert(query.Length, "tc.type_name as Cont");
-
+                columnNo++;
                 singleParameter = new ParameterField();
-                singleParameter.Name = "col" + colNumber;
-
-                parameterDiscreteValue = new ParameterDiscreteValue();
-                parameterDiscreteValue.Value = "Cont";
-                singleParameter.CurrentValues.Add(parameterDiscreteValue);
-                pluralParameter.Add(singleParameter);
-            }
-
-
-            for (int i = colNumber; i < 6; i++)
-            {
-                colNumber++;
-                singleParameter = new ParameterField();
-                singleParameter.Name = "col" + colNumber;
+                singleParameter.Name = "col" + columnNo;
 
                 parameterDiscreteValue = new ParameterDiscreteValue();
                 parameterDiscreteValue.Value = "";
@@ -206,7 +215,7 @@ namespace VisitaJayaPerkasa.Form.Report.Container
             {
                 string query = CreateSelectQueryAndParameters();
 
-                if (query.Length == "SELECT ".Length)
+                if (!query.Contains("Column"))
                 {
                     MessageBox.Show("No selection to display!");
                     return;
@@ -216,11 +225,12 @@ namespace VisitaJayaPerkasa.Form.Report.Container
                 try
                 {
                     SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString);
-                    SqlDataAdapter da = new SqlDataAdapter(query, con);
-                    DataSetContainer dsContainer = new DataSetContainer();
 
-                    da.Fill(dsContainer, "DataTableContainer");
-                    objReportContainer.SetDataSource(dsContainer);
+                    SqlDataAdapter da = new SqlDataAdapter(query, VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString);
+                    ShippingMainDataSet ds = new ShippingMainDataSet();
+                    da.Fill(ds, "CONTAINER");
+
+                    objReportContainer.SetDataSource(ds);
                     crystalReportViewerContainer.ReportSource = objReportContainer;
                 }
                 catch (SqlException sqlEx)
