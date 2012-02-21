@@ -513,7 +513,7 @@ namespace VisitaJayaPerkasa.SqlRepository
 
             return n > 0;
         }
-
+        
         public DataTable ReportInvoice(Guid ID)
         {
             DataTable dt = null;

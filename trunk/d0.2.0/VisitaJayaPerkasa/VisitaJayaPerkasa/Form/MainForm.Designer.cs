@@ -564,6 +564,7 @@
             this.radImageButtonDelivery.ImageIndex = 16;
             this.radImageButtonDelivery.Name = "radImageButtonDelivery";
             this.radImageButtonDelivery.Text = "";
+            this.radImageButtonDelivery.Click += new System.EventHandler(this.radImageButtonDelivery_Click);
             // 
             // RBGInvoice
             // 

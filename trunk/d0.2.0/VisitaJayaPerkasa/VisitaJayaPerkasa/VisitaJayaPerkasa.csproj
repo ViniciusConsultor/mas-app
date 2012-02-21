@@ -342,11 +342,17 @@
     <Compile Include="Form\Report\Container\RptContainerControl.Designer.cs">
       <DependentUpon>RptContainerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Report\Delivery\RptDeliveryForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Form\Report\Delivery\RptDeliveryControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Form\Report\Delivery\RptDeliveryForm.Designer.cs">
-      <DependentUpon>RptDeliveryForm.cs</DependentUpon>
+    <Compile Include="Form\Report\Delivery\RptDeliveryControl.Designer.cs">
+      <DependentUpon>RptDeliveryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\Delivery\RptDelivery.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptDelivery.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form\Report\Invoice\RptInvoice.cs">
       <AutoGen>True</AutoGen>
@@ -569,9 +575,12 @@
     <EmbeddedResource Include="Form\Report\Container\RptContainerControl.resx">
       <DependentUpon>RptContainerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Report\Delivery\RptDeliveryForm.resx">
-      <DependentUpon>RptDeliveryForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Form\Report\Delivery\RptDeliveryControl.resx">
+      <DependentUpon>RptDeliveryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\Delivery\RptDelivery.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptDelivery.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\Invoice\RptInvoice.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -22,6 +22,7 @@ using VisitaJayaPerkasa.Control.Transaction;
 using VisitaJayaPerkasa.Control.Recipient;
 using VisitaJayaPerkasa.Control.PriceListCustomer;
 using VisitaJayaPerkasa.Form.Report.Container;
+using VisitaJayaPerkasa.Form.Report.Delivery;
 using VisitaJayaPerkasa.Form.Report.Invoice;
 
 namespace VisitaJayaPerkasa.Form
@@ -232,6 +233,11 @@ namespace VisitaJayaPerkasa.Form
             ShowUserControl(new RptContainerControl());
         }
 
+        private void radImageButtonDelivery_Click(object sender, EventArgs e)
+        {
+            ShowUserControl(new RptDeliveryControl());
+        }
+
         private void radImageButtonATK_Click(object sender, EventArgs e)
         {
             SetEnableDisableGroup(RBGATK);
@@ -243,5 +249,6 @@ namespace VisitaJayaPerkasa.Form
             string temp = ((!Utility.Utility.IsStringNullorEmpty(UserProfile.user.FirstName)) && (!Utility.Utility.IsStringNullorEmpty(UserProfile.user.LastName))) ? (UserProfile.user.FirstName + ", " + UserProfile.user.LastName) : (UserProfile.user.FirstName + UserProfile.user.LastName);
             ShowUserControl(new RptInvoiceControl(temp));
         }
+
     }
 }
