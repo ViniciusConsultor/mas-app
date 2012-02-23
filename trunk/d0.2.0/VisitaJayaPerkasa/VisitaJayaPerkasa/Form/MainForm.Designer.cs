@@ -98,6 +98,8 @@
             this.radMenuItemLogOut = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuSeparatorItem2 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
             this.radMenuItemExit = new Telerik.WinControls.UI.RadMenuItem();
+            this.RBGRptSchedule = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.radImageButtonElement1 = new Telerik.WinControls.UI.RadImageButtonElement();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewTemplate1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRibbonBar1)).BeginInit();
@@ -128,6 +130,7 @@
             this.imageList1.Images.SetKeyName(17, "invoice.jpg");
             this.imageList1.Images.SetKeyName(18, "priceCustomer.jpg");
             this.imageList1.Images.SetKeyName(19, "ic_atk.jpg");
+            this.imageList1.Images.SetKeyName(20, "rptSchedule.jpg");
             // 
             // radMenuItem7
             // 
@@ -530,7 +533,8 @@
             this.ribbonTab3.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.RBGContainer,
             this.RBGDelivery,
-            this.RBGInvoice});
+            this.RBGInvoice,
+            this.RBGRptSchedule});
             this.ribbonTab3.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.ribbonTab3.Name = "ribbonTab3";
             this.ribbonTab3.StretchHorizontally = false;
@@ -730,6 +734,22 @@
             this.radMenuItemExit.Text = "Exit";
             this.radMenuItemExit.Click += new System.EventHandler(this.radMenuItemExit_Click);
             // 
+            // RBGRptSchedule
+            // 
+            this.RBGRptSchedule.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radImageButtonElement1});
+            this.RBGRptSchedule.Name = "RBGRptSchedule";
+            this.RBGRptSchedule.Text = "Schedule";
+            // 
+            // radImageButtonElement1
+            // 
+            this.radImageButtonElement1.Image = ((System.Drawing.Image)(resources.GetObject("radImageButtonElement1.Image")));
+            this.radImageButtonElement1.ImageIndex = 20;
+            this.radImageButtonElement1.ImageKey = "rptSchedule.jpg";
+            this.radImageButtonElement1.Name = "radImageButtonElement1";
+            this.radImageButtonElement1.Text = "radImageButtonElement1";
+            this.radImageButtonElement1.Click += new System.EventHandler(this.radImageButtonElement1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -824,5 +844,7 @@
         private Telerik.WinControls.UI.RadImageButtonElement radImageButtonInvoice;
         private Telerik.WinControls.UI.RadRibbonBarGroup RBGATK;
         private Telerik.WinControls.UI.RadImageButtonElement radImageButtonATK;
+        private Telerik.WinControls.UI.RadRibbonBarGroup RBGRptSchedule;
+        private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElement1;
     }
 }

@@ -287,11 +287,6 @@
     <Compile Include="Control\Warehouse\WareHouseView.Designer.cs">
       <DependentUpon>WareHouseView.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataSetContainer.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetContainer.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\Condition.cs" />
@@ -402,6 +397,12 @@
     </Compile>
     <Compile Include="Form\Report\RptTransForm.Designer.cs">
       <DependentUpon>RptTransForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\Schedule\RptSchedule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Report\Schedule\RptSchedule.Designer.cs">
+      <DependentUpon>RptSchedule.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\SearchCustomer.cs">
       <SubType>Form</SubType>
@@ -613,6 +614,9 @@
       <DependentUpon>RptTransForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\Schedule\RptSchedule.resx">
+      <DependentUpon>RptSchedule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\SearchCustomer.resx">
       <DependentUpon>SearchCustomer.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -630,17 +634,6 @@
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
     <None Include="ClassDiagram3.cd" />
-    <None Include="DataSetContainer.xsc">
-      <DependentUpon>DataSetContainer.xsd</DependentUpon>
-    </None>
-    <None Include="DataSetContainer.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetContainer.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="DataSetContainer.xss">
-      <DependentUpon>DataSetContainer.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
