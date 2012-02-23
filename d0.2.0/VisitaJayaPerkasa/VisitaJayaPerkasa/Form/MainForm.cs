@@ -24,6 +24,7 @@ using VisitaJayaPerkasa.Control.PriceListCustomer;
 using VisitaJayaPerkasa.Form.Report.Container;
 using VisitaJayaPerkasa.Form.Report.Delivery;
 using VisitaJayaPerkasa.Form.Report.Invoice;
+using VisitaJayaPerkasa.Form.Report.Schedule;
 
 namespace VisitaJayaPerkasa.Form
 {
@@ -248,6 +249,12 @@ namespace VisitaJayaPerkasa.Form
         {
             string temp = ((!Utility.Utility.IsStringNullorEmpty(UserProfile.user.FirstName)) && (!Utility.Utility.IsStringNullorEmpty(UserProfile.user.LastName))) ? (UserProfile.user.FirstName + ", " + UserProfile.user.LastName) : (UserProfile.user.FirstName + UserProfile.user.LastName);
             ShowUserControl(new RptInvoiceControl(temp));
+        }
+
+        private void radImageButtonElement1_Click(object sender, EventArgs e)
+        {
+            SetEnableDisableGroup(RBGRptSchedule);
+            ShowUserControl(new RptSchedule());
         }
 
     }
