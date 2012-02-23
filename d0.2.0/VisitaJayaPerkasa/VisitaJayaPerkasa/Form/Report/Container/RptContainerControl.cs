@@ -164,7 +164,7 @@ namespace VisitaJayaPerkasa.Form.Report.Container
                 {
                     query = query.Insert(query.Length, ", ");
                 }
-                query = query.Insert(query.Length, "ctd.colly as Column" + columnNo.ToString());
+                query = query.Insert(query.Length, "ctd.quantity as Column" + columnNo.ToString());
 
                 singleParameter = new ParameterField();
                 singleParameter.Name = "col" + columnNo;
