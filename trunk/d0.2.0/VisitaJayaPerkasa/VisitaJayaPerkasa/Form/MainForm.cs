@@ -25,6 +25,7 @@ using VisitaJayaPerkasa.Form.Report.Container;
 using VisitaJayaPerkasa.Form.Report.Delivery;
 using VisitaJayaPerkasa.Form.Report.Invoice;
 using VisitaJayaPerkasa.Form.Report.Schedule;
+using VisitaJayaPerkasa.Form.Report.Request_Price;
 
 namespace VisitaJayaPerkasa.Form
 {
@@ -255,6 +256,12 @@ namespace VisitaJayaPerkasa.Form
         {
             SetEnableDisableGroup(RBGRptSchedule);
             ShowUserControl(new RptSchedule());
+        }
+
+        private void radImageButtonElement2_Click(object sender, EventArgs e)
+        {
+            SetEnableDisableGroup(RBGSupplyPrice);
+            ShowUserControl(new rptSupplyPriceControl());
         }
 
     }

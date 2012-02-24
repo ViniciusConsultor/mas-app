@@ -385,6 +385,18 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Form\Report\RequestPrice\rptSupplyPrice.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptSupplyPrice.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Report\RequestPrice\rptSupplyPriceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Report\RequestPrice\rptSupplyPriceControl.Designer.cs">
+      <DependentUpon>rptSupplyPriceControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\Report\RptCustomerTrans.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -604,6 +616,13 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptKwitansi.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\RequestPrice\rptSupplyPrice.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptSupplyPrice.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\RequestPrice\rptSupplyPriceControl.resx">
+      <DependentUpon>rptSupplyPriceControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\RptCustomerTrans.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
