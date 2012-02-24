@@ -31,15 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RptSchedule));
             this.radToolStripElement2 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radToolStripItem4 = new Telerik.WinControls.UI.RadToolStripItem();
+            this.radToolStripLabelElement1 = new Telerik.WinControls.UI.RadToolStripLabelElement();
             this.rbBeginDate = new Telerik.WinControls.UI.RadButtonElement();
+            this.radToolStripLabelElement2 = new Telerik.WinControls.UI.RadToolStripLabelElement();
             this.rbEndDate = new Telerik.WinControls.UI.RadButtonElement();
             this.radButtonElementBtnSearch = new Telerik.WinControls.UI.RadButtonElement();
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.radCalendarBegin = new Telerik.WinControls.UI.RadCalendar();
             this.radCalendarEnd = new Telerik.WinControls.UI.RadCalendar();
-            this.radToolStripLabelElement1 = new Telerik.WinControls.UI.RadToolStripLabelElement();
-            this.radToolStripLabelElement2 = new Telerik.WinControls.UI.RadToolStripLabelElement();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCalendarBegin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCalendarEnd)).BeginInit();
@@ -64,6 +64,14 @@
             this.radToolStripItem4.Name = "radToolStripItem4";
             this.radToolStripItem4.Text = "radToolStripItem4";
             // 
+            // radToolStripLabelElement1
+            // 
+            this.radToolStripLabelElement1.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.radToolStripLabelElement1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radToolStripLabelElement1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.radToolStripLabelElement1.Name = "radToolStripLabelElement1";
+            this.radToolStripLabelElement1.Text = "From : ";
+            // 
             // rbBeginDate
             // 
             this.rbBeginDate.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -71,6 +79,13 @@
             this.rbBeginDate.ShowBorder = false;
             this.rbBeginDate.Text = "radButtonElement1";
             this.rbBeginDate.Click += new System.EventHandler(this.rbBeginDate_Click);
+            // 
+            // radToolStripLabelElement2
+            // 
+            this.radToolStripLabelElement2.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.radToolStripLabelElement2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radToolStripLabelElement2.Name = "radToolStripLabelElement2";
+            this.radToolStripLabelElement2.Text = "To";
             // 
             // rbEndDate
             // 
@@ -164,21 +179,6 @@
             this.radCalendarEnd.Visible = false;
             this.radCalendarEnd.ZoomFactor = 1.2F;
             this.radCalendarEnd.SelectionChanged += new System.EventHandler(this.radCalendarEnd_SelectionChanged);
-            // 
-            // radToolStripLabelElement1
-            // 
-            this.radToolStripLabelElement1.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.radToolStripLabelElement1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radToolStripLabelElement1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.radToolStripLabelElement1.Name = "radToolStripLabelElement1";
-            this.radToolStripLabelElement1.Text = "From : ";
-            // 
-            // radToolStripLabelElement2
-            // 
-            this.radToolStripLabelElement2.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.radToolStripLabelElement2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radToolStripLabelElement2.Name = "radToolStripLabelElement2";
-            this.radToolStripLabelElement2.Text = "To";
             // 
             // RptSchedule
             // 
