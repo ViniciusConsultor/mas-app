@@ -9,6 +9,7 @@ using Telerik.WinControls;
 using VisitaJayaPerkasa.Entities;
 using VisitaJayaPerkasa.SqlRepository;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace VisitaJayaPerkasa.Form
 {
@@ -18,6 +19,20 @@ namespace VisitaJayaPerkasa.Form
         {
             InitializeComponent();
             VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.loginForm = this;
+
+            if (File.Exists(Constant.VisitaJayaPerkasaApplication.nameFile))
+            {
+                TextReader tr = new StreamReader(Constant.VisitaJayaPerkasaApplication.nameFile);
+                Constant.VisitaJayaPerkasaApplication.connectionString = tr.ReadLine().Trim() + Constant.VisitaJayaPerkasaApplication.connectionString;
+                tr.Close();
+            }
+            else {
+                TextWriter tw = new StreamWriter(Constant.VisitaJayaPerkasaApplication.nameFile);
+                tw.WriteLine("Data Source = localhost;");
+                tw.Close();
+
+                Constant.VisitaJayaPerkasaApplication.connectionString = "Data Source = localhost;" + Constant.VisitaJayaPerkasaApplication.connectionString;
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

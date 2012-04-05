@@ -237,6 +237,7 @@ namespace VisitaJayaPerkasa.Form
 
         private void radImageButtonDelivery_Click(object sender, EventArgs e)
         {
+            SetEnableDisableGroup(RBGDelivery);
             ShowUserControl(new RptDeliveryControl());
         }
 
@@ -249,6 +250,7 @@ namespace VisitaJayaPerkasa.Form
         private void radImageButtonInvoice_Click(object sender, EventArgs e)
         {
             string temp = ((!Utility.Utility.IsStringNullorEmpty(UserProfile.user.FirstName)) && (!Utility.Utility.IsStringNullorEmpty(UserProfile.user.LastName))) ? (UserProfile.user.FirstName + ", " + UserProfile.user.LastName) : (UserProfile.user.FirstName + UserProfile.user.LastName);
+            SetEnableDisableGroup(RBGInvoice);
             ShowUserControl(new RptInvoiceControl(temp));
         }
 

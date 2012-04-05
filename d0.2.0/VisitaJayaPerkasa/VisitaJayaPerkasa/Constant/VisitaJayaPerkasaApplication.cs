@@ -19,6 +19,7 @@ namespace VisitaJayaPerkasa.Constant
         public static string cboDefaultText = "-- Choose --";
         public static string strGeneralCustomer = "General Customer";
         public static string roleAdmin = "administrator";
-        public static string connectionString = "Data Source=localhost;Initial Catalog=ShippingMain;Integrated Security=True";
+        public static string connectionString = "Initial Catalog=ShippingMain;Integrated Security=True";
+        public static string nameFile = "Connection.txt";
     }
 }
