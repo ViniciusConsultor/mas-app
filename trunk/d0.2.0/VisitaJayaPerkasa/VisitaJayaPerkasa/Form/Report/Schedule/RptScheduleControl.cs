@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace VisitaJayaPerkasa.Form.Report.Schedule
 {
-    public partial class RptSchedule : UserControl
+    public partial class RptScheduleControl : UserControl
     {
-        public RptSchedule()
+        public RptScheduleControl()
         {
             InitializeComponent();
             

@@ -393,6 +393,20 @@ SELECT person_id, username, password, deleted FROM [USER] WHERE (person_id = @pe
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Schedules" msprop:Generator_TableClassName="SchedulesDataTable" msprop:Generator_TableVarName="tableSchedules" msprop:Generator_TablePropName="Schedules" msprop:Generator_RowDeletingName="SchedulesRowDeleting" msprop:Generator_UserTableName="Schedules" msprop:Generator_RowChangingName="SchedulesRowChanging" msprop:Generator_RowEvHandlerName="SchedulesRowChangeEventHandler" msprop:Generator_RowDeletedName="SchedulesRowDeleted" msprop:Generator_RowEvArgName="SchedulesRowChangeEvent" msprop:Generator_RowChangedName="SchedulesRowChanged" msprop:Generator_RowClassName="SchedulesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Column1" msprop:Generator_ColumnVarNameInTable="columnColumn1" msprop:Generator_ColumnPropNameInRow="Column1" msprop:Generator_ColumnPropNameInTable="Column1Column" msprop:Generator_UserColumnName="Column1" type="xs:string" minOccurs="0" />
+              <xs:element name="Column2" msprop:Generator_ColumnVarNameInTable="columnColumn2" msprop:Generator_ColumnPropNameInRow="Column2" msprop:Generator_ColumnPropNameInTable="Column2Column" msprop:Generator_UserColumnName="Column2" type="xs:string" minOccurs="0" />
+              <xs:element name="Column3" msprop:Generator_ColumnVarNameInTable="columnColumn3" msprop:Generator_ColumnPropNameInRow="Column3" msprop:Generator_ColumnPropNameInTable="Column3Column" msprop:Generator_UserColumnName="Column3" type="xs:string" minOccurs="0" />
+              <xs:element name="Column4" msprop:Generator_ColumnVarNameInTable="columnColumn4" msprop:Generator_ColumnPropNameInRow="Column4" msprop:Generator_ColumnPropNameInTable="Column4Column" msprop:Generator_UserColumnName="Column4" type="xs:string" minOccurs="0" />
+              <xs:element name="Column5" msprop:Generator_ColumnVarNameInTable="columnColumn5" msprop:Generator_ColumnPropNameInRow="Column5" msprop:Generator_ColumnPropNameInTable="Column5Column" msprop:Generator_UserColumnName="Column5" type="xs:string" minOccurs="0" />
+              <xs:element name="Column6" msprop:Generator_ColumnVarNameInTable="columnColumn6" msprop:Generator_ColumnPropNameInRow="Column6" msprop:Generator_ColumnPropNameInTable="Column6Column" msprop:Generator_UserColumnName="Column6" type="xs:string" minOccurs="0" />
+              <xs:element name="Column7" msprop:Generator_ColumnVarNameInTable="columnColumn7" msprop:Generator_ColumnPropNameInRow="Column7" msprop:Generator_ColumnPropNameInTable="Column7Column" msprop:Generator_UserColumnName="Column7" type="xs:string" minOccurs="0" />
+              <xs:element name="Column8" msprop:Generator_ColumnVarNameInTable="columnColumn8" msprop:Generator_ColumnPropNameInRow="Column8" msprop:Generator_ColumnPropNameInTable="Column8Column" msprop:Generator_UserColumnName="Column8" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">

@@ -1,6 +1,6 @@
 ﻿namespace VisitaJayaPerkasa.Form.Report.Schedule
 {
-    partial class RptSchedule
+    partial class RptScheduleControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RptSchedule));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RptScheduleControl));
             this.radToolStripElement2 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radToolStripItem4 = new Telerik.WinControls.UI.RadToolStripItem();
             this.radToolStripLabelElement1 = new Telerik.WinControls.UI.RadToolStripLabelElement();
@@ -180,7 +180,7 @@
             this.radCalendarEnd.ZoomFactor = 1.2F;
             this.radCalendarEnd.SelectionChanged += new System.EventHandler(this.radCalendarEnd_SelectionChanged);
             // 
-            // RptSchedule
+            // RptScheduleControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -188,7 +188,7 @@
             this.Controls.Add(this.radCalendarBegin);
             this.Controls.Add(this.crystalReportViewer1);
             this.Controls.Add(this.radToolStrip1);
-            this.Name = "RptSchedule";
+            this.Name = "RptScheduleControl";
             this.Size = new System.Drawing.Size(639, 407);
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radCalendarBegin)).EndInit();
