@@ -257,7 +257,7 @@ namespace VisitaJayaPerkasa.Form
         private void radImageButtonElement1_Click(object sender, EventArgs e)
         {
             SetEnableDisableGroup(RBGRptSchedule);
-            ShowUserControl(new RptSchedule());
+            ShowUserControl(new RptScheduleControl());
         }
 
         private void radImageButtonElement2_Click(object sender, EventArgs e)

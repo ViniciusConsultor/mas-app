@@ -410,11 +410,17 @@
     <Compile Include="Form\Report\RptTransForm.Designer.cs">
       <DependentUpon>RptTransForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Report\Schedule\RptSchedule.cs">
+    <Compile Include="Form\Report\Schedule\rptSchedule.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptSchedule.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Report\Schedule\RptScheduleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Form\Report\Schedule\RptSchedule.Designer.cs">
-      <DependentUpon>RptSchedule.cs</DependentUpon>
+    <Compile Include="Form\Report\Schedule\RptScheduleControl.Designer.cs">
+      <DependentUpon>RptScheduleControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\SearchCustomer.cs">
       <SubType>Form</SubType>
@@ -633,8 +639,12 @@
       <DependentUpon>RptTransForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Report\Schedule\RptSchedule.resx">
-      <DependentUpon>RptSchedule.cs</DependentUpon>
+    <EmbeddedResource Include="Form\Report\Schedule\rptSchedule.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptSchedule.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\Schedule\RptScheduleControl.resx">
+      <DependentUpon>RptScheduleControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\SearchCustomer.resx">
       <DependentUpon>SearchCustomer.cs</DependentUpon>
