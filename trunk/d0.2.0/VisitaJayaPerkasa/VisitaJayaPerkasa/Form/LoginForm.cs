@@ -23,15 +23,19 @@ namespace VisitaJayaPerkasa.Form
             if (File.Exists(Constant.VisitaJayaPerkasaApplication.nameFile))
             {
                 TextReader tr = new StreamReader(Constant.VisitaJayaPerkasaApplication.nameFile);
-                Constant.VisitaJayaPerkasaApplication.connectionString = tr.ReadLine().Trim() + Constant.VisitaJayaPerkasaApplication.connectionString;
+                String[] temp = tr.ReadLine().Trim().Split('#');
+                Constant.VisitaJayaPerkasaApplication.connectionString = temp[0] + Constant.VisitaJayaPerkasaApplication.connectionString + temp[1];
                 tr.Close();
+                temp = null;
             }
             else {
+                String[] temp = { "Data Source = localhost;", "User ID=sa;password=medimobile;" };
+
                 TextWriter tw = new StreamWriter(Constant.VisitaJayaPerkasaApplication.nameFile);
-                tw.WriteLine("Data Source = localhost;");
+                tw.WriteLine(temp[0] + "#" + temp[1]);
                 tw.Close();
 
-                Constant.VisitaJayaPerkasaApplication.connectionString = "Data Source = localhost;" + Constant.VisitaJayaPerkasaApplication.connectionString;
+                Constant.VisitaJayaPerkasaApplication.connectionString = temp[0] + Constant.VisitaJayaPerkasaApplication.connectionString + temp[1];
             }
         }
 
