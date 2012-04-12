@@ -52,6 +52,102 @@ namespace VisitaJayaPerkasa.SqlRepository
             return listCustomerTrans;
         }
 
+        public List<CustomerTrans> ListCustomerTrans(Guid customerID)
+        {
+            List<CustomerTrans> listCustomerTrans = null;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    using (SqlCommand command = new SqlCommand(
+                        "Select u.id, u.customer_id, u.tgl_transaksi, ur.customer_name FROM [Customer_Trans] u JOIN [Customer] ur " +
+                        "ON (u.deleted is null OR u.deleted = '0') AND (ur.deleted is null OR ur.deleted = '0') AND u.customer_id = ur.customer_id " +
+                        "WHERE u.customer_id = '" + customerID.ToString() + "'", con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            CustomerTrans customerTrans = new CustomerTrans();
+                            customerTrans.CustomerTransID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                            customerTrans.CustomerID = Utility.Utility.ConvertToUUID(reader.GetValue(1).ToString());
+                            customerTrans.TransDate = (Utility.Utility.IsDBNull(reader.GetValue(2))) ? Utility.Utility.DefaultDateTime() : reader.GetDateTime(2);
+                            customerTrans.CustomerName = (Utility.Utility.IsDBNull(reader.GetValue(3))) ? null : reader.GetString(3);
+
+
+                            if (listCustomerTrans == null)
+                                listCustomerTrans = new List<CustomerTrans>();
+
+                            listCustomerTrans.Add(customerTrans);
+                            customerTrans = null;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlCustomerTransRepository.cs - listCustomerTrans(Guid) " + e.Message);
+            }
+
+            return listCustomerTrans;
+        }
+
+        public List<CustomerTransDetailSimplified> ListCustomerTransDetailSimplified(Guid customerTransID)
+        {
+            List<CustomerTransDetailSimplified> listCustomerTransDetails = new List<CustomerTransDetailSimplified>();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    con.Open();
+
+                    string query = "Select ctd.id, tc.type_name, pd.vessel_name, co.city_name, cd.city_name, " +
+                        "       cnd.condition_name, w.address, r.recipient_name " +
+                        "FROM [Customer_Trans_Detail] ctd " +
+                        "LEFT OUTER JOIN [Type_Cont] tc ON tc.type_id = ctd.type_id " +
+                        "LEFT OUTER JOIN [Pelayaran_Detail] pd ON pd.pelayaran_detail_id = ctd.pelayaran_detail_id " +
+                        "LEFT OUTER JOIN [Pelayaran] p ON p.pelayaran_id = pd.pelayaran_id " +
+                        "LEFT OUTER JOIN [City] co ON co.city_id = ctd.origin " +
+                        "LEFT OUTER JOIN [City] cd ON cd.city_id = ctd.destination " +
+                        "LEFT OUTER JOIN [Condition] cnd ON cnd.condition_id = ctd.condition_id " +
+                        "LEFT OUTER JOIN [Warehouse] w ON w.stuffing_place_id = ctd.stuffing_place " +
+                        "LEFT OUTER JOIN [RECIPIENT] r ON r.recipient_id = ctd.recipient_id " +
+                        "Where (ctd.deleted is null OR ctd.deleted = '0') " +
+                        "AND ctd.customer_trans_id = '" + customerTransID.ToString() + "'";
+
+                    System.Windows.Forms.MessageBox.Show(query);
+                    using (SqlCommand command = new SqlCommand(query, con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            CustomerTransDetailSimplified ctds = new CustomerTransDetailSimplified();
+                            ctds.CustomerDetailTransID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                            ctds.TypeName = (Utility.Utility.IsDBNull(reader.GetValue(1))) ? null : reader.GetString(1);
+                            ctds.VesselName = (Utility.Utility.IsDBNull(reader.GetValue(2))) ? null : reader.GetString(2);
+                            ctds.OriginName = (Utility.Utility.IsDBNull(reader.GetValue(3))) ? null : reader.GetString(3);
+                            ctds.DestinationName = (Utility.Utility.IsDBNull(reader.GetValue(4))) ? null : reader.GetString(4);
+                            ctds.ConditionName = (Utility.Utility.IsDBNull(reader.GetValue(5))) ? null : reader.GetString(5);
+                            ctds.WarehouseName = (Utility.Utility.IsDBNull(reader.GetValue(6))) ? null : reader.GetString(6);
+                            ctds.RecipientName = (Utility.Utility.IsDBNull(reader.GetValue(7))) ? null : reader.GetString(7);
+
+                            listCustomerTransDetails.Add(ctds);
+                            ctds = null;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlCustomerTransRepository.cs - ListCustomerTransDetailSimplified() " + e.Message);
+            }
+
+            return listCustomerTransDetails;
+        }
+
         public bool DeleteCustomerTrans(SqlParameter[] sqlParam)
         {
             int n = 0;

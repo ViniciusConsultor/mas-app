@@ -294,6 +294,7 @@
     <Compile Include="Entities\CustomerDetail.cs" />
     <Compile Include="Entities\CustomerTrans.cs" />
     <Compile Include="Entities\CustomerTransDetail.cs" />
+    <Compile Include="Entities\CustomerTransDetailSimplified.cs" />
     <Compile Include="Entities\Pelayaran.cs" />
     <Compile Include="Entities\PelayaranDetail.cs" />
     <Compile Include="Entities\PriceList.cs" />
@@ -336,6 +337,12 @@
     </Compile>
     <Compile Include="Form\Report\Container\RptContainerControl.Designer.cs">
       <DependentUpon>RptContainerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\Delivery\RptBeritaAcaraDelivery.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptBeritaAcaraDelivery.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form\Report\Delivery\RptDeliveryControl.cs">
       <SubType>UserControl</SubType>
@@ -593,6 +600,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\Container\RptContainerControl.resx">
       <DependentUpon>RptContainerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\Delivery\RptBeritaAcaraDelivery.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptBeritaAcaraDelivery.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\Delivery\RptDeliveryControl.resx">
       <DependentUpon>RptDeliveryControl.cs</DependentUpon>
