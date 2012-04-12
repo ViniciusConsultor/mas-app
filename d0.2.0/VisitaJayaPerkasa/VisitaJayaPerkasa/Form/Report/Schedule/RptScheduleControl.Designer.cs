@@ -103,6 +103,7 @@
             this.radButtonElementBtnSearch.Name = "radButtonElementBtnSearch";
             this.radButtonElementBtnSearch.ShowBorder = false;
             this.radButtonElementBtnSearch.Text = "";
+            this.radButtonElementBtnSearch.Click += new System.EventHandler(this.radButtonElementBtnSearch_Click);
             // 
             // radToolStrip1
             // 
