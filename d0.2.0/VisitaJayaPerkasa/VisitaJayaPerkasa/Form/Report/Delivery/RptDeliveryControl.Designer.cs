@@ -38,13 +38,13 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.tabItem2 = new Telerik.WinControls.UI.TabItem();
+            this.cboTransDetail = new Telerik.WinControls.UI.RadComboBox();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.cboTransDate = new Telerik.WinControls.UI.RadComboBox();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.btnViewBeritaAcara = new Telerik.WinControls.UI.RadButton();
             this.cboCustomer2 = new Telerik.WinControls.UI.RadComboBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.cboTransDate = new Telerik.WinControls.UI.RadComboBox();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.cboTransDetail = new Telerik.WinControls.UI.RadComboBox();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radTabStrip1)).BeginInit();
             this.radTabStrip1.SuspendLayout();
             this.tabItem1.ContentPanel.SuspendLayout();
@@ -54,13 +54,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             this.tabItem2.ContentPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTransDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTransDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnViewBeritaAcara)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCustomer2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboTransDate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboTransDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer
@@ -107,6 +107,7 @@
             this.tabItem1.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabItem1.ContentPanel.Location = new System.Drawing.Point(1, 29);
             this.tabItem1.ContentPanel.Size = new System.Drawing.Size(224, 377);
+            this.tabItem1.IsSelected = true;
             this.tabItem1.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabItem1.Name = "tabItem1";
             this.tabItem1.StretchHorizontally = false;
@@ -173,6 +174,7 @@
             // 
             // cboCustomer
             // 
+            this.cboCustomer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboCustomer.Location = new System.Drawing.Point(61, 13);
             this.cboCustomer.Name = "cboCustomer";
             // 
@@ -219,62 +221,10 @@
             this.tabItem2.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabItem2.ContentPanel.Location = new System.Drawing.Point(1, 29);
             this.tabItem2.ContentPanel.Size = new System.Drawing.Size(224, 377);
-            this.tabItem2.IsSelected = true;
             this.tabItem2.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.tabItem2.Name = "tabItem2";
             this.tabItem2.StretchHorizontally = false;
             this.tabItem2.Text = "Berita Acara";
-            // 
-            // btnViewBeritaAcara
-            // 
-            this.btnViewBeritaAcara.Location = new System.Drawing.Point(6, 96);
-            this.btnViewBeritaAcara.Name = "btnViewBeritaAcara";
-            this.btnViewBeritaAcara.Size = new System.Drawing.Size(213, 24);
-            this.btnViewBeritaAcara.TabIndex = 10;
-            this.btnViewBeritaAcara.Text = "View Berita Acara";
-            this.btnViewBeritaAcara.Click += new System.EventHandler(this.btnViewBeritaAcara_Click);
-            // 
-            // cboCustomer2
-            // 
-            this.cboCustomer2.Location = new System.Drawing.Point(61, 13);
-            this.cboCustomer2.Name = "cboCustomer2";
-            // 
-            // 
-            // 
-            this.cboCustomer2.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
-            this.cboCustomer2.Size = new System.Drawing.Size(158, 20);
-            this.cboCustomer2.TabIndex = 2;
-            this.cboCustomer2.TabStop = false;
-            this.cboCustomer2.Text = "radComboBox1";
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.Location = new System.Drawing.Point(6, 17);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(55, 16);
-            this.radLabel3.TabIndex = 1;
-            this.radLabel3.Text = "Customer";
-            // 
-            // cboTransDate
-            // 
-            this.cboTransDate.Location = new System.Drawing.Point(86, 39);
-            this.cboTransDate.Name = "cboTransDate";
-            // 
-            // 
-            // 
-            this.cboTransDate.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
-            this.cboTransDate.Size = new System.Drawing.Size(133, 20);
-            this.cboTransDate.TabIndex = 12;
-            this.cboTransDate.TabStop = false;
-            this.cboTransDate.Text = "radComboBox1";
-            // 
-            // radLabel4
-            // 
-            this.radLabel4.Location = new System.Drawing.Point(6, 43);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(74, 16);
-            this.radLabel4.TabIndex = 11;
-            this.radLabel4.Text = "Tgl Transaksi";
             // 
             // cboTransDetail
             // 
@@ -297,6 +247,58 @@
             this.radLabel5.TabIndex = 13;
             this.radLabel5.Text = "Detil";
             // 
+            // cboTransDate
+            // 
+            this.cboTransDate.Location = new System.Drawing.Point(86, 39);
+            this.cboTransDate.Name = "cboTransDate";
+            // 
+            // 
+            // 
+            this.cboTransDate.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
+            this.cboTransDate.Size = new System.Drawing.Size(133, 20);
+            this.cboTransDate.TabIndex = 12;
+            this.cboTransDate.TabStop = false;
+            this.cboTransDate.Text = "radComboBox1";
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Location = new System.Drawing.Point(6, 43);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(74, 16);
+            this.radLabel4.TabIndex = 11;
+            this.radLabel4.Text = "Tgl Transaksi";
+            // 
+            // btnViewBeritaAcara
+            // 
+            this.btnViewBeritaAcara.Location = new System.Drawing.Point(6, 96);
+            this.btnViewBeritaAcara.Name = "btnViewBeritaAcara";
+            this.btnViewBeritaAcara.Size = new System.Drawing.Size(213, 24);
+            this.btnViewBeritaAcara.TabIndex = 10;
+            this.btnViewBeritaAcara.Text = "View Berita Acara";
+            this.btnViewBeritaAcara.Click += new System.EventHandler(this.btnViewBeritaAcara_Click);
+            // 
+            // cboCustomer2
+            // 
+            this.cboCustomer2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboCustomer2.Location = new System.Drawing.Point(61, 13);
+            this.cboCustomer2.Name = "cboCustomer2";
+            // 
+            // 
+            // 
+            this.cboCustomer2.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
+            this.cboCustomer2.Size = new System.Drawing.Size(158, 20);
+            this.cboCustomer2.TabIndex = 2;
+            this.cboCustomer2.TabStop = false;
+            this.cboCustomer2.Text = "radComboBox1";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(6, 17);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(55, 16);
+            this.radLabel3.TabIndex = 1;
+            this.radLabel3.Text = "Customer";
+            // 
             // RptDeliveryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -316,13 +318,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             this.tabItem2.ContentPanel.ResumeLayout(false);
             this.tabItem2.ContentPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTransDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTransDate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnViewBeritaAcara)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCustomer2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboTransDate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboTransDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             this.ResumeLayout(false);
 
         }

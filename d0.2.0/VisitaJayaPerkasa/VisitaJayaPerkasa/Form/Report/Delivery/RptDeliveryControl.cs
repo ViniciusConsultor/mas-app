@@ -51,6 +51,12 @@ namespace VisitaJayaPerkasa.Form.Report.Delivery
             cboCustomer2.SelectedIndex = -1;
             cboCustomer2.Text = "-- Choose --";
 
+            cboTransDate.SelectedIndex = -1;
+            cboTransDate.Text = "-- Choose --";
+
+            cboTransDetail.SelectedIndex = -1;
+            cboTransDetail.Text = "-- Choose --";
+
             cboCustomer2.SelectedIndexChanged += new EventHandler(Customer2_SelectedIndexChanged);
 
             cboCustomer2.SelectedIndex = 0;
@@ -76,8 +82,6 @@ namespace VisitaJayaPerkasa.Form.Report.Delivery
             }
             DateTime endDate = new DateTime(endYear, endMonth, 1);
             string customerId = cboCustomer.SelectedValue.ToString();
-
-            //MessageBox.Show("start: " + startDate.ToShortDateString() + "\nend: " + endDate.ToShortDateString() + "\ncid: " + customerId);
 
             //build query
             string query = "SELECT ct.id, ct.customer_id, c.customer_name, ct.tgl_transaksi, " +
@@ -172,7 +176,6 @@ namespace VisitaJayaPerkasa.Form.Report.Delivery
                            "       LEFT OUTER JOIN TYPE_CONT AS tc ON tc.type_id = ctd.type_id " +
                            "       LEFT OUTER JOIN CONDITION AS cnd ON cnd.condition_id = ctd.condition_id " +
                            "WHERE ((ctd.deleted is null OR ctd.deleted = '0') AND (ct.deleted is null OR ct.deleted = '0')) " + 
-//                           "AND ct.tgl_transaksi = '" + date + "' " +
                            "AND ct.customer_id = '" + customerId + "' " +
                            "AND ctd.id = '" + transDetailId + "' ";
 
@@ -313,7 +316,8 @@ namespace VisitaJayaPerkasa.Form.Report.Delivery
         private void TransDate_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Alter the detail list
-            List<CustomerTransDetailSimplified> transDetail = sqlCustomerTransRepository.ListCustomerTransDetailSimplified((Guid)cboCustomer2.SelectedValue);
+            Guid transID = (Guid)cboTransDate.SelectedValue;
+            List<CustomerTransDetailSimplified> transDetail = sqlCustomerTransRepository.ListCustomerTransDetailSimplified(transID);
 
             cboTransDetail.DataSource = transDetail;
             cboTransDetail.DisplayMember = "StringRep";
