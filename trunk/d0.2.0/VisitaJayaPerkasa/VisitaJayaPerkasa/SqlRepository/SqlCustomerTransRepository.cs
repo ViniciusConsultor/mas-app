@@ -118,7 +118,6 @@ namespace VisitaJayaPerkasa.SqlRepository
                         "Where (ctd.deleted is null OR ctd.deleted = '0') " +
                         "AND ctd.customer_trans_id = '" + customerTransID.ToString() + "'";
 
-                    System.Windows.Forms.MessageBox.Show(query);
                     using (SqlCommand command = new SqlCommand(query, con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
