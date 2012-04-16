@@ -155,18 +155,18 @@
             this.cboMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMonth.FormattingEnabled = true;
             this.cboMonth.Items.AddRange(new object[] {
-            "January",
-            "February",
-            "March",
+            "Januari",
+            "Februari",
+            "Maret",
             "April",
-            "May",
-            "June",
-            "July",
-            "August",
+            "Mei",
+            "Juni",
+            "Juli",
+            "Agustus",
             "September",
-            "October",
+            "Oktober",
             "November",
-            "December"});
+            "Desember"});
             this.cboMonth.Location = new System.Drawing.Point(61, 39);
             this.cboMonth.Name = "cboMonth";
             this.cboMonth.Size = new System.Drawing.Size(102, 21);
