@@ -32,8 +32,8 @@ namespace VisitaJayaPerkasa.Form.Report.Delivery
             cboMonth.SelectedIndex = datetime.Month-1;
             spnYear.Value = datetime.Year;
 
-            cboMonth.SelectedIndex = 11;
-            spnYear.Value = 2011;
+            cboMonth.SelectedIndex = datetime.Month - 1;
+            spnYear.Value = datetime.Year;
 
             List<VisitaJayaPerkasa.Entities.Customer> listCustomer = sqlCustomerRepository.ListCustomers();
 
@@ -84,10 +84,12 @@ namespace VisitaJayaPerkasa.Form.Report.Delivery
             string customerId = cboCustomer.SelectedValue.ToString();
 
             //build query
-            string query = "SELECT ct.id, ct.customer_id, c.customer_name, ct.tgl_transaksi, " +
-                           "       ctd.stuffing_date, w.address, des.city_name, ctd.no_container, " +
-                           "       ctd.voy, ctd.td, pd.vessel_name, ctd.ta, " +
-                           "       ctd.unloading, ctd.terima_toko, r.recipient_name " +
+            string query = "SELECT ct.id, ct.customer_id AS CustomerId, c.customer_name AS CustomerName, " +
+                           "       ct.tgl_transaksi AS TanggalTransaksi, ctd.stuffing_date AS StuffingDate, " +
+                           "       w.address AS stuffingplace, des.city_name AS Tujuan, " +
+                           "       ctd.no_container AS ContainerNo, ctd.voy, ctd.td, " +
+                           "       pd.vessel_name AS VesselName, ctd.ta, ctd.unloading, " +
+                           "       ctd.terima_toko AS DateReceived, r.recipient_name AS Recipient " +
                            "FROM   CUSTOMER_TRANS AS ct " +
                            "       INNER JOIN CUSTOMER AS c ON c.customer_id = ct.customer_id " +
                            "       LEFT OUTER JOIN CUSTOMER_TRANS_DETAIL AS ctd ON ctd.customer_trans_id = ct.id " +
@@ -114,6 +116,18 @@ namespace VisitaJayaPerkasa.Form.Report.Delivery
                 DataTable dt = ds.Tables["DELIVERY"];
                 //MessageBox.Show(dt.Rows.Count.ToString());
 
+                ParameterFields pluralParameter = new ParameterFields();
+                ParameterField singleParameter;
+                ParameterDiscreteValue parameterDiscreteValue;
+
+                singleParameter = new ParameterField();
+                singleParameter.Name = "strBulanTransaksi";
+                parameterDiscreteValue = new ParameterDiscreteValue();
+                parameterDiscreteValue.Value = cboMonth.Text + " " + spnYear.Value.ToString();
+                singleParameter.CurrentValues.Add(parameterDiscreteValue);
+                pluralParameter.Add(singleParameter);
+
+                reportViewer.ParameterFieldInfo = pluralParameter;
                 rptDelivery.SetDataSource(ds);
                 reportViewer.ReportSource = rptDelivery;
             }
