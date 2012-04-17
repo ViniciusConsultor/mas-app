@@ -26,6 +26,9 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
             List<VisitaJayaPerkasa.Entities.Supplier> listSupplier;
             SqlSupplierRepository sqlSupplierRepository = new SqlSupplierRepository();
             listSupplier = sqlSupplierRepository.ListSuppliers();
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
 
             cbSupplier.DataSource = listSupplier;
             cbSupplier.DisplayMember = "SupplierName";
@@ -47,7 +50,9 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
                 SqlPelayaranRepository sqlPelayaranRepository = new SqlPelayaranRepository();
                 listPelayaranDetail = sqlPelayaranRepository.ListPelayaranDetail(pelayaran.ID);
 
-                if (listPelayaranDetail != null)
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else if (listPelayaranDetail != null)
                     PelayaranDetailGridView.DataSource = listPelayaranDetail;
                 else
                     listPelayaranDetail = new List<VisitaJayaPerkasa.Entities.PelayaranDetail>();
@@ -232,6 +237,8 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
                             MessageBox.Show(this, "Success Activate Pelayaran", "Information");
                             radButtonElement2.PerformClick();
                         }
+                        else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                            MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         else
                             MessageBox.Show(this, "Cannot Activate Pelayaran", "Information");
 
@@ -239,9 +246,19 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
                     }
                     return;
                 }
+                else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                {
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 else if (sqlPelayaranRepository.CheckPelayaran(sqlParam, Guid.Empty))
                 {
                     MessageBox.Show(this, "Pelayaran has already exists", "Information");
+                    return;
+                }
+                else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                {
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -251,6 +268,8 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
                     MessageBox.Show(this, "Success insert pelayaran data", "Information");
                     radButtonElement2.PerformClick();
                 }
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                 {
                     MessageBox.Show(this, "Cannot insert pelayaran data", "Information");
@@ -272,12 +291,19 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
                     MessageBox.Show(this, "Pelayaran has already exist. if it has already deleted. you must activate it with create new data", "Information");
                     return;
                 }
+                else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                {
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 if (sqlPelayaranRepository.EditPelayaran(sqlParam))
                 {
                     MessageBox.Show(this, "Success edit pelayaran data", "Information");
                     radButtonElement2.PerformClick();
                 }
+                else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                 {
                     MessageBox.Show(this, "Cannot edit pelayaran data", "Information");

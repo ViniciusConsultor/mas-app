@@ -70,6 +70,8 @@ namespace VisitaJayaPerkasa.Control.TypeCont
                                 MessageBox.Show(this, "Success Activate Type Cont", "Information");
                                 radButtonElement2.PerformClick();
                             }
+                            else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             else
                                 MessageBox.Show(this, "Cannot Activate Type Cont", "Information");
 
@@ -77,9 +79,19 @@ namespace VisitaJayaPerkasa.Control.TypeCont
                         }
                         return;
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     else if (sqlTypeContRepository.CheckTypeCont(param, Guid.Empty))
                     {
                         MessageBox.Show(this, "Type cont has already exists", "Information");
+                        return;
+                    }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -90,6 +102,8 @@ namespace VisitaJayaPerkasa.Control.TypeCont
                         MessageBox.Show(this, "Success create type cont", "Information");
                         radButtonElement2.PerformClick();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
                         MessageBox.Show(this, "Cannot Create type cont", "Information");
@@ -107,6 +121,11 @@ namespace VisitaJayaPerkasa.Control.TypeCont
                         MessageBox.Show(this, "Type cont has already exist. if it has already deleted. you must activate it with create new data", "Information");
                         return;
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
                     SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "type_id", "type_code", "type_name", "deleted" }
                     , new object[] { typeCont.ID, typeCont.TypeCode, typeCont.TypeName, typeCont.Deleted });
@@ -116,6 +135,8 @@ namespace VisitaJayaPerkasa.Control.TypeCont
                         MessageBox.Show(this, "Success edit type cont", "Information");
                         radButtonElement2.PerformClick();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
                         MessageBox.Show(this, "Cannot edit type cont", "Information");

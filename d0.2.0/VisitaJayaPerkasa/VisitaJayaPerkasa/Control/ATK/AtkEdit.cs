@@ -27,11 +27,22 @@ namespace VisitaJayaPerkasa.Control.ATK
 
             sqlPriceListRepository = new SqlPriceListRepository();
             List<Entities.Category> listCategory = sqlPriceListRepository.GetTypeOfSupplier(1);
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+            {
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             categorySupplier = listCategory != null ? listCategory.FirstOrDefault() : null;
 
             if (categorySupplier != null)
             {
                 listSupplier = sqlPriceListRepository.GetSupplier(categorySupplier.ID);
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                {
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 cbSupplier.Enabled = true;
                 cbSupplier.DataSource = listSupplier;
@@ -104,6 +115,12 @@ namespace VisitaJayaPerkasa.Control.ATK
                         MessageBox.Show(this, "Your data has already exist. \nDelete it first", "Information");
                         return;
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     sqlParam = null;
                     SqlParameter[] sqlParamInsert = null;
 
@@ -161,6 +178,8 @@ namespace VisitaJayaPerkasa.Control.ATK
                         MessageBox.Show(this, "Success saving !", "Information");
                         radButtonElement2.PerformClick();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                         MessageBox.Show(this, "Failed save data !", "Information");
 
@@ -174,6 +193,11 @@ namespace VisitaJayaPerkasa.Control.ATK
                         MessageBox.Show(this, "Your data has already exist. \nDelete it first", "Information");
                         return;
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     sqlParam = null;
 
 
@@ -184,6 +208,8 @@ namespace VisitaJayaPerkasa.Control.ATK
                         MessageBox.Show(this, "Success Edit Price ATK", "Information");
                         radButtonElement2.PerformClick();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
                         MessageBox.Show(this, "Cannot Edit Price ATK", "Information");

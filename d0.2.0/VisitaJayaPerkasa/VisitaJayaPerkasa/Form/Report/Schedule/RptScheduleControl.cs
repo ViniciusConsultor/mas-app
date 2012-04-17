@@ -151,7 +151,10 @@ namespace VisitaJayaPerkasa.Form.Report.Schedule
             }
             else {
                 List<ReportSchedule> listReportSchedules = GetReportSchedule(rbBeginDate.Text, rbEndDate.Text);
-                if (listReportSchedules != null) {
+
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else if (listReportSchedules != null) {
                     ShippingMainDataSet ds = new ShippingMainDataSet();
                     rptSchedule = new rptSchedule();
                     SetParameter();
@@ -249,9 +252,14 @@ namespace VisitaJayaPerkasa.Form.Report.Schedule
                     }
                 }
             }
-            catch (Exception e)
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message);
+            }
+            catch (Exception Ex)
             {
                 Logging.Error("RptScheduleControl.cs - GetReportSchedule() " + e.Message);
+                MessageBox.Show(Ex.Message);
             }
 
             return listReportSchedule;
@@ -268,26 +276,3 @@ namespace VisitaJayaPerkasa.Form.Report.Schedule
         public string etd { get; set; }
     }
 }
-
-
-
-
-
-
-
-
-/*
-
-select 'Jakarta - ' + c.city_name as tujuan,
-(
-	select TOP 1 supplier_name FROM pelayaran_detail pd JOIN pelayaran p 
-	ON 	p.pelayaran_id = pd.pelayaran_id
-	AND pd.pelayaran_detail_id = s.pelayaran_detail_id 
-	JOIN supplier s
-	ON s.supplier_id = p.supplier_id	
-) as pelayaran,
-(select TOP 1 vessel_name FROM pelayaran_detail pd WHERE pd.pelayaran_detail_id = s.pelayaran_detail_id) as vessel,
-s.voy, s.tgl_closing, s.etd
-FROM schedule s, city c
-WHERE ta is null AND s.tujuan = c.city_id
-*/

@@ -19,7 +19,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 try
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     sqlTransaction = con.BeginTransaction();
                     using (SqlCommand command = new SqlCommand(
                         "Insert into [Invoice] values (" +

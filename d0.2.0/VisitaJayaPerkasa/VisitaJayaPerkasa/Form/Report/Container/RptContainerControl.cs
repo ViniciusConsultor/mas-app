@@ -26,6 +26,9 @@ namespace VisitaJayaPerkasa.Form.Report.Container
 
             SqlPelayaranRepository pelayaranRepository = new SqlPelayaranRepository();
             listPelayaran = pelayaranRepository.GetVessels();
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             cbVessel.DataSource = listPelayaran;
             cbVessel.DisplayMember = "VesselName";
             cbVessel.ValueMember = "PelayaranDetailID";

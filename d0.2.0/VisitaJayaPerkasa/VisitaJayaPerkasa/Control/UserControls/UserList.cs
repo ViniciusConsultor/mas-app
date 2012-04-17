@@ -82,7 +82,10 @@ namespace VisitaJayaPerkasa.Control.UserControls
                 string searchKey = radComboBoxElement.Text;
 
                 Users = sqlUserRepository.GetUsers();
-                if (Users != null)
+
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else if (Users != null)
                 {
                     if (!string.IsNullOrEmpty(searchValue) && !string.IsNullOrEmpty(searchKey))
                     {
@@ -192,6 +195,8 @@ namespace VisitaJayaPerkasa.Control.UserControls
                         MessageBox.Show("Data Deleted !");
                         LoadData();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                         MessageBox.Show("Cannot Delete Data !");
 

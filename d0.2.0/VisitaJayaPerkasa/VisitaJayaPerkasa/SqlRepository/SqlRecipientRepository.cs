@@ -17,7 +17,9 @@ namespace VisitaJayaPerkasa.SqlRepository
                 {
                     using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                     {
+                        Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                         con.Open();
+                        Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                         using (SqlCommand command = new SqlCommand(
                             "SELECT recipient_id, recipient_name, address, phone1, phone2, phone3 " + 
@@ -107,7 +109,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT TOP 1 recipient_id FROM [RECIPIENT] WHERE recipient_name = '" + recipientName + "' AND address = '" + address + "' AND deleted = '1'", con))
@@ -139,7 +143,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 try
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     sqlTransaction = con.BeginTransaction();
                     using (SqlCommand command = new SqlCommand(
                         "Update [Recipient] set deleted = '1' WHERE recipient_id = " + sqlParam[0].ParameterName, con))
@@ -179,7 +186,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
-                    con.Open();  
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
+                    con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     using (SqlCommand command = new SqlCommand(
                         "SELECT TOP 1 recipient_name FROM [Recipient] WHERE recipient_name = " + sqlParam[0].ParameterName, con))
                     {
@@ -211,7 +221,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     String criteria = "";
                     if (!gID.ToString().Equals(Guid.Empty.ToString()))
                         criteria = " AND recipient_id != '" + gID.ToString() + "'";
@@ -256,7 +269,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 try
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     sqlTransaction = con.BeginTransaction();
 
                     using (SqlCommand command = new SqlCommand(
@@ -309,7 +325,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 try
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     sqlTransaction = con.BeginTransaction();
                     using (SqlCommand command = new SqlCommand(
                         "Insert into [Recipient] values (" +
@@ -361,7 +380,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 try
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     sqlTransaction = con.BeginTransaction();
                     using (SqlCommand command = new SqlCommand(
                         "Update [Recipient] set " + 

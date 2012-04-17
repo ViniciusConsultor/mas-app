@@ -17,7 +17,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT type_id, type_code, type_name FROM [Type_Cont] WHERE (deleted is null OR deleted = '0') " +
@@ -57,7 +59,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     String criteria = "";
                     if (!gID.ToString().Equals(Guid.Empty.ToString()))
                         criteria = " AND type_id != '" + gID.ToString() + "'";
@@ -105,7 +110,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 try
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     sqlTransaction = con.BeginTransaction();
 
                     using (SqlCommand command = new SqlCommand(
@@ -152,7 +160,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT TOP 1 type_id FROM [TYPE_CONT] WHERE type_code = '" + code + "' AND type_name = '" + name + "' AND deleted = '1'", con))
@@ -184,7 +194,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 try
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     sqlTransaction = con.BeginTransaction();
                     using (SqlCommand command = new SqlCommand(
                         "Update [Type_Cont] set deleted = '1' WHERE type_id = " + sqlParam[0].ParameterName, con))
@@ -223,7 +236,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT TOP 1 type_id FROM [Type_Cont] WHERE type_code = " + sqlParam[0].ParameterName, con))
@@ -259,7 +274,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 try
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     sqlTransaction = con.BeginTransaction();
                     using (SqlCommand command = new SqlCommand(
                         "Insert into [Type_Cont] values (" +
@@ -308,7 +326,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 try
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     sqlTransaction = con.BeginTransaction();
                     using (SqlCommand command = new SqlCommand(
                         "Update [Type_Cont] set " + 

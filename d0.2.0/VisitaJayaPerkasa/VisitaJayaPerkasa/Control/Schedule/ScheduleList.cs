@@ -88,23 +88,39 @@ namespace VisitaJayaPerkasa.Control.Schedule
             sqlScheduleRepository = new SqlScheduleRepository();
             schedules = null;
 
-                    
-            if(cboKeySearch.Text.Equals("Destination"))
+
+            if (cboKeySearch.Text.Equals("Destination"))
+            {
                 schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
                     actionBarDateEnd.Text, cboValueSearch.SelectedValue.ToString(), "", "", (cbFinish.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On) ? true : false
                     );
-            else if(cboKeySearch.Text.Equals("Vessel"))
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (cboKeySearch.Text.Equals("Vessel"))
+            {
                 schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
                     actionBarDateEnd.Text, "", cboValueSearch.SelectedValue.ToString(), "", (cbFinish.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On) ? true : false
                     );
-            else if(cboKeySearch.Text.Equals("VOY"))
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (cboKeySearch.Text.Equals("VOY"))
+            {
                 schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
                     actionBarDateEnd.Text, "", "", txtRoSearch.Text.Trim(), (cbFinish.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On) ? true : false
                     );
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
+            {
                 schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
                     actionBarDateEnd.Text, "", "", "", (cbFinish.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On) ? true : false
-                    );   
+                    );
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
 
             if (schedules != null)
@@ -261,6 +277,8 @@ namespace VisitaJayaPerkasa.Control.Schedule
                         MessageBox.Show("Data Deleted !");
                         LoadData();
                     }
+                    if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                         MessageBox.Show("Cannot Delete Data !");
 
@@ -310,6 +328,9 @@ namespace VisitaJayaPerkasa.Control.Schedule
             {
                 SqlCityRepository sqlCityRepository = new SqlCityRepository();
                 List<VisitaJayaPerkasa.Entities.City> listCity = sqlCityRepository.GetCity();
+
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cboValueSearch.DataSource = null;
 
                 cboValueSearch.DataSource = listCity;
@@ -329,6 +350,9 @@ namespace VisitaJayaPerkasa.Control.Schedule
             else if (cboKeySearch.Text.Equals("Vessel")) {
                 SqlPelayaranRepository sqlPelayaranRepository = new SqlPelayaranRepository();
                 List<VisitaJayaPerkasa.Entities.PelayaranDetail> listPelayaran = sqlPelayaranRepository.GetVessels();
+
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cboValueSearch.DataSource = null;
 
                 cboValueSearch.DataSource = listPelayaran;

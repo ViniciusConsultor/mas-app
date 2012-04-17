@@ -26,7 +26,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT DISTINCT c.* FROM [Category] c, [SUPPLIER] s WHERE (c.deleted = '0' OR c.deleted is null) AND " +
@@ -68,7 +70,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 try
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     sqlTransaction = con.BeginTransaction();
                     using (SqlCommand command = new SqlCommand(
                         "delete [Price] WHERE price_id = '" + ID + "'", con))
@@ -105,7 +110,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT supplier_id, supplier_name FROM SUPPLIER " + 
@@ -144,7 +151,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     string addCriteria;
                     if(isSupplier == 1)
@@ -214,7 +223,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 try
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     sqlTransaction = con.BeginTransaction();
 
                     if (sqlParamDeleted != null)
@@ -302,7 +314,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT TOP 1 price_customer FROM [Price] " + 
@@ -341,7 +355,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT TOP 1 price_customer FROM [Price] p " +
@@ -384,7 +400,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT TOP 1 price_id FROM [Price] " +
@@ -427,7 +445,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT TOP 1 price_id FROM [Price] " +
@@ -468,7 +488,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT TOP 1 price_id FROM [Price] " +
@@ -511,7 +533,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 try
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     sqlTransaction = con.BeginTransaction();
 
                     using (SqlCommand command = new SqlCommand(
@@ -557,7 +582,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     if (isCreate)
                         criteria = "";
                     else
@@ -600,7 +628,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT TOP 1 price_id FROM [Price] " +

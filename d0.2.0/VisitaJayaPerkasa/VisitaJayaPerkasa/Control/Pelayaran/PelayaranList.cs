@@ -81,7 +81,9 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
             string searchKey = radComboBoxElement.Text;
 
             pelayaran = sqlPelataranRepository.GetPelayaran();
-            if (pelayaran != null)
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (pelayaran != null)
             {
                 if (!string.IsNullOrEmpty(searchValue) && !string.IsNullOrEmpty(searchKey))
                 {
@@ -188,6 +190,8 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
                         MessageBox.Show("Data Deleted !");
                         LoadData();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                         MessageBox.Show("Cannot Delete Data !");
 

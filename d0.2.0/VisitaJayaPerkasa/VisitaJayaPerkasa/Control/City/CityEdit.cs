@@ -75,6 +75,8 @@ namespace VisitaJayaPerkasa.Control.City
                                 MessageBox.Show(this, "Success Activate City", "Information");
                                 radButtonElement2.PerformClick();
                             }
+                            else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             else
                                 MessageBox.Show(this, "Cannot Activate City", "Information");
 
@@ -82,9 +84,19 @@ namespace VisitaJayaPerkasa.Control.City
                         }
                         return;
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     else if (sqlCityRepository.CheckCityCode(param, Guid.Empty))
                     {
                         MessageBox.Show(this, "City has already exists", "Information");
+                        return;
+                    }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -96,6 +108,8 @@ namespace VisitaJayaPerkasa.Control.City
                         MessageBox.Show(this, "Success create city", "Information");
                         radButtonElement2.PerformClick();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
                         MessageBox.Show(this, "Cannot Create city", "Information");
@@ -109,12 +123,19 @@ namespace VisitaJayaPerkasa.Control.City
                         MessageBox.Show(this, "city has already exist. if it has already deleted. you must activate it with create new data", "Information");
                         return;
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
                     if (sqlCityRepository.EditCity(param))
                     {
                         MessageBox.Show(this, "Success Edit city", "Information");
                         radButtonElement2.PerformClick();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
                         MessageBox.Show(this, "Cannot Edit city", "Information");

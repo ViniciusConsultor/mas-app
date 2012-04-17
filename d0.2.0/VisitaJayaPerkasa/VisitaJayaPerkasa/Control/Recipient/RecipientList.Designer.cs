@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridSortField gridSortField2 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             this.radToolStripLabelIndexing = new Telerik.WinControls.UI.RadToolStripLabelElement();
             this.RecipientGridView = new Telerik.WinControls.UI.RadGridView();
             this.radComboBoxElement = new Telerik.WinControls.UI.RadComboBoxElement();
-            this.radComboBoxItem3 = new Telerik.WinControls.UI.RadComboBoxItem();
             this.radComboBoxItem1 = new Telerik.WinControls.UI.RadComboBoxItem();
+            this.radComboBoxItem3 = new Telerik.WinControls.UI.RadComboBoxItem();
             this.radToolStripItem4 = new Telerik.WinControls.UI.RadToolStripItem();
             this.radTextBoxElementSearchWord = new Telerik.WinControls.UI.RadTextBoxElement();
             this.radButtonElementBtnSearch = new Telerik.WinControls.UI.RadButtonElement();
@@ -52,7 +52,6 @@
             this.radButtonElementNext = new Telerik.WinControls.UI.RadButtonElement();
             this.radToolStripElement2 = new Telerik.WinControls.UI.RadToolStripElement();
             ((System.ComponentModel.ISupportInitialize)(this.RecipientGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RecipientGridView.MasterGridViewTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radComboBoxElement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             this.SuspendLayout();
@@ -73,31 +72,31 @@
             this.RecipientGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.RecipientGridView.Location = new System.Drawing.Point(0, 76);
             // 
-            // gridViewTemplate1
+            // 
             // 
             this.RecipientGridView.MasterGridViewTemplate.AllowAddNewRow = false;
-            gridViewTextBoxColumn4.FieldAlias = "ID";
-            gridViewTextBoxColumn4.FieldName = "ID";
-            gridViewTextBoxColumn4.HeaderText = "ID";
-            gridViewTextBoxColumn4.IsVisible = false;
-            gridViewTextBoxColumn4.UniqueName = "ID";
-            gridViewTextBoxColumn5.FieldAlias = "Name";
-            gridViewTextBoxColumn5.FieldName = "Name";
-            gridViewTextBoxColumn5.HeaderText = "Name";
-            gridViewTextBoxColumn5.UniqueName = "Name";
-            gridViewTextBoxColumn5.Width = 181;
-            gridViewTextBoxColumn6.FieldAlias = "Address";
-            gridViewTextBoxColumn6.FieldName = "Address";
-            gridViewTextBoxColumn6.HeaderText = "Address";
-            gridViewTextBoxColumn6.UniqueName = "Address";
-            gridViewTextBoxColumn6.Width = 200;
-            this.RecipientGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn4);
-            this.RecipientGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn5);
-            this.RecipientGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn6);
-            gridSortField2.FieldAlias = "SupplierName";
-            gridSortField2.FieldName = "SupplierName";
-            gridSortField2.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            this.RecipientGridView.MasterGridViewTemplate.SortExpressions.Add(gridSortField2);
+            gridViewTextBoxColumn1.FieldAlias = "ID";
+            gridViewTextBoxColumn1.FieldName = "ID";
+            gridViewTextBoxColumn1.HeaderText = "ID";
+            gridViewTextBoxColumn1.IsVisible = false;
+            gridViewTextBoxColumn1.UniqueName = "ID";
+            gridViewTextBoxColumn2.FieldAlias = "Name";
+            gridViewTextBoxColumn2.FieldName = "Name";
+            gridViewTextBoxColumn2.HeaderText = "Name";
+            gridViewTextBoxColumn2.UniqueName = "Name";
+            gridViewTextBoxColumn2.Width = 181;
+            gridViewTextBoxColumn3.FieldAlias = "Address";
+            gridViewTextBoxColumn3.FieldName = "Address";
+            gridViewTextBoxColumn3.HeaderText = "Address";
+            gridViewTextBoxColumn3.UniqueName = "Address";
+            gridViewTextBoxColumn3.Width = 200;
+            this.RecipientGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
+            this.RecipientGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
+            this.RecipientGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);
+            gridSortField1.FieldAlias = "SupplierName";
+            gridSortField1.FieldName = "SupplierName";
+            gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            this.RecipientGridView.MasterGridViewTemplate.SortExpressions.Add(gridSortField1);
             this.RecipientGridView.Name = "RecipientGridView";
             this.RecipientGridView.ReadOnly = true;
             this.RecipientGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -116,8 +115,8 @@
             this.radComboBoxElement.FlipText = false;
             this.radComboBoxElement.Focusable = true;
             this.radComboBoxElement.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radComboBoxItem3,
-            this.radComboBoxItem1});
+            this.radComboBoxItem1,
+            this.radComboBoxItem3});
             this.radComboBoxElement.MaxSize = new System.Drawing.Size(118, 20);
             this.radComboBoxElement.MaxValue = null;
             this.radComboBoxElement.MinSize = new System.Drawing.Size(118, 17);
@@ -132,15 +131,15 @@
             this.radComboBoxElement.Value = null;
             this.radComboBoxElement.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.radComboBoxElement_KeyPress);
             // 
-            // radComboBoxItem3
-            // 
-            this.radComboBoxItem3.Name = "radComboBoxItem3";
-            this.radComboBoxItem3.Text = "Name";
-            // 
             // radComboBoxItem1
             // 
             this.radComboBoxItem1.Name = "radComboBoxItem1";
             this.radComboBoxItem1.Text = "Address";
+            // 
+            // radComboBoxItem3
+            // 
+            this.radComboBoxItem3.Name = "radComboBoxItem3";
+            this.radComboBoxItem3.Text = "Name";
             // 
             // radToolStripItem4
             // 
@@ -297,7 +296,6 @@
             this.Controls.Add(this.radToolStrip1);
             this.Name = "RecipientList";
             this.Size = new System.Drawing.Size(837, 376);
-            ((System.ComponentModel.ISupportInitialize)(this.RecipientGridView.MasterGridViewTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RecipientGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radComboBoxElement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();

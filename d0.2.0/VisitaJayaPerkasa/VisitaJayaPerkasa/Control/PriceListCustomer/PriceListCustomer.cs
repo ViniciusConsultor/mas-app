@@ -51,6 +51,10 @@ namespace VisitaJayaPerkasa.Control.PriceListCustomer
 
             sqlCityRepository = new SqlCityRepository();
             listCity = sqlCityRepository.GetCity();
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+
             cbDestination.DataSource = listCity;
             cbDestination.DisplayMember = "CityName";
             cbDestination.ValueMember = "ID";
@@ -92,7 +96,10 @@ namespace VisitaJayaPerkasa.Control.PriceListCustomer
                 "", "", 0, cboType.SelectedValue.ToString());
 
             radGridView1.Enabled = true;
-            if (listPrice != null)
+
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (listPrice != null)
             {
                 for (int i = 0; i < listPrice.Count(); i++)
                 {
@@ -136,6 +143,10 @@ namespace VisitaJayaPerkasa.Control.PriceListCustomer
 
             SqlConditionRepository sqlConditionRepository = new SqlConditionRepository();
             List<VisitaJayaPerkasa.Entities.Condition> listTempCondition = sqlConditionRepository.GetConditions();
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+
             ((GridViewComboBoxColumn)this.radGridView1.Columns[6]).DataSource = listTempCondition;
             ((GridViewComboBoxColumn)this.radGridView1.Columns[6]).DisplayMember = "ConditionName";
             ((GridViewComboBoxColumn)this.radGridView1.Columns[6]).ValueMember = "ID";
@@ -277,7 +288,9 @@ namespace VisitaJayaPerkasa.Control.PriceListCustomer
                                                 cbDestination.SelectedValue.ToString(),
                                                 searchResultCustomer.ID.ToString());
 
-                    if (!exists.ToString().Equals(Guid.Empty.ToString()))
+                    if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else if (!exists.ToString().Equals(Guid.Empty.ToString()))
                     {
                         DialogResult dResult = MessageBox.Show(this, "Record - " + i + " has already exist. \n If you don't want to override this data, so your data not will be save. \n Do you want to override ?", "Confirmation", MessageBoxButtons.YesNo);
                         if (dResult == DialogResult.Yes)
@@ -393,6 +406,11 @@ namespace VisitaJayaPerkasa.Control.PriceListCustomer
                         MessageBox.Show(this, "Success saving !", "Information");
                         listPriceDeleteExistsData.Clear();
                         listIndexPriceDeleteExistsData.Clear();
+                    }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                     else
                     {

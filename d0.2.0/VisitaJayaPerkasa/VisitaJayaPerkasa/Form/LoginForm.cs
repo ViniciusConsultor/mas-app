@@ -58,7 +58,10 @@ namespace VisitaJayaPerkasa.Form
                 sqlparam = null;
                 sqlUser = null;
 
-                if (UserProfile.user == null)
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection) {
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (UserProfile.user == null)
                 {
                     MessageBox.Show(this, "Please correct username and password", "Caution", MessageBoxButtons.OK);
                 }

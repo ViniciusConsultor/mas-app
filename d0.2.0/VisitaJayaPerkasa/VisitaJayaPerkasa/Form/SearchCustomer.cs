@@ -24,6 +24,11 @@ namespace VisitaJayaPerkasa.Form
             InitializeComponent();
             SqlCustomerRepository sqlCustomerRepository = new SqlCustomerRepository();
             listCustomer = sqlCustomerRepository.listCustomerForPriceList();
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+            {
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             CustomerGridView.DataSource = listCustomer;
 

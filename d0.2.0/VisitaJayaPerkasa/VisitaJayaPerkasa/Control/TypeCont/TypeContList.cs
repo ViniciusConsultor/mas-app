@@ -81,7 +81,10 @@ namespace VisitaJayaPerkasa.Control.TypeCont
             string searchKey = radComboBoxElement.Text;
 
             TypeCont = sqlTypeContRepository.GetTypeCont();
-            if (TypeCont != null)
+
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (TypeCont != null)
             {
                 if (!string.IsNullOrEmpty(searchValue) && !string.IsNullOrEmpty(searchKey))
                 {
@@ -178,6 +181,8 @@ namespace VisitaJayaPerkasa.Control.TypeCont
                         MessageBox.Show("Data Deleted !");
                         LoadData();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                         MessageBox.Show("Cannot Delete Data !");
 

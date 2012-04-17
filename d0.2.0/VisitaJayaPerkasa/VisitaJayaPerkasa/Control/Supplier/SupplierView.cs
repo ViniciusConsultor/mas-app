@@ -21,7 +21,9 @@ namespace VisitaJayaPerkasa.Control.Supplier
             sqlSupplierRepository = new SqlSupplierRepository();
             listSupplierDetail = sqlSupplierRepository.ListSupplierDetail(supplier.Id);
 
-            if (listSupplierDetail != null)
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (listSupplierDetail != null)
                 SupplierDetailGridView.DataSource = listSupplierDetail;
 
 

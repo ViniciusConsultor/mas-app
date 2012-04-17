@@ -24,6 +24,13 @@ namespace VisitaJayaPerkasa.Form
             SqlCustomerTransRepository sqlCustomerTransRepository = new SqlCustomerTransRepository();
             listCustomerTrans = sqlCustomerTransRepository.ListCustomerTrans();
 
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+            {
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
+
             CustomerTransGridView.DataSource = listCustomerTrans;
 
             sqlCustomerTransRepository = null;

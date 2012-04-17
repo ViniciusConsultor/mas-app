@@ -29,6 +29,8 @@ namespace VisitaJayaPerkasa.Control.Schedule
 
             List<VisitaJayaPerkasa.Entities.City> listCity = sqlCityRepository.GetCity();
             List<VisitaJayaPerkasa.Entities.PelayaranDetail> listPelayaran = sqlPelayaranRepository.GetVessels();
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             cboTujuan.DataSource = listCity;
             cboTujuan.DisplayMember = "CityName";
@@ -212,6 +214,8 @@ namespace VisitaJayaPerkasa.Control.Schedule
                         MessageBox.Show(this, "Success Create schedule", "Information");
                         radButtonElement2.PerformClick();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else {
                         MessageBox.Show(this, "Cannot Create schedule", "Information");
                     }
@@ -290,6 +294,8 @@ namespace VisitaJayaPerkasa.Control.Schedule
                         MessageBox.Show(this, "Success edit schedule", "Information");
                         radButtonElement2.PerformClick();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
                         MessageBox.Show(this, "Cannot edit schedule", "Information");

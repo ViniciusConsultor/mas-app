@@ -18,7 +18,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT pelayaran_id, pelayaran.supplier_id, supplier.supplier_name as name FROM [Pelayaran], [supplier] " + 
@@ -61,7 +63,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT DISTINCT pd.vessel_code, pd.vessel_name, pd.status_pinjaman, s.supplier_name, pd.pelayaran_detail_id FROM [Pelayaran_Detail] pd " +
@@ -106,7 +110,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT DISTINCT pd.vessel_code, pd.vessel_name, pd.status_pinjaman, sup.supplier_name, pd.pelayaran_detail_id " +
@@ -156,7 +162,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 try
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     sqlTransaction = con.BeginTransaction();
                     using (SqlCommand command = new SqlCommand(
                         "Update [Pelayaran] set deleted = '1' WHERE pelayaran_id = " + sqlParam[0].ParameterName, con))
@@ -197,7 +206,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     if (!ID.ToString().Equals(Guid.Empty.ToString()))
                         criteria = " AND pelayaran_id != '" + ID.ToString() + "'";
@@ -238,7 +249,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT TOP 1 pelayaran_id, pelayaran.supplier_id, supplier.supplier_name FROM [Pelayaran], [supplier] " + 
@@ -277,7 +290,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 try
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     sqlTransaction = con.BeginTransaction();
                     using (SqlCommand command = new SqlCommand(
                         "Insert into [Pelayaran] values (" +
@@ -359,7 +375,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 try
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     sqlTransaction = con.BeginTransaction();
 
                     using (SqlCommand deleteCommand = new SqlCommand(
@@ -449,7 +468,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT * FROM [Pelayaran_Detail] WHERE pelayaran_id = '" + ID + "' AND (deleted is null OR deleted = '0')"
@@ -505,7 +526,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 try
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                     sqlTransaction = con.BeginTransaction();
 
                     using (SqlCommand deleteCommand = new SqlCommand(
@@ -594,7 +618,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT pelayaran_id FROM [Pelayaran] WHERE supplier_id = '" + name + "'"

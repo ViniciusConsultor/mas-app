@@ -17,7 +17,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "SELECT role_id, role_name FROM [ROLE] WHERE deleted is null OR deleted = '0'"
