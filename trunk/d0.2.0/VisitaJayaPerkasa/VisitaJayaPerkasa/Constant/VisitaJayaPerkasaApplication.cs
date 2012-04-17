@@ -21,5 +21,6 @@ namespace VisitaJayaPerkasa.Constant
         public static string roleAdmin = "administrator";
         public static string connectionString = "Initial Catalog=ShippingMain;";
         public static string nameFile = "Connection.txt";
+        public static bool anyConnection = true;
     }
 }

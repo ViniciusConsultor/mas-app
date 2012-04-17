@@ -25,7 +25,7 @@ namespace VisitaJayaPerkasa.Control.Supplier
             InitializeComponent();
             sqlCategoryRepository = new SqlCategoryRepository();
             List<VisitaJayaPerkasa.Entities.Category> listCategory = sqlCategoryRepository.GetCategories();
-            
+
             cboCategory.DataSource = listCategory;
             cboCategory.DisplayMember = "CategoryName";
             cboCategory.ValueMember = "ID";
@@ -33,6 +33,9 @@ namespace VisitaJayaPerkasa.Control.Supplier
 
             if (supplier == null)
             {
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 wantToCreateVessel = true;
                 listSupplierDetail = new List<Entities.SupplierDetail>();
 
@@ -53,7 +56,9 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 SqlSupplierRepository sqlSupplierRepository = new SqlSupplierRepository();
                 listSupplierDetail = sqlSupplierRepository.ListSupplierDetail(supplier.Id);
 
-                if (listSupplierDetail != null)
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else if (listSupplierDetail != null)
                     supplierDetailGridView.DataSource = listSupplierDetail;
                 else
                     listSupplierDetail = new List<VisitaJayaPerkasa.Entities.SupplierDetail>();
@@ -205,6 +210,8 @@ namespace VisitaJayaPerkasa.Control.Supplier
                             MessageBox.Show(this, "Success Activate Supplier", "Information");
                             radButtonElement2.PerformClick();
                         }
+                        else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                            MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         else
                             MessageBox.Show(this, "Cannot Activate Supplier", "Information");
 
@@ -212,17 +219,30 @@ namespace VisitaJayaPerkasa.Control.Supplier
                     }
                     return;
                 }
+                else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                {
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 else if (sqlSupplierRepository.CheckSupplier(sqlParam, Guid.Empty))
                 {
                     MessageBox.Show(this, "Supplier has already exists", "Information");
                     return;
                 }
+                else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                {
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
 
                 if (sqlSupplierRepository.CreateSupplier(sqlParam))
                 {
                     MessageBox.Show(this, "Success insert supplier data", "Information");
                     radButtonElement2.PerformClick();
                 }
+                else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                 {
                     MessageBox.Show(this, "Cannot insert supplier data", "Information");
@@ -244,12 +264,19 @@ namespace VisitaJayaPerkasa.Control.Supplier
                     MessageBox.Show(this, "supplier has already exist. if it has already deleted. you must activate it with create new data", "Information");
                     return;
                 }
+                else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                {
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 if (sqlSupplierRepository.EditSupplier(sqlParam))
                 {
                     MessageBox.Show(this, "Success edit supplier data", "Information");
                     radButtonElement2.PerformClick();
                 }
+                else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                 {
                     MessageBox.Show(this, "Cannot edit supplier data", "Information");

@@ -62,6 +62,8 @@ namespace VisitaJayaPerkasa.Control.ConditionControl
                                 MessageBox.Show(this, "Success Activate Condition", "Information");
                                 radButtonClose.PerformClick();
                             }
+                            else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             else
                                 MessageBox.Show(this, "Cannot Activate Condition", "Information");
 
@@ -69,9 +71,19 @@ namespace VisitaJayaPerkasa.Control.ConditionControl
                         }
                         return;
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     else if (sqlConditionRepository.CheckConditionCode(param, Guid.Empty))
                     {
                         MessageBox.Show(this, "Condition has already exists", "Information");
+                        return;
+                    }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -83,6 +95,8 @@ namespace VisitaJayaPerkasa.Control.ConditionControl
                         MessageBox.Show(this, "Success create condition", "Information");
                         radButtonClose.PerformClick();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
                         MessageBox.Show(this, "Cannot Create condition", "Information");
@@ -97,12 +111,19 @@ namespace VisitaJayaPerkasa.Control.ConditionControl
                         MessageBox.Show(this, "condition has already exist. if it has already deleted. you must activate it with create new data", "Information");
                         return;
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
                     if (sqlConditionRepository.EditCondition(param))
                     {
                         MessageBox.Show(this, "Success Edit condition", "Information");
                         radButtonClose.PerformClick();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
                         MessageBox.Show(this, "Cannot Edit condition", "Information");

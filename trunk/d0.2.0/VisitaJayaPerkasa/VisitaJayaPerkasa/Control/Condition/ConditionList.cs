@@ -78,7 +78,9 @@ namespace VisitaJayaPerkasa.Control.ConditionControl
             string searchKey = radComboBoxElement.Text;
 
             conditions = sqlConditionRepository.GetConditions();
-            if (conditions != null)
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (conditions != null)
             {
                 if (!string.IsNullOrEmpty(searchValue) && !string.IsNullOrEmpty(searchKey))
                 {
@@ -194,6 +196,8 @@ namespace VisitaJayaPerkasa.Control.ConditionControl
                         MessageBox.Show("Data Deleted !");
                         LoadData();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                         MessageBox.Show("Cannot Delete Data !");
 

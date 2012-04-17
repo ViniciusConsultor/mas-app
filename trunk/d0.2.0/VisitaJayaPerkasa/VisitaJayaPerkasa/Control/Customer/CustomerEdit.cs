@@ -44,7 +44,9 @@ namespace VisitaJayaPerkasa.Control.Customer
                 SqlCustomerRepository sqlCustomerRepository = new SqlCustomerRepository();
                 listCustomerDetail = sqlCustomerRepository.ListCustomerDetail(customer.ID);
 
-                if (listCustomerDetail != null)
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else if (listCustomerDetail != null)
                     CustomerDetailGridView.DataSource = listCustomerDetail;
                 else
                     listCustomerDetail = new List<VisitaJayaPerkasa.Entities.CustomerDetail>();
@@ -282,6 +284,8 @@ namespace VisitaJayaPerkasa.Control.Customer
                             MessageBox.Show(this, "Success Activate Customer", "Information");
                             radButtonElement2.PerformClick();
                         }
+                        else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                            MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         else
                             MessageBox.Show(this, "Cannot Activate Customer", "Information");
 
@@ -289,9 +293,19 @@ namespace VisitaJayaPerkasa.Control.Customer
                     }
                     return;
                 }
+                else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                {
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 else if (sqlCustomerRepository.CheckCustomer(sqlParam, Guid.Empty))
                 {
                     MessageBox.Show(this, "Customer has already exists", "Information");
+                    return;
+                }
+                else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                {
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -300,6 +314,8 @@ namespace VisitaJayaPerkasa.Control.Customer
                     MessageBox.Show(this, "Success insert customer data", "Information");
                     radButtonElement2.PerformClick();
                 }
+                else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                 {
                     MessageBox.Show(this, "Cannot insert customer data", "Information");
@@ -321,12 +337,19 @@ namespace VisitaJayaPerkasa.Control.Customer
                     MessageBox.Show(this, "customer has already exist. if it has already deleted. you must activate it with create new data", "Information");
                     return;
                 }
+                else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                {
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 if (sqlCustomerRepository.EditCustomer(sqlParam))
                 {
                     MessageBox.Show(this, "Success edit customer data", "Information");
                     radButtonElement2.PerformClick();
                 }
+                else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                 {
                     MessageBox.Show(this, "Cannot edit customer data", "Information");

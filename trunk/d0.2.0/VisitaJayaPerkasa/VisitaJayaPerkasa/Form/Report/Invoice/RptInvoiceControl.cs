@@ -64,6 +64,9 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice
             DataTable dt = null;
             sqlCustomerTransRepository = new SqlCustomerTransRepository();
             dt = sqlCustomerTransRepository.ReportInvoice(ID);
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
 
             decimal total = decimal.Zero;
             string totalStr = String.Empty;
@@ -153,6 +156,8 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice
             {
                 MessageBox.Show(this, "Success insert Invoice data", "Information");
             }
+            else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
                 MessageBox.Show(this, "Cannot insert Invoice data", "Information");

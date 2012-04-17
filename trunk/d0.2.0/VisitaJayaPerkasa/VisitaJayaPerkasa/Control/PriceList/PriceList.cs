@@ -54,6 +54,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
             listIndexPriceDeleteExistsData = new List<int>();
 
             listTypeOfSupplier = sqlPriceListRepository.GetTypeOfSupplier(0);
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             cboTypeSupplier.SelectedValueChanged -= new EventHandler(cboTypeSupplier_SelectedValueChanged);
             cboTypeSupplier.DataSource = listTypeOfSupplier;
             cboTypeSupplier.DisplayMember = "CategoryName";
@@ -63,6 +66,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
             cboTypeSupplier.SelectedValueChanged += new EventHandler(cboTypeSupplier_SelectedValueChanged);
 
             listCity = sqlCityRepository.GetCity();
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             cbDestination.DataSource = listCity;
             cbDestination.DisplayMember = "CityName";
             cbDestination.ValueMember = "ID";
@@ -72,6 +78,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
 
             listRecipient = sqlRecipientRepository.GetRecipient();
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             cboRecipient.DataSource = listRecipient;
             cboRecipient.DisplayMember = "Name";
             cboRecipient.ValueMember = "ID";
@@ -79,6 +88,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
             cboRecipient.SelectedText = Constant.VisitaJayaPerkasaApplication.cboDefaultText;
 
             listWarehouse = sqlWareHouseRepository.GetWareHouse();
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             cboStuffingPlace.DataSource = listWarehouse;
             cboStuffingPlace.DisplayMember = "Address";
             cboStuffingPlace.ValueMember = "Id";
@@ -127,6 +139,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
                 }
 
                 listType = sqlTypeContRepository.GetTypeCont();
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 ((GridViewComboBoxColumn)this.PriceListGridView.Columns[5]).DataSource = listType;
                 ((GridViewComboBoxColumn)this.PriceListGridView.Columns[5]).DisplayMember = "TypeName";
                 ((GridViewComboBoxColumn)this.PriceListGridView.Columns[5]).ValueMember = "ID";
@@ -135,6 +150,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
                 if (cboTypeSupplier.Text.ToLower().Equals("shipping lines"))
                 {
                     listCondition = sqlConditionRepository.GetConditions();
+                    if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                     ((GridViewComboBoxColumn)this.PriceListGridView.Columns[6]).DataSource = listCondition;
                     ((GridViewComboBoxColumn)this.PriceListGridView.Columns[6]).DisplayMember = "ConditionName";
                     ((GridViewComboBoxColumn)this.PriceListGridView.Columns[6]).ValueMember = "ID";
@@ -144,6 +162,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
                     cboTypeSupplier.Text.ToLower().Equals("trucking")
                     ) {
                     listCustomer = sqlCustomerRepository.ListCustomers();
+                    if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                     ((GridViewComboBoxColumn)this.PriceListGridView.Columns[10]).DataSource = listCustomer;
                     ((GridViewComboBoxColumn)this.PriceListGridView.Columns[10]).DisplayMember = "CustomerName";
                     ((GridViewComboBoxColumn)this.PriceListGridView.Columns[10]).ValueMember = "ID";
@@ -154,6 +175,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
             if (cboTypeSupplier.Text.ToLower().Equals("dooring agent")) {
                 List<VisitaJayaPerkasa.Entities.Recipient> tempListRecipient = sqlRecipientRepository.GetRecipient();
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 ((GridViewComboBoxColumn)this.PriceListGridView.Columns[8]).DataSource = tempListRecipient;
                 ((GridViewComboBoxColumn)this.PriceListGridView.Columns[8]).DisplayMember = "Name";
                 ((GridViewComboBoxColumn)this.PriceListGridView.Columns[8]).ValueMember = "ID";
@@ -212,6 +236,8 @@ namespace VisitaJayaPerkasa.Control.PriceList
 
             sqlPriceListRepository = new SqlPriceListRepository();
             listSupplier = sqlPriceListRepository.GetSupplier(Utility.Utility.ConvertToUUID(cboTypeSupplier.SelectedValue.ToString()));
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             cbSupplier.Enabled = true;
             cbSupplier.DataSource = listSupplier;
@@ -334,12 +360,18 @@ namespace VisitaJayaPerkasa.Control.PriceList
                 listPriceList = sqlPriceListRepository.GetPriceListByCriteria(pickerFrom.Value.Date, pickerTo.Value.Date,
                     cbSupplier.SelectedValue.ToString(), cbDestination.SelectedValue.ToString(), (! cbDislayAll.Checked) ? searchResultCustomer.ID.ToString() : "", "", "", 1, "");
 
+
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if(cbDislayAll.Checked)
                     PriceListGridView.ReadOnly = true;
             }
             else if (cboTypeSupplier.Text.ToLower().Equals("dooring agent")) {
                 listPriceList = sqlPriceListRepository.GetPriceListByCriteria(pickerFrom.Value.Date, pickerTo.Value.Date,
                     cbSupplier.SelectedValue.ToString(), cbDestination.SelectedValue.ToString(), "", (! cbRecipientDisplay.Checked) ? cboRecipient.SelectedValue.ToString() : "", "", 1, "");
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
 
                 if (cbRecipientDisplay.Checked)
                     PriceListGridView.ReadOnly = true;
@@ -347,6 +379,9 @@ namespace VisitaJayaPerkasa.Control.PriceList
             else if (cboTypeSupplier.Text.ToLower().Equals("trucking")) {
                 listPriceList = sqlPriceListRepository.GetPriceListByCriteria(pickerFrom.Value.Date, pickerTo.Value.Date,
                     cbSupplier.SelectedValue.ToString(), "", (!cbDislayAll.Checked) ? searchResultCustomer.ID.ToString() : "", "", cboStuffingPlace.SelectedValue.ToString(), 1, "");
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
 
                 if (cbDislayAll.Checked)
                     PriceListGridView.ReadOnly = true;
@@ -355,6 +390,10 @@ namespace VisitaJayaPerkasa.Control.PriceList
                 listPriceList = sqlPriceListRepository.GetPriceListByCriteria(pickerFrom.Value.Date, pickerTo.Value.Date,
                     cbSupplier.SelectedValue.ToString(), "", "", 
                     "", "", 1, "");
+
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
             }
 
 
@@ -631,7 +670,7 @@ Arrange of field grid
                     }
 
 
-                        sqlPriceListRepository = new SqlPriceListRepository();
+                    sqlPriceListRepository = new SqlPriceListRepository();
                     listPriceDeleteExistsData.Clear();
                     listIndexPriceDeleteExistsData.Clear();
                     List<int> indexDeleted = new List<int>();
@@ -647,7 +686,9 @@ Arrange of field grid
                                                     cbDestination.SelectedValue.ToString(),
                                                     searchResultCustomer.ID.ToString());
 
-                        if (! exists.ToString().Equals(Guid.Empty.ToString())) { 
+                        if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                            MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else if (! exists.ToString().Equals(Guid.Empty.ToString())) { 
                             DialogResult dResult = MessageBox.Show(this, "Record - " + i + " has already exist. \n If you don't want to override this data, so your data not will be save. \n Do you want to override ?", "Confirmation", MessageBoxButtons.YesNo);
                             if (dResult == DialogResult.Yes){
                                 listPriceDeleteExistsData.Add(exists);
@@ -768,7 +809,10 @@ Arrange of field grid
                                                     cbSupplier.SelectedValue.ToString(),
                                                     cbDestination.SelectedValue.ToString(),
                                                     cboRecipient.SelectedValue.ToString());
-                        if (!exists.ToString().Equals(Guid.Empty.ToString()))
+
+                        if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                            MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else if (!exists.ToString().Equals(Guid.Empty.ToString()))
                         {
                             DialogResult dResult = MessageBox.Show(this, "Record - " + i + " has already exist. \n If you don't want to override this data, so your data not will be save. \n Do you want to override ?", "Confirmation", MessageBoxButtons.YesNo);
                             if (dResult == DialogResult.Yes){
@@ -900,7 +944,10 @@ Arrange of field grid
                                                     cbSupplier.SelectedValue.ToString(),
                                                     searchResultCustomer.ID.ToString(),
                                                     cboStuffingPlace.SelectedValue.ToString());
-                        if (!exists.ToString().Equals(Guid.Empty.ToString()))
+
+                        if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                            MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else if (!exists.ToString().Equals(Guid.Empty.ToString()))
                         {
                             DialogResult dResult = MessageBox.Show(this, "Record - " + i + " has already exist. \n If you don't want to override this data, so your data not will be save. \n Do you want to override ?", "Confirmation", MessageBoxButtons.YesNo);
                             if (dResult == DialogResult.Yes){
@@ -1081,6 +1128,11 @@ Arrange of field grid
                         MessageBox.Show(this, "Success saving !", "Information");
                         listPriceDeleteExistsData.Clear();
                         listIndexPriceDeleteExistsData.Clear();
+                    }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                     else
                     {

@@ -50,11 +50,28 @@ namespace VisitaJayaPerkasa.Control.Transaction
             List<VisitaJayaPerkasa.Entities.Customer> listCustomer = sqlCustomerRepository.ListCustomers();
             List<VisitaJayaPerkasa.Entities.TypeCont> listType = sqlTypeContRepository.GetTypeCont();
             List<VisitaJayaPerkasa.Entities.City> listOrigin = sqlCityRepository.GetCity();
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+            {
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             List<VisitaJayaPerkasa.Entities.City> listDestination = sqlCityRepository.GetCity();
             List<VisitaJayaPerkasa.Entities.PelayaranDetail> listPelayaran = sqlPelayaranRepository.GetVessels();
             List<VisitaJayaPerkasa.Entities.Condition> listCondition = sqlConditionRepository.GetConditions();
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+            {
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             List<VisitaJayaPerkasa.Entities.WareHouse> listWarehouse = sqlWarehouseRepository.GetWareHouse();
             List<VisitaJayaPerkasa.Entities.Recipient> listRecipient = sqlRecipientRepository.GetRecipient();
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+            {
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             cboCustomer.DataSource = listCustomer;
             cboCustomer.DisplayMember = "CustomerName";
@@ -122,7 +139,9 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 listCustomerTransDetail = sqlCustomerTransRepository.ListCustomerTransDetail(customerTrans.CustomerTransID);
                 ID = customerTrans.CustomerTransID;
 
-                if (listCustomerTransDetail != null)
+                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else if (listCustomerTransDetail != null)
                     CustomerTransDetailGridView.DataSource = listCustomerTransDetail;
                 else
                     listCustomerTransDetail = new List<VisitaJayaPerkasa.Entities.CustomerTransDetail>();
@@ -682,6 +701,9 @@ namespace VisitaJayaPerkasa.Control.Transaction
                     if (cbo.Tag.ToString() == "111")
                     {
                         List<VisitaJayaPerkasa.Entities.PelayaranDetail> listPelayaran = sqlPelayaranRepository.GetVessels(cbo.SelectedValue.ToString(), DateTime.Today);
+                        if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                            MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                         cboPelayaranDetail.DataSource = listPelayaran;
                         cboPelayaranDetail.DisplayMember = "VesselName";
                         cboPelayaranDetail.ValueMember = "PelayaranDetailID";
@@ -716,9 +738,18 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 if (custID != null && destID != null && typeID != null && condID != null)
                 {
                     etPrice.Text = sqlPriceListRepository.SearchPriceList(DateTime.Now, custID, destID, typeID, condID).ToString();
+                    if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     if (etPrice.Text.Equals("0"))
                         etPrice.Text = sqlPriceListRepository.SearchPriceListGeneral(DateTime.Now, destID, typeID, condID).ToString();
-                    if (etPrice.Text.Equals("0"))
+
+                    if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else if (etPrice.Text.Equals("0"))
                         MessageBox.Show(this, "No price for this customer", "Information");
                 }
             }

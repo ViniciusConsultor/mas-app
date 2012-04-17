@@ -44,7 +44,11 @@ namespace VisitaJayaPerkasa.Control.ATK
                     "", "", "", "", "", 1, "");
 
             string searchValue = radTextBoxElementSearchWord.Text.ToLower().Trim();
-            if (listPrice != null)
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+            {
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (listPrice != null)
             {
                 if (!string.IsNullOrEmpty(searchValue))
                     showListPrice = listPrice.Where(c => c.Item.ToLower().Contains(searchValue)).ToList<VisitaJayaPerkasa.Entities.PriceList>();
@@ -181,6 +185,8 @@ namespace VisitaJayaPerkasa.Control.ATK
                         MessageBox.Show("Data Deleted !");
                         LoadData();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                         MessageBox.Show("Cannot Delete Data !");
                 }

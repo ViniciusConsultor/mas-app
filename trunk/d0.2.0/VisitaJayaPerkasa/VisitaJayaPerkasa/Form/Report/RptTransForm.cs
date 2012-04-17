@@ -29,32 +29,6 @@ namespace VisitaJayaPerkasa.Form.Report
 
         private void RptTransForm_Load(object sender, EventArgs e)
         {
-            //// Set path report.
-            //string strPath = Application.StartupPath + @"\Form\Report\RptTrans.rpt";
-            //// Object for load report.
-            //ReportDocument rpt = new ReportDocument();
-            //rpt.Load(strPath);
-
-            // //Set Parameter
-            //DataTable dt = null;
-            //sqlCustomerTransRepository = new SqlCustomerTransRepository();
-            //dt = sqlCustomerTransRepository.ReportCustomerTransDetail(ID);
-
-            //ParameterFields pfields = new ParameterFields();
-            //ParameterField pfield = new ParameterField();
-            //ParameterDiscreteValue disValue = new ParameterDiscreteValue();
-            //pfield = new ParameterField();
-            //pfield.Name = "customerName";
-            //disValue = new ParameterDiscreteValue();
-            //disValue.Value = customerName;
-            //pfield.CurrentValues.Add(disValue);
-            //pfields.Add(pfield);
-            //rpt.SetDataSource(dt);
-
-            //// Set source of report.
-            //crystalReportViewer1.ParameterFieldInfo = pfields;
-            //crystalReportViewer1.ReportSource = rpt;
-            //crystalReportViewer1.Refresh();
         }
 
         private void chkAll_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)

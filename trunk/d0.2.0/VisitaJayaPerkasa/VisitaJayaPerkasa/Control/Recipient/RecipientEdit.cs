@@ -88,6 +88,11 @@ namespace VisitaJayaPerkasa.Control.Recipient
                         }
                         return;
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     else if (sqlRecipientRepository.CheckRecipientName(param, Guid.Empty))
                     {
                         MessageBox.Show(this, "Recipient has already exists", "Information");
@@ -102,6 +107,10 @@ namespace VisitaJayaPerkasa.Control.Recipient
                     {
                         MessageBox.Show(this, "Success create recipient", "Information");
                         radButtonElement2.PerformClick();
+                    }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
@@ -125,6 +134,11 @@ namespace VisitaJayaPerkasa.Control.Recipient
                         MessageBox.Show(this, "Recipient has already exist. if it has already deleted. you must activate it with create new data", "Information");
                         return;
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
                     SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "recipient_id", "recipient_name", "address", "phone1", "phone2", "phone3", "deleted" }
                     , new object[] { recipient.ID, recipient.Name, recipient.Address, recipient.Phone1, recipient.Phone2, recipient.Phone3, recipient.Deleted });
@@ -134,6 +148,8 @@ namespace VisitaJayaPerkasa.Control.Recipient
                         MessageBox.Show(this, "Success edit recipient", "Information");
                         radButtonElement2.PerformClick();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
                         MessageBox.Show(this, "Cannot edit recipient", "Information");

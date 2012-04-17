@@ -23,6 +23,9 @@ namespace VisitaJayaPerkasa.Form.Report.Request_Price
 
             List<TypeCont> listTypeCont = sqlTypeContRepository.GetTypeCont();
             List<City> listCity = sqlCityRepository.GetCity();
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
 
             cboTypeCont.DataSource = listTypeCont;
             cboTypeCont.DisplayMember = "TypeName";

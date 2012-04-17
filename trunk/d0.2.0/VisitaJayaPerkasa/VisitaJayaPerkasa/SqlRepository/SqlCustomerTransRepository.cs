@@ -19,7 +19,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "Select u.id, u.customer_id, u.tgl_transaksi, ur.customer_name FROM [Customer_Trans] u JOIN [Customer] ur " +
@@ -60,7 +62,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "Select u.id, u.customer_id, u.tgl_transaksi, ur.customer_name FROM [Customer_Trans] u JOIN [Customer] ur " +
@@ -102,7 +106,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     string query = "Select ctd.id, tc.type_name, pd.vessel_name, co.city_name, cd.city_name, " +
                         "       cnd.condition_name, w.address, r.recipient_name " +
@@ -157,7 +163,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 try
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
                     sqlTransaction = con.BeginTransaction();
 
                     SqlParameter tempSqlParam = sqlParam[0];
@@ -206,7 +214,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString);
             try
             {
+                Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                 con.Open();
+                Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                 string strQry = "Select tc.type_name, pd.vessel_name, co.city_name as origin, cd.city_name as destination, " +
                         "cnd.condition_name as condition, ctd.no_seal, ctd.truck_number, ctd.voy, " +
                         "ctd.stuffing_date, ctd.stuffing_place, ctd.etd, ctd.td, ctd.eta, ctd.ta, ctd.unloading, ctd.price, " +
@@ -245,7 +256,9 @@ namespace VisitaJayaPerkasa.SqlRepository
             {
                 using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
                 {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                     con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
                         "Select ctd.id, ctd.customer_trans_id, ctd.type_id, ctd.pelayaran_detail_id, ctd.origin, " +
@@ -359,7 +372,10 @@ namespace VisitaJayaPerkasa.SqlRepository
 
             using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
             {
+                Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                 con.Open();
+                Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                 sqlTransaction = con.BeginTransaction();
                 try
                 {
@@ -483,7 +499,10 @@ namespace VisitaJayaPerkasa.SqlRepository
 
             using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
             {
+                Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                 con.Open();
+                Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                 sqlTransaction = con.BeginTransaction();
                 
                 try
@@ -615,7 +634,10 @@ namespace VisitaJayaPerkasa.SqlRepository
             SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString);
             try
             {
+                Constant.VisitaJayaPerkasaApplication.anyConnection = false;
                 con.Open();
+                Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
                 string strQry = "Select ctd.no_ba, ctd.no_container, tc.type_name, pd.vessel_name, ctd.ta, ctd.terima_toko, cd.city_name, ctd.price " +
                         "FROM [Customer_Trans_Detail] ctd " +
                         "INNER JOIN [Type_Cont] tc ON tc.type_id = ctd.type_id " +

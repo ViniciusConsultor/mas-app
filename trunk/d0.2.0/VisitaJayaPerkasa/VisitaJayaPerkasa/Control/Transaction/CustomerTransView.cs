@@ -21,7 +21,9 @@ namespace VisitaJayaPerkasa.Control.Transaction
             sqlCustomerTransRepository = new SqlCustomerTransRepository();
             listCustomerTransDetail = sqlCustomerTransRepository.ListCustomerTransDetail(customerTrans.CustomerTransID);
 
-            if (listCustomerTransDetail != null)
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (listCustomerTransDetail != null)
                 CustomerTransDetailGridView.DataSource = listCustomerTransDetail;
 
 

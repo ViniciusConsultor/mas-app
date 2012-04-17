@@ -21,7 +21,9 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
             sqlPelayaranRepository = new SqlPelayaranRepository();
             listPelayaranDetail = sqlPelayaranRepository.ListPelayaranDetail(pelayaran.ID);
 
-            if (listPelayaranDetail != null)
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (listPelayaranDetail != null)
                 PelayaranDetailGridView.DataSource = listPelayaranDetail;
 
 

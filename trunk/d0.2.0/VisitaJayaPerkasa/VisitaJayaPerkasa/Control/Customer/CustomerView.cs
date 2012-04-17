@@ -21,7 +21,9 @@ namespace VisitaJayaPerkasa.Control.Customer
             sqlCustomerRepository = new SqlCustomerRepository();
             listCustomerDetail = sqlCustomerRepository.ListCustomerDetail(customer.ID);
 
-            if (listCustomerDetail != null)
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (listCustomerDetail != null)
                 CustomerDetailGridView.DataSource = listCustomerDetail;
 
 

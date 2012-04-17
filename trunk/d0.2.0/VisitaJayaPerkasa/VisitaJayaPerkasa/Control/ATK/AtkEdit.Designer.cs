@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbSupplier = new Telerik.WinControls.UI.RadComboBox();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.pickerDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.etPrice = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
@@ -40,9 +42,9 @@
             this.radButtonElement2 = new Telerik.WinControls.UI.RadButtonElement();
             this.radToolStripElement1 = new Telerik.WinControls.UI.RadToolStripElement();
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.cbSupplier = new Telerik.WinControls.UI.RadComboBox();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbSupplier)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -50,8 +52,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.etItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbSupplier)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -70,6 +70,28 @@
             this.groupBox2.TabIndex = 27;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Price ATK";
+            // 
+            // cbSupplier
+            // 
+            this.cbSupplier.Location = new System.Drawing.Point(84, 35);
+            this.cbSupplier.Name = "cbSupplier";
+            // 
+            // 
+            // 
+            this.cbSupplier.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
+            this.cbSupplier.Size = new System.Drawing.Size(179, 20);
+            this.cbSupplier.TabIndex = 17;
+            this.cbSupplier.TabStop = false;
+            this.cbSupplier.Text = "-- Choose --";
+            this.cbSupplier.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbSupplier_KeyPress);
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Location = new System.Drawing.Point(23, 35);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(48, 16);
+            this.radLabel4.TabIndex = 16;
+            this.radLabel4.Text = "Supplier";
             // 
             // pickerDate
             // 
@@ -183,28 +205,6 @@
             this.radToolStrip1.TabIndex = 26;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
-            // radLabel4
-            // 
-            this.radLabel4.Location = new System.Drawing.Point(23, 35);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(48, 16);
-            this.radLabel4.TabIndex = 16;
-            this.radLabel4.Text = "Supplier";
-            // 
-            // cbSupplier
-            // 
-            this.cbSupplier.Location = new System.Drawing.Point(84, 35);
-            this.cbSupplier.Name = "cbSupplier";
-            // 
-            // 
-            // 
-            this.cbSupplier.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
-            this.cbSupplier.Size = new System.Drawing.Size(179, 20);
-            this.cbSupplier.TabIndex = 17;
-            this.cbSupplier.TabStop = false;
-            this.cbSupplier.Text = "-- Choose --";
-            this.cbSupplier.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbSupplier_KeyPress);
-            // 
             // AtkEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,6 +215,8 @@
             this.Size = new System.Drawing.Size(753, 345);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbSupplier)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
@@ -222,8 +224,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.etItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbSupplier)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

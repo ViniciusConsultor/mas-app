@@ -31,7 +31,9 @@ namespace VisitaJayaPerkasa.Control.UserControls
 
             //radioButtonMale.IsChecked = true;
 
-            if (listRole != null)
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (listRole != null)
             {
                 if (user != null)
                 {
@@ -126,6 +128,10 @@ namespace VisitaJayaPerkasa.Control.UserControls
                                 MessageBox.Show(this, "Success Activate User", "Information");
                                 radButtonElement2.PerformClick();
                             }
+                            else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                            {
+                                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                             else
                                 MessageBox.Show(this, "Cannot Activate User", "Information");
                             
@@ -133,8 +139,19 @@ namespace VisitaJayaPerkasa.Control.UserControls
                         }
                         return;
                     }
-                    else if(sqlUserRepository.CheckUserName(param, Guid.Empty)){
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else if (sqlUserRepository.CheckUserName(param, Guid.Empty))
+                    {
                         MessageBox.Show(this, "Username has already exists", "Information");
+                        return;
+                    }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -147,6 +164,8 @@ namespace VisitaJayaPerkasa.Control.UserControls
                         MessageBox.Show(this, "Success create user", "Information");
                         radButtonElement2.PerformClick();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else {
                         MessageBox.Show(this, "Cannot Create User", "Information");
                     }
@@ -175,6 +194,11 @@ namespace VisitaJayaPerkasa.Control.UserControls
                         MessageBox.Show(this, "Username has already exist. if it has already deleted. you must activate it with create new data", "Information");
                         return;
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
                     SqlParameter []sqlParam = SqlUtility.SetSqlParameter(new string[] { "person_id", "username", "password", "password_hint", "email", "first_name", "last_name", "address", "date_of_birth", "marital_status", "gender", "mobile_phone_number", "deleted", "user_id", "role_id", "deleted" }
                         , new object[] { user.PersonID, user.UserName, user.Password, user.PasswordHint, user.email, user.FirstName, user.LastName, user.Address, user.DateOfBirth, user.MaritalStatus, user.Gender, user.MobilePhoneNumber, user.Deleted,  user.PersonID, user.RoleObj.ID, user.Deleted });
@@ -184,6 +208,8 @@ namespace VisitaJayaPerkasa.Control.UserControls
                         MessageBox.Show(this, "Success edit user", "Information");
                         radButtonElement2.PerformClick();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else {
                         MessageBox.Show(this, "Cannot edit User", "Information");
                     }

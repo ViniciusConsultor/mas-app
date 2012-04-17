@@ -83,7 +83,10 @@ namespace VisitaJayaPerkasa.Control.Warehouse
             string searchKey = radComboBoxElement.Text;
 
             wareHouses = sqlWareHouseRepository.GetWareHouse();
-            if (wareHouses != null)
+
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (wareHouses != null)
             {
                 if (!string.IsNullOrEmpty(searchValue) && !string.IsNullOrEmpty(searchKey))
                 {
@@ -198,6 +201,8 @@ namespace VisitaJayaPerkasa.Control.Warehouse
                         MessageBox.Show("Data Deleted !");
                         LoadData();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                         MessageBox.Show("Cannot Delete Data !");
 

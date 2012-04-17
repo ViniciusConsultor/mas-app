@@ -76,6 +76,8 @@ namespace VisitaJayaPerkasa.Control.Warehouse
                                 MessageBox.Show(this, "Success Activate Stuffing Place", "Information");
                                 radButtonElement2.PerformClick();
                             }
+                            else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             else
                                 MessageBox.Show(this, "Cannot Activate Stuffing Place", "Information");
 
@@ -83,9 +85,19 @@ namespace VisitaJayaPerkasa.Control.Warehouse
                         }
                         return;
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     else if (sqlWareHouseRepository.CheckWarehouse(param, Guid.Empty))
                     {
                         MessageBox.Show(this, "Stuffing Place has already exists", "Information");
+                        return;
+                    }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -98,6 +110,8 @@ namespace VisitaJayaPerkasa.Control.Warehouse
                         MessageBox.Show(this, "Success create stuffing place", "Information");
                         radButtonElement2.PerformClick();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
                         MessageBox.Show(this, "Cannot Create stuffing place", "Information");
@@ -118,6 +132,11 @@ namespace VisitaJayaPerkasa.Control.Warehouse
                         MessageBox.Show(this, "Stuffing Place has already exist. if it has already deleted. you must activate it with create new data", "Information");
                         return;
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
                     SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "stuffing_place_id", "address", "phone", "fax", "email", "contact_person", "deleted" }
                             , new object[] { warehouse.Id, warehouse.Address, warehouse.Phone, warehouse.Fax, warehouse.Email, warehouse.ContactPerson, warehouse.Deleted });
@@ -127,6 +146,8 @@ namespace VisitaJayaPerkasa.Control.Warehouse
                         MessageBox.Show(this, "Success edit stuffing place", "Information");
                         radButtonElement2.PerformClick();
                     }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
                         MessageBox.Show(this, "Cannot edit stuffing place", "Information");

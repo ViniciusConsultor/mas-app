@@ -36,6 +36,9 @@ namespace VisitaJayaPerkasa.Form.Report.Delivery
             spnYear.Value = datetime.Year;
 
             List<VisitaJayaPerkasa.Entities.Customer> listCustomer = sqlCustomerRepository.ListCustomers();
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
 
             cboCustomer.DataSource = listCustomer;
             cboCustomer.DisplayMember = "CustomerName";
@@ -317,6 +320,8 @@ namespace VisitaJayaPerkasa.Form.Report.Delivery
             //Alter the date list
             Guid customerID = (Guid) cboCustomer2.SelectedValue;
             List<CustomerTrans> transactionList = sqlCustomerTransRepository.ListCustomerTrans(customerID);
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             cboTransDate.DataSource = transactionList;
             cboTransDate.DisplayMember = "TransDate";
@@ -332,6 +337,8 @@ namespace VisitaJayaPerkasa.Form.Report.Delivery
             //Alter the detail list
             Guid transID = (Guid)cboTransDate.SelectedValue;
             List<CustomerTransDetailSimplified> transDetail = sqlCustomerTransRepository.ListCustomerTransDetailSimplified(transID);
+            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             cboTransDetail.DataSource = transDetail;
             cboTransDetail.DisplayMember = "StringRep";
