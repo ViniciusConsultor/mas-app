@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridSortField gridSortField2 = new Telerik.WinControls.UI.GridSortField();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.radMenuItem7 = new Telerik.WinControls.UI.RadMenuItem();
             this.gridViewTemplate1 = new Telerik.WinControls.UI.GridViewTemplate();
@@ -78,6 +78,11 @@
             this.radImageButtonInvoice = new Telerik.WinControls.UI.RadImageButtonElement();
             this.RBGRptSchedule = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.radImageButtonElement1 = new Telerik.WinControls.UI.RadImageButtonElement();
+            this.RBGSupplyPrice = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.radImageButtonElement2 = new Telerik.WinControls.UI.RadImageButtonElement();
+            this.ribbonTab5 = new Telerik.WinControls.UI.RibbonTab();
+            this.RBGSetting = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.radImageButtonElementSetting = new Telerik.WinControls.UI.RadImageButtonElement();
             this.radButtonElement1 = new Telerik.WinControls.UI.RadButtonElement();
             this.radMenuItemMasterData = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemUser = new Telerik.WinControls.UI.RadMenuItem();
@@ -96,12 +101,11 @@
             this.radMenuItemTransaction = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemOrderList = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemReporting = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemSetting = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuSeparatorItem1 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
             this.radMenuItemLogOut = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuSeparatorItem2 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
             this.radMenuItemExit = new Telerik.WinControls.UI.RadMenuItem();
-            this.RBGSupplyPrice = new Telerik.WinControls.UI.RadRibbonBarGroup();
-            this.radImageButtonElement2 = new Telerik.WinControls.UI.RadImageButtonElement();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewTemplate1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRibbonBar1)).BeginInit();
@@ -134,6 +138,7 @@
             this.imageList1.Images.SetKeyName(19, "ic_atk.jpg");
             this.imageList1.Images.SetKeyName(20, "rptSchedule.jpg");
             this.imageList1.Images.SetKeyName(21, "supply_price.jpg");
+            this.imageList1.Images.SetKeyName(22, "ic_setting_logo.jpg");
             // 
             // radMenuItem7
             // 
@@ -143,10 +148,10 @@
             // gridViewTemplate1
             // 
             this.gridViewTemplate1.AllowAddNewRow = false;
-            gridSortField1.FieldAlias = "Tanggal";
-            gridSortField1.FieldName = "Tanggal";
-            gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            this.gridViewTemplate1.SortExpressions.Add(gridSortField1);
+            gridSortField2.FieldAlias = "Tanggal";
+            gridSortField2.FieldName = "Tanggal";
+            gridSortField2.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            this.gridViewTemplate1.SortExpressions.Add(gridSortField2);
             // 
             // radLabelElementWelcome
             // 
@@ -164,9 +169,9 @@
             this.radLabelElementWelcome,
             this.radLabelElementWelcome});
             this.radStatusStrip.LayoutStyle = Telerik.WinControls.UI.RadStatusBarLayoutStyle.Stack;
-            this.radStatusStrip.Location = new System.Drawing.Point(0, 571);
+            this.radStatusStrip.Location = new System.Drawing.Point(0, 575);
             this.radStatusStrip.Name = "radStatusStrip";
-            this.radStatusStrip.Size = new System.Drawing.Size(992, 24);
+            this.radStatusStrip.Size = new System.Drawing.Size(992, 20);
             this.radStatusStrip.SizingGrip = false;
             this.radStatusStrip.TabIndex = 1;
             this.radStatusStrip.Text = "radStatusStrip1";
@@ -190,7 +195,8 @@
             this.ribbonTab1,
             this.ribbonTab4,
             this.ribbonTab2,
-            this.ribbonTab3});
+            this.ribbonTab3,
+            this.ribbonTab5});
             this.radRibbonBar1.Dock = System.Windows.Forms.DockStyle.Top;
             this.radRibbonBar1.EnableKeyMap = true;
             // 
@@ -229,6 +235,7 @@
             this.radMenuItemChecking,
             this.radMenuItemTransaction,
             this.radMenuItemReporting,
+            this.radMenuItemSetting,
             this.radMenuSeparatorItem1,
             this.radMenuItemLogOut,
             this.radMenuSeparatorItem2,
@@ -532,7 +539,6 @@
             this.ribbonTab3.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ribbonTab3.ContentPanel.Location = new System.Drawing.Point(0, 0);
             this.ribbonTab3.ContentPanel.Size = new System.Drawing.Size(200, 100);
-            this.ribbonTab3.IsSelected = true;
             this.ribbonTab3.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.RBGContainer,
             this.RBGDelivery,
@@ -604,6 +610,57 @@
             this.radImageButtonElement1.Name = "radImageButtonElement1";
             this.radImageButtonElement1.Text = "radImageButtonElement1";
             this.radImageButtonElement1.Click += new System.EventHandler(this.radImageButtonElement1_Click);
+            // 
+            // RBGSupplyPrice
+            // 
+            this.RBGSupplyPrice.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radImageButtonElement2});
+            this.RBGSupplyPrice.Name = "RBGSupplyPrice";
+            this.RBGSupplyPrice.Text = "Supply Price";
+            // 
+            // radImageButtonElement2
+            // 
+            this.radImageButtonElement2.Image = ((System.Drawing.Image)(resources.GetObject("radImageButtonElement2.Image")));
+            this.radImageButtonElement2.ImageIndex = 21;
+            this.radImageButtonElement2.ImageKey = "supply_price.jpg";
+            this.radImageButtonElement2.Name = "radImageButtonElement2";
+            this.radImageButtonElement2.Text = "radImageButtonElement2";
+            this.radImageButtonElement2.Click += new System.EventHandler(this.radImageButtonElement2_Click);
+            // 
+            // ribbonTab5
+            // 
+            this.ribbonTab5.Alignment = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // ribbonTab5.ContentPanel
+            // 
+            this.ribbonTab5.ContentPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ribbonTab5.ContentPanel.CausesValidation = true;
+            this.ribbonTab5.ContentPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ribbonTab5.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ribbonTab5.ContentPanel.Location = new System.Drawing.Point(0, 0);
+            this.ribbonTab5.ContentPanel.Size = new System.Drawing.Size(200, 100);
+            this.ribbonTab5.IsSelected = true;
+            this.ribbonTab5.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.RBGSetting});
+            this.ribbonTab5.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.ribbonTab5.Name = "ribbonTab5";
+            this.ribbonTab5.StretchHorizontally = false;
+            this.ribbonTab5.Text = "Setting";
+            // 
+            // RBGSetting
+            // 
+            this.RBGSetting.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radImageButtonElementSetting});
+            this.RBGSetting.Name = "RBGSetting";
+            this.RBGSetting.Text = "Connection";
+            // 
+            // radImageButtonElementSetting
+            // 
+            this.radImageButtonElementSetting.Image = ((System.Drawing.Image)(resources.GetObject("radImageButtonElementSetting.Image")));
+            this.radImageButtonElementSetting.ImageIndex = 22;
+            this.radImageButtonElementSetting.Name = "radImageButtonElementSetting";
+            this.radImageButtonElementSetting.Text = "";
+            this.radImageButtonElementSetting.Click += new System.EventHandler(this.radImageButtonElementSetting_Click);
             // 
             // radButtonElement1
             // 
@@ -732,6 +789,12 @@
             this.radMenuItemReporting.Name = "radMenuItemReporting";
             this.radMenuItemReporting.Text = "Reporting";
             // 
+            // radMenuItemSetting
+            // 
+            this.radMenuItemSetting.Image = global::VisitaJayaPerkasa.Properties.Resources.setting;
+            this.radMenuItemSetting.Name = "radMenuItemSetting";
+            this.radMenuItemSetting.Text = "Setting";
+            // 
             // radMenuSeparatorItem1
             // 
             this.radMenuSeparatorItem1.Name = "radMenuSeparatorItem1";
@@ -753,22 +816,6 @@
             this.radMenuItemExit.Name = "radMenuItemExit";
             this.radMenuItemExit.Text = "Exit";
             this.radMenuItemExit.Click += new System.EventHandler(this.radMenuItemExit_Click);
-            // 
-            // RBGSupplyPrice
-            // 
-            this.RBGSupplyPrice.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radImageButtonElement2});
-            this.RBGSupplyPrice.Name = "RBGSupplyPrice";
-            this.RBGSupplyPrice.Text = "Supply Price";
-            // 
-            // radImageButtonElement2
-            // 
-            this.radImageButtonElement2.Image = ((System.Drawing.Image)(resources.GetObject("radImageButtonElement2.Image")));
-            this.radImageButtonElement2.ImageIndex = 21;
-            this.radImageButtonElement2.ImageKey = "supply_price.jpg";
-            this.radImageButtonElement2.Name = "radImageButtonElement2";
-            this.radImageButtonElement2.Text = "radImageButtonElement2";
-            this.radImageButtonElement2.Click += new System.EventHandler(this.radImageButtonElement2_Click);
             // 
             // MainForm
             // 
@@ -868,5 +915,9 @@
         private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElement1;
         private Telerik.WinControls.UI.RadRibbonBarGroup RBGSupplyPrice;
         private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElement2;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemSetting;
+        private Telerik.WinControls.UI.RibbonTab ribbonTab5;
+        private Telerik.WinControls.UI.RadRibbonBarGroup RBGSetting;
+        private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElementSetting;
     }
 }

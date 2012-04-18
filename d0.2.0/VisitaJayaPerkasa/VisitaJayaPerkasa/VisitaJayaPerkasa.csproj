@@ -197,6 +197,12 @@
     <Compile Include="Control\Schedule\ScheduleView.Designer.cs">
       <DependentUpon>ScheduleView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Control\Setting\UserControlSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\Setting\UserControlSetting.Designer.cs">
+      <DependentUpon>UserControlSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Control\Supplier\SupplierEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -528,6 +534,9 @@
     <EmbeddedResource Include="Control\Schedule\ScheduleView.resx">
       <DependentUpon>ScheduleView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Control\Setting\UserControlSetting.resx">
+      <DependentUpon>UserControlSetting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control\Supplier\SupplierEdit.resx">
       <DependentUpon>SupplierEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -754,7 +763,9 @@
   <ItemGroup>
     <None Include="Resources\ic_transaction.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\setting.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
