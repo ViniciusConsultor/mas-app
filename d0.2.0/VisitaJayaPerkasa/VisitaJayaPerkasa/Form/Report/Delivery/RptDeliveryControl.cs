@@ -87,7 +87,8 @@ namespace VisitaJayaPerkasa.Form.Report.Delivery
             string customerId = cboCustomer.SelectedValue.ToString();
 
             //build query
-            string query = "SELECT ct.id, ct.customer_id AS CustomerId, c.customer_name AS CustomerName, " +
+            string query = "SELECT ROW_NUMBER() over (ORDER BY ct.tgl_transaksi) AS RowNo, " +
+                           "ct.id, ct.customer_id AS CustomerId, c.customer_name AS CustomerName, " +
                            "       ct.tgl_transaksi AS TanggalTransaksi, ctd.stuffing_date AS StuffingDate, " +
                            "       w.address AS stuffingplace, des.city_name AS Tujuan, " +
                            "       ctd.no_container AS ContainerNo, ctd.voy, ctd.td, " +

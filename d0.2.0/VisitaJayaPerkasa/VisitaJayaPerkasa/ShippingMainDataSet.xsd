@@ -350,6 +350,7 @@ SELECT person_id, username, password, deleted FROM [USER] WHERE (person_id = @pe
               <xs:element name="Unloading" msprop:Generator_ColumnVarNameInTable="columnUnloading" msprop:Generator_ColumnPropNameInRow="Unloading" msprop:Generator_ColumnPropNameInTable="UnloadingColumn" msprop:Generator_UserColumnName="Unloading" type="xs:dateTime" minOccurs="0" />
               <xs:element name="DateReceived" msprop:Generator_ColumnVarNameInTable="columnDateReceived" msprop:Generator_ColumnPropNameInRow="DateReceived" msprop:Generator_ColumnPropNameInTable="DateReceivedColumn" msprop:Generator_UserColumnName="DateReceived" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Recipient" msprop:Generator_ColumnVarNameInTable="columnRecipient" msprop:Generator_ColumnPropNameInRow="Recipient" msprop:Generator_ColumnPropNameInTable="RecipientColumn" msprop:Generator_UserColumnName="Recipient" type="xs:string" minOccurs="0" />
+              <xs:element name="RowNo" msprop:Generator_ColumnVarNameInTable="columnRowNo" msprop:Generator_ColumnPropNameInRow="RowNo" msprop:Generator_ColumnPropNameInTable="RowNoColumn" msprop:Generator_UserColumnName="RowNo" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
