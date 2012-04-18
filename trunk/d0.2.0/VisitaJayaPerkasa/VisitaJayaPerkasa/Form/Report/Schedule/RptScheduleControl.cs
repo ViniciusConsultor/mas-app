@@ -258,7 +258,7 @@ namespace VisitaJayaPerkasa.Form.Report.Schedule
             }
             catch (Exception Ex)
             {
-                Logging.Error("RptScheduleControl.cs - GetReportSchedule() " + e.Message);
+                Logging.Error("RptScheduleControl.cs - GetReportSchedule() " + Ex.Message);
                 MessageBox.Show(Ex.Message);
             }
 
