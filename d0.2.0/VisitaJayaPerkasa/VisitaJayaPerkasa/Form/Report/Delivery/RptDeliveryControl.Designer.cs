@@ -118,7 +118,7 @@
             this.btnViewReport.Location = new System.Drawing.Point(6, 78);
             this.btnViewReport.Name = "btnViewReport";
             this.btnViewReport.Size = new System.Drawing.Size(213, 24);
-            this.btnViewReport.TabIndex = 9;
+            this.btnViewReport.TabIndex = 3;
             this.btnViewReport.Text = "View Report";
             this.btnViewReport.Click += new System.EventHandler(this.btnViewReport_Click);
             // 
@@ -142,7 +142,7 @@
             this.spnYear.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.spnYear.ShowBorder = true;
             this.spnYear.Size = new System.Drawing.Size(50, 20);
-            this.spnYear.TabIndex = 8;
+            this.spnYear.TabIndex = 2;
             this.spnYear.TabStop = false;
             this.spnYear.Value = new decimal(new int[] {
             2012,
@@ -170,7 +170,7 @@
             this.cboMonth.Location = new System.Drawing.Point(61, 39);
             this.cboMonth.Name = "cboMonth";
             this.cboMonth.Size = new System.Drawing.Size(102, 21);
-            this.cboMonth.TabIndex = 7;
+            this.cboMonth.TabIndex = 1;
             // 
             // cboCustomer
             // 
@@ -182,7 +182,7 @@
             // 
             this.cboCustomer.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.cboCustomer.Size = new System.Drawing.Size(158, 20);
-            this.cboCustomer.TabIndex = 4;
+            this.cboCustomer.TabIndex = 0;
             this.cboCustomer.TabStop = false;
             this.cboCustomer.Text = "radComboBox1";
             // 
@@ -235,7 +235,7 @@
             // 
             this.cboTransDetail.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.cboTransDetail.Size = new System.Drawing.Size(178, 20);
-            this.cboTransDetail.TabIndex = 14;
+            this.cboTransDetail.TabIndex = 6;
             this.cboTransDetail.TabStop = false;
             this.cboTransDetail.Text = "radComboBox1";
             // 
@@ -256,7 +256,7 @@
             // 
             this.cboTransDate.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.cboTransDate.Size = new System.Drawing.Size(133, 20);
-            this.cboTransDate.TabIndex = 12;
+            this.cboTransDate.TabIndex = 5;
             this.cboTransDate.TabStop = false;
             this.cboTransDate.Text = "radComboBox1";
             // 
@@ -273,7 +273,7 @@
             this.btnViewBeritaAcara.Location = new System.Drawing.Point(6, 96);
             this.btnViewBeritaAcara.Name = "btnViewBeritaAcara";
             this.btnViewBeritaAcara.Size = new System.Drawing.Size(213, 24);
-            this.btnViewBeritaAcara.TabIndex = 10;
+            this.btnViewBeritaAcara.TabIndex = 7;
             this.btnViewBeritaAcara.Text = "View Berita Acara";
             this.btnViewBeritaAcara.Click += new System.EventHandler(this.btnViewBeritaAcara_Click);
             // 
@@ -287,7 +287,7 @@
             // 
             this.cboCustomer2.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.cboCustomer2.Size = new System.Drawing.Size(158, 20);
-            this.cboCustomer2.TabIndex = 2;
+            this.cboCustomer2.TabIndex = 4;
             this.cboCustomer2.TabStop = false;
             this.cboCustomer2.Text = "radComboBox1";
             // 

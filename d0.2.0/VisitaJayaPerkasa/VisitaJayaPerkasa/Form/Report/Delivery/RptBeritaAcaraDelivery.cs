@@ -367,6 +367,14 @@ namespace VisitaJayaPerkasa.Form.Report.Delivery {
                 return this.DataDefinition.ParameterFields[34];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_strNoBA {
+            get {
+                return this.DataDefinition.ParameterFields[35];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
