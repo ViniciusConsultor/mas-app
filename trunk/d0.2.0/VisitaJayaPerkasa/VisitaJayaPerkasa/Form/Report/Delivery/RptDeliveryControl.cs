@@ -184,7 +184,7 @@ namespace VisitaJayaPerkasa.Form.Report.Delivery
                            "       ctd.jenis_barang, cnd.condition_name, " +
                            "       ctd.sj1, sj2, sj3, sj4, sj5, sj6, sj7, sj8, sj9, sj10, " +
                            "       ctd.sj11, sj12, sj13, sj14, sj15, sj16, sj17, sj18, sj19, sj20, " +
-                           "       ctd.sj21, sj22, sj23, sj24, sj25 " +
+                           "       ctd.sj21, sj22, sj23, sj24, sj25, ctd.no_ba " +
                            "FROM   CUSTOMER_TRANS AS ct " +
                            "       INNER JOIN CUSTOMER AS c ON c.customer_id = ct.customer_id " +
                            "       LEFT OUTER JOIN CUSTOMER_TRANS_DETAIL AS ctd ON ctd.customer_trans_id = ct.id " +
@@ -208,11 +208,14 @@ namespace VisitaJayaPerkasa.Form.Report.Delivery
                 ParameterField singleParameter;
                 ParameterDiscreteValue parameterDiscreteValue;
 
+                int i = 3;
                 while (reader.Read())
                 {
-                    string kapal = (Utility.Utility.IsDBNull(reader.GetValue(3))) ? null : reader.GetValue(3).ToString();
-                    string voy = (Utility.Utility.IsDBNull(reader.GetValue(4))) ? null : reader.GetValue(4).ToString();
                     //populate report params
+                    string kapal = (Utility.Utility.IsDBNull(reader.GetValue(i))) ? null : reader.GetValue(i).ToString();
+                    i++;
+                    string voy = (Utility.Utility.IsDBNull(reader.GetValue(i))) ? null : reader.GetValue(i).ToString();
+                    i++;
                     singleParameter = new ParameterField();
                     singleParameter.Name = "strKapal";
                     parameterDiscreteValue = new ParameterDiscreteValue();
@@ -223,79 +226,102 @@ namespace VisitaJayaPerkasa.Form.Report.Delivery
                     singleParameter = new ParameterField();
                     singleParameter.Name = "dtATD";
                     parameterDiscreteValue = new ParameterDiscreteValue();
-                    parameterDiscreteValue.Value = reader.GetDateTime(5).Date;
+                    parameterDiscreteValue.Value = reader.GetDateTime(i).Date;
                     singleParameter.CurrentValues.Add(parameterDiscreteValue);
                     pluralParameter.Add(singleParameter);
+                    i++;
 
                     singleParameter = new ParameterField();
                     singleParameter.Name = "strTujuan";
                     parameterDiscreteValue = new ParameterDiscreteValue();
-                    parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(6))) ? null : reader.GetValue(6).ToString();
+                    parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(i))) ? null : reader.GetValue(i).ToString();
                     singleParameter.CurrentValues.Add(parameterDiscreteValue);
                     pluralParameter.Add(singleParameter);
+                    i++;
 
                     singleParameter = new ParameterField();
                     singleParameter.Name = "strContainer";
                     parameterDiscreteValue = new ParameterDiscreteValue();
-                    parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(7))) ? null : reader.GetValue(7).ToString();
+                    parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(i))) ? null : reader.GetValue(i).ToString();
                     singleParameter.CurrentValues.Add(parameterDiscreteValue);
                     pluralParameter.Add(singleParameter);
+                    i++;
 
                     singleParameter = new ParameterField();
                     singleParameter.Name = "strSegel";
                     parameterDiscreteValue = new ParameterDiscreteValue();
-                    parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(8))) ? null : reader.GetValue(8).ToString();
+                    parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(i))) ? null : reader.GetValue(i).ToString();
                     singleParameter.CurrentValues.Add(parameterDiscreteValue);
                     pluralParameter.Add(singleParameter);
+                    i++;
 
                     singleParameter = new ParameterField();
                     singleParameter.Name = "strPengirim";
                     parameterDiscreteValue = new ParameterDiscreteValue();
-                    parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(9))) ? null : reader.GetValue(9).ToString();
+                    parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(i))) ? null : reader.GetValue(i).ToString();
                     singleParameter.CurrentValues.Add(parameterDiscreteValue);
                     pluralParameter.Add(singleParameter);
+                    i++;
 
                     singleParameter = new ParameterField();
                     singleParameter.Name = "strPenerima";
                     parameterDiscreteValue = new ParameterDiscreteValue();
-                    parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(10))) ? null : reader.GetValue(10).ToString();
+                    parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(i))) ? null : reader.GetValue(i).ToString();
                     singleParameter.CurrentValues.Add(parameterDiscreteValue);
                     pluralParameter.Add(singleParameter);
+                    i++;
 
                     singleParameter = new ParameterField();
                     singleParameter.Name = "strTypeCont";
                     parameterDiscreteValue = new ParameterDiscreteValue();
-                    parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(11))) ? null : reader.GetValue(11).ToString();
+                    parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(i))) ? null : reader.GetValue(i).ToString();
                     singleParameter.CurrentValues.Add(parameterDiscreteValue);
                     pluralParameter.Add(singleParameter);
+                    i++;
 
                     singleParameter = new ParameterField();
                     singleParameter.Name = "strJenisBarang";
                     parameterDiscreteValue = new ParameterDiscreteValue();
-                    parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(12))) ? null : reader.GetValue(12).ToString();
+                    parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(i))) ? null : reader.GetValue(i).ToString();
                     singleParameter.CurrentValues.Add(parameterDiscreteValue);
                     pluralParameter.Add(singleParameter);
+                    i++;
 
                     singleParameter = new ParameterField();
                     singleParameter.Name = "strKondisi";
                     parameterDiscreteValue = new ParameterDiscreteValue();
-                    parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(13))) ? null : reader.GetValue(13).ToString();
+                    parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(i))) ? null : reader.GetValue(i).ToString();
                     singleParameter.CurrentValues.Add(parameterDiscreteValue);
                     pluralParameter.Add(singleParameter);
+                    i++;
 
-                    for (int i = 1; i <= 25; i++)
+                    for (int j = 1; j <= 25; j++)
                     {
-                        string noDo = "strDO" + i.ToString();
+                        string noDo = "strDO" + j.ToString();
                         singleParameter = new ParameterField();
                         singleParameter.Name = noDo;
                         parameterDiscreteValue = new ParameterDiscreteValue();
-                        parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(13 + i))) ? "0" : reader.GetValue(13 + i).ToString();
+                        parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(i))) ? "0" : reader.GetValue(i).ToString();
                         singleParameter.CurrentValues.Add(parameterDiscreteValue);
                         pluralParameter.Add(singleParameter);
+                        i++;
                     }
+                    
+                    singleParameter = new ParameterField();
+                    singleParameter.Name = "strNoBA";
+                    parameterDiscreteValue = new ParameterDiscreteValue();
+                    parameterDiscreteValue.Value = (Utility.Utility.IsDBNull(reader.GetValue(i))) ? null : reader.GetValue(i).ToString();
+                    singleParameter.CurrentValues.Add(parameterDiscreteValue);
+                    pluralParameter.Add(singleParameter);
+                    i++;
 
                     break;
                 }
+                
+                /*foreach (ParameterField field in pluralParameter)
+                {
+                    MessageBox.Show(field.Name + " = " + (field.CurrentValues[0] as ParameterDiscreteValue).Value.ToString());
+                }//*/
 
                 rptBeritaAcara = new RptBeritaAcaraDelivery();
                 reportViewer.ParameterFieldInfo = pluralParameter;
