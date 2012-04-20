@@ -28,9 +28,7 @@ namespace VisitaJayaPerkasa.Form.Report.Kwitansi
 
         private void RptCetakKwitansi_Load(object sender, EventArgs e)
         {
-            string strPath =// @"C:\Program Files\Hewlett-Packard\Setup_Showroom\Showroom\rptKwitansi.rpt";
-
-                 @"C:\Users\Jamaluddin Ahmad\Documents\Development\myProject\showRoom\prjShowroom\prjShowroom\Report\rptKwitansi.rpt";
+            string strPath = Application.StartupPath + @"\Form\Report\Kwitansi\RptKwitansi.rpt";
 
             // Object for load report.
             ReportDocument rpt = new ReportDocument();
