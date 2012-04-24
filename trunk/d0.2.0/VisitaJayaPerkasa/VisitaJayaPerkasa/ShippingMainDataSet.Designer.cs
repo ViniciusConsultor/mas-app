@@ -3875,6 +3875,14 @@ namespace VisitaJayaPerkasa {
             
             private global::System.Data.DataColumn columnprice;
             
+            private global::System.Data.DataColumn columnno_urut;
+            
+            private global::System.Data.DataColumn columntgl_angkat;
+            
+            private global::System.Data.DataColumn columnseal;
+            
+            private global::System.Data.DataColumn columnvoy;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public INVOICE_NONPPNDataTable() {
@@ -3974,6 +3982,38 @@ namespace VisitaJayaPerkasa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn no_urutColumn {
+                get {
+                    return this.columnno_urut;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn tgl_angkatColumn {
+                get {
+                    return this.columntgl_angkat;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sealColumn {
+                get {
+                    return this.columnseal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn voyColumn {
+                get {
+                    return this.columnvoy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4009,7 +4049,7 @@ namespace VisitaJayaPerkasa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public INVOICE_NONPPNRow AddINVOICE_NONPPNRow(string no_ba, string no_container, string type_name, string vessel_name, string ta, string terima_toko, string city_name, string price) {
+            public INVOICE_NONPPNRow AddINVOICE_NONPPNRow(string no_ba, string no_container, string type_name, string vessel_name, System.DateTime ta, System.DateTime terima_toko, string city_name, decimal price, int no_urut, System.DateTime tgl_angkat, string seal, string voy) {
                 INVOICE_NONPPNRow rowINVOICE_NONPPNRow = ((INVOICE_NONPPNRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         no_ba,
@@ -4019,7 +4059,11 @@ namespace VisitaJayaPerkasa {
                         ta,
                         terima_toko,
                         city_name,
-                        price};
+                        price,
+                        no_urut,
+                        tgl_angkat,
+                        seal,
+                        voy};
                 rowINVOICE_NONPPNRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowINVOICE_NONPPNRow);
                 return rowINVOICE_NONPPNRow;
@@ -4050,6 +4094,10 @@ namespace VisitaJayaPerkasa {
                 this.columnterima_toko = base.Columns["terima_toko"];
                 this.columncity_name = base.Columns["city_name"];
                 this.columnprice = base.Columns["price"];
+                this.columnno_urut = base.Columns["no_urut"];
+                this.columntgl_angkat = base.Columns["tgl_angkat"];
+                this.columnseal = base.Columns["seal"];
+                this.columnvoy = base.Columns["voy"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4063,14 +4111,22 @@ namespace VisitaJayaPerkasa {
                 base.Columns.Add(this.columntype_name);
                 this.columnvessel_name = new global::System.Data.DataColumn("vessel_name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnvessel_name);
-                this.columnta = new global::System.Data.DataColumn("ta", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnta = new global::System.Data.DataColumn("ta", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnta);
-                this.columnterima_toko = new global::System.Data.DataColumn("terima_toko", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnterima_toko = new global::System.Data.DataColumn("terima_toko", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnterima_toko);
                 this.columncity_name = new global::System.Data.DataColumn("city_name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncity_name);
-                this.columnprice = new global::System.Data.DataColumn("price", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnprice = new global::System.Data.DataColumn("price", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnprice);
+                this.columnno_urut = new global::System.Data.DataColumn("no_urut", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnno_urut);
+                this.columntgl_angkat = new global::System.Data.DataColumn("tgl_angkat", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntgl_angkat);
+                this.columnseal = new global::System.Data.DataColumn("seal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnseal);
+                this.columnvoy = new global::System.Data.DataColumn("voy", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnvoy);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4220,6 +4276,14 @@ namespace VisitaJayaPerkasa {
             
             private global::System.Data.DataColumn columnprice;
             
+            private global::System.Data.DataColumn columnno_urut;
+            
+            private global::System.Data.DataColumn columntgl_angkat;
+            
+            private global::System.Data.DataColumn columnseal;
+            
+            private global::System.Data.DataColumn columnvoy;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public INVOICE_PPNDataTable() {
@@ -4319,6 +4383,38 @@ namespace VisitaJayaPerkasa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn no_urutColumn {
+                get {
+                    return this.columnno_urut;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn tgl_angkatColumn {
+                get {
+                    return this.columntgl_angkat;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn sealColumn {
+                get {
+                    return this.columnseal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn voyColumn {
+                get {
+                    return this.columnvoy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4354,7 +4450,7 @@ namespace VisitaJayaPerkasa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public INVOICE_PPNRow AddINVOICE_PPNRow(string no_ba, string no_container, string type_name, string vessel_name, string ta, string terima_toko, string city_name, string price) {
+            public INVOICE_PPNRow AddINVOICE_PPNRow(string no_ba, string no_container, string type_name, string vessel_name, string ta, string terima_toko, string city_name, string price, int no_urut, System.DateTime tgl_angkat, string seal, string voy) {
                 INVOICE_PPNRow rowINVOICE_PPNRow = ((INVOICE_PPNRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         no_ba,
@@ -4364,7 +4460,11 @@ namespace VisitaJayaPerkasa {
                         ta,
                         terima_toko,
                         city_name,
-                        price};
+                        price,
+                        no_urut,
+                        tgl_angkat,
+                        seal,
+                        voy};
                 rowINVOICE_PPNRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowINVOICE_PPNRow);
                 return rowINVOICE_PPNRow;
@@ -4395,6 +4495,10 @@ namespace VisitaJayaPerkasa {
                 this.columnterima_toko = base.Columns["terima_toko"];
                 this.columncity_name = base.Columns["city_name"];
                 this.columnprice = base.Columns["price"];
+                this.columnno_urut = base.Columns["no_urut"];
+                this.columntgl_angkat = base.Columns["tgl_angkat"];
+                this.columnseal = base.Columns["seal"];
+                this.columnvoy = base.Columns["voy"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4416,6 +4520,14 @@ namespace VisitaJayaPerkasa {
                 base.Columns.Add(this.columncity_name);
                 this.columnprice = new global::System.Data.DataColumn("price", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnprice);
+                this.columnno_urut = new global::System.Data.DataColumn("no_urut", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnno_urut);
+                this.columntgl_angkat = new global::System.Data.DataColumn("tgl_angkat", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntgl_angkat);
+                this.columnseal = new global::System.Data.DataColumn("seal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnseal);
+                this.columnvoy = new global::System.Data.DataColumn("voy", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnvoy);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8665,10 +8777,10 @@ namespace VisitaJayaPerkasa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ta {
+            public System.DateTime ta {
                 get {
                     try {
-                        return ((string)(this[this.tableINVOICE_NONPPN.taColumn]));
+                        return ((global::System.DateTime)(this[this.tableINVOICE_NONPPN.taColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ta\' in table \'INVOICE_NONPPN\' is DBNull.", e);
@@ -8681,10 +8793,10 @@ namespace VisitaJayaPerkasa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string terima_toko {
+            public System.DateTime terima_toko {
                 get {
                     try {
-                        return ((string)(this[this.tableINVOICE_NONPPN.terima_tokoColumn]));
+                        return ((global::System.DateTime)(this[this.tableINVOICE_NONPPN.terima_tokoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'terima_toko\' in table \'INVOICE_NONPPN\' is DBNull.", e);
@@ -8713,10 +8825,10 @@ namespace VisitaJayaPerkasa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string price {
+            public decimal price {
                 get {
                     try {
-                        return ((string)(this[this.tableINVOICE_NONPPN.priceColumn]));
+                        return ((decimal)(this[this.tableINVOICE_NONPPN.priceColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'price\' in table \'INVOICE_NONPPN\' is DBNull.", e);
@@ -8724,6 +8836,70 @@ namespace VisitaJayaPerkasa {
                 }
                 set {
                     this[this.tableINVOICE_NONPPN.priceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int no_urut {
+                get {
+                    try {
+                        return ((int)(this[this.tableINVOICE_NONPPN.no_urutColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'no_urut\' in table \'INVOICE_NONPPN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableINVOICE_NONPPN.no_urutColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime tgl_angkat {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableINVOICE_NONPPN.tgl_angkatColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'tgl_angkat\' in table \'INVOICE_NONPPN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableINVOICE_NONPPN.tgl_angkatColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string seal {
+                get {
+                    try {
+                        return ((string)(this[this.tableINVOICE_NONPPN.sealColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'seal\' in table \'INVOICE_NONPPN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableINVOICE_NONPPN.sealColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string voy {
+                get {
+                    try {
+                        return ((string)(this[this.tableINVOICE_NONPPN.voyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'voy\' in table \'INVOICE_NONPPN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableINVOICE_NONPPN.voyColumn] = value;
                 }
             }
             
@@ -8821,6 +8997,54 @@ namespace VisitaJayaPerkasa {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetpriceNull() {
                 this[this.tableINVOICE_NONPPN.priceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isno_urutNull() {
+                return this.IsNull(this.tableINVOICE_NONPPN.no_urutColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setno_urutNull() {
+                this[this.tableINVOICE_NONPPN.no_urutColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Istgl_angkatNull() {
+                return this.IsNull(this.tableINVOICE_NONPPN.tgl_angkatColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Settgl_angkatNull() {
+                this[this.tableINVOICE_NONPPN.tgl_angkatColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IssealNull() {
+                return this.IsNull(this.tableINVOICE_NONPPN.sealColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetsealNull() {
+                this[this.tableINVOICE_NONPPN.sealColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsvoyNull() {
+                return this.IsNull(this.tableINVOICE_NONPPN.voyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetvoyNull() {
+                this[this.tableINVOICE_NONPPN.voyColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -8968,6 +9192,70 @@ namespace VisitaJayaPerkasa {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int no_urut {
+                get {
+                    try {
+                        return ((int)(this[this.tableINVOICE_PPN.no_urutColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'no_urut\' in table \'INVOICE_PPN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableINVOICE_PPN.no_urutColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime tgl_angkat {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableINVOICE_PPN.tgl_angkatColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'tgl_angkat\' in table \'INVOICE_PPN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableINVOICE_PPN.tgl_angkatColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string seal {
+                get {
+                    try {
+                        return ((string)(this[this.tableINVOICE_PPN.sealColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'seal\' in table \'INVOICE_PPN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableINVOICE_PPN.sealColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string voy {
+                get {
+                    try {
+                        return ((string)(this[this.tableINVOICE_PPN.voyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'voy\' in table \'INVOICE_PPN\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableINVOICE_PPN.voyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isno_baNull() {
                 return this.IsNull(this.tableINVOICE_PPN.no_baColumn);
             }
@@ -9060,6 +9348,54 @@ namespace VisitaJayaPerkasa {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetpriceNull() {
                 this[this.tableINVOICE_PPN.priceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isno_urutNull() {
+                return this.IsNull(this.tableINVOICE_PPN.no_urutColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setno_urutNull() {
+                this[this.tableINVOICE_PPN.no_urutColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Istgl_angkatNull() {
+                return this.IsNull(this.tableINVOICE_PPN.tgl_angkatColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Settgl_angkatNull() {
+                this[this.tableINVOICE_PPN.tgl_angkatColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IssealNull() {
+                return this.IsNull(this.tableINVOICE_PPN.sealColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetsealNull() {
+                this[this.tableINVOICE_PPN.sealColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsvoyNull() {
+                return this.IsNull(this.tableINVOICE_PPN.voyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetvoyNull() {
+                this[this.tableINVOICE_PPN.voyColumn] = global::System.Convert.DBNull;
             }
         }
         
