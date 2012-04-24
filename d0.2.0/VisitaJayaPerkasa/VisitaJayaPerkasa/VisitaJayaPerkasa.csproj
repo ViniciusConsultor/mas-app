@@ -362,6 +362,13 @@
       <DependentUpon>RptDelivery.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Form\Report\Invoice\RptInvoicePPN.cs">
+      <DependentUpon>RptInvoicePPN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Form\Report\Invoice\RptInvoice.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -375,13 +382,6 @@
     </Compile>
     <Compile Include="Form\Report\Invoice\RptInvoiceControl.Designer.cs">
       <DependentUpon>RptInvoiceControl.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Form\Report\Invoice\RptInvoicePPN.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RptInvoicePPN.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Form\Report\Kwitansi\conversion.cs" />
@@ -633,6 +633,11 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptDelivery.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\Invoice\RptInvoicePPN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptInvoicePPN.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\Invoice\RptInvoice.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptInvoice.cs</LastGenOutput>
@@ -640,11 +645,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\Invoice\RptInvoiceControl.resx">
       <DependentUpon>RptInvoiceControl.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\Report\Invoice\RptInvoicePPN.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RptInvoicePPN.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\Kwitansi\RptCetakKwitansi.resx">
