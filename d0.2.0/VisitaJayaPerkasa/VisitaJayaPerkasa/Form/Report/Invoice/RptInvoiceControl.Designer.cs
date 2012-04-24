@@ -30,6 +30,9 @@
         {
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
+            this.radButton2 = new Telerik.WinControls.UI.RadButton();
+            this.chkStatus = new Telerik.WinControls.UI.RadCheckBox();
+            this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkPengirim = new Telerik.WinControls.UI.RadCheckBox();
             this.chkSJ12 = new Telerik.WinControls.UI.RadCheckBox();
@@ -88,13 +91,13 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.crystalReportViewerContainer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
-            this.chkStatus = new Telerik.WinControls.UI.RadCheckBox();
-            this.radButton2 = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
             this.splitPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkPengirim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSJ12)).BeginInit();
@@ -153,9 +156,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
             this.SuspendLayout();
             // 
             // radSplitContainer1
@@ -168,7 +168,7 @@
             // 
             // 
             this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer1.Size = new System.Drawing.Size(1000, 670);
+            this.radSplitContainer1.Size = new System.Drawing.Size(1000, 425);
             this.radSplitContainer1.TabIndex = 0;
             this.radSplitContainer1.TabStop = false;
             this.radSplitContainer1.Text = "radSplitContainer1";
@@ -190,12 +190,38 @@
             // 
             // 
             this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(269, 670);
+            this.splitPanel1.Size = new System.Drawing.Size(269, 425);
             this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.2301906F, 0F);
             this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-194, 0);
             this.splitPanel1.TabIndex = 3;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
+            // 
+            // radButton2
+            // 
+            this.radButton2.Location = new System.Drawing.Point(19, 73);
+            this.radButton2.Name = "radButton2";
+            this.radButton2.Size = new System.Drawing.Size(115, 24);
+            this.radButton2.TabIndex = 45;
+            this.radButton2.Text = "Create";
+            this.radButton2.Click += new System.EventHandler(this.radButton2_Click);
+            // 
+            // chkStatus
+            // 
+            this.chkStatus.Location = new System.Drawing.Point(72, 51);
+            this.chkStatus.Name = "chkStatus";
+            this.chkStatus.Size = new System.Drawing.Size(117, 18);
+            this.chkStatus.TabIndex = 44;
+            this.chkStatus.Text = "Non PPN";
+            // 
+            // radButton1
+            // 
+            this.radButton1.Location = new System.Drawing.Point(140, 73);
+            this.radButton1.Name = "radButton1";
+            this.radButton1.Size = new System.Drawing.Size(115, 24);
+            this.radButton1.TabIndex = 43;
+            this.radButton1.Text = "View Report";
+            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
             // 
             // groupBox1
             // 
@@ -249,7 +275,7 @@
             this.groupBox1.Controls.Add(this.chkRecipientName);
             this.groupBox1.Controls.Add(this.chkAll);
             this.groupBox1.Controls.Add(this.btnShowReport);
-            this.groupBox1.Location = new System.Drawing.Point(3, 205);
+            this.groupBox1.Location = new System.Drawing.Point(3, 99);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(263, 462);
             this.groupBox1.TabIndex = 42;
@@ -712,7 +738,7 @@
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(728, 670);
+            this.splitPanel2.Size = new System.Drawing.Size(728, 425);
             this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.2301906F, 0F);
             this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(194, 0);
             this.splitPanel2.TabIndex = 2;
@@ -727,35 +753,9 @@
             this.crystalReportViewerContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewerContainer.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewerContainer.Name = "crystalReportViewerContainer";
-            this.crystalReportViewerContainer.Size = new System.Drawing.Size(728, 670);
+            this.crystalReportViewerContainer.Size = new System.Drawing.Size(728, 425);
             this.crystalReportViewerContainer.TabIndex = 1;
             this.crystalReportViewerContainer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
-            // 
-            // radButton1
-            // 
-            this.radButton1.Location = new System.Drawing.Point(140, 73);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(115, 24);
-            this.radButton1.TabIndex = 43;
-            this.radButton1.Text = "View Report";
-            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
-            // 
-            // chkStatus
-            // 
-            this.chkStatus.Location = new System.Drawing.Point(72, 51);
-            this.chkStatus.Name = "chkStatus";
-            this.chkStatus.Size = new System.Drawing.Size(117, 18);
-            this.chkStatus.TabIndex = 44;
-            this.chkStatus.Text = "Non PPN";
-            // 
-            // radButton2
-            // 
-            this.radButton2.Location = new System.Drawing.Point(19, 73);
-            this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(115, 24);
-            this.radButton2.TabIndex = 45;
-            this.radButton2.Text = "Create";
-            this.radButton2.Click += new System.EventHandler(this.radButton2_Click);
             // 
             // RptInvoiceControl
             // 
@@ -770,6 +770,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
             this.splitPanel1.ResumeLayout(false);
             this.splitPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chkPengirim)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSJ12)).EndInit();
@@ -828,9 +831,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -839,7 +839,6 @@
 
         private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
         private Telerik.WinControls.UI.SplitPanel splitPanel2;
-        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewerContainer;
         private Telerik.WinControls.UI.SplitPanel splitPanel1;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel1;
@@ -900,6 +899,7 @@
         private Telerik.WinControls.UI.RadButton radButton1;
         private Telerik.WinControls.UI.RadCheckBox chkStatus;
         private Telerik.WinControls.UI.RadButton radButton2;
+        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewerContainer;
 
 
     }

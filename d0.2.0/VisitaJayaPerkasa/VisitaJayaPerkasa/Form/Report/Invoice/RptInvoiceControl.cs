@@ -36,6 +36,7 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice
             {
                 searchResultCustomerTrans = (VisitaJayaPerkasa.Entities.CustomerTrans)Constant.VisitaJayaPerkasaApplication.objGetOtherView;
                 txtCustomer.Text = searchResultCustomerTrans.CustomerName;
+                this.customerName = searchResultCustomerTrans.CustomerName;
             }
 
             Constant.VisitaJayaPerkasaApplication.objGetOtherView = null;
@@ -60,88 +61,104 @@ namespace VisitaJayaPerkasa.Form.Report.Invoice
             ReportDocument rpt = new ReportDocument();
             rpt.Load(strPath);
 
-            //Set Parameter
-            DataTable dt = null;
-            sqlCustomerTransRepository = new SqlCustomerTransRepository();
-            dt = sqlCustomerTransRepository.ReportInvoice(ID);
-            if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
-                MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            string query = "SELECT ROW_NUMBER() over (ORDER BY ct.tgl_transaksi) AS no_urut, " +
+                           "       ctd.no_ba, ctd.no_container, tcnt.type_name, pd.vessel_name, ctd.ta, " +
+                           "       ctd.terima_toko, des.city_name, ctd.price, ctd.unloading AS tgl_angkat, " +
+                           "       ctd.no_seal AS seal, ctd.voy " +
+                           "FROM   CUSTOMER_TRANS ct " +
+                           "       INNER JOIN CUSTOMER c ON c.customer_id = ct.customer_id " +
+                           "       LEFT OUTER JOIN CUSTOMER_TRANS_DETAIL ctd ON ctd.customer_trans_id = ct.id " +
+                           "       LEFT OUTER JOIN TYPE_CONT tcnt ON tcnt.type_id = ctd.type_id " +
+                           "       LEFT OUTER JOIN PELAYARAN_DETAIL AS pd ON pd.pelayaran_detail_id = ctd.pelayaran_detail_id " +
+                           "       LEFT OUTER JOIN CITY AS des ON des.city_id = ctd.destination " +
+                           "WHERE  ct.id = '" + searchResultCustomerTrans.CustomerTransID.ToString() + "'" +
+                           "";
 
-
-            decimal total = decimal.Zero;
-            string totalStr = String.Empty;
-            decimal PPN = decimal.Zero;
-            string ppnStr = String.Empty;
-            decimal subTotal = decimal.Zero;
-            string subTotalStr = String.Empty;
-            if (!chkStatus.Checked)
+            SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString);
+            try
             {
+                con.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(query, VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString);
+
+                ShippingMainDataSet ds = new ShippingMainDataSet();
+                da.Fill(ds, "INVOICE_NONPPN");
+
+                ParameterFields pluralParameter = new ParameterFields();
+                ParameterField singleParameter;
+                ParameterDiscreteValue parameterDiscreteValue;
+
+                singleParameter = new ParameterField();
+                singleParameter.Name = "userName";
+                parameterDiscreteValue = new ParameterDiscreteValue();
+                parameterDiscreteValue.Value = userName;
+                singleParameter.CurrentValues.Add(parameterDiscreteValue);
+                pluralParameter.Add(singleParameter);
+
+                singleParameter = new ParameterField();
+                singleParameter.Name = "customerName";
+                parameterDiscreteValue = new ParameterDiscreteValue();
+                parameterDiscreteValue.Value = customerName;
+                singleParameter.CurrentValues.Add(parameterDiscreteValue);
+                pluralParameter.Add(singleParameter);
+
+                singleParameter = new ParameterField();
+                singleParameter.Name = "invoiceNo";
+                parameterDiscreteValue = new ParameterDiscreteValue();
+                parameterDiscreteValue.Value = invoiceNo;
+                singleParameter.CurrentValues.Add(parameterDiscreteValue);
+                pluralParameter.Add(singleParameter);
+
+                DataTable dt = ds.Tables["INVOICE_NONPPN"];
+                //MessageBox.Show(dt.Rows.Count.ToString());
+                decimal total = 0;
                 foreach (DataRow row in dt.Rows)
                 {
                     if (row[7].ToString() != "")
                         total += Convert.ToDecimal(row[7].ToString());
+                    //total += 100000;//dr.
                 }
-                totalStr = total.ToString();
-                subTotal = total - (total * (10 / 100));
-                subTotalStr = subTotal.ToString();
-                PPN = (total * (10 / 100));
-                ppnStr = total.ToString();
+
+                singleParameter = new ParameterField();
+                singleParameter.Name = "totalTagihan";
+                parameterDiscreteValue = new ParameterDiscreteValue();
+                parameterDiscreteValue.Value = total;
+                singleParameter.CurrentValues.Add(parameterDiscreteValue);
+                pluralParameter.Add(singleParameter);
+
+                if (!chkStatus.Checked)
+                {
+                    singleParameter = new ParameterField();
+                    singleParameter.Name = "ppn";
+                    parameterDiscreteValue = new ParameterDiscreteValue();
+                    parameterDiscreteValue.Value = total * (decimal)0.1;
+                    singleParameter.CurrentValues.Add(parameterDiscreteValue);
+                    pluralParameter.Add(singleParameter);
+
+                    singleParameter = new ParameterField();
+                    singleParameter.Name = "grandTotal";
+                    parameterDiscreteValue = new ParameterDiscreteValue();
+                    parameterDiscreteValue.Value = total * (decimal)1.1;
+                    singleParameter.CurrentValues.Add(parameterDiscreteValue);
+                    pluralParameter.Add(singleParameter);
+                }
+
+                crystalReportViewerContainer.ParameterFieldInfo = pluralParameter;
+                rpt.SetDataSource(ds);
+                crystalReportViewerContainer.ReportSource = rpt;
             }
-
-            ParameterFields pfields = new ParameterFields();
-            ParameterField pfield = new ParameterField();
-            ParameterDiscreteValue disValue = new ParameterDiscreteValue();
-            pfield = new ParameterField();
-            pfield.Name = "userName";
-            disValue = new ParameterDiscreteValue();
-            disValue.Value = userName;
-            pfield.CurrentValues.Add(disValue);
-            pfields.Add(pfield);
-
-            pfield = new ParameterField();
-            pfield.Name = "customerName";
-            disValue = new ParameterDiscreteValue();
-            disValue.Value = customerName;
-            pfield.CurrentValues.Add(disValue);
-            pfields.Add(pfield);
-
-            pfield = new ParameterField();
-            pfield.Name = "invoiceNo";
-            disValue = new ParameterDiscreteValue();
-            disValue.Value = invoiceNo;
-            pfield.CurrentValues.Add(disValue);
-            pfields.Add(pfield);
-
-            if (!chkStatus.Checked)
+            catch (SqlException sqlEx)
             {
-                pfield = new ParameterField();
-                pfield.Name = "subTotal";
-                disValue = new ParameterDiscreteValue();
-                disValue.Value = subTotalStr;
-                pfield.CurrentValues.Add(disValue);
-                pfields.Add(pfield);
-
-                pfield = new ParameterField();
-                pfield.Name = "ppn";
-                disValue = new ParameterDiscreteValue();
-                disValue.Value = ppnStr;
-                pfield.CurrentValues.Add(disValue);
-                pfields.Add(pfield);
-
-                pfield = new ParameterField();
-                pfield.Name = "total";
-                disValue = new ParameterDiscreteValue();
-                disValue.Value = totalStr;
-                pfield.CurrentValues.Add(disValue);
-                pfields.Add(pfield);
+                MessageBox.Show(sqlEx.Message);
             }
-
-            rpt.SetDataSource(dt);
-
-            // Set source of report.
-            crystalReportViewerContainer.ParameterFieldInfo = pfields;
-            crystalReportViewerContainer.ReportSource = rpt;
-            crystalReportViewerContainer.Refresh();
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
 
         private void radButton2_Click(object sender, EventArgs e)

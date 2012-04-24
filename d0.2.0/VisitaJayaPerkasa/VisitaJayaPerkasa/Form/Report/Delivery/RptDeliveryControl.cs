@@ -117,7 +117,7 @@ namespace VisitaJayaPerkasa.Form.Report.Delivery
                 ShippingMainDataSet ds = new ShippingMainDataSet();
                 da.Fill(ds, "DELIVERY");
 
-                DataTable dt = ds.Tables["DELIVERY"];
+                //DataTable dt = ds.Tables["DELIVERY"];
                 //MessageBox.Show(dt.Rows.Count.ToString());
 
                 ParameterFields pluralParameter = new ParameterFields();
