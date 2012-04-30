@@ -55,7 +55,6 @@
             this.radComboBoxItem2 = new Telerik.WinControls.UI.RadComboBoxItem();
             this.radTextBoxElementSearchWord = new Telerik.WinControls.UI.RadTextBoxElement();
             this.radButtonElementBtnSearch = new Telerik.WinControls.UI.RadButtonElement();
-            this.radToolStripElement3 = new Telerik.WinControls.UI.RadToolStripElement();
             this.SupplierGridView = new Telerik.WinControls.UI.RadGridView();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radComboBoxElement)).BeginInit();
@@ -88,8 +87,7 @@
             this.radToolStrip1.Dock = System.Windows.Forms.DockStyle.Top;
             this.radToolStrip1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radToolStripElement1,
-            this.radToolStripElement2,
-            this.radToolStripElement3});
+            this.radToolStripElement2});
             this.radToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.radToolStrip1.MinimumSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.Name = "radToolStrip1";
@@ -100,7 +98,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(630, 102);
+            this.radToolStrip1.Size = new System.Drawing.Size(630, 76);
             this.radToolStrip1.TabIndex = 6;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
@@ -252,11 +250,6 @@
             this.radButtonElementBtnSearch.Text = "";
             this.radButtonElementBtnSearch.Click += new System.EventHandler(this.radButtonElementBtnSearch_Click);
             // 
-            // radToolStripElement3
-            // 
-            this.radToolStripElement3.Name = "radToolStripElement3";
-            this.radToolStripElement3.Text = "radToolStripElement3";
-            // 
             // SupplierGridView
             // 
             this.SupplierGridView.BackColor = System.Drawing.SystemColors.Control;
@@ -265,7 +258,7 @@
             this.SupplierGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.SupplierGridView.ForeColor = System.Drawing.SystemColors.ControlText;
             this.SupplierGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.SupplierGridView.Location = new System.Drawing.Point(0, 102);
+            this.SupplierGridView.Location = new System.Drawing.Point(0, 76);
             // 
             // 
             // 
@@ -327,7 +320,7 @@
             this.SupplierGridView.Name = "SupplierGridView";
             this.SupplierGridView.ReadOnly = true;
             this.SupplierGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.SupplierGridView.Size = new System.Drawing.Size(630, 226);
+            this.SupplierGridView.Size = new System.Drawing.Size(630, 252);
             this.SupplierGridView.TabIndex = 7;
             this.SupplierGridView.ThemeName = "ControlDefault";
             this.SupplierGridView.DoubleClick += new System.EventHandler(this.SupplierGridView_DoubleClick);
@@ -368,7 +361,6 @@
         private Telerik.WinControls.UI.RadComboBoxItem radComboBoxItem2;
         private Telerik.WinControls.UI.RadTextBoxElement radTextBoxElementSearchWord;
         private Telerik.WinControls.UI.RadButtonElement radButtonElementBtnSearch;
-        private Telerik.WinControls.UI.RadToolStripElement radToolStripElement3;
         private Telerik.WinControls.UI.RadGridView SupplierGridView;
     }
 }

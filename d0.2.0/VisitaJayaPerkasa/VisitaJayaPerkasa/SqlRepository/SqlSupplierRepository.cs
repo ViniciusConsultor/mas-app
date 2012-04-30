@@ -57,6 +57,42 @@ namespace VisitaJayaPerkasa.SqlRepository
             return listSupplier;
         }
 
+
+        public List<string> ListTruckingNumber(Guid ID)
+        {
+            List<string> listTruckingNumber = null;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
+                    con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT trucking_no FROM [SUPPLIER_TRUCKING] WHERE supplier_id like '" + ID.ToString() + "'", con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            if (listTruckingNumber == null)
+                                listTruckingNumber = new List<string>();
+
+                            listTruckingNumber.Add(reader.GetValue(0).ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlSupplierRepository.cs - ListTruckingNumber() " + e.Message);
+            }
+
+            return listTruckingNumber;
+        }
+
+
         public bool CheckSupplier(SqlParameter[] sqlParam, Guid gID, bool checkDeletedData = false)
         {
             bool exists = false;
@@ -383,7 +419,7 @@ namespace VisitaJayaPerkasa.SqlRepository
             return n > 0;
         }
 
-        public bool CreateSupplier(SqlParameter[] sqlParam)
+        public bool CreateSupplier(SqlParameter[] sqlParam, int totalRecordTrucking)
         {
             int n = 0;
             SqlConnection con;
@@ -420,11 +456,12 @@ namespace VisitaJayaPerkasa.SqlRepository
 
                         int z = 9;
                         int subz = 9;
-                        if ((n > 0) && sqlParam.Length > 9)
+                        if ((n > 0) && (sqlParam.Length - (totalRecordTrucking * 3)) > 9)
                         {
-                            //-10 is total sqlparameter minus number of customer master
-                            // / 9 is remain of total sqlparameter minus 10 is customer detail who have 9 number of field
-                            for (int k = 0; k < ((sqlParam.Length - 9) / 9); k++)
+                            //sqlparam.Length - 9 is total sqlParam minus total field of master supplier
+                            //totalRecordTrucking*3 is total field of supplier trucking
+                            //divide 9 is total field of supplier detail 
+                            for (int k = 0; k < (((sqlParam.Length - 9)-(totalRecordTrucking*3)) / 9); k++)
                             {
                                 using (SqlCommand subCommand = new SqlCommand(
                                     "Insert into [Supplier_Detail] values(" +
@@ -451,7 +488,35 @@ namespace VisitaJayaPerkasa.SqlRepository
                                         break;
                                 }
                             }
+                        }
 
+
+                        int tempZvalue = z;
+                        if (n > 0)
+                        {
+                            if (totalRecordTrucking > 0)
+                            {
+                                //3 is total field of trucking
+                                for (int k = 0; k < ((sqlParam.Length - tempZvalue) / 3); k++)
+                                {
+                                    using (SqlCommand subCommand2 = new SqlCommand("Insert into [SUPPLIER_TRUCKING] Values(" +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ")",
+                                        con))
+                                    {
+                                        subCommand2.Transaction = sqlTransaction;
+
+                                        for (int i = 0; i < 3; i++)
+                                            subCommand2.Parameters.Add(sqlParam[subz++]);
+                                        n = subCommand2.ExecuteNonQuery();
+                                        subCommand2.Parameters.Clear();
+
+                                        if (n == 0)
+                                            break;
+                                    }
+                                }
+                            }
                         }
                     }
 
@@ -477,7 +542,7 @@ namespace VisitaJayaPerkasa.SqlRepository
             return n > 0;
         }
 
-        public bool EditSupplier(SqlParameter[] sqlParam)
+        public bool EditSupplier(SqlParameter[] sqlParam, int totalRecordTrucking)
         {
             int n = 0;
             SqlConnection con;
@@ -501,60 +566,106 @@ namespace VisitaJayaPerkasa.SqlRepository
                         n = deleteCommand.ExecuteNonQuery();
                         deleteCommand.Parameters.Clear();
 
-                        using (SqlCommand command = new SqlCommand(
-                            "Update [Supplier] set " +
-                            "category_id = " + sqlParam[1].ParameterName + ", " +
-                            "supplier_name = " + sqlParam[2].ParameterName + ", " +
-                            "address = " + sqlParam[3].ParameterName + ", " +
-                            "phone = " + sqlParam[4].ParameterName + ", " +
-                            "fax = " + sqlParam[5].ParameterName + ", " +
-                            "email = " + sqlParam[6].ParameterName + ", " +
-                            "contact_person = " + sqlParam[7].ParameterName + ", " +
-                            "deleted = " + sqlParam[8].ParameterName + " WHERE " +
-                            "supplier_id = " + sqlParam[0].ParameterName
-                            , con))
+                        if (n > 0)
                         {
-                            command.Transaction = sqlTransaction;
-
-                            for (int i = 0; i < 9; i++)
-                                command.Parameters.Add(sqlParam[i]);
-                            n = command.ExecuteNonQuery();
-                            command.Parameters.Clear();
-
-                            int z = 9;
-                            int subz = 9;
-                            if ((n > 0) && sqlParam.Length > 9)
+                            if (totalRecordTrucking > 0)
                             {
-                                //-10 is total sqlparameter minus number of customer master
-                                // / 9 is remain of total sqlparameter minus 10 is customer detail who have 9 number of field
-                                for (int k = 0; k < ((sqlParam.Length - 9) / 9); k++)
+                                using (SqlCommand deleteTruckingCommand = new SqlCommand(
+                                    "Delete [SUPPLIER_TRUCKING] WHERE supplier_id = " + sqlParam[0].ParameterName, con))
                                 {
-                                    using (SqlCommand subCommand = new SqlCommand(
-                                        "Insert into [Supplier_Detail] values(" +
-                                        sqlParam[z++].ParameterName + ", " +
-                                        sqlParam[z++].ParameterName + ", " +
-                                        sqlParam[z++].ParameterName + ", " +
-                                        sqlParam[z++].ParameterName + ", " +
-                                        sqlParam[z++].ParameterName + ", " +
-                                        sqlParam[z++].ParameterName + ", " +
-                                        sqlParam[z++].ParameterName + ", " +
-                                        sqlParam[z++].ParameterName + ", " +
-                                        sqlParam[z++].ParameterName +
-                                        ")"
-                                        , con))
+                                    deleteTruckingCommand.Transaction = sqlTransaction;
+                                    deleteTruckingCommand.Parameters.Add(sqlParam[0]);
+                                    n = deleteTruckingCommand.ExecuteNonQuery();
+                                    deleteTruckingCommand.Parameters.Clear();
+                                }
+                            }
+
+
+
+                            if (n > 0)
+                            {
+                                using (SqlCommand command = new SqlCommand(
+                                    "Update [Supplier] set " +
+                                    "category_id = " + sqlParam[1].ParameterName + ", " +
+                                    "supplier_name = " + sqlParam[2].ParameterName + ", " +
+                                    "address = " + sqlParam[3].ParameterName + ", " +
+                                    "phone = " + sqlParam[4].ParameterName + ", " +
+                                    "fax = " + sqlParam[5].ParameterName + ", " +
+                                    "email = " + sqlParam[6].ParameterName + ", " +
+                                    "contact_person = " + sqlParam[7].ParameterName + ", " +
+                                    "deleted = " + sqlParam[8].ParameterName + " WHERE " +
+                                    "supplier_id = " + sqlParam[0].ParameterName
+                                    , con))
+                                {
+                                    command.Transaction = sqlTransaction;
+
+                                    for (int i = 0; i < 9; i++)
+                                        command.Parameters.Add(sqlParam[i]);
+                                    n = command.ExecuteNonQuery();
+                                    command.Parameters.Clear();
+
+                                    int z = 9;
+                                    int subz = 9;
+                                    if ((n > 0) && (sqlParam.Length - (totalRecordTrucking * 3)) > 9)
                                     {
-                                        subCommand.Transaction = sqlTransaction;
+                                        //sqlparam.Length - 9 is total sqlParam minus total field of master supplier
+                                        //totalRecordTrucking*3 is total field of supplier trucking
+                                        //divide 9 is total field of supplier detail 
+                                        for (int k = 0; k < (((sqlParam.Length - 9) - (totalRecordTrucking * 3)) / 9); k++)
+                                        {
+                                            using (SqlCommand subCommand = new SqlCommand(
+                                                "Insert into [Supplier_Detail] values(" +
+                                                sqlParam[z++].ParameterName + ", " +
+                                                sqlParam[z++].ParameterName + ", " +
+                                                sqlParam[z++].ParameterName + ", " +
+                                                sqlParam[z++].ParameterName + ", " +
+                                                sqlParam[z++].ParameterName + ", " +
+                                                sqlParam[z++].ParameterName + ", " +
+                                                sqlParam[z++].ParameterName + ", " +
+                                                sqlParam[z++].ParameterName + ", " +
+                                                sqlParam[z++].ParameterName +
+                                                ")"
+                                                , con))
+                                            {
+                                                subCommand.Transaction = sqlTransaction;
 
-                                        for (int i = 0; i < 9; i++)
-                                            subCommand.Parameters.Add(sqlParam[subz++]);
-                                        n = subCommand.ExecuteNonQuery();
-                                        subCommand.Parameters.Clear();
+                                                for (int i = 0; i < 9; i++)
+                                                    subCommand.Parameters.Add(sqlParam[subz++]);
+                                                n = subCommand.ExecuteNonQuery();
+                                                subCommand.Parameters.Clear();
 
-                                        if (n == 0)
-                                            break;
+                                                if (n == 0)
+                                                    break;
+                                            }
+                                        }
+                                    }
+
+
+                                    int tempZvalue = z;
+                                    if (totalRecordTrucking > 0 && n > 0)
+                                    {
+                                        //3 is total field of trucking
+                                        for (int k = 0; k < ((sqlParam.Length - tempZvalue) / 3); k++)
+                                        {
+                                            using (SqlCommand subCommand2 = new SqlCommand("Insert into [SUPPLIER_TRUCKING] Values(" +
+                                                sqlParam[z++].ParameterName + ", " +
+                                                sqlParam[z++].ParameterName + ", " +
+                                                sqlParam[z++].ParameterName + ")",
+                                                con))
+                                            {
+                                                subCommand2.Transaction = sqlTransaction;
+
+                                                for (int i = 0; i < 3; i++)
+                                                    subCommand2.Parameters.Add(sqlParam[subz++]);
+                                                n = subCommand2.ExecuteNonQuery();
+                                                subCommand2.Parameters.Clear();
+
+                                                if (n == 0)
+                                                    break;
+                                            }
+                                        }
                                     }
                                 }
-
                             }
                         }
 
