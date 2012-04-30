@@ -215,14 +215,18 @@ namespace VisitaJayaPerkasa.Control.Customer
             }
             else if(etCustomerName.Text.Trim().Equals(Constant.VisitaJayaPerkasaApplication.strGeneralCustomer))
                 MessageBox.Show(this, "General Customer has already used. Can't edit, delete or create it.", "Information");
-            else if (!Regex.Match(etEmail.Text.Trim(), @"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
-            + @"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\."
-            + @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
-            + @"([a-zA-Z]+[\w-]+\.)+[a-zA-Z]{2,4})$").Success) {
-                MessageBox.Show(this, "invalid email", "Information");
-            }
             else
             {
+                if (!etEmail.Text.Trim().Equals("")) { 
+                    if (!Regex.Match(etEmail.Text.Trim(), @"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
+                    + @"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\."
+                    + @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                    + @"([a-zA-Z]+[\w-]+\.)+[a-zA-Z]{2,4})$").Success) {
+                        MessageBox.Show(this, "invalid email", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                }
+
                 if (CustomerDetailGridView.RowCount == 0)
                 {
                     DialogResult dResult = MessageBox.Show(this, "Are you sure want save this data without customer detail ? ", "Confirmation", MessageBoxButtons.YesNo);

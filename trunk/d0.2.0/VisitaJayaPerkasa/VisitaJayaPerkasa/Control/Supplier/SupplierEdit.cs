@@ -46,7 +46,7 @@ namespace VisitaJayaPerkasa.Control.Supplier
             {
                 wantToCreateVessel = false;
                 etSupplierName.Text = supplier.SupplierName;
-                cboCategory.SelectedItem = supplier.CategoryId;
+                cboCategory.SelectedItem = supplier.CategoryName;
                 etAddress.Text = supplier.Address;
                 etEmail.Text = supplier.Email;
                 etPhone.Text = supplier.Phone;
@@ -57,11 +57,26 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 listSupplierDetail = sqlSupplierRepository.ListSupplierDetail(supplier.Id);
 
                 if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                {
                     MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 else if (listSupplierDetail != null)
                     supplierDetailGridView.DataSource = listSupplierDetail;
                 else
                     listSupplierDetail = new List<VisitaJayaPerkasa.Entities.SupplierDetail>();
+
+
+                if (supplier.CategoryName.Equals("Trucking"))
+                { 
+                    List<string> listTemp = sqlSupplierRepository.ListTruckingNumber(supplier.Id);
+
+                    if(listTemp != null)
+                        for (int i = 0; i < listTemp.Count; i++)
+                            gvTrucking.Rows.Add(listTemp.ElementAt(i));
+
+                    listTemp = null;
+                }
 
                 sqlSupplierRepository = null;
             }
@@ -157,33 +172,53 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 MessageBox.Show(this, "Please select row who will be removed", "Information");
         }
 
+        private bool CheckTrucking() {
+            if (gvTrucking.Rows.Count == 0)
+            {
+                MessageBox.Show(this, "Please add trucking number", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            else return true;
+        }
+
         private void radButtonElement1_Click(object sender, EventArgs e)
         {
             if (etSupplierName.Text.Trim().Length == 0)
             {
                 MessageBox.Show(this, "Please fill supplier name", "Information");
             }
-            else if (!Regex.Match(etEmail.Text.Trim(), @"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
-            + @"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\."
-            + @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
-            + @"([a-zA-Z]+[\w-]+\.)+[a-zA-Z]{2,4})$").Success)
-                MessageBox.Show(this, "Invalid email", "Information");
-            //else if (!Regex.Match(etPhone.Text.Trim(), @"(^\d{5}$)|(^\d{5}-\d{4}$)").Success)
-            //    MessageBox.Show(this, "Invalid phone number", "Information");
-            //else if (!Regex.Match(etFax.Text.Trim(), @"(^\d{5}$)|(^\d{5}-\d{4}$)").Success)
-            //    MessageBox.Show(this, "Invalid fax number", "Information");
             else
             {
-                if (supplierDetailGridView.RowCount == 0)
+                if (!etEmail.Text.Trim().Equals(""))
                 {
-                    DialogResult dResult = MessageBox.Show(this, "Are you sure want save this data without supplier detail ? ", "Confirmation", MessageBoxButtons.YesNo);
-                    if (dResult == DialogResult.Yes)
+                    if (!Regex.Match(etEmail.Text.Trim(), @"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
+                    + @"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\."
+                    + @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                    + @"([a-zA-Z]+[\w-]+\.)+[a-zA-Z]{2,4})$").Success)
                     {
-                        SaveData();
+                        MessageBox.Show(this, "Invalid email", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
                     }
                 }
-                else
-                    SaveData();
+
+
+                bool successValidation = true;
+                if (groupBoxTrucking.Visible) {
+                    if (!CheckTrucking())
+                        successValidation = false;
+                }
+
+                if (successValidation)
+                {
+                    if (supplierDetailGridView.RowCount == 0)
+                    {
+                        DialogResult dResult = MessageBox.Show(this, "Are you sure want save this data without supplier detail ? ", "Confirmation", MessageBoxButtons.YesNo);
+                        if (dResult == DialogResult.Yes)
+                            SaveData();
+                    }
+                    else
+                        SaveData();
+                }
             }
         }
 
@@ -236,7 +271,7 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 }
 
 
-                if (sqlSupplierRepository.CreateSupplier(sqlParam))
+                if (sqlSupplierRepository.CreateSupplier(sqlParam, (groupBoxTrucking.Visible) ? gvTrucking.RowCount : 0))
                 {
                     MessageBox.Show(this, "Success insert supplier data", "Information");
                     radButtonElement2.PerformClick();
@@ -270,7 +305,7 @@ namespace VisitaJayaPerkasa.Control.Supplier
                     return;
                 }
 
-                if (sqlSupplierRepository.EditSupplier(sqlParam))
+                if (sqlSupplierRepository.EditSupplier(sqlParam, (groupBoxTrucking.Visible) ? gvTrucking.RowCount : 0))
                 {
                     MessageBox.Show(this, "Success edit supplier data", "Information");
                     radButtonElement2.PerformClick();
@@ -293,7 +328,14 @@ namespace VisitaJayaPerkasa.Control.Supplier
         {
             //rowcount * 9 is number of field of supplier detail
             // + 9 is number of field of supplier
-            string[] strSqlParameter = new string[(supplierDetailGridView.RowCount * 9) + 9];
+            // + 3 is number of field of trucking number
+            string[] strSqlParameter;
+            if(groupBoxTrucking.Visible)
+                strSqlParameter = new string[((supplierDetailGridView.RowCount * 9) + 9) + (gvTrucking.RowCount * 3)];
+            else
+                strSqlParameter = new string[(supplierDetailGridView.RowCount * 9) + 9];
+                
+            
             strSqlParameter[0] = "supplier_id";
             strSqlParameter[1] = "category_id";
             strSqlParameter[2] = "supplier_name";
@@ -318,6 +360,16 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 strSqlParameter[j++] = "Extention";
             }
 
+
+            if (gvTrucking.Visible) {
+                for (int i = 0; i < gvTrucking.RowCount; i++)
+                {
+                    strSqlParameter[j++] = "supplier_trucking_id";
+                    strSqlParameter[j++] = "supplier_id";
+                    strSqlParameter[j++] = "trucking_no";
+                }
+            }
+
             return strSqlParameter;
         }
 
@@ -325,7 +377,13 @@ namespace VisitaJayaPerkasa.Control.Supplier
         {
             //rowcount * 9 is number of field of supplier detail
             // + 9 is number of field of supplier
-            object[] obj = new object[(supplierDetailGridView.RowCount * 9) + 9];
+            // + 3 is number of field of trucking
+            object[] obj;
+            if(groupBoxTrucking.Visible)
+                obj = new object[((supplierDetailGridView.RowCount * 9) + 9) + (gvTrucking.RowCount * 3)];
+            else 
+                obj = new object[(supplierDetailGridView.RowCount * 9) + 9];
+            
             obj[0] = id;
             obj[1] = SqlUtility.isDBNULL(cboCategory.SelectedValue.ToString().Trim());
             obj[2] = etSupplierName.Text.Trim();
@@ -350,6 +408,15 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 obj[i++] = SqlUtility.isDBNULL(supplierDetailGridView.Rows[j].Cells[2].Value + "");
             }
 
+
+            if (groupBoxTrucking.Visible) {
+                for(int j = 0; j < gvTrucking.RowCount; j++)
+                {
+                    obj[i++] = Guid.NewGuid();
+                    obj[i++] = id;
+                    obj[i++] = gvTrucking.Rows[j].Cells[0].Value;
+                }
+            }
             return obj;
         }
 
@@ -357,6 +424,31 @@ namespace VisitaJayaPerkasa.Control.Supplier
         {
             UserControl Controllers = new SupplierList();
             Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(Controllers);
+        }
+
+        private void cboCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboCategory.Text.Equals("Trucking"))
+                groupBoxTrucking.Visible = true;
+            else
+                groupBoxTrucking.Visible = false;
+        }
+
+        private void btnAddTrucking_Click(object sender, EventArgs e)
+        {
+            if (txtTruckingNumber.Text.Trim().Equals(""))
+                MessageBox.Show(this, "Please fill trucking number", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else 
+            {
+                gvTrucking.Rows.Add(txtTruckingNumber.Text.Trim());
+                txtTruckingNumber.Text = "";
+            } 
+        }
+
+        private void btnRemoveTrucking_Click(object sender, EventArgs e)
+        {
+            if(gvTrucking.RowCount > 0 && gvTrucking.CurrentCell != null)
+                gvTrucking.Rows.RemoveAt(gvTrucking.CurrentCell.RowIndex);
         }
 
     }

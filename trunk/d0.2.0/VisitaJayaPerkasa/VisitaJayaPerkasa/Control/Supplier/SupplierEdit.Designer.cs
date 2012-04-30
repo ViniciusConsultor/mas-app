@@ -35,6 +35,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cboCategory = new Telerik.WinControls.UI.RadComboBox();
             this.etAddress = new Telerik.WinControls.UI.RadTextBox();
@@ -56,6 +57,8 @@
             this.radButtonElement2 = new Telerik.WinControls.UI.RadButtonElement();
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.etExt = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.etDetailAddress = new Telerik.WinControls.UI.RadTextBox();
             this.etDetailPhone = new Telerik.WinControls.UI.RadTextBox();
             this.etDetailMobile = new Telerik.WinControls.UI.RadTextBox();
@@ -72,9 +75,13 @@
             this.btnRemoveGrid = new Telerik.WinControls.UI.RadButton();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
+            this.groupBoxTrucking = new System.Windows.Forms.GroupBox();
+            this.gvTrucking = new Telerik.WinControls.UI.RadGridView();
+            this.btnRemoveTrucking = new Telerik.WinControls.UI.RadButton();
+            this.btnAddTrucking = new Telerik.WinControls.UI.RadButton();
+            this.txtTruckingNumber = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel18 = new Telerik.WinControls.UI.RadLabel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
-            this.etExt = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etAddress)).BeginInit();
@@ -92,6 +99,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.etExt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etDetailAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etDetailPhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etDetailMobile)).BeginInit();
@@ -103,7 +112,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierDetailGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierDetailGridView.MasterGridViewTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClearGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemoveGrid)).BeginInit();
@@ -111,10 +119,14 @@
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
             this.splitPanel1.SuspendLayout();
+            this.groupBoxTrucking.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvTrucking)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRemoveTrucking)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddTrucking)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTruckingNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.etExt)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -152,6 +164,7 @@
             this.cboCategory.TabIndex = 32;
             this.cboCategory.TabStop = false;
             this.cboCategory.Text = "-- Choose --";
+            this.cboCategory.SelectedIndexChanged += new System.EventHandler(this.cboCategory_SelectedIndexChanged);
             this.cboCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboCategory_KeyPress);
             // 
             // etAddress
@@ -310,7 +323,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(829, 27);
+            this.radToolStrip1.Size = new System.Drawing.Size(1074, 49);
             this.radToolStrip1.TabIndex = 26;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
@@ -334,6 +347,22 @@
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detail Data";
+            // 
+            // etExt
+            // 
+            this.etExt.Location = new System.Drawing.Point(116, 88);
+            this.etExt.Name = "etExt";
+            this.etExt.Size = new System.Drawing.Size(210, 20);
+            this.etExt.TabIndex = 40;
+            this.etExt.TabStop = false;
+            // 
+            // radLabel13
+            // 
+            this.radLabel13.Location = new System.Drawing.Point(21, 88);
+            this.radLabel13.Name = "radLabel13";
+            this.radLabel13.Size = new System.Drawing.Size(23, 16);
+            this.radLabel13.TabIndex = 41;
+            this.radLabel13.Text = "Ext";
             // 
             // etDetailAddress
             // 
@@ -425,7 +454,7 @@
             this.supplierDetailGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.supplierDetailGridView.Location = new System.Drawing.Point(0, 0);
             // 
-            // gridViewTemplate1
+            // 
             // 
             this.supplierDetailGridView.MasterGridViewTemplate.AllowAddNewRow = false;
             gridViewTextBoxColumn1.FieldAlias = "FirstName";
@@ -470,7 +499,7 @@
             this.supplierDetailGridView.Name = "supplierDetailGridView";
             this.supplierDetailGridView.ReadOnly = true;
             this.supplierDetailGridView.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.supplierDetailGridView.Size = new System.Drawing.Size(829, 132);
+            this.supplierDetailGridView.Size = new System.Drawing.Size(1074, 144);
             this.supplierDetailGridView.TabIndex = 37;
             // 
             // btnAdd
@@ -505,20 +534,21 @@
             this.radSplitContainer1.Controls.Add(this.splitPanel1);
             this.radSplitContainer1.Controls.Add(this.splitPanel2);
             this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radSplitContainer1.Location = new System.Drawing.Point(0, 27);
+            this.radSplitContainer1.Location = new System.Drawing.Point(0, 49);
             this.radSplitContainer1.Name = "radSplitContainer1";
             this.radSplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // 
             // 
             this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer1.Size = new System.Drawing.Size(829, 384);
+            this.radSplitContainer1.Size = new System.Drawing.Size(1074, 418);
             this.radSplitContainer1.TabIndex = 40;
             this.radSplitContainer1.TabStop = false;
             this.radSplitContainer1.Text = "radSplitContainer1";
             // 
             // splitPanel1
             // 
+            this.splitPanel1.Controls.Add(this.groupBoxTrucking);
             this.splitPanel1.Controls.Add(this.btnRemoveGrid);
             this.splitPanel1.Controls.Add(this.btnAdd);
             this.splitPanel1.Controls.Add(this.groupBox2);
@@ -530,44 +560,101 @@
             // 
             // 
             this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(829, 249);
+            this.splitPanel1.Size = new System.Drawing.Size(1074, 271);
             this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.1535433F);
             this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 60);
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
             // 
+            // groupBoxTrucking
+            // 
+            this.groupBoxTrucking.Controls.Add(this.gvTrucking);
+            this.groupBoxTrucking.Controls.Add(this.btnRemoveTrucking);
+            this.groupBoxTrucking.Controls.Add(this.btnAddTrucking);
+            this.groupBoxTrucking.Controls.Add(this.txtTruckingNumber);
+            this.groupBoxTrucking.Controls.Add(this.radLabel18);
+            this.groupBoxTrucking.Location = new System.Drawing.Point(702, 22);
+            this.groupBoxTrucking.Name = "groupBoxTrucking";
+            this.groupBoxTrucking.Size = new System.Drawing.Size(332, 261);
+            this.groupBoxTrucking.TabIndex = 40;
+            this.groupBoxTrucking.TabStop = false;
+            this.groupBoxTrucking.Text = "Trucking";
+            this.groupBoxTrucking.Visible = false;
+            // 
+            // gvTrucking
+            // 
+            this.gvTrucking.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
+            this.gvTrucking.Cursor = System.Windows.Forms.Cursors.Default;
+            this.gvTrucking.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.gvTrucking.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.gvTrucking.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.gvTrucking.Location = new System.Drawing.Point(9, 86);
+            // 
+            // 
+            // 
+            this.gvTrucking.MasterGridViewTemplate.AllowAddNewRow = false;
+            this.gvTrucking.MasterGridViewTemplate.AllowDragToGroup = false;
+            gridViewTextBoxColumn7.FieldAlias = "column1";
+            gridViewTextBoxColumn7.HeaderText = "Trucking Number";
+            gridViewTextBoxColumn7.UniqueName = "TruckingNumber";
+            gridViewTextBoxColumn7.Width = 147;
+            this.gvTrucking.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn7);
+            this.gvTrucking.Name = "gvTrucking";
+            this.gvTrucking.ReadOnly = true;
+            this.gvTrucking.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.gvTrucking.Size = new System.Drawing.Size(304, 169);
+            this.gvTrucking.TabIndex = 42;
+            // 
+            // btnRemoveTrucking
+            // 
+            this.btnRemoveTrucking.Location = new System.Drawing.Point(131, 52);
+            this.btnRemoveTrucking.Name = "btnRemoveTrucking";
+            this.btnRemoveTrucking.Size = new System.Drawing.Size(111, 21);
+            this.btnRemoveTrucking.TabIndex = 41;
+            this.btnRemoveTrucking.Text = "Remove Trucking";
+            this.btnRemoveTrucking.Click += new System.EventHandler(this.btnRemoveTrucking_Click);
+            // 
+            // btnAddTrucking
+            // 
+            this.btnAddTrucking.Location = new System.Drawing.Point(9, 51);
+            this.btnAddTrucking.Name = "btnAddTrucking";
+            this.btnAddTrucking.Size = new System.Drawing.Size(111, 21);
+            this.btnAddTrucking.TabIndex = 40;
+            this.btnAddTrucking.Text = "Add Trucking";
+            this.btnAddTrucking.Click += new System.EventHandler(this.btnAddTrucking_Click);
+            // 
+            // txtTruckingNumber
+            // 
+            this.txtTruckingNumber.Location = new System.Drawing.Point(118, 22);
+            this.txtTruckingNumber.Name = "txtTruckingNumber";
+            this.txtTruckingNumber.Size = new System.Drawing.Size(145, 20);
+            this.txtTruckingNumber.TabIndex = 8;
+            this.txtTruckingNumber.TabStop = false;
+            // 
+            // radLabel18
+            // 
+            this.radLabel18.Location = new System.Drawing.Point(7, 22);
+            this.radLabel18.Name = "radLabel18";
+            this.radLabel18.Size = new System.Drawing.Size(93, 16);
+            this.radLabel18.TabIndex = 12;
+            this.radLabel18.Text = "Trucking Number";
+            // 
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.supplierDetailGridView);
-            this.splitPanel2.Location = new System.Drawing.Point(0, 252);
+            this.splitPanel2.Location = new System.Drawing.Point(0, 274);
             this.splitPanel2.Name = "splitPanel2";
             // 
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(829, 132);
+            this.splitPanel2.Size = new System.Drawing.Size(1074, 144);
             this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.1535433F);
             this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -60);
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
-            // 
-            // etExt
-            // 
-            this.etExt.Location = new System.Drawing.Point(116, 88);
-            this.etExt.Name = "etExt";
-            this.etExt.Size = new System.Drawing.Size(210, 20);
-            this.etExt.TabIndex = 40;
-            this.etExt.TabStop = false;
-            // 
-            // radLabel13
-            // 
-            this.radLabel13.Location = new System.Drawing.Point(21, 88);
-            this.radLabel13.Name = "radLabel13";
-            this.radLabel13.Size = new System.Drawing.Size(23, 16);
-            this.radLabel13.TabIndex = 41;
-            this.radLabel13.Text = "Ext";
             // 
             // SupplierEdit
             // 
@@ -576,7 +663,7 @@
             this.Controls.Add(this.radSplitContainer1);
             this.Controls.Add(this.radToolStrip1);
             this.Name = "SupplierEdit";
-            this.Size = new System.Drawing.Size(829, 411);
+            this.Size = new System.Drawing.Size(1074, 467);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboCategory)).EndInit();
@@ -596,6 +683,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.etExt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etDetailAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etDetailPhone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etDetailMobile)).EndInit();
@@ -606,7 +695,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.etFirstName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierDetailGridView.MasterGridViewTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierDetailGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClearGrid)).EndInit();
@@ -615,10 +703,15 @@
             this.radSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
             this.splitPanel1.ResumeLayout(false);
+            this.groupBoxTrucking.ResumeLayout(false);
+            this.groupBoxTrucking.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvTrucking)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRemoveTrucking)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddTrucking)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTruckingNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.etExt)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -666,5 +759,11 @@
         private Telerik.WinControls.UI.RadComboBox cboCategory;
         private Telerik.WinControls.UI.RadTextBox etExt;
         private Telerik.WinControls.UI.RadLabel radLabel13;
+        private System.Windows.Forms.GroupBox groupBoxTrucking;
+        private Telerik.WinControls.UI.RadGridView gvTrucking;
+        private Telerik.WinControls.UI.RadButton btnRemoveTrucking;
+        private Telerik.WinControls.UI.RadButton btnAddTrucking;
+        private Telerik.WinControls.UI.RadTextBox txtTruckingNumber;
+        private Telerik.WinControls.UI.RadLabel radLabel18;
     }
 }

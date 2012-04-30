@@ -34,6 +34,17 @@ namespace VisitaJayaPerkasa.Control.Supplier
             lblPhone.Text = supplier.Phone;
             lblFax.Text = supplier.Fax;
             lblContactPerson.Text = supplier.ContactPerson;
+
+            if (supplier.CategoryName.Equals("Trucking")) {
+                gbTrucking.Visible = true;
+                List<string> listTemp = sqlSupplierRepository.ListTruckingNumber(supplier.Id);
+
+                if (listTemp != null)
+                    for (int i = 0; i < listTemp.Count; i++)
+                        gvTrucking.Rows.Add(listTemp.ElementAt(i));
+
+                listTemp = null;
+            }
         }
 
         private void radButtonElement1_Click(object sender, EventArgs e)
