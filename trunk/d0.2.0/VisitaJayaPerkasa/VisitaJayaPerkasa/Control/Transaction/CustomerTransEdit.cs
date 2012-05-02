@@ -192,7 +192,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 MessageBox.Show(this, "Please select Customer", "Information");
                 return;
             }
-            else if (cboType.SelectedIndex == -1)
+            /*else if (cboType.SelectedIndex == -1)
             {
                 MessageBox.Show(this, "Please select Cont Type", "Information");
                 return;
@@ -245,10 +245,10 @@ namespace VisitaJayaPerkasa.Control.Transaction
             {
                 MessageBox.Show(this, "Please fill set price", "Information");
                 return;
-            }
-            else if (dtpTD.Value <= dtpETD.Value)
+            }//*/
+            else if (dtpTD.Value < dtpETD.Value)
             {
-                MessageBox.Show(this, "Please select td greater than etd", "Information");
+                MessageBox.Show(this, "Please select td greater than or equal with etd", "Information");
                 return;
             }
             else
@@ -258,8 +258,11 @@ namespace VisitaJayaPerkasa.Control.Transaction
                     VisitaJayaPerkasa.Entities.CustomerTransDetail objCustTransDetail = new Entities.CustomerTransDetail();
                     objCustTransDetail.CustomerDetailTransID = Guid.NewGuid();
 
-                    objCustTransDetail.TypeID = Utility.Utility.ConvertToUUID(cboType.SelectedValue.ToString());
-                    objCustTransDetail.TypeName = cboType.Text;
+                    if (cboType.SelectedIndex >= 0)
+                    {
+                        objCustTransDetail.TypeID = Utility.Utility.ConvertToUUID(cboType.SelectedValue.ToString());
+                        objCustTransDetail.TypeName = cboType.Text;
+                    }
 
                     VisitaJayaPerkasa.Entities.Schedule schedule = cboPelayaranDetail.SelectedValue as VisitaJayaPerkasa.Entities.Schedule;
                     if (schedule != null)
@@ -268,22 +271,35 @@ namespace VisitaJayaPerkasa.Control.Transaction
                         objCustTransDetail.VesselName = schedule.namaKapal;
                     }
 
-                    objCustTransDetail.Origin = Utility.Utility.ConvertToUUID(cboOrigin.SelectedValue.ToString());
-                    objCustTransDetail.OriginName = cboOrigin.Text;
+                    if (cboOrigin.SelectedIndex >= 0)
+                    {
+                        objCustTransDetail.Origin = Utility.Utility.ConvertToUUID(cboOrigin.SelectedValue.ToString());
+                        objCustTransDetail.OriginName = cboOrigin.Text;
+                    }
 
-                    objCustTransDetail.Destination = Utility.Utility.ConvertToUUID(cboDestination.SelectedValue.ToString());
-                    objCustTransDetail.DestinationName = cboDestination.Text;
+                    if (cboDestination.SelectedIndex >= 0)
+                    {
+                        objCustTransDetail.Destination = Utility.Utility.ConvertToUUID(cboDestination.SelectedValue.ToString());
+                        objCustTransDetail.DestinationName = cboDestination.Text;
+                    }
 
-                    objCustTransDetail.ConditionID = Utility.Utility.ConvertToUUID(cboCondition.SelectedValue.ToString());
-                    objCustTransDetail.ConditionName = cboCondition.Text;
+                    if (cboCondition.SelectedIndex >= 0)
+                    {
+                        objCustTransDetail.ConditionID = Utility.Utility.ConvertToUUID(cboCondition.SelectedValue.ToString());
+                        objCustTransDetail.ConditionName = cboCondition.Text;
+                    }
 
                     objCustTransDetail.NoSeal = etSeal.Text.Trim();
-                    objCustTransDetail.TruckNo = cboTrucking.Text.Trim();
+                    if (cboTrucking.SelectedIndex >= 0)
+                        objCustTransDetail.TruckNo = cboTrucking.Text.Trim();
                     objCustTransDetail.Voyage = etVoy.Text.Trim();
 
                     objCustTransDetail.StuffingDate = dtpStuffingDate.Value;
-                    objCustTransDetail.StuffingPlace = Utility.Utility.ConvertToUUID(cboStuffingPlace.SelectedValue.ToString());
-                    objCustTransDetail.WarehouseName = cboStuffingPlace.Text;
+                    if (cboStuffingPlace.SelectedIndex >= 0)
+                    {
+                        objCustTransDetail.StuffingPlace = Utility.Utility.ConvertToUUID(cboStuffingPlace.SelectedValue.ToString());
+                        objCustTransDetail.WarehouseName = cboStuffingPlace.Text;
+                    }
 
                     objCustTransDetail.ETD = dtpETD.Value;
                     objCustTransDetail.TD = dtpTD.Value;
@@ -292,8 +308,11 @@ namespace VisitaJayaPerkasa.Control.Transaction
                     objCustTransDetail.Unloading = dtpUnloading.Value;
                     objCustTransDetail.Price = Decimal.Parse(etPrice.Text);
 
-                    objCustTransDetail.RecipientID = Utility.Utility.ConvertToUUID(cboRecipient.SelectedValue.ToString());
-                    objCustTransDetail.RecipientName = cboRecipient.Text;
+                    if (cboRecipient.SelectedIndex >= 0)
+                    {
+                        objCustTransDetail.RecipientID = Utility.Utility.ConvertToUUID(cboRecipient.SelectedValue.ToString());
+                        objCustTransDetail.RecipientName = cboRecipient.Text;
+                    }
                     objCustTransDetail.JenisBarang = etJenisBarang.Text.Trim();
                     objCustTransDetail.NoContainer = etNoContainer.Text.Trim();
                     objCustTransDetail.Quantity = etQty.Text.Trim();

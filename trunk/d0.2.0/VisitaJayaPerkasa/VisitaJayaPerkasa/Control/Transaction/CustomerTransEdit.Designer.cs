@@ -513,7 +513,7 @@
             // 
             // dtpTerimaToko
             // 
-            this.dtpTerimaToko.CustomFormat = "dd/MM/yyyy hh:mm tt";
+            this.dtpTerimaToko.CustomFormat = "dd/MM/yy";
             this.dtpTerimaToko.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpTerimaToko.Location = new System.Drawing.Point(557, 110);
             this.dtpTerimaToko.Name = "dtpTerimaToko";
@@ -666,7 +666,7 @@
             // 
             // dtpUnloading
             // 
-            this.dtpUnloading.CustomFormat = "dd/MM/yyyy hh:mm tt";
+            this.dtpUnloading.CustomFormat = "dd/MM/yy";
             this.dtpUnloading.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpUnloading.Location = new System.Drawing.Point(320, 151);
             this.dtpUnloading.Name = "dtpUnloading";
@@ -683,7 +683,7 @@
             // 
             // dtpTA
             // 
-            this.dtpTA.CustomFormat = "dd/MM/yyyy hh:mm tt";
+            this.dtpTA.CustomFormat = "dd/MM/yy";
             this.dtpTA.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpTA.Location = new System.Drawing.Point(320, 129);
             this.dtpTA.Name = "dtpTA";
@@ -700,7 +700,7 @@
             // 
             // dtpETA
             // 
-            this.dtpETA.CustomFormat = "dd/MM/yyyy hh:mm tt";
+            this.dtpETA.CustomFormat = "dd/MM/yy";
             this.dtpETA.Enabled = false;
             this.dtpETA.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpETA.Location = new System.Drawing.Point(320, 107);
@@ -718,7 +718,7 @@
             // 
             // dtpTD
             // 
-            this.dtpTD.CustomFormat = "dd/MM/yyyy hh:mm tt";
+            this.dtpTD.CustomFormat = "dd/MM/yy";
             this.dtpTD.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpTD.Location = new System.Drawing.Point(320, 85);
             this.dtpTD.Name = "dtpTD";
@@ -737,7 +737,7 @@
             // 
             // dtpETD
             // 
-            this.dtpETD.CustomFormat = "dd/MM/yyyy hh:mm tt";
+            this.dtpETD.CustomFormat = "dd/MM/yy";
             this.dtpETD.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpETD.Location = new System.Drawing.Point(320, 63);
             this.dtpETD.Name = "dtpETD";
@@ -771,7 +771,7 @@
             // 
             // dtpStuffingDate
             // 
-            this.dtpStuffingDate.CustomFormat = "MMMM dd yyyy";
+            this.dtpStuffingDate.CustomFormat = "dd/MM/yy";
             this.dtpStuffingDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpStuffingDate.Location = new System.Drawing.Point(320, 19);
             this.dtpStuffingDate.Name = "dtpStuffingDate";
