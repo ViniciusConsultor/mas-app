@@ -309,6 +309,7 @@
     <Compile Include="Entities\Schedule.cs" />
     <Compile Include="Entities\Supplier.cs" />
     <Compile Include="Entities\SupplierDetail.cs" />
+    <Compile Include="Entities\Trucking.cs" />
     <Compile Include="Entities\TypeCont.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserProfile.cs" />
@@ -483,6 +484,7 @@
     <Compile Include="SqlRepository\SqlRoleRepository.cs" />
     <Compile Include="SqlRepository\SqlScheduleRepository.cs" />
     <Compile Include="SqlRepository\SqlSupplierRepository.cs" />
+    <Compile Include="SqlRepository\SqlTruckingRepository.cs" />
     <Compile Include="SqlRepository\SqlTypeContRepository.cs" />
     <Compile Include="SqlRepository\SqlUserRepository.cs" />
     <Compile Include="SqlRepository\SqlUtility.cs" />

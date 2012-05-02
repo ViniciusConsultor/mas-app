@@ -90,6 +90,7 @@
             this.btnShowHideEditor = new Telerik.WinControls.UI.RadButtonElement();
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboTrucking = new Telerik.WinControls.UI.RadComboBox();
             this.etKeterangan = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel25 = new Telerik.WinControls.UI.RadLabel();
             this.dtpTerimaToko = new System.Windows.Forms.DateTimePicker();
@@ -123,7 +124,6 @@
             this.dtpStuffingDate = new System.Windows.Forms.DateTimePicker();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
-            this.etTruckNo = new Telerik.WinControls.UI.RadTextBox();
             this.etSeal = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
@@ -200,6 +200,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTrucking)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etKeterangan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etBA)).BeginInit();
@@ -226,7 +227,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etTruckNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etSeal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
@@ -327,7 +327,7 @@
             this.cboCustomer.TabIndex = 32;
             this.cboCustomer.TabStop = false;
             this.cboCustomer.Text = "-- Choose --";
-            this.cboCustomer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboCustomer_KeyPress);
+            this.cboCustomer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbo_KeyPress);
             // 
             // radLabel1
             // 
@@ -422,6 +422,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cboTrucking);
             this.groupBox1.Controls.Add(this.etKeterangan);
             this.groupBox1.Controls.Add(this.radLabel25);
             this.groupBox1.Controls.Add(this.dtpTerimaToko);
@@ -455,7 +456,6 @@
             this.groupBox1.Controls.Add(this.dtpStuffingDate);
             this.groupBox1.Controls.Add(this.radLabel8);
             this.groupBox1.Controls.Add(this.radLabel7);
-            this.groupBox1.Controls.Add(this.etTruckNo);
             this.groupBox1.Controls.Add(this.etSeal);
             this.groupBox1.Controls.Add(this.radLabel5);
             this.groupBox1.Controls.Add(this.radLabel6);
@@ -474,6 +474,21 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detail Data";
+            // 
+            // cboTrucking
+            // 
+            this.cboTrucking.Location = new System.Drawing.Point(85, 175);
+            this.cboTrucking.Name = "cboTrucking";
+            // 
+            // 
+            // 
+            this.cboTrucking.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
+            this.cboTrucking.RootElement.StretchVertically = true;
+            this.cboTrucking.Size = new System.Drawing.Size(150, 20);
+            this.cboTrucking.TabIndex = 72;
+            this.cboTrucking.TabStop = false;
+            this.cboTrucking.Text = "-- Choose --";
+            this.cboTrucking.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbo_KeyPress);
             // 
             // etKeterangan
             // 
@@ -509,6 +524,7 @@
             // 
             this.etBA.Location = new System.Drawing.Point(557, 88);
             this.etBA.Name = "etBA";
+            this.etBA.ReadOnly = true;
             this.etBA.Size = new System.Drawing.Size(151, 20);
             this.etBA.TabIndex = 68;
             this.etBA.TabStop = false;
@@ -549,7 +565,7 @@
             this.cboRecipient.TabIndex = 66;
             this.cboRecipient.TabStop = false;
             this.cboRecipient.Text = "-- Choose --";
-            this.cboRecipient.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboRecipient_KeyPress);
+            this.cboRecipient.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbo_KeyPress);
             // 
             // radLabel24
             // 
@@ -612,7 +628,6 @@
             this.cboStuffingPlace.TabIndex = 58;
             this.cboStuffingPlace.TabStop = false;
             this.cboStuffingPlace.Text = "-- Choose --";
-            this.cboStuffingPlace.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboStuffingPlace_KeyPress);
             // 
             // cboCondition
             // 
@@ -627,7 +642,7 @@
             this.cboCondition.TabIndex = 2;
             this.cboCondition.TabStop = false;
             this.cboCondition.Text = "-- Choose --";
-            this.cboCondition.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboCondition_KeyPress_1);
+            this.cboCondition.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbo_KeyPress);
             // 
             // etPrice
             // 
@@ -741,6 +756,7 @@
             // 
             this.etVoy.Location = new System.Drawing.Point(85, 130);
             this.etVoy.Name = "etVoy";
+            this.etVoy.ReadOnly = true;
             this.etVoy.Size = new System.Drawing.Size(150, 20);
             this.etVoy.TabIndex = 5;
             this.etVoy.TabStop = false;
@@ -777,14 +793,6 @@
             this.radLabel7.Size = new System.Drawing.Size(72, 16);
             this.radLabel7.TabIndex = 42;
             this.radLabel7.Text = "Stuffing Date";
-            // 
-            // etTruckNo
-            // 
-            this.etTruckNo.Location = new System.Drawing.Point(85, 174);
-            this.etTruckNo.Name = "etTruckNo";
-            this.etTruckNo.Size = new System.Drawing.Size(150, 20);
-            this.etTruckNo.TabIndex = 7;
-            this.etTruckNo.TabStop = false;
             // 
             // etSeal
             // 
@@ -824,7 +832,7 @@
             this.cboDestination.TabStop = false;
             this.cboDestination.Tag = "111";
             this.cboDestination.Text = "-- Choose --";
-            this.cboDestination.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboDestination_KeyPress);
+            this.cboDestination.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbo_KeyPress);
             // 
             // cboOrigin
             // 
@@ -839,7 +847,7 @@
             this.cboOrigin.TabIndex = 2;
             this.cboOrigin.TabStop = false;
             this.cboOrigin.Text = "-- Choose --";
-            this.cboOrigin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboOrigin_KeyPress);
+            this.cboOrigin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbo_KeyPress);
             // 
             // cboPelayaranDetail
             // 
@@ -854,7 +862,8 @@
             this.cboPelayaranDetail.TabIndex = 1;
             this.cboPelayaranDetail.TabStop = false;
             this.cboPelayaranDetail.Text = "-- Choose --";
-            this.cboPelayaranDetail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboPelayaran_KeyPress);
+            this.cboPelayaranDetail.SelectedIndexChanged += new System.EventHandler(this.cboPelayaranDetail_SelectedIndexChanged);
+            this.cboPelayaranDetail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbo_KeyPress);
             // 
             // cboType
             // 
@@ -869,7 +878,7 @@
             this.cboType.TabIndex = 0;
             this.cboType.TabStop = false;
             this.cboType.Text = "-- Choose --";
-            this.cboType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboType_KeyPress);
+            this.cboType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbo_KeyPress);
             // 
             // radLabel12
             // 
@@ -1796,6 +1805,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTrucking)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etKeterangan)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etBA)).EndInit();
@@ -1822,7 +1832,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etTruckNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etSeal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
@@ -1929,7 +1938,6 @@
         private Telerik.WinControls.UI.RadComboBox cboDestination;
         private Telerik.WinControls.UI.RadComboBox cboOrigin;
         private Telerik.WinControls.UI.RadComboBox cboPelayaranDetail;
-        private Telerik.WinControls.UI.RadTextBox etTruckNo;
         private Telerik.WinControls.UI.RadTextBox etSeal;
         private Telerik.WinControls.UI.RadLabel radLabel5;
         private Telerik.WinControls.UI.RadLabel radLabel6;
@@ -2020,5 +2028,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel27;
         private Telerik.WinControls.UI.RadTextBox etSJ1;
         private Telerik.WinControls.UI.RadLabel radLabel26;
+        private Telerik.WinControls.UI.RadComboBox cboTrucking;
     }
 }

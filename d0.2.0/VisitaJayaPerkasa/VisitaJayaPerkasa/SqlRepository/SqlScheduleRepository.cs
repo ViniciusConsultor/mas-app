@@ -92,6 +92,219 @@ namespace VisitaJayaPerkasa.SqlRepository
             return listSchedule;
         }
 
+        public List<Schedule> ListSchedule()
+        {
+            List<Schedule> listSchedule = null;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
+                    con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT s.schedule_id, " +
+                        "s.tujuan, p.pelayaran_id, s.tgl_closing, s.voy, s.keterangan, s.vessel_code, " +
+                        "s.ro_begin_20, s.ro_begin_40, s.ro_end_20, s.ro_end_40, s.etd, s.td, s.eta, s.ta, s.unloading, " +
+                        "(SELECT TOP 1 city_name FROM [CITY] cc WHERE cc.city_id = s.tujuan AND (cc.deleted is null OR cc.deleted = '0')) as tujuans, " +
+                        "(SELECT TOP 1 sup.supplier_name FROM [PELAYARAN] pp, [supplier] sup WHERE pp.pelayaran_id = p.pelayaran_id AND pp.supplier_id = sup.supplier_id AND (sup.deleted is null OR sup.deleted = '0') AND (pp.deleted is null OR pp.deleted = '0')) as pelayarans, " +
+                        "(SELECT TOP 1 vessel_name FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_detail_id = s.pelayaran_detail_id AND (pd.deleted is null OR pd.deleted = '0')) as vessels, " +
+                        "(SELECT TOP 1 status_pinjaman FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_detail_id = s.pelayaran_detail_id AND (pd.deleted is null OR pd.deleted = '0')) as status " +
+                        "FROM [Schedule] s, [PELAYARAN_DETAIL] p " +
+                        "WHERE (p.deleted is null OR p.deleted = '0') AND " +
+                        "p.pelayaran_detail_id = s.pelayaran_detail_id AND (s.deleted is null OR s.deleted = '0') " +
+                        //"s.td is null " +
+                        ""
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            Schedule schedule = new Schedule();
+                            schedule.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                            schedule.tujuan = Utility.Utility.ConvertToUUID(reader.GetValue(1).ToString());
+                            //schedule.pelayaranID = Utility.Utility.ConvertToUUID(reader.GetValue(2).ToString());
+                            schedule.tglclosing = reader.GetDateTime(3);
+                            schedule.voy = (Utility.Utility.IsDBNull(reader.GetValue(4))) ? null : reader.GetString(4);
+                            schedule.keterangan = (Utility.Utility.IsDBNull(reader.GetValue(5))) ? null : reader.GetString(5);
+                            schedule.vesselCode = reader.GetString(6);
+                            schedule.ro_begin_20 = (Utility.Utility.IsDBNull(reader.GetValue(7))) ? 0 : int.Parse(reader.GetDecimal(7).ToString());
+                            schedule.ro_begin_40 = (Utility.Utility.IsDBNull(reader.GetValue(8))) ? 0 : int.Parse(reader.GetDecimal(8).ToString());
+                            schedule.ro_end_20 = (Utility.Utility.IsDBNull(reader.GetValue(9))) ? 0 : int.Parse(reader.GetDecimal(9).ToString());
+                            schedule.ro_end_40 = (Utility.Utility.IsDBNull(reader.GetValue(10))) ? 0 : int.Parse(reader.GetDecimal(10).ToString());
+                            schedule.etd = reader.GetDateTime(11);
+
+                            if (!Utility.Utility.IsDBNull(reader.GetValue(12)))
+                                schedule.td = reader.GetDateTime(12);
+                            if (!Utility.Utility.IsDBNull(reader.GetValue(13)))
+                                schedule.eta = reader.GetDateTime(13);
+                            if (!Utility.Utility.IsDBNull(reader.GetValue(14)))
+                                schedule.ta = reader.GetDateTime(14);
+                            schedule.unLoading = reader.GetDateTime(15);
+
+                            schedule.berangkatTujuan = reader.GetString(16);
+                            schedule.namaPelayaran = reader.GetString(17);
+                            schedule.namaKapal = (reader.GetBoolean(19)) ? (reader.GetString(18) + " - " + schedule.namaPelayaran + " [loan]") : reader.GetString(18) + " - " + schedule.namaPelayaran;
+
+                            if (listSchedule == null)
+                                listSchedule = new List<Schedule>();
+
+                            listSchedule.Add(schedule);
+                            schedule = null;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlScheduleRepository.cs - ListSchedule() " + e.Message);
+            }
+
+            return listSchedule;
+        }
+
+        public List<Schedule> ListScheduleByDestination(Guid destinationId)
+        {
+            List<Schedule> listSchedule = null;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
+                    con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT s.schedule_id, " +
+                        "s.tujuan, p.pelayaran_id, s.tgl_closing, s.voy, s.keterangan, s.vessel_code, " +
+                        "s.ro_begin_20, s.ro_begin_40, s.ro_end_20, s.ro_end_40, s.etd, s.td, s.eta, s.ta, s.unloading, " +
+                        "(SELECT TOP 1 city_name FROM [CITY] cc WHERE cc.city_id = s.tujuan AND (cc.deleted is null OR cc.deleted = '0')) as tujuans, " +
+                        "(SELECT TOP 1 sup.supplier_name FROM [PELAYARAN] pp, [supplier] sup WHERE pp.pelayaran_id = p.pelayaran_id AND pp.supplier_id = sup.supplier_id AND (sup.deleted is null OR sup.deleted = '0') AND (pp.deleted is null OR pp.deleted = '0')) as pelayarans, " +
+                        "(SELECT TOP 1 vessel_name FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_detail_id = s.pelayaran_detail_id AND (pd.deleted is null OR pd.deleted = '0')) as vessels, " +
+                        "(SELECT TOP 1 status_pinjaman FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_detail_id = s.pelayaran_detail_id AND (pd.deleted is null OR pd.deleted = '0')) as status " +
+                        "FROM [Schedule] s, [PELAYARAN_DETAIL] p " +
+                        "WHERE (p.deleted is null OR p.deleted = '0') AND " +
+                        "p.pelayaran_detail_id = s.pelayaran_detail_id AND (s.deleted is null OR s.deleted = '0') AND " +
+                        //"s.td is null AND " +
+                        "s.tujuan = '" + destinationId.ToString() + "' "
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            Schedule schedule = new Schedule();
+                            schedule.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                            schedule.tujuan = Utility.Utility.ConvertToUUID(reader.GetValue(1).ToString());
+                            //schedule.pelayaranID = Utility.Utility.ConvertToUUID(reader.GetValue(2).ToString());
+                            schedule.tglclosing = reader.GetDateTime(3);
+                            schedule.voy = (Utility.Utility.IsDBNull(reader.GetValue(4))) ? null : reader.GetString(4);
+                            schedule.keterangan = (Utility.Utility.IsDBNull(reader.GetValue(5))) ? null : reader.GetString(5);
+                            schedule.vesselCode = reader.GetString(6);
+                            schedule.ro_begin_20 = (Utility.Utility.IsDBNull(reader.GetValue(7))) ? 0 : int.Parse(reader.GetDecimal(7).ToString());
+                            schedule.ro_begin_40 = (Utility.Utility.IsDBNull(reader.GetValue(8))) ? 0 : int.Parse(reader.GetDecimal(8).ToString());
+                            schedule.ro_end_20 = (Utility.Utility.IsDBNull(reader.GetValue(9))) ? 0 : int.Parse(reader.GetDecimal(9).ToString());
+                            schedule.ro_end_40 = (Utility.Utility.IsDBNull(reader.GetValue(10))) ? 0 : int.Parse(reader.GetDecimal(10).ToString());
+                            schedule.etd = reader.GetDateTime(11);
+
+                            if (!Utility.Utility.IsDBNull(reader.GetValue(12)))
+                                schedule.td = reader.GetDateTime(12);
+                            if (!Utility.Utility.IsDBNull(reader.GetValue(13)))
+                                schedule.eta = reader.GetDateTime(13);
+                            if (!Utility.Utility.IsDBNull(reader.GetValue(14)))
+                                schedule.ta = reader.GetDateTime(14);
+                            schedule.unLoading = reader.GetDateTime(15);
+
+                            schedule.berangkatTujuan = reader.GetString(16);
+                            schedule.namaPelayaran = reader.GetString(17);
+                            schedule.namaKapal = (reader.GetBoolean(19)) ? (reader.GetString(18) + " - " + schedule.namaPelayaran + " [loan]") : reader.GetString(18) + " - " + schedule.namaPelayaran;
+
+                            if (listSchedule == null)
+                                listSchedule = new List<Schedule>();
+
+                            listSchedule.Add(schedule);
+                            schedule = null;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlScheduleRepository.cs - ListSchedule() " + e.Message);
+            }
+
+            return listSchedule;
+        }
+
+        public Schedule GetScheduleById(Guid id)
+        {
+            Schedule schedule = null;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
+                    con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT s.schedule_id, " +
+                        "s.tujuan, p.pelayaran_id, s.tgl_closing, s.voy, s.keterangan, s.vessel_code, " +
+                        "s.ro_begin_20, s.ro_begin_40, s.ro_end_20, s.ro_end_40, s.etd, s.td, s.eta, s.ta, s.unloading, " +
+                        "(SELECT TOP 1 city_name FROM [CITY] cc WHERE cc.city_id = s.tujuan AND (cc.deleted is null OR cc.deleted = '0')) as tujuans, " +
+                        "(SELECT TOP 1 sup.supplier_name FROM [PELAYARAN] pp, [supplier] sup WHERE pp.pelayaran_id = p.pelayaran_id AND pp.supplier_id = sup.supplier_id AND (sup.deleted is null OR sup.deleted = '0') AND (pp.deleted is null OR pp.deleted = '0')) as pelayarans, " +
+                        "(SELECT TOP 1 vessel_name FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_detail_id = s.pelayaran_detail_id AND (pd.deleted is null OR pd.deleted = '0')) as vessels, " +
+                        "(SELECT TOP 1 status_pinjaman FROM [PELAYARAN_DETAIL] pd WHERE pd.pelayaran_detail_id = s.pelayaran_detail_id AND (pd.deleted is null OR pd.deleted = '0')) as status " +
+                        "FROM [Schedule] s, [PELAYARAN_DETAIL] p " +
+                        "WHERE (p.deleted is null OR p.deleted = '0') AND " +
+                        "p.pelayaran_detail_id = s.pelayaran_detail_id AND (s.deleted is null OR s.deleted = '0') AND " +
+                        //"s.td is null AND " +
+                        "s.schedule_id = '" + id.ToString() + "' "
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            schedule = new Schedule();
+                            schedule.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                            schedule.tujuan = Utility.Utility.ConvertToUUID(reader.GetValue(1).ToString());
+                            //schedule.pelayaranID = Utility.Utility.ConvertToUUID(reader.GetValue(2).ToString());
+                            schedule.tglclosing = reader.GetDateTime(3);
+                            schedule.voy = (Utility.Utility.IsDBNull(reader.GetValue(4))) ? null : reader.GetString(4);
+                            schedule.keterangan = (Utility.Utility.IsDBNull(reader.GetValue(5))) ? null : reader.GetString(5);
+                            schedule.vesselCode = reader.GetString(6);
+                            schedule.ro_begin_20 = (Utility.Utility.IsDBNull(reader.GetValue(7))) ? 0 : int.Parse(reader.GetDecimal(7).ToString());
+                            schedule.ro_begin_40 = (Utility.Utility.IsDBNull(reader.GetValue(8))) ? 0 : int.Parse(reader.GetDecimal(8).ToString());
+                            schedule.ro_end_20 = (Utility.Utility.IsDBNull(reader.GetValue(9))) ? 0 : int.Parse(reader.GetDecimal(9).ToString());
+                            schedule.ro_end_40 = (Utility.Utility.IsDBNull(reader.GetValue(10))) ? 0 : int.Parse(reader.GetDecimal(10).ToString());
+                            schedule.etd = reader.GetDateTime(11);
+
+                            if (!Utility.Utility.IsDBNull(reader.GetValue(12)))
+                                schedule.td = reader.GetDateTime(12);
+                            if (!Utility.Utility.IsDBNull(reader.GetValue(13)))
+                                schedule.eta = reader.GetDateTime(13);
+                            if (!Utility.Utility.IsDBNull(reader.GetValue(14)))
+                                schedule.ta = reader.GetDateTime(14);
+                            schedule.unLoading = reader.GetDateTime(15);
+
+                            schedule.berangkatTujuan = reader.GetString(16);
+                            schedule.namaPelayaran = reader.GetString(17);
+                            schedule.namaKapal = (reader.GetBoolean(19)) ? (reader.GetString(18) + " - " + schedule.namaPelayaran + " [loan]") : reader.GetString(18) + " - " + schedule.namaPelayaran;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlScheduleRepository.cs - ListSchedule() " + e.Message);
+            }
+
+            return schedule;
+        }
+
         public bool DeleteSchedule(SqlParameter[] sqlParam)
         {
             int n = 0;
