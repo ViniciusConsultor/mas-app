@@ -63,7 +63,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerTransDetailGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CustomerTransDetailGridView.MasterGridViewTemplate)).BeginInit();
             this.SuspendLayout();
             // 
             // lblDate
@@ -166,7 +165,7 @@
             this.CustomerTransDetailGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.CustomerTransDetailGridView.Location = new System.Drawing.Point(0, 351);
             // 
-            // gridViewTemplate1
+            // 
             // 
             this.CustomerTransDetailGridView.MasterGridViewTemplate.AllowAddNewRow = false;
             gridViewTextBoxColumn1.FieldAlias = "CustomerDetailTransID";
@@ -216,7 +215,7 @@
             gridViewTextBoxColumn9.Width = 100;
             gridViewTextBoxColumn10.FieldAlias = "StuffingDate";
             gridViewTextBoxColumn10.FieldName = "StuffingDate";
-            gridViewTextBoxColumn10.FormatString = "{0:MM/dd/yyyy}";
+            gridViewTextBoxColumn10.FormatString = "{0:dd/MM/yy}";
             gridViewTextBoxColumn10.HeaderText = "StuffingDate";
             gridViewTextBoxColumn10.UniqueName = "StuffingDate";
             gridViewTextBoxColumn10.Width = 110;
@@ -228,31 +227,31 @@
             gridViewTextBoxColumn11.Width = 125;
             gridViewTextBoxColumn12.FieldAlias = "ETD";
             gridViewTextBoxColumn12.FieldName = "ETD";
-            gridViewTextBoxColumn12.FormatString = "{0:MM/dd/yyyy}";
+            gridViewTextBoxColumn12.FormatString = "{0:dd/MM/yy}";
             gridViewTextBoxColumn12.HeaderText = "ETD";
             gridViewTextBoxColumn12.UniqueName = "ETD";
             gridViewTextBoxColumn12.Width = 100;
             gridViewTextBoxColumn13.FieldAlias = "TD";
             gridViewTextBoxColumn13.FieldName = "TD";
-            gridViewTextBoxColumn13.FormatString = "{0:MM/dd/yyyy}";
+            gridViewTextBoxColumn13.FormatString = "{0:dd/MM/yy}";
             gridViewTextBoxColumn13.HeaderText = "TD";
             gridViewTextBoxColumn13.UniqueName = "TD";
             gridViewTextBoxColumn13.Width = 100;
             gridViewTextBoxColumn14.FieldAlias = "ETA";
             gridViewTextBoxColumn14.FieldName = "ETA";
-            gridViewTextBoxColumn14.FormatString = "{0:MM/dd/yyyy}";
+            gridViewTextBoxColumn14.FormatString = "{0:dd/MM/yy}";
             gridViewTextBoxColumn14.HeaderText = "ETA";
             gridViewTextBoxColumn14.UniqueName = "ETA";
             gridViewTextBoxColumn14.Width = 100;
             gridViewTextBoxColumn15.FieldAlias = "TA";
             gridViewTextBoxColumn15.FieldName = "TA";
-            gridViewTextBoxColumn15.FormatString = "{0:MM/dd/yyyy}";
+            gridViewTextBoxColumn15.FormatString = "{0:dd/MM/yy}";
             gridViewTextBoxColumn15.HeaderText = "TA";
             gridViewTextBoxColumn15.UniqueName = "TA";
             gridViewTextBoxColumn15.Width = 100;
             gridViewTextBoxColumn16.FieldAlias = "Unloading";
             gridViewTextBoxColumn16.FieldName = "Unloading";
-            gridViewTextBoxColumn16.FormatString = "{0:MM/dd/yyyy}";
+            gridViewTextBoxColumn16.FormatString = "{0:dd/MM/yy}";
             gridViewTextBoxColumn16.HeaderText = "Unloading";
             gridViewTextBoxColumn16.UniqueName = "Unloading";
             gridViewTextBoxColumn16.Width = 100;
@@ -307,7 +306,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CustomerTransDetailGridView.MasterGridViewTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerTransDetailGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
