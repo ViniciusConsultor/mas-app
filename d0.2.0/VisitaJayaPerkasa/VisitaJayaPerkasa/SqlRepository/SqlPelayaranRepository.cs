@@ -391,7 +391,7 @@ namespace VisitaJayaPerkasa.SqlRepository
 
                         using (SqlCommand command = new SqlCommand(
                             "Update [Pelayaran] set " +
-                            "name = " + sqlParam[1].ParameterName + ", " +
+                            "supplier_id = " + sqlParam[1].ParameterName + ", " +
                             "deleted = " + sqlParam[2].ParameterName + " WHERE " +
                             "pelayaran_id = " + sqlParam[0].ParameterName
                             , con))

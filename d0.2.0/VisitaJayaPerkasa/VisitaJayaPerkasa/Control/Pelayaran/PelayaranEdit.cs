@@ -268,12 +268,13 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
                     MessageBox.Show(this, "Success insert pelayaran data", "Information");
                     radButtonElement2.PerformClick();
                 }
-                if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
                     MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                 {
                     MessageBox.Show(this, "Cannot insert pelayaran data", "Information");
                 }
+
                 sqlPelayaranRepository = null;
                 strSqlParam = null;
                 objSqlParam = null;
