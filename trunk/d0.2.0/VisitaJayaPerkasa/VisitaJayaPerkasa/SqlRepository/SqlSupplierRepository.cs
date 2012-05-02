@@ -556,8 +556,43 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
                     Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
-                    sqlTransaction = con.BeginTransaction();
+                    int TotalSupplierDetail = 0;
+                    int countTrucking = 0;
+                    using (SqlCommand totalSupplierDetailCommand = new SqlCommand(
+                        "Select count(supplier_id) FROM [Supplier_Detail] WHERE supplier_id = " +
+                        sqlParam[0].ParameterName, con))
+                    {
+                        totalSupplierDetailCommand.Parameters.Add(sqlParam[0]);
+                        SqlDataReader reader = totalSupplierDetailCommand.ExecuteReader();
+                        totalSupplierDetailCommand.Parameters.Clear();
 
+                        if(reader.Read())
+                            TotalSupplierDetail = reader.GetInt32(0);
+
+                        reader.Close();
+                        reader = null;
+                    }
+
+                    if (totalRecordTrucking > 0)
+                    {
+                        using (SqlCommand totalRecordTruckingCommand = new SqlCommand(
+                        "Select count(supplier_id) FROM [SUPPLIER_TRUCKING] WHERE supplier_id = " +
+                        sqlParam[0].ParameterName, con))
+                        {
+                            totalRecordTruckingCommand.Parameters.Add(sqlParam[0]);
+                            SqlDataReader reader = totalRecordTruckingCommand.ExecuteReader();
+                            totalRecordTruckingCommand.Parameters.Clear();
+
+                            if (reader.Read())
+                                countTrucking = reader.GetInt32(0);
+
+                            reader.Close();
+                            reader = null;
+                        }
+                    }
+
+
+                    sqlTransaction = con.BeginTransaction();
                     using (SqlCommand deleteCommand = new SqlCommand(
                         "Delete [Supplier_Detail] WHERE supplier_id = " + sqlParam[0].ParameterName, con))
                     {
@@ -566,7 +601,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                         n = deleteCommand.ExecuteNonQuery();
                         deleteCommand.Parameters.Clear();
 
-                        if (n > 0)
+                        if (n == TotalSupplierDetail)
                         {
                             if (totalRecordTrucking > 0)
                             {
@@ -581,8 +616,16 @@ namespace VisitaJayaPerkasa.SqlRepository
                             }
 
 
+                            byte executeScalar = 0;
+                            if (totalRecordTrucking > 0) {
+                                if (n == countTrucking) { executeScalar = 1; }
+                            }
+                            else
+                                executeScalar = 1;
 
-                            if (n > 0)
+
+
+                            if (executeScalar == 1)
                             {
                                 using (SqlCommand command = new SqlCommand(
                                     "Update [Supplier] set " +
@@ -685,7 +728,8 @@ namespace VisitaJayaPerkasa.SqlRepository
                 }
                 finally
                 {
-                    sqlTransaction.Dispose();
+                    if(sqlTransaction != null)
+                        sqlTransaction.Dispose();
                 }
             }
 
