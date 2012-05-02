@@ -32,6 +32,8 @@ namespace VisitaJayaPerkasa.Control.Transaction
         private SqlPriceListRepository sqlPriceListRepository;
         private SqlWareHouseRepository sqlWarehouseRepository;
         private SqlRecipientRepository sqlRecipientRepository;
+        private SqlScheduleRepository sqlScheduleRepository;
+        private SqlTruckingRepository sqlTruckingRepository;
 
         public CustomerTransEdit(VisitaJayaPerkasa.Entities.CustomerTrans customerTrans)
         {
@@ -46,6 +48,8 @@ namespace VisitaJayaPerkasa.Control.Transaction
             sqlPriceListRepository = new SqlPriceListRepository();
             sqlWarehouseRepository = new SqlWareHouseRepository();
             sqlRecipientRepository = new SqlRecipientRepository();
+            sqlScheduleRepository = new SqlScheduleRepository();
+            sqlTruckingRepository = new SqlTruckingRepository();
 
             List<VisitaJayaPerkasa.Entities.Customer> listCustomer = sqlCustomerRepository.ListCustomers();
             List<VisitaJayaPerkasa.Entities.TypeCont> listType = sqlTypeContRepository.GetTypeCont();
@@ -58,6 +62,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
 
             List<VisitaJayaPerkasa.Entities.City> listDestination = sqlCityRepository.GetCity();
             List<VisitaJayaPerkasa.Entities.PelayaranDetail> listPelayaran = sqlPelayaranRepository.GetVessels();
+            List<VisitaJayaPerkasa.Entities.Schedule> listSchedule = sqlScheduleRepository.ListSchedule();
             List<VisitaJayaPerkasa.Entities.Condition> listCondition = sqlConditionRepository.GetConditions();
             if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
             {
@@ -67,6 +72,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
 
             List<VisitaJayaPerkasa.Entities.WareHouse> listWarehouse = sqlWarehouseRepository.GetWareHouse();
             List<VisitaJayaPerkasa.Entities.Recipient> listRecipient = sqlRecipientRepository.GetRecipient();
+            List<VisitaJayaPerkasa.Entities.Trucking> listTrucking = sqlTruckingRepository.ListTrucking();
             if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
             {
                 MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -100,9 +106,9 @@ namespace VisitaJayaPerkasa.Control.Transaction
             days = from p in listDestination 
                    select p.Days;
 
-            cboPelayaranDetail.DataSource = listPelayaran;
-            cboPelayaranDetail.DisplayMember = "vesselname";
-            cboPelayaranDetail.ValueMember = "pelayarandetailid";
+            cboPelayaranDetail.DataSource = listSchedule;
+            cboPelayaranDetail.DisplayMember = "namaKapal";
+            //cboPelayaranDetail.ValueMember = "ID";
             cboPelayaranDetail.SelectedIndex = -1;
             cboPelayaranDetail.Text = "-- Choose --";
 
@@ -123,7 +129,13 @@ namespace VisitaJayaPerkasa.Control.Transaction
             cboRecipient.ValueMember = "ID";
             cboRecipient.SelectedIndex = -1;
             cboRecipient.Text = "-- Choose --";
-            
+
+            cboTrucking.DataSource = listTrucking;
+            cboTrucking.DisplayMember = "TruckNo";
+            cboTrucking.ValueMember = "ID";
+            cboTrucking.SelectedIndex = -1;
+            cboTrucking.Text = "-- Choose --";
+
             if (customerTrans == null)
             {
                 wantToCreateVessel = true;
@@ -163,36 +175,14 @@ namespace VisitaJayaPerkasa.Control.Transaction
             sqlPelayaranRepository = null;
             sqlConditionRepository = null;
             sqlRecipientRepository = null;
-        }
 
-        private void cboCustomer_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.KeyChar = Convert.ToChar(0);
-        }
-
-        private void cboType_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.KeyChar = Convert.ToChar(0);
-        }
-
-        private void cboPelayaran_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.KeyChar = Convert.ToChar(0);
-        }
-
-        private void cboOrigin_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.KeyChar = Convert.ToChar(0);
-        }
-
-        private void cboDestination_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.KeyChar = Convert.ToChar(0);
-        }
-
-        private void cboCondition_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.KeyChar = Convert.ToChar(0);
+            if (wantToCreateVessel)
+            {
+                dtpTD.Visible = false;
+                dtpETA.Visible = false;
+                dtpTA.Visible = false;
+                dtpUnloading.Visible = false;
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -236,9 +226,9 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 MessageBox.Show(this, "Please select Recipient", "Information");
                 return;
             }
-            else if (etTruckNo.Text.Trim().Equals(""))
+            else if (cboTrucking.SelectedIndex == -1)
             {
-                MessageBox.Show(this, "Please fill truck number", "Information");
+                MessageBox.Show(this, "Please select truck number", "Information");
                 return;
             }
             else if (etVoy.Text.Trim().Equals(""))
@@ -271,8 +261,12 @@ namespace VisitaJayaPerkasa.Control.Transaction
                     objCustTransDetail.TypeID = Utility.Utility.ConvertToUUID(cboType.SelectedValue.ToString());
                     objCustTransDetail.TypeName = cboType.Text;
 
-                    objCustTransDetail.PelayaranDetailID = Utility.Utility.ConvertToUUID(cboPelayaranDetail.SelectedValue.ToString());
-                    objCustTransDetail.VesselName = cboPelayaranDetail.Text;
+                    VisitaJayaPerkasa.Entities.Schedule schedule = cboPelayaranDetail.SelectedValue as VisitaJayaPerkasa.Entities.Schedule;
+                    if (schedule != null)
+                    {
+                        objCustTransDetail.PelayaranDetailID = schedule.ID;
+                        objCustTransDetail.VesselName = schedule.namaKapal;
+                    }
 
                     objCustTransDetail.Origin = Utility.Utility.ConvertToUUID(cboOrigin.SelectedValue.ToString());
                     objCustTransDetail.OriginName = cboOrigin.Text;
@@ -284,7 +278,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
                     objCustTransDetail.ConditionName = cboCondition.Text;
 
                     objCustTransDetail.NoSeal = etSeal.Text.Trim();
-                    objCustTransDetail.TruckNo = etTruckNo.Text.Trim();
+                    objCustTransDetail.TruckNo = cboTrucking.Text.Trim();
                     objCustTransDetail.Voyage = etVoy.Text.Trim();
 
                     objCustTransDetail.StuffingDate = dtpStuffingDate.Value;
@@ -338,7 +332,6 @@ namespace VisitaJayaPerkasa.Control.Transaction
                     objCustTransDetail = null;
 
                     etSeal.Text = "";
-                    etTruckNo.Text = "";
                     etVoy.Text = "";
                     etJenisBarang.Text = "";
                     etNoContainer.Text = "";
@@ -392,6 +385,8 @@ namespace VisitaJayaPerkasa.Control.Transaction
                     cboType.Text = "-- Choose --";
                     cboRecipient.SelectedIndex = -1;
                     cboRecipient.Text = "-- Choose --";
+                    cboTrucking.SelectedIndex = -1;
+                    cboTrucking.Text = "-- Choose --";
 
 
                     dtpStuffingDate.Value = DateTime.Now;
@@ -700,18 +695,18 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 {
                     if (cbo.Tag.ToString() == "111")
                     {
-                        List<VisitaJayaPerkasa.Entities.PelayaranDetail> listPelayaran = sqlPelayaranRepository.GetVessels(cbo.SelectedValue.ToString(), DateTime.Today);
+                        List<VisitaJayaPerkasa.Entities.Schedule> listSchedule = sqlScheduleRepository.ListScheduleByDestination((Guid)cbo.SelectedValue);
                         if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
                             MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                        cboPelayaranDetail.DataSource = listPelayaran;
-                        cboPelayaranDetail.DisplayMember = "VesselName";
-                        cboPelayaranDetail.ValueMember = "PelayaranDetailID";
+                        cboPelayaranDetail.DataSource = listSchedule;
+                        cboPelayaranDetail.DisplayMember = "namaKapal";
+                        //cboPelayaranDetail.ValueMember = "PelayaranDetailID";
                         cboPelayaranDetail.SelectedIndex = -1;
                         cboPelayaranDetail.Text = "-- Choose --";
 
 
-                        if (listPelayaran == null)
+                        if (listSchedule == null)
                         {
                             MessageBox.Show(this, "No schedule in list", "Information");
                             return;
@@ -762,19 +757,20 @@ namespace VisitaJayaPerkasa.Control.Transaction
             sqlPelayaranRepository = null;
         }
 
-        private void cboCondition_KeyPress_1(object sender, KeyPressEventArgs e)
+        private void cbo_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.KeyChar = Convert.ToChar(0);
         }
 
-        private void cboStuffingPlace_KeyPress(object sender, KeyPressEventArgs e)
+        private void cboPelayaranDetail_SelectedIndexChanged(object sender, EventArgs e)
         {
-            e.KeyChar = Convert.ToChar(0);
-        }
-
-        private void cboRecipient_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.KeyChar = Convert.ToChar(0);
+            if (cboPelayaranDetail.SelectedIndex < 0)
+            {
+                etVoy.Text = "";
+                return;
+            }
+            VisitaJayaPerkasa.Entities.Schedule schedule = cboPelayaranDetail.SelectedValue as VisitaJayaPerkasa.Entities.Schedule;
+            etVoy.Text = schedule.voy;
         }
 
         /*
