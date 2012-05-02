@@ -53,7 +53,6 @@
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             ((System.ComponentModel.ISupportInitialize)(this.radComboBoxElement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerTransGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CustomerTransGridView.MasterGridViewTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,7 +139,7 @@
             this.CustomerTransGridView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.CustomerTransGridView.Location = new System.Drawing.Point(0, 54);
             // 
-            // gridViewTemplate1
+            // 
             // 
             this.CustomerTransGridView.MasterGridViewTemplate.AllowAddNewRow = false;
             gridViewTextBoxColumn1.FieldAlias = "CustomerTransID";
@@ -161,7 +160,7 @@
             gridViewTextBoxColumn3.Width = 128;
             gridViewTextBoxColumn4.FieldAlias = "TransDate";
             gridViewTextBoxColumn4.FieldName = "TransDate";
-            gridViewTextBoxColumn4.FormatString = "{0:MM/dd/yyyy}";
+            gridViewTextBoxColumn4.FormatString = "{0:dd/MM/yy}";
             gridViewTextBoxColumn4.HeaderText = "Date";
             gridViewTextBoxColumn4.UniqueName = "TransDate";
             gridViewTextBoxColumn4.Width = 110;
@@ -302,7 +301,6 @@
             this.Name = "CustomerTransList";
             this.Size = new System.Drawing.Size(633, 405);
             ((System.ComponentModel.ISupportInitialize)(this.radComboBoxElement)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CustomerTransGridView.MasterGridViewTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerTransGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
             this.ResumeLayout(false);
