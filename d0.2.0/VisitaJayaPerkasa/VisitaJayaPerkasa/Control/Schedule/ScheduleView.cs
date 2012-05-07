@@ -21,7 +21,8 @@ namespace VisitaJayaPerkasa.Control.Schedule
             lblKeterangan.Text = tempSchedule.keterangan;
 
             lblETD.Text =  Utility.Utility.ConvertDateToString(tempSchedule.etd);
-            lblUnLoading.Text = Utility.Utility.ConvertDateToString(tempSchedule.unLoading);
+            if (tempSchedule.unLoading != null)
+                lblUnLoading.Text = Utility.Utility.ConvertDateToString(tempSchedule.unLoading.Value);
 
             lblRB20.Text = tempSchedule.ro_begin_20.ToString();
             lblRB40.Text = tempSchedule.ro_begin_40.ToString();

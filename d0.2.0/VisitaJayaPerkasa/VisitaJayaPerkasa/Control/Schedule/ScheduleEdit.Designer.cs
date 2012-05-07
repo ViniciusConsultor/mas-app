@@ -37,7 +37,7 @@
             this.etRObegin40 = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.pickerUnLoading = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
+            this.lblUnloading = new Telerik.WinControls.UI.RadLabel();
             this.pickerETA = new Telerik.WinControls.UI.RadDateTimePicker();
             this.lblETA = new Telerik.WinControls.UI.RadLabel();
             this.pickerTA = new Telerik.WinControls.UI.RadDateTimePicker();
@@ -64,7 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.etRObegin40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerUnLoading)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUnloading)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerETA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblETA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerTA)).BeginInit();
@@ -129,7 +129,7 @@
             this.groupBox2.Controls.Add(this.etRObegin40);
             this.groupBox2.Controls.Add(this.radLabel13);
             this.groupBox2.Controls.Add(this.pickerUnLoading);
-            this.groupBox2.Controls.Add(this.radLabel12);
+            this.groupBox2.Controls.Add(this.lblUnloading);
             this.groupBox2.Controls.Add(this.pickerETA);
             this.groupBox2.Controls.Add(this.lblETA);
             this.groupBox2.Controls.Add(this.pickerTA);
@@ -197,13 +197,13 @@
             this.pickerUnLoading.Text = "radDateTimePicker2";
             this.pickerUnLoading.Value = new System.DateTime(2011, 12, 20, 22, 52, 8, 421);
             // 
-            // radLabel12
+            // lblUnloading
             // 
-            this.radLabel12.Location = new System.Drawing.Point(319, 177);
-            this.radLabel12.Name = "radLabel12";
-            this.radLabel12.Size = new System.Drawing.Size(61, 16);
-            this.radLabel12.TabIndex = 37;
-            this.radLabel12.Text = "UnLoading";
+            this.lblUnloading.Location = new System.Drawing.Point(319, 177);
+            this.lblUnloading.Name = "lblUnloading";
+            this.lblUnloading.Size = new System.Drawing.Size(61, 16);
+            this.lblUnloading.TabIndex = 37;
+            this.lblUnloading.Text = "UnLoading";
             // 
             // pickerETA
             // 
@@ -457,7 +457,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.etRObegin40)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerUnLoading)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUnloading)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerETA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblETA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickerTA)).EndInit();
@@ -507,7 +507,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private Telerik.WinControls.UI.RadComboBox cboTujuan;
         private Telerik.WinControls.UI.RadDateTimePicker pickerUnLoading;
-        private Telerik.WinControls.UI.RadLabel radLabel12;
+        private Telerik.WinControls.UI.RadLabel lblUnloading;
         private Telerik.WinControls.UI.RadDateTimePicker pickerETA;
         private Telerik.WinControls.UI.RadLabel lblETA;
         private Telerik.WinControls.UI.RadDateTimePicker pickerTA;
