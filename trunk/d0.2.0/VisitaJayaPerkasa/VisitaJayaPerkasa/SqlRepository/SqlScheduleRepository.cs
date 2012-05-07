@@ -69,7 +69,8 @@ namespace VisitaJayaPerkasa.SqlRepository
                                 schedule.eta = reader.GetDateTime(13);
                             if (!Utility.Utility.IsDBNull(reader.GetValue(14)))
                                 schedule.ta = reader.GetDateTime(14);
-                            schedule.unLoading = reader.GetDateTime(15);
+                            if (!Utility.Utility.IsDBNull(reader.GetValue(15)))
+                                schedule.unLoading = reader.GetDateTime(15);
 
                             schedule.berangkatTujuan = reader.GetString(16);
                             schedule.namaPelayaran = reader.GetString(17);

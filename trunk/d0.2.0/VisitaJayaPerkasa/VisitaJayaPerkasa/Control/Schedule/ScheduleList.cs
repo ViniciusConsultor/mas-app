@@ -21,12 +21,14 @@ namespace VisitaJayaPerkasa.Control.Schedule
         private int currentPage;
         private int pageSize;
         private int totalPage;
+        private bool isFirstMenuLoad;
 
         private BackgroundWorker backgroundWorker;
 
         public ScheduleList()
         {
             InitializeComponent();
+            isFirstMenuLoad = true;
             actionBarDateBegin.Text = Utility.Utility.ConvertDateToString(DateTime.Now);
             actionBarDateEnd.Text = Utility.Utility.ConvertDateToString(DateTime.Now);
 
@@ -91,32 +93,32 @@ namespace VisitaJayaPerkasa.Control.Schedule
 
             if (cboKeySearch.Text.Equals("Destination"))
             {
-                schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
-                    actionBarDateEnd.Text, cboValueSearch.SelectedValue.ToString(), "", "", (cbFinish.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On) ? true : false
+                schedules = sqlScheduleRepository.ListSchedule((isFirstMenuLoad) ? "01/01/1990" : actionBarDateBegin.Text,
+                    (isFirstMenuLoad) ? "01/01/2100" : actionBarDateEnd.Text, cboValueSearch.SelectedValue.ToString(), "", "", (cbFinish.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On) ? true : false
                     );
                 if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
                     MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (cboKeySearch.Text.Equals("Vessel"))
             {
-                schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
-                    actionBarDateEnd.Text, "", cboValueSearch.SelectedValue.ToString(), "", (cbFinish.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On) ? true : false
+                schedules = sqlScheduleRepository.ListSchedule((isFirstMenuLoad) ? "01/01/1990" : actionBarDateBegin.Text,
+                    (isFirstMenuLoad) ? "01/01/2100" : actionBarDateEnd.Text, "", cboValueSearch.SelectedValue.ToString(), "", (cbFinish.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On) ? true : false
                     );
                 if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
                     MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (cboKeySearch.Text.Equals("VOY"))
             {
-                schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
-                    actionBarDateEnd.Text, "", "", txtRoSearch.Text.Trim(), (cbFinish.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On) ? true : false
+                schedules = sqlScheduleRepository.ListSchedule((isFirstMenuLoad) ? "01/01/1990" : actionBarDateBegin.Text,
+                    (isFirstMenuLoad) ? "01/01/2100" : actionBarDateEnd.Text, "", "", txtRoSearch.Text.Trim(), (cbFinish.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On) ? true : false
                     );
                 if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
                     MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                schedules = sqlScheduleRepository.ListSchedule(actionBarDateBegin.Text,
-                    actionBarDateEnd.Text, "", "", "", (cbFinish.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On) ? true : false
+                schedules = sqlScheduleRepository.ListSchedule((isFirstMenuLoad) ? "01/01/1990" : actionBarDateBegin.Text,
+                    (isFirstMenuLoad) ? "01/01/2100" : actionBarDateEnd.Text, "", "", "", (cbFinish.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On) ? true : false
                     );
                 if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
                     MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -137,6 +139,8 @@ namespace VisitaJayaPerkasa.Control.Schedule
             }
             else
                 totalPage = 0;
+
+            isFirstMenuLoad = false;
         }
 
         private void radButtonElementCreate_Click(object sender, EventArgs e)

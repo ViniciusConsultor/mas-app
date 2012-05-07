@@ -14,7 +14,7 @@ namespace VisitaJayaPerkasa.Entities
         public DateTime? td { get; set; }
         public DateTime? eta { get; set; }
         public DateTime? ta { get; set; }
-        public DateTime unLoading { get; set; }
+        public DateTime? unLoading { get; set; }
         public DateTime tglclosing { get; set; }
 
         public int ro_begin_20 { get; set; }

@@ -52,9 +52,11 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 lblETA.Visible = false;
                 lblTA.Visible = false;
                 lblTD.Visible = false;
+                lblUnloading.Visible = false;
                 pickerETA.Visible = false;
                 pickerTA.Visible = false;
                 pickerTD.Visible = false;
+                pickerUnLoading.Visible = false;
 
                 pickerETD.Value = DateTime.Now;
                 pickerUnLoading.Value = DateTime.Now;
@@ -77,7 +79,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
                 etVOY.Text = schedule.voy;
 
                 pickerETD.Value = schedule.etd;
-                pickerUnLoading.Value = schedule.unLoading;
+                pickerUnLoading.Value = schedule.unLoading.GetValueOrDefault(DateTime.Now);
                 pickerTglClosing.Value = schedule.tglclosing;
 
                 etRObegin20.Text = schedule.ro_begin_20.ToString();
@@ -206,7 +208,7 @@ namespace VisitaJayaPerkasa.Control.Schedule
                                 DBNull.Value,
                                 DBNull.Value,
                                 DBNull.Value,
-                                pickerUnLoading.Value.Date
+                                DBNull.Value
                             });
 
                     if (sqlScheduleRepository.CreateNewSchedule(sqlParam))

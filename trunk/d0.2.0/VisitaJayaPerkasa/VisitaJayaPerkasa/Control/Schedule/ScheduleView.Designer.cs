@@ -288,9 +288,9 @@
             // 
             this.lblUnLoading.Location = new System.Drawing.Point(137, 159);
             this.lblUnLoading.Name = "lblUnLoading";
-            this.lblUnLoading.Size = new System.Drawing.Size(12, 16);
+            this.lblUnLoading.Size = new System.Drawing.Size(10, 16);
             this.lblUnLoading.TabIndex = 35;
-            this.lblUnLoading.Text = "a";
+            this.lblUnLoading.Text = "-";
             // 
             // lblKeterangan
             // 
