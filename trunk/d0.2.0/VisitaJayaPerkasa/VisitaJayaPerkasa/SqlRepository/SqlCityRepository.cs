@@ -288,6 +288,51 @@ namespace VisitaJayaPerkasa.SqlRepository
             return CityID;
         }
 
+
+        public City GetCityByID(String cityID)
+        {
+            City city = null;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
+                    con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT TOP 1 city_id, city_code, city_name, days, deleted  FROM [City] " +
+                        "WHERE city_id = '" + cityID + "'"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            city = new City();
+
+                            city.ID = reader.GetGuid(0);
+                            city.CityCode = reader.GetString(1);
+                            city.CityName = reader.GetString(2);
+                            city.Days = reader.GetInt32(3);
+
+                            if (!Utility.Utility.IsDBNull(reader.GetValue(4)))
+                                city.Deleted = (Boolean.Parse(reader.GetValue(4).ToString())) ? 1 : 0;
+                            else
+                                city.Deleted = 0;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlCityRepository.cs - GetCityByID() " + e.Message);
+            }
+
+            return city;
+        }
+
+
         public bool DeleteCity(SqlParameter[] sqlParam)
         {
             int n = 0;
