@@ -72,7 +72,6 @@ namespace VisitaJayaPerkasa.Control.Schedule
                     wantToEditTdETC = false;
 
 
-
                 cboTujuan.SelectedItem = schedule.berangkatTujuan;
                 cboKapal.SelectedItem = schedule.namaKapal;
 
@@ -109,6 +108,18 @@ namespace VisitaJayaPerkasa.Control.Schedule
                     etRObegin20.Enabled = false;
                     etRObegin40.Enabled = false;
                     etKet.Enabled = false;
+
+
+                    VisitaJayaPerkasa.Entities.City tempCity = sqlCityRepository.GetCityByID(cboTujuan.SelectedValue.ToString());
+                    if (tempCity.Deleted == 1)
+                        MessageBox.Show(this, "ETA not same like city, because city has already be deleted", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                    {
+                        pickerETA.Value = DateTime.Now.AddDays(tempCity.Days);
+                        pickerTA.Value = DateTime.Now.AddDays(tempCity.Days);
+                    }
+
+                    tempCity = null;
                 }
                 else {
                     lblETA.Visible = false;
