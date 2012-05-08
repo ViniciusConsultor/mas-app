@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            Telerik.WinControls.UI.GridSortField gridSortField2 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridSortField gridSortField3 = new Telerik.WinControls.UI.GridSortField();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.radMenuItem7 = new Telerik.WinControls.UI.RadMenuItem();
             this.gridViewTemplate1 = new Telerik.WinControls.UI.GridViewTemplate();
@@ -106,6 +106,12 @@
             this.radMenuItemLogOut = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuSeparatorItem2 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
             this.radMenuItemExit = new Telerik.WinControls.UI.RadMenuItem();
+            this.RBGChangeDestination = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.RBGSI = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.RBGDescLeadTime = new Telerik.WinControls.UI.RadRibbonBarGroup();
+            this.radImageButtonElement3 = new Telerik.WinControls.UI.RadImageButtonElement();
+            this.radImageButtonElement4 = new Telerik.WinControls.UI.RadImageButtonElement();
+            this.radImageButtonElement5 = new Telerik.WinControls.UI.RadImageButtonElement();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewTemplate1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radStatusStrip)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRibbonBar1)).BeginInit();
@@ -139,6 +145,9 @@
             this.imageList1.Images.SetKeyName(20, "rptSchedule.jpg");
             this.imageList1.Images.SetKeyName(21, "supply_price.jpg");
             this.imageList1.Images.SetKeyName(22, "ic_setting_logo.jpg");
+            this.imageList1.Images.SetKeyName(23, "changeDesti.jpg");
+            this.imageList1.Images.SetKeyName(24, "DescLeadTime.jpg");
+            this.imageList1.Images.SetKeyName(25, "SI.jpg");
             // 
             // radMenuItem7
             // 
@@ -148,10 +157,10 @@
             // gridViewTemplate1
             // 
             this.gridViewTemplate1.AllowAddNewRow = false;
-            gridSortField2.FieldAlias = "Tanggal";
-            gridSortField2.FieldName = "Tanggal";
-            gridSortField2.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            this.gridViewTemplate1.SortExpressions.Add(gridSortField2);
+            gridSortField3.FieldAlias = "Tanggal";
+            gridSortField3.FieldName = "Tanggal";
+            gridSortField3.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            this.gridViewTemplate1.SortExpressions.Add(gridSortField3);
             // 
             // radLabelElementWelcome
             // 
@@ -169,9 +178,9 @@
             this.radLabelElementWelcome,
             this.radLabelElementWelcome});
             this.radStatusStrip.LayoutStyle = Telerik.WinControls.UI.RadStatusBarLayoutStyle.Stack;
-            this.radStatusStrip.Location = new System.Drawing.Point(0, 575);
+            this.radStatusStrip.Location = new System.Drawing.Point(0, 571);
             this.radStatusStrip.Name = "radStatusStrip";
-            this.radStatusStrip.Size = new System.Drawing.Size(992, 20);
+            this.radStatusStrip.Size = new System.Drawing.Size(992, 24);
             this.radStatusStrip.SizingGrip = false;
             this.radStatusStrip.TabIndex = 1;
             this.radStatusStrip.Text = "radStatusStrip1";
@@ -539,12 +548,16 @@
             this.ribbonTab3.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ribbonTab3.ContentPanel.Location = new System.Drawing.Point(0, 0);
             this.ribbonTab3.ContentPanel.Size = new System.Drawing.Size(200, 100);
+            this.ribbonTab3.IsSelected = true;
             this.ribbonTab3.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.RBGContainer,
             this.RBGDelivery,
             this.RBGInvoice,
             this.RBGRptSchedule,
-            this.RBGSupplyPrice});
+            this.RBGSupplyPrice,
+            this.RBGChangeDestination,
+            this.RBGSI,
+            this.RBGDescLeadTime});
             this.ribbonTab3.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.ribbonTab3.Name = "ribbonTab3";
             this.ribbonTab3.StretchHorizontally = false;
@@ -639,7 +652,6 @@
             this.ribbonTab5.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ribbonTab5.ContentPanel.Location = new System.Drawing.Point(0, 0);
             this.ribbonTab5.ContentPanel.Size = new System.Drawing.Size(200, 100);
-            this.ribbonTab5.IsSelected = true;
             this.ribbonTab5.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.RBGSetting});
             this.ribbonTab5.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
@@ -817,6 +829,51 @@
             this.radMenuItemExit.Text = "Exit";
             this.radMenuItemExit.Click += new System.EventHandler(this.radMenuItemExit_Click);
             // 
+            // RBGChangeDestination
+            // 
+            this.RBGChangeDestination.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radImageButtonElement3});
+            this.RBGChangeDestination.Name = "RBGChangeDestination";
+            this.RBGChangeDestination.Text = "Cha.. Desti..";
+            // 
+            // RBGSI
+            // 
+            this.RBGSI.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radImageButtonElement4});
+            this.RBGSI.Name = "RBGSI";
+            this.RBGSI.Text = "SI";
+            // 
+            // RBGDescLeadTime
+            // 
+            this.RBGDescLeadTime.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radImageButtonElement5});
+            this.RBGDescLeadTime.Name = "RBGDescLeadTime";
+            this.RBGDescLeadTime.Text = "Lead Time";
+            // 
+            // radImageButtonElement3
+            // 
+            this.radImageButtonElement3.Image = ((System.Drawing.Image)(resources.GetObject("radImageButtonElement3.Image")));
+            this.radImageButtonElement3.ImageKey = "changeDesti.jpg";
+            this.radImageButtonElement3.Name = "radImageButtonElement3";
+            this.radImageButtonElement3.Text = "";
+            this.radImageButtonElement3.Click += new System.EventHandler(this.radImageButtonElement3_Click);
+            // 
+            // radImageButtonElement4
+            // 
+            this.radImageButtonElement4.Image = ((System.Drawing.Image)(resources.GetObject("radImageButtonElement4.Image")));
+            this.radImageButtonElement4.ImageKey = "SI.jpg";
+            this.radImageButtonElement4.Name = "radImageButtonElement4";
+            this.radImageButtonElement4.Text = "";
+            this.radImageButtonElement4.Click += new System.EventHandler(this.radImageButtonElement4_Click);
+            // 
+            // radImageButtonElement5
+            // 
+            this.radImageButtonElement5.Image = ((System.Drawing.Image)(resources.GetObject("radImageButtonElement5.Image")));
+            this.radImageButtonElement5.ImageKey = "DescLeadTime.jpg";
+            this.radImageButtonElement5.Name = "radImageButtonElement5";
+            this.radImageButtonElement5.Text = "";
+            this.radImageButtonElement5.Click += new System.EventHandler(this.radImageButtonElement5_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -919,5 +976,11 @@
         private Telerik.WinControls.UI.RibbonTab ribbonTab5;
         private Telerik.WinControls.UI.RadRibbonBarGroup RBGSetting;
         private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElementSetting;
+        private Telerik.WinControls.UI.RadRibbonBarGroup RBGChangeDestination;
+        private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElement3;
+        private Telerik.WinControls.UI.RadRibbonBarGroup RBGSI;
+        private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElement4;
+        private Telerik.WinControls.UI.RadRibbonBarGroup RBGDescLeadTime;
+        private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElement5;
     }
 }
