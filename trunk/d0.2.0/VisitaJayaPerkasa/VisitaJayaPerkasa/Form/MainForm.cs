@@ -26,6 +26,9 @@ using VisitaJayaPerkasa.Form.Report.Delivery;
 using VisitaJayaPerkasa.Form.Report.Invoice;
 using VisitaJayaPerkasa.Form.Report.Schedule;
 using VisitaJayaPerkasa.Form.Report.Request_Price;
+using VisitaJayaPerkasa.Form.Report.ChangeDestination;
+using VisitaJayaPerkasa.Form.Report.SI;
+using VisitaJayaPerkasa.Form.Report.LeadTime;
 using VisitaJayaPerkasa.Control.Setting;
 
 namespace VisitaJayaPerkasa.Form
@@ -271,6 +274,24 @@ namespace VisitaJayaPerkasa.Form
         {
             SetEnableDisableGroup(RBGSetting);
             ShowUserControl(new UserControlSetting());
+        }
+
+        private void radImageButtonElement3_Click(object sender, EventArgs e)
+        {
+            SetEnableDisableGroup(RBGChangeDestination);
+            ShowUserControl(new RptChangeDestinationControl());
+        }
+
+        private void radImageButtonElement4_Click(object sender, EventArgs e)
+        {
+            SetEnableDisableGroup(RBGSI);
+            ShowUserControl(new rptSIControl());
+        }
+
+        private void radImageButtonElement5_Click(object sender, EventArgs e)
+        {
+            SetEnableDisableGroup(RBGDescLeadTime);
+            ShowUserControl(new rptLeadTimeControl());
         }
 
     }

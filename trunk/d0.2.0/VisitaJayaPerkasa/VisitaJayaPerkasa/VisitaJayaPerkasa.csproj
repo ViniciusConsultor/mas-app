@@ -333,6 +333,12 @@
     <Compile Include="Form\PBarDialog.Designer.cs">
       <DependentUpon>PBarDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\Report\ChangeDestination\RptChangeDestinationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Report\ChangeDestination\RptChangeDestinationControl.Designer.cs">
+      <DependentUpon>RptChangeDestinationControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\Report\Container\RptContainer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -399,6 +405,12 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Form\Report\LeadTime\rptLeadTimeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Report\LeadTime\rptLeadTimeControl.Designer.cs">
+      <DependentUpon>rptLeadTimeControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\Report\RequestPrice\rptSupplyPrice.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -447,6 +459,12 @@
     </Compile>
     <Compile Include="Form\Report\ShippingInstruction\RptSIForm.Designer.cs">
       <DependentUpon>RptSIForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\SI\rptSIControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\Report\SI\rptSIControl.Designer.cs">
+      <DependentUpon>rptSIControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\SearchCustomer.cs">
       <SubType>Form</SubType>
