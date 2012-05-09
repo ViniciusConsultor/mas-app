@@ -13,6 +13,10 @@ namespace VisitaJayaPerkasa.Entities
         public Guid? SupplierID { get; set; }
 
 
+        //Entity view
+        public String CustomerName { get; set; }
+        public String supplierName { get; set; }
+
         public String GenerateNoSurat(int lastValue, EnumSurat type)
         {
             lastValue += 1;
