@@ -301,6 +301,7 @@
     <Compile Include="Entities\CustomerTrans.cs" />
     <Compile Include="Entities\CustomerTransDetail.cs" />
     <Compile Include="Entities\CustomerTransDetailSimplified.cs" />
+    <Compile Include="Entities\EnumSurat.cs" />
     <Compile Include="Entities\Pelayaran.cs" />
     <Compile Include="Entities\PelayaranDetail.cs" />
     <Compile Include="Entities\PriceList.cs" />
@@ -309,6 +310,7 @@
     <Compile Include="Entities\Schedule.cs" />
     <Compile Include="Entities\Supplier.cs" />
     <Compile Include="Entities\SupplierDetail.cs" />
+    <Compile Include="Entities\Surat.cs" />
     <Compile Include="Entities\Trucking.cs" />
     <Compile Include="Entities\TypeCont.cs" />
     <Compile Include="Entities\User.cs" />
@@ -404,6 +406,18 @@
       <DependentUpon>RptKwitansi.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Form\Report\LeadTime\newLeadTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\LeadTime\newLeadTime.Designer.cs">
+      <DependentUpon>newLeadTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\LeadTime\PrintLeadTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\LeadTime\PrintLeadTime.Designer.cs">
+      <DependentUpon>PrintLeadTime.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\Report\LeadTime\rptLeadTimeControl.cs">
       <SubType>UserControl</SubType>
@@ -502,6 +516,7 @@
     <Compile Include="SqlRepository\SqlRoleRepository.cs" />
     <Compile Include="SqlRepository\SqlScheduleRepository.cs" />
     <Compile Include="SqlRepository\SqlSupplierRepository.cs" />
+    <Compile Include="SqlRepository\SqlSuratRepository.cs" />
     <Compile Include="SqlRepository\SqlTruckingRepository.cs" />
     <Compile Include="SqlRepository\SqlTypeContRepository.cs" />
     <Compile Include="SqlRepository\SqlUserRepository.cs" />
@@ -674,6 +689,17 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptKwitansi.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\LeadTime\newLeadTime.resx">
+      <DependentUpon>newLeadTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\LeadTime\PrintLeadTime.resx">
+      <DependentUpon>PrintLeadTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\LeadTime\rptLeadTimeControl.resx">
+      <DependentUpon>rptLeadTimeControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\RequestPrice\rptSupplyPrice.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
