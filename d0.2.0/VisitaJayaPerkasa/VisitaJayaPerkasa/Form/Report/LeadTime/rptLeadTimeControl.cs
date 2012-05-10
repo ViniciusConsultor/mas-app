@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Telerik.WinControls;
 using VisitaJayaPerkasa.Entities;
 using VisitaJayaPerkasa.SqlRepository;
+using Telerik.WinControls.UI;
 
 namespace VisitaJayaPerkasa.Form.Report.LeadTime
 {
@@ -100,11 +101,10 @@ namespace VisitaJayaPerkasa.Form.Report.LeadTime
 
 
                 sqlSuratRepository = new SqlSuratRepository();
-                List<Surat> listSurat = sqlSuratRepository.ListSurat(EnumSurat.LeadTime);
+                listSurat = sqlSuratRepository.ListSurat(EnumSurat.LeadTime);
                 cbHal.DataSource = listSurat;
                 cbHal.DisplayMember = "NoSurat";
 
-                listSurat = null;
                 sqlSuratRepository = null;
             }
             else if (cbSearch.Text.ToLower().Equals("customer"))
@@ -126,7 +126,7 @@ namespace VisitaJayaPerkasa.Form.Report.LeadTime
         }
 
 
-        private void Search(string criteria) {
+        public void Search(string criteria) {
             sqlSuratRepository = new SqlSuratRepository();
 
             if (criteria.ToLower().Equals("hal")) 
@@ -170,7 +170,7 @@ namespace VisitaJayaPerkasa.Form.Report.LeadTime
         {
             if (cbSearch.Text.Equals(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.cboDefaultText)) 
                 MessageBox.Show(this, "Please choose search by", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else if (Utility.Utility.ConvertStringToDate(Utility.Utility.ChangeDateMMDD(lblDateBegin.Text)) > Utility.Utility.ConvertStringToDate(Utility.Utility.ChangeDateMMDD(lblDateEnd.Text)))
+            else if (Utility.Utility.ConvertStringToDate(lblDateBegin.Text) > Utility.Utility.ConvertStringToDate(lblDateEnd.Text))
                 MessageBox.Show(this, "Date begin greather than date end", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
             {
@@ -222,7 +222,7 @@ namespace VisitaJayaPerkasa.Form.Report.LeadTime
 
         private void buttonNew_Click(object sender, EventArgs e)
         {
-            new newLeadTime().ShowDialog();
+            new newLeadTime(null, this).ShowDialog();
         }
 
         private void radCalendarBegin_SelectionChanged_1(object sender, EventArgs e)
@@ -250,6 +250,18 @@ namespace VisitaJayaPerkasa.Form.Report.LeadTime
         private void cboCustomer_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.KeyChar = Convert.ToChar(0);
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            if (radGridView1.SelectedRows.Count == 1)
+            {
+                GridViewRowInfo gridInfo = radGridView1.SelectedRows.First();
+                string id = gridInfo.Cells[1].Value.ToString();
+                Surat tempSurat = listSurat.Where(c => c.NoSurat == id).SingleOrDefault();
+
+                new newLeadTime(tempSurat, this).ShowDialog();
+            }
         }
 
 

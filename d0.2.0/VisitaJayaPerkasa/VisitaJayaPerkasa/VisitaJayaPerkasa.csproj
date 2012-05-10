@@ -407,6 +407,12 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Form\Report\LeadTime\CrtLeadTime.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrtLeadTime.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form\Report\LeadTime\newLeadTime.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -689,6 +695,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptKwitansi.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\LeadTime\CrtLeadTime.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrtLeadTime.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\LeadTime\newLeadTime.resx">
       <DependentUpon>newLeadTime.cs</DependentUpon>

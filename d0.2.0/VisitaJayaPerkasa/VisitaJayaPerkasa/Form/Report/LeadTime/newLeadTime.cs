@@ -17,31 +17,52 @@ namespace VisitaJayaPerkasa.Form.Report.LeadTime
         Surat surat;
         SqlSuratRepository sqlSuratRepository;
         SqlCustomerRepository sqlCustomerRepository;
+        rptLeadTimeControl objParent;
+        bool isCreateNew;
         
 
-        public newLeadTime()
+        public newLeadTime(Surat objSurat, rptLeadTimeControl objParent)
         {
             InitializeComponent();
+            this.objParent = objParent;
 
-            surat = new Surat();
-            sqlSuratRepository = new SqlSuratRepository();
+
             sqlCustomerRepository = new SqlCustomerRepository();
-
-            Surat tempSurat = sqlSuratRepository.GetlastNoSurat(EnumSurat.LeadTime);
-            String strTempNoSurat = (tempSurat == null) ? "0" : tempSurat.NoSurat.Substring(0, 4);
-            etNoSurat.Text = surat.GenerateNoSurat(Int32.Parse(strTempNoSurat), EnumSurat.LeadTime);
-
-
             List<Customer> listCustomer = sqlCustomerRepository.listCustomerForPriceList();
             cboCustomer.DataSource = listCustomer;
             cboCustomer.DisplayMember = "CustomerName";
             cboCustomer.ValueMember = "ID";
 
-            listCustomer = null;
+
+
+            if (objSurat == null)
+            {
+                surat = new Surat();
+                sqlSuratRepository = new SqlSuratRepository();
+                isCreateNew = true;
+
+                Surat tempSurat = sqlSuratRepository.GetlastNoSurat(EnumSurat.LeadTime);
+                String strTempNoSurat = (tempSurat == null) ? "0" : tempSurat.NoSurat.Substring(0, 4);
+                etNoSurat.Text = surat.GenerateNoSurat(Int32.Parse(strTempNoSurat), EnumSurat.LeadTime);
+
+
+
+                listCustomer = null;
+                tempSurat = null;
+                strTempNoSurat = null;
+                sqlSuratRepository = null;
+            }
+            else 
+            {
+                isCreateNew = false;
+                surat = objSurat;
+                etNoSurat.Text = objSurat.NoSurat;
+                radDateTimePicker1.Value = objSurat.Tgl;
+                cboCustomer.SelectedValue = objSurat.CustomerID;
+            }
+
+            
             sqlCustomerRepository = null;
-            tempSurat = null;
-            strTempNoSurat = null;
-            sqlSuratRepository = null;
         }
 
         private void cboCustomer_KeyPress(object sender, KeyPressEventArgs e)
@@ -51,6 +72,7 @@ namespace VisitaJayaPerkasa.Form.Report.LeadTime
 
         private void radButton1_Click(object sender, EventArgs e)
         {
+            this.objParent.Search("first");
             this.Dispose();
             this.Close();
         }
@@ -65,15 +87,30 @@ namespace VisitaJayaPerkasa.Form.Report.LeadTime
                 SqlParameter[] sqlParam = SqlUtility.SetSqlParameter(new string[] { "No_Surat", "Tgl", "Customer_Id", "Supplier_Id" }, 
                     new object[] { etNoSurat.Text.Trim(), radDateTimePicker1.Value.Date, cboCustomer.SelectedValue, DBNull.Value});
 
-                if (sqlSuratRepository.CreateSurat(sqlParam))
+                if (isCreateNew)
                 {
-                    MessageBox.Show(this, "Success Create Surat", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    btnCancel.PerformClick();
+                    if (sqlSuratRepository.CreateSurat(sqlParam))
+                    {
+                        MessageBox.Show(this, "Success Create Surat", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnCancel.PerformClick();
+                    }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
-                else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
-                {
-                    MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                else {
+                    if (sqlSuratRepository.EditSurat(sqlParam))
+                    {
+                        MessageBox.Show(this, "Success Edit Surat", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnCancel.PerformClick();
+                    }
+                    else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
+                    {
+                        MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
             }
         }
