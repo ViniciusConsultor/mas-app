@@ -416,6 +416,15 @@ SELECT person_id, username, password, deleted FROM [USER] WHERE (person_id = @pe
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Surat_Lead_Time" msprop:Generator_TableClassName="Surat_Lead_TimeDataTable" msprop:Generator_TableVarName="tableSurat_Lead_Time" msprop:Generator_TablePropName="Surat_Lead_Time" msprop:Generator_RowDeletingName="Surat_Lead_TimeRowDeleting" msprop:Generator_UserTableName="Surat_Lead_Time" msprop:Generator_RowChangingName="Surat_Lead_TimeRowChanging" msprop:Generator_RowEvHandlerName="Surat_Lead_TimeRowChangeEventHandler" msprop:Generator_RowDeletedName="Surat_Lead_TimeRowDeleted" msprop:Generator_RowEvArgName="Surat_Lead_TimeRowChangeEvent" msprop:Generator_RowChangedName="Surat_Lead_TimeRowChanged" msprop:Generator_RowClassName="Surat_Lead_TimeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Column1" msprop:Generator_ColumnVarNameInTable="columnColumn1" msprop:Generator_ColumnPropNameInRow="Column1" msprop:Generator_ColumnPropNameInTable="Column1Column" msprop:Generator_UserColumnName="Column1" type="xs:string" minOccurs="0" />
+              <xs:element name="Column2" msprop:Generator_ColumnVarNameInTable="columnColumn2" msprop:Generator_ColumnPropNameInRow="Column2" msprop:Generator_ColumnPropNameInTable="Column2Column" msprop:Generator_UserColumnName="Column2" type="xs:string" minOccurs="0" />
+              <xs:element name="Column3" msprop:Generator_ColumnVarNameInTable="columnColumn3" msprop:Generator_ColumnPropNameInRow="Column3" msprop:Generator_ColumnPropNameInTable="Column3Column" msprop:Generator_UserColumnName="Column3" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">

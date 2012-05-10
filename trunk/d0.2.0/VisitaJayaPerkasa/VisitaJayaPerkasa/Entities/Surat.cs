@@ -27,16 +27,16 @@ namespace VisitaJayaPerkasa.Entities
 
             switch (type) { 
                 case EnumSurat.RO:
-                    nolString += lastValue + "VJP/RO/" + DateTime.Today.Year;
+                    nolString += lastValue + "/VJP/RO/" + DateTime.Today.Year;
                     break;
                 case EnumSurat.LeadTime:
-                    nolString += lastValue + "VJP/LT/" + DateTime.Today.Year;
+                    nolString += lastValue + "/VJP/LT/" + DateTime.Today.Year;
                     break;
                 case EnumSurat.PenawaranHarga:
-                    nolString += lastValue + "VJP/PH/" + DateTime.Today.Year;
+                    nolString += lastValue + "/VJP/PH/" + DateTime.Today.Year;
                     break;
                 case EnumSurat.ShippingInstruction:
-                    nolString += lastValue + "VJP/SI/" + DateTime.Today.Year;
+                    nolString += lastValue + "/VJP/SI/" + DateTime.Today.Year;
                     break;
             }
 

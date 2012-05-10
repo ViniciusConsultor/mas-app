@@ -240,5 +240,56 @@ namespace VisitaJayaPerkasa.SqlRepository
             }
             return n > 0;
         }
+
+
+
+        public bool EditSurat(SqlParameter[] sqlParam)
+        {
+            int n = 0;
+            SqlConnection con;
+            SqlTransaction sqlTransaction = null;
+
+            using (con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+            {
+                try
+                {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
+                    con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
+                    sqlTransaction = con.BeginTransaction();
+                    using (SqlCommand command = new SqlCommand(
+                        "Update [Surat] set Tgl = " +
+                        sqlParam[1].ParameterName + ", Customer_ID = " +
+                        sqlParam[2].ParameterName + ", Supplier_ID = " +
+                        sqlParam[3].ParameterName +
+                        " Where No_Surat = " + sqlParam[0].ParameterName, con))
+                    {
+                        command.Transaction = sqlTransaction;
+
+                        for (int i = 0; i < sqlParam.Length; i++)
+                            command.Parameters.Add(sqlParam[i]);
+                        n = command.ExecuteNonQuery();
+                    }
+
+                    if (n > 0)
+                        sqlTransaction.Commit();
+                    else
+                        sqlTransaction.Rollback();
+                }
+                catch (Exception e)
+                {
+                    if (sqlTransaction != null)
+                        sqlTransaction.Rollback();
+
+                    Logging.Error("SqlSuratRepository.cs - EditSurat() " + e.Message);
+                }
+                finally
+                {
+                    sqlTransaction.Dispose();
+                }
+            }
+            return n > 0;
+        }
     }
 }
