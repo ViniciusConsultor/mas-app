@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridSortField gridSortField3 = new Telerik.WinControls.UI.GridSortField();
-            Telerik.WinControls.UI.GridSortField gridSortField4 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridSortField gridSortField2 = new Telerik.WinControls.UI.GridSortField();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rptLeadTimeControl));
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.radToolStripElement1 = new Telerik.WinControls.UI.RadToolStripElement();
@@ -60,10 +60,10 @@
             this.radToolStripItem2 = new Telerik.WinControls.UI.RadToolStripItem();
             this.buttonNew = new Telerik.WinControls.UI.RadButtonElement();
             this.buttonPrint = new Telerik.WinControls.UI.RadButtonElement();
+            this.buttonEdit = new Telerik.WinControls.UI.RadButtonElement();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.radCalendarBegin = new Telerik.WinControls.UI.RadCalendar();
             this.radCalendarEnd = new Telerik.WinControls.UI.RadCalendar();
-            this.buttonEdit = new Telerik.WinControls.UI.RadButtonElement();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbHal)).BeginInit();
@@ -92,7 +92,7 @@
             this.radToolStrip1.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             this.radToolStrip1.RootElement.MinSize = new System.Drawing.Size(5, 5);
             this.radToolStrip1.ShowOverFlowButton = true;
-            this.radToolStrip1.Size = new System.Drawing.Size(729, 53);
+            this.radToolStrip1.Size = new System.Drawing.Size(729, 74);
             this.radToolStrip1.TabIndex = 4;
             this.radToolStrip1.Text = "radToolStrip1";
             // 
@@ -331,6 +331,14 @@
             this.buttonPrint.Text = "Print";
             this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
             // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.ShowBorder = false;
+            this.buttonEdit.Text = "Edit";
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+            // 
             // radGridView1
             // 
             this.radGridView1.BackColor = System.Drawing.SystemColors.Control;
@@ -341,41 +349,41 @@
             this.radGridView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.radGridView1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.radGridView1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.radGridView1.Location = new System.Drawing.Point(0, 53);
+            this.radGridView1.Location = new System.Drawing.Point(0, 74);
             // 
             // 
             // 
             this.radGridView1.MasterGridViewTemplate.AllowAddNewRow = false;
-            gridViewTextBoxColumn4.FieldAlias = "column1";
-            gridViewTextBoxColumn4.FieldName = "Tgl";
-            gridViewTextBoxColumn4.FormatString = "{0:MM/dd/yyyy}";
-            gridViewTextBoxColumn4.HeaderText = "Date";
-            gridViewTextBoxColumn4.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            gridViewTextBoxColumn4.UniqueName = "Tgl";
-            gridViewTextBoxColumn4.Width = 120;
-            gridViewTextBoxColumn5.FieldAlias = "column2";
-            gridViewTextBoxColumn5.FieldName = "NoSurat";
-            gridViewTextBoxColumn5.HeaderText = "No Surat";
-            gridViewTextBoxColumn5.UniqueName = "NoSurat";
-            gridViewTextBoxColumn5.Width = 150;
-            gridViewTextBoxColumn6.FieldAlias = "column3";
-            gridViewTextBoxColumn6.FieldName = "CustomerName";
-            gridViewTextBoxColumn6.HeaderText = "Nama Customer";
-            gridViewTextBoxColumn6.UniqueName = "NamaCustomer";
-            gridViewTextBoxColumn6.Width = 160;
-            this.radGridView1.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn4);
-            this.radGridView1.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn5);
-            this.radGridView1.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn6);
-            gridSortField3.FieldAlias = "Tgl";
-            gridSortField3.FieldName = "Tgl";
-            gridSortField3.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            gridSortField4.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            this.radGridView1.MasterGridViewTemplate.SortExpressions.Add(gridSortField3);
-            this.radGridView1.MasterGridViewTemplate.SortExpressions.Add(gridSortField4);
+            gridViewTextBoxColumn1.FieldAlias = "column1";
+            gridViewTextBoxColumn1.FieldName = "Tgl";
+            gridViewTextBoxColumn1.FormatString = "{0:MM/dd/yyyy}";
+            gridViewTextBoxColumn1.HeaderText = "Date";
+            gridViewTextBoxColumn1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            gridViewTextBoxColumn1.UniqueName = "Tgl";
+            gridViewTextBoxColumn1.Width = 120;
+            gridViewTextBoxColumn2.FieldAlias = "column2";
+            gridViewTextBoxColumn2.FieldName = "NoSurat";
+            gridViewTextBoxColumn2.HeaderText = "No Surat";
+            gridViewTextBoxColumn2.UniqueName = "NoSurat";
+            gridViewTextBoxColumn2.Width = 150;
+            gridViewTextBoxColumn3.FieldAlias = "column3";
+            gridViewTextBoxColumn3.FieldName = "CustomerName";
+            gridViewTextBoxColumn3.HeaderText = "Nama Customer";
+            gridViewTextBoxColumn3.UniqueName = "NamaCustomer";
+            gridViewTextBoxColumn3.Width = 160;
+            this.radGridView1.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
+            this.radGridView1.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
+            this.radGridView1.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);
+            gridSortField1.FieldAlias = "Tgl";
+            gridSortField1.FieldName = "Tgl";
+            gridSortField1.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            gridSortField2.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            this.radGridView1.MasterGridViewTemplate.SortExpressions.Add(gridSortField1);
+            this.radGridView1.MasterGridViewTemplate.SortExpressions.Add(gridSortField2);
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.ReadOnly = true;
             this.radGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radGridView1.Size = new System.Drawing.Size(729, 347);
+            this.radGridView1.Size = new System.Drawing.Size(729, 326);
             this.radGridView1.TabIndex = 5;
             // 
             // radCalendarBegin
@@ -419,14 +427,6 @@
             this.radCalendarEnd.TitleAlign = System.Windows.Forms.VisualStyles.ContentAlignment.Center;
             this.radCalendarEnd.ZoomFactor = 1.2F;
             this.radCalendarEnd.SelectionChanged += new System.EventHandler(this.radCalendarEnd_SelectionChanged_1);
-            // 
-            // buttonEdit
-            // 
-            this.buttonEdit.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.ShowBorder = false;
-            this.buttonEdit.Text = "Edit";
-            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // rptLeadTimeControl
             // 
