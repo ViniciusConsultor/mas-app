@@ -38,12 +38,12 @@ namespace VisitaJayaPerkasa.Form.Report.LeadTime
             //Execute Query
             String strQry = "Select [CUSTOMER_TRANS_DETAIL].no_container as Column1, " + 
                 "(Select Top 1 address From WareHouse Where stuffing_place_id = stuffing_place) as Column2, " + 
-                "[CUSTOMER_TRANS_DETAIL].terima_toko From [CUSTOMER_TRANS_DETAIL] " + 
+                "[CUSTOMER_TRANS_DETAIL].terima_toko as Column3 From [CUSTOMER_TRANS_DETAIL] " + 
                 "Join [Customer_Trans] On " + 
-                "[Customer_Trans].tgl_transaksi = '" + objSurat.Tgl + "' And " + 
+                "[Customer_Trans].tgl_transaksi = cast('" + Utility.Utility.ConvertDateToString(objSurat.Tgl) + "' as date) And " + 
                 "[Customer_Trans].Customer_id = '" + objSurat.CustomerID + "' And " + 
-                "([Customer_Trans].deleted is not null Or [Customer_Trans].deleted == 0) " +
-                "And [Customer_Trans].id = [Customer_Trans_Id].customer_trans_id";
+                "([Customer_Trans].deleted is not null Or [Customer_Trans].deleted = 0) " +
+                "And [Customer_Trans].id = [Customer_Trans_Detail].customer_trans_id";
 
             int columnNo = 1;
             paramField = new ParameterField();
@@ -66,6 +66,20 @@ namespace VisitaJayaPerkasa.Form.Report.LeadTime
             paramField.Name = "col" + columnNo.ToString();
             paramDiscreteValue = new ParameterDiscreteValue();
             paramDiscreteValue.Value = "Gudang";
+            paramField.CurrentValues.Add(paramDiscreteValue);
+            paramFields.Add(paramField);
+
+            paramField = new ParameterField();
+            paramField.Name = "noSurat";
+            paramDiscreteValue = new ParameterDiscreteValue();
+            paramDiscreteValue.Value = objSurat.NoSurat;
+            paramField.CurrentValues.Add(paramDiscreteValue);
+            paramFields.Add(paramField);
+
+            paramField = new ParameterField();
+            paramField.Name = "parameterReceive";
+            paramDiscreteValue = new ParameterDiscreteValue();
+            paramDiscreteValue.Value = objSurat.CustomerName;
             paramField.CurrentValues.Add(paramDiscreteValue);
             paramFields.Add(paramField);
             crystalReportViewer1.ParameterFieldInfo = paramFields;

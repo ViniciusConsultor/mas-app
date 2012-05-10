@@ -217,7 +217,14 @@ namespace VisitaJayaPerkasa.Form.Report.LeadTime
 
         private void buttonPrint_Click(object sender, EventArgs e)
         {
-            new PrintLeadTime().ShowDialog();
+            if (radGridView1.SelectedRows.Count == 1)
+            {
+                GridViewRowInfo gridInfo = radGridView1.SelectedRows.First();
+                string id = gridInfo.Cells[1].Value.ToString();
+                Surat tempSurat = listSurat.Where(c => c.NoSurat == id).SingleOrDefault();
+
+                new PrintLeadTime(tempSurat).ShowDialog();
+            }
         }
 
         private void buttonNew_Click(object sender, EventArgs e)
