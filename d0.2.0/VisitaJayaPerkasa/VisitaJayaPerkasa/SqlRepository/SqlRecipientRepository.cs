@@ -55,8 +55,8 @@ namespace VisitaJayaPerkasa.SqlRepository
 
                 return listRecipient;
         }
-        /*
-        public List<Recipient> GetRecipientBySupplier(string supplierID)
+
+        public List<Recipient> GetRecipientByCustomer(Guid customerId)
         {
             List<Recipient> listRecipient = new List<Recipient>();
 
@@ -67,12 +67,13 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT recipient_id, recipient_name, supplier_id, " +
-                        "(SELECT supplier_name FROM [SUPPLIER] s WHERE s.supplier_id = r.supplier_id) as SupplierName " +
-                        "FROM [Recipient] r " +
-                        "WHERE (r.deleted is null OR r.deleted = '0') " +
-                        "AND r.supplier_id = '" + supplierID + "' " +
-                        "ORDER BY recipient_name ASC"
+                            "SELECT r.recipient_id, r.recipient_name, r.address, r.phone1, r.phone2, r.phone3 " +
+                            "FROM [Recipient] r " +
+                            "INNER JOIN [CUSTOMER_RECIPIENT] cr " +
+                            "ON cr.recipient_id = r.recipient_id " +
+                            "WHERE (r.deleted is null OR r.deleted = '0') " +
+                            "AND cr.customer_id = '" + customerId.ToString() + "' " +
+                            "ORDER BY recipient_name ASC"
                         , con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
@@ -81,8 +82,10 @@ namespace VisitaJayaPerkasa.SqlRepository
                             Recipient recipient = new Recipient();
                             recipient.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
                             recipient.Name = reader.GetString(1);
-                            recipient.SupplierID = Utility.Utility.ConvertToUUID(reader.GetValue(2).ToString());
-                            recipient.SupplierName = reader.GetString(3);
+                            recipient.Address = reader.GetValue(2).ToString();
+                            recipient.Phone1 = Utility.Utility.IsDBNull(reader.GetValue(3)) ? null : reader.GetString(3);
+                            recipient.Phone2 = Utility.Utility.IsDBNull(reader.GetValue(4)) ? null : reader.GetString(4);
+                            recipient.Phone3 = Utility.Utility.IsDBNull(reader.GetValue(5)) ? null : reader.GetString(5);
 
                             if (listRecipient == null)
                                 listRecipient = new List<Recipient>();
@@ -95,11 +98,11 @@ namespace VisitaJayaPerkasa.SqlRepository
             }
             catch (Exception e)
             {
-                Logging.Error("SqlRecipientRepository.cs - GetRecipient() " + e.Message);
+                Logging.Error("SqlRecipientRepository.cs - GetRecipientByCustomer() " + e.Message);
             }
 
             return listRecipient;
-        }*/
+        }
 
         public Guid GetRecipientIDbyRecipientName(String recipientName , string address)
         {

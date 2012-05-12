@@ -34,6 +34,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
         private SqlRecipientRepository sqlRecipientRepository;
         private SqlScheduleRepository sqlScheduleRepository;
         private SqlTruckingRepository sqlTruckingRepository;
+        private SqlJenisBarangRepository sqlJenisBarangRepository;
 
         public CustomerTransEdit(VisitaJayaPerkasa.Entities.CustomerTrans customerTrans)
         {
@@ -50,6 +51,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
             sqlRecipientRepository = new SqlRecipientRepository();
             sqlScheduleRepository = new SqlScheduleRepository();
             sqlTruckingRepository = new SqlTruckingRepository();
+            sqlJenisBarangRepository = new SqlJenisBarangRepository();
 
             List<VisitaJayaPerkasa.Entities.Customer> listCustomer = sqlCustomerRepository.ListCustomers();
             List<VisitaJayaPerkasa.Entities.TypeCont> listType = sqlTypeContRepository.GetTypeCont();
@@ -70,9 +72,10 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 return;
             }
 
-            List<VisitaJayaPerkasa.Entities.WareHouse> listWarehouse = sqlWarehouseRepository.GetWareHouse();
-            List<VisitaJayaPerkasa.Entities.Recipient> listRecipient = sqlRecipientRepository.GetRecipient();
-            List<VisitaJayaPerkasa.Entities.Trucking> listTrucking = sqlTruckingRepository.ListTrucking();
+            List<VisitaJayaPerkasa.Entities.WareHouse> listWarehouse = sqlWarehouseRepository.GetWareHouseByCustomer(customerTrans.CustomerID);
+            List<VisitaJayaPerkasa.Entities.Recipient> listRecipient = sqlRecipientRepository.GetRecipientByCustomer(customerTrans.CustomerID);
+            List<VisitaJayaPerkasa.Entities.Trucking> listTrucking = new List<Entities.Trucking>();
+            List<VisitaJayaPerkasa.Entities.JenisBarang> listJenisBarang = sqlJenisBarangRepository.ListJenisBarang();
             if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
             {
                 MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -136,6 +139,12 @@ namespace VisitaJayaPerkasa.Control.Transaction
             cboTrucking.SelectedIndex = -1;
             cboTrucking.Text = "-- Choose --";
 
+            cboJenisBarang.DataSource = listJenisBarang;
+            cboJenisBarang.DisplayMember = "Nama";
+            cboJenisBarang.ValueMember = "Nama";
+            cboJenisBarang.SelectedIndex = -1;
+            cboJenisBarang.Text = "-- Type or Choose --";
+
             if (customerTrans == null)
             {
                 wantToCreateVessel = true;
@@ -192,6 +201,18 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 MessageBox.Show(this, "Please select Customer", "Information");
                 return;
             }
+            else if (cboJenisBarang.SelectedIndex == -1)
+            {
+                if (cboJenisBarang.Text != "-- Type or Choose --")
+                {
+                    //Use the text and save it to DB
+                    sqlJenisBarangRepository.AddJenisBarang(cboJenisBarang.Text);
+                }
+                else
+                {
+                    cboJenisBarang.Text = "";
+                }
+            }
             /*else if (cboType.SelectedIndex == -1)
             {
                 MessageBox.Show(this, "Please select Cont Type", "Information");
@@ -245,13 +266,13 @@ namespace VisitaJayaPerkasa.Control.Transaction
             {
                 MessageBox.Show(this, "Please fill set price", "Information");
                 return;
-            }//*/
+            }//
             else if (dtpTD.Value < dtpETD.Value)
             {
                 MessageBox.Show(this, "Please select td greater than or equal with etd", "Information");
                 return;
             }
-            else
+            else//*/
             {
                 try
                 {
@@ -313,7 +334,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
                         objCustTransDetail.RecipientID = Utility.Utility.ConvertToUUID(cboRecipient.SelectedValue.ToString());
                         objCustTransDetail.RecipientName = cboRecipient.Text;
                     }
-                    objCustTransDetail.JenisBarang = etJenisBarang.Text.Trim();
+                    objCustTransDetail.JenisBarang = cboJenisBarang.Text.Trim();
                     objCustTransDetail.NoContainer = etNoContainer.Text.Trim();
                     objCustTransDetail.Quantity = etQty.Text.Trim();
                     objCustTransDetail.NoBA = etBA.Text.Trim();
@@ -352,7 +373,6 @@ namespace VisitaJayaPerkasa.Control.Transaction
 
                     etSeal.Text = "";
                     etVoy.Text = "";
-                    etJenisBarang.Text = "";
                     etNoContainer.Text = "";
                     etQty.Text = "";
                     etBA.Text = "";
@@ -406,6 +426,8 @@ namespace VisitaJayaPerkasa.Control.Transaction
                     cboRecipient.Text = "-- Choose --";
                     cboTrucking.SelectedIndex = -1;
                     cboTrucking.Text = "-- Choose --";
+                    cboJenisBarang.SelectedIndex = -1;
+                    cboJenisBarang.Text = "-- Type or Choose --";
 
 
                     dtpStuffingDate.Value = DateTime.Now;
@@ -790,6 +812,14 @@ namespace VisitaJayaPerkasa.Control.Transaction
             }
             VisitaJayaPerkasa.Entities.Schedule schedule = cboPelayaranDetail.SelectedValue as VisitaJayaPerkasa.Entities.Schedule;
             etVoy.Text = schedule.voy;
+            dtpETD.Value = schedule.etd;
+            
+            List<VisitaJayaPerkasa.Entities.Trucking> listTrucking = sqlTruckingRepository.ListTruckingBySchedule(schedule.ID);
+            cboTrucking.DataSource = listTrucking;
+            cboTrucking.DisplayMember = "TruckNo";
+            cboTrucking.ValueMember = "ID";
+            cboTrucking.SelectedIndex = -1;
+            cboTrucking.Text = "-- Choose --";
         }
 
         /*

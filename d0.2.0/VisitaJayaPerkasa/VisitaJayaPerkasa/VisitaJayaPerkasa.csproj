@@ -302,6 +302,7 @@
     <Compile Include="Entities\CustomerTransDetail.cs" />
     <Compile Include="Entities\CustomerTransDetailSimplified.cs" />
     <Compile Include="Entities\EnumSurat.cs" />
+    <Compile Include="Entities\JenisBarang.cs" />
     <Compile Include="Entities\Pelayaran.cs" />
     <Compile Include="Entities\PelayaranDetail.cs" />
     <Compile Include="Entities\PriceList.cs" />
@@ -516,6 +517,7 @@
     <Compile Include="SqlRepository\SqlCustomerRepository.cs" />
     <Compile Include="SqlRepository\SqlCustomerTransRepository.cs" />
     <Compile Include="SqlRepository\SqlInvoiceRepository.cs" />
+    <Compile Include="SqlRepository\SqlJenisBarangRepository.cs" />
     <Compile Include="SqlRepository\SqlPelayaranRepository.cs" />
     <Compile Include="SqlRepository\SqlPriceListRepository.cs" />
     <Compile Include="SqlRepository\SqlRecipientRepository.cs" />
