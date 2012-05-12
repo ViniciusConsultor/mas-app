@@ -55,6 +55,56 @@ namespace VisitaJayaPerkasa.SqlRepository
             return listWareHouse;
         }
 
+        public List<VisitaJayaPerkasa.Entities.WareHouse> GetWareHouseByCustomer(Guid customerId)
+        {
+            List<VisitaJayaPerkasa.Entities.WareHouse> listWareHouse = null;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
+                    con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT w.stuffing_place_id, w.address, w.phone, w.fax, w.email, w.contact_person " +
+                        "FROM [WAREHOUSE] w "+
+                        "INNER JOIN [CUSTOMER_WAREHOUSE] cw " +
+                        "ON cw.warehouse_id = w.stuffing_place_id " +
+                        "WHERE (w.deleted is null OR w.deleted = '0') " +
+                        "AND cw.customer_id = '" + customerId.ToString() + "' " +
+                        "ORDER BY address ASC"
+                        , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            VisitaJayaPerkasa.Entities.WareHouse warehouse = new VisitaJayaPerkasa.Entities.WareHouse();
+                            warehouse.Id = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                            warehouse.Address = reader.GetString(1);
+                            warehouse.Phone = Utility.Utility.IsDBNull(reader.GetValue(2)) ? null : reader.GetString(2);
+                            warehouse.Fax = Utility.Utility.IsDBNull(reader.GetValue(3)) ? null : reader.GetString(3);
+                            warehouse.Email = Utility.Utility.IsDBNull(reader.GetValue(4)) ? null : reader.GetString(4);
+                            warehouse.ContactPerson = Utility.Utility.IsDBNull(reader.GetValue(5)) ? null : reader.GetString(5);
+
+                            if (listWareHouse == null)
+                                listWareHouse = new List<VisitaJayaPerkasa.Entities.WareHouse>();
+
+                            listWareHouse.Add(warehouse);
+                            warehouse = null;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlWareHouseRepository.cs - GetWareHouseByCustomer() " + e.Message);
+            }
+
+            return listWareHouse;
+        }
+
         public bool CheckWarehouse(SqlParameter[] sqlParam, Guid gID, bool checkDeletedData = false)
         {
             bool exists = false;
