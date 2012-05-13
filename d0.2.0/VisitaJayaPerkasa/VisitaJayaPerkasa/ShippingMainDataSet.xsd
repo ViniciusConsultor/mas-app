@@ -425,6 +425,14 @@ SELECT person_id, username, password, deleted FROM [USER] WHERE (person_id = @pe
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="SI" msprop:Generator_TableClassName="SIDataTable" msprop:Generator_TableVarName="tableSI" msprop:Generator_TablePropName="SI" msprop:Generator_RowDeletingName="SIRowDeleting" msprop:Generator_UserTableName="SI" msprop:Generator_RowChangingName="SIRowChanging" msprop:Generator_RowEvHandlerName="SIRowChangeEventHandler" msprop:Generator_RowDeletedName="SIRowDeleted" msprop:Generator_RowEvArgName="SIRowChangeEvent" msprop:Generator_RowChangedName="SIRowChanged" msprop:Generator_RowClassName="SIRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="no_container" msprop:Generator_ColumnVarNameInTable="columnno_container" msprop:Generator_ColumnPropNameInRow="no_container" msprop:Generator_ColumnPropNameInTable="no_containerColumn" msprop:Generator_UserColumnName="no_container" type="xs:string" minOccurs="0" />
+              <xs:element name="seal" msprop:Generator_ColumnVarNameInTable="columnseal" msprop:Generator_ColumnPropNameInRow="seal" msprop:Generator_ColumnPropNameInTable="sealColumn" msprop:Generator_UserColumnName="seal" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">

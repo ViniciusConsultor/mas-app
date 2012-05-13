@@ -82,6 +82,7 @@
             this.txtTruckingNumber = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel18 = new Telerik.WinControls.UI.RadLabel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
+            this.btnPelayaran = new Telerik.WinControls.UI.RadButton();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etAddress)).BeginInit();
@@ -127,6 +128,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPelayaran)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -506,25 +508,25 @@
             // 
             this.btnAdd.Location = new System.Drawing.Point(364, 209);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(111, 21);
+            this.btnAdd.Size = new System.Drawing.Size(85, 21);
             this.btnAdd.TabIndex = 13;
             this.btnAdd.Text = "Add To Grid";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnClearGrid
             // 
-            this.btnClearGrid.Location = new System.Drawing.Point(481, 209);
+            this.btnClearGrid.Location = new System.Drawing.Point(451, 209);
             this.btnClearGrid.Name = "btnClearGrid";
-            this.btnClearGrid.Size = new System.Drawing.Size(81, 21);
+            this.btnClearGrid.Size = new System.Drawing.Size(85, 21);
             this.btnClearGrid.TabIndex = 38;
             this.btnClearGrid.Text = "Clear Grid";
             this.btnClearGrid.Click += new System.EventHandler(this.btnClearGrid_Click);
             // 
             // btnRemoveGrid
             // 
-            this.btnRemoveGrid.Location = new System.Drawing.Point(568, 209);
+            this.btnRemoveGrid.Location = new System.Drawing.Point(538, 209);
             this.btnRemoveGrid.Name = "btnRemoveGrid";
-            this.btnRemoveGrid.Size = new System.Drawing.Size(111, 21);
+            this.btnRemoveGrid.Size = new System.Drawing.Size(85, 21);
             this.btnRemoveGrid.TabIndex = 39;
             this.btnRemoveGrid.Text = "Remove Data";
             this.btnRemoveGrid.Click += new System.EventHandler(this.btnRemoveGrid_Click);
@@ -548,6 +550,7 @@
             // 
             // splitPanel1
             // 
+            this.splitPanel1.Controls.Add(this.btnPelayaran);
             this.splitPanel1.Controls.Add(this.groupBoxTrucking);
             this.splitPanel1.Controls.Add(this.btnRemoveGrid);
             this.splitPanel1.Controls.Add(this.btnAdd);
@@ -656,6 +659,15 @@
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
             // 
+            // btnPelayaran
+            // 
+            this.btnPelayaran.Location = new System.Drawing.Point(624, 209);
+            this.btnPelayaran.Name = "btnPelayaran";
+            this.btnPelayaran.Size = new System.Drawing.Size(69, 21);
+            this.btnPelayaran.TabIndex = 41;
+            this.btnPelayaran.Text = "Pelayaran";
+            this.btnPelayaran.Click += new System.EventHandler(this.btnPelayaran_Click);
+            // 
             // SupplierEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -712,6 +724,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnPelayaran)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -765,5 +778,6 @@
         private Telerik.WinControls.UI.RadButton btnAddTrucking;
         private Telerik.WinControls.UI.RadTextBox txtTruckingNumber;
         private Telerik.WinControls.UI.RadLabel radLabel18;
+        private Telerik.WinControls.UI.RadButton btnPelayaran;
     }
 }

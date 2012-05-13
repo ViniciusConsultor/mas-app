@@ -451,5 +451,12 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 gvTrucking.Rows.RemoveAt(gvTrucking.CurrentCell.RowIndex);
         }
 
+        private void btnPelayaran_Click(object sender, EventArgs e)
+        {
+            VisitaJayaPerkasa.Entities.Pelayaran pelayaran = null;
+            UserControl controllers = new Pelayaran.PelayaranEdit(pelayaran);
+            Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
+        }
+
     }
 }
