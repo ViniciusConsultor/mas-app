@@ -18,44 +18,38 @@ namespace VisitaJayaPerkasa.Form.Report.SI
 
         ParameterField paramField;
         ParameterDiscreteValue paramDiscreteValue;
-        public PrintSI()
+
+        public PrintSI(string Supplier, string city, string kapal, string date)
         {
             InitializeComponent();
             reportDocument = new ReportDocument();
             paramFields = new ParameterFields();
 
             paramField = new ParameterField();
-            paramField.Name = "col";
+            paramField.Name = "supplier";
             paramDiscreteValue = new ParameterDiscreteValue();
-            paramDiscreteValue.Value = "Container";
+            paramDiscreteValue.Value = Supplier;
             paramField.CurrentValues.Add(paramDiscreteValue);
             paramFields.Add(paramField);
 
             paramField = new ParameterField();
-            paramField.Name = "col";
+            paramField.Name = "kapal";
             paramDiscreteValue = new ParameterDiscreteValue();
-            paramDiscreteValue.Value = "Tgl penerimaan Container";
+            paramDiscreteValue.Value = kapal;
             paramField.CurrentValues.Add(paramDiscreteValue);
             paramFields.Add(paramField);
 
             paramField = new ParameterField();
-            paramField.Name = "col";
+            paramField.Name = "tujuan";
             paramDiscreteValue = new ParameterDiscreteValue();
-            paramDiscreteValue.Value = "Gudang";
+            paramDiscreteValue.Value = city;
             paramField.CurrentValues.Add(paramDiscreteValue);
             paramFields.Add(paramField);
 
             paramField = new ParameterField();
-            paramField.Name = "noSurat";
+            paramField.Name = "ATD";
             paramDiscreteValue = new ParameterDiscreteValue();
-            paramDiscreteValue.Value = "";
-            paramField.CurrentValues.Add(paramDiscreteValue);
-            paramFields.Add(paramField);
-
-            paramField = new ParameterField();
-            paramField.Name = "parameterReceive";
-            paramDiscreteValue = new ParameterDiscreteValue();
-            paramDiscreteValue.Value = "";
+            paramDiscreteValue.Value = date;
             paramField.CurrentValues.Add(paramDiscreteValue);
             paramFields.Add(paramField);
             crystalReportViewer1.ParameterFieldInfo = paramFields;

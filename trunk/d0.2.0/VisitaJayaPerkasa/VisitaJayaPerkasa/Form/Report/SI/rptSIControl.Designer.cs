@@ -37,6 +37,8 @@
             this.cboSupplier = new Telerik.WinControls.UI.RadComboBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.btnPrint = new Telerik.WinControls.UI.RadButton();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.cboDooringAgent = new Telerik.WinControls.UI.RadComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.cboKapal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
@@ -45,6 +47,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboSupplier)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboDooringAgent)).BeginInit();
             this.SuspendLayout();
             // 
             // dateTimePicker1
@@ -130,17 +134,41 @@
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(199, 199);
+            this.btnPrint.Location = new System.Drawing.Point(199, 231);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(150, 22);
             this.btnPrint.TabIndex = 59;
             this.btnPrint.Text = "Print";
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
+            // radLabel5
+            // 
+            this.radLabel5.Location = new System.Drawing.Point(58, 195);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(79, 16);
+            this.radLabel5.TabIndex = 60;
+            this.radLabel5.Text = "Dooring Agent";
+            // 
+            // cboDooringAgent
+            // 
+            this.cboDooringAgent.Location = new System.Drawing.Point(199, 191);
+            this.cboDooringAgent.Name = "cboDooringAgent";
+            // 
+            // 
+            // 
+            this.cboDooringAgent.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
+            this.cboDooringAgent.RootElement.StretchVertically = true;
+            this.cboDooringAgent.Size = new System.Drawing.Size(150, 20);
+            this.cboDooringAgent.TabIndex = 61;
+            this.cboDooringAgent.TabStop = false;
+            this.cboDooringAgent.Text = "-- Choose --";
+            // 
             // rptSIControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cboDooringAgent);
+            this.Controls.Add(this.radLabel5);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.cboKapal);
@@ -160,6 +188,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboSupplier)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboDooringAgent)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,5 +206,7 @@
         private Telerik.WinControls.UI.RadComboBox cboSupplier;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadButton btnPrint;
+        private Telerik.WinControls.UI.RadLabel radLabel5;
+        private Telerik.WinControls.UI.RadComboBox cboDooringAgent;
     }
 }

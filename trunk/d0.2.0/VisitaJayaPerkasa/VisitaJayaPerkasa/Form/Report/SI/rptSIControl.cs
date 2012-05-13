@@ -47,7 +47,7 @@ namespace VisitaJayaPerkasa.Form.Report.SI
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            new PrintSI().ShowDialog();
+            new PrintSI(cboSupplier.Text, cboCity.Text, cboKapal.Text, dateTimePicker1.Value.ToShortDateString()).ShowDialog();
         }
     }
 }
