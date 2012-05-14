@@ -72,8 +72,9 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 return;
             }
 
-            List<VisitaJayaPerkasa.Entities.WareHouse> listWarehouse = sqlWarehouseRepository.GetWareHouseByCustomer(customerTrans.CustomerID);
-            List<VisitaJayaPerkasa.Entities.Recipient> listRecipient = sqlRecipientRepository.GetRecipientByCustomer(customerTrans.CustomerID);
+
+            List<VisitaJayaPerkasa.Entities.WareHouse> listWarehouse = (this.customerTrans == null) ? sqlWarehouseRepository.GetWareHouse() : sqlWarehouseRepository.GetWareHouseByCustomer(customerTrans.CustomerID);
+            List<VisitaJayaPerkasa.Entities.Recipient> listRecipient = (this.customerTrans == null) ? sqlRecipientRepository.GetRecipient() : sqlRecipientRepository.GetRecipientByCustomer(customerTrans.CustomerID);
             List<VisitaJayaPerkasa.Entities.Trucking> listTrucking = new List<Entities.Trucking>();
             List<VisitaJayaPerkasa.Entities.JenisBarang> listJenisBarang = sqlJenisBarangRepository.ListJenisBarang();
             if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
@@ -199,6 +200,11 @@ namespace VisitaJayaPerkasa.Control.Transaction
             if (cboCustomer.SelectedIndex == -1)
             {
                 MessageBox.Show(this, "Please select Customer", "Information");
+                return;
+            }
+            else if(etSeal.Text.Trim().Equals(""))
+            {
+                MessageBox.Show(this, "Please fill no seal", "Information");
                 return;
             }
             else if (cboJenisBarang.SelectedIndex == -1)

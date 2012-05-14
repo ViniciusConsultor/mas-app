@@ -15,5 +15,21 @@ namespace VisitaJayaPerkasa.Form.Report.SI
         {
             InitializeComponent();
         }
+
+        private void cboSupplier_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(0);
+        }
+
+        private void cboCity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(0);
+
+        }
+
+        private void cboKapal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(0);
+        }
     }
 }
