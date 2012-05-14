@@ -71,6 +71,7 @@
             this.cboKapal.TabIndex = 57;
             this.cboKapal.TabStop = false;
             this.cboKapal.Text = "-- Choose --";
+            this.cboKapal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboKapal_KeyPress);
             // 
             // cboCity
             // 
@@ -85,6 +86,7 @@
             this.cboCity.TabIndex = 56;
             this.cboCity.TabStop = false;
             this.cboCity.Text = "-- Choose --";
+            this.cboCity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboCity_KeyPress);
             // 
             // radLabel4
             // 
@@ -123,6 +125,7 @@
             this.cboSupplier.TabIndex = 52;
             this.cboSupplier.TabStop = false;
             this.cboSupplier.Text = "-- Choose --";
+            this.cboSupplier.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboSupplier_KeyPress);
             // 
             // radLabel2
             // 
@@ -162,6 +165,7 @@
             this.cboDooringAgent.TabIndex = 61;
             this.cboDooringAgent.TabStop = false;
             this.cboDooringAgent.Text = "-- Choose --";
+            this.cboDooringAgent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboDooringAgent_KeyPress);
             // 
             // rptSIControl
             // 

@@ -59,6 +59,7 @@ namespace VisitaJayaPerkasa.Form.Report.SI
             this.cboSupplier.TabIndex = 44;
             this.cboSupplier.TabStop = false;
             this.cboSupplier.Text = "-- Choose --";
+            this.cboSupplier.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboSupplier_KeyPress);
             // 
             // radLabel2
             // 
@@ -105,6 +106,7 @@ namespace VisitaJayaPerkasa.Form.Report.SI
             this.cboCity.TabIndex = 48;
             this.cboCity.TabStop = false;
             this.cboCity.Text = "-- Choose --";
+            this.cboCity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboCity_KeyPress);
             // 
             // cboKapal
             // 
@@ -119,6 +121,7 @@ namespace VisitaJayaPerkasa.Form.Report.SI
             this.cboKapal.TabIndex = 49;
             this.cboKapal.TabStop = false;
             this.cboKapal.Text = "-- Choose --";
+            this.cboKapal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboKapal_KeyPress);
             // 
             // dateTimePicker1
             // 
