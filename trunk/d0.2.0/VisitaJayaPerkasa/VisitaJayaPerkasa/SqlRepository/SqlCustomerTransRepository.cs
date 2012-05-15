@@ -260,28 +260,30 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
                     Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
-                    using (SqlCommand command = new SqlCommand(
+                    string query =
                         "Select ctd.id, ctd.customer_trans_id, ctd.type_id, ctd.pelayaran_detail_id, ctd.origin, " +
                         "ctd.destination, ctd.condition_id, ctd.no_seal, ctd.truck_number, ctd.voy, " +
                         "ctd.stuffing_date, ctd.stuffing_place, ctd.etd, ctd.td, ctd.eta, ctd.ta, ctd.unloading, ctd.price, " +
-                        "tc.type_name, (SELECT TOP 1 supplier_name FROM [SUPPLIER] s WHERE s.supplier_id = p.supplier_id) as pelayaran_name, pd.vessel_name, co.city_name as origin, cd.city_name as destination, " +
+                        "tc.type_name, (SELECT TOP 1 supplier_name FROM [SUPPLIER] s WHERE s.supplier_id = p.supplier_id) as pelayaran_name, " +
+                        "pd.vessel_name, co.city_name as origin, cd.city_name as destination, " +
                         "cnd.condition_name as condition, pd.status_pinjaman, w.[address], " +
                         "ctd.recipient_id, r.recipient_name, ctd.jenis_barang, ctd.no_container, ctd.quantity, " +
                         "ctd.sj1, ctd.sj2, ctd.sj3, ctd.sj4, ctd.sj5, ctd.sj6, ctd.sj7, ctd.sj8, ctd.sj9, ctd.sj10, " +
                         "ctd.sj11, ctd.sj12, ctd.sj13, ctd.sj14, ctd.sj15, ctd.sj16, ctd.sj17, ctd.sj18, ctd.sj19, ctd.sj20, " +
                         "ctd.sj21, ctd.sj22, ctd.sj23, ctd.sj24, ctd.sj25, ctd.terima_toko, ctd.keterangan, ctd.no_ba " +
                         "FROM [Customer_Trans_Detail] ctd " +
-                        "INNER JOIN [Type_Cont] tc ON tc.type_id = ctd.type_id " +
-                        "INNER JOIN [Pelayaran_Detail] pd ON pd.pelayaran_detail_id = ctd.pelayaran_detail_id " +
-                        "INNER JOIN [Pelayaran] p ON p.pelayaran_id = pd.pelayaran_id " +
-                        "INNER JOIN [City] co ON co.city_id = ctd.origin " +
-                        "INNER JOIN [City] cd ON cd.city_id = ctd.destination " +
-                        "INNER JOIN [Condition] cnd ON cnd.condition_id = ctd.condition_id " +
-                        "INNER JOIN [Warehouse] w ON w.stuffing_place_id = ctd.stuffing_place " +
-                        "INNER JOIN [RECIPIENT] r ON r.recipient_id = ctd.recipient_id " +
+                        "LEFT OUTER JOIN [Type_Cont] tc ON tc.type_id = ctd.type_id " +
+                        "LEFT OUTER JOIN [Pelayaran_Detail] pd ON pd.pelayaran_detail_id = ctd.pelayaran_detail_id " +
+                        "LEFT OUTER JOIN [Pelayaran] p ON p.pelayaran_id = pd.pelayaran_id " +
+                        "LEFT OUTER JOIN [City] co ON co.city_id = ctd.origin " +
+                        "LEFT OUTER JOIN [City] cd ON cd.city_id = ctd.destination " +
+                        "LEFT OUTER JOIN [Condition] cnd ON cnd.condition_id = ctd.condition_id " +
+                        "LEFT OUTER JOIN [Warehouse] w ON w.stuffing_place_id = ctd.stuffing_place " +
+                        "LEFT OUTER JOIN [RECIPIENT] r ON r.recipient_id = ctd.recipient_id " +
                         "Where (ctd.deleted is null OR ctd.deleted = '0') " +
-                        "AND ctd.customer_trans_id = '" + ID + "'"
-                        , con))
+                        "AND ctd.customer_trans_id = '" + ID + "'";
+
+                    using (SqlCommand command = new SqlCommand(query, con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
@@ -307,7 +309,22 @@ namespace VisitaJayaPerkasa.SqlRepository
                             customerTransDetail.Price = reader.GetDecimal(17);
 
                             customerTransDetail.TypeName = reader.GetString(18);
-                            customerTransDetail.VesselName = (reader.GetBoolean(24)) ? (reader.GetString(20) + " - " + reader.GetString(19) + " [loan]") : reader.GetString(20) + " - " + reader.GetString(19);
+                            bool isLoan = false;
+                            string vesselName = "";
+                            string pelayaranName = "";
+                            if (reader.GetValue(24) != DBNull.Value)
+                                isLoan = reader.GetBoolean(24);
+                            if (reader.GetValue(20) != DBNull.Value)
+                                vesselName = reader.GetString(20);
+                            if (reader.GetValue(19) != DBNull.Value)
+                                pelayaranName = reader.GetString(19);
+                            if (isLoan)
+                            {
+                                customerTransDetail.VesselName = vesselName + " - " + pelayaranName + " [loan]";
+                            }
+                            else
+                                customerTransDetail.VesselName = vesselName + " - " + pelayaranName;
+
                             customerTransDetail.OriginName = reader.GetString(21);
                             customerTransDetail.DestinationName = reader.GetString(22);
                             customerTransDetail.ConditionName = reader.GetString(23);

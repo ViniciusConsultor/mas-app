@@ -72,9 +72,18 @@ namespace VisitaJayaPerkasa.Control.Transaction
                 return;
             }
 
-
-            List<VisitaJayaPerkasa.Entities.WareHouse> listWarehouse = (this.customerTrans == null) ? sqlWarehouseRepository.GetWareHouse() : sqlWarehouseRepository.GetWareHouseByCustomer(customerTrans.CustomerID);
-            List<VisitaJayaPerkasa.Entities.Recipient> listRecipient = (this.customerTrans == null) ? sqlRecipientRepository.GetRecipient() : sqlRecipientRepository.GetRecipientByCustomer(customerTrans.CustomerID);
+            List<VisitaJayaPerkasa.Entities.WareHouse> listWarehouse;
+            List<VisitaJayaPerkasa.Entities.Recipient> listRecipient;
+            if (customerTrans != null)
+            {
+                listWarehouse = (this.customerTrans == null) ? sqlWarehouseRepository.GetWareHouse() : sqlWarehouseRepository.GetWareHouseByCustomer(customerTrans.CustomerID);
+                listRecipient = (this.customerTrans == null) ? sqlRecipientRepository.GetRecipient() : sqlRecipientRepository.GetRecipientByCustomer(customerTrans.CustomerID);
+            }
+            else
+            {
+                listWarehouse = new List<Entities.WareHouse>();
+                listRecipient = new List<Entities.Recipient>();
+            }
             List<VisitaJayaPerkasa.Entities.Trucking> listTrucking = new List<Entities.Trucking>();
             List<VisitaJayaPerkasa.Entities.JenisBarang> listJenisBarang = sqlJenisBarangRepository.ListJenisBarang();
             if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
@@ -88,6 +97,7 @@ namespace VisitaJayaPerkasa.Control.Transaction
             cboCustomer.ValueMember = "ID";
             cboCustomer.SelectedIndex = -1;
             cboCustomer.Text = "-- Choose --";
+            cboCustomer.Tag = "cboCustomer";
             
             cboType.DataSource = listType;
             cboType.DisplayMember = "TypeName";
@@ -184,7 +194,6 @@ namespace VisitaJayaPerkasa.Control.Transaction
             sqlCityRepository = null;
             sqlPelayaranRepository = null;
             sqlConditionRepository = null;
-            sqlRecipientRepository = null;
 
             if (wantToCreateVessel)
             {
@@ -762,6 +771,23 @@ namespace VisitaJayaPerkasa.Control.Transaction
                         selectedIdx = cbo.SelectedIndex;
                         dtpETA.Value = (dtpTD.Value.ToShortDateString() == DateTime.Today.ToShortDateString()) ? DateTime.Now : dtpTD.Value.AddDays(days.ElementAt(selectedIdx));
 
+                    }
+                    else if (cbo.Tag.ToString() == "cboCustomer")
+                    {
+                        List<VisitaJayaPerkasa.Entities.WareHouse> listWarehouse = (this.customerTrans == null) ? sqlWarehouseRepository.GetWareHouse() : sqlWarehouseRepository.GetWareHouseByCustomer(customerTrans.CustomerID);
+                        List<VisitaJayaPerkasa.Entities.Recipient> listRecipient = (this.customerTrans == null) ? sqlRecipientRepository.GetRecipient() : sqlRecipientRepository.GetRecipientByCustomer(customerTrans.CustomerID);
+
+                        cboStuffingPlace.DataSource = listWarehouse;
+                        cboStuffingPlace.DisplayMember = "Address";
+                        cboStuffingPlace.ValueMember = "Id";
+                        cboStuffingPlace.SelectedIndex = -1;
+                        cboStuffingPlace.Text = "-- Choose --";
+
+                        cboRecipient.DataSource = listRecipient;
+                        cboRecipient.DisplayMember = "Name";
+                        cboRecipient.ValueMember = "ID";
+                        cboRecipient.SelectedIndex = -1;
+                        cboRecipient.Text = "-- Choose --";
                     }
                 }
 
