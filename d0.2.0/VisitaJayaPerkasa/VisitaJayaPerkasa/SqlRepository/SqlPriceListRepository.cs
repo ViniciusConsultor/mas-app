@@ -318,20 +318,25 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
                     Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
-                    using (SqlCommand command = new SqlCommand(
-                        "SELECT TOP 1 price_customer FROM [Price] " + 
-                        "WHERE (cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(date) + "' as date) " +
-                        "AND cast(dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(date) + "' as date)) " +
-                        "AND customer_id like '%" + customerID + "%' AND destination like '%" + destinationID + "%' " +
-                        "AND type_cont_id like '%" + typeContID + "%' AND condition_id like '%" + conditionID + "%' " +
-                        "AND condition_id like '%" + conditionID + "%' " + 
-                        "ORDER BY dateFrom DESC "
-                        , con))
+                    string query =
+                        "SELECT TOP 1 p.price_customer, c.status_ppn FROM [Price] p " +
+                        "INNER JOIN [customer] c ON c.customer_id = p.customer_id " +
+                        "WHERE (cast(p.dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(date) + "' as date) " +
+                        "AND cast(p.dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(date) + "' as date)) " +
+                        "AND p.customer_id like '%" + customerID + "%' AND p.destination like '%" + destinationID + "%' " +
+                        "AND p.type_cont_id like '%" + typeContID + "%' AND p.condition_id like '%" + conditionID + "%' " +
+                        "AND p.condition_id like '%" + conditionID + "%' " +
+                        "ORDER BY dateFrom DESC ";
+
+                    using (SqlCommand command = new SqlCommand(query, con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
                             result = reader.GetDecimal(0);
+                            bool ppn = reader.GetBoolean(1);
+                            if (ppn)
+                                result = Math.Ceiling(result * (decimal)1.1);
                             break;
                         }
                     }
@@ -359,22 +364,24 @@ namespace VisitaJayaPerkasa.SqlRepository
                     con.Open();
                     Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
-                    using (SqlCommand command = new SqlCommand(
-                        "SELECT TOP 1 price_customer FROM [Price] p " +
-                        "WHERE (cast(dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(date) + "' as date) " +
-                        "AND cast(dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(date) + "' as date)) " +
-                        "AND destination like '%" + destinationID + "%' " +
-                        "AND condition_id like '%" + conditionID + "%' " + 
-                        "AND type_cont_id like '%" + typeContID + "%' AND condition_id like '%" + conditionID + "%' AND exists( " +
-                        "SELECT 1 FROM [Customer] c WHERE c.customer_name like 'General Customer' AND c.customer_id = p.customer_id " +
-                        ") " + 
-                        "ORDER BY dateFrom DESC "
-                        , con))
+                    string query =
+                        "SELECT TOP 1 p.price_customer, c.status_ppn FROM [Price] p " +
+                        "INNER JOIN [customer] c ON c.customer_id = p.customer_id " +
+                        "WHERE (cast(p.dateFrom as date) <= cast('" + Utility.Utility.ConvertDateToString(date) + "' as date) " +
+                        "AND cast(p.dateto as date) >= cast('" + Utility.Utility.ConvertDateToString(date) + "' as date)) " +
+                        "AND p.destination like '%" + destinationID + "%' " +
+                        "AND p.type_cont_id like '%" + typeContID + "%' AND p.condition_id like '%" + conditionID + "%' " +
+                        "ORDER BY dateFrom DESC ";
+
+                    using (SqlCommand command = new SqlCommand(query, con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
                             result = reader.GetDecimal(0);
+                            bool ppn = reader.GetBoolean(1);
+                            if (ppn)
+                                result = Math.Ceiling(result * (decimal)1.1);
                             break;
                         }
                     }
