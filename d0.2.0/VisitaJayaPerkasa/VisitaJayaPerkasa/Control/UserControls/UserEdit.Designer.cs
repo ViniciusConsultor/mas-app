@@ -56,7 +56,7 @@
             this.radioButtonFemale = new Telerik.WinControls.UI.RadRadioButton();
             this.DOB = new Telerik.WinControls.UI.RadDateTimePicker();
             this.radioButtonMale = new Telerik.WinControls.UI.RadRadioButton();
-            this.etPhone = new Telerik.WinControls.UI.RadTextBox();
+            this.etMobilePhone = new Telerik.WinControls.UI.RadTextBox();
             this.etAddress = new Telerik.WinControls.UI.RadTextBox();
             this.etEmail = new Telerik.WinControls.UI.RadTextBox();
             this.etPasswordHint = new Telerik.WinControls.UI.RadTextBox();
@@ -64,6 +64,10 @@
             this.etLastName = new Telerik.WinControls.UI.RadTextBox();
             this.etFirstName = new Telerik.WinControls.UI.RadTextBox();
             this.etUserName = new Telerik.WinControls.UI.RadTextBox();
+            this.etPhoneNumber = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
+            this.radDateTimePicker1 = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
@@ -84,7 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radioButtonFemale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DOB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioButtonMale)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etPhone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etMobilePhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etEmail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etPasswordHint)).BeginInit();
@@ -92,6 +96,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.etLastName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etFirstName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etUserName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etPhoneNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
             this.SuspendLayout();
             // 
             // radToolStrip1
@@ -152,7 +160,7 @@
             // 
             // radLabel9
             // 
-            this.radLabel9.Location = new System.Drawing.Point(14, 289);
+            this.radLabel9.Location = new System.Drawing.Point(14, 318);
             this.radLabel9.Name = "radLabel9";
             this.radLabel9.Size = new System.Drawing.Size(75, 16);
             this.radLabel9.TabIndex = 15;
@@ -160,7 +168,7 @@
             // 
             // radLabel8
             // 
-            this.radLabel8.Location = new System.Drawing.Point(14, 257);
+            this.radLabel8.Location = new System.Drawing.Point(14, 286);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(68, 16);
             this.radLabel8.TabIndex = 14;
@@ -168,7 +176,7 @@
             // 
             // radLabel7
             // 
-            this.radLabel7.Location = new System.Drawing.Point(13, 230);
+            this.radLabel7.Location = new System.Drawing.Point(13, 259);
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(44, 16);
             this.radLabel7.TabIndex = 13;
@@ -176,11 +184,11 @@
             // 
             // radLabel6
             // 
-            this.radLabel6.Location = new System.Drawing.Point(13, 204);
+            this.radLabel6.Location = new System.Drawing.Point(13, 233);
             this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(82, 16);
+            this.radLabel6.Size = new System.Drawing.Size(75, 16);
             this.radLabel6.TabIndex = 12;
-            this.radLabel6.Text = "Phone Number";
+            this.radLabel6.Text = "Mobile Phone";
             // 
             // radLabel4
             // 
@@ -273,11 +281,15 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.radDateTimePicker1);
+            this.groupBox2.Controls.Add(this.radLabel14);
+            this.groupBox2.Controls.Add(this.etPhoneNumber);
+            this.groupBox2.Controls.Add(this.radLabel13);
             this.groupBox2.Controls.Add(this.cbMarital);
             this.groupBox2.Controls.Add(this.radioButtonFemale);
             this.groupBox2.Controls.Add(this.DOB);
             this.groupBox2.Controls.Add(this.radioButtonMale);
-            this.groupBox2.Controls.Add(this.etPhone);
+            this.groupBox2.Controls.Add(this.etMobilePhone);
             this.groupBox2.Controls.Add(this.etAddress);
             this.groupBox2.Controls.Add(this.etEmail);
             this.groupBox2.Controls.Add(this.etPasswordHint);
@@ -298,7 +310,7 @@
             this.groupBox2.Controls.Add(this.radLabel7);
             this.groupBox2.Location = new System.Drawing.Point(12, 51);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(360, 327);
+            this.groupBox2.Size = new System.Drawing.Size(360, 405);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Data User";
@@ -310,7 +322,7 @@
             this.radComboBoxItem2,
             this.radComboBoxItem3,
             this.radComboBoxItem4});
-            this.cbMarital.Location = new System.Drawing.Point(121, 289);
+            this.cbMarital.Location = new System.Drawing.Point(121, 318);
             this.cbMarital.Name = "cbMarital";
             // 
             // 
@@ -344,7 +356,7 @@
             // 
             // radioButtonFemale
             // 
-            this.radioButtonFemale.Location = new System.Drawing.Point(183, 230);
+            this.radioButtonFemale.Location = new System.Drawing.Point(183, 259);
             this.radioButtonFemale.Name = "radioButtonFemale";
             this.radioButtonFemale.Size = new System.Drawing.Size(81, 13);
             this.radioButtonFemale.TabIndex = 10;
@@ -353,8 +365,9 @@
             // DOB
             // 
             this.DOB.AutoSize = true;
+            this.DOB.Culture = new System.Globalization.CultureInfo("id-ID");
             this.DOB.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.DOB.Location = new System.Drawing.Point(121, 257);
+            this.DOB.Location = new System.Drawing.Point(121, 286);
             this.DOB.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.DOB.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.DOB.Name = "DOB";
@@ -367,19 +380,19 @@
             // 
             // radioButtonMale
             // 
-            this.radioButtonMale.Location = new System.Drawing.Point(121, 230);
+            this.radioButtonMale.Location = new System.Drawing.Point(121, 259);
             this.radioButtonMale.Name = "radioButtonMale";
             this.radioButtonMale.Size = new System.Drawing.Size(56, 13);
             this.radioButtonMale.TabIndex = 9;
             this.radioButtonMale.Text = "Male";
             // 
-            // etPhone
+            // etMobilePhone
             // 
-            this.etPhone.Location = new System.Drawing.Point(121, 204);
-            this.etPhone.Name = "etPhone";
-            this.etPhone.Size = new System.Drawing.Size(210, 20);
-            this.etPhone.TabIndex = 8;
-            this.etPhone.TabStop = false;
+            this.etMobilePhone.Location = new System.Drawing.Point(121, 233);
+            this.etMobilePhone.Name = "etMobilePhone";
+            this.etMobilePhone.Size = new System.Drawing.Size(210, 20);
+            this.etMobilePhone.TabIndex = 8;
+            this.etMobilePhone.TabStop = false;
             // 
             // etAddress
             // 
@@ -438,6 +451,46 @@
             this.etUserName.TabIndex = 1;
             this.etUserName.TabStop = false;
             // 
+            // etPhoneNumber
+            // 
+            this.etPhoneNumber.Location = new System.Drawing.Point(119, 204);
+            this.etPhoneNumber.Name = "etPhoneNumber";
+            this.etPhoneNumber.Size = new System.Drawing.Size(210, 20);
+            this.etPhoneNumber.TabIndex = 18;
+            this.etPhoneNumber.TabStop = false;
+            // 
+            // radLabel13
+            // 
+            this.radLabel13.Location = new System.Drawing.Point(11, 204);
+            this.radLabel13.Name = "radLabel13";
+            this.radLabel13.Size = new System.Drawing.Size(82, 16);
+            this.radLabel13.TabIndex = 19;
+            this.radLabel13.Text = "Phone Number";
+            // 
+            // radDateTimePicker1
+            // 
+            this.radDateTimePicker1.AutoSize = true;
+            this.radDateTimePicker1.Culture = new System.Globalization.CultureInfo("id-ID");
+            this.radDateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.radDateTimePicker1.Location = new System.Drawing.Point(122, 346);
+            this.radDateTimePicker1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.radDateTimePicker1.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.radDateTimePicker1.Name = "radDateTimePicker1";
+            this.radDateTimePicker1.NullDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.radDateTimePicker1.Size = new System.Drawing.Size(210, 22);
+            this.radDateTimePicker1.TabIndex = 20;
+            this.radDateTimePicker1.TabStop = false;
+            this.radDateTimePicker1.Text = "radDateTimePicker1";
+            this.radDateTimePicker1.Value = new System.DateTime(2011, 12, 12, 22, 49, 9, 218);
+            // 
+            // radLabel14
+            // 
+            this.radLabel14.Location = new System.Drawing.Point(15, 346);
+            this.radLabel14.Name = "radLabel14";
+            this.radLabel14.Size = new System.Drawing.Size(57, 16);
+            this.radLabel14.TabIndex = 21;
+            this.radLabel14.Text = "Start Date";
+            // 
             // UserEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -446,7 +499,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.radToolStrip1);
             this.Name = "UserEdit";
-            this.Size = new System.Drawing.Size(650, 417);
+            this.Size = new System.Drawing.Size(650, 479);
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
@@ -469,7 +522,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radioButtonFemale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DOB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radioButtonMale)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.etPhone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etMobilePhone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etEmail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etPasswordHint)).EndInit();
@@ -477,6 +530,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.etLastName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etFirstName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etUserName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etPhoneNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -506,7 +563,7 @@
         private Telerik.WinControls.UI.RadRadioButton radioButtonFemale;
         private Telerik.WinControls.UI.RadDateTimePicker DOB;
         private Telerik.WinControls.UI.RadRadioButton radioButtonMale;
-        private Telerik.WinControls.UI.RadTextBox etPhone;
+        private Telerik.WinControls.UI.RadTextBox etMobilePhone;
         private Telerik.WinControls.UI.RadTextBox etAddress;
         private Telerik.WinControls.UI.RadTextBox etEmail;
         private Telerik.WinControls.UI.RadTextBox etPasswordHint;
@@ -520,5 +577,9 @@
         private Telerik.WinControls.UI.RadComboBoxItem radComboBoxItem2;
         private Telerik.WinControls.UI.RadComboBoxItem radComboBoxItem3;
         private Telerik.WinControls.UI.RadComboBoxItem radComboBoxItem4;
+        private Telerik.WinControls.UI.RadTextBox etPhoneNumber;
+        private Telerik.WinControls.UI.RadLabel radLabel13;
+        private Telerik.WinControls.UI.RadDateTimePicker radDateTimePicker1;
+        private Telerik.WinControls.UI.RadLabel radLabel14;
     }
 }
