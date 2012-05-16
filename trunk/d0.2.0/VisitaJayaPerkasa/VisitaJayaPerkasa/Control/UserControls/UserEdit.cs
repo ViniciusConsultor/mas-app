@@ -46,7 +46,7 @@ namespace VisitaJayaPerkasa.Control.UserControls
                     etAddress.Text = user.Address;
                     etPassword.Text = user.Password;
                     etPasswordHint.Text = user.PasswordHint;
-                    etPhone.Text = user.MobilePhoneNumber;
+                    etMobilePhone.Text = user.MobilePhoneNumber;
                     DOB.Value = user.DateOfBirth;
                     cbMarital.SelectedItem = user.MaritalStatus;
                 }
@@ -106,7 +106,7 @@ namespace VisitaJayaPerkasa.Control.UserControls
                     user.FirstName = etFirstName.Text.Trim();
                     user.LastName = etLastName.Text.Trim();
                     user.MaritalStatus = (cbMarital.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText)) ? null : cbMarital.Text;
-                    user.MobilePhoneNumber = etPhone.Text.Trim();
+                    user.MobilePhoneNumber = etMobilePhone.Text.Trim();
                     user.Password = Utility.Utility.MD5(etPassword.Text);
                     user.PasswordHint = etPasswordHint.Text;
                     user.PersonID = Guid.NewGuid();
@@ -179,7 +179,7 @@ namespace VisitaJayaPerkasa.Control.UserControls
                     user.FirstName = etFirstName.Text.Trim();
                     user.LastName = etLastName.Text.Trim();
                     user.MaritalStatus = (cbMarital.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText)) ? null : cbMarital.Text;
-                    user.MobilePhoneNumber = etPhone.Text.Trim();
+                    user.MobilePhoneNumber = etMobilePhone.Text.Trim();
                     user.Password = Utility.Utility.MD5(etPassword.Text);
                     user.PasswordHint = etPasswordHint.Text;
                     user.PersonID = this.user.PersonID;
