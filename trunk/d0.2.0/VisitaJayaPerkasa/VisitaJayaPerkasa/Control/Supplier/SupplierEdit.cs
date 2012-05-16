@@ -16,9 +16,10 @@ namespace VisitaJayaPerkasa.Control.Supplier
     public partial class SupplierEdit : UserControl
     {
         private VisitaJayaPerkasa.Entities.Supplier supplier;
-        private bool wantToCreateVessel;
+        private bool wantToCreateVessel, isSaveMasterSupplierDetail;
         private List<VisitaJayaPerkasa.Entities.SupplierDetail> listSupplierDetail;
         private SqlCategoryRepository sqlCategoryRepository;
+        public Guid newGuid;
 
         public SupplierEdit(VisitaJayaPerkasa.Entities.Supplier supplier)
         {
@@ -30,6 +31,7 @@ namespace VisitaJayaPerkasa.Control.Supplier
             cboCategory.DisplayMember = "CategoryName";
             cboCategory.ValueMember = "ID";
             this.supplier = supplier;
+            this.isSaveMasterSupplierDetail = false;
 
             if (supplier == null)
             {
@@ -229,7 +231,7 @@ namespace VisitaJayaPerkasa.Control.Supplier
             if (wantToCreateVessel)
             {
                 sqlSupplierRepository = new SqlSupplierRepository();
-                Guid newGuid = Guid.NewGuid();
+                newGuid = Guid.NewGuid();
 
                 string[] strSqlParam = getStringSqlParameter();
                 object[] objSqlParam = GetObjSqlParameter(newGuid);
@@ -274,7 +276,18 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 if (sqlSupplierRepository.CreateSupplier(sqlParam, (groupBoxTrucking.Visible) ? gvTrucking.RowCount : 0))
                 {
                     MessageBox.Show(this, "Success insert supplier data", "Information");
-                    radButtonElement2.PerformClick();
+
+                    if (isSaveMasterSupplierDetail) {
+                        SqlPelayaranRepository sqlPelayaranRepository = new SqlPelayaranRepository();
+
+                        VisitaJayaPerkasa.Entities.Pelayaran pelayaran = sqlPelayaranRepository.GetPelayaranBySupplierID((wantToCreateVessel) ? newGuid.ToString() : this.supplier.Id.ToString());
+                        UserControl controllers = new Pelayaran.PelayaranEdit(pelayaran, this);
+                        Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
+
+                        sqlPelayaranRepository = null;
+                    }
+                    else
+                        radButtonElement2.PerformClick();
                 }
                 else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
                     MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -308,7 +321,19 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 if (sqlSupplierRepository.EditSupplier(sqlParam, (groupBoxTrucking.Visible) ? gvTrucking.RowCount : 0))
                 {
                     MessageBox.Show(this, "Success edit supplier data", "Information");
-                    radButtonElement2.PerformClick();
+
+                    if (isSaveMasterSupplierDetail)
+                    {
+                        SqlPelayaranRepository sqlPelayaranRepository = new SqlPelayaranRepository();
+
+                        VisitaJayaPerkasa.Entities.Pelayaran pelayaran = sqlPelayaranRepository.GetPelayaranBySupplierID(this.supplier.Id.ToString());
+                        UserControl controllers = new Pelayaran.PelayaranEdit(pelayaran, this);
+                        Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
+
+                        sqlPelayaranRepository = null;
+                    }
+                    else
+                        radButtonElement2.PerformClick();
                 }
                 else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
                     MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -453,9 +478,11 @@ namespace VisitaJayaPerkasa.Control.Supplier
 
         private void btnPelayaran_Click(object sender, EventArgs e)
         {
-            VisitaJayaPerkasa.Entities.Pelayaran pelayaran = null;
-            UserControl controllers = new Pelayaran.PelayaranEdit(pelayaran);
-            Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
+            DialogResult dResult = MessageBox.Show(this, "You must save master supplier, before create detail vessel of supplier.\n Do you want to save ?", "Confirmation", MessageBoxButtons.YesNo);
+            if (dResult == DialogResult.Yes){
+                isSaveMasterSupplierDetail = true;
+                radButtonElement1.PerformClick();
+            }
         }
 
     }

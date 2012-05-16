@@ -280,6 +280,46 @@ namespace VisitaJayaPerkasa.SqlRepository
             return pelayaran;
         }
 
+
+        public Pelayaran GetPelayaranBySupplierID(string supplierId)
+        {
+            Pelayaran pelayaran = null;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
+                    con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
+                    using (SqlCommand command = new SqlCommand(
+                    "Select pelayaran_id, p.supplier_id, supplier_name From Pelayaran p, Supplier s " +
+                    "where p.supplier_id = s.supplier_id and (p.deleted is null or p.deleted = '0') and " + 
+                    "p.supplier_id = '" + supplierId+ "'" 
+                    , con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            pelayaran = new Pelayaran();
+                            pelayaran.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                            pelayaran.supplierID = Utility.Utility.ConvertToUUID(reader.GetValue(1).ToString());
+                            pelayaran.supplierName = reader.GetString(2);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                Logging.Error("SqlPelayaranRepository.cs - GetPelayaranBySupplierID() " + e.Message);
+            }
+
+            return pelayaran;
+        }
+
+
         public bool CreatePelayaran(SqlParameter[] sqlParam)
         {
             int n = 0;

@@ -10,6 +10,7 @@ using VisitaJayaPerkasa.SqlRepository;
 using System.Data.SqlClient;
 using Telerik.WinControls.UI;
 using VisitaJayaPerkasa.Utility.Log;
+using VisitaJayaPerkasa.Control.Supplier;
 
 namespace VisitaJayaPerkasa.Control.Pelayaran
 {
@@ -18,10 +19,12 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
         private bool wantToCreateVessel;
         private VisitaJayaPerkasa.Entities.Pelayaran pelayaran;
         private List<VisitaJayaPerkasa.Entities.PelayaranDetail> listPelayaranDetail;
+        private UserControl ucSupplier;
 
-        public PelayaranEdit(VisitaJayaPerkasa.Entities.Pelayaran pelayaran)
+        public PelayaranEdit(VisitaJayaPerkasa.Entities.Pelayaran pelayaran, UserControl ucSupplier)
         {
             InitializeComponent();
+            this.ucSupplier = ucSupplier;
             this.pelayaran = pelayaran;
             List<VisitaJayaPerkasa.Entities.Supplier> listSupplier;
             SqlSupplierRepository sqlSupplierRepository = new SqlSupplierRepository();
@@ -39,8 +42,7 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
                 wantToCreateVessel = true;
                 listPelayaranDetail = new List<Entities.PelayaranDetail>();
 
-                cbSupplier.SelectedIndex = -1;
-                cbSupplier.Text = VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.cboDefaultText;
+                cbSupplier.SelectedValue = ((SupplierEdit)ucSupplier).newGuid;
             }
             else
             {
@@ -105,8 +107,7 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
 
         private void radButtonElement2_Click(object sender, EventArgs e)
         {
-            UserControl Controllers = new PelayaranList();
-            Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(Controllers);
+            Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(this.ucSupplier);
         }
 
         private void btnClearGrid_Click(object sender, EventArgs e)
@@ -266,7 +267,8 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
                 if (sqlPelayaranRepository.CreatePelayaran(sqlParam))
                 {
                     MessageBox.Show(this, "Success insert pelayaran data", "Information");
-                    radButtonElement2.PerformClick();
+                    Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(new SupplierList());
+
                 }
                 else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
                     MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -301,7 +303,7 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
                 if (sqlPelayaranRepository.EditPelayaran(sqlParam))
                 {
                     MessageBox.Show(this, "Success edit pelayaran data", "Information");
-                    radButtonElement2.PerformClick();
+                    Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(new SupplierList());
                 }
                 else if (!Constant.VisitaJayaPerkasaApplication.anyConnection)
                     MessageBox.Show(this, "Please check your connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

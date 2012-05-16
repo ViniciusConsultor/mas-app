@@ -58,7 +58,7 @@ namespace VisitaJayaPerkasa.Form
             controllers = (UserControl)uc;
             controllers.Dock = DockStyle.Fill;
             MainPanel.Controls.Clear();
-            MainPanel.Controls.Add(controllers);            
+            MainPanel.Controls.Add(controllers); 
         }
 
         private void radMenuItemUser_Click(object sender, EventArgs e)
@@ -177,12 +177,6 @@ namespace VisitaJayaPerkasa.Form
         {
             SetEnableDisableGroup(RBGCustomer);
             ShowUserControl(new CustomerList());
-        }
-
-        private void radImageButtonElementPelayaran_Click(object sender, EventArgs e)
-        {
-            SetEnableDisableGroup(RBGPelayaran);
-            ShowUserControl(new PelayaranList());
         }
 
         private void radImageButtonElementSupplier_Click(object sender, EventArgs e)
