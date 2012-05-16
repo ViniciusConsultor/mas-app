@@ -75,6 +75,7 @@
             this.btnRemoveGrid = new Telerik.WinControls.UI.RadButton();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
+            this.btnPelayaran = new Telerik.WinControls.UI.RadButton();
             this.groupBoxTrucking = new System.Windows.Forms.GroupBox();
             this.gvTrucking = new Telerik.WinControls.UI.RadGridView();
             this.btnRemoveTrucking = new Telerik.WinControls.UI.RadButton();
@@ -82,7 +83,6 @@
             this.txtTruckingNumber = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel18 = new Telerik.WinControls.UI.RadLabel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
-            this.btnPelayaran = new Telerik.WinControls.UI.RadButton();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etAddress)).BeginInit();
@@ -120,6 +120,7 @@
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
             this.splitPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPelayaran)).BeginInit();
             this.groupBoxTrucking.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTrucking)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemoveTrucking)).BeginInit();
@@ -128,7 +129,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPelayaran)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -570,6 +570,16 @@
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
             // 
+            // btnPelayaran
+            // 
+            this.btnPelayaran.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPelayaran.Location = new System.Drawing.Point(624, 209);
+            this.btnPelayaran.Name = "btnPelayaran";
+            this.btnPelayaran.Size = new System.Drawing.Size(69, 21);
+            this.btnPelayaran.TabIndex = 41;
+            this.btnPelayaran.Text = "Pelayaran";
+            this.btnPelayaran.Click += new System.EventHandler(this.btnPelayaran_Click);
+            // 
             // groupBoxTrucking
             // 
             this.groupBoxTrucking.Controls.Add(this.gvTrucking);
@@ -659,15 +669,6 @@
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
             // 
-            // btnPelayaran
-            // 
-            this.btnPelayaran.Location = new System.Drawing.Point(624, 209);
-            this.btnPelayaran.Name = "btnPelayaran";
-            this.btnPelayaran.Size = new System.Drawing.Size(69, 21);
-            this.btnPelayaran.TabIndex = 41;
-            this.btnPelayaran.Text = "Pelayaran";
-            this.btnPelayaran.Click += new System.EventHandler(this.btnPelayaran_Click);
-            // 
             // SupplierEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -715,6 +716,7 @@
             this.radSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
             this.splitPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnPelayaran)).EndInit();
             this.groupBoxTrucking.ResumeLayout(false);
             this.groupBoxTrucking.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTrucking)).EndInit();
@@ -724,7 +726,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnPelayaran)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

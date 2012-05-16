@@ -203,7 +203,7 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
         private void radButtonElementCreate_Click(object sender, EventArgs e)
         {
             VisitaJayaPerkasa.Entities.Pelayaran pelayaran = null;
-            UserControl controllers = new PelayaranEdit(pelayaran);
+            UserControl controllers = new PelayaranEdit(pelayaran, null);
             Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
         }
 
@@ -215,7 +215,7 @@ namespace VisitaJayaPerkasa.Control.Pelayaran
                 string id = gridInfo.Cells[0].Value.ToString();
                 VisitaJayaPerkasa.Entities.Pelayaran pelayaran = showPelayaran.Where(c => c.ID.ToString() == id).SingleOrDefault();
 
-                UserControl controllers = new PelayaranEdit(pelayaran);
+                UserControl controllers = new PelayaranEdit(pelayaran, null);
                 Constant.VisitaJayaPerkasaApplication.mainForm.ShowUserControl(controllers);
             }
         }

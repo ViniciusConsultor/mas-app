@@ -47,8 +47,6 @@
             this.radImageButtonElementCondition = new Telerik.WinControls.UI.RadImageButtonElement();
             this.RBGCustomer = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.radImageButtonElementCustomer = new Telerik.WinControls.UI.RadImageButtonElement();
-            this.RBGPelayaran = new Telerik.WinControls.UI.RadRibbonBarGroup();
-            this.radImageButtonElementPelayaran = new Telerik.WinControls.UI.RadImageButtonElement();
             this.RBGSupplier = new Telerik.WinControls.UI.RadRibbonBarGroup();
             this.radImageButtonElementSupplier = new Telerik.WinControls.UI.RadImageButtonElement();
             this.RBGTypeCont = new Telerik.WinControls.UI.RadRibbonBarGroup();
@@ -265,12 +263,12 @@
             this.ribbonTab1.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ribbonTab1.ContentPanel.Location = new System.Drawing.Point(0, 0);
             this.ribbonTab1.ContentPanel.Size = new System.Drawing.Size(200, 100);
+            this.ribbonTab1.IsSelected = true;
             this.ribbonTab1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.RBGUser,
             this.RBGCity,
             this.RBGCondition,
             this.RBGCustomer,
-            this.RBGPelayaran,
             this.RBGSupplier,
             this.RBGTypeCont,
             this.RBGWarehouse,
@@ -342,21 +340,6 @@
             this.radImageButtonElementCustomer.Name = "radImageButtonElementCustomer";
             this.radImageButtonElementCustomer.Text = "radImageButtonElementCustomer";
             this.radImageButtonElementCustomer.Click += new System.EventHandler(this.radImageButtonElementCustomer_Click);
-            // 
-            // RBGPelayaran
-            // 
-            this.RBGPelayaran.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radImageButtonElementPelayaran});
-            this.RBGPelayaran.Name = "RBGPelayaran";
-            this.RBGPelayaran.Text = "Pelayaran";
-            // 
-            // radImageButtonElementPelayaran
-            // 
-            this.radImageButtonElementPelayaran.Image = ((System.Drawing.Image)(resources.GetObject("radImageButtonElementPelayaran.Image")));
-            this.radImageButtonElementPelayaran.ImageKey = "pelayaran.jpeg";
-            this.radImageButtonElementPelayaran.Name = "radImageButtonElementPelayaran";
-            this.radImageButtonElementPelayaran.Text = "radImageButtonElementPelayaran";
-            this.radImageButtonElementPelayaran.Click += new System.EventHandler(this.radImageButtonElementPelayaran_Click);
             // 
             // RBGSupplier
             // 
@@ -548,7 +531,6 @@
             this.ribbonTab3.ContentPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ribbonTab3.ContentPanel.Location = new System.Drawing.Point(0, 0);
             this.ribbonTab3.ContentPanel.Size = new System.Drawing.Size(200, 100);
-            this.ribbonTab3.IsSelected = true;
             this.ribbonTab3.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.RBGContainer,
             this.RBGDelivery,
@@ -922,14 +904,12 @@
         private Telerik.WinControls.UI.RadRibbonBarGroup RBGCity;
         private Telerik.WinControls.UI.RadRibbonBarGroup RBGCondition;
         private Telerik.WinControls.UI.RadRibbonBarGroup RBGCustomer;
-        private Telerik.WinControls.UI.RadRibbonBarGroup RBGPelayaran;
         private Telerik.WinControls.UI.RadRibbonBarGroup RBGSupplier;
         private Telerik.WinControls.UI.RadRibbonBarGroup RBGTypeCont;
         private Telerik.WinControls.UI.RadRibbonBarGroup RBGWarehouse;
         private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElementCity;
         private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElementCondition;
         private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElementCustomer;
-        private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElementPelayaran;
         private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElementSupplier;
         private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElementTypeCont;
         private Telerik.WinControls.UI.RadImageButtonElement radImageButtonElementWareHouse;
