@@ -9,6 +9,7 @@ namespace VisitaJayaPerkasa.Entities
     {
         public Guid Id { get; set; }
         public Guid CategoryId { get; set; }
+        public Guid? TypeOfPayment { get; set; }
         public string CategoryName { get; set; }
         public string SupplierName { get; set; }
         public string Address { get; set; }
@@ -16,6 +17,7 @@ namespace VisitaJayaPerkasa.Entities
         public string Fax { get; set; }
         public string Email { get; set; }
         public string ContactPerson { get; set; }
+        public string TermOfPayment { get; set; }
         public int Deleted { get; set; }
     }
 }

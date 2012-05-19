@@ -10,6 +10,7 @@ using VisitaJayaPerkasa.SqlRepository;
 using Telerik.WinControls.UI;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using VisitaJayaPerkasa.Entities;
 
 namespace VisitaJayaPerkasa.Control.Supplier
 {
@@ -19,19 +20,38 @@ namespace VisitaJayaPerkasa.Control.Supplier
         private bool wantToCreateVessel, isSaveMasterSupplierDetail;
         private List<VisitaJayaPerkasa.Entities.SupplierDetail> listSupplierDetail;
         private SqlCategoryRepository sqlCategoryRepository;
+        private SqlPaymentRepository sqlPaymentRepository;
+        private SqlCityRepository sqlCityRepository;
         public Guid newGuid;
 
         public SupplierEdit(VisitaJayaPerkasa.Entities.Supplier supplier)
         {
             InitializeComponent();
             sqlCategoryRepository = new SqlCategoryRepository();
-            List<VisitaJayaPerkasa.Entities.Category> listCategory = sqlCategoryRepository.GetCategories();
+            sqlPaymentRepository = new SqlPaymentRepository();
+            sqlCityRepository = new SqlCityRepository();
+            List<Category> listCategory = sqlCategoryRepository.GetCategories();
+            List<Payment> listPayment = sqlPaymentRepository.GetListPayment();
+            List<Entities.City> listCity = sqlCityRepository.GetCity();
 
             cboCategory.DataSource = listCategory;
             cboCategory.DisplayMember = "CategoryName";
             cboCategory.ValueMember = "ID";
+
+            cbTypeOfPayment.DataSource = listPayment;
+            cbTypeOfPayment.DisplayMember = "Name";
+            cbTypeOfPayment.ValueMember = "ID";
+
+            cboDestination.DataSource = listCity;
+            cboDestination.DisplayMember = "CityName";
+            cboDestination.ValueMember = "ID";
+            cboDestination.SelectedIndex = -1;
+            cboDestination.Text = Constant.VisitaJayaPerkasaApplication.cboDefaultText;
+
             this.supplier = supplier;
             this.isSaveMasterSupplierDetail = false;
+            sqlCityRepository = null;
+            sqlPaymentRepository = null;
 
             if (supplier == null)
             {
@@ -43,12 +63,25 @@ namespace VisitaJayaPerkasa.Control.Supplier
 
                 cboCategory.SelectedIndex = -1;
                 cboCategory.Text = "-- Choose --";
+
+                cbTypeOfPayment.SelectedIndex = -1;
+                cbTypeOfPayment.Text = Constant.VisitaJayaPerkasaApplication.cboDefaultText;
             }
             else
             {
                 wantToCreateVessel = false;
                 etSupplierName.Text = supplier.SupplierName;
                 cboCategory.SelectedItem = supplier.CategoryName;
+
+                if (supplier.TypeOfPayment == null)
+                {
+                    cbTypeOfPayment.SelectedIndex = -1;
+                    cbTypeOfPayment.Text = Constant.VisitaJayaPerkasaApplication.cboDefaultText;
+                }
+                else
+                    cbTypeOfPayment.SelectedValue = supplier.TypeOfPayment;
+
+                etTermOfPayment.Text = supplier.TermOfPayment;
                 etAddress.Text = supplier.Address;
                 etEmail.Text = supplier.Email;
                 etPhone.Text = supplier.Phone;
@@ -76,6 +109,23 @@ namespace VisitaJayaPerkasa.Control.Supplier
                     if(listTemp != null)
                         for (int i = 0; i < listTemp.Count; i++)
                             gvTrucking.Rows.Add(listTemp.ElementAt(i));
+
+                    listTemp = null;
+                }
+                else if (supplier.CategoryName.Equals("Dooring Agent"))
+                {
+                    List<Entities.City> listTemp = sqlSupplierRepository.ListCitySupplier(supplier.Id);
+                    groupBoxDestination.Visible = true;
+
+                    if (listTemp != null)
+                        for (int i = 0; i < listTemp.Count; i++)
+                        {
+                            gvDestination.Rows.AddNew();
+
+                            GridViewDataRowInfo gridViewRow = gvDestination.Rows[i];
+                            gridViewRow.Cells["ID"].Value = listTemp.ElementAt(i).ID.ToString();
+                            gridViewRow.Cells["CityName"].Value = listTemp.ElementAt(i).CityName;
+                        }
 
                     listTemp = null;
                 }
@@ -107,6 +157,8 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 supplierDetail.SupplierDetailMobilePhone = etDetailMobile.Text.Trim();
                 supplierDetail.SupplierDetailAddress = etDetailAddress.Text.Trim();
                 supplierDetail.SupplierMobileExt = etExt.Text.Trim();
+                supplierDetail.SupplierDetailEmail = etDetailEmail.Text.Trim();
+                supplierDetail.SupplierDetailDivision = etDivision.Text.Trim();
 
                 for (int i = 0; i < listSupplierDetail.Count; i++)
                 {
@@ -135,6 +187,8 @@ namespace VisitaJayaPerkasa.Control.Supplier
             etDetailAddress.Text = "";
             etDetailMobile.Text = "";
             etDetailPhone.Text = "";
+            etDivision.Text = "";
+            etDetailEmail.Text = "";
         }
 
         private void btnClearGrid_Click(object sender, EventArgs e)
@@ -273,7 +327,7 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 }
 
 
-                if (sqlSupplierRepository.CreateSupplier(sqlParam, (groupBoxTrucking.Visible) ? gvTrucking.RowCount : 0))
+                if (sqlSupplierRepository.CreateSupplier(sqlParam, (groupBoxTrucking.Visible) ? gvTrucking.RowCount : 0, (groupBoxDestination.Visible) ? gvDestination.RowCount : 0))
                 {
                     MessageBox.Show(this, "Success insert supplier data", "Information");
 
@@ -318,7 +372,7 @@ namespace VisitaJayaPerkasa.Control.Supplier
                     return;
                 }
 
-                if (sqlSupplierRepository.EditSupplier(sqlParam, (groupBoxTrucking.Visible) ? gvTrucking.RowCount : 0))
+                if (sqlSupplierRepository.EditSupplier(sqlParam, (groupBoxTrucking.Visible) ? gvTrucking.RowCount : 0, (groupBoxDestination.Visible) ? gvDestination.RowCount : 0))
                 {
                     MessageBox.Show(this, "Success edit supplier data", "Information");
 
@@ -351,14 +405,16 @@ namespace VisitaJayaPerkasa.Control.Supplier
 
         private string[] getStringSqlParameter()
         {
-            //rowcount * 9 is number of field of supplier detail
-            // + 9 is number of field of supplier
-            // + 3 is number of field of trucking number
+            //rowcount * 11 is number of field of supplier detail
+            // + 11 is number of field of supplier
+            // + 3 is number of field of trucking number or destination supplier
             string[] strSqlParameter;
             if(groupBoxTrucking.Visible)
-                strSqlParameter = new string[((supplierDetailGridView.RowCount * 9) + 9) + (gvTrucking.RowCount * 3)];
+                strSqlParameter = new string[((supplierDetailGridView.RowCount * 11) + 11) + (gvTrucking.RowCount * 3)];
+            else if(groupBoxDestination.Visible)
+                strSqlParameter = new string[((supplierDetailGridView.RowCount * 11) + 11) + (gvDestination.RowCount * 3)];
             else
-                strSqlParameter = new string[(supplierDetailGridView.RowCount * 9) + 9];
+                strSqlParameter = new string[(supplierDetailGridView.RowCount * 11) + 11];
                 
             
             strSqlParameter[0] = "supplier_id";
@@ -370,8 +426,10 @@ namespace VisitaJayaPerkasa.Control.Supplier
             strSqlParameter[6] = "email";
             strSqlParameter[7] = "contact_person";
             strSqlParameter[8] = "deleted";
+            strSqlParameter[9] = "TypeOfPaymentId";
+            strSqlParameter[10] = "TermOfPayment";
 
-            int j = 9;
+            int j = 11;
             for (int i = 0; i < supplierDetailGridView.RowCount; i++)
             {
                 strSqlParameter[j++] = "supplier_detail_id";
@@ -383,6 +441,8 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 strSqlParameter[j++] = "address";
                 strSqlParameter[j++] = "deleted";
                 strSqlParameter[j++] = "Extention";
+                strSqlParameter[j++] = "Email";
+                strSqlParameter[j++] = "Division";
             }
 
 
@@ -394,20 +454,30 @@ namespace VisitaJayaPerkasa.Control.Supplier
                     strSqlParameter[j++] = "trucking_no";
                 }
             }
+            else if (gvDestination.Visible) {
+                for (int i = 0; i < gvDestination.RowCount; i++)
+                {
+                    strSqlParameter[j++] = "supplier_destination_id";
+                    strSqlParameter[j++] = "supplier_id";
+                    strSqlParameter[j++] = "destination_id";
+                }
+            }
 
             return strSqlParameter;
         }
 
         private object[] GetObjSqlParameter(Guid id)
         {
-            //rowcount * 9 is number of field of supplier detail
-            // + 9 is number of field of supplier
-            // + 3 is number of field of trucking
+            //rowcount * 11 is number of field of supplier detail
+            // + 11 is number of field of supplier
+            // + 3 is number of field of trucking or destination supplier
             object[] obj;
             if(groupBoxTrucking.Visible)
-                obj = new object[((supplierDetailGridView.RowCount * 9) + 9) + (gvTrucking.RowCount * 3)];
+                obj = new object[((supplierDetailGridView.RowCount * 11) + 11) + (gvTrucking.RowCount * 3)];
+            else if(groupBoxDestination.Visible)
+                obj = new object[((supplierDetailGridView.RowCount * 11) + 11) + (gvDestination.RowCount * 3)];
             else 
-                obj = new object[(supplierDetailGridView.RowCount * 9) + 9];
+                obj = new object[(supplierDetailGridView.RowCount * 11) + 11];
             
             obj[0] = id;
             obj[1] = SqlUtility.isDBNULL(cboCategory.SelectedValue.ToString().Trim());
@@ -418,8 +488,10 @@ namespace VisitaJayaPerkasa.Control.Supplier
             obj[6] = SqlUtility.isDBNULL(etEmail.Text.Trim());
             obj[7] = SqlUtility.isDBNULL(etContactPerson.Text.Trim());
             obj[8] = 0;
+            obj[9] = (cbTypeOfPayment.Text.Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText)) ? DBNull.Value : cbTypeOfPayment.SelectedValue;
+            obj[10] = etTermOfPayment.Text;
 
-            int i = 9;
+            int i = 11;
             for (int j = 0; j < supplierDetailGridView.RowCount; j++)
             {
                 obj[i++] = Guid.NewGuid();
@@ -431,6 +503,8 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 obj[i++] = SqlUtility.isDBNULL(supplierDetailGridView.Rows[j].Cells[5].Value + "");
                 obj[i++] = 0;
                 obj[i++] = SqlUtility.isDBNULL(supplierDetailGridView.Rows[j].Cells[2].Value + "");
+                obj[i++] = SqlUtility.isDBNULL(supplierDetailGridView.Rows[j].Cells[6].Value + "");
+                obj[i++] = SqlUtility.isDBNULL(supplierDetailGridView.Rows[j].Cells[7].Value + "");
             }
 
 
@@ -442,6 +516,15 @@ namespace VisitaJayaPerkasa.Control.Supplier
                     obj[i++] = gvTrucking.Rows[j].Cells[0].Value;
                 }
             }
+            else if (groupBoxDestination.Visible) {
+                for (int j = 0; j < gvDestination.RowCount; j++)
+                {
+                    obj[i++] = Guid.NewGuid();
+                    obj[i++] = id;
+                    obj[i++] = gvDestination.Rows[j].Cells[0].Value;
+                }
+            }
+
             return obj;
         }
 
@@ -454,9 +537,29 @@ namespace VisitaJayaPerkasa.Control.Supplier
         private void cboCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboCategory.Text.Equals("Trucking"))
+            {
                 groupBoxTrucking.Visible = true;
-            else
+                groupBoxDestination.Visible = false;
+                btnPelayaran.Visible = false;
+            }
+            else if (cboCategory.Text.Equals("Shipping Lines")) 
+            {
+                btnPelayaran.Visible = true;
+                groupBoxDestination.Visible = false;
                 groupBoxTrucking.Visible = false;
+            }
+            else if (cboCategory.Text.Equals("Dooring Agent"))
+            {
+                groupBoxTrucking.Visible = false;
+                groupBoxDestination.Visible = true;
+                btnPelayaran.Visible = false;
+            }
+            else
+            {
+                groupBoxTrucking.Visible = false;
+                groupBoxDestination.Visible = false;
+                btnPelayaran.Visible = false;
+            }
         }
 
         private void btnAddTrucking_Click(object sender, EventArgs e)
@@ -484,6 +587,54 @@ namespace VisitaJayaPerkasa.Control.Supplier
                 radButtonElement1.PerformClick();
             }
         }
+
+        private void cbTypeOfPayment_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(0);
+        }
+
+        private void btnAddDestination_Click(object sender, EventArgs e)
+        {
+            if (cboDestination.Text.Trim().Equals(Constant.VisitaJayaPerkasaApplication.cboDefaultText))
+                MessageBox.Show(this, "Please select city", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+            {
+                if (gvDestination.RowCount > 0)
+                {
+                    for (int i = 0; i < gvDestination.RowCount; i++) {
+                        GridViewDataRowInfo info = gvDestination.Rows[i];
+
+                        if (info.Cells["CityName"].Value.Equals(cboDestination.Text))
+                        {
+                            MessageBox.Show(this, "City has already exist", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                    }
+                }
+
+
+
+
+                gvDestination.Rows.AddNew();
+                int rowIndex = gvDestination.RowCount - 1;
+
+                GridViewDataRowInfo gridViewRow = gvDestination.Rows[rowIndex];
+                gridViewRow.Cells["ID"].Value = cboDestination.SelectedValue.ToString();
+                gridViewRow.Cells["CityName"].Value = cboDestination.Text;
+            } 
+        }
+
+        private void btnRemoveDestination_Click(object sender, EventArgs e)
+        {
+            if (gvDestination.RowCount > 0 && gvDestination.CurrentCell != null)
+                gvDestination.Rows.RemoveAt(gvDestination.CurrentCell.RowIndex);
+        }
+
+        private void cboDestination_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(0);
+        }
+
 
     }
 }

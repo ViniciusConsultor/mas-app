@@ -14,6 +14,8 @@ namespace VisitaJayaPerkasa.Entities
         public string SupplierMobileExt { get; set; }
         public string SupplierDetailPhone { get; set; }
         public string SupplierDetailMobilePhone { get; set; }
+        public string SupplierDetailEmail { get; set; }
+        public string SupplierDetailDivision { get; set; }
         public int SupplierDetailDeleted { get; set; }
     }
 }

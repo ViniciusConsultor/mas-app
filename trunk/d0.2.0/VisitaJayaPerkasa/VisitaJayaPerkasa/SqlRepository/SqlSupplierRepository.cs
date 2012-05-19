@@ -23,7 +23,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                     Constant.VisitaJayaPerkasaApplication.anyConnection = true;
 
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT s.supplier_id, s.category_id, s.supplier_name, s.address, s.phone, s.fax, s.email, s.contact_person, c.category_name, s.deleted FROM [Supplier] s JOIN [CATEGORY] c " +
+                        "SELECT s.supplier_id, s.category_id, s.supplier_name, s.address, s.phone, s.fax, s.email, s.contact_person, c.category_name, s.deleted, s.TypeOfPaymentId, s.TermOfPayment FROM [Supplier] s JOIN [CATEGORY] c " +
                         "ON (s.deleted is null OR s.deleted = '0') AND (c.deleted is null OR c.deleted = '0') AND s.category_id = c.category_id", con))
                     {
                         SqlDataReader reader = command.ExecuteReader();
@@ -39,6 +39,10 @@ namespace VisitaJayaPerkasa.SqlRepository
                             supplier.Email = (Utility.Utility.IsDBNull(reader.GetValue(6))) ? null : reader.GetString(6);
                             supplier.ContactPerson = (Utility.Utility.IsDBNull(reader.GetValue(7))) ? null : reader.GetString(7);
                             supplier.CategoryName = (Utility.Utility.IsDBNull(reader.GetValue(8))) ? null : reader.GetString(8);
+
+                            if(! (Utility.Utility.IsDBNull(reader.GetValue(10))))
+                                supplier.TypeOfPayment = Utility.Utility.ConvertToUUID(reader.GetValue(10).ToString());
+                            supplier.TermOfPayment = (Utility.Utility.IsDBNull(reader.GetValue(11))) ? null : reader.GetString(11);
 
                             if (listSupplier == null)
                                 listSupplier = new List<Supplier>();
@@ -90,6 +94,46 @@ namespace VisitaJayaPerkasa.SqlRepository
             }
 
             return listTruckingNumber;
+        }
+
+
+        public List<City> ListCitySupplier(Guid ID)
+        {
+            List<City> listCitySupplier = null;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.connectionString))
+                {
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = false;
+                    con.Open();
+                    Constant.VisitaJayaPerkasaApplication.anyConnection = true;
+
+                    using (SqlCommand command = new SqlCommand(
+                        "SELECT city_id, city_name FROM [City], [Supplier_Destination] WHERE " +
+                        "city_id = destination_id And supplier_id like '" + ID.ToString() + "'", con))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            if (listCitySupplier == null)
+                                listCitySupplier = new List<City>();
+
+                            City objCity = new City();
+                            objCity.ID = Utility.Utility.ConvertToUUID(reader.GetValue(0).ToString());
+                            objCity.CityName = reader.GetValue(1).ToString();
+
+                            listCitySupplier.Add(objCity);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.Error("SqlSupplierRepository.cs - ListCitySupplier() " + e.Message);
+            }
+
+            return listCitySupplier;
         }
 
 
@@ -346,6 +390,11 @@ namespace VisitaJayaPerkasa.SqlRepository
                             supplier.SupplierDetailMobilePhone = (Utility.Utility.IsDBNull(reader.GetValue(5))) ? null : reader.GetString(5);
                             supplier.SupplierDetailAddress = (Utility.Utility.IsDBNull(reader.GetValue(6))) ? null : reader.GetString(6);
                             supplier.SupplierMobileExt = (Utility.Utility.IsDBNull(reader.GetValue(8))) ? null : reader.GetString(8);
+                            supplier.SupplierDetailEmail = (Utility.Utility.IsDBNull(reader.GetValue(9))) ? null : reader.GetString(9);
+                            supplier.SupplierDetailDivision = (Utility.Utility.IsDBNull(reader.GetValue(10))) ? null : reader.GetString(10);
+
+                        
+
                             if (listSupplierrDetail == null)
                                 listSupplierrDetail = new List<SupplierDetail>();
 
@@ -419,7 +468,7 @@ namespace VisitaJayaPerkasa.SqlRepository
             return n > 0;
         }
 
-        public bool CreateSupplier(SqlParameter[] sqlParam, int totalRecordTrucking)
+        public bool CreateSupplier(SqlParameter[] sqlParam, int totalRecordTrucking, int totalRecordDestination)
         {
             int n = 0;
             SqlConnection con;
@@ -444,27 +493,31 @@ namespace VisitaJayaPerkasa.SqlRepository
                         sqlParam[5].ParameterName + ", " +
                         sqlParam[6].ParameterName + ", " +
                         sqlParam[7].ParameterName + ", " +
-                        sqlParam[8].ParameterName +
+                        sqlParam[8].ParameterName + ", " +
+                        sqlParam[9].ParameterName + ", " +
+                        sqlParam[10].ParameterName +
                         ")", con))
                     {
                         command.Transaction = sqlTransaction;
 
-                        for (int i = 0; i < 9; i++)
+                        for (int i = 0; i < 11; i++)
                             command.Parameters.Add(sqlParam[i]);
                         n = command.ExecuteNonQuery();
                         command.Parameters.Clear();
 
-                        int z = 9;
-                        int subz = 9;
-                        if ((n > 0) && (sqlParam.Length - (totalRecordTrucking * 3)) > 9)
+                        int z = 11;
+                        int subz = 11;
+                        if ((n > 0) && (sqlParam.Length - (totalRecordTrucking * 3)) > 11)
                         {
-                            //sqlparam.Length - 9 is total sqlParam minus total field of master supplier
+                            //sqlparam.Length - 11 is total sqlParam minus total field of master supplier
                             //totalRecordTrucking*3 is total field of supplier trucking
-                            //divide 9 is total field of supplier detail 
-                            for (int k = 0; k < (((sqlParam.Length - 9)-(totalRecordTrucking*3)) / 9); k++)
+                            //divide 11 is total field of supplier detail 
+                            for (int k = 0; k < (((sqlParam.Length - 11)-(totalRecordTrucking*3)) / 11); k++)
                             {
                                 using (SqlCommand subCommand = new SqlCommand(
                                     "Insert into [Supplier_Detail] values(" +
+                                    sqlParam[z++].ParameterName + ", " +
+                                    sqlParam[z++].ParameterName + ", " +
                                     sqlParam[z++].ParameterName + ", " +
                                     sqlParam[z++].ParameterName + ", " +
                                     sqlParam[z++].ParameterName + ", " +
@@ -479,7 +532,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                                 {
                                     subCommand.Transaction = sqlTransaction;
 
-                                    for (int i = 0; i < 9; i++)
+                                    for (int i = 0; i < 11; i++)
                                         subCommand.Parameters.Add(sqlParam[subz++]);
                                     n = subCommand.ExecuteNonQuery();
                                     subCommand.Parameters.Clear();
@@ -500,6 +553,29 @@ namespace VisitaJayaPerkasa.SqlRepository
                                 for (int k = 0; k < ((sqlParam.Length - tempZvalue) / 3); k++)
                                 {
                                     using (SqlCommand subCommand2 = new SqlCommand("Insert into [SUPPLIER_TRUCKING] Values(" +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ", " +
+                                        sqlParam[z++].ParameterName + ")",
+                                        con))
+                                    {
+                                        subCommand2.Transaction = sqlTransaction;
+
+                                        for (int i = 0; i < 3; i++)
+                                            subCommand2.Parameters.Add(sqlParam[subz++]);
+                                        n = subCommand2.ExecuteNonQuery();
+                                        subCommand2.Parameters.Clear();
+
+                                        if (n == 0)
+                                            break;
+                                    }
+                                }
+                            }
+                            else if(totalRecordDestination > 0)
+                            {
+                                //3 is total field of supplier_destination
+                                for (int k = 0; k < ((sqlParam.Length - tempZvalue) / 3); k++)
+                                {
+                                    using (SqlCommand subCommand2 = new SqlCommand("Insert into [Supplier_Destination] Values(" +
                                         sqlParam[z++].ParameterName + ", " +
                                         sqlParam[z++].ParameterName + ", " +
                                         sqlParam[z++].ParameterName + ")",
@@ -542,7 +618,7 @@ namespace VisitaJayaPerkasa.SqlRepository
             return n > 0;
         }
 
-        public bool EditSupplier(SqlParameter[] sqlParam, int totalRecordTrucking)
+        public bool EditSupplier(SqlParameter[] sqlParam, int totalRecordTrucking, int totalRecordDestination)
         {
             int n = 0;
             SqlConnection con;
@@ -558,6 +634,7 @@ namespace VisitaJayaPerkasa.SqlRepository
 
                     int TotalSupplierDetail = 0;
                     int countTrucking = 0;
+                    int countDestination = 0;
                     using (SqlCommand totalSupplierDetailCommand = new SqlCommand(
                         "Select count(supplier_id) FROM [Supplier_Detail] WHERE supplier_id = " +
                         sqlParam[0].ParameterName, con))
@@ -590,6 +667,23 @@ namespace VisitaJayaPerkasa.SqlRepository
                             reader = null;
                         }
                     }
+                    else if (totalRecordDestination > 0)
+                    {
+                        using (SqlCommand totalRecordDestinationCommand = new SqlCommand(
+                        "Select count(supplier_id) FROM [supplier_destination] WHERE supplier_id = " +
+                        sqlParam[0].ParameterName, con))
+                        {
+                            totalRecordDestinationCommand.Parameters.Add(sqlParam[0]);
+                            SqlDataReader reader = totalRecordDestinationCommand.ExecuteReader();
+                            totalRecordDestinationCommand.Parameters.Clear();
+
+                            if (reader.Read())
+                                countDestination = reader.GetInt32(0);
+
+                            reader.Close();
+                            reader = null;
+                        }
+                    }
 
 
                     sqlTransaction = con.BeginTransaction();
@@ -614,11 +708,25 @@ namespace VisitaJayaPerkasa.SqlRepository
                                     deleteTruckingCommand.Parameters.Clear();
                                 }
                             }
+                            else if (totalRecordDestination > 0)
+                            {
+                                using (SqlCommand deleteDestinationCommand = new SqlCommand(
+                                    "Delete [Supplier_Destination] WHERE supplier_id = " + sqlParam[0].ParameterName, con))
+                                {
+                                    deleteDestinationCommand.Transaction = sqlTransaction;
+                                    deleteDestinationCommand.Parameters.Add(sqlParam[0]);
+                                    n = deleteDestinationCommand.ExecuteNonQuery();
+                                    deleteDestinationCommand.Parameters.Clear();
+                                }
+                            }
 
 
                             byte executeScalar = 0;
                             if (totalRecordTrucking > 0) {
                                 if (n == countTrucking) { executeScalar = 1; }
+                            }
+                            else if (totalRecordDestination > 0) {
+                                if (n == countDestination) { executeScalar = 1; }
                             }
                             else
                                 executeScalar = 1;
@@ -636,28 +744,33 @@ namespace VisitaJayaPerkasa.SqlRepository
                                     "fax = " + sqlParam[5].ParameterName + ", " +
                                     "email = " + sqlParam[6].ParameterName + ", " +
                                     "contact_person = " + sqlParam[7].ParameterName + ", " +
-                                    "deleted = " + sqlParam[8].ParameterName + " WHERE " +
+                                    "deleted = " + sqlParam[8].ParameterName + ", " +
+                                    "TypeOfPaymentId = " + sqlParam[9].ParameterName + ", " + 
+                                    "TermOfPayment = " + sqlParam[10].ParameterName +
+                                    " WHERE " +
                                     "supplier_id = " + sqlParam[0].ParameterName
                                     , con))
                                 {
                                     command.Transaction = sqlTransaction;
 
-                                    for (int i = 0; i < 9; i++)
+                                    for (int i = 0; i < 11; i++)
                                         command.Parameters.Add(sqlParam[i]);
                                     n = command.ExecuteNonQuery();
                                     command.Parameters.Clear();
 
-                                    int z = 9;
-                                    int subz = 9;
-                                    if ((n > 0) && (sqlParam.Length - (totalRecordTrucking * 3)) > 9)
+                                    int z = 11;
+                                    int subz = 11;
+                                    if ((n > 0) && (sqlParam.Length - (totalRecordTrucking * 3)) > 11)
                                     {
-                                        //sqlparam.Length - 9 is total sqlParam minus total field of master supplier
+                                        //sqlparam.Length - 11 is total sqlParam minus total field of master supplier
                                         //totalRecordTrucking*3 is total field of supplier trucking
-                                        //divide 9 is total field of supplier detail 
-                                        for (int k = 0; k < (((sqlParam.Length - 9) - (totalRecordTrucking * 3)) / 9); k++)
+                                        //divide 11 is total field of supplier detail 
+                                        for (int k = 0; k < (((sqlParam.Length - 11) - (totalRecordTrucking * 3)) / 11); k++)
                                         {
                                             using (SqlCommand subCommand = new SqlCommand(
                                                 "Insert into [Supplier_Detail] values(" +
+                                                sqlParam[z++].ParameterName + ", " +
+                                                sqlParam[z++].ParameterName + ", " +
                                                 sqlParam[z++].ParameterName + ", " +
                                                 sqlParam[z++].ParameterName + ", " +
                                                 sqlParam[z++].ParameterName + ", " +
@@ -672,7 +785,7 @@ namespace VisitaJayaPerkasa.SqlRepository
                                             {
                                                 subCommand.Transaction = sqlTransaction;
 
-                                                for (int i = 0; i < 9; i++)
+                                                for (int i = 0; i < 11; i++)
                                                     subCommand.Parameters.Add(sqlParam[subz++]);
                                                 n = subCommand.ExecuteNonQuery();
                                                 subCommand.Parameters.Clear();
@@ -691,6 +804,29 @@ namespace VisitaJayaPerkasa.SqlRepository
                                         for (int k = 0; k < ((sqlParam.Length - tempZvalue) / 3); k++)
                                         {
                                             using (SqlCommand subCommand2 = new SqlCommand("Insert into [SUPPLIER_TRUCKING] Values(" +
+                                                sqlParam[z++].ParameterName + ", " +
+                                                sqlParam[z++].ParameterName + ", " +
+                                                sqlParam[z++].ParameterName + ")",
+                                                con))
+                                            {
+                                                subCommand2.Transaction = sqlTransaction;
+
+                                                for (int i = 0; i < 3; i++)
+                                                    subCommand2.Parameters.Add(sqlParam[subz++]);
+                                                n = subCommand2.ExecuteNonQuery();
+                                                subCommand2.Parameters.Clear();
+
+                                                if (n == 0)
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                    else if (totalRecordDestination > 0 && n > 0)
+                                    {
+                                        //3 is total field of supplier destination
+                                        for (int k = 0; k < ((sqlParam.Length - tempZvalue) / 3); k++)
+                                        {
+                                            using (SqlCommand subCommand2 = new SqlCommand("Insert into [Supplier_Destination] Values(" +
                                                 sqlParam[z++].ParameterName + ", " +
                                                 sqlParam[z++].ParameterName + ", " +
                                                 sqlParam[z++].ParameterName + ")",
