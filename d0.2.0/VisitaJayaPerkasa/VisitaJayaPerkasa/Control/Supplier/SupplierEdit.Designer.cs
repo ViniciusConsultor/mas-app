@@ -34,9 +34,17 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridSortField gridSortField1 = new Telerik.WinControls.UI.GridSortField();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbTypeOfPayment = new Telerik.WinControls.UI.RadComboBox();
+            this.etTermOfPayment = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
             this.cboCategory = new Telerik.WinControls.UI.RadComboBox();
             this.etAddress = new Telerik.WinControls.UI.RadTextBox();
             this.etSupplierName = new Telerik.WinControls.UI.RadTextBox();
@@ -57,6 +65,10 @@
             this.radButtonElement2 = new Telerik.WinControls.UI.RadButtonElement();
             this.radToolStrip1 = new Telerik.WinControls.UI.RadToolStrip();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.etDivision = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
+            this.etDetailEmail = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
             this.etExt = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.etDetailAddress = new Telerik.WinControls.UI.RadTextBox();
@@ -75,15 +87,25 @@
             this.btnRemoveGrid = new Telerik.WinControls.UI.RadButton();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
-            this.btnPelayaran = new Telerik.WinControls.UI.RadButton();
             this.groupBoxTrucking = new System.Windows.Forms.GroupBox();
             this.gvTrucking = new Telerik.WinControls.UI.RadGridView();
             this.btnRemoveTrucking = new Telerik.WinControls.UI.RadButton();
             this.btnAddTrucking = new Telerik.WinControls.UI.RadButton();
             this.txtTruckingNumber = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel18 = new Telerik.WinControls.UI.RadLabel();
+            this.groupBoxDestination = new System.Windows.Forms.GroupBox();
+            this.cboDestination = new Telerik.WinControls.UI.RadComboBox();
+            this.gvDestination = new Telerik.WinControls.UI.RadGridView();
+            this.btnRemoveDestination = new Telerik.WinControls.UI.RadButton();
+            this.btnAddDestination = new Telerik.WinControls.UI.RadButton();
+            this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
+            this.btnPelayaran = new Telerik.WinControls.UI.RadButton();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbTypeOfPayment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etTermOfPayment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etSupplierName)).BeginInit();
@@ -100,6 +122,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.etDivision)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etDetailEmail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etExt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etDetailAddress)).BeginInit();
@@ -120,19 +146,29 @@
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
             this.splitPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPelayaran)).BeginInit();
             this.groupBoxTrucking.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTrucking)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemoveTrucking)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddTrucking)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTruckingNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).BeginInit();
+            this.groupBoxDestination.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboDestination)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvDestination)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRemoveDestination)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddDestination)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPelayaran)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbTypeOfPayment);
+            this.groupBox2.Controls.Add(this.etTermOfPayment);
+            this.groupBox2.Controls.Add(this.radLabel15);
+            this.groupBox2.Controls.Add(this.radLabel14);
             this.groupBox2.Controls.Add(this.cboCategory);
             this.groupBox2.Controls.Add(this.etAddress);
             this.groupBox2.Controls.Add(this.etSupplierName);
@@ -149,10 +185,53 @@
             this.groupBox2.Controls.Add(this.radLabel9);
             this.groupBox2.Location = new System.Drawing.Point(17, 22);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(332, 187);
+            this.groupBox2.Size = new System.Drawing.Size(332, 246);
             this.groupBox2.TabIndex = 27;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Master Data";
+            // 
+            // cbTypeOfPayment
+            // 
+            this.cbTypeOfPayment.Location = new System.Drawing.Point(116, 176);
+            this.cbTypeOfPayment.Name = "cbTypeOfPayment";
+            // 
+            // 
+            // 
+            this.cbTypeOfPayment.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
+            this.cbTypeOfPayment.Size = new System.Drawing.Size(210, 20);
+            this.cbTypeOfPayment.TabIndex = 42;
+            this.cbTypeOfPayment.TabStop = false;
+            this.cbTypeOfPayment.Text = "-- Choose --";
+            this.cbTypeOfPayment.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbTypeOfPayment_KeyPress);
+            // 
+            // etTermOfPayment
+            // 
+            this.etTermOfPayment.Location = new System.Drawing.Point(116, 198);
+            this.etTermOfPayment.Multiline = true;
+            this.etTermOfPayment.Name = "etTermOfPayment";
+            // 
+            // 
+            // 
+            this.etTermOfPayment.RootElement.StretchVertically = true;
+            this.etTermOfPayment.Size = new System.Drawing.Size(210, 42);
+            this.etTermOfPayment.TabIndex = 35;
+            this.etTermOfPayment.TabStop = false;
+            // 
+            // radLabel15
+            // 
+            this.radLabel15.Location = new System.Drawing.Point(6, 198);
+            this.radLabel15.Name = "radLabel15";
+            this.radLabel15.Size = new System.Drawing.Size(93, 16);
+            this.radLabel15.TabIndex = 34;
+            this.radLabel15.Text = "Term of Payment";
+            // 
+            // radLabel14
+            // 
+            this.radLabel14.Location = new System.Drawing.Point(6, 176);
+            this.radLabel14.Name = "radLabel14";
+            this.radLabel14.Size = new System.Drawing.Size(90, 16);
+            this.radLabel14.TabIndex = 33;
+            this.radLabel14.Text = "Type of payment";
             // 
             // cboCategory
             // 
@@ -331,6 +410,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.etDivision);
+            this.groupBox1.Controls.Add(this.radLabel17);
+            this.groupBox1.Controls.Add(this.etDetailEmail);
+            this.groupBox1.Controls.Add(this.radLabel16);
             this.groupBox1.Controls.Add(this.etExt);
             this.groupBox1.Controls.Add(this.radLabel13);
             this.groupBox1.Controls.Add(this.etDetailAddress);
@@ -343,12 +426,44 @@
             this.groupBox1.Controls.Add(this.etFirstName);
             this.groupBox1.Controls.Add(this.radLabel3);
             this.groupBox1.Controls.Add(this.radLabel4);
-            this.groupBox1.Location = new System.Drawing.Point(364, 39);
+            this.groupBox1.Location = new System.Drawing.Point(364, 22);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(332, 164);
+            this.groupBox1.Size = new System.Drawing.Size(332, 204);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detail Data";
+            // 
+            // etDivision
+            // 
+            this.etDivision.Location = new System.Drawing.Point(116, 177);
+            this.etDivision.Name = "etDivision";
+            this.etDivision.Size = new System.Drawing.Size(210, 20);
+            this.etDivision.TabIndex = 17;
+            this.etDivision.TabStop = false;
+            // 
+            // radLabel17
+            // 
+            this.radLabel17.Location = new System.Drawing.Point(21, 177);
+            this.radLabel17.Name = "radLabel17";
+            this.radLabel17.Size = new System.Drawing.Size(46, 16);
+            this.radLabel17.TabIndex = 18;
+            this.radLabel17.Text = "Division";
+            // 
+            // etDetailEmail
+            // 
+            this.etDetailEmail.Location = new System.Drawing.Point(116, 154);
+            this.etDetailEmail.Name = "etDetailEmail";
+            this.etDetailEmail.Size = new System.Drawing.Size(210, 20);
+            this.etDetailEmail.TabIndex = 15;
+            this.etDetailEmail.TabStop = false;
+            // 
+            // radLabel16
+            // 
+            this.radLabel16.Location = new System.Drawing.Point(21, 155);
+            this.radLabel16.Name = "radLabel16";
+            this.radLabel16.Size = new System.Drawing.Size(35, 16);
+            this.radLabel16.TabIndex = 16;
+            this.radLabel16.Text = "Email";
             // 
             // etExt
             // 
@@ -489,12 +604,24 @@
             gridViewTextBoxColumn6.HeaderText = "Address";
             gridViewTextBoxColumn6.UniqueName = "SupplierDetailAddress";
             gridViewTextBoxColumn6.Width = 200;
+            gridViewTextBoxColumn7.FieldAlias = "SupplierDetailEmail";
+            gridViewTextBoxColumn7.FieldName = "SupplierDetailEmail";
+            gridViewTextBoxColumn7.HeaderText = "Email";
+            gridViewTextBoxColumn7.UniqueName = "SupplierDetailEmail";
+            gridViewTextBoxColumn7.Width = 100;
+            gridViewTextBoxColumn8.FieldAlias = "SupplierDetailDivision";
+            gridViewTextBoxColumn8.FieldName = "SupplierDetailDivision";
+            gridViewTextBoxColumn8.HeaderText = "Division";
+            gridViewTextBoxColumn8.UniqueName = "SupplierDetailDivision";
+            gridViewTextBoxColumn8.Width = 100;
             this.supplierDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn1);
             this.supplierDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn2);
             this.supplierDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn3);
             this.supplierDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn4);
             this.supplierDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn5);
             this.supplierDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn6);
+            this.supplierDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn7);
+            this.supplierDetailGridView.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn8);
             gridSortField1.FieldAlias = "LastName";
             gridSortField1.FieldName = "LastName";
             this.supplierDetailGridView.MasterGridViewTemplate.SortExpressions.Add(gridSortField1);
@@ -506,7 +633,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(364, 209);
+            this.btnAdd.Location = new System.Drawing.Point(364, 231);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(85, 21);
             this.btnAdd.TabIndex = 13;
@@ -515,7 +642,7 @@
             // 
             // btnClearGrid
             // 
-            this.btnClearGrid.Location = new System.Drawing.Point(451, 209);
+            this.btnClearGrid.Location = new System.Drawing.Point(451, 231);
             this.btnClearGrid.Name = "btnClearGrid";
             this.btnClearGrid.Size = new System.Drawing.Size(85, 21);
             this.btnClearGrid.TabIndex = 38;
@@ -524,7 +651,7 @@
             // 
             // btnRemoveGrid
             // 
-            this.btnRemoveGrid.Location = new System.Drawing.Point(538, 209);
+            this.btnRemoveGrid.Location = new System.Drawing.Point(538, 231);
             this.btnRemoveGrid.Name = "btnRemoveGrid";
             this.btnRemoveGrid.Size = new System.Drawing.Size(85, 21);
             this.btnRemoveGrid.TabIndex = 39;
@@ -550,8 +677,9 @@
             // 
             // splitPanel1
             // 
-            this.splitPanel1.Controls.Add(this.btnPelayaran);
             this.splitPanel1.Controls.Add(this.groupBoxTrucking);
+            this.splitPanel1.Controls.Add(this.groupBoxDestination);
+            this.splitPanel1.Controls.Add(this.btnPelayaran);
             this.splitPanel1.Controls.Add(this.btnRemoveGrid);
             this.splitPanel1.Controls.Add(this.btnAdd);
             this.splitPanel1.Controls.Add(this.groupBox2);
@@ -570,16 +698,6 @@
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
             // 
-            // btnPelayaran
-            // 
-            this.btnPelayaran.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPelayaran.Location = new System.Drawing.Point(624, 209);
-            this.btnPelayaran.Name = "btnPelayaran";
-            this.btnPelayaran.Size = new System.Drawing.Size(69, 21);
-            this.btnPelayaran.TabIndex = 41;
-            this.btnPelayaran.Text = "Pelayaran";
-            this.btnPelayaran.Click += new System.EventHandler(this.btnPelayaran_Click);
-            // 
             // groupBoxTrucking
             // 
             this.groupBoxTrucking.Controls.Add(this.gvTrucking);
@@ -587,7 +705,7 @@
             this.groupBoxTrucking.Controls.Add(this.btnAddTrucking);
             this.groupBoxTrucking.Controls.Add(this.txtTruckingNumber);
             this.groupBoxTrucking.Controls.Add(this.radLabel18);
-            this.groupBoxTrucking.Location = new System.Drawing.Point(702, 22);
+            this.groupBoxTrucking.Location = new System.Drawing.Point(702, 7);
             this.groupBoxTrucking.Name = "groupBoxTrucking";
             this.groupBoxTrucking.Size = new System.Drawing.Size(332, 261);
             this.groupBoxTrucking.TabIndex = 40;
@@ -608,11 +726,11 @@
             // 
             this.gvTrucking.MasterGridViewTemplate.AllowAddNewRow = false;
             this.gvTrucking.MasterGridViewTemplate.AllowDragToGroup = false;
-            gridViewTextBoxColumn7.FieldAlias = "column1";
-            gridViewTextBoxColumn7.HeaderText = "Trucking Number";
-            gridViewTextBoxColumn7.UniqueName = "TruckingNumber";
-            gridViewTextBoxColumn7.Width = 147;
-            this.gvTrucking.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn7);
+            gridViewTextBoxColumn9.FieldAlias = "column1";
+            gridViewTextBoxColumn9.HeaderText = "Trucking Number";
+            gridViewTextBoxColumn9.UniqueName = "TruckingNumber";
+            gridViewTextBoxColumn9.Width = 147;
+            this.gvTrucking.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn9);
             this.gvTrucking.Name = "gvTrucking";
             this.gvTrucking.ReadOnly = true;
             this.gvTrucking.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -653,6 +771,102 @@
             this.radLabel18.TabIndex = 12;
             this.radLabel18.Text = "Trucking Number";
             // 
+            // groupBoxDestination
+            // 
+            this.groupBoxDestination.Controls.Add(this.cboDestination);
+            this.groupBoxDestination.Controls.Add(this.gvDestination);
+            this.groupBoxDestination.Controls.Add(this.btnRemoveDestination);
+            this.groupBoxDestination.Controls.Add(this.btnAddDestination);
+            this.groupBoxDestination.Controls.Add(this.radLabel19);
+            this.groupBoxDestination.Location = new System.Drawing.Point(702, 6);
+            this.groupBoxDestination.Name = "groupBoxDestination";
+            this.groupBoxDestination.Size = new System.Drawing.Size(332, 261);
+            this.groupBoxDestination.TabIndex = 42;
+            this.groupBoxDestination.TabStop = false;
+            this.groupBoxDestination.Text = "Destination";
+            this.groupBoxDestination.Visible = false;
+            // 
+            // cboDestination
+            // 
+            this.cboDestination.Location = new System.Drawing.Point(93, 22);
+            this.cboDestination.Name = "cboDestination";
+            // 
+            // 
+            // 
+            this.cboDestination.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
+            this.cboDestination.Size = new System.Drawing.Size(168, 20);
+            this.cboDestination.TabIndex = 43;
+            this.cboDestination.TabStop = false;
+            this.cboDestination.Text = "-- Choose --";
+            this.cboDestination.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboDestination_KeyPress);
+            // 
+            // gvDestination
+            // 
+            this.gvDestination.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
+            this.gvDestination.Cursor = System.Windows.Forms.Cursors.Default;
+            this.gvDestination.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.gvDestination.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.gvDestination.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.gvDestination.Location = new System.Drawing.Point(9, 86);
+            // 
+            // 
+            // 
+            this.gvDestination.MasterGridViewTemplate.AllowAddNewRow = false;
+            this.gvDestination.MasterGridViewTemplate.AllowDragToGroup = false;
+            gridViewTextBoxColumn10.FieldAlias = "ID";
+            gridViewTextBoxColumn10.FieldName = "ID";
+            gridViewTextBoxColumn10.HeaderText = "ID";
+            gridViewTextBoxColumn10.IsVisible = false;
+            gridViewTextBoxColumn10.UniqueName = "ID";
+            gridViewTextBoxColumn11.FieldAlias = "column1";
+            gridViewTextBoxColumn11.FieldName = "CityName";
+            gridViewTextBoxColumn11.HeaderText = "City Name";
+            gridViewTextBoxColumn11.UniqueName = "CityName";
+            gridViewTextBoxColumn11.Width = 147;
+            this.gvDestination.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn10);
+            this.gvDestination.MasterGridViewTemplate.Columns.Add(gridViewTextBoxColumn11);
+            this.gvDestination.Name = "gvDestination";
+            this.gvDestination.ReadOnly = true;
+            this.gvDestination.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.gvDestination.Size = new System.Drawing.Size(304, 169);
+            this.gvDestination.TabIndex = 42;
+            // 
+            // btnRemoveDestination
+            // 
+            this.btnRemoveDestination.Location = new System.Drawing.Point(131, 52);
+            this.btnRemoveDestination.Name = "btnRemoveDestination";
+            this.btnRemoveDestination.Size = new System.Drawing.Size(111, 21);
+            this.btnRemoveDestination.TabIndex = 41;
+            this.btnRemoveDestination.Text = "Remove Destination";
+            this.btnRemoveDestination.Click += new System.EventHandler(this.btnRemoveDestination_Click);
+            // 
+            // btnAddDestination
+            // 
+            this.btnAddDestination.Location = new System.Drawing.Point(9, 51);
+            this.btnAddDestination.Name = "btnAddDestination";
+            this.btnAddDestination.Size = new System.Drawing.Size(111, 21);
+            this.btnAddDestination.TabIndex = 40;
+            this.btnAddDestination.Text = "Add Destination";
+            this.btnAddDestination.Click += new System.EventHandler(this.btnAddDestination_Click);
+            // 
+            // radLabel19
+            // 
+            this.radLabel19.Location = new System.Drawing.Point(7, 22);
+            this.radLabel19.Name = "radLabel19";
+            this.radLabel19.Size = new System.Drawing.Size(63, 16);
+            this.radLabel19.TabIndex = 12;
+            this.radLabel19.Text = "Destination";
+            // 
+            // btnPelayaran
+            // 
+            this.btnPelayaran.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPelayaran.Location = new System.Drawing.Point(624, 231);
+            this.btnPelayaran.Name = "btnPelayaran";
+            this.btnPelayaran.Size = new System.Drawing.Size(69, 21);
+            this.btnPelayaran.TabIndex = 41;
+            this.btnPelayaran.Text = "Pelayaran";
+            this.btnPelayaran.Click += new System.EventHandler(this.btnPelayaran_Click);
+            // 
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.supplierDetailGridView);
@@ -679,6 +893,10 @@
             this.Size = new System.Drawing.Size(1074, 467);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbTypeOfPayment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etTermOfPayment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etSupplierName)).EndInit();
@@ -696,6 +914,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radToolStrip1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.etDivision)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.etDetailEmail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etExt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etDetailAddress)).EndInit();
@@ -716,7 +938,6 @@
             this.radSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
             this.splitPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnPelayaran)).EndInit();
             this.groupBoxTrucking.ResumeLayout(false);
             this.groupBoxTrucking.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTrucking)).EndInit();
@@ -724,6 +945,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnAddTrucking)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTruckingNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).EndInit();
+            this.groupBoxDestination.ResumeLayout(false);
+            this.groupBoxDestination.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboDestination)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvDestination)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRemoveDestination)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddDestination)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPelayaran)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -780,5 +1009,19 @@
         private Telerik.WinControls.UI.RadTextBox txtTruckingNumber;
         private Telerik.WinControls.UI.RadLabel radLabel18;
         private Telerik.WinControls.UI.RadButton btnPelayaran;
+        private Telerik.WinControls.UI.RadComboBox cbTypeOfPayment;
+        private Telerik.WinControls.UI.RadTextBox etTermOfPayment;
+        private Telerik.WinControls.UI.RadLabel radLabel15;
+        private Telerik.WinControls.UI.RadLabel radLabel14;
+        private Telerik.WinControls.UI.RadTextBox etDivision;
+        private Telerik.WinControls.UI.RadLabel radLabel17;
+        private Telerik.WinControls.UI.RadTextBox etDetailEmail;
+        private Telerik.WinControls.UI.RadLabel radLabel16;
+        private System.Windows.Forms.GroupBox groupBoxDestination;
+        private Telerik.WinControls.UI.RadComboBox cboDestination;
+        private Telerik.WinControls.UI.RadGridView gvDestination;
+        private Telerik.WinControls.UI.RadButton btnRemoveDestination;
+        private Telerik.WinControls.UI.RadButton btnAddDestination;
+        private Telerik.WinControls.UI.RadLabel radLabel19;
     }
 }

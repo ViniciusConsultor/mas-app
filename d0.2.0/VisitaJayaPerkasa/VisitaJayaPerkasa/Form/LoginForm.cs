@@ -20,6 +20,8 @@ namespace VisitaJayaPerkasa.Form
             InitializeComponent();
             VisitaJayaPerkasa.Constant.VisitaJayaPerkasaApplication.loginForm = this;
 
+            Guid id = Guid.NewGuid();
+
             if (File.Exists(Constant.VisitaJayaPerkasaApplication.nameFile))
             {
                 TextReader tr = new StreamReader(Constant.VisitaJayaPerkasaApplication.nameFile);
