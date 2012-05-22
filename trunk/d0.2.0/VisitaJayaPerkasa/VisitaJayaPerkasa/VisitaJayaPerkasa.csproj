@@ -337,6 +337,12 @@
     <Compile Include="Form\PBarDialog.Designer.cs">
       <DependentUpon>PBarDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\Report\ChangeDestination\RFChangeDestination.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\ChangeDestination\RFChangeDestination.Designer.cs">
+      <DependentUpon>RFChangeDestination.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\Report\ChangeDestination\RptChangeDestinationControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -677,6 +683,13 @@
     <EmbeddedResource Include="Form\PBarDialog.resx">
       <DependentUpon>PBarDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\ChangeDestination\RFChangeDestination.resx">
+      <DependentUpon>RFChangeDestination.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\ChangeDestination\RptChangeDestinationControl.resx">
+      <DependentUpon>RptChangeDestinationControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\Container\RptContainer.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
