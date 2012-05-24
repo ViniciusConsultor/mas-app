@@ -31,13 +31,15 @@ namespace VisitaJayaPerkasa.Form
                 temp = null;
             }
             else {
-                string str = "9vywex8RZH8TL8c5df9a3wAjz98t0qaTxQ4VjK4DCmHiMRprRMeszINYlyqxfA66eWkDCZ6cwKG6ZpREcBsqvA==";
+                /*string str = "9vywex8RZH8TL8c5df9a3wAjz98t0qaTxQ4VjK4DCmHiMRprRMeszINYlyqxfA66eWkDCZ6cwKG6ZpREcBsqvA==";
                 TextWriter tw = new StreamWriter(Constant.VisitaJayaPerkasaApplication.nameFile);
                 tw.WriteLine(str);
                 tw.Close();
 
                 string[] temp = Utility.Utility.DecryptString(str).Split('#');
                 Constant.VisitaJayaPerkasaApplication.connectionString = temp[0] + Constant.VisitaJayaPerkasaApplication.connectionString + temp[1];
+            */
+                Constant.VisitaJayaPerkasaApplication.connectionString = "Data Source=.;Initial Catalog=C:\\USERS\\MMJ-WIN-ASANJAYA\\DESKTOP\\SHIPPINGMAIN.MDF;Integrated Security=True";
             }
         }
 
